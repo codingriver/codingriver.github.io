@@ -1,0 +1,92 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>codingriver blog</title>
+        <link>https://codingriver.github.io/</link>
+        <description>codingriver blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 24 Apr 2021 15:08:25 &#43;0800</lastBuildDate>
+            <atom:link href="https://codingriver.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>主题文档 - 基本概念</title>
+    <link>https://codingriver.github.io/theme-documentation-basics/</link>
+    <pubDate>Fri, 06 Mar 2020 21:40:32 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/theme-documentation-basics/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/theme-documentation-basics/featured-image.jpg" referrerpolicy="no-referrer">
+            </div><p>探索 Hugo - <strong>LoveIt</strong> 主题的全部内容和背后的核心概念.</p>]]></description>
+</item><item>
+    <title>主题文档 - 内容</title>
+    <link>https://codingriver.github.io/theme-documentation-content/</link>
+    <pubDate>Thu, 05 Mar 2020 16:30:05 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/theme-documentation-content/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/theme-documentation-content/featured-image.jpg" referrerpolicy="no-referrer">
+            </div><p>了解如何在 <strong>LoveIt</strong> 主题中快速, 直观地创建和组织内容.</p>]]></description>
+</item><item>
+    <title>主题文档 - 内置 Shortcodes</title>
+    <link>https://codingriver.github.io/theme-documentation-built-in-shortcodes/</link>
+    <pubDate>Wed, 04 Mar 2020 16:29:59 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/theme-documentation-built-in-shortcodes/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/theme-documentation-built-in-shortcodes/featured-image.png" referrerpolicy="no-referrer">
+            </div><p><strong>Hugo</strong> 提供了多个内置的 Shortcodes, 以方便作者保持 Markdown 内容的整洁.</p>]]></description>
+</item><item>
+    <title>主题文档 - 扩展 Shortcodes</title>
+    <link>https://codingriver.github.io/theme-documentation-extended-shortcodes/</link>
+    <pubDate>Tue, 03 Mar 2020 16:29:59 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/theme-documentation-extended-shortcodes/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/theme-documentation-extended-shortcodes/featured-image.jpg" referrerpolicy="no-referrer">
+            </div><p><strong>LoveIt</strong> 主题在 Hugo 内置的 shortcode 的基础上提供多个扩展的 shortcode.</p>]]></description>
+</item><item>
+    <title>Markdown 基本语法</title>
+    <link>https://codingriver.github.io/basic-markdown-syntax/</link>
+    <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/basic-markdown-syntax/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/basic-markdown-syntax/featured-image.png" referrerpolicy="no-referrer">
+            </div><p>这篇文章提供了可以在 Hugo 的文章中使用的基本 Markdown 语法示例.</p>]]></description>
+</item><item>
+    <title>主题文档 - Emoji 支持</title>
+    <link>https://codingriver.github.io/theme-emoji-support/</link>
+    <pubDate>Tue, 01 Oct 2019 17:55:28 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/theme-emoji-support/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/images/emoji-support/featured-image.jpg" referrerpolicy="no-referrer">
+            </div><p>Emoji 可以通过多种方式在 Hugo 项目中启用.</p>]]></description>
+</item><item>
+    <title>LinearEyeDepth推导</title>
+    <link>https://codingriver.github.io/lineareyedepth%E6%8E%A8%E5%AF%BC/</link>
+    <pubDate>Sat, 24 Apr 2021 15:08:25 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/lineareyedepth%E6%8E%A8%E5%AF%BC/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>屏幕空间变换</title>
+    <link>https://codingriver.github.io/%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/</link>
+    <pubDate>Fri, 23 Apr 2021 20:11:20 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>透视校正差值</title>
+    <link>https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%A0%A1%E6%AD%A3%E5%B7%AE%E5%80%BC/</link>
+    <pubDate>Thu, 22 Apr 2021 16:01:08 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%A0%A1%E6%AD%A3%E5%B7%AE%E5%80%BC/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>齐次坐标的意义</title>
+    <link>https://codingriver.github.io/%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87%E7%9A%84%E6%84%8F%E4%B9%89/</link>
+    <pubDate>Wed, 21 Apr 2021 22:56:01 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87%E7%9A%84%E6%84%8F%E4%B9%89/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>

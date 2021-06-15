@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>【数据结构】 伸展树详解（SplayTree）（可视化工具） - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="【数据结构】 伸展树详解（SplayTree）（可视化工具）" />
+<meta property="og:description" content="参考：邓俊辉 的数据结构，图片来自该资料 除了AVL树，本章将按照二叉搜索树的介绍，继续介绍平衡二叉搜索树家族中的另一个成员—Splay伸展树。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2020-09-03T21:09:12+08:00" />
+<meta property="article:modified_time" content="2020-09-03T21:09:12+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="【数据结构】 伸展树详解（SplayTree）（可视化工具）"/>
+<meta name="twitter:description" content="参考：邓俊辉 的数据结构，图片来自该资料 除了AVL树，本章将按照二叉搜索树的介绍，继续介绍平衡二叉搜索树家族中的另一个成员—Splay伸展树。"/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" /><link rel="prev" href="https://codingriver.github.io/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E6%9C%AC%E8%AE%B2%E8%A7%A3/" /><link rel="next" href="https://codingriver.github.io/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "【数据结构】 伸展树详解（SplayTree）（可视化工具）",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3\/"
+        },"genre": "posts","keywords": "数据结构","wordcount":  3760 ,
+        "url": "https:\/\/codingriver.github.io\/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3\/","datePublished": "2020-09-03T21:09:12+08:00","dateModified": "2020-09-03T21:09:12+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">【数据结构】 伸展树详解（SplayTree）（可视化工具）</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-03 21:09:12">2020-09-03 21:09:12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3760 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" class="leancloud_visitors" data-flag-title="【数据结构】 伸展树详解（SplayTree）（可视化工具）">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#伸展树splaytree">伸展树（SplayTree）</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#逐层伸展">逐层伸展</a></li>
+            <li><a href="#双层伸展">双层伸展</a>
+              <ul>
+                <li><a href="#zig-zigzag-zag">zig-zig/zag-zag</a></li>
+                <li><a href="#zig-zagzag-zig">zig-zag/zag-zig</a></li>
+                <li><a href="#zigzag">zig/zag</a></li>
+                <li><a href="#效果与效率">效果与效率</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#伸展代码">伸展代码</a></li>
+    <li><a href="#伸展树全部代码c">伸展树全部代码（C#）</a></li>
+    <li><a href="#伸展树测试">伸展树测试</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#测试代码">测试代码</a></li>
+            <li><a href="#测试结果">测试结果</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#可视化工具">可视化工具</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>参考：<a href="https://dsa.cs.tsinghua.edu.cn/~deng/ds/dsacpp/index.htm" target="_blank" rel="noopener noreffer">邓俊辉 的数据结构</a>，图片来自该资料</p>
+</blockquote>
+<blockquote>
+<p>除了<a href="https://blog.csdn.net/codingriver/article/details/107613757" target="_blank" rel="noopener noreffer">AVL树</a>，本章将按照<a href="https://blog.csdn.net/codingriver/article/details/107548386" target="_blank" rel="noopener noreffer">二叉搜索树</a>的介绍，继续介绍平衡二叉搜索树家族中的另一个成员—Splay伸展树。</p>
+</blockquote>
+<h2 id="伸展树splaytree">伸展树（SplayTree）</h2>
+<p>相对于AVL，Splay的实现更为简捷。伸展树无需时刻都严格地保持全树的平衡，但却能够在任何足够长的真实操作序列中，保持分摊意义上的高效率。伸展树也不需要对基本的二叉树节点结构，做任何附加的要求或改动，更不需要记录平衡因子或高度之类的额外信息，故适用范围更广。</p>
+<p>通常在任意数据结构的生命期内，执行不同操作的概率往往极不均衡，而且各操作之间具有极强的相关性，并在整体上多呈现出极强的规律性。其中最为典型的，就是所谓的“==数据局部性==”(data locality)，这包括两个方面的含义:</p>
+<ul>
+<li><strong>刚刚被访问过的元素，极有可能在不久之后再次被访问到</strong></li>
+<li><strong>将被访问的下一元素，极有可能就处于不久之前被访问过的某个元素的附近</strong></li>
+</ul>
+<p>如果将该策略应用于二叉搜索树。只需将刚被访问的节点，及时地“转移”至树根(附近)，即可加速后续的操作。当然， 转移前后的搜索树必须相互等价，故为此使用前文介绍的“旋转“等价变换的技巧。</p>
+<h4 id="逐层伸展">逐层伸展</h4>
+<p>每访问过一个节点之后，随即反复地以它的父节点为轴，经适当的旋转将其提升一层，直至最终成为树根。以下图为例，若深度为3的节点E刚被访问–无论查找或插入，甚至“删除”都可通过3次旋转，将该树等价变换为以E为根的另一棵二叉搜索树</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202747344.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202747344.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202747344.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202747344.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202747344.png"
+        title="在这里插入图片描述" /></p>
+<p>随着节点E的逐层上升，两侧子树的结构也不断地调整，故这一过程也形象地称作伸展 (splaying)，而采用这一调整策略的二叉搜索树也因此得名。不过，为实现真正意义上的伸 展树，还须对以上策略做点微妙而本质的改进。之所以必须改进，是因为目前的策略仍存在致命 的缺陷—对于很多访问序列，单次访问的分摊时间复杂度在极端情况下可能高达n。</p>
+<p>不难验证，若从空树开始依次插入关键码{ 1, 2, 3, 4, 5 }，且其间采用如上调整策略，
+则可得到如下图所示的二叉搜索树。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202851347.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202851347.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202851347.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202851347.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202851347.png"
+        title="在这里插入图片描述" /></p>
+<p>在各次访问之后，为将对应节点伸展调整至树根，分别需做4、4、3、2和1次旋转。</p>
+<p>一般地，若节点总数为n，则旋转操作的总次数应为:
+(n - 1) + { (n - 1) + (n - 2) + … + 1 }= (n^2^ +n-2)/2 = O( n^2^)。</p>
+<p>如此分摊下来，每次访问平均需要n时间。很遗憾，这一效率不仅远远低于AVL树，而且甚至与原始的二叉搜索树的最坏情况相当。</p>
+<p>而事实上，问题还远不止于此。稍做比对即不难发现，上图a与f中二叉搜索树的结构完全相同。也就是说，经过以上连续的5次访问之后，全树的结构将会复原!
+这就意味着，以上情况可以持续地再现。
+当然，这一实例，完全可以推广至规模任意的二叉搜索树。于是对于规模为任意n的伸展树， 只要按关键码单调的次序，周期性地反复进行查找，则无论总的访问次数m &raquo; n有多大，就分摊意义而言，每次访问都将需要O(n)时间!</p>
+<h4 id="双层伸展">双层伸展</h4>
+<p>为克服上述伸展调整策略的缺陷，一种简便且有效的方法就是:将逐层伸展改为双层伸展。 具体地，每次都从当前节点v向上追溯两层(而不是仅一层)，并根据其父亲p以及祖父g的相对位置，进行相应的旋转。主要以下分三类情况：</p>
+<h5 id="zig-zigzag-zag">zig-zig/zag-zag</h5>
+<p>如下图所示， 设v是p的左孩子，且p也是g的左孩子;
+设W和X分别是v的左、右子树，Y和Z分别是p和g的右子树。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202947628.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202947628.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202947628.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202947628.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803202947628.png"
+        title="在这里插入图片描述" /></p>
+<p>针对这种情况，首先以节点g为轴做顺时针旋转zig(g)，其效果如图(b)所示。然后，再以p
+为轴做顺时针旋转zig(p)，其效果如图(c)所示。如此连续的两次zig旋转，合称zig-zig调整。 自然地，另一完全对称的情形，v是p的右孩子，且p也是g的右孩子，则可通过连续的
+两次逆时针旋转实现调整，合称zag-zag操作。</p>
+<h5 id="zig-zagzag-zig">zig-zag/zag-zig</h5>
+<p>如下图所示，设v是p的左孩子，而p是g的右孩子;
+设W是g的左子树，X和Y分别是v的左右子树，Z是p的右子树。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203012535.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203012535.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203012535.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203012535.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203012535.png"
+        title="在这里插入图片描述" /></p>
+<p>针对这种情况，首先以节点p为轴做顺时针旋转zig(p)，其效果如(b)所示。然后，再以g
+为轴做逆时针旋转zag(g)，其效果如图(c)所示。如此zig旋转再加zag旋转，合称zig-zag调整。 同样地，另一完全对称的情形–v是p的右孩子，而p是g的左孩子—则可通过zag旋转再加zig旋转实现调整，合称zag-zig操作。</p>
+<h5 id="zigzag">zig/zag</h5>
+<p>如下图所示，若v最初的深度为奇数，则经过若干次双层调整至最后一次调整时，
+v的父亲p即是树根r。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203046794.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203046794.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203046794.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203046794.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203046794.png"
+        title="在这里插入图片描述" /></p>
+<p>将v的左、右子树记作X和Y，节点p = r的另一子树记作Z。
+此时，只需围绕p = r做顺时针旋转zig(p)，即 可如图(b)所示，使v最终攀升至树根，从而结束整个伸展调整的过程。</p>
+<h5 id="效果与效率">效果与效率</h5>
+<p>综合以上各种情况，每经过一次双层调整操作，节点v都会上升两层。若v的初始深度depth(v) 为偶数，则最终v将上升至树根。若depth(v)为奇数，则当v上升至深度为1时，不妨最后再相应 地做一次zig或zag单旋操作。无论如何，经过depth(v)次旋转后，v最终总能成为树根。</p>
+<p>回顾最开始的单层伸展的例子中：在可持续重复的过程中，二叉搜索树的高度始终不小于n/2; 而且，至少有一半的节点在接受访问时，不仅没有如最初设想的那样靠近树根，而且反过来恰恰处于最底层。 从树高的角度看，问题根源也可再进一步地解释为：在持续访问的过程中，树高依算术级数逐步从n - 1递减至n/2，然后再逐步递增回到n - 1。</p>
+<p>以如下图所示的二叉搜索树为例，在find(1)操作之后，采用逐层调整策略与双层调 整策略的效果，分别如图(a)和图(c)所示。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203108923.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203108923.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203108923.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203108923.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200803203108923.png"
+        title="在这里插入图片描述" /></p>
+<p>可见，最深节点(1)被访问之后再经过双层调整，不仅同样可将该节点伸展至树根，而且==同时可使树的高度接近于减半==。就树的形态而言，双层伸展策略可“智能”地“折叠”被访问的 子树分支，从而有效地避免对长分支的连续访问。这就意味着，即便节点v的深度为n，双层 伸展策略既可将v推至树根，亦可令对应分支的长度以几何级数(大致折半)的速度收缩。</p>
+<h2 id="伸展代码">伸展代码</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200804165341817.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200804165341817.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200804165341817.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/20200804165341817.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200804165341817.png"
+        title="在这里插入图片描述" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// 伸展操作
+</span><span class="c1"></span>        <span class="c1">/// Zig:右旋转，顺时针旋转
+</span><span class="c1"></span>        <span class="c1">/// Zag:左旋转，逆时针旋转
+</span><span class="c1"></span>        <span class="c1">/// 
+</span><span class="c1"></span>        <span class="c1">///  - 单旋(单层伸展)                                                                                                                                                                                                                                                
+</span><span class="c1"></span>        <span class="c1">///              zig                              zag        
+</span><span class="c1"></span>        <span class="c1">///        （顺时针旋转g）                   （逆时针旋转g）                                                                                                                                                                                                               
+</span><span class="c1"></span>        <span class="c1">///               g                                g                                                                                                                                                                                                                                      
+</span><span class="c1"></span>        <span class="c1">///              / \                              / \                                                                                                                                                                                                                                     
+</span><span class="c1"></span>        <span class="c1">///             p   T3                           T0  p                                                                                                                                                                                                                                    
+</span><span class="c1"></span>        <span class="c1">///            / \                                  / \                                                                                                                                                                                                                                   
+</span><span class="c1"></span>        <span class="c1">///           v   T2                               T1  v                                                                                                                                                                                                                                  
+</span><span class="c1"></span>        <span class="c1">///          / \                                      / \                                                                                                                                                                                                                                 
+</span><span class="c1"></span>        <span class="c1">///         T0  T1                                   T2  T3     
+</span><span class="c1"></span>        <span class="c1">///
+</span><span class="c1"></span>        <span class="c1">///       zig单旋后：                          zag单旋后：                                                                                                                                                                                                      
+</span><span class="c1"></span>        <span class="c1">///              p                                  p                                                                                                                                                                                                              
+</span><span class="c1"></span>        <span class="c1">///           /     \                            /     \                                                                                                                                                                                                         
+</span><span class="c1"></span>        <span class="c1">///          v       g                          g       v                                                                                                                                                                                                        
+</span><span class="c1"></span>        <span class="c1">///         / \     / \                        / \     / \                                                                                                                                                                                                       
+</span><span class="c1"></span>        <span class="c1">///        T0  T1  T2  T3                     T0  T1  T2  T3       
+</span><span class="c1"></span>        <span class="c1">/// 
+</span><span class="c1"></span>        <span class="c1">///  - 双旋(双层伸展)
+</span><span class="c1"></span>        <span class="c1">///                    zig-zig                               zig-zag                               zag-zag                                zag-zig
+</span><span class="c1"></span>        <span class="c1">///       （先顺时针旋转g，后顺时针旋转p） （先顺时针旋转p(zig)，后逆时针旋转g(zag)）  （先逆时针旋转g，后逆时针旋转p）  （先逆时针旋转p(zag)，后顺时针旋转g(zig)）
+</span><span class="c1"></span>        <span class="c1">///                      g                                     g                                      g                                      g                                                                                                                                                                                                                                       
+</span><span class="c1"></span>        <span class="c1">///                     / \                                   / \                                    / \                                    / \                                                                                                                                                                                                          
+</span><span class="c1"></span>        <span class="c1">///                    p   T3                               T0   p                                  T0  p                                  p   T3                                                                                                                                                                                                       
+</span><span class="c1"></span>        <span class="c1">///                   / \                                       / \                                    / \                                / \                                                                                                                                                                             
+</span><span class="c1"></span>        <span class="c1">///                  v   T2                                    v   T3                                 T1  v                              T0  v                                                                                                                                                                                                             
+</span><span class="c1"></span>        <span class="c1">///                 / \                                       / \                                        / \                                / \                                                                                                                                                                                                          
+</span><span class="c1"></span>        <span class="c1">///                T0  T1                                    T1  T2                                     T2  T3                             T1  T2                                                                                                                                                                               
+</span><span class="c1"></span>        <span class="c1">///
+</span><span class="c1"></span>        <span class="c1">///       双旋后：  zig-zig 双旋后                        zig-zag双旋后                        zag-zag 双旋后                          zag-zig双旋后                                                                                                                                                                                                 
+</span><span class="c1"></span>        <span class="c1">///                      v                                      v                                     v                                       v                                                                                                                                                                             
+</span><span class="c1"></span>        <span class="c1">///                     / \                                 /     \                                 / \                                   /     \                                                                                                                                                        
+</span><span class="c1"></span>        <span class="c1">///                    T0   p                              g       p                               p   T3                                p       g                                                                                                                                                                                      
+</span><span class="c1"></span>        <span class="c1">///                        / \                            / \     / \                             / \                                   / \     / \                                                                                                                                                                                                                                                                            
+</span><span class="c1"></span>        <span class="c1">///                       T1  g                          T0  T1  T2  T3                          g   T2                                T0  T1  T2  T3                                                                                                                                                                                                                    
+</span><span class="c1"></span>        <span class="c1">///                          / \                                                                / \                                                                                                                                                                                                                          
+</span><span class="c1"></span>        <span class="c1">///                         T2  T3                                                             T0  T1                                                                                                                                                                                                                                                     
+</span><span class="c1"></span>        <span class="c1">///
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;v&#34;&gt;&lt;/param&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
+</span><span class="c1"></span>        <span class="k">public</span> <span class="n">Node</span> <span class="n">Splay</span><span class="p">(</span><span class="n">Node</span> <span class="n">v</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">==</span><span class="k">null</span><span class="p">)</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+            <span class="n">Node</span> <span class="n">g</span><span class="p">=</span><span class="k">null</span><span class="p">,</span> <span class="n">p</span><span class="p">=</span><span class="k">null</span><span class="p">;</span>
+
+            <span class="k">while</span><span class="p">(!!(</span><span class="n">p</span><span class="p">=</span><span class="n">v</span><span class="p">.</span><span class="n">Parent</span><span class="p">)&amp;&amp;</span> <span class="p">!!(</span><span class="n">g</span><span class="p">=</span><span class="n">p</span><span class="p">.</span><span class="n">Parent</span><span class="p">))</span><span class="c1">//自下而上，反复对v做双层伸展
+</span><span class="c1"></span>            <span class="p">{</span>
+                <span class="n">Node</span> <span class="n">r</span> <span class="p">=</span> <span class="n">g</span><span class="p">.</span><span class="n">Parent</span><span class="p">;</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">IsLeft</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="n">IsLeft</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="c1">//zig-zig   先旋转v的祖父节点，然后再旋转v的父节点
+</span><span class="c1"></span>                    <span class="p">{</span>
+                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">R</span><span class="p">);</span><span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span>
+                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span><span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+                    <span class="p">}</span>
+                    <span class="k">else</span> <span class="c1">//zig-zag   先旋转v的父节点，后旋转v的祖父节点
+</span><span class="c1"></span>                    <span class="p">{</span>
+                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span> <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span>
+                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span> <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">IsRight</span><span class="p">(</span><span class="n">p</span><span class="p">))</span><span class="c1">// zag-zag
+</span><span class="c1"></span>                    <span class="p">{</span>
+                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">L</span><span class="p">);</span> <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span>
+                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
+                        
+                    <span class="p">}</span>
+                    <span class="k">else</span>  <span class="c1">//zag-zig
+</span><span class="c1"></span>                    <span class="p">{</span>
+                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span>
+                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span><span class="c1">//若原v的曾祖父r不存在，则v现在为树根Root
+</span><span class="c1"></span>                <span class="p">{</span>
+                    <span class="n">v</span><span class="p">.</span><span class="n">Parent</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="n">g</span> <span class="p">==</span> <span class="n">r</span><span class="p">.</span><span class="n">L</span><span class="p">)</span>
+                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+                    <span class="k">else</span>
+                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
+                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+
+            <span class="p">}</span><span class="c1">//双层伸展结束时，必有g=null，但p可能非空
+</span><span class="c1"></span>
+            <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">==</span><span class="n">v</span><span class="p">.</span><span class="n">Parent</span><span class="p">&amp;&amp;</span><span class="n">p</span><span class="p">!=</span><span class="k">null</span><span class="p">)</span> <span class="c1">//如果p为非空，则需要做一次单旋
+</span><span class="c1"></span>            <span class="p">{</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">IsLeft</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="cm">/* zig */</span>
+                <span class="p">{</span>
+                    <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span><span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span> <span class="cm">/* zag */</span>
+                <span class="p">{</span>
+                    <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span> 
+                <span class="p">}</span>
+                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="n">v</span><span class="p">.</span><span class="n">Parent</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
+        <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="伸展树全部代码c">伸展树全部代码（C#）</h2>
+<p><a href="https://github.com/codingriver/DataStructure/blob/master/SplayTree.cs" target="_blank" rel="noopener noreffer">全部代码（C#）</a></p>
+<h2 id="伸展树测试">伸展树测试</h2>
+<p><a href="https://github.com/codingriver/DataStructure/blob/master/SplayTree.cs" target="_blank" rel="noopener noreffer">全部代码（C#）</a></p>
+<h4 id="测试代码">测试代码</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">SplayTree</span> <span class="n">tree</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SplayTree</span><span class="p">();</span>
+            <span class="n">Node</span> <span class="n">n</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">;</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">7</span><span class="p">);</span>  
+            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">24</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">26</span><span class="p">);</span> 
+            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">12</span><span class="p">);</span> 
+            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">18</span><span class="p">);</span> 
+            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;   Preorder::&#34;</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Preorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;    Inorder::&#34;</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Inorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;  Postorder::&#34;</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Postorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34; Levelorder::&#34;</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Levelorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34; ZLevelorder:&#34;</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">ZLevelorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;\n\n&#34;</span><span class="p">);</span>
+
+            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">24</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">18</span><span class="p">);</span> 
+            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">7</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">26</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">16</span><span class="p">);</span>
+            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">12</span><span class="p">);</span>
+
+
+            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+        <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="测试结果">测试结果</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Insert:20
+020
+
+Insert:10
+   010
+   / \
+ N    020
+
+Insert:7
+         007
+         / \
+    N          010
+   / \         / \
+ N     N     N    020
+
+Insert:24
+                     024
+                     / \
+         020                      N
+         / \                     / \
+   010          N           N           N
+   / \         / \         / \         / \
+007    N     N     N     N     N     N     N
+
+Insert:26
+                                             026                                                                        
+                                             / \                                                                        
+                     024                                              N
+                     / \                                             / \
+         020                      N                       N                       N
+         / \                     / \                     / \                     / \
+   010          N           N           N           N           N           N           N
+   / \         / \         / \         / \         / \         / \         / \         / \
+007    N     N     N     N     N     N     N     N     N     N     N     N     N     N     N
+
+Insert:12
+                     012
+                     / \
+         010                     026
+         / \                     / \
+   007          N          020          N
+   / \         / \         / \         / \
+ N     N     N     N     N    024    N     N
+
+Insert:18
+                     018
+                     / \
+         012                     020
+         / \                     / \
+   010          N           N          026
+   / \         / \         / \         / \
+007    N     N     N     N     N    024    N
+
+   Preorder::18,12,10,7,20,26,24,
+    Inorder::7,10,12,18,20,24,26,
+  Postorder::7,10,12,24,26,20,18,
+ Levelorder::18,12,20,10,26,7,24,
+ ZLevelorder:18,20,12,10,26,24,7,
+
+
+Remove:24
+                                             026                                                                        
+                                             / \                                                                        
+                     018                                              N
+                     / \                                             / \
+         012                     020                      N                       N
+         / \                     / \                     / \                     / \
+   010          N           N           N           N           N           N           N
+   / \         / \         / \         / \         / \         / \         / \         / \
+007    N     N     N     N     N     N     N     N     N     N     N     N     N     N     N
+
+Remove:20
+                                             026                                                                        
+                                             / \                                                                        
+                     018                                              N
+                     / \                                             / \
+         012                      N                       N                       N
+         / \                     / \                     / \                     / \
+   010          N           N           N           N           N           N           N
+   / \         / \         / \         / \         / \         / \         / \         / \
+007    N     N     N     N     N     N     N     N     N     N     N     N     N     N     N
+
+Remove:10
+         012
+         / \
+   007         026
+   / \         / \
+ N     N    018    N
+
+Remove:18
+         026
+         / \
+   012          N
+   / \         / \
+007    N     N     N
+
+Remove:7
+   012
+   / \
+ N    026
+
+Remove:26
+012
+
+Remove:16
+012
+
+Remove:12
+ N
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="可视化工具">可视化工具</h2>
+<p><a href="https://www.cs.usfca.edu/~galles/visualization/SplayTree.html" target="_blank" rel="noopener noreffer">可视化工具</a>（旧金山大学 (usfca)|数据结构可视化工具）</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-09-03 21:09:12</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" data-hashtag="数据结构"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" data-title="【数据结构】 伸展树详解（SplayTree）（可视化工具）" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" data-title="【数据结构】 伸展树详解（SplayTree）（可视化工具）"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" data-title="【数据结构】 伸展树详解（SplayTree）（可视化工具）" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" data-title="【数据结构】 伸展树详解（SplayTree）（可视化工具）" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" data-title="【数据结构】 伸展树详解（SplayTree）（可视化工具）" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" data-title="【数据结构】 伸展树详解（SplayTree）（可视化工具）"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E6%9C%AC%E8%AE%B2%E8%A7%A3/" class="prev" rel="prev" title="【数据结构】树和二叉树基本讲解"><i class="fas fa-angle-left fa-fw"></i>【数据结构】树和二叉树基本讲解</a>
+            <a href="/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/" class="next" rel="next" title="【数据结构】 二叉查找树(二叉排序树、二叉搜索树)详解（可视化工具）">【数据结构】 二叉查找树(二叉排序树、二叉搜索树)详解（可视化工具）<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

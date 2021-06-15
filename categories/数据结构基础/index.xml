@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>数据结构基础 - 分类 - codingriver blog</title>
+        <link>https://codingriver.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/</link>
+        <description>数据结构基础 - 分类 - codingriver blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/" rel="self" type="application/rss+xml" /><item>
+    <title>【数据结构基础】 浮点数的内存存储和运算</title>
+    <link>https://codingriver.github.io/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%92%8C%E8%BF%90%E7%AE%97/</link>
+    <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%92%8C%E8%BF%90%E7%AE%97/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
+</rss>
