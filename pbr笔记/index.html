@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>PBR笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="PBR笔记" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2021-12-07T13:39:26+08:00" />
+<meta property="article:modified_time" content="2021-12-07T13:39:26+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="PBR笔记"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://codingriver.github.io/bloom%E5%AE%9E%E7%8E%B0/" /><link rel="next" href="https://codingriver.github.io/shader%E6%A1%88%E4%BE%8B/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PBR笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/pbr%E7%AC%94%E8%AE%B0\/"
+        },"genre": "posts","wordcount":  19324 ,
+        "url": "https:\/\/codingriver.github.io\/pbr%E7%AC%94%E8%AE%B0\/","datePublished": "2021-12-07T13:39:26+08:00","dateModified": "2021-12-07T13:39:26+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">PBR笔记</h1><h2 class="single-subtitle">PBR笔记</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-07 13:39:26">2021-12-07 13:39:26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 19324 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 39 分钟&nbsp;<span id="/pbr%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="PBR笔记">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#什么是pbr">什么是PBR</a></li>
+        <li><a href="#基于物理渲染的优点">基于物理渲染的优点</a></li>
+        <li><a href="#基于物理的渲染和传统区别">基于物理的渲染和传统区别</a></li>
+        <li><a href="#pbr特征">PBR特征</a></li>
+        <li><a href="#pbr和pbs的关系">PBR和PBS的关系</a></li>
+        <li><a href="#光与物质的交互light-and-matter">光与物质的交互（light and matter）</a></li>
+        <li><a href="#光与平面的交互light-and-object-surface">光与平面的交互（light and object surface）</a></li>
+        <li><a href="#fresnel菲涅尔反射">Fresnel（菲涅尔）反射</a>
+          <ul>
+            <li><a href="#次级表面散射subsurface-scattering">次级表面散射（Subsurface Scattering）</a></li>
+          </ul>
+        </li>
+        <li><a href="#微平面理论microfacet-theory">微平面理论(Microfacet Theory)</a></li>
+        <li><a href="#surface-reflectance">Surface Reflectance</a></li>
+        <li><a href="#能量守恒">能量守恒</a></li>
+        <li><a href="#反射方程reflectance-equation--渲染方程-">反射方程（Reflectance Equation） ( 渲染方程 )</a></li>
+        <li><a href="#什么是brdf">什么是BRDF</a></li>
+        <li><a href="#怎么实现brdf">怎么实现BRDF</a>
+          <ul>
+            <li><a href="#𝐷normal-distribution-functionndf">𝐷(Normal Distribution Function，NDF)</a></li>
+            <li><a href="#𝐹-fresnel-equation">𝐹 (Fresnel equation)</a></li>
+            <li><a href="#𝐺-geometry-function">𝐺 (Geometry function)</a></li>
+            <li><a href="#cook-torrance反射方程cook-torrance-reflectance-equation">Cook-Torrance反射方程(Cook-Torrance reflectance equation)</a></li>
+          </ul>
+        </li>
+        <li><a href="#pbr参数">PBR参数</a></li>
+        <li><a href="#pbr的光照实现">PBR的光照实现</a>
+          <ul>
+            <li><a href="#辐照度计算">辐照度计算</a></li>
+            <li><a href="#pbr直接光照direct-lighting">PBR直接光照(Direct lighting)</a></li>
+          </ul>
+        </li>
+        <li><a href="#基于图像的光照image-based-lighting-ibl">基于图像的光照（Image Based Lighting, IBL）</a>
+          <ul>
+            <li><a href="#间接光的漫反射iblindirect-diffuse-ibl">间接光的漫反射IBL（Indirect Diffuse IBL）</a></li>
+            <li><a href="#间接光的镜面反射iblindirect-specular-ibl">间接光的镜面反射IBL（Indirect Specular IBL）</a></li>
+            <li><a href="#间接光完整的ibl">间接光完整的IBL</a></li>
+          </ul>
+        </li>
+        <li><a href="#pbr的两种工作流程">PBR的两种工作流程</a>
+          <ul>
+            <li><a href="#metal-roughness金属工作流">Metal-Roughness（金属工作流）</a></li>
+            <li><a href="#specular-glossiness高光工作流">Specular-Glossiness（高光工作流）</a></li>
+          </ul>
+        </li>
+        <li><a href="#两个流程的区别">两个流程的区别</a>
+          <ul>
+            <li><a href="#共同点">共同点</a></li>
+            <li><a href="#不同点">不同点</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="什么是pbr">什么是PBR</h3>
+<p>PBR即基于物理的渲染过程。</p>
+<p><strong>PBR 并不是“一项”技术，它是由一系列技术的集合</strong>。</p>
+<p>满足以下条件的光照模型才能称之为PBR光照模型：</p>
+<ol>
+<li>基于微平面模型（Be based on the microfacet surface model）</li>
+<li>能量守恒（Be energy conserving）</li>
+<li>使用基于物理的BRDF（Use a physically based BRDF）</li>
+</ol>
+<blockquote>
+<p>参考：<a href="https://learnopengl-cn.github.io/07%20PBR/01%20Theory/" target="_blank" rel="noopener noreffer">https://learnopengl-cn.github.io/07%20PBR/01%20Theory/</a><br>
+PBR，或者用更通俗一些的称呼是指<code>基于物理的渲染(Physically Based Rendering)</code>，它指的是一些在不同程度上都基于与现实世界的物理原理更相符的基本理论所构成的渲染技术的集合。正因为基于物理的渲染目的便是为了使用一种更符合物理学规律的方式来模拟光线，因此这种渲染方式与我们原来的Phong或者Blinn-Phong光照算法相比总体上看起来要更真实一些。除了看起来更好些以外，由于它与物理性质非常接近，因此我们（尤其是美术师们）可以直接以物理参数为依据来编写表面材质，而不必依靠粗劣的修改与调整来让光照效果看上去正常。使用基于物理参数的方法来编写材质还有一个更大的好处，就是不论光照条件如何，这些材质看上去都会是正确的，而在非PBR的渲染管线当中有些东西就不会那么真实了。</p>
+<p>虽然如此，基于物理的渲染仍然只是对基于物理原理的现实世界的一种近似，这也就是为什么它被称为基于物理的着色(Physically based Shading) 而非物理着色(Physical Shading)的原因。</p>
+</blockquote>
+<h3 id="基于物理渲染的优点">基于物理渲染的优点</h3>
+<ul>
+<li>很容易就可以作出真实和照片级的效果</li>
+<li>同一配置可以适用于在不同HDR光照环境下</li>
+<li>接口简单而直观，都是基于世界真实的参数。（如粗糙度，金属度，等等）</li>
+<li>不需要美术去提供经验性的”奇怪”参数和配置</li>
+<li>更容易去解决问题和扩展需求</li>
+</ul>
+<h3 id="基于物理的渲染和传统区别">基于物理的渲染和传统区别</h3>
+<ul>
+<li>有着基于物理规则的光照模式</li>
+<li>有着无处不在的fresnel效果 <em>(指当光到达两种材质的接触面时，一些光在接触面的表面被反射出去，而另一部分光将发生折射穿过接触面)</em></li>
+<li>能量守恒“energy conservation”，物体平面的反射光无法超过它所解接受的入射光</li>
+<li>基于物体材质，会分辨金属和介电质，微平面的概念</li>
+<li>线性空间的光照，支持gamma矫正的，HDR渲染和tonemap</li>
+</ul>
+<h3 id="pbr特征">PBR特征</h3>
+<p>这节阐述的是PBR呈现的效果特征，而非底层物理原理的特征。
+相比传统的Lambert着色和Phong着色，PBR着色在效果上有着质的提升，可以表示更多更复杂的材质特征：</p>
+<ul>
+<li>表面细节</li>
+<li>物体粗糙度</li>
+<li>区别明显的金属和绝缘体</li>
+<li>物体的浑浊程度</li>
+<li>菲涅尔现象：不同角度有不同强度的反射光</li>
+<li>半透明物体</li>
+<li>多层混合材质</li>
+<li>清漆效果</li>
+<li>其它更复杂的表面特征</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-16-50-08.png"
+        data-srcset="../../imgs/2021-12-07-16-50-08.png, ../../imgs/2021-12-07-16-50-08.png 1.5x, ../../imgs/2021-12-07-16-50-08.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-16-50-08.png"
+        title="../../imgs/2021-12-07-16-50-08.png" /></p>
+<p><em>Phong模型着色效果，只能简单地表现理想模型的漫反射和高光，渲染出的效果跟真实世界相差甚远。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-16-50-29.png"
+        data-srcset="../../imgs/2021-12-07-16-50-29.png, ../../imgs/2021-12-07-16-50-29.png 1.5x, ../../imgs/2021-12-07-16-50-29.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-16-50-29.png"
+        title="../../imgs/2021-12-07-16-50-29.png" /></p>
+<p><em>PBR材质效果球，它们真实地渲染出各类材质的粗糙、纹理、高光、清漆、边缘光等等表面细节特征。PBR对渲染效果真实感的提升可见一斑。</em></p>
+<h3 id="pbr和pbs的关系">PBR和PBS的关系</h3>
+<p>PBR（Physically Based Rendering）是一种渲染方式(基于物理渲染)，它使用的材质是PBS（Physically Based Shader），中文名：基于物理的渲染技术(基于物理着色)。可以对光和材质之间的行为进行更加真实的建模。PBS只考虑材质在真实物理环境下应该有的效果。PBR包围的范围会更广一些，比如GI/AO/SUN等复杂情况，这些东西加上PBS，才是PBR。</p>
+<p>Unity中的PBS即是把PBR算法封装起来，只用修改PBS的参数就能达到PBR的效果。</p>
+<p>在Unity中，PBS分为两类，一个叫做Standard，一个叫做Standard（Specular Setup）,我们把它称为标准着色器的高光版，它们共同组成了一个完整的PBS光照明模型，而且非常易于使用。</p>
+<h3 id="光与物质的交互light-and-matter">光与物质的交互（light and matter）</h3>
+<p>光是一种横向传播的电磁波，电磁波的波长范围非常广，但只有390~760nm之间的一段波谱是人眼可见到的，也就是在图形学里对渲染着色起作用的部分。另外因为光有波粒二象性的缘故，有时候我们在图形学里也会把光做为光子（photon）来处理。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-15-17-18.png"
+        data-srcset="../../imgs/2021-12-07-15-17-18.png, ../../imgs/2021-12-07-15-17-18.png 1.5x, ../../imgs/2021-12-07-15-17-18.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-15-17-18.png"
+        title="../../imgs/2021-12-07-15-17-18.png" /></p>
+<p>当光投射到传感器（眼睛，照相机等）上时，颜色和亮度就会被吸收并感知，而光与物质交互后被感知的，就是物体的颜色。</p>
+<p>物质对光的影响，可以用<code>折射率</code>（refractive index）来描述，当由复数来表示折射率时，它的实部影响速度（相对于真空中的速度），虚部来影响光的衰减（被吸收），折射率会改变光的波长。</p>
+<p>我们先根据物质按照内部折射率是否均匀来进行分类：</p>
+<ul>
+<li>
+<p>均匀介质（Homogeneous Media）&mdash;直线传播
+内部密度相同的物质，意味着他有唯一的折射率，对应透明的均匀物质来讲（如水，玻璃），光通过时，并不会改变光的颜色或强度，而当物质对某一种可见光谱有吸收率的时候，那么，光就会随着在物质内的传播距离而逐渐被吸收，而光的方向并不发生改变，这就是光被吸收（absorption）。</p>
+<p>光穿透玻璃和水时，方向、颜色和强度都不会发生：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-15-31-14.png"
+        data-srcset="../../imgs/2021-12-07-15-31-14.png, ../../imgs/2021-12-07-15-31-14.png 1.5x, ../../imgs/2021-12-07-15-31-14.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-15-31-14.png"
+        title="../../imgs/2021-12-07-15-31-14.png" /></p>
+<p>如果物质对某一种可见光谱有吸收率时，光方向不会发生变化，而光的强度会随着距离丧失强度（改变颜色），也就是光被吸收了：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-15-31-37.png"
+        data-srcset="../../imgs/2021-12-07-15-31-37.png, ../../imgs/2021-12-07-15-31-37.png 1.5x, ../../imgs/2021-12-07-15-31-37.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-15-31-37.png"
+        title="../../imgs/2021-12-07-15-31-37.png" /></p>
+</li>
+<li>
+<p>非均匀介质（heterogeneous medium）&mdash;散射
+当非均匀物质内部的折射率变化斜率很大时（突变），就会发生散射（Scattering）现象，光会被分割为多个方向，但光的总量并不会发生变化：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-15-32-26.png"
+        data-srcset="../../imgs/2021-12-07-15-32-26.png, ../../imgs/2021-12-07-15-32-26.png 1.5x, ../../imgs/2021-12-07-15-32-26.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-15-32-26.png"
+        title="../../imgs/2021-12-07-15-32-26.png" /></p>
+</li>
+</ul>
+<p>除了以上两种交互外，物质还可能因为其他能量发出新的光，称为自发光“emission”。</p>
+<p>光与物质交互的三种方式：<strong>吸收、散射、自发光</strong><br>
+示意图如下：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-15-33-40.png"
+        data-srcset="../../imgs/2021-12-07-15-33-40.png, ../../imgs/2021-12-07-15-33-40.png 1.5x, ../../imgs/2021-12-07-15-33-40.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-15-33-40.png"
+        title="../../imgs/2021-12-07-15-33-40.png" /></p>
+<blockquote>
+<p>散射(Scattering): 由观察尺度划分</p>
+<ul>
+<li>漫反射(Diffuse): 观察像素大于散射距离</li>
+<li>次表面散射(Subsurface Scattering): 观察像素小于散射距离</li>
+<li>透射(Transmission): 入射光经过折射穿过物体后的出射现象, 为次表面散射的特例</li>
+</ul>
+</blockquote>
+<p>另外，折射率缓慢的逐渐变化不会导致光线的分离，而是导致其传播路径的弯曲。 当空气密度因温度而变化时，通常可以看到这种效果，例如海市蜃楼（mirages）和热形变（heat distortion）。见下图。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-15-40-34.png"
+        data-srcset="../../imgs/2021-12-07-15-40-34.png, ../../imgs/2021-12-07-15-40-34.png 1.5x, ../../imgs/2021-12-07-15-40-34.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-15-40-34.png"
+        title="../../imgs/2021-12-07-15-40-34.png" /></p>
+<h3 id="光与平面的交互light-and-object-surface">光与平面的交互（light and object surface）</h3>
+<p>上面我们讲了光在密度不同的物质内传递的现象，而渲染中最为典型的，是发生在物体表面时，关于光与空气和物质之间的散射效果。
+这个时候平面散射光会分为两部分：进入平面的部分（折射，在物体内部传播中被吸收或散射），从平面出去的部分（反射）;一个假设完美无限光学平坦的平面（简称光学平面）反射效果，平面两侧的空气和物体有各自的折射率：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-15-34-30.png"
+        data-srcset="../../imgs/2021-12-07-15-34-30.png, ../../imgs/2021-12-07-15-34-30.png 1.5x, ../../imgs/2021-12-07-15-34-30.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-15-34-30.png"
+        title="../../imgs/2021-12-07-15-34-30.png" /></p>
+<p>但实际上，平面大多都不是光学平面（除了镜子或镜头等），而是一种微几何体（Microgeometry），表面都会有一些比可见光波长要大的不规则凹凸，但又小到无法覆盖一个像素或者采样点，所以，我们就把这种非光学平面，理解为一组微小光学平面的集合，而可见光的反射，实际上是在平面各个点上轻微不同方向的反射集合，也就是后面会提到的<strong>微平面理论</strong>（Microsurface Theory）。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-15-36-35.png"
+        data-srcset="../../imgs/2021-12-07-15-36-35.png, ../../imgs/2021-12-07-15-36-35.png 1.5x, ../../imgs/2021-12-07-15-36-35.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-15-36-35.png"
+        title="../../imgs/2021-12-07-15-36-35.png" /></p>
+<h3 id="fresnel菲涅尔反射">Fresnel（菲涅尔）反射</h3>
+<blockquote>
+<p>Fresnel表现的是材质的反射率和<code>入射角</code>（<em>也就是光源入射向量和平面法线向量的夹角</em>）的对应关系</p>
+</blockquote>
+<ul>
+<li>表示观察看到的反射光线的向量与视角相关的现象</li>
+<li>光线以不同角度入射会有不同反射率, 掠射角度(90)下反射率最大</li>
+<li><code>F0</code>: 平行于表面法向量入射的菲涅尔反射值, 任意角度的菲涅尔反射可由 F0 和入射角度计算得出</li>
+<li>光线对于不同物质有不同的反射率, 非金属 F0: 0.02~0.04, 金属 F0: 0.7~1.0</li>
+<li><strong>光线入射角越大，镜面反射的比例越大</strong></li>
+</ul>
+<blockquote>
+<p>如果要达到真实的fresnel，那么美术对fresnel的控制应该越少越好，需要提供一些参数值来使用，通常是**光泽度(Gloss，或粗糙度 Roughness)**和反射率（Reflectivity）。提供一个基础反射率，来设置平面最小的反射值，让fresnel曲线从这个最小反射值开始，以满足不同角度的需求。</p>
+</blockquote>
+<h4 id="次级表面散射subsurface-scattering">次级表面散射（Subsurface Scattering）</h4>
+<p>菲涅尔方程定义的是在不同观察方向上，表面上被反射的光除以被折射的光的比例。我们通过该方程可以计算得到被反射的光的能量，根据能量守恒我们就可以得知被折射进物体的光的能量了。那些折射进物体的光也没闲着，他们在物体内进行着称之为**次表面散射（Subsurface Scattering）**的行为，最终会看似随机地射出表面。如下图所示：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-16-46-20.png"
+        data-srcset="../../imgs/2021-12-07-16-46-20.png, ../../imgs/2021-12-07-16-46-20.png 1.5x, ../../imgs/2021-12-07-16-46-20.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-16-46-20.png"
+        title="../../imgs/2021-12-07-16-46-20.png" /></p>
+<p>其中黄色出射光为直接反射光，红色出射光为次表面反射光。可以看到，在一个平滑的平面上（即不考虑微平面理论），在宏观上来说，反射光即为材质的高光 specular 部分，而次表面反射因为是完全随机出射，所以构成了漫反射 diffuse 部分。</p>
+<p>这里还是得提一句 Subsurface Scattering 的注意事项。先从引擎玩起再来补图形学知识的人可能会疑惑，Subsurface Scattering 不是做皮肤那种，模拟光从一个像素点入射，从另一个像素点出射的物理现象吗？但这里整篇文章模拟的都是一个像素所覆盖的平面所产生的物理属性（还是之前提到的 pixel footprint 的概念），而这种跨越多个像素的、宏观的次表面反射会在后面使用一个单独的物理模型去模拟，即 BSSRDF。</p>
+<blockquote>
+<p>当像素小于出射到入射距离时，每个点的着色就会收到其他光入射到其他点的影响，也就是常说的“次级表面散射”技术，很重要的一点是，它和普通的漫反射着色是一种物理现象（都是折射光的次级表面散射），唯一不同的就是散射的距离与观察点大小的关系，一个通常被认为是“次级表面散射”的表现，当在较远的距离观察时，就可以被认为是漫反射着色（例如远距离角色的皮肤），而“正规的漫反射着色”在很近距离观察时，也会有次级表面散射的效果。</p>
+</blockquote>
+<h3 id="微平面理论microfacet-theory">微平面理论(Microfacet Theory)</h3>
+<blockquote>
+<p>上面描述的反射和散射都依赖于表面的朝向。放大来看，这被用来渲染网格的形状，也可以使用法线贴图来描述更小的细节。这样任何渲染系统都可以处理更多的细节，把反射和散射表现得更好。</p>
+<p>然而，任然有一点没有考虑到。大多数真实世界的表面都存在非常小的缺口：凹槽、裂缝、凸块，这些都因为太小了以至于眼睛无法看到，并且使用正常解析度的法线贴图都无法表现出来。尽管无法被肉眼看到，但这些微粒还是影响着反射和折射。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-16-26-09.png"
+        data-srcset="../../imgs/2021-12-07-16-26-09.png, ../../imgs/2021-12-07-16-26-09.png 1.5x, ../../imgs/2021-12-07-16-26-09.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-16-26-09.png"
+        title="../../imgs/2021-12-07-16-26-09.png" /></p>
+<p>为表面细节最容易在反射中被观察到（散射并不会被太多的影响到，这里不会讨论到）。上图中，入射光的平行线当从粗糙的表面反射是发生了交叉，因为每一条射线遇到的表面方向都不一样。就像将球抛向墙面一样，如果墙面非常不平整，球任然会反弹，但是反弹方向是不可预测的。简而言之，表面越粗糙，越多的反射光线会产生交叉，看上去越“模糊”。</p>
+<p>不幸的是，为了着色而评估每一个微表面特征对美术、内存、计算量来说都是非常昂贵的操作。我们该怎么做呢？事实证明，如果我们放弃直接描述微表面，取而代之使用整体的粗糙度，就可以写出相当精确的着色器来产生类似的效果。这个值通常指的是<strong>光泽度（Gloss）</strong>，<strong>平滑度（Smoothness）<strong>或者</strong>粗糙度（Roughness）</strong>。可以从纹理或者一个常量值中获取。</p>
+<p>这种微表面细节对于任何材质来说都是非常重要的，因为真实世界到处都是各种各样的微表面特征。光泽贴图并不是一个新的盖面，但是它在基于物理的渲染中起到了关键的作用，因为微表面细节对光反射有着很大的影响。就如我们一会儿会看到的，有几个关于微表面属性基于物理渲染改善的注意事项。</p>
+</blockquote>
+<ul>
+<li>将物体表面建模成无数微观尺度上有随机朝向的理想镜面反射的<code>微表面(microfacet)</code></li>
+<li>实际 PBR 工作流中, 微平面通过<code>粗糙度贴图</code>或<code>高光贴图</code>来表示</li>
+<li>微观尺度上, 表面越粗糙反射越模糊, 越光滑反射越集中</li>
+<li>到达微观尺度后任何平面都可以用称为微平面的细小镜面来进行描绘</li>
+<li>用统计学的方法估算微平面粗糙程度
+<ul>
+<li><code>半角向量(Halfway Vector)</code>: 位于光线向量 l 和视线向量 v 之间的中间向量
+<blockquote>
+<p><em><code>h=normalize(lightDir+viewDir);</code></em></p>
+</blockquote>
+</li>
+<li>用基于一个平面的粗糙度(Roughness)来计算出半程向量的方向与微平面平均取向方向一致的概率</li>
+</ul>
+</li>
+</ul>
+<p>微平面的取向方向与半程向量的方向越是一致，镜面反射的效果就越是强烈越是锐利。然后再加上一个介于0到1之间的粗糙度参数(Roughness)，这样我们就能概略的估算微平面的取向情况了：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-20-00-49-49.png"
+        data-srcset="../../imgs/2021-12-20-00-49-49.png, ../../imgs/2021-12-20-00-49-49.png 1.5x, ../../imgs/2021-12-20-00-49-49.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-20-00-49-49.png"
+        title="../../imgs/2021-12-20-00-49-49.png" /></p>
+<p>我们可以看到，较高的粗糙度值显示出来的镜面反射的轮廓要更大一些。与之相反地，较小的粗糙值显示出的镜面反射轮廓则更小更锐利。</p>
+<h3 id="surface-reflectance">Surface Reflectance</h3>
+<p>前文已经提到了微几何体，之所以有微平面的概念，因为从宏观来看，在我们渲染模型网格时，使用法线贴图就可以描述表面小的细节，但这样仍然会有一定的缺失，很多真实世界的平面上，还是有一些微小的凹陷，裂缝或突起，而用肉眼是很难看清楚的，小到连正常大小的法线贴图也无法来表现，虽然肉眼无法看到，但这些微观特征，还是对Diffuse和Specular产生了影响。</p>
+<p>微平面的细节，对反射的影响更多，也就是Specular，因为粗糙的微平面会把反射光分散或者内部遮挡，所以有了下面两个项目来描述这个现象:</p>
+<ul>
+<li>
+<p>Normal Distribution Function(法线分布函数)
+因为微几何体的所有平面的方向，并不是均匀分布的，如果是分布比较均匀的光滑平面，那么光就会在几乎相同的方向反射，产生清晰的高光，如果粗糙表面则是模糊的高光.</p>
+<p>有多少微平面点的法线更倾向宏观平面的法线方向，我们把这种平面法线方向分布的统计，称之为microgeometry normal distribution function <strong>D()</strong>，和fresenl方程不同的是，<strong>D()</strong> 并没有一个类似0~1的范围，而是来帮助确定微平面法线在某一个给定方向上的集中度。</p>
+<p>所以，D()决定了高光的镜面反射高光的大小，亮度和形状，一些D()会提供前面提到的类似”<strong>Roughness(粗糙度)</strong>”的参数（也可以是glossiness），当粗糙度降低时，微几何体平面的法线方向就会更集中在宏观的平面法线方向上，D()的值也会变高。除了指定粗糙度参数外，也可以通过传递一张Glossn map的方式提供更高的细节。</p>
+</li>
+<li>
+<p>Geometry Function(几何函数)</p>
+<ul>
+<li>
+<p>shadowing现象
+因为微几何体的构造缘故，一些入射光的平面点被内部遮挡，成为了内部阴影而无法接受光照（也就不能反射光）。</p>
+</li>
+<li>
+<p>masking现象
+而有一些反射光被内部遮挡，他们的反射光无法被观察到，虽然有反射光可以多次反弹后再被视点观察到，但在微平面理论里可以忽略不计了。</p>
+</li>
+</ul>
+<p>正因为有这种现象，所以需要有一个Geometry Function G()，来代表反射光的可见度，所以G()是在0~1之间的一个范围值，在着色模型里，有时会和其他参数合并称为V()（Visiblity）。和D()一样，因为微平面有凹凸感，当它的粗糙度提高时，shadow和masking的现象也会增加，粗糙度高的平面会光滑平面更阴暗一些，G()也要收到roughness参数的影响。另外G()也是下面要讲的能量守恒的一个基础，它使得反射光不会高于平面的入射光。</p>
+</li>
+</ul>
+<h3 id="能量守恒">能量守恒</h3>
+<p>PBR是如何实现近似的能量守恒呢？</p>
+<p>为了回答这个问题，先弄清楚镜面反射（specular）和漫反射（diffuse）的区别。</p>
+<p>一束光照到材质表面上，通常会分成反射（reflection）部分和折射（refraction）部分。反射部分直接从表面反射出去，而不进入物体内部，由此产生了镜面反射光。折射部分会进入物体内部，被吸收或者散射产生漫反射。</p>
+<p>折射进物体内部的光如果没有被立即吸收，将会持续前进，与物体内部的微粒产生碰撞，每次碰撞有一部分能量损耗转化成热能，直至光线能量全部消耗。有些折射光线在跟微粒发生若干次碰撞之后，从物体表面射出，便会形成漫反射光。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-16-46-20.png"
+        data-srcset="../../imgs/2021-12-07-16-46-20.png, ../../imgs/2021-12-07-16-46-20.png 1.5x, ../../imgs/2021-12-07-16-46-20.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-16-46-20.png"
+        title="../../imgs/2021-12-07-16-46-20.png" /></p>
+<p>照射在平面的光被分成镜面反射和折射光，折射光在跟物体微粒发生若干次碰撞之后，有可能发射出表面，成为漫反射。</p>
+<p>通常情况下，PBR会简化折射光，将平面上所有折射光都视为被完全吸收而不会散开。而有一些被称为 <strong>次表面散射(Subsurface Scattering)</strong> 技术的着色器技术会计算折射光散开后的模拟，它们可以显著提升一些材质（如皮肤、大理石或蜡质）的视觉效果，不过性能也会随着下降。</p>
+<p>金属(Metallic)材质会立即吸收所有折射光，故而金属只有镜面反射，而没有折射光引起的漫反射。</p>
+<p>回到能量守恒话题。反射光与折射光它们二者之间是互斥的，被表面反射出去的光无法再被材质吸收。故而，进入材质内部的折射光就是入射光减去反射光后余下的能量。</p>
+<p>根据上面的能量守恒关系，可以先计算镜面反射部分，此部分等于入射光线被反射的能量所占的百分比。而折射部分可以由镜面反射部分计算得出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">kS</span> <span class="o">=</span> <span class="n">calculateSpecularComponent</span><span class="p">(...);</span> <span class="c1">// 反射/镜面 部分
+</span><span class="c1"></span><span class="kt">float</span> <span class="n">kD</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">ks</span><span class="p">;</span>                        <span class="c1">// 折射/漫反射 部分
+</span></code></pre></td></tr></table>
+</div>
+</div><p>通过以上代码可以看出，镜面反射部分与漫反射部分的和肯定不会超过1.0，从而近似达到能量守恒的目的。</p>
+<h3 id="反射方程reflectance-equation--渲染方程-">反射方程（Reflectance Equation） ( 渲染方程 )</h3>
+<p><strong>渲染方程</strong>(Render Equation)是用来模拟光的视觉效果最好的模型。而PBR的渲染方程是用以抽象地描述PBR光照计算过程的特化版本的渲染方程，被称为<strong>反射方程</strong>。</p>
+<p>PBR的反射方程可抽象成下面的形式：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-17-47-43.png"
+        data-srcset="../../imgs/2021-12-07-17-47-43.png, ../../imgs/2021-12-07-17-47-43.png 1.5x, ../../imgs/2021-12-07-17-47-43.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-17-47-43.png"
+        title="../../imgs/2021-12-07-17-47-43.png" /></p>
+<blockquote>
+<p>参数说明：</p>
+<ul>
+<li>f<sub>r</sub> ( p , ω<sub>i</sub> , ω<sub>0</sub> ) ： 双向反射分布函数(BRDF)</li>
+<li>L<sub>i</sub> ( p , ω<sub>i</sub> ) :  灯光颜色*灯光强度（<code>radiance=lightColor*attenuation</code>）</li>
+<li>n⋅ω<sub>i</sub> : dot(N,L)</li>
+<li>ω<sub>i</sub> : 光源方向（L）</li>
+<li>ω<sub>0</sub> : 视线方向（V）</li>
+<li>p : 当前点（或者是任意一个点</li>
+<li>n : 法线(N)</li>
+</ul>
+<blockquote>
+<p>反射方程计算了点𝑝在所有视线方向𝜔<sub>0</sub>上被反射出来的辐射率𝐿<sub>0</sub>(𝑝,𝜔<sub>0</sub>)的总和。换言之：𝐿<sub>0</sub>计算的是在𝜔<sub>i</sub>方向的眼睛观察到的𝑝点的总辐照度。</p>
+</blockquote>
+</blockquote>
+<p>反射方程看似很复杂，但如果拆分各个部分加以解析，就可以揭开其神秘的面纱。</p>
+<p>为了更好地理解反射方程，先了解<strong>辐射度量学</strong>(Radiometry)。辐射度量学是一种用来度量电磁场辐射（包括可见光）的手段。有很多种辐射度量(radiometric quantities)可以用来测量曲面或者某个方向上的光，此处只讨论和反射方程有关的一种量，它就是<strong>辐射率(Radiance)</strong>，用𝐿来表示。</p>
+<p>先用一个表展示辐射度量学涉及的概念、名词、公式等信息，后面会更加详细地介绍。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-17-48-28.png"
+        data-srcset="../../imgs/2021-12-07-17-48-28.png, ../../imgs/2021-12-07-17-48-28.png 1.5x, ../../imgs/2021-12-07-17-48-28.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-17-48-28.png"
+        title="../../imgs/2021-12-07-17-48-28.png" /></p>
+<ul>
+<li>
+<p><strong>辐射通量(Radiant Flux)</strong>：辐射通量<code>Φ</code>表示的是一个光源所输出的能量，以瓦特为单位。</p>
+</li>
+<li>
+<p><strong>立体角(Solid Angle)</strong>：立体角用ω表示，它可以为我们描述投射到单位球体上的一个截面的大小或者面积。投射到这个单位球体上的截面的面积就被称为立体角(Solid Angle)，你可以把立体角想象成为一个带有体积的方向：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/UZhIjWi5yXzdLno.png"
+        data-srcset="../../imgs/UZhIjWi5yXzdLno.png, ../../imgs/UZhIjWi5yXzdLno.png 1.5x, ../../imgs/UZhIjWi5yXzdLno.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/UZhIjWi5yXzdLno.png"
+        title="../../imgs/UZhIjWi5yXzdLno.png" /><br>
+<em>可以把自己想象成为一个站在单位球面的中心的观察者，向着投影的方向看。这个投影轮廓的大小就是立体角。</em></p>
+</li>
+<li>
+<p><strong>辐射强度(Radiant Intensity)</strong>：辐射强度(Radiant Intensity)表示的是在单位球面上，一个光源向每单位立体角所投送的辐射通量。举例来说，假设一个全向光源向所有方向均匀的辐射能量，辐射强度就能帮我们计算出它在一个单位面积（立体角）内的能量大小：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/9m462PagJLhINVT.png"
+        data-srcset="../../imgs/9m462PagJLhINVT.png, ../../imgs/9m462PagJLhINVT.png 1.5x, ../../imgs/9m462PagJLhINVT.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/9m462PagJLhINVT.png"
+        title="../../imgs/9m462PagJLhINVT.png" /><br>
+计算辐射强度的公式如下所示：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/Opwz13retCNbZWF.png"
+        data-srcset="../../imgs/Opwz13retCNbZWF.png, ../../imgs/Opwz13retCNbZWF.png 1.5x, ../../imgs/Opwz13retCNbZWF.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/Opwz13retCNbZWF.png"
+        title="../../imgs/Opwz13retCNbZWF.png" /><br>
+(其中<strong>I</strong>表示辐射通量<strong>Φ</strong>除以立体角<strong>ω</strong>)。</p>
+</li>
+</ul>
+<blockquote>
+<p>在理解了辐射通量，辐射强度与立体角的概念之后，我们终于可以开始讨论辐射率的方程式了。这个方程表示的是，一个拥有<code>辐射强度Φ</code>的光源在<code>单位面积A</code>，<code>单位立体角ω</code>上的辐射出的总能量： <br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-17-57-45.png"
+        data-srcset="../../imgs/2021-12-07-17-57-45.png, ../../imgs/2021-12-07-17-57-45.png 1.5x, ../../imgs/2021-12-07-17-57-45.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-17-57-45.png"
+        title="../../imgs/2021-12-07-17-57-45.png" /></p>
+</blockquote>
+<ul>
+<li>
+<p><strong>辐射率</strong>：是辐射度量学上表示一个区域平面上光线总量的物理量，它受到<code>入射</code>(Incident)（或者来射）光线与平面法线间的夹角θ的余弦值cosθ的影响：当直接辐射到平面上的程度越低时，光线就越弱，而当光线完全垂直于平面时强度最高。cosθ就直接对应于光线的方向向量和平面法向量的点积：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">cosTheta</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">lightDir</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>  
+</code></pre></td></tr></table>
+</div>
+</div><p>辐射率方程很有用，因为它把大部分我们感兴趣的物理量都包含了进去。如果我们把立体角ω和面积A看作是无穷小的，那么我们就能用辐射率来表示单束光线穿过空间中的一个点的通量。这就使我们可以计算得出作用于单个（片段）点上的单束光线的辐射率，我们实际上把立体角ω转变为方向向量ω然后把面A转换为点p。这样我们就能直接在我们的着色器中使用辐射率来计算单束光线对每个片段的作用了。</p>
+<p>事实上，当涉及到辐射率时，我们通常关心的是所有投射到点p上的光线的总和，而这个和就称为<strong>辐射照度</strong>或者<strong>辐照度(Irradiance)</strong>。在理解了辐射率和辐照度的概念之后，让我们再回过头来看看反射率方程：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/vPOtJjhr21gLTfD.png"
+        data-srcset="../../imgs/vPOtJjhr21gLTfD.png, ../../imgs/vPOtJjhr21gLTfD.png 1.5x, ../../imgs/vPOtJjhr21gLTfD.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/vPOtJjhr21gLTfD.png"
+        title="../../imgs/vPOtJjhr21gLTfD.png" /></p>
+</li>
+</ul>
+<p>我们知道在渲染方程中L代表通过某个无限小的立体角ω<sub>i</sub>在某个点p的辐射率，而立体角可以视作是入射光方向向量ω<sub>i</sub>。将用来衡量入射光与平面法线夹角对能量的影响的cos𝜃分量移出辐射率方程，作为反射方程的单独项𝑛⋅𝜔<sub>i</sub> 。</p>
+<p>反射方程计算了点𝑝在所有视线方向𝜔<sub>0</sub>上被反射出来的辐射率𝐿<sub>0</sub>(𝑝,𝜔<sub>0</sub>)的总和。换言之：𝐿<sub>0</sub>计算的是在𝜔<sub>i</sub>方向的眼睛观察到的𝑝点的总辐照度。</p>
+<p>反射方程里面使用的辐照度，必须要包含所有以𝑝点为中心的半球Ω内的入射光，而不单单只是某一个方向的入射光。这个半球指的是围绕面法线𝑛的那一个半球：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-04-14.png"
+        data-srcset="../../imgs/2021-12-07-18-04-14.png, ../../imgs/2021-12-07-18-04-14.png 1.5x, ../../imgs/2021-12-07-18-04-14.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-04-14.png"
+        title="../../imgs/2021-12-07-18-04-14.png" /></p>
+<blockquote>
+<p>笔者注：为什么只计算半球而不计算整个球体呢？</p>
+<p>因为另外一边的半球因与视线方向相反，不能被观察，也就是辐射通量贡献量为0，所以被忽略。</p>
+</blockquote>
+<p>为了计算这个区域（半球）内的所有值，在反射方程中使用了一个称作为积分的数学符号 ∫，来计算半球 Ω 内所有的入射向量𝑑𝜔<sub>i</sub>。</p>
+<p>积分计算面积的方法，有<strong>解析</strong>(analytically)和<strong>渐近</strong>(numerically)两种方法。目前尚没有可以满足渲染计算的解析法，所以只能选择离散渐近法来解决这个积分问题。</p>
+<p>具体做法是在半球Ω按一定的步长将反射方程离散地求解，然后再按照步长大小将所得到的结果平均化，这种方法被称为<strong>黎曼和(Riemann sum)</strong>。</p>
+<p>至此，反射方程中，只剩下𝑓𝑟项未描述。𝑓<sub>r</sub>就是<strong>双向反射分布函数</strong>(Bidirectional Reflectance Distribution Function, BRDF)，它的作用是基于表面材质属性来对入射辐射度进行缩放或者加权。</p>
+<h3 id="什么是brdf">什么是BRDF</h3>
+<p>双向反射分布函数(Bidirectional Reflectance Distribution Function,BRDF)是一个使用入射光方向𝜔<sub>i</sub>作为输入参数的函数，输出参数为出射光𝜔<sub>0</sub>，表面法线为𝑛，参数𝑎表示的是微平面的粗糙度。</p>
+<p>更笼统地说，它描述了入射光线经过某个表面反射后如何在各个出射方向上分布这可以是从理想镜面反射到漫反射、各向同性或者各向异性的各种反射。</p>
+<p>BRDF函数是近似的计算在一个给定了属性的不透明表面上每个单独的光线对最终的反射光的贡献量。假如表面是绝对光滑的（比如镜子），对于所有入射光𝜔<sub>i</sub>的BRDF函数都将会返回0.0，除非出射光线𝜔<sub>𝑜</sub>方向的角度跟入射光线𝜔<sub>i</sub>方向的角度以面法线为中轴线完全对称，则返回1.0。</p>
+<h3 id="怎么实现brdf">怎么实现BRDF</h3>
+<p>BRDF有好几种模拟表面光照的算法，然而，基本上所有的 <strong>实时渲染</strong>管线使用的都是<strong>Cook-Torrance BRDF</strong>。</p>
+<p>Cook-Torrance BRDF分为 <strong><code>漫反射</code></strong> 和 <code>镜面反射</code> 两个部分：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-21-07.png"
+        data-srcset="../../imgs/2021-12-07-18-21-07.png, ../../imgs/2021-12-07-18-21-07.png 1.5x, ../../imgs/2021-12-07-18-21-07.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-21-07.png"
+        title="../../imgs/2021-12-07-18-21-07.png" /><br>
+其中𝑘<sub>𝑑</sub>是入射光中被折射的比例，𝑘<sub>𝑠</sub>是另外一部分被镜面反射的入射光。BRDF等式左边的𝑓<sub>𝑙𝑎𝑚𝑏𝑒𝑟𝑡</sub>表示的是漫反射部分，这部分叫做伦勃朗漫反射（Lambertian Diffuse）。它类似于我们之前的漫反射着色，是一个恒定的算式：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-23-31.png"
+        data-srcset="../../imgs/2021-12-07-18-23-31.png, ../../imgs/2021-12-07-18-23-31.png 1.5x, ../../imgs/2021-12-07-18-23-31.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-23-31.png"
+        title="../../imgs/2021-12-07-18-23-31.png" /><br>
+其中𝑐代表的是Albedo或表面颜色，类似漫反射表面纹理。除以𝜋是为了规格化漫反射光，为后期的BRDF积分做准备。</p>
+<blockquote>
+<p>此处的伦勃朗漫反射跟以前用的漫反射之间的关系：以前的漫反射是用表面的漫反射颜色乘以法线与入射光方向的点积，这个点积依然存在，只不过是被移到了BRDF外面，写作𝑛⋅𝜔<sub>i</sub>，放在反射方程𝐿𝑜靠后的位置。</p>
+</blockquote>
+<p>BRDF的高光（镜面反射）部分更复杂：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-25-21.png"
+        data-srcset="../../imgs/2021-12-07-18-25-21.png, ../../imgs/2021-12-07-18-25-21.png 1.5x, ../../imgs/2021-12-07-18-25-21.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-25-21.png"
+        title="../../imgs/2021-12-07-18-25-21.png" /><br>
+Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标准化因子构成。𝐷，𝐹，𝐺符号各自近似模拟了特定部分的表面反射属性：</p>
+<ul>
+<li><strong>𝐷(Normal Distribution Function，NDF)</strong>：法线分布函数，估算在受到表面粗糙度的影响下，取向方向与中间向量一致的微平面的数量。这是用来估算微平面的主要函数。</li>
+<li><strong>𝐹(Fresnel equation)</strong>：菲涅尔方程，描述的是在不同的表面角下表面反射的光线所占的比率。</li>
+<li><strong>𝐺(Geometry function)</strong>：几何函数，描述了微平面自成阴影的属性。当一个平面相对比较粗糙的时候，平面表面上的微平面有可能挡住其他的微平面从而减少表面所反射的光线。</li>
+</ul>
+<p>以上的每一种函数都是用来估算相应的物理参数的，而且你会发现用来实现相应物理机制的每种函数都有不止一种形式。它们有的非常真实，有的则性能高效。你可以按照自己的需求任意选择自己想要的函数的实现方法。</p>
+<blockquote>
+<p>Epic Games公司的Brian Karis对于这些函数的多种近似实现方式进行了大量的研究。这里将采用Epic Games在Unreal Engine 4中所使用的函数，其中<strong>𝐷</strong>使用Trowbridge-Reitz GGX，<strong>𝐹</strong>使用Fresnel-Schlick近似法(Approximation)，而<strong>𝐺</strong>使用Smith&rsquo;s Schlick-GGX。</p>
+</blockquote>
+<h4 id="𝐷normal-distribution-functionndf">𝐷(Normal Distribution Function，NDF)</h4>
+<p>法线分布函数，从统计学上近似的表示了与某些（如中间）向量ℎ(半角向量)取向一致的微平面的比率。</p>
+<p>目前有很多种NDF都可以从统计学上来估算微平面的总体取向度，只要给定一些粗糙度的参数以及一个我们马上将会要用到的参数Trowbridge-Reitz GGX（GGXTR）：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-30-45.png"
+        data-srcset="../../imgs/2021-12-07-18-30-45.png, ../../imgs/2021-12-07-18-30-45.png 1.5x, ../../imgs/2021-12-07-18-30-45.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-30-45.png"
+        title="../../imgs/2021-12-07-18-30-45.png" /></p>
+<p>这里的ℎ是用来测量微平面的半角向量，𝛼是表面的粗糙度，𝑛是表面法线。 如果将ℎ放到表面法线和光线方向之间，并使用不同的粗糙度作为参数，可以得到下面的效果：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-31-03.png"
+        data-srcset="../../imgs/2021-12-07-18-31-03.png, ../../imgs/2021-12-07-18-31-03.png 1.5x, ../../imgs/2021-12-07-18-31-03.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-31-03.png"
+        title="../../imgs/2021-12-07-18-31-03.png" /><br>
+<em>当粗糙度很低（表面很光滑）时，与中间向量ℎ取向一致的微平面会高度集中在一个很小的半径范围内。由于这种集中性，NDF最终会生成一个非常明亮的斑点。但是当表面比较粗糙的时候，微平面的取向方向会更加的随机，与向量ℎ取向一致的微平面分布在一个大得多的半径范围内，但是较低的集中性也会让最终效果显得更加灰暗。</em></p>
+<p>Trowbridge-Reitz GGX的NDF实现代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="nf">DistributionGGX</span><span class="p">(</span><span class="n">vec3</span> <span class="n">N</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">H</span><span class="p">,</span> <span class="kt">float</span> <span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">float</span> <span class="n">a2</span>     <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">NdotH</span>  <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">NdotH2</span> <span class="o">=</span> <span class="n">NdotH</span><span class="o">*</span><span class="n">NdotH</span><span class="p">;</span>
+	
+    <span class="kt">float</span> <span class="n">nom</span>    <span class="o">=</span> <span class="n">a2</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">denom</span>  <span class="o">=</span> <span class="p">(</span><span class="n">NdotH2</span> <span class="o">*</span> <span class="p">(</span><span class="n">a2</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">);</span>
+    <span class="n">denom</span>        <span class="o">=</span> <span class="n">PI</span> <span class="o">*</span> <span class="n">denom</span> <span class="o">*</span> <span class="n">denom</span><span class="p">;</span>
+	
+    <span class="k">return</span> <span class="n">nom</span> <span class="o">/</span> <span class="n">denom</span><span class="p">;</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="𝐹-fresnel-equation">𝐹 (Fresnel equation)</h4>
+<p>菲涅尔方程定义的是在不同观察方向上，表面上被反射的光除以被折射的光的比例。在一束光击中了表面的一瞬间，菲涅尔根据表面与观察方向之间的夹角，计算得到光被反射的百分比。根据这个比例和能量守恒定律我们可以直接知道剩余的能量就是会被折射的能量。</p>
+<p>当我们垂直观察每个表面或者材质时都有一个基础反射率，当我们以任意一个角度观察表面时所有的反射现象都会变得更明显（反射率高于基础反射率）。你可以从你身边的任意一件物体上观察到这个现象，当你以90度角观察你的桌子你会法线反射现象将会变得更加的明显，理论上以完美的90度观察任意材质的表面都应该会出现全反射现象（所有物体、材质都有菲涅尔现象）。</p>
+<p>菲涅尔方程同样是个复杂的方程，但是幸运的是菲涅尔方程可以使用Fresnel-Schlick来近似：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-32-18.png"
+        data-srcset="../../imgs/2021-12-07-18-32-18.png, ../../imgs/2021-12-07-18-32-18.png 1.5x, ../../imgs/2021-12-07-18-32-18.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-32-18.png"
+        title="../../imgs/2021-12-07-18-32-18.png" /><br>
+<strong>𝐹<sub>0</sub></strong>表示的是表面基础反射率，这个我们可以使用一种叫做<strong>Indices of refraction(IOR)<strong>的方法计算得到。运用在球面上的效果就是你看到的那样，观察方向越是接近</strong>掠射角</strong>（grazing angle，又叫切线角，与正视角相差90度），菲涅尔现象导致的反射就越强：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-33-11.png"
+        data-srcset="../../imgs/2021-12-07-18-33-11.png, ../../imgs/2021-12-07-18-33-11.png 1.5x, ../../imgs/2021-12-07-18-33-11.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-33-11.png"
+        title="../../imgs/2021-12-07-18-33-11.png" /></p>
+<p>菲涅尔方程中有几个微妙的地方，一个是Fresnel-Schlick算法仅仅是为电介质（绝缘体）表面定义的算法。对于金属表面，使用电介质的折射率来计算基础反射率是不合适的，我们需要用别的菲涅尔方程来计算。对于这个问题，我们需要预先计算表面在正视角(即以0度角正视表面)下的反应（𝐹0），然后就可以跟之前的Fresnel-Schlick算法一样，根据观察角度来进行插值。这样我们就可以用一个方程同时计算金属和电介质了。</p>
+<p>表面在正视角下的反映或者说基础反射率可以在这个数据库中找到，下面是Naty Hoffman的在SIGGRAPH公开课中列举的一些常见材质的值：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-33-41.png"
+        data-srcset="../../imgs/2021-12-07-18-33-41.png, ../../imgs/2021-12-07-18-33-41.png 1.5x, ../../imgs/2021-12-07-18-33-41.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-33-41.png"
+        title="../../imgs/2021-12-07-18-33-41.png" /><br>
+这里可以观察到的一个有趣的现象，所有电介质材质表面的基础反射率都不会高于0.17，这其实是例外而非普遍情况。导体材质表面的基础反射率起点更高一些并且（大多）在0.5和1.0之间变化。此外，对于导体或者金属表面而言基础反射率一般是带有色彩的，这也是为什么要用RGB三原色来表示的原因（法向入射的反射率可随波长不同而不同）。这种现象我们只能在金属表面观察的到。</p>
+<blockquote>
+<p>金属表面这些和电介质表面相比所独有的特性引出了所谓的金属工作流的概念。也就是我们需要额外使用一个被称为金属度(Metalness)的参数来参与编写表面材质。金属度用来描述一个材质表面是金属还是非金属的。</p>
+</blockquote>
+<p>通过预先计算电介质与导体的值，我们可以对两种类型的表面使用相同的Fresnel-Schlick近似，但是如果是金属表面的话就需要对基础反射率添加色彩。我们一般是按下面这个样子来实现的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="n">F0</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">0.04</span><span class="p">);</span>
+<span class="n">F0</span>      <span class="o">=</span> <span class="n">mix</span><span class="p">(</span><span class="n">F0</span><span class="p">,</span> <span class="n">surfaceColor</span><span class="p">.</span><span class="n">rgb</span><span class="p">,</span> <span class="n">metalness</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们为大多数电介质表面定义了一个近似的基础反射率。<strong>𝐹<sub>0</sub></strong>取最常见的电解质表面的平均值，这又是一个近似值。不过对于大多数电介质表面而言使用0.04作为基础反射率已经足够好了，而且可以在不需要输入额外表面参数的情况下得到物理可信的结果。然后，基于金属表面特性，我们要么使用电介质的基础反射率要么就使用𝐹0作来为表面颜色。因为金属表面会吸收所有折射光线而没有漫反射，所以我们可以直接使用表面颜色纹理来作为它们的基础反射率。</p>
+<p>Fresnel Schlick近似可以用GLSL代码实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">fresnelSchlick</span><span class="p">(</span><span class="kt">float</span> <span class="n">cosTheta</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">F0</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">F0</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">F0</span><span class="p">)</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">dot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="mf">5.0</span><span class="p">);</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="𝐺-geometry-function">𝐺 (Geometry function)</h4>
+<p>几何函数模拟微平面相互遮挡导致光线的能量减少或丢失的现象。<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-37-23.png"
+        data-srcset="../../imgs/2021-12-07-18-37-23.png, ../../imgs/2021-12-07-18-37-23.png 1.5x, ../../imgs/2021-12-07-18-37-23.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-37-23.png"
+        title="../../imgs/2021-12-07-18-37-23.png" /></p>
+<p>类似NDF，几何函数也使用粗糙度作为输入参数，更粗糙意味着微平面产生自阴影的概率更高。几何函数使用由GGX和Schlick-Beckmann组合而成的模拟函数Schlick-GGX：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-37-52.png"
+        data-srcset="../../imgs/2021-12-07-18-37-52.png, ../../imgs/2021-12-07-18-37-52.png 1.5x, ../../imgs/2021-12-07-18-37-52.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-37-52.png"
+        title="../../imgs/2021-12-07-18-37-52.png" /><br>
+这里的𝑘是使用粗糙度𝛼计算而来的，用于直接光照和IBL光照的几何函数的参数：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-38-23.png"
+        data-srcset="../../imgs/2021-12-07-18-38-23.png, ../../imgs/2021-12-07-18-38-23.png 1.5x, ../../imgs/2021-12-07-18-38-23.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-38-23.png"
+        title="../../imgs/2021-12-07-18-38-23.png" /><br>
+需要注意的是这里𝛼的值取决于你的引擎怎么将粗糙度转化成𝛼，在接下来的教程中我们将会进一步讨论如何和在什么地方进行这个转换。</p>
+<p>为了有效地模拟几何体，我们需要同时考虑两个视角，视线方向（几何遮挡）跟光线方向（几何阴影），我们可以用<strong>Smith函数</strong>将两部分放到一起：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-38-50.png"
+        data-srcset="../../imgs/2021-12-07-18-38-50.png, ../../imgs/2021-12-07-18-38-50.png 1.5x, ../../imgs/2021-12-07-18-38-50.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-38-50.png"
+        title="../../imgs/2021-12-07-18-38-50.png" /><br>
+其中𝑣表示视线向量，𝐺𝑠𝑢𝑏(𝑛,𝑣,𝑘)表示视线方向的几何遮挡；𝑙表示光线向量，𝐺𝑠𝑢𝑏(𝑛,𝑙,𝑘)表示光线方向的几何阴影。使用Smith函数与Schlick-GGX作为𝐺𝑠𝑢𝑏可以得到如下所示不同粗糙度R的视觉效果：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-39-27.png"
+        data-srcset="../../imgs/2021-12-07-18-39-27.png, ../../imgs/2021-12-07-18-39-27.png 1.5x, ../../imgs/2021-12-07-18-39-27.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-39-27.png"
+        title="../../imgs/2021-12-07-18-39-27.png" /><br>
+几何函数是一个值域为[0.0, 1.0]的乘数，其中白色(1.0)表示没有微平面阴影，而黑色(0.0)则表示微平面彻底被遮蔽。</p>
+<p>使用GLSL编写的几何函数代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="nf">GeometrySchlickGGX</span><span class="p">(</span><span class="kt">float</span> <span class="n">NdotV</span><span class="p">,</span> <span class="kt">float</span> <span class="n">k</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">float</span> <span class="n">nom</span>   <span class="o">=</span> <span class="n">NdotV</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">denom</span> <span class="o">=</span> <span class="n">NdotV</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">;</span>
+	
+    <span class="k">return</span> <span class="n">nom</span> <span class="o">/</span> <span class="n">denom</span><span class="p">;</span>
+<span class="p">}</span>
+  
+<span class="kt">float</span> <span class="nf">GeometrySmith</span><span class="p">(</span><span class="n">vec3</span> <span class="n">N</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">V</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">L</span><span class="p">,</span> <span class="kt">float</span> <span class="n">k</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">float</span> <span class="n">NdotV</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">NdotL</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">L</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
+    <span class="kt">float</span> <span class="n">ggx1</span> <span class="o">=</span> <span class="n">GeometrySchlickGGX</span><span class="p">(</span><span class="n">NdotV</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span> <span class="c1">// 视线方向的几何遮挡
+</span><span class="c1"></span>    <span class="kt">float</span> <span class="n">ggx2</span> <span class="o">=</span> <span class="n">GeometrySchlickGGX</span><span class="p">(</span><span class="n">NdotL</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span> <span class="c1">// 光线方向的几何阴影
+</span><span class="c1"></span>	
+    <span class="k">return</span> <span class="n">ggx1</span> <span class="o">*</span> <span class="n">ggx2</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="cook-torrance反射方程cook-torrance-reflectance-equation">Cook-Torrance反射方程(Cook-Torrance reflectance equation)</h4>
+<p>Cook-Torrance反射方程中的每一个部分我们我们都用基于物理的BRDF替换，可以得到最终的反射方程：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-41-31.png"
+        data-srcset="../../imgs/2021-12-07-18-41-31.png, ../../imgs/2021-12-07-18-41-31.png 1.5x, ../../imgs/2021-12-07-18-41-31.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-41-31.png"
+        title="../../imgs/2021-12-07-18-41-31.png" /><br>
+上面的方程并非完全数学意义上的正确。前面提到菲涅尔项𝐹代表光在表面的反射比率，它直接影响𝑘<sub>𝑠</sub>因子，意味着反射方程的镜面反射部分已经隐含了因子𝑘<sub>𝑠</sub>。因此，最终的Cook-Torrance反射方程如下（去掉了𝑘<sub>𝑠</sub>）：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-42-16.png"
+        data-srcset="../../imgs/2021-12-07-18-42-16.png, ../../imgs/2021-12-07-18-42-16.png 1.5x, ../../imgs/2021-12-07-18-42-16.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-42-16.png"
+        title="../../imgs/2021-12-07-18-42-16.png" /></p>
+<p>这个方程完整地定义了一个基于物理的渲染模型，也就是我们一般所说的基于物理的渲染（PBR）。</p>
+<h3 id="pbr参数">PBR参数</h3>
+<ul>
+<li>
+<p><strong>反射率（Albedo）</strong>：反射率纹理指定了材质表面每个像素的颜色，如果材质是金属那纹理包含的就是基础反射率。这个跟我们之前用过的漫反射纹理非常的类似，但是不包含任何光照信息。漫反射纹理通常会有轻微的阴影和较暗的裂缝，这些在Albedo贴图里面都不应该出现，仅仅只包含材质的颜色（金属材质是基础反射率）。</p>
+</li>
+<li>
+<p><strong>法线（Normal）</strong>：法线纹理跟我们之前使用的是完全一样的。法线贴图可以逐像素指定表面法线，让平坦的表面也能渲染出凹凸不平的视觉效果。</p>
+</li>
+<li>
+<p><strong>金属度（Metallic）</strong>：金属度贴图逐像素的指定表面是金属还是电介质。根据PBR引擎各自的设定，金属程度即可以是[0.0，1.0]区间的浮点值也可以是非0即1的布尔值。</p>
+</li>
+<li>
+<p><strong>粗糙度（Roughness）</strong>：粗糙度贴图逐像素的指定了表面有多粗糙，粗糙度的值影响了材质表面的微平面的平均朝向，粗糙的表面上反射效果更大更模糊，光滑的表面更亮更清晰。有些PBR引擎用光滑度贴图替代粗糙度贴图，因为他们觉得光滑度贴图更直观，将采样出来的光滑度使用（1-光滑度）= 粗糙度 就能转换成粗糙度了。</p>
+</li>
+<li>
+<p><strong>环境光遮挡（Ambient Occlusion，AO）</strong>：AO贴图为材质表面和几何体周边可能的位置，提供了额外的阴影效果。比如有一面砖墙，在两块砖之间的缝隙里Albedo贴图包含的应该是没有阴影的颜色信息，而让AO贴图来指定这一块需要更暗一些，这个地方光线更难照射到。AO贴图在光照计算的最后一步使用可以显著的提高渲染效果，模型或者材质的AO贴图一般是在建模阶段手动生成的。</p>
+</li>
+</ul>
+<h3 id="pbr的光照实现">PBR的光照实现</h3>
+<p>上面阐述了Cook-Torrance反射方程的理论和公式意义。这节将探讨如何将前面讲到的理论转化成一个基于直接光照的渲染器：比如点光源，方向光和聚光灯。</p>
+<h4 id="辐照度计算">辐照度计算</h4>
+<p>上面解释了Cook-Torrance反射方程的大部分含义，但有一点未提及：具体要怎么处理场景中的辐照度（Irradiance，也就是辐射的总能量𝐿）？在计算机领域，场景的辐射率𝐿度量的是来自光源光线的辐射通量𝜙穿过指定的立体角𝜔，在这里我们假设立体角𝜔无限小，小到辐射度衡量的是光源射出的一束经过指定方向向量的光线的通量。</p>
+<p>有了这个假设，我们又要怎么将之融合到之前教程讲的光照计算里去呢？想象我们有一个辐射通量以RGB表示为（23.47, 21.31, 20.79）的点光源，这个光源的辐射强度等于辐射通量除以所有出射方向。当为平面上某个特定的点𝑝着色的时候，所有可能的入射光方向都会经过半球Ω，但只有一个入射方向𝜔<sub>i</sub>是直接来自点光源的，又因为我们的场景中只包含有一个光源，且这个光源只是一个点，所以𝑝点所有其它的入射光方向的辐射率都应该是0.<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-46-42.png"
+        data-srcset="../../imgs/2021-12-07-18-46-42.png, ../../imgs/2021-12-07-18-46-42.png 1.5x, ../../imgs/2021-12-07-18-46-42.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-46-42.png"
+        title="../../imgs/2021-12-07-18-46-42.png" /><br>
+如果我们暂时不考虑点光源的距离衰减问题，且无论光源放在什么地方入射光线的辐射率都一样大（忽略入射光角度cos𝜃对辐射度的影响），又因为点光源朝各个方向的辐射强度都是一样的，那么有效的辐射强度就跟辐射通量完全一样：恒定值（23.47, 21.31, 20.79）。</p>
+<p>然而，辐射率需要使用位置𝑝作为输入参数，因为现实中的灯光根据点𝑝和光源之间距离的不同，辐射强度多少都会有一定的衰减。另外，从原始的辐射方程中我们可以发现，面法线𝑛于入射光方向向量𝜔<sub>i</sub>的点积也会影响结果。</p>
+<p>用更精炼的话来描述：在点光源直接光照的情况里，辐射率函数𝐿计算的是灯光颜色，经过到𝑝点距离的衰减之后，再经过𝑛⋅𝜔<sub>i</sub>缩放。能击中点𝑝的光线方向𝜔<sub>i</sub>就是从𝑝点看向光源的方向。把这些写成代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span>  <span class="n">lightColor</span>  <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">23.47</span><span class="p">,</span> <span class="mf">21.31</span><span class="p">,</span> <span class="mf">20.79</span><span class="p">);</span>
+<span class="n">vec3</span>  <span class="n">wi</span>          <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">lightPos</span> <span class="o">-</span> <span class="n">fragPos</span><span class="p">);</span>
+<span class="kt">float</span> <span class="n">cosTheta</span>    <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Wi</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
+<span class="c1">// 计算光源在点fragPos的衰减系数
+</span><span class="c1"></span><span class="kt">float</span> <span class="n">attenuation</span> <span class="o">=</span> <span class="n">calculateAttenuation</span><span class="p">(</span><span class="n">fragPos</span><span class="p">,</span> <span class="n">lightPos</span><span class="p">);</span> 
+<span class="c1">// 英文原版的radiance类型有误，将它改成了vec3
+</span><span class="c1"></span><span class="n">vec3</span> <span class="n">radiance</span>  <span class="o">=</span> <span class="n">lightColor</span> <span class="o">*</span> <span class="p">(</span><span class="n">attenuation</span> <span class="o">*</span> <span class="n">cosTheta</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>你应该非常非常熟悉这段代码：这就是以前我们计算漫反射光的算法！在只有单光源直接光照的情况下，辐射率的计算方法跟我们以前的光照算法是类似的。</p>
+<blockquote>
+<p>要注意我们这里假设点光源无限小，只是空间中的一个点。如果我们使用有体积的光源模型，那么就有很多的入射光方向的辐射率是非0的。
+对那些基于点的其他类型光源我们可以用类似的方法计算辐射率，比如平行光源的入射角的恒定的且没有衰减因子，聚光灯没有一个固定的辐射强度，而是围绕一个正前方向量来进行缩放的。</p>
+</blockquote>
+<p>这也将我们带回了在表面半球Ω的积分∫。我们知道，多个单一位置的光源对同一个表面的同一个点进行光照着色并不需要用到积分，我们可以直接拿出这些数目已知的光源来，分别计算这些光源的辐照度后再加到一起，毕竟每个光源只有一束方向光能影响物体表面的辐射率。这样只需要通过相对简单的循环计算每个光源的贡献就能完成整个PBR光照计算。当我们需要使用IBL将环境光加入计算的时候我们才会需要用到积分，因为环境光可能来自任何方向。</p>
+<h4 id="pbr直接光照direct-lighting">PBR直接光照(Direct lighting)</h4>
+<blockquote>
+<p>示例代码<a href="https://learnopengl.com/code_viewer_gh.php?code=src/6.pbr/1.1.lighting/lighting.cpp" target="_blank" rel="noopener noreffer">LearnOpenGL的网站:lighting</a></p>
+</blockquote>
+<h3 id="基于图像的光照image-based-lighting-ibl">基于图像的光照（Image Based Lighting, IBL）</h3>
+<blockquote>
+<p>基于图像的光照（IBL）是对光源物体的技巧集合，与直接光照不同，它将周围环境当成一个大光源。IBL通常结合<code>cubemap</code>环境贴图，<code>cubemap</code>通常采集自真实的照片或从3D场景生成，这样可以将其用于光照方程：<strong>将<code>cubemap</code>的每个像素当成一个光源</strong>。这样可以更有效地捕获全局光照和常规感观，使得被渲染的物体更好地融入所处的环境中。</p>
+</blockquote>
+<p>当基于图像的光照算法获得一些（全局的）环境光照时，它的输入被当成更加精密形式的环境光照，甚至是一种粗糙的全局光照的模拟。这使得IBL有助于PBR的渲染，使得物体渲染效果更真实。</p>
+<p>在介绍IBL结合PBR之前，先回顾一下反射方程：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-41-31.png"
+        data-srcset="../../imgs/2021-12-07-18-41-31.png, ../../imgs/2021-12-07-18-41-31.png 1.5x, ../../imgs/2021-12-07-18-41-31.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-41-31.png"
+        title="../../imgs/2021-12-07-18-41-31.png" /></p>
+<p>如之前所述，我们的主目标是解决所有入射光𝑤<sub>𝑖</sub>通过半球Ω的积分∫。与直接光照不同的是，在IBL中，每一个来自周围环境的入射光𝜔<sub>𝑖</sub>都可能存在辐射，这些辐射对解决积分有着重要的作用。为解决积分有两个要求：</p>
+<ul>
+<li>需要用某种方法获得给定任意方向向量𝜔<sub>i</sub>的场景辐射。</li>
+<li>解决积分需尽可能快并实时。</li>
+</ul>
+<p>对第一个要求，相对简单，采用环境cubemap。给定一个cubemap，可以假设它的每个像素是一个单独的发光光源。通过任意方向向量𝜔<sub>𝑖</sub>采样cubemap，可以获得场景在这个方向的辐射。</p>
+<p>获取任意方向向量𝜔<sub>𝑖</sub>的场景辐射很简单，如下：
+<code>vec3 radiance = texture(_cubemapEnvironment, w_i).rgb; </code>
+对要求二，解决积分能只考虑一个方向的辐射，要考虑环境贴图的半球Ω的所有可能的方向𝜔<sub>i</sub>，但常规积分方法在片元着色器中开销非常大。为了有效解决积分问题，可采用预计算或预处理的方法。因此，需要深究一下反射方程：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-41-31.png"
+        data-srcset="../../imgs/2021-12-07-18-41-31.png, ../../imgs/2021-12-07-18-41-31.png 1.5x, ../../imgs/2021-12-07-18-41-31.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-41-31.png"
+        title="../../imgs/2021-12-07-18-41-31.png" /></p>
+<p>可将上述的𝑘𝑑和𝑘𝑠项拆分：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-14-51-16.png"
+        data-srcset="../../imgs/2021-12-09-14-51-16.png, ../../imgs/2021-12-09-14-51-16.png 1.5x, ../../imgs/2021-12-09-14-51-16.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-14-51-16.png"
+        title="../../imgs/2021-12-09-14-51-16.png" /><br>
+拆分后，可分开处理漫反射和镜面反射的积分。先从漫反射积分开始。</p>
+<h4 id="间接光的漫反射iblindirect-diffuse-ibl">间接光的漫反射IBL（Indirect Diffuse IBL）</h4>
+<p>仔细分析上面方程的漫反射积分部分，发现Lambert漫反射是个常量项（颜色𝑐，折射因子𝑘𝑑和𝜋）并且不依赖积分变量。因此，可见常量部分移出漫反射积分：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-14-53-27.png"
+        data-srcset="../../imgs/2021-12-09-14-53-27.png, ../../imgs/2021-12-09-14-53-27.png 1.5x, ../../imgs/2021-12-09-14-53-27.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-14-53-27.png"
+        title="../../imgs/2021-12-09-14-53-27.png" /></p>
+<p>因此，积分只依赖𝜔<sub>i</sub>（假设𝑝在环境贴图的中心）。据此，可以计算或预计算出一个新的cubemap，这个cubemap存储了用卷积（convolution）计算出的每个采样方向（或像素）𝜔<sub>𝑜</sub>的漫反射积分结果。</p>
+<p><strong>卷积</strong>（convolution）是对数据集的每个入口应用一些计算，假设其它所有的入口都在这个数据集里。此处的数据集就是场景辐射或环境图。因此，对cubemap的每个采样方向，我们可以顾及在半球Ω的其它所有的采样方向。</p>
+<p>为了卷积环境图，我们要解决每个输出𝜔<sub>𝑜</sub>采样方向的积分，通过离散地采样大量的在半球Ω的方向𝜔<sub>i</sub>并取它们辐射的平均值。采样方向𝜔<sub>i</sub>的半球是以点𝑝为中心以𝜔<sub>𝑜</sub>为法平面的。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-14-55-30.png"
+        data-srcset="../../imgs/2021-12-09-14-55-30.png, ../../imgs/2021-12-09-14-55-30.png 1.5x, ../../imgs/2021-12-09-14-55-30.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-14-55-30.png"
+        title="../../imgs/2021-12-09-14-55-30.png" /></p>
+<p>这个预计算的为每个采样方向𝜔<sub>𝑜</sub>存储了积分结果的cubemap，可被当成是预计算的在场景中所有的击中平行于𝜔<sub>𝑜</sub>表面的非直接漫反射的光照之和。这种cubemap被称为 <strong>辐照度图</strong>（Irradiance map）。</p>
+<blockquote>
+<p>辐射方程依赖于位置𝑝，假设它在辐照度图的中心。这意味着所有非直接漫反射光需来自于同一个环境图，它可能打破真实的幻觉（特别是室内）。渲染引擎用放置遍布场景的反射探头（reflection probe）来解决，每个反射探头计算其所处环境的独自的辐照度图。这样，点p的辐射率（和辐射）是与其最近的反射探头的辐照度插值。这里我们假设总是在环境图的中心采样。反射探头将在其它章节探讨。</p>
+</blockquote>
+<p>下面是cubemap环境图(下图左）和对应的辐照度图（下图右）：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-14-56-35.png"
+        data-srcset="../../imgs/2021-12-09-14-56-35.png, ../../imgs/2021-12-09-14-56-35.png 1.5x, ../../imgs/2021-12-09-14-56-35.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-14-56-35.png"
+        title="../../imgs/2021-12-09-14-56-35.png" /></p>
+<p>通过存储每个cubemap像素卷积的结果，辐照度图有点像环境的平均颜色或光照显示。从这个环境图采样任意方向，可获得这个方向的场景辐照度。</p>
+<blockquote>
+<p>辐射度图提供了漫反射部分的积分，该积分表示来自非直接的所有方向的环境光辐射之和。由于辐射度图被当成是无方向性的光源，所以可以将漫反射镜面反射合成环境光。</p>
+</blockquote>
+<p>在之前所述的反射方程中，非直接光依旧包含了漫反射和镜面反射两个部分，所以我们需要加个权重给漫反射。依旧使用菲涅尔方程来计算漫反射因子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="n">kS</span> <span class="o">=</span> <span class="n">fresnelSchlick</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">F0</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">kD</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">kS</span><span class="p">;</span>
+<span class="n">vec3</span> <span class="n">irradiance</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">ambientCubeMap</span><span class="p">,</span> <span class="n">N</span><span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
+<span class="n">vec3</span> <span class="n">diffuse</span>    <span class="o">=</span> <span class="n">irradiance</span> <span class="o">*</span> <span class="n">albedo</span><span class="p">;</span>
+<span class="n">vec3</span> <span class="n">ambient</span>    <span class="o">=</span> <span class="p">(</span><span class="n">kD</span> <span class="o">*</span> <span class="n">diffuse</span><span class="p">)</span> <span class="o">*</span> <span class="n">ao</span><span class="p">;</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>由于环境光来自在半球内所有围绕着法线N的方向，没有单一的半向量去决定菲涅尔因子。为了仍然能模拟菲涅尔，这里采用了法线和视线的夹角。之前的算法采用了受表面粗糙度影响的微平面半向量，作为菲涅尔方程的输入。这里，我们并不考虑粗糙度，表面的反射因子被视作相当大。</p>
+<p>非直接光照将沿用直接光照的相同的属性，所以，期望越粗糙的表面镜面反射越少。由于不考虑表面粗糙度，非直接光照的菲涅尔方程强度被视作粗糙的非金属表面（下图）。<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-15-09-10.png"
+        data-srcset="../../imgs/2021-12-09-15-09-10.png, ../../imgs/2021-12-09-15-09-10.png 1.5x, ../../imgs/2021-12-09-15-09-10.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-15-09-10.png"
+        title="../../imgs/2021-12-09-15-09-10.png" /></p>
+<p>为了缓解这个问题，可在<code>Fresnel-Schlick方程</code>注入粗糙度项（该方程的<a href="https://seblagarde.wordpress.com/2011/08/17/hello-world/" target="_blank" rel="noopener noreffer">来源</a>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">fresnelSchlickRoughness</span><span class="p">(</span><span class="kt">float</span> <span class="n">cosTheta</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">F0</span><span class="p">,</span> <span class="kt">float</span> <span class="n">roughness</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">F0</span> <span class="o">+</span> <span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">roughness</span><span class="p">),</span> <span class="n">F0</span><span class="p">)</span> <span class="o">-</span> <span class="n">F0</span><span class="p">)</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">cosTheta</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">);</span>
+<span class="p">}</span>   
+</code></pre></td></tr></table>
+</div>
+</div><p>考虑了表面粗糙度后，菲涅尔相关计算最终如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="n">kS</span> <span class="o">=</span> <span class="n">fresnelSchlickRoughness</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">F0</span><span class="p">,</span> <span class="n">roughness</span><span class="p">);</span> 
+<span class="n">vec3</span> <span class="n">kD</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">kS</span><span class="p">;</span>
+<span class="n">vec3</span> <span class="n">irradiance</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">ambientCubeMap</span><span class="p">,</span> <span class="n">N</span><span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
+<span class="n">vec3</span> <span class="n">diffuse</span>    <span class="o">=</span> <span class="n">irradiance</span> <span class="o">*</span> <span class="n">albedo</span><span class="p">;</span>
+<span class="n">vec3</span> <span class="n">ambient</span>    <span class="o">=</span> <span class="p">(</span><span class="n">kD</span> <span class="o">*</span> <span class="n">diffuse</span><span class="p">)</span> <span class="o">*</span> <span class="n">ao</span><span class="p">;</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>如上所述，实际上，基于图片的光照计算非常简单，只需要单一的cubemap纹理采样。大多数的工作在于预计算或卷积环境图到辐射度图。</p>
+<p>加入了IBL的渲染效果如下（竖向是金属度增加，水平是粗糙度增加）：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-15-11-57.png"
+        data-srcset="../../imgs/2021-12-09-15-11-57.png, ../../imgs/2021-12-09-15-11-57.png 1.5x, ../../imgs/2021-12-09-15-11-57.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-15-11-57.png"
+        title="../../imgs/2021-12-09-15-11-57.png" /></p>
+<h4 id="间接光的镜面反射iblindirect-specular-ibl">间接光的镜面反射IBL（Indirect Specular IBL）</h4>
+<p>上面描述的是IBL的漫反射部分，本节将讨论IBL的镜面反射部分先回顾一下反射方程：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-07-18-41-31.png"
+        data-srcset="../../imgs/2021-12-07-18-41-31.png, ../../imgs/2021-12-07-18-41-31.png 1.5x, ../../imgs/2021-12-07-18-41-31.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-07-18-41-31.png"
+        title="../../imgs/2021-12-07-18-41-31.png" /><br>
+上述的镜面反射部分（被𝑘𝑠相乘）不是恒定的，并且依赖于入射光方向和视线入射方向，尝试实时地计算所有入射光和所有入射视线的积分是几乎不可能的。Epic Games推荐折中地使用预卷积镜面反射部分的方法来解决实时渲染的性能问题，这就是<strong>分裂和近似法</strong>（split sum approximation）。</p>
+<p><strong>分裂和近似法</strong>将镜面反射部分从反射方程分离出两个部分，这样可以单独地对它们卷积，后面在PBR的shader中为镜面的非直接IBL将它们结合起来。跟预卷积辐射度图类似，分裂和近似法需要HDR环境图作为输入。为了更好地理解分裂和近似法，下面着重关注反射方程的镜面部分：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-15-15-13.png"
+        data-srcset="../../imgs/2021-12-09-15-15-13.png, ../../imgs/2021-12-09-15-15-13.png 1.5x, ../../imgs/2021-12-09-15-15-13.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-15-15-13.png"
+        title="../../imgs/2021-12-09-15-15-13.png" /><br>
+出于跟辐射度图相同的性能问题的考虑，我们要预计算类似镜面IBL图的积分，并且用片元的法线采样这个图。辐射度图的预计算只依赖于𝜔<sub>i</sub>，并且我们可以将漫反射项移出积分。但这次从BRDF可以看出，不仅仅是依赖于𝜔<sub>i</sub>：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-15-15-43.png"
+        data-srcset="../../imgs/2021-12-09-15-15-43.png, ../../imgs/2021-12-09-15-15-43.png 1.5x, ../../imgs/2021-12-09-15-15-43.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-15-15-43.png"
+        title="../../imgs/2021-12-09-15-15-43.png" /></p>
+<p>如上方程所示，还依赖𝜔<sub>𝑜</sub>，并且我们不能用两个方向向量来采样预计算的cubemap。预计算所有𝜔<sub>i</sub>和𝜔<sub>𝑜</sub>的组合在实时渲染环境中不实际的。</p>
+<p>Epic Games的分裂和近似法将镜面反射部分从反射方程分离出两个部分，这样可以单独地对它们卷积，后面在PBR的shader中为镜面的非直接IBL将它们结合起来。分离后的方程如下：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-15-16-11.png"
+        data-srcset="../../imgs/2021-12-09-15-16-11.png, ../../imgs/2021-12-09-15-16-11.png 1.5x, ../../imgs/2021-12-09-15-16-11.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-15-16-11.png"
+        title="../../imgs/2021-12-09-15-16-11.png" /></p>
+<p>第一部分<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-15-18-33.png"
+        data-srcset="../../imgs/2021-12-09-15-18-33.png, ../../imgs/2021-12-09-15-18-33.png 1.5x, ../../imgs/2021-12-09-15-18-33.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-15-18-33.png"
+        title="../../imgs/2021-12-09-15-18-33.png" />是<strong>预过滤环境图</strong>（pre-filtered environment map），类似于辐射度图的预计算环境卷积图，但会加入粗糙度。随着粗糙度等级的增加，环境图使用更多的散射采样向量来卷积，创建出更模糊的反射。</p>
+<p>对每个卷积的粗糙度等级，循环地在预过滤环境图的mimap等级存储更加模糊的结果。下图是5个不同粗糙度等级的预过滤环境图：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-15-19-09.png"
+        data-srcset="../../imgs/2021-12-09-15-19-09.png, ../../imgs/2021-12-09-15-19-09.png 1.5x, ../../imgs/2021-12-09-15-19-09.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-15-19-09.png"
+        title="../../imgs/2021-12-09-15-19-09.png" /></p>
+<p>生成采样向量和它们的散射强度，需要用到Cook-Torrance BRDF的法线分布图（NDF），而其带了两个输入：法线和视线向量。当卷积环境图时并不知道视线向量，Epic Games用了更近一步的模拟法：假设视线向量（亦即镜面反射向量）总是等于输出采样向量𝜔<sub>𝑜</sub>。所以代码变成如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="n">N</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">w_o</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">R</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span>
+<span class="n">vec3</span> <span class="n">V</span> <span class="o">=</span> <span class="n">R</span><span class="p">;</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>这种方式预过滤环境图卷积不需要关心视线方向。这就意味着当从某个角度看向下面这张图的镜面表面反射时，无法获得很好的掠射镜面反射（grazing specular reflections）。然而通常这被认为是一个较好的妥协：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-15-20-38.png"
+        data-srcset="../../imgs/2021-12-09-15-20-38.png, ../../imgs/2021-12-09-15-20-38.png 1.5x, ../../imgs/2021-12-09-15-20-38.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-15-20-38.png"
+        title="../../imgs/2021-12-09-15-20-38.png" /><br>
+第二部分 <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-15-21-14.png"
+        data-srcset="../../imgs/2021-12-09-15-21-14.png, ../../imgs/2021-12-09-15-21-14.png 1.5x, ../../imgs/2021-12-09-15-21-14.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-15-21-14.png"
+        title="../../imgs/2021-12-09-15-21-14.png" /> 是<strong>镜面积分</strong>。假设所有方向的入射辐射率是全白的（那样𝐿(𝑝,𝑥)=1.0），那就可以用给定的粗糙度和一个法线𝑛和光源方向𝜔<sub>i</sub>之间的角度或𝑛⋅𝜔<sub>i</sub>来预计算BRDF的值。Epic Games存储了用变化的粗糙度来预计算每一个法线和光源方向组合的BRDF的值，该粗糙度存储于2D采样纹理（LUT）中，它被称为<strong>BRDF积分图（BRDF integration map）</strong>。</p>
+<p>2D采样纹理输出一个缩放（红色）和一个偏移值（绿色）给表面的菲涅尔方程式（Fresnel response），以便提供第二部分的镜面积分：<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-12-09-15-21-23.png"
+        data-srcset="../../imgs/2021-12-09-15-21-23.png, ../../imgs/2021-12-09-15-21-23.png 1.5x, ../../imgs/2021-12-09-15-21-23.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-12-09-15-21-23.png"
+        title="../../imgs/2021-12-09-15-21-23.png" /></p>
+<p>上图水平表示BRDF的输入𝑛⋅𝜔<sub>i</sub>，竖向表示输入的粗糙度。</p>
+<p>有了预过滤环境图和BRDF积分图，可以在shader中将它们结合起来：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">lod</span>             <span class="o">=</span> <span class="n">getMipLevelFromRoughness</span><span class="p">(</span><span class="n">roughness</span><span class="p">);</span>
+<span class="n">vec3</span> <span class="n">prefilteredColor</span> <span class="o">=</span> <span class="n">textureCubeLod</span><span class="p">(</span><span class="n">PrefilteredEnvMap</span><span class="p">,</span> <span class="n">refVec</span><span class="p">,</span> <span class="n">lod</span><span class="p">);</span>
+<span class="n">vec2</span> <span class="n">envBRDF</span>          <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">BRDFIntegrationMap</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">NdotV</span><span class="p">,</span> <span class="n">roughness</span><span class="p">)).</span><span class="n">xy</span><span class="p">;</span>
+<span class="n">vec3</span> <span class="n">indirectSpecular</span> <span class="o">=</span> <span class="n">prefilteredColor</span> <span class="o">*</span> <span class="p">(</span><span class="n">F</span> <span class="o">*</span> <span class="n">envBRDF</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">envBRDF</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> 
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="间接光完整的ibl">间接光完整的IBL</h4>
+<blockquote>
+<p>示例代码：<a href="https://learnopengl.com/code_viewer_gh.php?code=src/6.pbr/2.2.2.ibl_specular_textured/ibl_specular_textured.cpp" target="_blank" rel="noopener noreffer">LearnOpenGL:IBL</a></p>
+</blockquote>
+<h3 id="pbr的两种工作流程">PBR的两种工作流程</h3>
+<blockquote>
+<p>基础参数说明：</p>
+<ul>
+<li>
+<p>Albedo
+可以理解为物体的基础色Base Color,即该物体本身颜色，也是漫反射光的颜色。</p>
+<p>其实该颜是色光的折射被物质吸收并形成漫反射后，成为不同波长的光，这就赋予了物体颜色。比如说物体呈现蓝色，是因为其把除了蓝色的光都吸收了，散射出来的光的波长是在蓝色所在范围内。</p>
+</li>
+<li>
+<p>Metallic
+即金属度，表示了反射时发生镜面反射和漫反射的光线的占比。</p>
+<p>Metallic度越大，发生镜面反射的占比越大，漫反射diffuse占比越小，一般金属物体的金属度比较大：70% ~ 100%之间；</p>
+<p>Metallic越小，发生镜面反射的占比越小，漫反射diffuse占比越大，一般非金属物质金属度比较小；2% ~ 5%之间，宝石的大概8%；</p>
+<p>金属是没有漫反射的，折射进表面的光照全部被吸收。但是一些腐蚀性的金属，其腐蚀的部分具有漫反射。</p>
+</li>
+<li>
+<p>Specular
+这个没什么好说的，就是镜面反射，对于非金属物质，其镜面反射的sRBG范围在40 ~ 75；对于金属物质，其sRGB范围在155 ~ 255</p>
+<p>其也是表示0度时的菲涅尔系数RF（0°）。</p>
+</li>
+<li>
+<p>Roughness
+即粗糙度，其与Smoothness（光滑度，也称为Glossiness光泽度）相反。其表示了物体表面的不规则程度，决定了在发生镜面反射时入射光线与法线的夹角大小。</p>
+<p>粗糙度roughness越大，镜面反射的出射光线分散的角度就越大，光照越模糊；</p>
+<p>粗糙度roughness越小，镜面反射的出射光线分散的角度就越小，光照越尖锐；</p>
+<p>在真实的生活中，视觉效果的呈现，主要取决于：</p>
+<ul>
+<li>自然光照下，物体呈现的颜色（BasedColor/Albedo）；</li>
+<li>物体表面对光线的镜面反射角度(Roughness)；</li>
+<li>物体表面对光线镜面反射和漫反射的比例(Metallic/Specular)；</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="metal-roughness金属工作流">Metal-Roughness（金属工作流）</h4>
+<blockquote>
+<p>UE4使用该工作流</p>
+</blockquote>
+<p>在Metal-Rougnness流程中，分别对应BaseColor，Roughness，Metallic这三个参数；</p>
+<p>在Metal-Roughness流程中，只要按照流程，分别设置好BaseColor，Roughness，Metallic，就可以基本确定物体材质的视觉效果；</p>
+<h4 id="specular-glossiness高光工作流">Specular-Glossiness（高光工作流）</h4>
+<blockquote>
+<p>Unity使用该工作流</p>
+</blockquote>
+<p>在Specular-Glossiness流程中，参数发生了变化，分别为Diffuse，Glossiness，Specular三个参数；</p>
+<p>在Specular-Glossiness流程中，Diffuse和Specular共同决定了物体的basecolor，和表面镜面反射和漫反射的比例，与第一种流程的区别在于，此流程直接指定确定的占比值，第一种是根据Metallic属性，自动匹配相应的占比值；</p>
+<h3 id="两个流程的区别">两个流程的区别</h3>
+<h4 id="共同点">共同点</h4>
+<p>都需要使用AO、Normal、Height纹理。</p>
+<h4 id="不同点">不同点</h4>
+<ul>
+<li>
+<p>Metal/Roughness工作流程使用：Base Color、Roughness、Metallic三种纹理来作为基础纹理（最常用的工作流）。</p>
+</li>
+<li>
+<p>Specular/Glossiness工作流程使用：Diffuse Map、Glossiness、Specular三种纹理来作为基础纹理。</p>
+</li>
+</ul>
+<blockquote>
+<p>参考：
+<a href="http://richbabe.top/2018/06/18/PBR%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener noreffer">PBR原理</a><br>
+<a href="https://www.cnblogs.com/timlly/p/10631718.html" target="_blank" rel="noopener noreffer">由浅入深学习PBR的原理和实现</a><br>
+<a href="https://learnopengl-cn.github.io/07%20PBR/01%20Theory/" target="_blank" rel="noopener noreffer">LearnOpenGL:PBR理论</a><br>
+<a href="https://learnopengl-cn.github.io/07%20PBR/02%20Lighting/" target="_blank" rel="noopener noreffer">LearnOpenGL:PBR Lighting</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-12-07 13:39:26</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/" data-title="PBR笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/" data-title="PBR笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/" data-title="PBR笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/" data-title="PBR笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/" data-title="PBR笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/" data-title="PBR笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/bloom%E5%AE%9E%E7%8E%B0/" class="prev" rel="prev" title="泛光（Bloom）实现"><i class="fas fa-angle-left fa-fw"></i>泛光（Bloom）实现</a>
+            <a href="/shader%E6%A1%88%E4%BE%8B/" class="next" rel="next" title="Shader案例">Shader案例<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

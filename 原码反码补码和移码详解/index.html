@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>原码、反码、补码和移码详解 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="原码、反码、补码和移码详解" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
+<meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="原码、反码、补码和移码详解"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" /><link rel="prev" href="https://codingriver.github.io/%E4%BF%A9%E9%97%AE%E5%8F%B7%E5%92%8C%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%8A%A0%E9%97%AE%E5%8F%B7%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D/" /><link rel="next" href="https://codingriver.github.io/%E5%8D%81%E8%BF%9B%E5%88%B6%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "原码、反码、补码和移码详解",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3\/"
+        },"genre": "posts","keywords": "","wordcount":  2469 ,
+        "url": "https:\/\/codingriver.github.io\/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">原码、反码、补码和移码详解</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="far fa-folder fa-fw"></i>计算机基础</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2469 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" class="leancloud_visitors" data-flag-title="原码、反码、补码和移码详解">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x01-原码反码补码和移码">0X01 原码、反码、补码和移码</a></li>
+    <li><a href="#0x02-补码求原码">0X02 补码求原码</a></li>
+    <li><a href="#0x03-补码加减运算公式">0X03 补码加、减运算公式</a></li>
+    <li><a href="#0x04-为何要使用原码-反码和补码">0X04 为何要使用原码, 反码和补码</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>      到目前为止，我们学习了十进制、二进制、八进制、十六进制等用来代表实际数值的数，称为真值，这些数我们再日常生活中都会使用到，那么在计算机中数值是怎么来表示的呢？
+      数在计算机中的表示形式统称为机器数。计算机中处理数据及运算都是采用二进制，通常规定机器数用八位二进制表示。实用的数据有正数和负数，因为计算机只能表示0、1两种状态，数据的正号“+”或负号“-”，在计算机里就用一位二进制的0或1来区别，通常放在最高位，成为符号位。 符号位数值化之后，为能方便的对机器数进行算术运算、提高运算速度，计算机设计了多种符号位与数值一起编码的方法，最常用的机器数表示方法有:原码、反码、补码和移码，下面就分别介绍一下它们的表示方法。</p>
+</blockquote>
+<h2 id="0x01-原码反码补码和移码">0X01 原码、反码、补码和移码</h2>
+<ul>
+<li><strong>原码：正数是其二进制本身；负数是符号位为1,数值部分取X绝对值的二进制。</strong></li>
+<li><strong>反码：正数的反码和原码相同；负数是符号位为1,其它位是原码取反。</strong></li>
+<li><strong>补码：正数的补码和原码，反码相同；负数是符号位为1，其它位是原码取反，未位加1。（或者说负数的补码是其绝对值反码未位加1）</strong></li>
+<li><strong>移码：将符号位取反的补码（不区分正负）</strong></li>
+</ul>
+<p>举个例子以一个字节8位说明：  </p>
+<table>
+<thead>
+<tr>
+<th>编码</th>
+<th>108<sub>10</sub>（sbyte）</th>
+<th>-108<sub>10</sub>（sbyte）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原码</td>
+<td><strong>0</strong>1101100</td>
+<td><strong>1</strong>1101100</td>
+</tr>
+<tr>
+<td>反码</td>
+<td><strong>0</strong>1101100</td>
+<td><strong>1</strong>0010011</td>
+</tr>
+<tr>
+<td>补码</td>
+<td><strong>0</strong>1101100</td>
+<td><strong>1</strong>0010100</td>
+</tr>
+<tr>
+<td>移码</td>
+<td><strong>1</strong>1101100</td>
+<td><strong>0</strong>0010100</td>
+</tr>
+<tr>
+<td><em>注：加粗的数字为符号位，<a href="http://www.99cankao.com/numbers/twos-complement.php" target="_blank" rel="noopener noreffer">补码在线工具</a></em></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>  移码表示法是在数X上增加一个偏移量来定义的，常用来表示浮点数中的阶码，所以是整数。如果机器字长为n，规定偏移量为2<sup>(n-1)</sup>。若X是整数，则X<sub>移</sub>=2^(n-1)+X</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>例子：假设字长为8，以上面的108为例</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td> 108<sub>移</sub>=10000000+<strong>0</strong>1101100=<strong>1</strong>1101100</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>-108<sub>移</sub>=10000000+<strong>1</strong>0010100=<strong>0</strong>0010100</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="0x02-补码求原码">0X02 补码求原码</h2>
+<p>已知一个数的补码，求原码的操作分两种情况：
+如果补码的符号位为“0”，表示是一个正数，所以补码就是该数的原码。
+如果补码的符号位为“1”，表示是一个负数，求原码的操作可以是：符号位为1；其余各位取反，然后再整个数加1。</p>
+<h2 id="0x03-补码加减运算公式">0X03 补码加、减运算公式</h2>
+<ul>
+<li><strong>在做补码加减法时，只需将符号位和数值部分一起参与运算，并且将符号位产生的进位丢掉即可</strong></li>
+<li>补码加法公式
+  [X+Y]补 ＝ <i class="far fa-check-square fa-fw"></i> 补 + [Y]补</li>
+<li>补码减法公式<br>
+  [X-Y]补 =  <i class="far fa-check-square fa-fw"></i> 补-[Y]补 = <i class="far fa-check-square fa-fw"></i> 补 + [-Y]补
+其中：[-Y]补称为负补,求负补的办法是：对补码的每一位(包括符合位)求反，且未位加1.</li>
+</ul>
+<p><em>假设字长为8的计算机sbyte类型所能表示的最大数是11111111，若再加1称为100000000(9位)，但因只有8位，最高位1自然丢失。又回了00000000，所以字长为8的二进制系统的模为2^8。</em></p>
+<h2 id="0x04-为何要使用原码-反码和补码">0X04 为何要使用原码, 反码和补码</h2>
+<p>在开始深入学习前, 我的学习建议是先&quot;死记硬背&quot;上面的原码, 反码和补码的表示方式以及计算方法.</p>
+<p>现在我们知道了计算机可以有三种编码方式表示一个数. 对于正数因为三种编码方式的结果都相同:</p>
+<p>[+1] = [00000001]<sub>原</sub> = [00000001]<sub>反</sub> = [00000001]<sub>补</sub></p>
+<p>所以不需要过多解释. 但是对于负数:</p>
+<p>[-1] = [10000001]<sub>原</sub>= [11111110]<sub>反</sub>= [11111111]<sub>补</sub></p>
+<p>可见原码, 反码和补码是完全不同的. 既然原码才是被人脑直接识别并用于计算表示方式, 为何还会有反码和补码呢?</p>
+<p>首先, 因为人脑可以知道第一位是符号位, 在计算的时候我们会根据符号位, 选择对真值区域的加减. (补码的绝对值称为真值即去掉符号位的二进制数字). 但是对于计算机, 加减乘数已经是最基础的运算, 要设计的尽量简单. 计算机辨别&quot;符号位&quot;显然会让计算机的基础电路设计变得十分复杂! 于是人们想出了将符号位也参与运算的方法. 我们知道, 根据运算法则减去一个正数等于加上一个负数, 即: 1-1 = 1 + (-1) = 0 , 所以机器可以只有加法而没有减法, 这样计算机运算的设计就更简单了.</p>
+<p>于是人们开始探索 将符号位参与运算, 并且只保留加法的方法. 首先来看原码:</p>
+<p>计算十进制的表达式: 1-1=0</p>
+<p>1 - 1 = 1 + (-1) = [00000001]<sub>原</sub> + [10000001]<sub>原</sub>= [10000010]<sub>原</sub> = -2</p>
+<p>如果用原码表示, 让符号位也参与计算, 显然对于减法来说, 结果是不正确的.这也就是为何计算机内部不使用原码表示一个数.</p>
+<p>为了解决原码做减法的问题, 出现了反码:</p>
+<p>计算十进制的表达式: 1-1=0</p>
+<p>1 - 1 = 1 + (-1) = [0000 0001]<sub>原</sub> + [1000 0001]<sub>原</sub>= [0000 0001]<sub>反</sub>+ [1111 1110]<sub>反</sub>= [1111 1111]<sub>反</sub>= [1000 0000]<sub>原</sub>= -0</p>
+<p>发现用反码计算减法, 结果的真值部分是正确的. 而唯一的问题其实就出现在&quot;0&quot;这个特殊的数值上. 虽然人们理解上+0和-0是一样的, 但是0带符号是没有任何意义的. 而且会有[0000 0000]<sub>原</sub>和[1000 0000]<sub>原</sub>两个编码表示0.</p>
+<p>于是补码的出现, 解决了0的符号以及两个编码的问题:</p>
+<p>1-1 = 1 + (-1) = [0000 0001]<sub>原</sub> + [1000 0001]<sub>原</sub> = [0000 0001]<sub>补</sub>+ [1111 1111]<sub>补</sub>= [0000 0000]<sub>补</sub>=[0000 0000]<sub>原</sub></p>
+<p>这样0用[0000 0000]表示, 而以前出现问题的-0则不存在了.而且可以用[1000 0000]表示-128:</p>
+<p>(-1) + (-127) = [1000 0001]<sub>原</sub> + [1111 1111]<sub>原</sub> = [1111 1111]<sub>补</sub>+ [1000 0001]<sub>补</sub>= [1000 0000]<sub>补</sub></p>
+<p>-1-127的结果应该是-128, 在用补码运算的结果中, [1000 0000]<sub>补</sub>就是-128. 但是注意因为实际上是使用以前的-0的补码来表示-128, 所以-128并没有原码和反码表示.(对-128的补码表示[1000 0000]<sub>补</sub>算出来的原码是[0000 0000]<sub>原</sub>, 这是不正确的)</p>
+<p>使用补码, 不仅仅修复了0的符号以及存在两个编码的问题, 而且还能够多表示一个最低数. 这就是为什么8位二进制, 使用原码或反码表示的范围为[-127, +127], 而使用补码表示的范围为[-128, 127].</p>
+<p>因为机器使用补码, 所以对于编程中常用到的32位int类型, 可以表示范围是: [-2<sup>31</sup>, 2<sup>31</sup>-1] 因为第一位表示的是符号位.而使用补码表示时又可以多保存一个最小值.</p>
+<p>总结：</p>
+<ul>
+<li><strong>原码负数不能参与运算并且不能做减法运算</strong></li>
+<li><strong>反码的+0和-0的反码不相同</strong></li>
+<li><strong>-128在运算中的补码是 [1000 0000]<sub>补</sub>，并没有原码和反码表示</strong></li>
+</ul>
+<blockquote>
+<p>引用的文章:
+<a href="http://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html">http://www.cnblogs.com/zhangziqiu/archive/2011/03/30/ComputerCode.html</a>
+<a href="http://blog.csdn.net/peng_weida/article/details/7931990">http://blog.csdn.net/peng_weida/article/details/7931990</a>
+<a href="https://blog.csdn.net/q_l_s/article/details/54894897" target="_blank" rel="noopener noreffer">补码和原码的转化过程</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-12-01 21:57:40</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" data-hashtag=""><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" data-title="原码、反码、补码和移码详解" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" data-title="原码、反码、补码和移码详解"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" data-title="原码、反码、补码和移码详解" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" data-title="原码、反码、补码和移码详解" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" data-title="原码、反码、补码和移码详解" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/%E5%8E%9F%E7%A0%81%E5%8F%8D%E7%A0%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" data-title="原码、反码、补码和移码详解"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=""></a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E4%BF%A9%E9%97%AE%E5%8F%B7%E5%92%8C%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%8A%A0%E9%97%AE%E5%8F%B7%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D/" class="prev" rel="prev" title="在C#中??和值类型加?分别是什么意思？"><i class="fas fa-angle-left fa-fw"></i>在C#中??和值类型加?分别是什么意思？</a>
+            <a href="/%E5%8D%81%E8%BF%9B%E5%88%B6%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/" class="next" rel="next" title="十进制和二进制互相转换">十进制和二进制互相转换<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

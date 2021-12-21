@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>透视投影(Perspective Projection)变换推导过程 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="透视投影(Perspective Projection)变换推导过程" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2021-04-21T20:09:51+08:00" />
+<meta property="article:modified_time" content="2021-04-21T20:09:51+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="透视投影(Perspective Projection)变换推导过程"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" /><link rel="prev" href="https://codingriver.github.io/shaderlearn-%E4%B8%89ramptex/" /><link rel="next" href="https://codingriver.github.io/%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87%E7%9A%84%E6%84%8F%E4%B9%89/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "透视投影(Perspective Projection)变换推导过程",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC\/"
+        },"genre": "posts","wordcount":  6147 ,
+        "url": "https:\/\/codingriver.github.io\/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC\/","datePublished": "2021-04-21T20:09:51+08:00","dateModified": "2021-04-21T20:09:51+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">透视投影(Perspective Projection)变换推导过程</h1><h2 class="single-subtitle">透视投影(Perspective Projection)变换推导过程</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-21 20:09:51">2021-04-21 20:09:51</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6147 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" class="leancloud_visitors" data-flag-title="透视投影(Perspective Projection)变换推导过程">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1齐次坐标">1.齐次坐标</a></li>
+        <li><a href="#2线性插值">2.线性插值</a></li>
+      </ul>
+    </li>
+    <li><a href="#投影变换推导方案一">投影变换（推导方案一）</a></li>
+    <li><a href="#投影变换推导方案二">投影变换（推导方案二）</a>
+      <ul>
+        <li><a href="#计算-x和y的范围-11">计算 x和y的范围（[-1,1]）</a></li>
+        <li><a href="#计算-z的范围-11">计算 z的范围([-1,1])</a></li>
+        <li><a href="#z-fighting">z-fighting</a></li>
+      </ul>
+    </li>
+    <li><a href="#简单概括透视投影变换">简单概括透视投影变换</a></li>
+    <li><a href="#unity中透视投影变换">Unity中透视投影变换</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210424144836.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210424144836.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210424144836.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210424144836.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210424144836.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210424144836.png" /></p>
+<p>透视投影是3D固定流水线的重要组成部分，是将相机空间中的点从视锥体(frustum)变换到规则观察体(Canonical View Volume)中，待裁剪完毕后进行透视除法的行为。在算法中它是通过<code>透视矩阵乘法</code>和<code>透视除法(perspective division)</code>（又叫齐次除法 homogeneous division）两步完成的。</p>
+<p> </p>
+<p>透视投影变换是令很多刚刚进入3D图形领域的开发人员感到迷惑乃至神秘的一个图形技术。其中的理解困难在于步骤繁琐，对一些基础知识过分依赖，一旦对它们中的任何地方感到陌生，立刻导致理解停止不前。</p>
+<p>没错，主流的3D APIs如OpenGL、D3D的确把具体的透视投影细节封装起来，比如</p>
+<p>gluPerspective(…)就可以根据输入生成一个透视投影矩阵。而且在大多数情况下不需要了解具体的内幕算法也可以完成任务。但是你不觉得，如果想要成为一个职业的图形程序员或游戏开发者，就应该真正降伏透视投影这个家伙么？我们先从必需的基础知识着手，一步一步深入下去（这些知识在很多地方可以单独找到，但我从来没有在同一个地方全部找到，但是你现在找到了）。</p>
+<p>我们首先介绍两个必须掌握的知识。有了它们，我们才不至于在理解透视投影变换的过程中迷失方向（这里会使用到向量几何、矩阵的部分知识，如果你对此不是很熟悉，可以参考<a href="http://blog.csdn.net/popy007" target="_blank" rel="noopener noreffer">《向量几何在游戏编程中的使用》</a>系列文章）</p>
+<h3 id="1齐次坐标">1.齐次坐标</h3>
+<hr>
+<p>透视投影变换是在齐次坐标下进行的，而齐次坐标本身就是一个令人迷惑的概念，这里我们先把它理解清楚。</p>
+<p>简短的解释：<code>齐次坐标就是将一个原本是n维的向量用一个n+1维向量来表示。</code></p>
+<pre><code>“齐次坐标表示是计算机图形学的重要手段之一，它既能够用来明确区分向量和点，同时也更易用于进行仿射（线性）几何变换。”—— F.S. Hill, JR
+</code></pre>
+<blockquote>
+<p>参考：<a href="%e9%bd%90%e6%ac%a1%e5%9d%90%e6%a0%87%e7%9a%84%e6%84%8f%e4%b9%89.md" rel="">齐次坐标的意义</a></p>
+</blockquote>
+<h3 id="2线性插值">2.线性插值</h3>
+<hr>
+<p>这是在图形学中普遍使用的基本技巧，我们在很多地方都会用到，比如2D位图的放大、缩小，Tweening变换，以及我们即将看到的透视投影变换等等。基本思想是：给一个x属于[a, b]，找到y属于[c, d]，使得x与a的距离比上ab长度所得到的比例，等于y与c的距离比上cd长度所得到的比例，用数学表达式描述很容易理解：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231520.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231520.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231520.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231520.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231520.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231520.png" /></p>
+<p>这样，从a到b的每一个点都与c到d上的唯一一个点对应。有一个x，就可以求得一个y。</p>
+<p>此外，如果x不在[a, b]内，比如x &lt; a或者x &gt; b，则得到的y也是符合y &lt; c或者y &gt; d，比例仍然不变，插值同样适用。</p>
+<h2 id="投影变换推导方案一">投影变换（推导方案一）</h2>
+<hr>
+<blockquote>
+<blockquote>
+<p>转自：<a href="http://blog.csdn.net/popy007/article/details/1797121">http://blog.csdn.net/popy007/article/details/1797121</a></p>
+</blockquote>
+</blockquote>
+<p>好，有了上面两个理论知识，我们开始分析这次的主角——透视投影变换。这里我们选择OpenGL的透视投影变换进行分析，其他的APIs会存在一些差异，但主体思想是相似的，可以类似地推导。经过相机矩阵的变换，顶点被变换到了相机空间。这个时候的多边形也许会被视锥体裁剪，但在这个不规则的体中进行裁剪并非那么容易的事情，所以经过图形学前辈们的精心分析，裁剪被安排到规则观察体(Canonical View Volume, CVV)中进行，CVV是一个正方体，x, y, z的范围都是[-1，1]，多边形裁剪就是用这个规则体完成的。所以，事实上是透视投影变换由两步组成：</p>
+<p> </p>
+<p>1）  用透视变换矩阵把顶点从视锥体中变换到裁剪空间的CVV中。</p>
+<p>2）  CVV裁剪完成后进行透视除法（一会进行解释）。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231724.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231724.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231724.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231724.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231724.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231724.png" /></p>
+<p>我们一步一步来，我们先从一个方向考察投影关系。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231739.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231739.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231739.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231739.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231739.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231739.png" /></p>
+<p>上图是右手坐标系中顶点在相机空间中的情形。设P(x,z)是经过相机变换之后的点，视锥体由eye——眼睛位置，np——近裁剪平面，fp——远裁剪平面组成。N是眼睛到近裁剪平面的距离，F是眼睛到远裁剪平面的距离。投影面可以选择任何平行于近裁剪平面的平面，这里我们选择近裁剪平面作为投影平面。设P’(x’,z’)是投影之后的点，则有z’ = -N。通过相似三角形性质，我们有关系：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231755.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231755.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231755.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231755.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231755.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231755.png" /></p>
+<p>同理，有</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231811.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231811.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231811.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231811.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231811.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231811.png" /></p>
+<p>这样，我们便得到了P投影后的点P’</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231826.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231826.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231826.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231826.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231826.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231826.png" /></p>
+<p>从上面可以看出，投影的结果z’始终等于-N，在投影面上。实际上，z’对于投影后的P’已经没有意义了，这个信息点已经没用了。但对于3D图形管线来说，为了便于进行后面的片元操作，例如z缓冲消隐算法，有必要把投影之前的z保存下来，方便后面使用。因此，我们利用这个没用的信息点存储z，处理成：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231834.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231834.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231834.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231834.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231834.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231834.png" /></p>
+<p>这个形式最大化地使用了3个信息点，达到了最原始的投影变换的目的，但是它太直白了，有一点蛮干的意味，我感觉我们最终的结果不应该是它，你说呢？我们开始结合CVV进行思考，把它写得在数学上更优雅一致，更易于程序处理。假入能够把上面写成这个形式：</p>
+<p> <img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231853.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231853.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231853.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231853.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231853.png"
+        title="20210421231853" /></p>
+<p>那么我们就可以非常方便的用矩阵以及齐次坐标理论来表达投影变换：</p>
+<p> <br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231902.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231902.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231902.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231902.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231902.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231902.png" /></p>
+<p>其中</p>
+<p> <br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231918.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231918.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231918.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231918.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231918.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231918.png" /></p>
+<p> </p>
+<p>哈，看到了齐次坐标的使用，这对于你来说已经不陌生了吧？这个新的形式不仅达到了上面原始投影变换的目的，而且使用了齐次坐标理论，使得处理更加规范化。注意在把</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231959.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231959.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231959.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231959.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231959.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231959.png" /><br>
+变成
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232008.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232008.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232008.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232008.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232008.png"
+        title="20210421232008" />
+的一步我们是使用齐次坐标变普通坐标的规则完成的。这一步在透视投影过程中称为透视除法（Perspective Division），这是透视投影变换的第2步，经过这一步，就丢弃了原始的z值（得到了CVV中对应的z值，后面解释），顶点才算完成了投影。而在这两步之间的就是CVV裁剪过程，所以裁剪空间使用的是齐次坐标<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232043.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232043.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232043.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232043.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232043.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232043.png" /><br>
+，主要原因在于透视除法会损失一些必要的信息（如原始z，第4个-z保留的）从而使裁剪变得更加难以处理，这里我们不讨论CVV裁剪的细节，只关注透视投影变换的两步。</p>
+<p>矩阵</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232055.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232055.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232055.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232055.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232055.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232055.png" /></p>
+<p>就是我们投影矩阵的第一个版本。你一定会问为什么要把z写成</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232116.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232116.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232116.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232116.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232116.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232116.png" /></p>
+<p> </p>
+<blockquote>
+<p>有三个原因：</p>
+<ol>
+<li>后面投影之后的光栅化阶段，要通过x&rsquo;和y&rsquo;对z进行线性插值，以求出三角形内部片元的z，进行z缓冲深度测试。在数学上，投影后的x&rsquo;和y&rsquo;，与z不是线性关系，与1/z才是线性关系。而正
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232253.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232253.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232253.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232253.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232253.png"
+        title="20210421232253" />
+是1/z的线性关系，即-a+b/z。用这个1/z的线性组合值和x&rsquo;、y&rsquo;进行插值才是正确的。</li>
+<li>P’的3个代数分量统一地除以分母-z，易于使用齐次坐标变为普通坐标来完成，使得处理更加一致、高效。</li>
+<li>后面的CVV是一个x,y,z的范围都为[-1，1]的规则体，便于进行多边形裁剪。而我们可以适当的选择系数a和b，使得
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232329.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232329.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232329.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232329.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232329.png"
+        title="20210421232329" />
+这个式子在z = -N的时候值为-1，而在z = -F的时候值为1，从而在z方向上构建CVV。</li>
+</ol>
+</blockquote>
+<p><em>上面是原始作者列举的原因，但我认为主要是一个原因</em>：<code>由于在光栅化的过程中，要进行 Z 坐标的倒数的插值</code>,参考<a href="%e9%80%8f%e8%a7%86%e6%a0%a1%e6%ad%a3%e5%b7%ae%e5%80%bc.md" rel="">透视校正插值</a>)。</p>
+<p>接下来我们就求出a和b：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232345.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232345.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232345.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232345.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232345.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232345.png" /></p>
+<p> 
+这样我们就得到了透视投影矩阵的第一个版本：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232402.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232402.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232402.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232402.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232402.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232402.png" /></p>
+<p>使用这个版本的透视投影矩阵可以从z方向上构建CVV，但是x和y方向仍然没有限制在[-1,1]中，我们的透视投影矩阵的下一个版本就要解决这个问题。</p>
+<p>为了能在x和y方向把顶点从Frustum情形变成CVV情形，我们开始对x和y进行处理。先来观察我们目前得到的最终变换结果：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232434.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232434.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232434.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232434.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232434.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232434.png" /></p>
+<p>我们知道-Nx / z的有效范围是投影平面的左边界值（记为left）和右边界值（记为right），即[left, right]，-Ny / z则为[bottom, top]。而现在我们想把-Nx / z属于[left, right]映射到x属于[-1, 1]中，-Ny / z属于[bottom, top]映射到y属于[-1, 1]中。你想到了什么？哈，就是我们简单的线性插值，你都已经掌握了！我们解决掉它：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232451.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232451.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232451.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232451.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232451.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232451.png" /></p>
+<p>则我们得到了最终的投影点：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232614.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232614.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232614.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232614.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232614.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232614.png" /></p>
+<p>下面要做的就是从这个新形式出发反推出下一个版本的透视投影矩阵。注意到<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232635.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232635.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232635.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232635.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232635.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232635.png" /><br>
+是<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232644.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232644.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232644.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232644.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232644.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232644.png" /><br>
+经过透视除法的形式，而P’只变化了x和y分量的形式，az+b和-z是不变的，则我们做透视除法的逆处理——给P’每个分量乘上-z，得到</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232712.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232712.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232712.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232712.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232712.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232712.png" /></p>
+<p>而这个结果又是这么来的：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232720.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232720.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232720.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232720.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232720.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232720.png" /></p>
+<p>则我们最终得到：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232726.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232726.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232726.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232726.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232726.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232726.png" /></p>
+<p>M就是最终的透视变换矩阵。相机空间中的顶点，如果在视锥体中，则变换后就在CVV中。如果在视锥体外，变换后就在CVV外。而CVV本身的规则性对于多边形的裁剪很有利。OpenGL在构建透视投影矩阵的时候就使用了M的形式。注意到M的最后一行不是(0 0 0 1)而是(0 0 -1 0)，因此可以看出透视变换不是一种仿射变换，它是非线性的。另外一点你可能已经想到，对于投影面来说，它的宽和高大多数情况下不同，即宽高比不为1，比如640/480。而CVV的宽高是相同的，即宽高比永远是1。这就造成了多边形的失真现象，比如一个投影面上的正方形在CVV的面上可能变成了一个长方形。解决这个问题的方法就是在对多变形进行透视变换、裁剪、透视除法之后，在归一化的设备坐标(Normalized Device Coordinates)上进行的视口(viewport)变换中进行校正，它会把归一化的顶点之间按照和投影面上相同的比例变换到视口中，从而解除透视投影变换带来的失真现象。进行校正前提就是要使投影平面的宽高比和视口的宽高比相同。</p>
+<p> </p>
+<p>便利的投影矩阵生成函数</p>
+<p> </p>
+<p>3D APIs都提供了诸如gluPerspective(fov, aspect, near, far)或者D3DXMatrixPerspectiveFovLH(pOut, fovY, Aspect, zn, zf)这样的函数为用户提供快捷的透视矩阵生成方法。我们还是用OpenGL的相应方法来分析它是如何运作的。</p>
+<p> </p>
+<p>gluPerspective(fov, aspect, near, far)</p>
+<p> </p>
+<p>fov即视野，是视锥体在xz平面或者yz平面的开角角度，具体哪个平面都可以。OpenGL和D3D都使用yz平面。</p>
+<p> </p>
+<p>aspect即投影平面的宽高比。</p>
+<p> </p>
+<p>near是近裁剪平面的距离</p>
+<p> </p>
+<p>far是远裁剪平面的距离。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232759.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232759.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232759.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232759.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232759.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232759.png" /></p>
+<p>上图中左边是在xz平面计算视锥体，右边是在yz平面计算视锥体。可以看到左边的第3步top = right / aspect使用了除法（图形程序员讨厌的东西），而右边第3步right = top x aspect使用了乘法，这也许就是为什么图形APIs采用yz平面的原因吧！</p>
+<p> </p>
+<p>到目前为止已经完成了对透视投影变换的阐述，我想如果你一直跟着我的思路下来，应该能够对透视投影变换有一个细节层次上的认识。当然，很有可能你已经是一个透视投影变换专家，如果是这样的话，一定给我写信，指出我认识上的不足，我会非常感激。Bye!</p>
+<h2 id="投影变换推导方案二">投影变换（推导方案二）</h2>
+<hr>
+<blockquote>
+<p>个人更倾向这种推导</p>
+<p>转自：<a href="https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/opengl-perspective-projection-matrix">https://www.scratchapixel.com/lessons/3d-basic-rendering/perspective-and-orthographic-projection-matrix/opengl-perspective-projection-matrix</a></p>
+</blockquote>
+<p>我们从相机的原点到要投影的点 <code>P</code> 画一条线，该线与图像平面的交点表示投影点 <code>Ps</code> 的位置。在OpenGL中，图像平面位于附近的剪切平面上（而不是与相机原点精确地相差一个单位）,这里是近剪切面。</p>
+<p>( 假设相机空间下任意一点 <code>P</code> ,首先投影到近裁剪面所在平面的点为 <code>Ps</code>，然后将 <code>Ps</code> 变换到NDC立方体空间)<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230135.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230135.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230135.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230135.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422230135.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422230135.png" /></p>
+<p>图1：我们使用相似三角形的属性来找到 <code>Ps</code> 的位置。</p>
+<p>相似的三角形ΔABC 和 ΔDEF是相似的。因此我们可以这样写：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230519.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230519.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230519.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230519.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422230519.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422230519.png" /></p>
+<p>如果我们用n 替代AB，近裁剪平面，DE用 P<sub>z</sub>替代 （P的z坐标）和EF用 P<sub>y</sub>替代（P的y坐标），我们可以将该等式重写为（等式1）：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230841.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230841.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230841.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422230841.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422230841.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422230841.png" /></p>
+<p>根据类似的原理得到方程式(等式2)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231103.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231103.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231103.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231103.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422231103.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422231103.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231211.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231211.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231211.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231211.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422231211.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422231211.png" /></p>
+<p>图2：相机的视锥范围或观看量由相机的视场，近和远裁剪平面以及图像纵横比定义。在OpenGL中，点投影在视锥的正面（靠近剪切平面）上。</p>
+<h3 id="计算-x和y的范围-11">计算 x和y的范围（[-1,1]）</h3>
+<hr>
+<blockquote>
+<p>现在我们有两个值 Ps<sub>x</sub> 和 Ps<sub>ÿ</sub>我们仍然需要解释它们与OpenGL透视矩阵的关系。投影矩阵的目标是将投影到图像平面上的值重新映射到一个单位立方体（一个最小和最大范围分别为（-1，-1，-1）和（1,1,1）的立方体）。但是，一旦将点P投影到图像平面上，如果其x和y坐标包含在x的[left，rigtht]和y [bottom，top]的范围内，则Ps是可见的。如图2所示。这些坐标定义了可见点（包含在视锥体中并投影在图像平面上的所有点）在图像平面上的界限或边界。如果我们假设PsX 是可见的，那么我们可以这样写：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231355.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231355.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231355.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231355.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422231355.png"
+        title="20210422231355" />
+然后对该不等式进行变换，
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231700.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231700.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231700.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422231700.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422231700.png"
+        title="20210422231700" />
+再进行变换
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232350.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232350.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232350.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232350.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422232350.png"
+        title="20210422232350" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232410.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232410.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232410.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232410.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422232410.png"
+        title="20210422232410" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232427.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232427.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232427.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232427.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422232427.png"
+        title="20210422232427" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232503.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232503.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232503.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232503.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422232503.png"
+        title="20210422232503" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232533.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232533.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232533.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232533.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422232533.png"
+        title="20210422232533" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232555.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232555.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232555.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232555.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422232555.png"
+        title="20210422232555" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232623.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232623.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232623.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232623.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422232623.png"
+        title="20210422232623" />
+上面不等式都乘以P<sub>z</sub>后得到新的不等式，我们用矩阵的形式对不等式编码。将不等式的第一项系数和第二项系数替换矩阵的第一行第一列和第三列的系数，得到的结果：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232907.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232907.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232907.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422232907.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422232907.png"
+        title="20210422232907" /></p>
+<p>请记住，OpenGL矩阵使用colum-major排序，因此我们将不得不使用列向量在矩阵的右边以及点坐标处写入乘法符号：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233100.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233100.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233100.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233100.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422233100.png"
+        title="20210422233100" /></p>
+<p>根据矩阵计算出Ps<sub>x</sub>结果:
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233428.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233428.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233428.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233428.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422233428.png"
+        title="20210422233428" /></p>
+<p>然后除以 -P<sub>z</sub>后</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233740.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233740.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233740.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233740.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422233740.png"
+        title="20210422233740" /></p>
+<p>根据上面的推导，我们可以推导出Ps<sub>y</sub> 的不等式：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233859.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233859.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233859.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233859.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422233859.png"
+        title="20210422233859" /></p>
+<p>然后将系数带入矩阵 得出结果：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233957.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233957.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233957.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422233957.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422233957.png"
+        title="20210422233957" /></p>
+<p>根据矩阵运算得出：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234048.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234048.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234048.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234048.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422234048.png"
+        title="20210422234048" /></p>
+<p>然后除以 -P<sub>z</sub>后：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234104.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234104.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234104.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234104.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422234104.png"
+        title="20210422234104" /></p>
+</blockquote>
+<h3 id="计算-z的范围-11">计算 z的范围([-1,1])</h3>
+<hr>
+<p>我们剩下要做的就是找到一种将投影点的z坐标重新映射到[-1,1]范围的方法。<strong>我们知道P的x和y坐标对投影点z坐标的计算没有帮助。因此，将要与P x和y坐标相乘的矩阵第三行的第一和第二系数必须为零（绿色）。我们在矩阵中剩下两个未知的系数A和B（红色）</strong>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234321.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234321.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234321.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234321.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422234321.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422234321.png" /></p>
+<p>如果我们写方程式来计算 Ps然后除以 -P<sub>ž</sub>后 使用这个矩阵，我们得到（记住 Ps<sub>ž</sub> 也除以 Ps<sub>w</sub> 当点从齐次坐标转换为笛卡尔坐标时，同时 P<sub>w</sub> = 1）：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234418.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234418.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234418.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234418.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422234418.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422234418.png" /></p>
+<p>我们需要找到A和B的值。希望我们知道 P<sub>ž</sub> 躺在附近的裁剪平面上， Ps<sub>ž</sub> 需要重新映射为-1以及当 P<sub>ž</sub> 躺在远的剪裁平面上， Ps<sub>ž</sub> 需要重新映射为1。因此，我们需要替换 Ps<sub>ž</sub> 经过 ñ 和 F 在方程中得到两个新方程（请注意，投影在像面上的所有点的z坐标为负，但 ñ 和 F 是正数，因此我们将使用 − n 和 - f 取反）：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234754.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234754.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234754.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422234754.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422234754.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422234754.png" /></p>
+<p>让我们求解方程式（1）中的B：</p>
+<pre><code>  B = − n + A n 。
+</code></pre>
+<p>并用该等式代入方程式(2)中的B：</p>
+<pre><code>  -fA − n + A n = f。
+</code></pre>
+<p>然后求解A和B：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235039.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235039.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235039.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235039.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422235039.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422235039.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235150.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235150.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235150.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235150.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422235150.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422235150.png" /></p>
+<p>我们可以替换在矩阵中为A和B找到的解决方案，最后得到：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235233.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235233.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235233.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210422235233.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422235233.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210422235233.png" /></p>
+<p>这就是OpenGL透视投影矩阵</p>
+<h3 id="z-fighting">z-fighting</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210423000431.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210423000431.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210423000431.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210423000431.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210423000431.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210423000431.png" /></p>
+<p>图3：投影点的z坐标的重新映射是非线性的。此图显示了结果Psž 对于Near = 1和far = 5。</p>
+<p>z坐标的重映射(我们选择将z重映射到[-1,1]范围。从技术上讲，您可以将其重新映射为所需的任何内容，但[-1,1]也是常见的选择。)具有以比距离更远的点更高的数值精度来表示距离摄像机更近的点的属性。当缺乏数值精度导致某些相邻样本在投影到屏幕后，当它们的z坐标在世界上时，它们具有相同的深度值时，此属性可能会成为问题。空间实际上是不同的，这个问题称为 <code>Z战 (z-fighting)</code> 。这个问题不能真正解决（我们始终局限于可以存储在单精度浮点数中的精度，尽管如果将近剪切面和远剪切面分别设置得尽可能接近，则可以将问题最小化。场景中最接近和最远的物体，这就是为什么总是建议调整剪切平面的原因)。
+<em>最后翻译可能不准确，这里给出原文：</em> (<em>we are always limited to the precision that can be stored in a single-precision floating-point number though the problem can be minimised if the near and flar clipping planes are fit respectively as closely as possible to the nearest and furthest object visible in the scene. This is the reason why adjusting the clipping planes is always recommended.</em>)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210423001302.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210423001302.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210423001302.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210423001302.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210423001302.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210423001302.png" /></p>
+<h2 id="简单概括透视投影变换">简单概括透视投影变换</h2>
+<ul>
+<li>先变换x,y
+<ol>
+<li>将透视视椎体P投影到近裁剪面上P1</li>
+<li>将在近裁剪面上P1变换到NDC正方形[-1,1]范围内</li>
+</ol>
+</li>
+<li>再变换z
+<ol>
+<li>使用 <code>(A*z+B)/(-Pz)</code> 的代数形式根据取值范围[-1,1]求解A和B</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>注意求解A和B时：<br>
+方程式：<br>
+(A*(-n)+B)/(-(-n))=-1<br>
+(A*(-f)+B)/(-(-f))=1<br>
+为啥-n带入后是-1,因为是从相机空间（右手坐标系）变换到ndc空间（左手坐标系）,因为坐标系变换所以不等式代入-n后对应ndc空间是-1，不等式代入-f后对应ndc空间是1<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210424144836.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210424144836.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210424144836.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210424144836.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210424144836.png"
+        title="20210424144836" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231724.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231724.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231724.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421231724.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421231724.png"
+        title="20210421231724" /></p>
+</blockquote>
+<h2 id="unity中透视投影变换">Unity中透视投影变换</h2>
+<hr>
+<p>根据上面推导的结果按照右边yz平面计算视锥体，得出最终Unity中用的透视矩阵：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421235050.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421235050.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421235050.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421235050.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421235050.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421235050.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421235111.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421235111.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421235111.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421235111.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421235111.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421235111.png" /></p>
+<p><em>按照OpenGL计算的，不讨论DirectX</em></p>
+<blockquote>
+<p><a href="http://www.songho.ca/opengl/gl_projectionmatrix.html" target="_blank" rel="noopener noreffer">OpenGL Projection Matrix</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-04-21 20:09:51</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" data-title="透视投影(Perspective Projection)变换推导过程" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" data-title="透视投影(Perspective Projection)变换推导过程"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" data-title="透视投影(Perspective Projection)变换推导过程" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" data-title="透视投影(Perspective Projection)变换推导过程" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" data-title="透视投影(Perspective Projection)变换推导过程" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" data-title="透视投影(Perspective Projection)变换推导过程"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/shaderlearn-%E4%B8%89ramptex/" class="prev" rel="prev" title="ShaderLearn (三)RampTex"><i class="fas fa-angle-left fa-fw"></i>ShaderLearn (三)RampTex</a>
+            <a href="/%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87%E7%9A%84%E6%84%8F%E4%B9%89/" class="next" rel="next" title="齐次坐标的意义">齐次坐标的意义<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

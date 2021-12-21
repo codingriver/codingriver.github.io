@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Unity Texture2D的SetPiexl严重耗时的优化方案 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Unity Texture2D的SetPiexl严重耗时的优化方案" />
+<meta property="og:description" content="Unity中使用Texture2D的SetPixel大量调用的时候耗时非常严重。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2020-10-10T18:02:43+08:00" />
+<meta property="article:modified_time" content="2020-10-10T18:02:43+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Unity Texture2D的SetPiexl严重耗时的优化方案"/>
+<meta name="twitter:description" content="Unity中使用Texture2D的SetPixel大量调用的时候耗时非常严重。"/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" /><link rel="prev" href="https://codingriver.github.io/ugui-text%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/" /><link rel="next" href="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Unity Texture2D的SetPiexl严重耗时的优化方案",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88\/"
+        },"genre": "posts","keywords": "Unity","wordcount":  1086 ,
+        "url": "https:\/\/codingriver.github.io\/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88\/","datePublished": "2020-10-10T18:02:43+08:00","dateModified": "2020-10-10T18:02:43+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><article class="page single"><h1 class="single-title animated flipInX">Unity Texture2D的SetPiexl严重耗时的优化方案</h1><h2 class="single-subtitle">Unity Texture2D的SetPiexl严重耗时的优化方案</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-10 18:02:43">2020-10-10 18:02:43</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1086 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" class="leancloud_visitors" data-flag-title="Unity Texture2D的SetPiexl严重耗时的优化方案">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="content" id="content"><p><em>Unity中使用Texture2D的SetPixel大量调用的时候耗时非常严重。</em></p>
+<blockquote>
+<p>在使用战争迷雾时需要不断的更新迷雾数据，当进入场景时需要先初始化迷雾数据，将数据转换成纹理（<code>Texture2D</code>），一张图片，使用<code>public void SetPixel(int x, int y, Color color);</code>时耗时非常严重。这里提供使用纹理原始数据直接修改的办法<code>public NativeArray&lt;T&gt; GetRawTextureData&lt;T&gt;() where T : struct;</code>，耗时优化明显提升。</p>
+</blockquote>
+<p>使用<code>GetRawTextureData&lt;T&gt;()</code>该方法时遇到了一个问题：</p>
+<ul>
+<li>当使用<code>texture.GetRawTextureData&lt;Color32&gt;()</code>时获取数据的长度是正常的。</li>
+<li>当使用<code>texture.GetRawTextureData&lt;Color&gt;()</code>时获取数据的长度是原始长度的四分之一。</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Unity-Texture2D%e7%9a%84SetPiexl%e4%b8%a5%e9%87%8d%e8%80%97%e6%97%b6%e7%9a%84%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88/20201010180832.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Unity-Texture2D%e7%9a%84SetPiexl%e4%b8%a5%e9%87%8d%e8%80%97%e6%97%b6%e7%9a%84%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88/20201010180832.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Unity-Texture2D%e7%9a%84SetPiexl%e4%b8%a5%e9%87%8d%e8%80%97%e6%97%b6%e7%9a%84%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88/20201010180832.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Unity-Texture2D%e7%9a%84SetPiexl%e4%b8%a5%e9%87%8d%e8%80%97%e6%97%b6%e7%9a%84%e4%bc%98%e5%8c%96%e6%96%b9%e6%a1%88/20201010180832.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Unity-Texture2D的SetPiexl严重耗时的优化方案/20201010180832.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Unity-Texture2D的SetPiexl严重耗时的优化方案/20201010180832.png" /></p>
+<p><a href="https://docs.unity.cn/cn/current/ScriptReference/Texture2D.GetRawTextureData.html" target="_blank" rel="noopener noreffer">unity官方测试例子</a>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">ExampleScript</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+<span class="p">{</span>
+    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">texture</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Texture2D</span><span class="p">(</span><span class="m">128</span><span class="p">,</span> <span class="m">128</span><span class="p">,</span> <span class="n">TextureFormat</span><span class="p">.</span><span class="n">RGBA32</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+        <span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Renderer</span><span class="p">&gt;().</span><span class="n">material</span><span class="p">.</span><span class="n">mainTexture</span> <span class="p">=</span> <span class="n">texture</span><span class="p">;</span>
+
+        <span class="c1">// RGBA32 texture format data layout exactly matches Color32 struct
+</span><span class="c1"></span>        <span class="kt">var</span> <span class="n">data</span> <span class="p">=</span> <span class="n">texture</span><span class="p">.</span><span class="n">GetRawTextureData</span><span class="p">&lt;</span><span class="n">Color32</span><span class="p">&gt;();</span>
+
+        <span class="c1">// fill texture data with a simple pattern
+</span><span class="c1"></span>        <span class="n">Color32</span> <span class="n">orange</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Color32</span><span class="p">(</span><span class="m">255</span><span class="p">,</span> <span class="m">165</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">255</span><span class="p">);</span>
+        <span class="n">Color32</span> <span class="n">teal</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Color32</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">128</span><span class="p">,</span> <span class="m">128</span><span class="p">,</span> <span class="m">255</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">y</span> <span class="p">&lt;</span> <span class="n">texture</span><span class="p">.</span><span class="n">height</span><span class="p">;</span> <span class="n">y</span><span class="p">++)</span>
+        <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">x</span> <span class="p">&lt;</span> <span class="n">texture</span><span class="p">.</span><span class="n">width</span><span class="p">;</span> <span class="n">x</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">++]</span> <span class="p">=</span> <span class="p">((</span><span class="n">x</span> <span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">y</span><span class="p">)</span> <span class="p">==</span> <span class="m">0</span> <span class="p">?</span> <span class="n">orange</span> <span class="p">:</span> <span class="n">teal</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="c1">// upload to the GPU
+</span><span class="c1"></span>        <span class="n">texture</span><span class="p">.</span><span class="n">Apply</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>测试代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="k">public</span> <span class="k">void</span> <span class="n">Awake</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">MapComponent</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">fogComponent</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
+            <span class="n">jiesuoQueue</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;FogComponent::DCFog.InstanceFog.Data=null&#34;</span><span class="p">);</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(!</span><span class="n">CheckFog</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">GameObject</span> <span class="n">warFogObj</span> <span class="p">=</span> <span class="n">GameObject</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="s">&#34;WarFog&#34;</span><span class="p">);</span><span class="c1">//TODO TEMP
+</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">warFogObj</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+                <span class="p">{</span>
+                    <span class="n">warFogObj</span><span class="p">.</span><span class="n">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">$&#34;FOG LOADType::{LoadType}&#34;</span><span class="p">);</span>
+            <span class="kt">long</span> <span class="n">starttime</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">Ticks</span><span class="p">;</span>
+            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">BeginSample</span><span class="p">(</span><span class="s">&#34;FogComponent::Awake:UpdateLogicCell&#34;</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">cell</span> <span class="p">=</span> <span class="n">SN01GameConstCategory</span><span class="p">.</span><span class="n">FogSide</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">size</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span> <span class="p">/</span> <span class="n">cell</span><span class="p">);</span>
+            <span class="c1">//texture = new Texture2D(size, size, TextureFormat.R8,false);
+</span><span class="c1"></span>            <span class="n">texture</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Texture2D</span><span class="p">(</span><span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span><span class="p">,</span> <span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span><span class="p">,</span> <span class="n">TextureFormat</span><span class="p">.</span><span class="n">ARGB32</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+            <span class="c1">//Debug.Log(&#34;FogComponent::texture size:&#34;+MapFactory.MAP_SIZE+&#34;  texture:&#34;+texture+&#34;  data len:&#34;+ DCFog.InstanceFog.Data.Length);
+</span><span class="c1"></span>            <span class="n">texture</span><span class="p">.</span><span class="n">filterMode</span> <span class="p">=</span> <span class="n">FilterMode</span><span class="p">.</span><span class="n">Point</span><span class="p">;</span>
+            <span class="n">texture</span><span class="p">.</span><span class="n">wrapMode</span> <span class="p">=</span> <span class="n">TextureWrapMode</span><span class="p">.</span><span class="n">Clamp</span><span class="p">;</span>
+            <span class="n">texture</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;fogtexture&#34;</span><span class="p">;</span>
+            <span class="n">texture</span><span class="p">.</span><span class="n">anisoLevel</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+            
+            
+            <span class="k">if</span><span class="p">(</span><span class="n">LoadType</span><span class="p">==</span><span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+                <span class="p">{</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">j</span><span class="p">++)</span>
+                    <span class="p">{</span>
+                        <span class="kt">byte</span> <span class="n">v</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Length</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="n">v</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                        <span class="k">else</span>
+                        <span class="p">{</span>
+                            <span class="n">v</span> <span class="p">=</span> <span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">i</span> <span class="p">*</span> <span class="n">size</span> <span class="p">+</span> <span class="n">j</span><span class="p">];</span>
+                        <span class="p">}</span>
+
+                        <span class="c1">//if(v==1)
+</span><span class="c1"></span>                        <span class="c1">//{
+</span><span class="c1"></span>                        <span class="c1">//ProfilerHelper.BeginSample(&#34;UpdateCell&#34;);
+</span><span class="c1"></span>                        <span class="n">UpdateLogicCell</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+                        <span class="c1">//ProfilerHelper.EndSample();
+</span><span class="c1"></span>                        <span class="c1">//}
+</span><span class="c1"></span>
+
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">array</span> <span class="p">=</span> <span class="n">texture</span><span class="p">.</span><span class="n">GetRawTextureData</span><span class="p">&lt;</span><span class="n">Color32</span><span class="p">&gt;();</span>
+                <span class="c1">//Debug.Log($&#34;fog::::===&gt;&gt;array:{array.Length},texture:({texture.width},{texture.height}),mipmap:{texture.mipmapCount},curlevel:{texture.loadedMipmapLevel}&#34;);
+</span><span class="c1"></span>                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+                <span class="p">{</span>
+                    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">j</span><span class="p">++)</span>
+                    <span class="p">{</span>
+                        <span class="kt">byte</span> <span class="n">v</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Length</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+                        <span class="p">{</span>
+                            <span class="n">v</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+                        <span class="p">}</span>
+                        <span class="k">else</span>
+                        <span class="p">{</span>
+                            <span class="n">v</span> <span class="p">=</span> <span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">i</span> <span class="p">*</span> <span class="n">size</span> <span class="p">+</span> <span class="n">j</span><span class="p">];</span>
+                        <span class="p">}</span>
+
+                        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">m</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">m</span><span class="p">++)</span>
+                        <span class="p">{</span>
+                            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">n</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">n</span><span class="p">++)</span>
+                            <span class="p">{</span>
+                                <span class="n">array</span><span class="p">[(</span><span class="n">i</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">m</span><span class="p">)</span>  <span class="p">+</span> <span class="p">(</span><span class="n">j</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">n</span><span class="p">)</span> <span class="p">*</span> <span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span><span class="p">]</span> <span class="p">=</span> <span class="n">v</span> <span class="p">!=</span><span class="m">0</span>  <span class="p">?</span> <span class="n">closeCol</span> <span class="p">:</span> <span class="n">openCol</span><span class="p">;</span>
+                            <span class="p">}</span>
+                        <span class="p">}</span>
+
+
+                    <span class="p">}</span>
+                <span class="p">}</span>
+
+
+            <span class="p">}</span>
+
+            <span class="c1">//ProfilerHelper.EndSample();
+</span><span class="c1"></span>            <span class="c1">//ProfilerHelper.BeginSample(&#34;Apply&#34;);
+</span><span class="c1"></span>            <span class="n">texture</span><span class="p">.</span><span class="n">Apply</span><span class="p">();</span>
+            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">EndSample</span><span class="p">();</span>
+            <span class="n">Debug</span><span class="p">.</span><span class="n">LogError</span><span class="p">((</span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">Ticks</span> <span class="p">-</span> <span class="n">starttime</span><span class="p">)/</span><span class="m">10000</span><span class="p">);</span>
+<span class="cp">#if UNITY_EDITOR
+</span><span class="cp"></span>            <span class="kt">float</span> <span class="n">time</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">;</span>
+            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">BeginSample</span><span class="p">(</span><span class="s">&#34;FogComponent::Awake:WritePNG&#34;</span><span class="p">);</span>
+            <span class="n">Debug</span><span class="p">.</span><span class="n">LogError</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">Environment</span><span class="p">.</span><span class="n">CurrentDirectory</span><span class="p">,</span> <span class="s">&#34;fog.png&#34;</span><span class="p">));</span>
+            <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">File</span><span class="p">.</span><span class="n">WriteAllBytes</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">Environment</span><span class="p">.</span><span class="n">CurrentDirectory</span><span class="p">,</span> <span class="s">&#34;fog.png&#34;</span><span class="p">),</span> <span class="n">texture</span><span class="p">.</span><span class="n">EncodeToPNG</span><span class="p">());</span>
+            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">EndSample</span><span class="p">();</span>
+            <span class="n">Log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;EDITOR  FogComponent::Awake:WritePNG Time: &#34;</span> <span class="p">+</span> <span class="p">(</span><span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span> <span class="p">-</span> <span class="n">time</span><span class="p">));</span>
+<span class="cp">#endif
+</span><span class="cp"></span>            <span class="n">FogBlur</span> <span class="n">fogBlur</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">FogBlur</span><span class="p">&gt;();</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">fogBlur</span><span class="p">!=</span><span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">//ProfilerHelper.BeginSample(&#34;FogComponent::ComputeShaderBlur&#34;);
+</span><span class="c1"></span>                <span class="n">fogBlur</span><span class="p">.</span><span class="n">Source</span> <span class="p">=</span> <span class="n">texture</span><span class="p">;</span>
+                <span class="n">fogBlur</span><span class="p">.</span><span class="n">ComputeShaderBlurTextureOfFog</span><span class="p">(</span><span class="n">texture</span><span class="p">,</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">FogBlur</span><span class="p">&gt;().</span><span class="n">PrintTexture</span><span class="p">);</span>
+                <span class="c1">//ProfilerHelper.EndSample();
+</span><span class="c1"></span>            <span class="p">}</span>
+            <span class="k">else</span>
+            <span class="p">{</span>
+                <span class="n">Debug</span><span class="p">.</span><span class="n">LogWarning</span><span class="p">(</span><span class="s">&#34;have no fogBlur&#34;</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="c1">//List&lt;int&gt; ls = new List&lt;int&gt;();
+</span><span class="c1"></span>            <span class="c1">//ls.Add(1024*4+500);
+</span><span class="c1"></span>            <span class="c1">//ls.Add(1024 * 9 + 500);
+</span><span class="c1"></span>            <span class="c1">//ls.Add(1024 * 9 + 501);
+</span><span class="c1"></span>            <span class="c1">//ls.Add(1024 * 10 + 500);
+</span><span class="c1"></span>            <span class="c1">//ls.Add(1024 * 10 + 501);
+</span><span class="c1"></span>            <span class="c1">//UnlockFog(ls, 0);
+</span><span class="c1"></span>            <span class="c1">//List&lt;int&gt; ls = new List&lt;int&gt; { 270, 150, 30};
+</span><span class="c1"></span>
+            <span class="c1">//TimerEventComponent.Instance.CreateEvent(() =&gt; UnLockItemFogArea(ls), 1000 * 5);
+</span><span class="c1"></span>
+        <span class="p">}</span>
+
+
+        <span class="k">private</span> <span class="k">void</span> <span class="n">UpdateLogicCell</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="kt">int</span> <span class="n">j</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span>
+        <span class="p">{</span>
+        <span class="c1">//    ProfilerHelper.BeginSample(&#34;UpdateLogicCell Inner&#34;);
+</span><span class="c1"></span>        <span class="c1">//    ProfilerHelper.BeginSample(&#34;UpdateLogicCell new color&#34;);
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">cell</span> <span class="p">=</span> <span class="n">SN01GameConstCategory</span><span class="p">.</span><span class="n">FogSide</span><span class="p">;</span>
+            <span class="n">Color</span> <span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Color</span><span class="p">();</span>
+            <span class="c1">//ProfilerHelper.EndSample();
+</span><span class="c1"></span>            <span class="c1">//Debug.Log($&#34;FogComponent:::UpdateLogicCell:{i }-{j } cell:{cell} value:{1-v}&#34;);
+</span><span class="c1"></span>            <span class="c1">//ProfilerHelper.BeginSample(&#34;UpdateLogicCell loop&#34;);
+</span><span class="c1"></span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">m</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">m</span><span class="p">++)</span>
+            <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">n</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">n</span><span class="p">++)</span>
+                <span class="p">{</span>
+                    
+                    <span class="c1">//if(v==1||v==0)
+</span><span class="c1"></span>                    <span class="p">{</span>
+                        <span class="c1">//ProfilerHelper.BeginSample(&#34;UpdateLogicCell color set&#34;);
+</span><span class="c1"></span>                        <span class="c1">//v = 1-v; //TODO HardReset
+</span><span class="c1"></span>                        <span class="n">color</span><span class="p">.</span><span class="n">r</span> <span class="p">=</span> <span class="n">v</span><span class="p">;</span>
+                        <span class="n">color</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="n">v</span><span class="p">;</span>
+                        <span class="n">color</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+                        <span class="n">color</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+                        <span class="c1">//ProfilerHelper.EndSample();
+</span><span class="c1"></span>                        <span class="c1">//Debug.Log($&#34;FogComponent:::UpdateLogicCell:{i * cell + m}-{j * cell + n} value:{v}&#34;);
+</span><span class="c1"></span>                        <span class="c1">//ProfilerHelper.BeginSample(&#34;SetPixel&#34;);
+</span><span class="c1"></span>                        <span class="n">texture</span><span class="p">.</span><span class="n">SetPixel</span><span class="p">(</span><span class="n">i</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">m</span><span class="p">,</span> <span class="n">j</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span><span class="p">);</span>
+                        <span class="c1">//ProfilerHelper.EndSample();
+</span><span class="c1"></span>                    <span class="p">}</span>
+
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="c1">//ProfilerHelper.EndSample();
+</span><span class="c1"></span>            <span class="c1">//ProfilerHelper.EndSample();
+</span><span class="c1"></span>
+        <span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-10-10 18:02:43</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-hashtag="Unity"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-title="Unity Texture2D的SetPiexl严重耗时的优化方案" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-title="Unity Texture2D的SetPiexl严重耗时的优化方案"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-title="Unity Texture2D的SetPiexl严重耗时的优化方案" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-title="Unity Texture2D的SetPiexl严重耗时的优化方案" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-title="Unity Texture2D的SetPiexl严重耗时的优化方案" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" data-title="Unity Texture2D的SetPiexl严重耗时的优化方案"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/unity/">Unity</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/ugui-text%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/" class="prev" rel="prev" title="UGUI Text换行问题"><i class="fas fa-angle-left fa-fw"></i>UGUI Text换行问题</a>
+            <a href="/shader%E7%AC%94%E8%AE%B0/" class="next" rel="next" title="Shader笔记">Shader笔记<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

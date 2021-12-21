@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>unity性能优化总结 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="unity性能优化总结" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
+<meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="unity性能优化总结"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" /><link rel="prev" href="https://codingriver.github.io/unity%E6%88%AA%E5%B1%8F/" /><link rel="next" href="https://codingriver.github.io/unity%E5%92%8Cios%E4%BA%A4%E4%BA%92char-%E4%BD%9C%E4%B8%BA%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E5%80%BC%E5%88%B0csharp%E4%B8%ADbug/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "unity性能优化总结",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/"
+        },"genre": "posts","keywords": "","wordcount":  6125 ,
+        "url": "https:\/\/codingriver.github.io\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">unity性能优化总结</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href=""><i class="far fa-folder fa-fw"></i></a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6125 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="unity性能优化总结">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一内存的优化">一、内存的优化：</a>
+          <ul>
+            <li><a href="#优化程序代码的内存占用">优化程序代码的内存占用</a></li>
+            <li><a href="#托管堆优化">托管堆优化</a></li>
+            <li><a href="#本机堆的优化">本机堆的优化</a></li>
+          </ul>
+        </li>
+        <li><a href="#二cpu的方面的优化">二、CPU的方面的优化：</a>
+          <ul>
+            <li><a href="#drawcall如何优化">DrawCall如何优化：</a></li>
+            <li><a href="#物理组件">物理组件：</a></li>
+          </ul>
+        </li>
+        <li><a href="#三gpu的优化">三、GPU的优化</a>
+          <ul>
+            <li><a href="#顶点优化减少顶点数量">顶点优化（减少顶点数量）</a></li>
+            <li><a href="#片元优化减少片元数量减少overdrawoverdraw指的就是一个像素被绘制了多次透明物体">片元优化（减少片元数量）（减少overdraw，overdraw指的就是一个像素被绘制了多次。透明物体）</a></li>
+            <li><a href="#减少计算复杂度">减少计算复杂度</a></li>
+          </ul>
+        </li>
+        <li><a href="#优化内存带宽">优化内存带宽：</a></li>
+        <li><a href="#ui优化">UI优化</a></li>
+        <li><a href="#程序代码优化">程序代码优化</a></li>
+        <li><a href="#资源规范">资源规范：</a></li>
+        <li><a href="#打包和资源加载">打包和资源加载</a></li>
+        <li><a href="#模型方面">模型方面</a></li>
+        <li><a href="#unity优化工具">Unity优化工具</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="一内存的优化">一、内存的优化：</h3>
+<blockquote>
+<p>Unity中的内存种类
+实际上Unity游戏使用的内存一共有三种：程序代码、托管堆（Managed Heap）以及本机堆（Native Heap）。</p>
+</blockquote>
+<h4 id="优化程序代码的内存占用">优化程序代码的内存占用</h4>
+<ul>
+<li>API兼容性级别选择.net2.0子集（不需要Unity将全部.NET的Api包含进去）</li>
+<li>剥离级别选择剥离字符集（示从build的库中剥离的力度，每一个剥离选项都将从打包好的库中去掉一部分）</li>
+</ul>
+<h4 id="托管堆优化">托管堆优化</h4>
+<blockquote>
+<p>参照程序代码优化</p>
+</blockquote>
+<h4 id="本机堆的优化">本机堆的优化</h4>
+<p><strong>纹理</strong></p>
+<ul>
+<li>使用png格式</li>
+<li>关闭纹理资源的read/write功能（增加1倍） ui不适用mipmap（增加1/3）</li>
+<li>非二次幂的纹理（不压缩 ，ui图集，可以是非正方形）</li>
+<li>Ui的背景可以适当选用1024</li>
+<li>Android平台贴图压缩用etc2 8bit，占用原来的1/4内存（etc 8bit注意下）</li>
+<li>Ios平台贴图压缩用astc 4*4 block 占用原来的1/4内存（不要求正方形也不要求2的幂次方，建议2的幂次方）（全部opengl es 3.1支持astc ios和android）（ 如果是pvrtc 则还得必须是正方形 1/8）</li>
+<li>压缩贴图的话贴图本身必须是二次幂的</li>
+</ul>
+<p><strong>音频</strong></p>
+<ul>
+<li>背景音乐使用压缩的ogg或者mp3，像攻击音效等使用wav</li>
+<li>背景音乐等长的音频使用在内存中压缩(Compressed in memory，Streaming)的加载类型</li>
+<li>攻击音效等短的音频使用加载时解压(Decompress on load)的加载类型</li>
+<li>加载时解压是在内存中压缩的10倍内存</li>
+</ul>
+<p><strong>网格</strong></p>
+<ul>
+<li>模型资源不要开启read/write  使用 Mesh Compression 压缩网格（在个别特殊情况，mesh压缩和动画压缩后可能出现动画抖动的情况，这个时候不能压缩了）</li>
+<li>不要使用自带的球体网格，面数太多</li>
+</ul>
+<p><strong>动画（animator）</strong></p>
+<ul>
+<li>动画压缩</li>
+<li>一个角色有多个动画的情况下，单独导出一份角色的骨骼，角色导出的多个动画不用带骨骼</li>
+</ul>
+<h3 id="二cpu的方面的优化">二、CPU的方面的优化：</h3>
+<blockquote>
+<p>Drawcall：<br>
+Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口的调用，以在屏幕上画出东西。</p>
+</blockquote>
+<h4 id="drawcall如何优化">DrawCall如何优化：</h4>
+<ul>
+<li>
+<p>使用Draw Call Batching，也就是描绘调用批处理。Unity在运行时可以将一些物体进行合并，从而用一个描绘调用来渲染他们。</p>
+<ul>
+<li>静态批处理Static Batching，只要是静态不动的物体且具有相同材质的话就可以使用静态批处理来降低描绘调用（注：shader不同则会增加纹理的拼合降低渲染效率）</li>
+<li>动态批处理Dynamic Batching：动态批处理是引擎自动进行，无需设置，当物体共享相同的材质，则引擎就会自动对Drawcall进行优化，也就是动态批处理（如实例化预制件）。动态批处理存在约束，稍有不慎就会增加Drawcall
+<blockquote>
+<p>动态批处理的约束：<br>
+1、批处理动态物体需要在每个顶点上进行一定的开销，所以动态批处理仅支持小于900顶点的网格物体。<br>
+2、如果你的着色器使用顶点位置，法线和UV值三种属性，那么你只能批处理300顶点以下的物体；如果你的着色器需要使用顶点位置，法线，UV0，UV1和切向量，那你只能批处理180顶点以下的物体。<br>
+3、不要使用缩放。分别拥有缩放大小(1,1,1) 和(2,2,2)的两个物体将不会进行批处理。<br>
+4、统一缩放的物体不会与非统一缩放的物体进行批处理。<br>
+5、使用缩放尺度(1,1,1) 和 (1,2,1)的两个物体将不会进行批处理，但是使用缩放尺度(1,2,1) 和(1,3,1)的两个物体将可以进行批处理。<br>
+6、使用不同材质的实例化物体（instance）将会导致批处理失败。<br>
+7、拥有lightmap的物体含有额外（隐藏）的材质属性，比如：lightmap的偏移和缩放系数等。所以，拥有lightmap的物体将不会进行批处理（除非他们指向lightmap的同一部分）。<br>
+8、多通道的shader会妨碍批处理操作。比如，几乎unity中所有的着色器在前向渲染中都支持多个光源，并为它们有效地开辟多个通道。<br>
+9、预设体的实例会自动地使用相同的网格模型和材质。<br>
+所以尽量使用静态批处理。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>打包图集</p>
+</li>
+<li>
+<p>使用共享材质</p>
+</li>
+<li>
+<p>保持材质的数目尽可能少，更大程度的批处理</p>
+</li>
+<li>
+<p>使用光照贴图(lightmap)而非实时灯光</p>
+</li>
+<li>
+<p>使用LOD，好处就是对那些离得远，看不清的物体的细节可以忽略。</p>
+</li>
+<li>
+<p>遮挡剔除（Occlusion culling）</p>
+</li>
+<li>
+<p>利用网格的顶点数据（两个模型用了同一个材质为了不同但是之前用的两个材质多少有点不同，例如两棵树的颜色不同）</p>
+</li>
+<li>
+<p>尽量少的使用反光啦，阴影啦之类的，因为那会使物体多次渲染</p>
+</li>
+<li>
+<p>脚本动态合并mesh</p>
+</li>
+</ul>
+<h4 id="物理组件">物理组件：</h4>
+<ul>
+<li>1）设置较大的Fixed timestep，减少物理计算次数，提高游戏性能。</li>
+<li>2）设置fps在60帧左右（Application.targetFrameRate = 60;），关闭垂直同步 ，设置帧率及使用相关帧率优化方案，在玩家不操作时降低帧率，操作时恢复帧率</li>
+<li>优点：1.省电，减少手机发热的情况；2.能都稳定游戏FPS，减少出现卡顿的情况。</li>
+<li>3）尽量不用MeshCollider</li>
+<li>4）粒子组件，屏幕上最大粒子数量建议小于200个，粒子应尽可能的小，关闭粒子的碰撞功能。</li>
+<li>5）真实物理（刚体）很消耗，不要轻易使用，尽量使用自己的代码模拟</li>
+<li>6）对于投射物不要使用真实物理碰撞和刚体，自己模拟</li>
+</ul>
+<h3 id="三gpu的优化">三、GPU的优化</h3>
+<h4 id="顶点优化减少顶点数量">顶点优化（减少顶点数量）</h4>
+<ol>
+<li>优化几何体</li>
+<li>使用模型lod（Level of Detail）技术（unity中使用LOD Group组件）</li>
+<li>使用遮挡剔除（Occlusion Culling）技术</li>
+<li>使用mesh压缩</li>
+</ol>
+<h4 id="片元优化减少片元数量减少overdrawoverdraw指的就是一个像素被绘制了多次透明物体">片元优化（减少片元数量）（减少overdraw，overdraw指的就是一个像素被绘制了多次。透明物体）</h4>
+<ol>
+<li>overdraw的视图</li>
+<li>控制绘制顺序
+<blockquote>
+<p>2.1 在Unity中，那些Shader中被设置为“Geometry” 队列的对象总是从前往后绘制的，而其他固定队列（如“Transparent”“Overla”等）的物体，则都是从后往前绘制的。这意味这，我们可以尽量把物体的队列设置为“Geometry” 。而且，我们还可以充分利用Unity的队列来控制绘制顺序。例如，对于天空盒子来说，它几乎覆盖了所有的像素，而且我们知道它永远会在所有物体的后面，因此它的队列可以设置为“Geometry+1”。这样，就可以保证不会因为它而造成overdraws。</p>
+</blockquote>
+</li>
+<li>时刻警惕透明物体
+<blockquote>
+<p>3.1 因此，如果场景中大面积的透明对象，或者有很多层覆盖的多层透明对象（即便它们每个的面积可以都不大），或者是透明的粒子效果，在移动设备上也会造成大量的overdraws。这是应该尽量避免的</p>
+</blockquote>
+</li>
+<li>减少实时光照和阴影
+<blockquote>
+<p>4.1 实时光照对于移动平台是个非常昂贵的操作。如果只有一个平行光还好，但如果场景中包含了太多光源并且使用了很多多Passes的shader，那么很有可能会造成性能下降。而且在有些机器上，还要面临shader失效的风险。例如，一个场景里如果包含了三个逐像素的点光源，而且使用了逐像素的shader，那么很有可能将Draw Calls提高了三倍，同时也会增加overdraws。这是因为，对于逐像素的光源来说，被这些光源照亮的物体要被再渲染一次。更糟糕的是，无论是动态批处理还是动态批处理（其实文档中只提到了对动态批处理的影响，但不知道为什么实验结果对静态批处理也没有用），对于这种逐像素的pass都无法进行批处理，也就是说，它们会中断批处理。
+4.2 使用Lightmaps和light probe（光照探针）</p>
+</blockquote>
+</li>
+<li>减少使用法线贴图（或者在角色身上使用），静态物体尽量不要用，而是将法线渲染到贴图上</li>
+<li>尽量不使用fog雾效，或者使用简单的后处理雾效或者渐变的面片（参考shadow gun）</li>
+<li>尽量减少alpha test的使用</li>
+</ol>
+<h4 id="减少计算复杂度">减少计算复杂度</h4>
+<ol>
+<li>使用Shader的LOD技术
+<ol>
+<li>设置Shader.maximumLDO或者Shader.globalMaximumLOD来允许最大的LOD</li>
+</ol>
+</li>
+<li>Shader代码优化
+<ol>
+<li>把高斯模糊和边缘计算计算放到顶点shader中</li>
+<li>float存储顶点坐标等变量，half存储一些标量和纹理坐标等信息，fixed适用于大多数颜色变量和归一化的方向矢量</li>
+<li>减少pow，sin，cos等函数使用</li>
+<li>后处理时，降低分辨率采样</li>
+</ol>
+</li>
+</ol>
+<h3 id="优化内存带宽">优化内存带宽：</h3>
+<ul>
+<li>1	减少纹理大小（压缩纹理，使用mipmap，mipmap图片渲染的质量比压缩要好））</li>
+<li>2	使用mipmap。
+<blockquote>
+<p>Mipmap中每一个层级的小图都是主图的一个特定比例的缩小细节的复制品。因为存了主图和它的那些缩小的复制品，所以内存占用会比之前大。但是为何又优化了显存带宽呢？因为可以根据实际情况，选择适合的小图来渲染。所以，虽然会消耗一些内存，但是为了图片渲染的质量（比压缩要好），这种方式也是推荐的。</p>
+</blockquote>
+</li>
+<li>3 纹理压缩（ETC2 8bit，ASTC 4x4 block，PVRTC）</li>
+<li>4 降低分辨率（Screen.SetResolution）</li>
+<li>5 关闭图片ReadWrite</li>
+</ul>
+<h3 id="ui优化">UI优化</h3>
+<ul>
+<li>fillcenter</li>
+<li>动静网格分离（通过增加canvas）</li>
+<li>修改image的color会造成canvas.rebuildbatch  如果是颜色动画可以但是单独创建一个material 直接修改color，不会rebuild（动静网格分离）</li>
+<li>EventSystem.Update（）消耗大  ，raycasttarget 关掉，分离canvas，需要的挂上GraphicRaycaster</li>
+<li>图片如果是左右对称和上下对称可以使用mirrorImage类似的自定义Image组件，使用原始Sprite图片的四分之或者二分之一即可</li>
+<li>图集尽量根据业务去划分</li>
+</ul>
+<h3 id="程序代码优化">程序代码优化</h3>
+<ul>
+<li>删除空的脚本和不需要的默认方法（例如Update，Start）</li>
+<li>避免使用OnGUI</li>
+<li>同一脚本中频繁使用的变量建议声明全局变量</li>
+<li>数组，集合类元素优先使用Array，其次是Queue/Stack,再次是List</li>
+<li>合理的设置容器的初始化Capacity</li>
+<li>应尽量为类或函数声明为sealed，变虚函数为直接函数调用</li>
+<li>尽量减少闭包的使用</li>
+<li>减少装箱和拆箱操作</li>
+<li>减少Dictionary冗余操作</li>
+<li>脚本在不使用时禁用，使用时启用</li>
+<li>应减少不必要的Transform.position/rotation等访问</li>
+<li>减少除法运算，例如a/5f,可以写成a*0.2f；</li>
+<li>尽量直接声明脚本变量，而不是用Getcomponent来获取脚本组件</li>
+<li>使用各种类的对象池和物体实例化池</li>
+<li>减少使用sin，cos，pow等三角函数，如果使用量大则建议使用查表法来优化三角函数的计算量</li>
+<li>尽量不要在Update中做复杂的计算，如果有需要在隔几帧计算一次</li>
+<li>不要动态的生产字符串，例如使用Debug.Log（“a”+“b”），尽量预先创建好字符串资源，还有一个打印变量时不要用+号去链接也不要用$符去格式化，而是用Debug.logFormat去输出，这样关闭Debug时就能关闭和Debug输出相关的动态字符串</li>
+<li>应使用支持Conditional的日志输出机制，支持log关闭</li>
+<li>不要直接访问gameobject的tag属性(可以用if (go.CompareTag (“human”))， 因为访问物体的tag属性会在堆上额外的分配空间)</li>
+<li>String拼接时尽量使用System.Text.StringBuilder代替</li>
+<li>避免频繁调用GameObject.SetActive</li>
+<li>减少material频繁的set参数，如果量大，则使用字符串key获取唯一id</li>
+</ul>
+<h3 id="资源规范">资源规范：</h3>
+<ul>
+<li>建筑升级的资源是拼接的（节省内存）</li>
+<li>面数在1500以内将得到好的效率</li>
+<li>不使用大的prefab 增加io的负担（多棵草做一个prefab）</li>
+<li>每个模型只使用一个skinned mesh renderer</li>
+<li>每个mesh不要超过2个material</li>
+<li>骨骼数量不要超过30</li>
+</ul>
+<h3 id="打包和资源加载">打包和资源加载</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    BuildPipeline.BuildPlayer(BuildConfig.scenes, outputPath, target, buildOptions);
+    BuildPipeline.BuildAssetBundles(rABPath, rOptions, (BuildTarget)CurBuildPlatform);  (BuildAssetBundleOptions.DeterministicAssetBundle | BuildAssetBundleOptions. ChunkBasedCompression)
+    UnityEditor.U2D.SpriteAtlasUtility.PackAllAtlases(EditorUserBuildSettings.  activeBuildTarget); 
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>打包使用LZ4格式压缩，压缩比1:3;LZMA 压缩比1:4。</li>
+</ul>
+<h3 id="模型方面">模型方面</h3>
+<ol>
+<li>合并使用同贴图的材质球，合并使用相同材质球的Mesh； 　　</li>
+<li>角色的贴图和材质球只要一个，若必须多个则将模型离分离为多个部分； 　　</li>
+<li>骨骼系统不要使用太多，骨骼数量不要超过30； 　　</li>
+<li>当使用多角色时，将动画单独分离出来；如果角色有多个动画，则将骨骼分离出来，导出动画不要带骨骼； 　　</li>
+<li>使用层距离来控制模型的显示距离； 　　</li>
+<li>阴影其实包含两方面阴暗和影子，建议使用实时影子时把阴暗效果烘焙出来，不要使用灯光来调节光线阴暗。 　　</li>
+<li>少用像素灯和使用像素灯的Shader； 　　</li>
+<li>如果硬阴影可以解决问题就不要用软阴影，并且使用不影响效果的低分辨率阴影； 　　</li>
+<li>实时阴影很耗性能，尽量减小产生阴影的距离； 　　</li>
+<li>允许的话在大场景中使用线性雾，这样可以使远距离对象或阴影不易察觉，因此可以通过减小相机和阴影距离来提高性能； 　　</li>
+<li>使用圆滑组来尽量减少模型的面数； 　　</li>
+<li>项目中如果没有灯光或对象在移动那么就不要使用实时灯光； 　　</li>
+<li>水面、镜子等实时反射/折射的效果单独放在Water图层中，并且根据其实时反射/折射的范围来调整； 　　</li>
+<li>碰撞对效率的影响很小，但碰撞还是建议使用Box、Sphere碰撞体； 　　</li>
+<li>建材质球时尽量考虑使用Substance； 　　</li>
+<li>尽量将所有的实时反射/折射（如水面、镜子、地板等等）都集合成一个面； 　　</li>
+<li>假反射/折射没有必要使用过大分辨率，一般64<em>64就可以，不建议超过256</em>256； 　　</li>
+<li>需要更改的材质球，建议实例化一个，而不是使用公共的材质球； 　　</li>
+<li>将不须射线或碰撞事件的对象置于IgnoreRaycast图层； 　　</li>
+<li>将水面或类似效果置于Water图层 　　</li>
+<li>将透明通道的对象置于TransparentFX图层； 　　</li>
+<li>养成良好的标签（Tags）、层次（Hieratchy）和图层（Layer）的条理化习惯，将不同的对象置于不同的标签或图层，三者有效的结合将很方便的按名称、类别和属性来查找； 　　</li>
+<li>通过Stats和Profile查看对效率影响最大的方面或对象，或者使用禁用部分模型的方式查看问题到底在哪儿； 　　</li>
+<li>使用遮挡剔除（Occlusion Culling）处理大场景，一种较原生的类LOD技术，并且能够“分割”作为整体的一个模型。</li>
+</ol>
+<h3 id="unity优化工具">Unity优化工具</h3>
+<ul>
+<li>MAT（Memory Analyzer Tool） 需要导入HPROF文件再分析 只能查看java层的内存情况，看不到native堆的详情</li>
+<li>Xcode Instrument工具 只能用于Mac,iOS 只能查看C++ 或 object C 的情况，看不到mono堆的详情</li>
+<li>Unity自带Profiler 需要单独编译develop版本 在PC上执行，没法捕获真机数据 内存数据跟实际真机的数据差异很大、多的时候有几十M差距 只能看到最近一段时间的数据，看不到总体的详情</li>
+<li>官方开源Memory Profiler</li>
+<li>Unity5.3及其以上</li>
+<li>使用IL2CPP</li>
+<li>构建时开启Development Build</li>
+<li>UWA</li>
+<li>WeTest PerfDog性能狗</li>
+</ul>
+<blockquote>
+<ul>
+<li>加载类型(Load Type)： 运行时Unity加载音频的方法。
+<ul>
+<li>加载时解压缩(Decompress on load): 加载后解压缩声音。使用于较小的压缩声音，以避免运行时解压缩的性能开销。(将使用比在它们在内存中压缩的多10倍或更多内存，因此大文件不要使用这个。)</li>
+<li>在内存中压缩(Compressed in memory): 保持声音在内存中（压缩的）在播放时解压缩。这有轻微的性能开销（尤其是OGG / Vorbis格式的压缩文件），因此大文件使用这个。</li>
+<li>从磁盘流(Stream from disc): 直接从磁盘流读取音频数据。这只使用了原始声音占内存大小的很小一部分。使用这个用于很长的音乐。取决于硬件，一般建议1-2线程同时流。</li>
+</ul>
+</li>
+<li>Ui动画：帧动画、Animation、脚本动画</li>
+</ul>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-12-01 21:57:40</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-hashtag=""><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=""></a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/unity%E6%88%AA%E5%B1%8F/" class="prev" rel="prev" title="Unity截屏"><i class="fas fa-angle-left fa-fw"></i>Unity截屏</a>
+            <a href="/unity%E5%92%8Cios%E4%BA%A4%E4%BA%92char-%E4%BD%9C%E4%B8%BA%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E5%80%BC%E5%88%B0csharp%E4%B8%ADbug/" class="next" rel="next" title="Unity和IOS交互char-作为方法返回值到C#中bug">Unity和IOS交互char-作为方法返回值到C#中bug<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

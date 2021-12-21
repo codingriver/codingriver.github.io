@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2020-09-14T13:15:46+08:00" />
+<meta property="article:modified_time" content="2020-09-14T13:15:46+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" /><link rel="prev" href="https://codingriver.github.io/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%8F%8A%E6%AF%94%E8%BE%83%E4%B8%8E%E5%88%86%E6%9E%90/" /><link rel="next" href="https://codingriver.github.io/shader%E8%AE%B0%E5%BD%95/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0\/"
+        },"genre": "posts","keywords": "shader","wordcount":  6083 ,
+        "url": "https:\/\/codingriver.github.io\/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0\/","datePublished": "2020-09-14T13:15:46+08:00","dateModified": "2020-09-14T13:15:46+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/shader/"><i class="far fa-folder fa-fw"></i>shader</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-14 13:15:46">2020-09-14 13:15:46</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6083 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一cg和glsl常用函数">一、CG和GLSL常用函数</a>
+      <ul>
+        <li><a href="#cg语言中的变量修饰符">CG语言中的变量修饰符</a></li>
+        <li><a href="#1数学函数">1、数学函数</a></li>
+        <li><a href="#2几何函数">2、几何函数</a></li>
+        <li><a href="#3纹理映射函数">3、纹理映射函数</a></li>
+        <li><a href="#4偏导函数">4、偏导函数</a></li>
+      </ul>
+    </li>
+    <li><a href="#二unity常用的内置函数变量">二、Unity常用的内置函数，变量</a>
+      <ul>
+        <li><a href="#1unity常用的结构体">1、Unity常用的结构体</a>
+          <ul>
+            <li><a href="#11顶点着色器输入">1.1、顶点着色器输入</a></li>
+            <li><a href="#12顶点着色器输出">1.2、顶点着色器输出</a></li>
+          </ul>
+        </li>
+        <li><a href="#2空间变换函数及内置变量">2、空间变换函数及内置变量</a>
+          <ul>
+            <li><a href="#a空间变换函数">A、空间变换函数</a></li>
+            <li><a href="#b屏幕空间相关函数">B、屏幕空间相关函数</a></li>
+            <li><a href="#c内置变量矩阵">C、内置变量矩阵</a></li>
+            <li><a href="#d摄像机和屏幕参数">D、摄像机和屏幕参数</a></li>
+            <li><a href="#e时间变量">E、时间变量</a></li>
+            <li><a href="#f光照变量">F、光照变量</a></li>
+            <li><a href="#g雾效和环境光">G、雾效和环境光</a></li>
+            <li><a href="#h其他">H、其他</a></li>
+          </ul>
+        </li>
+        <li><a href="#3数学常数">3、数学常数</a></li>
+        <li><a href="#4与颜色空间相关">4、与颜色空间相关</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="一cg和glsl常用函数">一、CG和GLSL常用函数</h2>
+<h3 id="cg语言中的变量修饰符">CG语言中的变量修饰符</h3>
+<table>
+<thead>
+<tr>
+<th align="center">修饰符</th>
+<th align="center">解析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">const</td>
+<td align="center">变量被定义成常量的话，在程序中，就不能再对该变量赋值，除非const和uniform，varying一起使用。const修饰的变量，需要在声明时给予一个初始值</td>
+</tr>
+<tr>
+<td align="center">extern</td>
+<td align="center">extern表明声明仅仅是声明，而非定义。在程序中一定有一个地方存在一个非extern的对应的声明</td>
+</tr>
+<tr>
+<td align="center">in</td>
+<td align="center">只在声明参数，或是使用varying修饰符时使用。将参数，或是varying作为函数或是程序的输入值。函数参数如果没有in，out，或者inout的话，隐式的默认为in</td>
+</tr>
+<tr>
+<td align="center">inline</td>
+<td align="center">只在函数定义时有用，告诉编译器始终对该函数采取内联调用</td>
+</tr>
+<tr>
+<td align="center">inout</td>
+<td align="center">只在声明为参数和varying时使用，将参数或是varying声明为函数或是程序的输入输出值</td>
+</tr>
+<tr>
+<td align="center">static</td>
+<td align="center">只在声明全局变量时使用，static将使变量对程序而言成为私有的，外部不可见，不能和uniform，varying一起使用</td>
+</tr>
+<tr>
+<td align="center">out</td>
+<td align="center">只在声明参数和varying时使用，将变量或varying定义为函数或是程序的输出值</td>
+</tr>
+<tr>
+<td align="center">uniform</td>
+<td align="center">用于全局变量和程序的入口函数的参数，用来定义constant buffers(常量缓存)。如果用于一个非入口函数的参数，它将被忽略。这样做的目的是为了使一个函数既能作为入口函数，又能作为非入口函数。uniform的变量可以像非uniform的变量那样读写。uniform修饰符通过向外部语言提供一个机制，来提供变量的初始值是如何指定和保存的信息。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1数学函数">1、数学函数</h3>
+<table>
+<thead>
+<tr>
+<th align="center">CG语言</th>
+<th align="center">GLSL语言</th>
+<th align="center">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">ceil(x)</td>
+<td align="center">ceil(x)</td>
+<td align="center">对输入参数向上取整。例如： ceil(float(1.3)) ，其返回值为2.0</td>
+</tr>
+<tr>
+<td align="center">floor(x)</td>
+<td align="center">floor(x)</td>
+<td align="center">对输入参数向下取整。例如floor(float(1.3))返回的值为1.0；但是floor(float(-1.3))返回的值为-2.0。该函数与ceil(x)函数相对应。</td>
+</tr>
+<tr>
+<td align="center">fmod(x,y)</td>
+<td align="center">mod(x, y)</td>
+<td align="center">返回x/y的余数。如果y为0，结果不可预料。</td>
+</tr>
+<tr>
+<td align="center">frac(x)</td>
+<td align="center">fract(x)</td>
+<td align="center">返回标量或矢量的小数</td>
+</tr>
+<tr>
+<td align="center">frexp(x, out i)</td>
+<td align="center"></td>
+<td align="center">将浮点数 x 分解为尾数和指数，即 x = m* 2^exp，返回 m，并将指数存入 exp 中；如果 x 为 0，则尾数和指数都返回 0</td>
+</tr>
+<tr>
+<td align="center">modf(x, out ip)</td>
+<td align="center"></td>
+<td align="center">把x分解成整数和分数两部分，每部分都和x有着相同的符号，整数部分被保存在ip中，分数部分由函数返回</td>
+</tr>
+<tr>
+<td align="center">round(x)</td>
+<td align="center"></td>
+<td align="center">返回四舍五入值。</td>
+</tr>
+<tr>
+<td align="center">exp(x)</td>
+<td align="center">exp(x)</td>
+<td align="center">计算e <sup>x</sup>  的值，e=2.71828182845904523536</td>
+</tr>
+<tr>
+<td align="center">exp2(x)</td>
+<td align="center">exp2(x)</td>
+<td align="center">计 算 2 <sup>x</sup> 的 值</td>
+</tr>
+<tr>
+<td align="center">log(x)</td>
+<td align="center">log(x)</td>
+<td align="center">计 算 ln ⁡ ( x ) 的 值 ， x 必 须 大 于 0</td>
+</tr>
+<tr>
+<td align="center">log2(x)</td>
+<td align="center">log2(x)</td>
+<td align="center">计 算 log ⁡ 2 ( x ) 的 值 ， x 必 须 大 于 0</td>
+</tr>
+<tr>
+<td align="center">log10(x)</td>
+<td align="center"></td>
+<td align="center">计 算 lg ⁡ ( x ) 的 值 ， x 必 须 大 于 0</td>
+</tr>
+<tr>
+<td align="center">max(a, b)</td>
+<td align="center">max(a, b)</td>
+<td align="center">比较两个标量或等长向量元素，返回最大值。</td>
+</tr>
+<tr>
+<td align="center">min(a,b)</td>
+<td align="center">min(a,b)</td>
+<td align="center">比较两个标量或等长向量元素，返回最小值。</td>
+</tr>
+<tr>
+<td align="center">pow(x, y)</td>
+<td align="center">pow(x, y)</td>
+<td align="center">计 算 x <sup>y</sup> 的 值</td>
+</tr>
+<tr>
+<td align="center">sqrt(x)</td>
+<td align="center">sqrt(x)</td>
+<td align="center">求x的平方根，，x必须大于0</td>
+</tr>
+<tr>
+<td align="center">rsqrt(x)</td>
+<td align="center">inversesqrt(x)</td>
+<td align="center">x的平方根的倒数，x必须大于0</td>
+</tr>
+<tr>
+<td align="center">abs(x)</td>
+<td align="center">abs(x)</td>
+<td align="center">返回输入参数的绝对值</td>
+</tr>
+<tr>
+<td align="center">ldexp(x, n)</td>
+<td align="center"></td>
+<td align="center">计 算 x ∗ 2 <sup>n</sup> 的 值</td>
+</tr>
+<tr>
+<td align="center">mul(M, N)</td>
+<td align="center">M*N</td>
+<td align="center">矩阵M和矩阵N的积</td>
+</tr>
+<tr>
+<td align="center">mul(M, v)</td>
+<td align="center">M*v</td>
+<td align="center">矩阵M和列向量v的积</td>
+</tr>
+<tr>
+<td align="center">mul(v, M)</td>
+<td align="center">v* M</td>
+<td align="center">行向量v和矩阵M的积</td>
+</tr>
+<tr>
+<td align="center">determinant(m)</td>
+<td align="center"></td>
+<td align="center">计算矩阵的行列式因子。</td>
+</tr>
+<tr>
+<td align="center">transpose(M)</td>
+<td align="center"></td>
+<td align="center">矩阵M的转置矩阵 如果M是一个AxB矩阵，M的转置是一个BxA矩阵，它第一列是M的第一行，第二列是M的第二行，第三列是M的第三行，等等</td>
+</tr>
+<tr>
+<td align="center">asin(x)</td>
+<td align="center">asin(x)</td>
+<td align="center">反正弦函数,输入参数取值区间为，返回角度值范围为[−π/2,π/2]</td>
+</tr>
+<tr>
+<td align="center">acos(x)</td>
+<td align="center">acos(x)</td>
+<td align="center">反余切函数，输入参数范围为[-1,1]， 返回[0,π]区间的角度值</td>
+</tr>
+<tr>
+<td align="center">atan(x)</td>
+<td align="center">atan(x)</td>
+<td align="center">反正切函数，返回角度值范围为[−π/2,π/2]</td>
+</tr>
+<tr>
+<td align="center">atan2(y,x)</td>
+<td align="center">atan2(y,x)</td>
+<td align="center">计算y/x的反正切值。实际上和atan(x)函数功能完全一样，至少输入参数不同。atan(x) = atan2(x, float(1))。</td>
+</tr>
+<tr>
+<td align="center">sin(x)</td>
+<td align="center">sin(x)</td>
+<td align="center">输入参数为弧度，计算正弦值，返回值范围 为[-1,1]</td>
+</tr>
+<tr>
+<td align="center">cos(x)</td>
+<td align="center">cos(x)</td>
+<td align="center">返回弧度x的余弦值。返回值范围为</td>
+</tr>
+<tr>
+<td align="center">tan(x)</td>
+<td align="center">tan(x)</td>
+<td align="center">计算x正切值</td>
+</tr>
+<tr>
+<td align="center">sincos(float x, out s, out c)</td>
+<td align="center"></td>
+<td align="center">该函数是同时计算x的sin值和cos值，其中s=sin(x)，c=cos(x)。该函数用于“同时需要计算sin值和cos值的情况”，比分别运算要快很多!</td>
+</tr>
+<tr>
+<td align="center">sinh(x)</td>
+<td align="center"></td>
+<td align="center">计算x的双曲正弦</td>
+</tr>
+<tr>
+<td align="center">cosh(x)</td>
+<td align="center"></td>
+<td align="center">双曲余弦（hyperbolic cosine）函数，计算x的双曲余弦值。</td>
+</tr>
+<tr>
+<td align="center">tanh(x)</td>
+<td align="center"></td>
+<td align="center">计算x的双曲线切线</td>
+</tr>
+<tr>
+<td align="center">radians(x)</td>
+<td align="center">radians(x)</td>
+<td align="center">函数将角度值转换为弧度值</td>
+</tr>
+<tr>
+<td align="center">degrees(x)</td>
+<td align="center">degrees(x)</td>
+<td align="center">输入参数为弧度值(radians)，函数将其转换为角度值(degrees)</td>
+</tr>
+<tr>
+<td align="center">cross(A,B)</td>
+<td align="center">cross(A,B)</td>
+<td align="center">返回两个三元向量的叉积(cross product)。注意，输入参数必须是三元向量！</td>
+</tr>
+<tr>
+<td align="center">lit(NdotL, NdotH, m)</td>
+<td align="center"></td>
+<td align="center">函数计算环境光、散射光、镜面光的贡献，返回的4元向量。<br>N表示法向量；<br>L表示入射光向量；<br>H表示半角向量；<br>m表示高光系数。<br>X位表示环境光的贡献，总是1.0;<br>Y位代表散射光的贡献，如果 N∙L&lt;0，则为0；否则为N∙L<br>Z位代表镜面光的贡献，如果N∙L&lt;0 或者N∙H &lt; 0，则位0；否则为(N∙L)m; <br>W位始终位1.0</td>
+</tr>
+<tr>
+<td align="center">all(x)</td>
+<td align="center">all(x)</td>
+<td align="center">如果输入参数均不为0，则返回ture； 否则返回flase。&amp;&amp;运算</td>
+</tr>
+<tr>
+<td align="center">any(x)</td>
+<td align="center">any(x)</td>
+<td align="center">输入参数只要有其中一个不为0，则返回true。</td>
+</tr>
+<tr>
+<td align="center">isfinite(x)</td>
+<td align="center"></td>
+<td align="center">判断标量或者向量中的每个数据是否是有限数，如果是返回true；否则返回false;</td>
+</tr>
+<tr>
+<td align="center">isinf(x)</td>
+<td align="center"></td>
+<td align="center">判断标量或者向量中的每个数据是否是无限，如果是返回true；否则返回false;</td>
+</tr>
+<tr>
+<td align="center">isnan(x)</td>
+<td align="center"></td>
+<td align="center">判断标量或者向量中的每个数据是否是非数据(not-a-number NaN)，如果是返回true；否则返回false;</td>
+</tr>
+<tr>
+<td align="center">step(a, x)</td>
+<td align="center">step(a, x)</td>
+<td align="center">如果x&lt;a, 返回0；否则返回1</td>
+</tr>
+<tr>
+<td align="center">sign(x)</td>
+<td align="center">sign(x)</td>
+<td align="center">如果x&gt;0则返回1；如果x=0返回0；如果x&lt;0则返回-1</td>
+</tr>
+<tr>
+<td align="center">dot(A,B)</td>
+<td align="center">dot(A,B)</td>
+<td align="center">返回A和B的点积(dot product)。参数A和B可以是标量，也可以是向量（输入参数方面，点积和叉积函数有很大不同）。</td>
+</tr>
+<tr>
+<td align="center">noise(x)</td>
+<td align="center"></td>
+<td align="center">根据它的参数类型，这个函数可以是一元、二元或三元噪音函数。返回的值在0和1之间，并且通常与给定的输入值一样</td>
+</tr>
+<tr>
+<td align="center">clamp(x,a,b)</td>
+<td align="center">clamp(x,a,b)</td>
+<td align="center">如果x值小于a，则返回a； <br>如果x值大于b，返回b；<br>否则，返回x。</td>
+</tr>
+<tr>
+<td align="center">lerp(a, b, f)</td>
+<td align="center">mix(a, b, f)</td>
+<td align="center">计算或者的值。即在下限a和上限b之间进行插值，f表示权值。注意，如果a和b是向量，则权值f必须是标量或者等长的向量。</td>
+</tr>
+<tr>
+<td align="center">saturate(x)</td>
+<td align="center"></td>
+<td align="center">把x限制到[0,1]之间</td>
+</tr>
+<tr>
+<td align="center">smoothstep(min, max, x)</td>
+<td align="center">smoothstep(min, max, x)</td>
+<td align="center">值x位于min、max区间中。 <br>如果x=min，返回0；如果x=max，返回1；<br>如果x在两者之间，按照下列公式返回数据：<br>**– 2 ∗ ( ( x – m i n ) / ( m a x – m i n ) ) <sup>3</sup> + 3 ∗ ( ( x – m i n ) / ( m a x – m i n ) ) <sup>2</sup>**</td>
+</tr>
+</tbody>
+</table>
+<p>smoothstep(min, max, x)对于参数全是float的重载</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-glsl" data-lang="glsl"><span class="k">float</span> <span class="n">smoothstep</span><span class="p">(</span><span class="k">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">float</span> <span class="n">b</span><span class="p">,</span> <span class="k">float</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">t</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="mf">3.0</span> <span class="o">-</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">t</span><span class="p">));</span>
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2几何函数">2、几何函数</h3>
+<table>
+<thead>
+<tr>
+<th align="center">CG语言</th>
+<th align="center">GLSL语言</th>
+<th align="center">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">distance(pt1, pt2)</td>
+<td align="center">distance(pt1, pt2)</td>
+<td align="center">两点之间的欧几里德距离（Euclidean distance）</td>
+</tr>
+<tr>
+<td align="center">faceforward(N,I,Ng)</td>
+<td align="center">faceforward(N,I,Ng)</td>
+<td align="center">根据 矢量 N 与Nref 调整法向量,如果Ng•I &lt; 0 ，返回 N；否则返回-N。</td>
+</tr>
+<tr>
+<td align="center">length(v)</td>
+<td align="center">length(v)</td>
+<td align="center">返回一个向量的模，即sqrt(dot(v,v))</td>
+</tr>
+<tr>
+<td align="center">normalize(v)</td>
+<td align="center">normalize(v)</td>
+<td align="center">返回v向量的单位向量</td>
+</tr>
+<tr>
+<td align="center">reflect(I, N)</td>
+<td align="center">reflect(I, N)</td>
+<td align="center">根据入射光方向向量 I，和顶点法向量 N，计算反射光方向向量。 <br>其中 I 和 N 必须被归一化，需要非常注意的是，这个 I 是指向顶点的；<br>函数只对三元向量有效</td>
+</tr>
+<tr>
+<td align="center">refract(I,N,eta)</td>
+<td align="center">refract(I,N,eta)</td>
+<td align="center">计算折射向量，I 为入射光线，N 为法向量，eta 为折射系数； <br>其中 I 和 N 必须被归一化，如果 I 和 N 之间的夹角太大，则返回（0，0，0），也就是没有折射光线；I 是指向顶点的；函数只对三元向量有效</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3纹理映射函数">3、纹理映射函数</h3>
+<table>
+<thead>
+<tr>
+<th align="center">CG语言</th>
+<th align="center">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">tex1D(sampler1D tex, float s)</td>
+<td align="center">一维纹理查询</td>
+</tr>
+<tr>
+<td align="center">tex1D(sampler1D tex, float s, float dsdx, float dsdy)</td>
+<td align="center">使用导数值（derivatives）查询一维纹理</td>
+</tr>
+<tr>
+<td align="center">Tex1D(sampler1D tex, float2 sz)</td>
+<td align="center">一维纹理查询，并进行深度值比较</td>
+</tr>
+<tr>
+<td align="center">Tex1D(sampler1D tex, float2 sz, float dsdx,float dsdy)</td>
+<td align="center">使用导数值（derivatives）查询一维纹理， 并进行深度值比较</td>
+</tr>
+<tr>
+<td align="center">Tex1Dproj(sampler1D tex, float2 sq)</td>
+<td align="center">一维投影纹理查询</td>
+</tr>
+<tr>
+<td align="center">Tex1Dproj(sampler1D tex, float3 szq)</td>
+<td align="center">一维投影纹理查询，并比较深度值</td>
+</tr>
+<tr>
+<td align="center">Tex2D(sampler2D tex, float2 s)</td>
+<td align="center">二维纹理查询</td>
+</tr>
+<tr>
+<td align="center">Tex2D(sampler2D tex, float2 s, float2 dsdx, float2 dsdy)</td>
+<td align="center">使用导数值（derivatives）查询二维纹理</td>
+</tr>
+<tr>
+<td align="center">Tex2D(sampler2D tex, float3 sz)</td>
+<td align="center">二维纹理查询，并进行深度值比较</td>
+</tr>
+<tr>
+<td align="center">Tex2D(sampler2D tex, float3 sz, float2 dsdx,float2 dsdy)</td>
+<td align="center">使用导数值（derivatives）查询二维纹理，并进行深度值比较</td>
+</tr>
+<tr>
+<td align="center">Tex2Dproj(sampler2D tex, float3 sq)</td>
+<td align="center">二维投影纹理查询</td>
+</tr>
+<tr>
+<td align="center">Tex2Dproj(sampler2D tex, float4 szq)</td>
+<td align="center">二维投影纹理查询，并进行深度值比较</td>
+</tr>
+<tr>
+<td align="center">texRECT(samplerRECT tex, float2 s)</td>
+<td align="center">二维非投影矩形纹理查询（OpenGL独有）</td>
+</tr>
+<tr>
+<td align="center">texRECT (samplerRECT tex, float3 sz, float2 dsdx,float2 dsdy)</td>
+<td align="center">二维非投影使用导数的矩形纹理查询（OpenGL独有）</td>
+</tr>
+<tr>
+<td align="center">texRECT (samplerRECT tex, float3 sz)</td>
+<td align="center">二维非投影深度比较矩形纹理查询（OpenGL独有）</td>
+</tr>
+<tr>
+<td align="center">texRECT (samplerRECT tex, float3 sz, float2 dsdx,float2 dsdy)</td>
+<td align="center">二维非投影深度比较并使用导数的矩形纹理查询（OpenGL独有）</td>
+</tr>
+<tr>
+<td align="center">texRECT proj(samplerRECT tex, float3 sq)</td>
+<td align="center">二维投影矩形纹理查询（OpenGL独有）</td>
+</tr>
+<tr>
+<td align="center">texRECT proj(samplerRECT tex, float3 szq)</td>
+<td align="center">二维投影矩形纹理深度比较查询（OpenGL独有）</td>
+</tr>
+<tr>
+<td align="center">Tex3D(sampler3D tex, float s)</td>
+<td align="center">三维纹理查询</td>
+</tr>
+<tr>
+<td align="center">Tex3D(sampler3D tex, float3 s, float3 dsdx, float3 dsdy)</td>
+<td align="center">结合导数值（derivatives）查询三维纹理</td>
+</tr>
+<tr>
+<td align="center">Tex3Dproj(sampler3D tex, float4 szq)</td>
+<td align="center">查询三维投影纹理，并进行深度值比较</td>
+</tr>
+<tr>
+<td align="center">texCUBE(samplerCUBE tex, float3 s)</td>
+<td align="center">查询立方体纹理</td>
+</tr>
+<tr>
+<td align="center">texCUBE (samplerCUBE tex, float3 s, float3 dsdx, float3 dsdy)</td>
+<td align="center">结合导数值（derivatives）查询立方体纹理</td>
+</tr>
+<tr>
+<td align="center">texCUBEproj (samplerCUBE tex, float4 sq)</td>
+<td align="center">查询投影立方体纹理</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4偏导函数">4、偏导函数</h3>
+<table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">ddx(a)</td>
+<td align="center">近似a关于屏幕空间x轴的偏导数</td>
+</tr>
+<tr>
+<td align="center">ddy(a)</td>
+<td align="center">近似a关于屏幕空间y轴的偏导数</td>
+</tr>
+</tbody>
+</table>
+<h2 id="二unity常用的内置函数变量">二、Unity常用的内置函数，变量</h2>
+<h3 id="1unity常用的结构体">1、Unity常用的结构体</h3>
+<h4 id="11顶点着色器输入">1.1、顶点着色器输入</h4>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">描述</th>
+<th align="center">包含的变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">appdata_base</td>
+<td align="center">用于顶点着色器输入</td>
+<td align="center">顶点位置、顶点法线、第一组纹理坐标</td>
+</tr>
+<tr>
+<td align="center">appdata_tan</td>
+<td align="center">用于顶点着色器输入</td>
+<td align="center">顶点位置、顶点切线、顶点法线、第一组纹理坐标</td>
+</tr>
+<tr>
+<td align="center">appdata_full</td>
+<td align="center">用于顶点着色器输入</td>
+<td align="center">顶点位置、顶点切线、顶点法线、四组（或更多）纹理坐标</td>
+</tr>
+<tr>
+<td align="center">appdata_img</td>
+<td align="center">用于顶点着色器输入</td>
+<td align="center">顶点位置、第一组纹理坐标</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-glsl" data-lang="glsl"><span class="k">struct</span> <span class="n">appdata_base</span> <span class="p">{</span>
+    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
+    <span class="n">float3</span> <span class="n">normal</span> <span class="o">:</span> <span class="n">NORMAL</span><span class="p">;</span>
+    <span class="n">float4</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">appdata_tan</span> <span class="p">{</span>
+    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
+    <span class="n">float4</span> <span class="n">tangent</span> <span class="o">:</span> <span class="n">TANGENT</span><span class="p">;</span>
+    <span class="n">float3</span> <span class="n">normal</span> <span class="o">:</span> <span class="n">NORMAL</span><span class="p">;</span>
+    <span class="n">float4</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">appdata_full</span> <span class="p">{</span>
+    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
+    <span class="n">float4</span> <span class="n">tangent</span> <span class="o">:</span> <span class="n">TANGENT</span><span class="p">;</span>
+    <span class="n">float3</span> <span class="n">normal</span> <span class="o">:</span> <span class="n">NORMAL</span><span class="p">;</span>
+    <span class="n">float4</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+    <span class="n">float4</span> <span class="n">texcoord1</span> <span class="o">:</span> <span class="n">TEXCOORD1</span><span class="p">;</span>
+    <span class="n">float4</span> <span class="n">texcoord2</span> <span class="o">:</span> <span class="n">TEXCOORD2</span><span class="p">;</span>
+    <span class="n">float4</span> <span class="n">texcoord3</span> <span class="o">:</span> <span class="n">TEXCOORD3</span><span class="p">;</span>
+    <span class="n">fixed4</span> <span class="n">color</span> <span class="o">:</span> <span class="n">COLOR</span><span class="p">;</span>
+    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="n">appdata_img</span>
+<span class="p">{</span>
+    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
+    <span class="n">half2</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
+<span class="p">};</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="12顶点着色器输出">1.2、顶点着色器输出</h4>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">描述</th>
+<th align="center">包含的变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">v2f_img</td>
+<td align="center">用于顶点着色器输出</td>
+<td align="center">裁剪空间中的位置、纹理坐标</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-glsl" data-lang="glsl"><span class="k">struct</span> <span class="n">v2f_img</span>
+<span class="p">{</span>
+    <span class="n">float4</span> <span class="n">pos</span> <span class="o">:</span> <span class="n">SV_POSITION</span><span class="p">;</span>
+    <span class="n">half2</span> <span class="n">uv</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
+    <span class="n">UNITY_VERTEX_OUTPUT_STEREO</span>
+<span class="p">};</span>
+
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="2空间变换函数及内置变量">2、空间变换函数及内置变量</h3>
+<h4 id="a空间变换函数">A、空间变换函数</h4>
+<table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">float4 UnityWorldToClipPos(float3 pos )</td>
+<td align="center">把世界坐标空间中某一点pos变换到齐次裁剪空间</td>
+</tr>
+<tr>
+<td align="center">float4 UnityViewToClipPos(float3 pos )</td>
+<td align="center">把观察坐标空间中某一点pos变换到齐次裁剪空间</td>
+</tr>
+<tr>
+<td align="center">float3 UnityObjectToViewPos(float3 pos或float4 pos)</td>
+<td align="center">模型局部空间坐标系中某一个点pos变换到观察空间坐标系</td>
+</tr>
+<tr>
+<td align="center">float3 UnityWorldToViewPos(float3 pos )</td>
+<td align="center">把世界坐标系下的一个点pos变换到观察空间坐标系</td>
+</tr>
+<tr>
+<td align="center">float3 UnityObjectToWorldDir(float3 dir )</td>
+<td align="center">把方向矢量从模型空间转换到世界空间（方向已单位化）</td>
+</tr>
+<tr>
+<td align="center">float3 UnityWorldToObjectDir(float3 dir )</td>
+<td align="center">把方向矢量从世界空间转换到模型空间（方向已单位化）</td>
+</tr>
+<tr>
+<td align="center">float3 UnityObjectToWorldNormal(float3 norm )</td>
+<td align="center">将法线从模型空间转换到世界空间（方向已单位化）</td>
+</tr>
+<tr>
+<td align="center">float3 UnityWorldSpaceLightDir(float3 worldPos )</td>
+<td align="center">输入参数worldPos是一个世界坐标系下的坐标，得到世界空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
+</tr>
+<tr>
+<td align="center">float3 WorldSpaceLightDir(float4 localPos )</td>
+<td align="center">输入一个模型顶点坐标，得到世界空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
+</tr>
+<tr>
+<td align="center">float3 ObjSpaceLightDir(float4 v )</td>
+<td align="center">输入一个模型顶点坐标，得到模型空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
+</tr>
+<tr>
+<td align="center">float3 UnityWorldSpaceViewDir(float3 worldPos )</td>
+<td align="center">输入参数worldPos是一个世界坐标系下的坐标，得到世界空间中从该点到摄像机的观察方向。（方向没单位化）</td>
+</tr>
+<tr>
+<td align="center">float3 WorldSpaceViewDir(float4 localPos )</td>
+<td align="center">输入一个模型顶点坐标，得到世界空间中从该点到摄像机的观察方向。（方向没单位化）</td>
+</tr>
+<tr>
+<td align="center">float3 ObjSpaceViewDir(float4 v )</td>
+<td align="center">输入一个模型顶点坐标，得到模型空间中从该点到摄像机的观察方向。（方向没单位化）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="b屏幕空间相关函数">B、屏幕空间相关函数</h4>
+<p>以下函数可计算用于采样屏幕空间纹理的坐标。它们返回 float4，其中用于纹理采样的最终坐标可以通过透视除法（例如 xy/w）计算得出。</p>
+<table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">float4 ComputeScreenPos (float4 clipPos)</td>
+<td align="center">计算用于执行屏幕空间贴图纹理采样的纹理坐标。输入是裁剪空间位置。</td>
+</tr>
+<tr>
+<td align="center">float4 ComputeGrabScreenPos (float4 clipPos)</td>
+<td align="center">计算用于 GrabPass 纹理采样的纹理坐标。输入是裁剪空间位置。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="c内置变量矩阵">C、内置变量矩阵</h4>
+<table>
+<thead>
+<tr>
+<th align="center">变量名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">UNITY_MATRIX_MVP</td>
+<td align="center">当前的模型观察投影矩阵，用于将顶点/方向矢量从模型空间转换到裁剪空间</td>
+</tr>
+<tr>
+<td align="center">UNITY_MATRIX_MV</td>
+<td align="center">当前的模型*观察矩阵，用于将顶点/方向矢量从模型空间转换到观察空间</td>
+</tr>
+<tr>
+<td align="center">UNITY_MATRIX_V</td>
+<td align="center">当前的观察矩阵，用于将顶点/方向矢量从世界空间转换到观察空间</td>
+</tr>
+<tr>
+<td align="center">UNITY_MATRIX_I_V</td>
+<td align="center">当前的观察矩阵的逆矩阵，用于从观察空间转换到世界空间</td>
+</tr>
+<tr>
+<td align="center">UNITY_MATRIX_P</td>
+<td align="center">当前的投影矩阵，用于将顶点/方向矢量从观察空间转换到裁剪空间</td>
+</tr>
+<tr>
+<td align="center">UNITY_MATRIX_VP</td>
+<td align="center">当前的观察*投影矩阵，用于将顶点/方向矢量从世界空间转换到裁剪空间</td>
+</tr>
+<tr>
+<td align="center">UNITY_MATRIX_T_MV</td>
+<td align="center">UNITY_MATRIX_MV的转置矩阵</td>
+</tr>
+<tr>
+<td align="center">UNITY_MATRIX_IT_MV</td>
+<td align="center">UNITY_MATRIX_MV的逆转置矩阵，用于将发现从模型空间转换到观察空间，也可以用于得到UNITY_MATRIX_MV的逆矩阵</td>
+</tr>
+<tr>
+<td align="center">unity_MatrixInvV</td>
+<td align="center">UNITY_MATRIX_V的逆矩阵</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="d摄像机和屏幕参数">D、摄像机和屏幕参数</h4>
+<table>
+<thead>
+<tr>
+<th align="center">参数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">float3 _WorldSpaceCameraPos</td>
+<td align="center">该摄像机在世界空间中的位置</td>
+</tr>
+<tr>
+<td align="center">float4 _ProjectionParams</td>
+<td align="center">x=1.0(或-1.0，如果正在使用一个翻转的投影矩阵进行渲染)，y=Near,z=Far,w=1.0+1.0/Far,其中Near和Far分别是近裁剪平面和远裁剪平面到摄像机的距离</td>
+</tr>
+<tr>
+<td align="center">float4 _ScreenParams</td>
+<td align="center">x=width,y=height,z=1.0+1.0/width,w=1.0+1.0/height,其中width和height分别是该摄像机的渲染目标（render target）的像素宽度和高度</td>
+</tr>
+<tr>
+<td align="center">float4 _ZBufferParams</td>
+<td align="center">x=1-Far/Near,y=Far/Near,z=x/Far,w=y/Far,该变量用于线性化Z缓存中的深度值</td>
+</tr>
+<tr>
+<td align="center">float4 unity_OrthoParams</td>
+<td align="center">x=width,y=height,z没有定义,w=1.0(该摄像机是正交摄像机)或w=0.0（该摄像机是透视摄像机），其中width和height是正交投影摄像机的宽度和高度</td>
+</tr>
+<tr>
+<td align="center">float4x4 unity_CameraProjection</td>
+<td align="center">该摄像机的投影矩阵</td>
+</tr>
+<tr>
+<td align="center">float4x4 unity_CameraInvProjection</td>
+<td align="center">该摄像机的投影矩阵的逆矩阵</td>
+</tr>
+<tr>
+<td align="center">float4 unity_CameraWorldClipPlanes[6]</td>
+<td align="center">该摄像机的6个裁剪平面在世界空间下的等式，按左、右、下、上、近、远裁剪平面</td>
+</tr>
+</tbody>
+</table>
+<h4 id="e时间变量">E、时间变量</h4>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">类型</th>
+<th align="center">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">_Time</td>
+<td align="center">float4</td>
+<td align="center">自关卡加载以来的时间 (t/20, t, t<em>2, t</em>3)，用于将着色器中的内容动画化。</td>
+</tr>
+<tr>
+<td align="center">_SinTime</td>
+<td align="center">float4</td>
+<td align="center">时间正弦：(t/8, t/4, t/2, t)。</td>
+</tr>
+<tr>
+<td align="center">_CosTime</td>
+<td align="center">float4</td>
+<td align="center">时间余弦：(t/8, t/4, t/2, t)。</td>
+</tr>
+<tr>
+<td align="center">unity_DeltaTime</td>
+<td align="center">float4</td>
+<td align="center">增量时间：(dt, 1/dt, smoothDt, 1/smoothDt)。</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="f光照变量">F、光照变量</h4>
+<hr>
+<blockquote>
+<p>参考unity官方文档：<a href="https://docs.unity.cn/cn/current/Manual/SL-UnityShaderVariables.html" target="_blank" rel="noopener noreffer">内置着色器变量</a></p>
+</blockquote>
+<h4 id="g雾效和环境光">G、雾效和环境光</h4>
+<hr>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">类型</th>
+<th align="center">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">unity_AmbientSky</td>
+<td align="center">fixed4</td>
+<td align="center">梯度环境光照情况下的天空环境光照颜色。</td>
+</tr>
+<tr>
+<td align="center">unity_AmbientEquator</td>
+<td align="center">fixed4</td>
+<td align="center">梯度环境光照情况下的赤道环境光照颜色。</td>
+</tr>
+<tr>
+<td align="center">unity_AmbientGround</td>
+<td align="center">fixed4</td>
+<td align="center">梯度环境光照情况下的地面环境光照颜色。</td>
+</tr>
+<tr>
+<td align="center">UNITY_LIGHTMODEL_AMBIENT</td>
+<td align="center">fixed4</td>
+<td align="center">环境光照颜色（梯度环境情况下的天空颜色）。旧版变量。</td>
+</tr>
+<tr>
+<td align="center">unity_FogColor</td>
+<td align="center">fixed4</td>
+<td align="center">雾效颜色。</td>
+</tr>
+<tr>
+<td align="center">unity_FogParams</td>
+<td align="center">float4</td>
+<td align="center">用于雾效计算的参数：<code>(density / sqrt(ln(2))、density / ln(2)、–1/(end-start) </code>和 <code>end/(end-start))</code>。x 对于 Exp2 雾模式很有用；<em>y</em> 对于 Exp 模式很有用，<em>z</em> 和 w 对于 Linear 模式很有用。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="h其他">H、其他</h4>
+<hr>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>unity_LODFade</td>
+<td>float4</td>
+<td>使用 LODGroup 时的细节级别淡入淡出。x 为淡入淡出（0 到 1），<em>y</em> 为量化为 16 级的淡入淡出，<em>z</em> 和 w 未使用。</td>
+</tr>
+<tr>
+<td>_TextureSampleAdd</td>
+<td>float4</td>
+<td>根据所使用的纹理是 Alpha8 格式（值设置为 (1,1,1,0)）还是不是该格式（值设置为 (0,0,0,0)）由 Unity 仅针对 UI 自动设置。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3数学常数">3、数学常数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-glsl" data-lang="glsl"><span class="cp">#ifndef UNITY_CG_INCLUDED</span>
+<span class="cp">#define UNITY_CG_INCLUDED</span>
+ 
+<span class="cp">#define UNITY_PI            3.14159265359f       //圆周率</span>
+<span class="cp">#define UNITY_TWO_PI        6.28318530718f       //2倍圆周率</span>
+<span class="cp">#define UNITY_FOUR_PI       12.56637061436f      //4倍圆周率</span>
+<span class="cp">#define UNITY_INV_PI        0.31830988618f       //圆周率的倒数</span>
+<span class="cp">#define UNITY_INV_TWO_PI    0.15915494309f       //2倍圆周率的倒数</span>
+<span class="cp">#define UNITY_INV_FOUR_PI   0.07957747155f       //4倍圆周率的倒数</span>
+<span class="cp">#define UNITY_HALF_PI       1.57079632679f       //半圆周率</span>
+<span class="cp">#define UNITY_INV_HALF_PI   0.636619772367f      //半圆周率的倒数</span>
+
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4与颜色空间相关">4、与颜色空间相关</h3>
+<table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">bool IsGammaSpace()</td>
+<td align="center">根据宏UNITY_COLORSPACE_GAMMA是否被启用了，判断当前是否启用了伽马颜色空间。</td>
+</tr>
+<tr>
+<td align="center">float GammaToLinearSpaceExact (float value)</td>
+<td align="center">把一个颜色值精确地从伽马颜色空间(sRGB颜色空间)变化到线性空间(CIE-XYZ颜色空间)。</td>
+</tr>
+<tr>
+<td align="center">half3 GammaToLinearSpace (half3 sRGB)</td>
+<td align="center">用一个近似模拟的函数把颜色值近似地从伽马空间变换到线性空间。</td>
+</tr>
+<tr>
+<td align="center">float LinearToGammaSpaceExact (float value)</td>
+<td align="center">把一个颜色值精确地从线性空间变换到伽马颜色空间。</td>
+</tr>
+<tr>
+<td align="center">half3 LinearToGammaSpace (half3 linRGB)</td>
+<td align="center">用一个近似模拟的函数把颜色值近似地从线性空间变换到伽马颜色空间。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>引用：<a href="https://blog.csdn.net/u012722551/article/details/103926660" target="_blank" rel="noopener noreffer">UnityShader常用函数（UnityShader内置函数、CG和GLSL内置函数等）</a><br>
+unity官方文档：<a href="https://docs.unity.cn/cn/current/Manual/SL-UnityShaderVariables.html" target="_blank" rel="noopener noreffer">内置着色器变量</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-09-14 13:15:46</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" data-hashtag="shader"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" data-title="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" data-title="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" data-title="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" data-title="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" data-title="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" data-title="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/shader/">shader</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%8F%8A%E6%AF%94%E8%BE%83%E4%B8%8E%E5%88%86%E6%9E%90/" class="prev" rel="prev" title="【数据结构】 十大经典排序算法及比较与分析 ( 动画演示 ) ( 可视化工具 )"><i class="fas fa-angle-left fa-fw"></i>【数据结构】 十大经典排序算法及比较与分析 ( 动画演示 ) ( 可视化工具 )</a>
+            <a href="/shader%E8%AE%B0%E5%BD%95/" class="next" rel="next" title="Shader记录">Shader记录<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

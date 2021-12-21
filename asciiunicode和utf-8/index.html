@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/asciiunicode%E5%92%8Cutf-8/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2020-09-16T11:37:37+08:00" />
+<meta property="article:modified_time" content="2020-09-16T11:37:37+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/asciiunicode%E5%92%8Cutf-8/" /><link rel="prev" href="https://codingriver.github.io/bytehelper%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/" /><link rel="next" href="https://codingriver.github.io/jsonhelper%E5%B7%A5%E5%85%B7/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/asciiunicode%E5%92%8Cutf-8\/"
+        },"genre": "posts","keywords": "Unicode编码","wordcount":  8951 ,
+        "url": "https:\/\/codingriver.github.io\/asciiunicode%E5%92%8Cutf-8\/","datePublished": "2020-09-16T11:37:37+08:00","dateModified": "2020-09-16T11:37:37+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="far fa-folder fa-fw"></i>计算机基础</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-16 11:37:37">2020-09-16 11:37:37</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 8951 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 18 分钟&nbsp;<span id="/asciiunicode%E5%92%8Cutf-8/" class="leancloud_visitors" data-flag-title="ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一ascii-码">一、ASCII 码</a></li>
+    <li><a href="#二非-ascii-编码">二、非 ASCII 编码</a></li>
+    <li><a href="#三-unicode">三. Unicode</a></li>
+    <li><a href="#四unicode-的问题">四、Unicode 的问题</a></li>
+    <li><a href="#五utf-8">五、UTF-8</a></li>
+    <li><a href="#六unicode-与-utf-8-之间的转换">六、Unicode 与 UTF-8 之间的转换</a></li>
+    <li><a href="#七little-endian-和-big-endianutf-16le-和-utf-16be">七、Little endian 和 Big endian（UTF-16LE 和 UTF-16BE）</a></li>
+    <li><a href="#八实例">八、实例</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>编码历史与区别<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>一直对字符的各种编码方式懵懵懂懂，什么ANSI UNICODE UTF-8 GB2312 GBK DBCS UCS……是不是看的很晕，假如您细细的阅读本文你一定可以清晰的理解他们。Let`s go!</p>
+<p>　　很久很久以前，有一群人，他们决定用8个可以开合的晶体管来组合成不同的状态，以表示世界上的万物。他们看到8个开关状态是好的，于是他们把这称为&quot;字节&rdquo;。</p>
+<p>　　再后来，他们又做了一些可以处理这些字节的机器，机器开动了，可以用字节来组合出很多状态，状态开始变来变去。他们看到这样是好的，于是它们就这机器称为&quot;计算机&rdquo;。</p>
+<p>　　开始计算机只在美国用。八位的字节一共可以组合出256(2的8次方)种不同的状态。</p>
+<p>　　他们把其中的编号从0开始的32种状态分别规定了特殊的用途，一但终端、打印机遇上约定好的这些字节被传过来时，就要做一些约定的动作。遇上00x10, 终端就换行，遇上0x07, 终端就向人们嘟嘟叫，例好遇上0x1b, 打印机就打印反白的字，或者终端就用彩色显示字母。他们看到这样很好，于是就把这些0x20以下的字节状态称为&quot;控制码&rdquo;。</p>
+<p>　　他们又把所有的空格、标点符号、数字、大小写字母分别用连续的字节状态表示，一直编到了第127号，这样计算机就可以用不同字节来存储英语的文字了。大家看到这样，都感觉很好，于是大家都把这个方案叫做 ANSI 的&quot;Ascii&quot;编码（American Standard Code for Information Interchange，美国信息互换标准代码）。当时世界上所有的计算机都用同样的ASCII方案来保存英文文字。</p>
+<p>　　后来，就像建造巴比伦塔一样，世界各地的都开始使用计算机，但是很多国家用的不是英文，他们的字母里有许多是ASCII里没有的，为了可以在计算机保存他们的文字，他们决定采用127号之后的空位来表示这些新的字母、符号，还加入了很多画表格时需要用下到的横线、竖线、交叉等形状，一直把序号编到了最后一个状态255。从128到255这一页的字符集被称&quot;扩展字符集&rdquo;。从此之后，贪婪的人类再没有新的状态可以用了，美帝国主义可能没有想到还有第三世界国家的人们也希望可以用到计算机吧！</p>
+<p>　　等中国人们得到计算机时，已经没有可以利用的字节状态来表示汉字，况且有6000多个常用汉字需要保存呢。但是这难不倒智慧的中国人民，我们不客气地把那些127号之后的奇异符号们直接取消掉, 规定：一个小于127的字符的意义与原来相同，但两个大于127的字符连在一起时，就表示一个汉字，前面的一个字节（他称之为高字节）从0xA1用到0xF7，后面一个字节（低字节）从0xA1到0xFE，这样我们就可以组合出大约7000多个简体汉字了。在这些编码里，我们还把数学符号、罗马希腊的字母、日文的假名们都编进去了，连在 ASCII 里本来就有的数字、标点、字母都统统重新编了两个字节长的编码，这就是常说的&quot;全角&quot;字符，而原来在127号以下的那些就叫&quot;半角&quot;字符了。</p>
+<p>　　中国人民看到这样很不错，于是就把这种汉字方案叫做 &ldquo;GB2312&rdquo;。GB2312 是对 ASCII 的中文扩展。</p>
+<p>　　但是中国的汉字太多了，我们很快就就发现有许多人的人名没有办法在这里打出来，特别是某些很会麻烦别人的国家领导人。于是我们不得不继续把 GB2312 没有用到的码位找出来老实不客气地用上。</p>
+<p>　　后来还是不够用，于是干脆不再要求低字节一定是127号之后的内码，只要第一个字节是大于127就固定表示这是一个汉字的开始，不管后面跟的是不是扩展字符集里的内容。结果扩展之后的编码方案被称为 GBK 标准，GBK 包括了 GB2312 的所有内容，同时又增加了近20000个新的汉字（包括繁体字）和符号。</p>
+<p>　　后来少数民族也要用电脑了，于是我们再扩展，又加了几千个新的少数民族的字，GBK 扩成了 GB18030。从此之后，中华民族的文化就可以在计算机时代中传承了。</p>
+<p>　　中国的程序员们看到这一系列汉字编码的标准是好的，于是通称他们叫做 &ldquo;DBCS&rdquo;（Double Byte Charecter Set 双字节字符集）。在DBCS系列标准里，最大的特点是两字节长的汉字字符和一字节长的英文字符并存于同一套编码方案里，因此他们写的程序为了支持中文处理，必须要注意字串里的每一个字节的值，如果这个值是大于127的，那么就认为一个双字节字符集里的字符出现了。那时候凡是受过加持，会编程的计算机僧侣们都要每天念下面这个咒语数百遍：</p>
+<p>　　&ldquo;一个汉字算两个英文字符！一个汉字算两个英文字符……&rdquo;</p>
+<p>　　因为当时各个国家都像中国这样搞出一套自己的编码标准，结果互相之间谁也不懂谁的编码，谁也不支持别人的编码，连大陆和台湾这样只相隔了150海里，使用着同一种语言的兄弟地区，也分别采用了不同的 DBCS 编码方案——当时的中国人想让电脑显示汉字，就必须装上一个&quot;汉字系统&rdquo;，专门用来处理汉字的显示、输入的问题，但是那个台湾的愚昧封建人士写的算命程序就必须加装另一套支持 BIG5 编码的什么&quot;倚天汉字系统&quot;才可以用，装错了字符系统，显示就会乱了套！这怎么办？而且世界民族之林中还有那些一时用不上电脑的穷苦人民，他们的文字又怎么办？</p>
+<p>　　真是计算机的巴比伦塔命题啊！</p>
+<p>　　正在这时，大天使加百列及时出现了——一个叫 ISO （国际标谁化组织）的国际组织决定着手解决这个问题。他们采用的方法很简单：废了所有的地区性编码方案，重新搞一个包括了地球上所有文化、所有字母和符号的编码！他们打算叫它&quot;Universal Multiple-Octet Coded Character Set&rdquo;，简称 UCS, 俗称 &ldquo;UNICODE&rdquo;。</p>
+<p>　　UNICODE 开始制订时，计算机的存储器容量极大地发展了，空间再也不成为问题了。于是 ISO 就直接规定必须用两个字节，也就是16位来统一表示所有的字符，对于ascii里的那些“半角”字符，UNICODE 包持其原编码不变，只是将其长度由原来的8位扩展为16位，而其他文化和语言的字符则全部重新统一编码。由于&quot;半角&quot;英文符号只需要用到低8位，所以其高8位永远是0，因此这种大气的方案在保存英文文本时会多浪费一倍的空间。</p>
+<p>　　这时候，从旧社会里走过来的程序员开始发现一个奇怪的现象：他们的strlen函数靠不住了，一个汉字不再是相当于两个字符了，而是一个！是的，从 UNICODE 开始，无论是半角的英文字母，还是全角的汉字，它们都是统一的&quot;一个字符&rdquo;！同时，也都是统一的&quot;两个字节&rdquo;，请注意&quot;字符&quot;和&quot;字节&quot;两个术语的不同，“字节”是一个8位的物理存贮单元，而“字符”则是一个文化相关的符号。在UNICODE 中，一个字符就是两个字节。一个汉字算两个英文字符的时代已经快过去了。</p>
+<p>　　从前多种字符集存在时，那些做多语言软件的公司遇上过很大麻烦，他们为了在不同的国家销售同一套软件，就不得不在区域化软件时也加持那个双字节字符集咒语，不仅要处处小心不要搞错，还要把软件中的文字在不同的字符集中转来转去。UNICODE 对于他们来说是一个很好的一揽子解决方案，于是从 Windows NT 开始，MS 趁机把它们的操作系统改了一遍，把所有的核心代码都改成了用 UNICODE 方式工作的版本，从这时开始，WINDOWS 系统终于无需要加装各种本土语言系统，就可以显示全世界上所有文化的字符了。</p>
+<p>　　但是，UNICODE 在制订时没有考虑与任何一种现有的编码方案保持兼容，这使得 GBK 与UNICODE 在汉字的内码编排上完全是不一样的，没有一种简单的算术方法可以把文本内容从UNICODE编码和另一种编码进行转换，这种转换必须通过查表来进行。</p>
+<p>　　如前所述，UNICODE 是用两个字节来表示为一个字符，他总共可以组合出65535不同的字符，这大概已经可以覆盖世界上所有文化的符号。如果还不够也没有关系，ISO已经准备了UCS-4方案，说简单了就是四个字节来表示一个字符，这样我们就可以组合出21亿个不同的字符出来（最高位有其他用途），这大概可以用到银河联邦成立那一天吧！</p>
+<p>　　UNICODE 来到时，一起到来的还有计算机网络的兴起，UNICODE 如何在网络上传输也是一个必须考虑的问题，于是面向传输的众多 UTF（UCS Transfer Format）标准出现了，顾名思义，UTF8就是每次8个位传输数据，而UTF16就是每次16个位，只不过为了传输时的可靠性，从UNICODE到UTF时并不是直接的对应，而是要过一些算法和规则来转换。</p>
+<p>　　受到过网络编程加持的计算机僧侣们都知道，在网络里传递信息时有一个很重要的问题，就是对于数据高低位的解读方式，一些计算机是采用低位先发送的方法，例如我们PC机采用的 INTEL 架构，而另一些是采用高位先发送的方式，在网络中交换数据时，为了核对双方对于高低位的认识是否是一致的，采用了一种很简便的方法，就是在文本流的开始时向对方发送一个标志符——如果之后的文本是高位在位，那就发送&quot;FEFF&rdquo;，反之，则发送&quot;FFFE&rdquo;。不信你可以用二进制方式打开一个UTF-X格式的文件，看看开头两个字节是不是这两个字节？</p>
+<p>　　讲到这里，我们再顺便说说一个很著名的奇怪现象：当你在 windows 的记事本里新建一个文件，输入&quot;联通&quot;两个字之后，保存，关闭，然后再次打开，你会发现这两个字已经消失了，代之的是几个乱码！呵呵，有人说这就是联通之所以拼不过移动的原因。</p>
+<p>　　其实这是因为GB2312编码与UTF8编码产生了编码冲撞的原因。</p>
+<p>　　从网上引来一段从UNICODE到UTF8的转换规则：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">　　Unicode
+
+　　UTF-8
+
+　　0000 - 007F
+
+　　0xxxxxxx
+
+　　0080 - 07FF
+
+　　110xxxxx 10xxxxxx
+
+　　0800 - FFFF
+
+　　1110xxxx 10xxxxxx 10xxxxxx
+</code></pre></td></tr></table>
+</div>
+</div><p>　　例如&quot;汉&quot;字的Unicode编码是6C49。6C49在0800-FFFF之间，所以要用3字节模板：1110xxxx 10xxxxxx 10xxxxxx。将6C49写成二进制是：0110 1100 0100 1001，将这个比特流按三字节模板的分段方法分为0110 110001 001001，依次代替模板中的x，得到：1110-0110 10-110001 10-001001，即E6 B1 89，这就是其UTF8的编码。</p>
+<p>　　而当你新建一个文本文件时，记事本的编码默认是ANSI, 如果你在ANSI的编码输入汉字，那么他实际就是GB系列的编码方式，在这种编码下，&ldquo;联通&quot;的内码是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">　　c1 1100 0001
+
+　　aa 1010 1010
+
+　　cd 1100 1101
+
+　　a8 1010 1000
+</code></pre></td></tr></table>
+</div>
+</div><p>　　注意到了吗？第一二个字节、第三四个字节的起始部分的都是&quot;110&quot;和&quot;10&rdquo;，正好与UTF8规则里的两字节模板是一致的，于是再次打开记事本时，记事本就误认为这是一个UTF8编码的文件，让我们把第一个字节的110和第二个字节的10去掉，我们就得到了&quot;00001 101010&rdquo;，再把各位对齐，补上前导的0，就得到了&quot;0000 0000 0110 1010&rdquo;，不好意思，这是UNICODE的006A，也就是小写的字母&quot;j&rdquo;，而之后的两字节用UTF8解码之后是0368，这个字符什么也不是。这就是只有&quot;联通&quot;两个字的文件没有办法在记事本里正常显示的原因。</p>
+<p>　　而如果你在&quot;联通&quot;之后多输入几个字，其他的字的编码不见得又恰好是110和10开始的字节，这样再次打开时，记事本就不会坚持这是一个utf8编码的文件，而会用ANSI的方式解读之，这时乱码又不出现了。</p>
+<p>　　好了，终于可以回答NICO的问题了，在数据库里，有n前缀的字串类型就是UNICODE类型，这种类型中，固定用两个字节来表示一个字符，无论这个字符是汉字还是英文字母，或是别的么。</p>
+<p>　　如果你要测试&quot;abc汉字&quot;这个串的长度，在没有n前缀的数据类型里，这个字串是7个字符的长度，因为一个汉字相当于两个字符。而在有n前缀的数据类型里，同样的测试串长度的函数将会告诉你是5个字符，因为一个汉字就是一个字符。</p>
+</div>
+        </div>
+    </div>
+<h2 id="一ascii-码">一、ASCII 码</h2>
+<p>我们知道，计算机内部，所有信息最终都是一个二进制值。每一个二进制位（bit）有0和1两种状态，因此八个二进制位就可以组合出256种状态，这被称为一个字节（byte）。也就是说，一个字节一共可以用来表示256种不同的状态，每一个状态对应一个符号，就是256个符号，从<code>00000000</code>到<code>11111111</code>。</p>
+<p>上个世纪60年代，美国制定了一套字符编码，对英语字符与二进制位之间的关系，做了统一规定。这被称为 ASCII 码，一直沿用至今。</p>
+<p>ASCII 码一共规定了128个字符的编码，比如空格<code>SPACE</code>是32（二进制<code>00100000</code>），大写的字母<code>A</code>是65（二进制<code>01000001</code>）。这128个符号（包括32个不能打印出来的控制符号），只占用了一个字节的后面7位，最前面的一位统一规定为0。</p>
+<h2 id="二非-ascii-编码">二、非 ASCII 编码</h2>
+<p>英语用128个符号编码就够了，但是用来表示其他语言，128个符号是不够的。比如，在法语中，字母上方有注音符号，它就无法用 ASCII 码表示。于是，一些欧洲国家就决定，利用字节中闲置的最高位编入新的符号。比如，法语中的<code>é</code>的编码为130（二进制<code>10000010</code>）。这样一来，这些欧洲国家使用的编码体系，可以表示最多256个符号。</p>
+<p>但是，这里又出现了新的问题。不同的国家有不同的字母，因此，哪怕它们都使用256个符号的编码方式，代表的字母却不一样。比如，130在法语编码中代表了<code>é</code>，在希伯来语编码中却代表了字母<code>Gimel</code> (<code>ג</code>)，在俄语编码中又会代表另一个符号。但是不管怎样，所有这些编码方式中，0&ndash;127表示的符号是一样的，不一样的只是128&ndash;255的这一段。</p>
+<p>至于亚洲国家的文字，使用的符号就更多了，汉字就多达10万左右。一个字节只能表示256种符号，肯定是不够的，就必须使用多个字节表达一个符号。比如，简体中文常见的编码方式是 GB2312，使用两个字节表示一个汉字，所以理论上最多可以表示 256 x 256 = 65536 个符号。</p>
+<p>中文编码的问题需要专文讨论，这篇笔记不涉及。这里只指出，虽然都是用多个字节表示一个符号，但是GB类的汉字编码与后文的 Unicode 和 UTF-8 是毫无关系的。</p>
+<h2 id="三-unicode">三. Unicode</h2>
+<p>正如上一节所说，世界上存在着多种编码方式，同一个二进制数字可以被解释成不同的符号。因此，要想打开一个文本文件，就必须知道它的编码方式，否则用错误的编码方式解读，就会出现乱码。为什么电子邮件常常出现乱码？就是因为发信人和收信人使用的编码方式不一样。</p>
+<p>可以想象，如果有一种编码，将世界上所有的符号都纳入其中。每一个符号都给予一个独一无二的编码，那么乱码问题就会消失。这就是 Unicode，就像它的名字都表示的，这是一种所有符号的编码。</p>
+<p>Unicode 当然是一个很大的集合，现在的规模可以容纳100多万个符号。每个符号的编码都不一样，比如，<code>U+0639</code>表示阿拉伯字母<code>Ain</code>，<code>U+0041</code>表示英语的大写字母<code>A</code>，<code>U+4E25</code>表示汉字<code>严</code>。具体的符号对应表，可以查询<a href="http://www.unicode.org/" target="_blank" rel="noopener noreffer">unicode.org</a>，或者专门的<a href="http://www.chi2ko.com/tool/CJK.htm" target="_blank" rel="noopener noreffer">汉字对应表</a>。</p>
+<h2 id="四unicode-的问题">四、Unicode 的问题</h2>
+<p>需要注意的是，Unicode 只是一个符号集，它只规定了符号的二进制代码，却没有规定这个二进制代码应该如何存储。</p>
+<p>比如，汉字<code>严</code>的 Unicode 是十六进制数<code>4E25</code>，转换成二进制数足足有15位（<code>100111000100101</code>），也就是说，这个符号的表示至少需要2个字节。表示其他更大的符号，可能需要3个字节或者4个字节，甚至更多。</p>
+<p>这里就有两个严重的问题，第一个问题是，如何才能区别 Unicode 和 ASCII ？计算机怎么知道三个字节表示一个符号，而不是分别表示三个符号呢？第二个问题是，我们已经知道，英文字母只用一个字节表示就够了，如果 Unicode 统一规定，每个符号用三个或四个字节表示，那么每个英文字母前都必然有二到三个字节是0，这对于存储来说是极大的浪费，文本文件的大小会因此大出二三倍，这是无法接受的。</p>
+<p>它们造成的结果是：1）出现了 Unicode 的多种存储方式，也就是说有许多种不同的二进制格式，可以用来表示 Unicode。2）Unicode 在很长一段时间内无法推广，直到互联网的出现。</p>
+<h2 id="五utf-8">五、UTF-8</h2>
+<p>互联网的普及，强烈要求出现一种统一的编码方式。UTF-8 就是在互联网上使用最广的一种 Unicode 的实现方式。其他实现方式还包括 UTF-16（字符用两个字节或四个字节表示）和 UTF-32（字符用四个字节表示），不过在互联网上基本不用。<strong>重复一遍，这里的关系是，UTF-8 是 Unicode 的实现方式之一</strong>。</p>
+<p>UTF-8 最大的一个特点，就是它是一种变长的编码方式。它可以使用1~4个字节表示一个符号，根据不同的符号而变化字节长度。</p>
+<p>UTF-8 的编码规则很简单，只有二条：</p>
+<ul>
+<li>
+<p><strong>1）</strong> 对于单字节的符号，字节的第一位设为0，后面7位为这个符号的 Unicode 码。因此对于英语字母，UTF-8 编码和 ASCII 码是相同的。</p>
+</li>
+<li>
+<p><strong>2）</strong> 对于n字节的符号（n &gt; 1），第一个字节的前n位都设为1，第n + 1位设为0，后面字节的前两位一律设为10。剩下的没有提及的二进制位，全部为这个符号的 Unicode 码。</p>
+</li>
+</ul>
+<p>下表总结了编码规则，字母x表示可用编码的位。</p>
+<table>
+<thead>
+<tr>
+<th>Unicode符号范围（十六进制）</th>
+<th>UTF-8编码方式（二进制）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0000 0000-0000 007F</td>
+<td>0xxxxxxx</td>
+</tr>
+<tr>
+<td>0000 0080-0000 07FF</td>
+<td>110xxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>0000 0800-0000 FFFF</td>
+<td>1110xxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+<tr>
+<td>0001 0000-0010 FFFF</td>
+<td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
+</tr>
+</tbody>
+</table>
+<p>跟据上表，解读 UTF-8 编码非常简单。如果一个字节的第一位是0，则这个字节单独就是一个字符；如果第一位是1，则连续有多少个1，就表示当前字符占用多少个字节。</p>
+<p>下面，还是以汉字<code>严</code>为例，演示如何实现 UTF-8 编码。</p>
+<p><code>严</code>的 Unicode 是<code>4E25</code>（<code>100111000100101</code>），根据上表，可以发现<code>4E25</code>处在第三行的范围内（<code>0000 0800 - 0000 FFFF</code>），因此<code>严</code>的 UTF-8 编码需要三个字节，即格式是<code>1110xxxx 10xxxxxx 10xxxxxx</code>。然后，从<code>严</code>的最后一个二进制位开始，依次从后向前填入格式中的x，多出的位补0。这样就得到了，严的 UTF-8 编码是<code>11100100 10111000 10100101</code>，转换成十六进制就是<code>E4B8A5</code>。</p>
+<h2 id="六unicode-与-utf-8-之间的转换">六、Unicode 与 UTF-8 之间的转换</h2>
+<p>通过上一节的例子，可以看到<code>严</code>的 Unicode码 是<code>4E25</code>，UTF-8 编码是<code>E4B8A5</code>，两者是不一样的。它们之间的转换可以通过程序实现。</p>
+<p>Windows平台，有一个最简单的转化方法，就是使用内置的记事本小程序notepad.exe。打开文件后，点击文件菜单中的另存为命令，会跳出一个对话框，在最底部有一个编码的下拉条。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/ASCII%ef%bc%8cUnicode%e5%92%8cUTF-8/20200916114333.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/ASCII%ef%bc%8cUnicode%e5%92%8cUTF-8/20200916114333.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/ASCII%ef%bc%8cUnicode%e5%92%8cUTF-8/20200916114333.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/ASCII%ef%bc%8cUnicode%e5%92%8cUTF-8/20200916114333.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/ASCII，Unicode和UTF-8/20200916114333.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/ASCII，Unicode和UTF-8/20200916114333.png" /></p>
+<p>里面有四个选项：<code>ANSI</code>，<code>Unicode</code>，<code>Unicode big endian</code>和<code>UTF-8</code>。</p>
+<p>1）<code>ANSI</code>是默认的编码方式。对于英文文件是ASCII编码，对于简体中文文件是GB2312编码（只针对 Windows 简体中文版，如果是繁体中文版会采用 Big5 码）。</p>
+<p>2）<code>Unicode</code>编码这里指的是notepad.exe使用的 UCS-2 编码方式，即直接用两个字节存入字符的 Unicode 码，这个选项用的 little endian 格式。</p>
+<p>3）<code>Unicode big endian</code>编码与上一个选项相对应。我在下一节会解释 little endian 和 big endian 的涵义。</p>
+<p>4）<code>UTF-8</code>编码，也就是上一节谈到的编码方法。</p>
+<p>选择完&quot;编码方式&quot;后，点击&quot;保存&quot;按钮，文件的编码方式就立刻转换好了。</p>
+<h2 id="七little-endian-和-big-endianutf-16le-和-utf-16be">七、Little endian 和 Big endian（UTF-16LE 和 UTF-16BE）</h2>
+<p>上一节已经提到，UCS-2 格式可以存储 Unicode 码（码点不超过<code>0xFFFF</code>）。以汉字<code>严</code>为例，Unicode 码是<code>4E25</code>，需要用两个字节存储，一个字节是<code>4E</code>，另一个字节是<code>25</code>。存储的时候，<code>4E</code>在前，<code>25</code>在后，这就是 Big endian 方式；<code>25</code>在前，<code>4E</code>在后，这是 Little endian 方式。</p>
+<p>这两个古怪的名称来自英国作家斯威夫特的《格列佛游记》。在该书中，小人国里爆发了内战，战争起因是人们争论，吃鸡蛋时究竟是从大头(Big-endian)敲开还是从小头(Little-endian)敲开。为了这件事情，前后爆发了六次战争，一个皇帝送了命，另一个皇帝丢了王位。</p>
+<p>第一个字节在前，就是&quot;大头方式&rdquo;（Big endian），第二个字节在前就是&quot;小头方式&rdquo;（Little endian）。</p>
+<p>那么很自然的，就会出现一个问题：计算机怎么知道某一个文件到底采用哪一种方式编码？</p>
+<p>Unicode 规范定义，每一个文件的最前面分别加入一个表示编码顺序的字符，这个字符的名字叫做&quot;零宽度非换行空格&rdquo;（zero width no-break space），用<code>FEFF</code>表示。这正好是两个字节，而且FF比FE大1。</p>
+<p>如果一个文本文件的头两个字节是<code>FE FF</code>（<code>UTF-16BE</code>），就表示该文件采用大头方式；如果头两个字节是<code>FF FE</code>(<code>UTF-16LE</code>)，就表示该文件采用小头方式。</p>
+<p><em>UTF-16, 要从代码里自动判断一个文件到底是UTF-16LE还是BE, 对于单纯的英文字符来说还比较好办, 但要有特殊字符, 图形符号, 汉字, 法文, 俄语, 火星语之类的话, 相信各位都很头痛吧, 所以, unicode组织引入了BOM的概念, 即byte order mark, 顾名思义, 就是表名这个文件到底是LE还是BE的。</em></p>
+<ul>
+<li><code>UTF-16BE (big endian)</code>：文件BOM是<code>FE FF</code>，文件采用大头方式。</li>
+<li><code>UTF-16LE (little endian)</code>：文件BOM是<code>FF FE</code>，文件采用小头方式。</li>
+<li><code>UTF-8</code>：文件BOM是<code>EF BB BF</code>，可有可无。</li>
+</ul>
+<h2 id="八实例">八、实例</h2>
+<p>下面，举一个实例。</p>
+<p>打开&quot;记事本&quot;程序notepad.exe，新建一个文本文件，内容就是一个<code>严</code>字，依次采用ANSI，<code>ANSI</code>，<code>Unicode</code>，<code>Unicode big endian</code>和<code>UTF-8</code>编码方式保存。</p>
+<p>然后，用文本编辑软件UltraEdit 中的&quot;十六进制功能&rdquo;，观察该文件的内部编码方式。</p>
+<p>1）<code>ANSI</code>：文件的编码就是两个字节<code>D1 CF</code>，这正是<code>严</code>的 GB2312 编码，这也暗示 GB2312 是采用大头方式存储的。</p>
+<p>2）<code>Unicode</code>：编码是四个字节<code>FF FE 25 4E</code>，其中<code>FF FE</code>表明是小头方式存储，真正的编码是<code>4E25</code>。</p>
+<p>3）<code>Unicode big endian（UTF-16BE）</code>：编码是四个字节<code>FE FF 4E 25</code>，其中<code>FE FF</code>表明是大头方式存储。</p>
+<p>4）<code>UTF-8</code>：编码是六个字节<code>EF BB BF E4 B8 A5</code>，前三个字节<code>EF BB BF</code>表示这是UTF-8编码，后三个<code>E4B8A5</code>就是<code>严</code>的具体编码，它的存储顺序与编码顺序是一致的。</p>
+<blockquote>
+<p>附</p>
+<p><a href="https://codingriver.github.io/stringhelper%E7%BC%96%E7%A0%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/" rel="">StringHelper编码辅助工具</a></p>
+<p><a href="https://codingriver.github.io/url%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A7%A3%E7%A0%81%E5%8E%9F%E7%90%86/" rel="">URL编码与解码原理</a></p>
+<p>参考文章</p>
+<p><a href="http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html" target="_blank" rel="noopener noreffer">字符编码笔记：ASCII，Unicode 和 UTF-8</a></p>
+<p><a href="https://www.cnblogs.com/gavin-num1/p/5170247.html" target="_blank" rel="noopener noreffer">UNICODE,GBK,UTF-8区别</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-09-16 11:37:37</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/asciiunicode%E5%92%8Cutf-8/" data-hashtag="Unicode编码"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/asciiunicode%E5%92%8Cutf-8/" data-title="ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/asciiunicode%E5%92%8Cutf-8/" data-title="ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/asciiunicode%E5%92%8Cutf-8/" data-title="ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/asciiunicode%E5%92%8Cutf-8/" data-title="ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/asciiunicode%E5%92%8Cutf-8/" data-title="ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/asciiunicode%E5%92%8Cutf-8/" data-title="ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/unicode%E7%BC%96%E7%A0%81/">Unicode编码</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/bytehelper%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/" class="prev" rel="prev" title="【Unity Tool】 ByteHelper字节数组辅助工具"><i class="fas fa-angle-left fa-fw"></i>【Unity Tool】 ByteHelper字节数组辅助工具</a>
+            <a href="/jsonhelper%E5%B7%A5%E5%85%B7/" class="next" rel="next" title="JsonHelper工具">JsonHelper工具<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

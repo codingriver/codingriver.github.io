@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Shader笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Shader笔记" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2021-04-07T21:39:06+08:00" />
+<meta property="article:modified_time" content="2021-04-07T21:39:06+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Shader笔记"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" /><link rel="next" href="https://codingriver.github.io/unity-assert%E6%96%AD%E8%A8%80%E5%B7%A5%E5%85%B7/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Shader笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/shader%E7%AC%94%E8%AE%B0\/"
+        },"genre": "posts","keywords": "shader","wordcount":  6031 ,
+        "url": "https:\/\/codingriver.github.io\/shader%E7%AC%94%E8%AE%B0\/","datePublished": "2021-04-07T21:39:06+08:00","dateModified": "2021-04-07T21:39:06+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Shader笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/shader/"><i class="far fa-folder fa-fw"></i>shader</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-07 21:39:06">2021-04-07 21:39:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6031 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/shader%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Shader笔记">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#渲染管线流程">渲染管线流程</a>
+          <ul>
+            <li><a href="#cpu应用程序渲染逻辑">CPU应用程序渲染逻辑</a></li>
+            <li><a href="#gpu渲染管线">GPU渲染管线</a>
+              <ul>
+                <li><a href="#颜色混合">颜色混合</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#空间变换">空间变换</a></li>
+        <li><a href="#类型长度">类型长度</a></li>
+        <li><a href="#gamma校正gamma-correct">Gamma校正（Gamma Correct）</a></li>
+        <li><a href="#srgb纹理">sRGB纹理</a></li>
+        <li><a href="#linear和srgbhdr区别">linear和srgb,HDR区别</a>
+          <ul>
+            <li><a href="#linear模式">linear模式</a></li>
+            <li><a href="#hdrhigh-dynamic-range">HDR(High Dynamic Range)</a></li>
+          </ul>
+        </li>
+        <li><a href="#法线">法线</a></li>
+        <li><a href="#纹理">纹理</a></li>
+        <li><a href="#光照">光照</a>
+          <ul>
+            <li><a href="#环境贴图">环境贴图</a></li>
+            <li><a href="#光照衰减">光照衰减</a></li>
+            <li><a href="#阴影shadow">阴影（Shadow）</a></li>
+          </ul>
+        </li>
+        <li><a href="#角色渲染">角色渲染</a></li>
+        <li><a href="#动画">动画</a>
+          <ul>
+            <li><a href="#uv动画">uv动画</a></li>
+            <li><a href="#顶点动画">顶点动画</a></li>
+            <li><a href="#关键帧动画">关键帧动画</a></li>
+            <li><a href="#骨骼动画">骨骼动画</a></li>
+          </ul>
+        </li>
+        <li><a href="#屏幕后处理">屏幕后处理</a>
+          <ul>
+            <li><a href="#边缘检测">边缘检测</a></li>
+            <li><a href="#模糊blur">模糊（Blur）</a>
+              <ul>
+                <li><a href="#方框模糊box-blur">方框模糊（Box Blur）</a></li>
+                <li><a href="#高斯模糊gaussian-blur">高斯模糊（Gaussian Blur）</a></li>
+                <li><a href="#双重模糊dual-blur">双重模糊（Dual Blur）</a></li>
+                <li><a href="#kawase模糊dualkawaseblur">Kawase模糊（DualKawaseBlur）</a></li>
+                <li><a href="#运动模糊">运动模糊</a></li>
+              </ul>
+            </li>
+            <li><a href="#泛光-bloom">泛光 （Bloom）</a></li>
+            <li><a href="#光晕">光晕</a></li>
+          </ul>
+        </li>
+        <li><a href="#深度纹理和法线纹理">深度纹理和法线纹理</a></li>
+        <li><a href="#全局雾效">全局雾效</a></li>
+        <li><a href="#卡通风格渲染">卡通风格渲染</a></li>
+        <li><a href="#素描风格渲染">素描风格渲染</a></li>
+        <li><a href="#色调映射tone-mapping">色调映射(Tone-Mapping)</a></li>
+        <li><a href="#渲染优化">渲染优化</a>
+          <ul>
+            <li><a href="#开销成因">开销成因</a></li>
+            <li><a href="#优化方案">优化方案</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p><strong>Shader Language目前主要有3种语言</strong></p>
+<ul>
+<li>基于OpenGL的OpenGL Shading Language，简称 <code>GLSL</code>;</li>
+<li>基于DirectX的High Level Shading Language,简称 <code>HLSL</code>;</li>
+<li>还有NVIDIA公司的C for Graphic，简称 <code>Cg</code> 语言</li>
+</ul>
+<p><strong>渲染相关博客及网站</strong>
+<a href="https://catlikecoding.com/" target="_blank" rel="noopener noreffer">catlikecoding</a> :render相关博客</p>
+</blockquote>
+<h3 id="渲染管线流程">渲染管线流程</h3>
+<pre><code>CPU应用阶段： 视锥体剔除，渲染顺序，提交Drawcall
+顶点处理   ： 顶点MVP空间变换，自定义参数
+光栅化操作 ： 裁剪，NDC归一化，背面剔除，屏幕坐标，图元装配，光栅化
+片元处理   ： 光照着色，纹理着色
+输出合并   ： Alpha测试，模版测试，深度测试，颜色混合
+最后输出到帧缓冲区
+</code></pre>
+<h4 id="cpu应用程序渲染逻辑">CPU应用程序渲染逻辑</h4>
+<p>a. 剔除：</p>
+<ul>
+<li>视锥体剔除（Frustum Culling）</li>
+<li>层级剔除（Layer Culling Mask），遮挡剔除（Occlusion Culling）等规则</li>
+</ul>
+<p>b. 渲染排序：</p>
+<ul>
+<li>渲染队列 RenderQueue</li>
+<li>不透明队列（RenderQueue &lt; 2500）
+按摄像机 <strong>从前往后</strong> 排序</li>
+<li>半透明队列（RenderQueue &gt;2500）
+按摄像机 <strong>从后往前</strong> 排序（为了保证效果的正确性）</li>
+</ul>
+<p>c. 打包数据（Batch）：大量数据，参数发送到gpu</p>
+<p><strong>模型信息</strong></p>
+<ul>
+<li>顶点坐标</li>
+<li>法线</li>
+<li>UV</li>
+<li>切线</li>
+<li>顶点颜色</li>
+<li>索引列表</li>
+</ul>
+<p><strong>矩阵</strong></p>
+<ul>
+<li>世界变换矩阵</li>
+<li>VP矩阵：根据射线机位置和fov等参数构建VP矩阵</li>
+<li>当矩阵的w分量为0的时候Unity会将其视为向量，而当w分量为1的时候Unity将其视为位置</li>
+</ul>
+<p><strong>灯光，材质参数</strong></p>
+<ul>
+<li>Shader</li>
+<li>材质参数</li>
+<li>灯光信息</li>
+</ul>
+<p>d. 调用Shader</p>
+<ul>
+<li>SetPassCall（Shader，背面剔除等参数，设置渲染数据），DrawCall</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410175934.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410175934.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410175934.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410175934.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410175934.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410175934.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410181112.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410181112.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410181112.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410181112.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410181112.png"
+        title="20210410181112" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410182007.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410182007.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410182007.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410182007.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410182007.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410182007.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410181803.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410181803.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410181803.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410181803.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410181803.png"
+        title="半透明渲染顺序效果对比" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410182547.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410182547.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410182547.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410182547.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410182547.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410182547.png" /></p>
+<h4 id="gpu渲染管线">GPU渲染管线</h4>
+<blockquote>
+<p>CPU端调用DrawCall后 在GPU端启动顶点shader执行顶点处理
+顶点Shader：最主要的处理是将模型空间的顶点变换到裁剪空间</p>
+</blockquote>
+<ul>
+<li>顶点处理   ： 顶点MVP空间变换，自定义参数</li>
+<li>光栅化操作 ： 裁剪，NDC归一化，背面剔除，屏幕坐标，图元装配，光栅化</li>
+<li>片元处理   ： 光照着色，纹理着色</li>
+<li>输出合并   ： Alpha测试，模版测试，深度测试，颜色混合<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410183133.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410183133.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410183133.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410183133.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410183133.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410183133.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410184548.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410184548.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410184548.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410184548.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410184548.png"
+        title="20210410184548" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190909.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190909.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190909.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190909.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410190909.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410190909.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190836.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190836.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190836.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190836.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410190836.png"
+        title="20210410190836" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190749.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190749.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190749.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190749.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410190749.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410190749.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190724.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190724.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190724.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410190724.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410190724.png"
+        title="20210410190724" />
+裁剪操作是在长方体或者正方体范围内进行的，不是视锥体，这里图中只是表达要进行三角形剔除<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410193348.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410193348.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410193348.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410193348.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410193348.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410193348.png" /></li>
+</ul>
+<h5 id="颜色混合">颜色混合</h5>
+<p>常用颜色混合类型</p>
+<ul>
+<li>正常（Alpha Blend），即透明度混合<br>
+<code>Blend SrcAlpha OneMinusSrcAlpha</code></li>
+<li>Particle Additive<br>
+<code>Blend  SrcAlpha One</code></li>
+<li>柔和叠加(Soft Additive)<br>
+<code>Blend OneMinusDstColor One</code></li>
+<li>线性减淡（Additive,Linear Dodge）<br>
+<code>Blend One One</code>    (&ldquo;LightMode&rdquo; = &ldquo;ForwardAdd&rdquo; 光源叠加Pass使用的混合模式)</li>
+<li>正片叠底（Multiply），即相乘<br>
+<code>Blend DstColor Zero</code></li>
+<li>两倍相乘（2x Multiply）<br>
+<code>Blend DstColor SrcColor</code></li>
+<li>变暗（Darken）<br>
+<code>BlendOp Min  </code><br>
+<code>Blend One One  </code></li>
+<li>变亮（Lighten）<br>
+<code>BlendOp Max</code><br>
+<code>Blend One One</code></li>
+<li>滤色（Screen）<br>
+<code>Blend OneMinusDstColor One</code><br>
+<code>Blend One OneMinusSrcColor</code></li>
+</ul>
+<h3 id="空间变换">空间变换</h3>
+<ol>
+<li>模型空间（M）（左手坐标系）</li>
+<li>世界空间（W）（左手坐标系）</li>
+<li>观察空间（V）（右手坐标系）</li>
+<li>裁剪空间（P）（左手坐标系）</li>
+<li>屏幕空间（左手坐标系）</li>
+</ol>
+<blockquote>
+<p>裁剪空间是正方形或者长方形，下一步ndc归一化是除以w就到正负1范围内，（z轴在opengl 范围是正负1，在dx中范围是从0到1）
+NDC归一化后进行背面剔剔除（Back Face Culling）根据三角形的索引顺序进行判定背面（三角形索引顺序是顺时针）或者正面（三角形索引顺序是逆时针），然后剔除对应三角形</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410184101.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410184101.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410184101.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410184101.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410184101.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410184101.png" /></p>
+<h3 id="类型长度">类型长度</h3>
+<ul>
+<li>float：32位</li>
+<li>half ：16位 精度范围-60000～+60000</li>
+<li>fixed：11位 精度范围-2.0～+2.0;也可能是8位</li>
+</ul>
+<p><strong>一般使用fixed存储颜色和单位矢量</strong></p>
+<h3 id="gamma校正gamma-correct">Gamma校正（Gamma Correct）</h3>
+<blockquote>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/66558476" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/66558476</a></p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/gD4rOtGw7CJzkUe.png"
+        data-srcset="../../imgs/gD4rOtGw7CJzkUe.png, ../../imgs/gD4rOtGw7CJzkUe.png 1.5x, ../../imgs/gD4rOtGw7CJzkUe.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/gD4rOtGw7CJzkUe.png"
+        title="../../imgs/gD4rOtGw7CJzkUe.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/CsUA4dOkTS6XHa3.png"
+        data-srcset="../../imgs/CsUA4dOkTS6XHa3.png, ../../imgs/CsUA4dOkTS6XHa3.png 1.5x, ../../imgs/CsUA4dOkTS6XHa3.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/CsUA4dOkTS6XHa3.png"
+        title="../../imgs/CsUA4dOkTS6XHa3.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/EwVRcDFQgfeu9qL.png"
+        data-srcset="../../imgs/EwVRcDFQgfeu9qL.png, ../../imgs/EwVRcDFQgfeu9qL.png 1.5x, ../../imgs/EwVRcDFQgfeu9qL.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/EwVRcDFQgfeu9qL.png"
+        title="../../imgs/EwVRcDFQgfeu9qL.png" /></p>
+<p>点线代表线性颜色/亮度值（译注：这表示的是理想状态，Gamma为1），实线代表监视器显示的颜色。</p>
+<p><code>Gamma校正</code>(Gamma Correction)的思路是<strong>在最终的颜色输出上应用监视器Gamma的倒数</strong>。回头看前面的Gamma曲线图，你会有一个短划线，它是监视器Gamma曲线的翻转曲线。我们在颜色显示到监视器的时候把每个颜色输出都加上这个翻转的Gamma曲线，这样应用了监视器Gamma以后最终的颜色将会变为线性的。我们所得到的中间色调就会更亮，所以虽然监视器使它们变暗，但是我们又将其平衡回来了。</p>
+<ul>
+<li>显示器的输出在Gamma2.2空间。(显示器自动计算或者GPU，这里是自动的，没弄明白哪里会自动计算转换)</li>
+<li>伽马校正会将颜色转换到Gamma0.45空间。</li>
+<li>伽马校正和显示器输出平衡之后，结果就是Gamma1.0的线性空间。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">//为了有效解决color的值域问题，我们可以使用色调映射（Tone Map）和曝光控制（Exposure Map），用它们将color的高动态范围（HDR）映射到LDR之后再做伽马校正：
+</span><span class="c1"></span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span> <span class="o">/</span> <span class="p">(</span><span class="n">color</span> <span class="o">+</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span> <span class="c1">// 色调映射（Tone Map）
+</span><span class="c1"></span><span class="n">color</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">2.2</span><span class="p">));</span> 	 <span class="c1">// 伽马校正
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="srgb纹理">sRGB纹理</h3>
+<p>基于gamma0.45的颜色空间叫做sRGB颜色空间（Gamma 空间）。</p>
+<p>把sRGB纹理变回线性空间：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span><span class="p">;</span>
+<span class="n">vec3</span> <span class="n">linear_diffuseColor</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">texture</span><span class="p">(</span><span class="n">sRGB_diffuse</span><span class="p">,</span> <span class="n">texCoords</span><span class="p">).</span><span class="n">rgb</span><span class="p">,</span> <span class="n">vec3</span><span class="p">(</span><span class="n">gamma</span><span class="p">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>变回线性空间后可以进行光照计算等等一系列计算
+线性空间转到Gamma空间：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span><span class="p">;</span>
+<span class="n">vec3</span> <span class="n">gamma_diffuseColor</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">linear_color</span><span class="p">,</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">gamma</span><span class="p">));</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Unity中sRGB(Color Texture)选项说明：<br>
+sRGB (Color Texture)        启用此属性可指定将纹理存储在伽马空间中。对于非 HDR 颜色纹理（例如反照率和镜面反射颜色），应始终选中此复选框。如果纹理存储了有特定含义的信息，并且您需要着色器中的确切值（例如，平滑度或金属度），请禁用此属性。默认情况下会启用此属性。</p>
+</blockquote>
+<h3 id="linear和srgbhdr区别">linear和srgb,HDR区别</h3>
+<blockquote>
+<h4 id="linear模式">linear模式</h4>
+<p>在PBR流程中，环境光线效果需要使用linear模式，原来的gamma模式不再适用。因为gamma模式本身是为了使其他技术渲染出来的模型具有更真实而效果，对环境光进行了修正。但是在pbr中，贴图在设计的时候，完全是按照真实的环境中的光照去计算的，所以此处不再需要修正。</p>
+<h4 id="hdrhigh-dynamic-range">HDR(High Dynamic Range)</h4>
+<p>也叫 <strong>高动态范围</strong>  。
+显示器被限制为只能显示值为0.0到1.0间的颜色（LDR），但是在光照方程中却没有这个限制。通过使片段的颜色超过1.0，我们有了一个更大的颜色范围，这也被称作HDR(High Dynamic Range, 高动态范围)。有了HDR，亮的东西可以变得非常亮，暗的东西可以变得非常暗，而且充满细节。</p>
+</blockquote>
+<p>人眼有光线自适应的特性，这样也是能让人在暗的场景里看到更多东西，在亮的场景里能分辨更多东西，这种效果一般从电影院这样昏暗的场所里走出来更能体会，眼睛会有一个慢慢适应的过程。现在摄像头一般也会自适应曝光度，但是工业需求的有些还是需要不自动的，三维渲染之中，如果把这种真实完全模拟的图像给人眼看到，会感觉比我们人眼看到灰暗的多，所以一般会在硬件方面做一个反曲线最后变成srgb的色彩空间让人看到。</p>
+<p>游戏引擎里面最终效果给人看到，当然是这种强化过的适应人眼的色彩空间，但是我做光照计算和贴图就不行，因为会由于多次的色彩强化导致最终画面强烈失真，这时候就是需要linear的色彩空间，计算时候用真实色彩，直到输出这一步把色彩强化一遍以适合人眼。unity很早就是linear的色彩空间，但是由于后期最后一部的矫正方面很多从业人士的素养不足，或者完全没有这个意识，做出来的效果完全是不正确，或者缺乏调整弹性的。而unreal则在工作流上面几乎是整合和后期的色表，去解决这个问题。</p>
+<p>而HDR是模拟人眼的过程,能看到更广范围的光（就是亮的时候能更亮瞎），HDR图像的一般色域也超过普通的RGB色域（但也可以不超过）。HDR在unity中需要勾选摄像机上的HDR选项和使用延迟渲染deferred才能（否则会有滤镜提示The camera is not HDR enabled 这是没使用延迟渲染），要看出效果还要加个bloom之类的</p>
+<h3 id="法线">法线</h3>
+<blockquote>
+<p>法线一般用切线空间存储，优点：自由度高，uv动画扰动，可以重用，可以压缩（只存储两个方向的数据）<br>
+切线空间（右手坐标系）： 切线方向（X轴）（和uv的u方向相同,有的是和v方向相同），次法线方向（Y轴）,法线方向（Z轴）</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    half3 normal_data=UnpackNormal(normalmap);
+    float3x3 TBN=float3x3(tangent_dir,binormal_dir,normal_dir);
+    normal_dir=normalize(mul(normal_data.xyz,TBN));
+    // 和上面矩阵相乘结果一样
+    //normal_dir=normalize(tangent_dir*normal_data.x+binormal_dir*normal_data.y+normal_dir*normal_data.z);
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="纹理">纹理</h3>
+<ol>
+<li>漫反射纹理</li>
+<li>法线纹理</li>
+<li>渐变纹理（卡通风格，从冷色调到暖色调）
+<ol>
+<li>u方向渐变纹理</li>
+<li>LUT（查找表，lookup table）纹理</li>
+</ol>
+</li>
+<li>遮罩纹理
+<ul>
+<li>高光强度遮罩</li>
+<li>高光指数遮罩</li>
+<li>边缘光强度遮罩</li>
+<li>自发光遮罩</li>
+</ul>
+</li>
+<li>立方体纹理(天空盒)</li>
+<li>渲染纹理（渲染目标纹理，RT）</li>
+<li>程序纹理</li>
+<li>AO贴图
+AO贴图会根据模型某一部分相对于其他组成部分或者其他模型之间的几何距离，模拟模型的光影效果，比如一些夹角会更暗或者更亮，某一些面因为其他模型部分的影响，可能光照更少。</li>
+<li>Height贴图，高度图，视差贴图（视差偏移，视差映射）
+height贴图会给模型本身根据实际需要增加凸起或者凹陷的几何效果。比如木质模型，某处被敲打而导致的凹陷效果。</li>
+<li>粗糙度贴图</li>
+<li>动画纹理（VAT）</li>
+<li>FlowMap</li>
+</ol>
+<h3 id="光照">光照</h3>
+<ul>
+<li>漫反射：
+<ul>
+<li>lambert:<code>max(0,dot(n,l))</code></li>
+<li>halflambert:<code>dot(n,l)*0.5+0.5</code>
+<code>diffuse=basecolor*lightcolor*lambert ( or halflambert )</code></li>
+</ul>
+</li>
+<li>镜面反射（高光，各向异性高光，kk高光）：
+<ul>
+<li>phong:<code>pow(max(dot(v,r),0),_Gloss)</code></li>
+<li>blinn-phong:<code>pow(max(dot(n,h),0),_Gloss) //性能比phong要好</code></li>
+<li>speccolor=lightcolor*_SpecIntensity*lambert*blinn-phong  ( or phong )</li>
+</ul>
+</li>
+<li>间接光漫反射：可以用 <strong>光照探针（light Probe）</strong> ，使用 SH 球谐光照模拟</li>
+<li>间接光镜面反射:可以用 <strong>反射探针（reflection Probe）</strong>，使用 IBL （基于图像的照明）模拟</li>
+<li>菲涅尔：
+<code>float fresnel=_FresnelScale+(1-_FresnelScale)*pow(1-saturate(ndotv),_FresnelPower);</code><br>
+<code>float reflectionFactor = _FresnelBias + _FresnelScale * pow(1 + dot(i, n), _FresnelPower);</code></li>
+<li>环境光(ambient): 环境光可以理解为间接光的一部分(可以用 <strong>间接光漫反射</strong>和 <strong>间接光镜面反射</strong>代替)
+<ul>
+<li><code>half3 ambient_color = UNITY_LIGHTMODEL_AMBIENT.rgb * base_color.xyz;</code></li>
+</ul>
+</li>
+<li>自发光</li>
+<li>Matcap: <code>float2 uv_mapcap=(vNormal*0.5+0.5).xy;</code>使用观察空间下的法线代表uv坐标<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410205528.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410205528.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410205528.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410205528.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410205528.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410205528.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410192004.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410192004.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410192004.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410192004.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410192004.png"
+        title="20210410192004" /></li>
+</ul>
+<blockquote>
+<p><strong>Phong 光照模型：</strong> <code>max(dot(n,l),0)+pow(max(dot(v,r),0),smoothness)+ambient=Phong</code><br>
+<strong>基础光照模型=直接光漫反射(Direct Diffuse)+直接光镜面反射(Direct Specular)+间接光漫反射(Indirect Diffuse)+间接光镜面反射(Indirect Specular)</strong><br>
+直接光镜面反射: PBR中的GGX光照模型</p>
+</blockquote>
+<h4 id="环境贴图">环境贴图</h4>
+<p>环境贴图 （存储环境光或者间接光的漫反射和镜面反射的图像载体），<em>环境光可以理解为间接光的一部分</em>。</p>
+<p>环境贴图一般转成立方体贴图（Cubemap）使用，原因：<strong>直接采样环境贴图会造成贴图空间的浪费及采样会出现失真情况，所以先转成立方体贴图</strong></p>
+<p>Cubemap立方体贴图的局限性： <strong>只根据方向来采样 Cubemap 会造成采样点错误，这也是为什么Cubemap技术不适合用于平面模型作反射的原因</strong></p>
+<p>立方体贴图（Cubemap）采样：<code>texCUBE(_CubeMap, reflect_dir)</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410225349.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410225349.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410225349.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410225349.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410225349.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410225349.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210525192856.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210525192856.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210525192856.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210525192856.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210525192856.png"
+        title="20210525192856" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210525192804.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210525192804.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210525192804.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210525192804.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210525192804.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210525192804.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410230114.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410230114.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410230114.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410230114.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410230114.png"
+        title="20210410230114" /></p>
+<ul>
+<li>CubeMap</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">			samplerCUBE _CubeMap;
+			float4 _CubeMap_HDR;  
+			    half3 view_dir = normalize(_WorldSpaceCameraPos.xyz - i.pos_world);
+				half3 reflect_dir = reflect(-view_dir, normal_dir);
+				half4 color_cubemap = texCUBE(_CubeMap, reflect_dir);
+				half3 env_color = DecodeHDR(color_cubemap, _CubeMap_HDR);//确保在移动端能拿到HDR信息
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>IBL_Specular</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">samplerCUBE</span> <span class="n">_CubeMap</span><span class="p">;</span>
+<span class="n">float4</span> <span class="n">_CubeMap_HDR</span><span class="p">;</span>
+
+				<span class="n">half3</span> <span class="n">reflect_view_dir</span> <span class="o">=</span> <span class="n">reflect</span><span class="p">(</span><span class="o">-</span><span class="n">view_dir</span><span class="p">,</span> <span class="n">normal_dir</span><span class="p">);</span>
+
+				<span class="kt">float</span> <span class="n">roughness</span> <span class="o">=</span> <span class="n">tex2D</span><span class="p">(</span><span class="n">_RoughnessMap</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span><span class="p">);</span>
+				<span class="n">roughness</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">roughness</span><span class="p">,</span> <span class="n">_RoughnessContrast</span><span class="p">)</span> <span class="o">*</span> <span class="n">_RoughnessBrightness</span><span class="p">);</span>
+				<span class="n">roughness</span> <span class="o">=</span> <span class="n">lerp</span><span class="p">(</span><span class="n">_RoughnessMin</span><span class="p">,</span> <span class="n">_RoughnessMax</span><span class="p">,</span> <span class="n">roughness</span><span class="p">);</span>
+				<span class="n">roughness</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.7</span> <span class="o">-</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="n">roughness</span><span class="p">);</span>
+				<span class="kt">float</span> <span class="n">mip_level</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="mf">6.0</span><span class="p">;</span>
+
+				<span class="n">half4</span> <span class="n">color_cubemap</span> <span class="o">=</span> <span class="n">texCUBElod</span><span class="p">(</span><span class="n">_CubeMap</span><span class="p">,</span> <span class="n">float4</span><span class="p">(</span><span class="n">reflect_view_dir</span><span class="p">,</span> <span class="n">mip_level</span><span class="p">));</span>
+				<span class="n">half3</span> <span class="n">env_color</span> <span class="o">=</span> <span class="n">DecodeHDR</span><span class="p">(</span><span class="n">color_cubemap</span><span class="p">,</span> <span class="n">_CubeMap_HDR</span><span class="p">);</span><span class="c1">//确保在移动端能拿到HDR信息
+</span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>IBL_Diffuse</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c">			<span class="n">samplerCUBE</span> <span class="n">_CubeMap</span><span class="p">;</span>
+			<span class="n">float4</span> <span class="n">_CubeMap_HDR</span><span class="p">;</span>
+
+    			<span class="kt">float</span> <span class="n">roughness</span> <span class="o">=</span> <span class="n">tex2D</span><span class="p">(</span><span class="n">_RoughnessMap</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span><span class="p">);</span>
+				<span class="n">roughness</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">roughness</span><span class="p">,</span> <span class="n">_RoughnessContrast</span><span class="p">)</span> <span class="o">*</span> <span class="n">_RoughnessBrightness</span><span class="p">);</span>
+				<span class="n">roughness</span> <span class="o">=</span> <span class="n">lerp</span><span class="p">(</span><span class="n">_RoughnessMin</span><span class="p">,</span> <span class="n">_RoughnessMax</span><span class="p">,</span> <span class="n">roughness</span><span class="p">);</span>
+				<span class="n">roughness</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.7</span> <span class="o">-</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="n">roughness</span><span class="p">);</span>
+				<span class="kt">float</span> <span class="n">mip_level</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="mf">6.0</span><span class="p">;</span>
+				<span class="n">float4</span> <span class="n">uv_ibl</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="n">normal_dir</span><span class="p">,</span> <span class="n">mip_level</span><span class="p">);</span>
+				<span class="n">half4</span> <span class="n">color_cubemap</span> <span class="o">=</span> <span class="n">texCUBElod</span><span class="p">(</span><span class="n">_CubeMap</span><span class="p">,</span> <span class="n">uv_ibl</span><span class="p">);</span>
+				<span class="n">half3</span> <span class="n">env_color</span> <span class="o">=</span> <span class="n">DecodeHDR</span><span class="p">(</span><span class="n">color_cubemap</span><span class="p">,</span> <span class="n">_CubeMap_HDR</span><span class="p">);</span><span class="c1">//确保在移动端能拿到HDR信息
+</span><span class="c1"></span>				<span class="n">half3</span> <span class="n">final_color</span> <span class="o">=</span> <span class="n">env_color</span> <span class="o">*</span> <span class="n">ao</span> <span class="o">*</span> <span class="n">_Tint</span><span class="p">.</span><span class="n">rgb</span> <span class="o">*</span> <span class="n">_Tint</span><span class="p">.</span><span class="n">rgb</span> <span class="o">*</span> <span class="n">_Expose</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>IBL_Reflection-Probe(环境光镜面反射)（unity捕捉生成的,unity最多支持两个反射探针）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    			half3 view_dir = normalize(_WorldSpaceCameraPos.xyz - i.pos_world);
+				half3 reflect_view_dir = reflect(-view_dir, normal_dir);
+
+				reflect_view_dir = RotateAround(_Rotate, reflect_view_dir);
+				
+				float roughness = tex2D(_RoughnessMap, i.uv);
+				roughness = saturate(pow(roughness, _RoughnessContrast) * _RoughnessBrightness);
+				roughness = lerp(_RoughnessMin, _RoughnessMax, roughness);
+				roughness = roughness * (1.7 - 0.7 * roughness);
+				float mip_level = roughness * 6.0;
+
+				
+				half4 color_cubemap = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflect_view_dir, mip_level);
+				half3 env_color = DecodeHDR(color_cubemap, unity_SpecCube0_HDR);//确保在移动端能拿到HDR信息
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>IBL_Light-Probe（环境光漫反射，内部使用SH读取）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    half3 env_color = ShadeSH9(float4(normal_dir,1.0)); //unity 内置函数
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>SH球谐光照（环境光漫反射可以使用SH）（可以替代IBL_Diffuse，节省性能，不用读取cube贴图）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    			float4 normalForSH = float4(normal_dir, 1.0);
+				//SHEvalLinearL0L1
+				half3 x;
+				x.r = dot(custom_SHAr, normalForSH);
+				x.g = dot(custom_SHAg, normalForSH);
+				x.b = dot(custom_SHAb, normalForSH);
+
+				//SHEvalLinearL2
+				half3 x1, x2;
+				// 4 of the quadratic (L2) polynomials
+				half4 vB = normalForSH.xyzz * normalForSH.yzzx;
+				x1.r = dot(custom_SHBr, vB);
+				x1.g = dot(custom_SHBg, vB);
+				x1.b = dot(custom_SHBb, vB);
+
+				// Final (5th) quadratic (L2) polynomial
+				half vC = normalForSH.x*normalForSH.x - normalForSH.y*normalForSH.y;
+				x2 = custom_SHC.rgb * vC;
+
+				float3 sh = max(float3(0.0, 0.0, 0.0), (x + x1 + x2));
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410233734.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410233734.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410233734.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410233734.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410233734.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410233734.png" /></p>
+<h4 id="光照衰减">光照衰减</h4>
+<blockquote>
+<p>光照衰减计算量太大，unity使用查找表（LUT，lookup table）纹理存储衰减数据（_LightTexture0），如果光源使用了cookie，则使用衰减查找纹理_LightTextureB0。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    # ifdef USING_DIRECTIONAL_LIGHT
+        fixed atten=1.0;
+    #else
+        float3 lightcoord = mul(unity_WorldToLight,float4(i.worldPosition,1)).xyz;
+        fixed atten=tex2D(_LightTexture0,dot(lightcoord,lightcoord).rr).r; //r equal UNITY_ATTEN_CHANNEL not cookie
+    #endif
+
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>一种简单的做法 点光源</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    # ifdef USING_DIRECTIONAL_LIGHT
+        //half3 light_dir=normalize(_WorldSpaceLightPos0.xyz);
+        fixed atten=1.0;
+    #else
+        //half3 light_dir=normalize(_WorldSpaceLightPos0.xyz-i.pos_world);
+        half distance=length(_WorldSpaceLightPos0.xyz-i.pos_world);
+        half range=1.0/untiy_WorldToLight[0][0]; //光源范围
+        fixed atten=saturate((range-distance)/range);
+    #endif
+    half3 light_dir=normalize( lerp(_WorldSpaceLightPos0.xyz,_WorldSpaceLightPos0.xyz-i.pos_world,_WorldSpaceLightPos0.w));
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="阴影shadow">阴影（Shadow）</h4>
+<blockquote>
+<p>阴影映射纹理（深度纹理）存储距离光源的深度信息<br>
+老版本是在光源空间中计算深度数据<br>
+新版本部分平台是在屏幕空间中计算深度数据，显卡必须支持MRT才行</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410222024.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410222024.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410222024.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410222024.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410222024.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410222024.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223031.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223031.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223031.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223031.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410223031.png"
+        title="20210410223031" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223113.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223113.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223113.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223113.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410223113.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410223113.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223441.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223441.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223441.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410223441.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410223441.png"
+        title="20210410223441" /></p>
+<h3 id="角色渲染">角色渲染</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210411011821.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210411011821.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210411011821.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210411011821.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210411011821.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210411011821.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210411012026.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210411012026.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210411012026.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210411012026.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210411012026.png"
+        title="20210411012026" /></p>
+<h3 id="动画">动画</h3>
+<h4 id="uv动画">uv动画</h4>
+<h4 id="顶点动画">顶点动画</h4>
+<pre><code>1. 顶点动画贴图（VAT）  （风力动画可以用这种）`比较细腻`(旗帜燃烧CS06)
+</code></pre>
+<blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-11-25-20-06-28.png"
+        data-srcset="../../imgs/2021-11-25-20-06-28.png, ../../imgs/2021-11-25-20-06-28.png 1.5x, ../../imgs/2021-11-25-20-06-28.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-11-25-20-06-28.png"
+        title="../../imgs/2021-11-25-20-06-28.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-11-25-20-08-03.png"
+        data-srcset="../../imgs/2021-11-25-20-08-03.png, ../../imgs/2021-11-25-20-08-03.png 1.5x, ../../imgs/2021-11-25-20-08-03.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-11-25-20-08-03.png"
+        title="../../imgs/2021-11-25-20-08-03.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2021-11-25-20-09-52.png"
+        data-srcset="../../imgs/2021-11-25-20-09-52.png, ../../imgs/2021-11-25-20-09-52.png 1.5x, ../../imgs/2021-11-25-20-09-52.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2021-11-25-20-09-52.png"
+        title="../../imgs/2021-11-25-20-09-52.png" />
+2.</p>
+</blockquote>
+<h4 id="关键帧动画">关键帧动画</h4>
+<h4 id="骨骼动画">骨骼动画</h4>
+<h3 id="屏幕后处理">屏幕后处理</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210531181339.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210531181339.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210531181339.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210531181339.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210531181339.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210531181339.png" /></p>
+<ul>
+<li>
+<p>亮度<br>
+<code>fixed3 finalColor=baseCol.rgb*_Brightness</code></p>
+</li>
+<li>
+<p>饱和度</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    fixed luminance=0.2125*baseCol.r+0.7154*baseCol.g+0.0721*baseCol.b;
+    fixed3 luminanceCol=fixed(luminance,luminance,luminance);
+    finalCol = lerp(luminanceCol,finalCol,_Saturation); 
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>对比度</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    fixed3 avgColor=fixed3(0.5,0.5,0.5);
+    finalCol=lerp(avgColor,finalCol,_Constrast);
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>晕影/暗角（Vignette）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    //暗角/晕影
+    float2 d=abs(i.uv-half2(0.5,0.5))*_VignetteIntensity;
+    d=pow(saturate(d),_VignetteRoundness);
+    float dist=length(d);
+    float vfactor=pow(saturate(1.0-dist*dist),_VignetteSmoothness);
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="边缘检测">边缘检测</h4>
+<h4 id="模糊blur">模糊（Blur）</h4>
+<blockquote>
+<p>参考：<a href="https://blog.csdn.net/poem_qianmo/article/details/105350519" target="_blank" rel="noopener noreffer">高品质后处理：十种图像模糊算法的总结与实现</a></p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/niCG5StoMDuUzlR.png"
+        data-srcset="../../imgs/niCG5StoMDuUzlR.png, ../../imgs/niCG5StoMDuUzlR.png 1.5x, ../../imgs/niCG5StoMDuUzlR.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/niCG5StoMDuUzlR.png"
+        title="../../imgs/niCG5StoMDuUzlR.png" /></p>
+<h5 id="方框模糊box-blur">方框模糊（Box Blur）</h5>
+<h5 id="高斯模糊gaussian-blur">高斯模糊（Gaussian Blur）</h5>
+<h5 id="双重模糊dual-blur">双重模糊（Dual Blur）</h5>
+<h5 id="kawase模糊dualkawaseblur">Kawase模糊（DualKawaseBlur）</h5>
+<h5 id="运动模糊">运动模糊</h5>
+<h4 id="泛光-bloom">泛光 （Bloom）</h4>
+<h4 id="光晕">光晕</h4>
+<h3 id="深度纹理和法线纹理">深度纹理和法线纹理</h3>
+<blockquote>
+<p>设置 <code>camera.depthTextureMode=DepthTextureMode.DepthNormals;</code><br>
+<code>_CameraDepthTexture</code></p>
+</blockquote>
+<h3 id="全局雾效">全局雾效</h3>
+<h3 id="卡通风格渲染">卡通风格渲染</h3>
+<h3 id="素描风格渲染">素描风格渲染</h3>
+<h3 id="色调映射tone-mapping">色调映射(Tone-Mapping)</h3>
+<p><strong>用Tone-Mapping压缩高光范围</strong>
+<em>HDR颜色通过色调映射转到（0-1）范围内</em>
+<strong>一般用于屏幕后处理</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    // Tone-Mapping 需要将x从Gamma空间转到Lear线性空间使用，结果再转到Gamma空间下
+    inline float3 ACESFilm(float3 x)
+    {
+        float a=2.51f;
+        float b= 0.03f;
+        float c=2.43f;
+        float d=0.59f;
+        float e=0.14f;
+        return saturate((x*(a*x+b))/(x*(c*x+d)+e))
+    }
+
+    // Gamma空间 转Lear空间 color_lear=pow(color_gamma,2.2);
+    // Lear空间转Gamma空间 color_gamma=pow(color_lear,1.0/2.2);
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410220805.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410220805.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410220805.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader%e7%ac%94%e8%ae%b01/20210410220805.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410220805.png"
+        title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/Shader笔记1/20210410220805.png" /></p>
+<h3 id="渲染优化">渲染优化</h3>
+<h4 id="开销成因">开销成因</h4>
+<ol>
+<li>CPU
+<ol>
+<li>过多的drawcall</li>
+<li>复杂的脚本或者物理模拟</li>
+</ol>
+</li>
+<li>GPU
+<ol>
+<li>顶点处理
+<ol>
+<li>过多的顶点</li>
+<li>过多的逐顶点计算</li>
+</ol>
+</li>
+<li>片元处理
+<ol>
+<li>过多的片元（可能分辨率高或者overdraw）</li>
+<li>过多的逐片元计算</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>带宽
+<ol>
+<li>使用尺寸很大且未压缩的纹理</li>
+<li>分辨率过高的帧缓存</li>
+</ol>
+</li>
+</ol>
+<h4 id="优化方案">优化方案</h4>
+<blockquote>
+<p><a href="https://blog.csdn.net/candycat1992/article/details/42127811" target="_blank" rel="noopener noreffer">【Unity技巧】Unity中的优化技术</a></p>
+</blockquote>
+<ol>
+<li>CPU
+<ol>
+<li>静态批处理（static batching）降低drawcall</li>
+<li>动态批处理（顶点属性小于900（如果使用顶点坐标，法线和纹理坐标则顶点数量小于300），lightmap必须参数相同指向同一位置，多pass打断合并）降低drawcall</li>
+<li>使用图集</li>
+<li>共享材质</li>
+</ol>
+</li>
+<li>GPU
+<ol>
+<li>减少顶点数量
+<ol>
+<li>优化几何体</li>
+<li>使用模型lod（Level of Detail）技术（unity中使用LOD Group组件）</li>
+<li>使用遮挡剔除（Occlusion Culling）技术</li>
+<li>使用mesh压缩</li>
+</ol>
+</li>
+<li>减少片元数量（核心降低overdraw）
+<ol>
+<li>控制绘制顺序</li>
+<li>警惕透明物体</li>
+<li>减少实时光照和阴影</li>
+</ol>
+</li>
+<li>减少计算复杂度
+<ol>
+<li>使用Shader的LOD技术
+<ol>
+<li>设置Shader.maximumLDO或者Shader.globalMaximumLOD来允许最大的LOD</li>
+</ol>
+</li>
+<li>Shader代码优化
+<ol>
+<li>把高斯模糊和边缘计算计算放到顶点shader中</li>
+<li>float存储顶点坐标等变量，half存储一些标量和纹理坐标等信息，fixed适用于大多数颜色变量和归一化的方向矢量</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>节省内存带宽
+<ol>
+<li>减少纹理大小</li>
+<li>mipmap</li>
+<li>关闭readwrite</li>
+<li>纹理压缩（ETC2 8bit，ASTC 4x4 block，PVRTC）</li>
+<li>降低屏幕分辨率</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>待处理
+7.4.2 遮罩纹理的使用 data2
+着色器替换技术（Shader Replacement）</p>
+</blockquote>
+<blockquote>
+<p>常用素材资料：<br>
+<a href="https://sketchfab.com/">https://sketchfab.com/</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-04-07 21:39:06</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" data-hashtag="shader"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" data-title="Shader笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" data-title="Shader笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" data-title="Shader笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" data-title="Shader笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" data-title="Shader笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" data-title="Shader笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/shader/">shader</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" class="prev" rel="prev" title="Unity Texture2D的SetPiexl严重耗时的优化方案"><i class="fas fa-angle-left fa-fw"></i>Unity Texture2D的SetPiexl严重耗时的优化方案</a>
+            <a href="/unity-assert%E6%96%AD%E8%A8%80%E5%B7%A5%E5%85%B7/" class="next" rel="next" title="Unity Assert断言工具">Unity Assert断言工具<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>lua中类的实现 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="lua中类的实现" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
+<meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="lua中类的实现"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" /><link rel="prev" href="https://codingriver.github.io/mac%E8%AE%BE%E7%BD%AElibrary-%E6%98%BE%E7%A4%BA/" /><link rel="next" href="https://codingriver.github.io/luaforwindows-%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "lua中类的实现",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0\/"
+        },"genre": "posts","keywords": "lua","wordcount":  2551 ,
+        "url": "https:\/\/codingriver.github.io\/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">lua中类的实现</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="far fa-folder fa-fw"></i>lua</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2551 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="leancloud_visitors" data-flag-title="lua中类的实现">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#0x01-lua元表和元方法">0X01 lua元表和元方法</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#table访问的元方法">table访问的元方法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#0x02-lua类的实现">0X02 lua类的实现</a></li>
+    <li><a href="#0x03-lua简单的类的实现">0X03 lua简单的类的实现</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>这里说明下unity中一般用C# 加lua的方式来支持代码的热更新，而在lua中一般封装类来实现业务
+这里两年前研究过，没有做记录，今天提到了，发现忘干净了，今天借此机会复习下做下记录吧!
+第二节的代码已经找不到出处了</p>
+</blockquote>
+<h2 id="0x01-lua元表和元方法">0X01 lua元表和元方法</h2>
+<p>元表设置：<code>    setmetatable(table, metatable)</code>
+元表读取：<code>    getmetatable(table)</code>
+元方法操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    metatable.元方法 = function (可接受参数)
+		(函数体)
+    end
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="table访问的元方法">table访问的元方法</h4>
+<p><strong>元方法：</strong>
+算数运算符：<code>__add</code>(加法)[+]、<code>__mul</code>(乘法)[*]、<code>__sub</code>(减法)[-]、<code>__div</code>(除法)[/]、<code>__unm</code>(相反数)[-]、<code>__mod</code>(取模)[%]、<code>__pow</code>(乘幂)[^]。
+逻辑运算符：<code>__eq</code>(等于)[=]、<code>__lt</code>(小于)[&lt;]、<code>__le</code>(小于等于)[&lt;=]。
+其他运算符：<code>__concat</code>(连接)[..]、<code>__len</code>(取长度)[#]。
+其他元方法：
+<code>__tostring</code>：返回值(可接受参数：table)
+<code> __call</code>：函数调用(可接受参数：table, key)
+<code>__metatable</code>：保护元方法(字符串)
+<code>__index</code>：查找表索引(可接受参数：table, key)
+<code>__newindex</code>：添加新索引(可接受参数：table, key, value)
+<strong>说明：</strong>
+<strong><code>__add</code></strong>
+如果任何不是数字的值（包括不能转换为数字的字符串）做加法， Lua 就会尝试调用元方法。 首先、Lua 检查第一个操作数（即使它是合法的）， 如果这个操作数没有为 &ldquo;__add&rdquo; 事件定义元方法， Lua 就会接着检查第二个操作数。 一旦 Lua 找到了元方法， 它将把两个操作数作为参数传入元方法， 元方法的结果（调整为单个值）作为这个操作的结果。 如果找不到元方法，将抛出一个错误。(其它 算数运算符和逻辑运算符及其它运算符跟这个类似)</p>
+<p><strong><code>__index</code></strong></p>
+<p>当我们访问一个表的不存在的域，返回结果为nil，这是正确的，但并不一定正确。实际上，这种访问触发lua解释器去查找__index元方法：如果不存在，返回结果为nil；如果存在则由__index 元方法返回结果。当我们想不通过调用__index 元方法来访问一个表，我们可以使用rawget函数。Rawget(t,i)的调用以raw access方式访问表。这种访问方式不会使你的代码变快（the overhead of a function call kills any gain you could have），但有些时候我们需要他，在后面我们将会看到。</p>
+<p><strong><code>__newindex</code></strong></p>
+<p>__newindex元方法用来对表更新，__index则用来对表访问。当你给表的一个缺少的域赋值，解释器就会查找__newindex元方法：如果存在则调用这个函数而不进行赋值操作。像__index一样，如果元方法是一个表，解释器对指定的那个表，而不是原始的表进行赋值操作。另外，有一个raw函数可以绕过元方法：调用rawset(t,k,v)不掉用任何元方法对表t的k域赋值为v。__index和__newindex 元方法的混合使用提供了强大的结构：从只读表到面向对象编程的带有继承默认值的表。</p>
+<blockquote>
+<p>参考文章
+<a href="https://blog.csdn.net/jingangxin666/article/details/80382748" target="_blank" rel="noopener noreffer">Lua 元表与元方法</a>
+<a href="https://www.cnblogs.com/Dong-Forward/p/6063365.html" target="_blank" rel="noopener noreffer">lua元表以及元方法</a></p>
+</blockquote>
+<h2 id="0x02-lua类的实现">0X02 lua类的实现</h2>
+<p>lua类的实现直接上类的实现的代码,注释加好了,文件名 <code>class.lua</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">--</span><span class="kr">class</span><span class="p">.</span><span class="nx">lua</span>
+<span class="nx">local</span> <span class="nx">_class</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="kd">function</span> <span class="kr">class</span><span class="p">(</span><span class="kr">super</span><span class="p">)</span>
+    <span class="o">--</span> <span class="nx">一个类的构建</span><span class="err">，</span><span class="nx">这里构建的是类本身</span><span class="err">，</span><span class="nx">ctor是构造函数</span><span class="err">，</span><span class="nx">super是父类</span><span class="err">，</span><span class="nx">这里继承只允许一个父类</span>
+    <span class="nx">local</span> <span class="nx">class_type</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">ctor</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="kr">super</span> <span class="o">=</span> <span class="kr">super</span> <span class="p">}</span>
+    <span class="o">--</span><span class="nx">vtbl是当前类中所有域存放的地方</span>
+    <span class="nx">local</span> <span class="nx">vtbl</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="nx">_class</span><span class="p">[</span><span class="nx">class_type</span><span class="p">]</span> <span class="o">=</span> <span class="nx">vtbl</span>
+    <span class="o">--</span><span class="nx">_class</span><span class="p">[</span><span class="kr">super</span><span class="p">]</span><span class="nx">这里返回的是super</span> <span class="nx">本身作为class_type</span> <span class="nx">对应的vtbl</span>
+    <span class="o">--</span><span class="nx">父类的vtbl</span>
+    <span class="nx">vtbl</span><span class="p">.</span><span class="kr">super</span> <span class="o">=</span> <span class="nx">_class</span><span class="p">[</span><span class="kr">super</span><span class="p">]</span>  
+    <span class="nx">class_type</span><span class="p">.</span><span class="nx">superclass</span> <span class="o">=</span> <span class="nx">_class</span><span class="p">[</span><span class="kr">super</span><span class="p">]</span>
+
+    <span class="o">--</span><span class="nx">设置class_type类本身的元方法</span><span class="err">，</span><span class="nx">这里操作的是vtbl</span><span class="err">，</span><span class="nx">并没有修改class_type本身</span><span class="err">（</span><span class="nx">查找域和添加域都是操作的vtbl</span><span class="err">，</span><span class="nx">class_type只是简单的原型</span><span class="err">）</span>
+    <span class="nx">setmetatable</span><span class="p">(</span><span class="nx">class_type</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nx">__newindex</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="nx">vtbl</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span> <span class="nx">end</span><span class="p">,</span>
+        <span class="nx">__index</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span> <span class="k">return</span> <span class="nx">vtbl</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="nx">end</span><span class="p">,</span>
+    <span class="p">}</span> <span class="p">)</span>
+
+    <span class="k">if</span> <span class="kr">super</span> <span class="nx">then</span>
+        <span class="o">--</span><span class="nx">关联父类子类的关系的查找域</span><span class="err">，</span><span class="nx">vtbl关联父类的btbl查找域</span>
+        <span class="nx">setmetatable</span><span class="p">(</span><span class="nx">vtbl</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">__index</span> <span class="o">=</span>
+            <span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nx">k</span> <span class="nx">and</span> <span class="nx">_class</span><span class="p">[</span><span class="kr">super</span><span class="p">]</span> <span class="nx">then</span>
+                    <span class="nx">local</span> <span class="nx">ret</span> <span class="o">=</span> <span class="nx">_class</span><span class="p">[</span><span class="kr">super</span><span class="p">][</span><span class="nx">k</span><span class="p">]</span>
+                    <span class="nx">vtbl</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="nx">ret</span>
+                    <span class="k">return</span> <span class="nx">ret</span>
+                <span class="k">else</span>
+                    <span class="k">return</span> <span class="nx">nil</span>
+                <span class="nx">end</span>
+            <span class="nx">end</span>
+        <span class="p">}</span> <span class="p">)</span>
+    <span class="nx">end</span>
+
+    <span class="nx">class_type</span><span class="p">.</span><span class="nx">New</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(...)</span>
+        <span class="o">--</span> <span class="nx">一个类实例的构建</span>
+        <span class="nx">local</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="kr">class</span> <span class="o">=</span> <span class="nx">class_type</span> <span class="p">}</span>
+        <span class="o">--</span> <span class="nx">设置实例关联类的查找域vtbl</span>
+        <span class="nx">setmetatable</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nx">__index</span> <span class="o">=</span>
+            <span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span> <span class="nx">k</span><span class="p">)</span>
+                <span class="k">return</span> <span class="nx">_class</span><span class="p">[</span><span class="nx">class_type</span><span class="p">][</span><span class="nx">k</span><span class="p">]</span>
+            <span class="nx">end</span>
+        <span class="p">}</span> <span class="p">)</span>
+
+        <span class="o">--</span><span class="nx">类和所有父类的ctor构造函数收集</span><span class="err">，</span><span class="nx">第一个当前类的ctor</span><span class="err">，</span><span class="nx">第二个父类的ctor</span><span class="err">，</span><span class="nx">第三个父类的父类的ctor</span><span class="err">，</span><span class="p">....</span>
+        <span class="nx">local</span> <span class="nx">inherit_list</span> <span class="o">=</span> <span class="p">{</span> <span class="p">}</span>
+        <span class="nx">local</span> <span class="nx">class_ptr</span> <span class="o">=</span> <span class="nx">class_type</span>
+        <span class="k">while</span> <span class="nx">class_ptr</span> <span class="k">do</span>
+            <span class="k">if</span> <span class="nx">class_ptr</span><span class="p">.</span><span class="nx">ctor</span> <span class="nx">then</span> <span class="nx">table</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">inherit_list</span><span class="p">,</span> <span class="nx">class_ptr</span><span class="p">)</span> <span class="nx">end</span>
+            <span class="nx">class_ptr</span> <span class="o">=</span> <span class="nx">class_ptr</span><span class="p">.</span><span class="kr">super</span>
+        <span class="nx">end</span>
+        <span class="nx">local</span> <span class="nx">inherit_length</span> <span class="o">=</span> <span class="err">#</span><span class="nx">inherit_list</span>
+        <span class="o">--</span><span class="nx">调用所有构造函数</span><span class="err">，</span><span class="nx">从最上层的父类ctor开始知道当前类的ctor</span>
+        <span class="k">if</span> <span class="nx">inherit_length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="nx">then</span>
+            <span class="k">for</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">inherit_length</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="k">do</span> 
+                <span class="nx">inherit_list</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">ctor</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="p">...)</span>
+            <span class="nx">end</span>
+        <span class="nx">end</span>
+        <span class="nx">obj</span><span class="p">.</span><span class="kr">super</span> <span class="o">=</span> <span class="nx">inherit_list</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="nx">detectMemoryLeak</span> <span class="nx">then</span>
+            <span class="nx">registerToWeakTable</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">debug</span><span class="p">.</span><span class="nx">traceback</span><span class="p">(</span><span class="s2">&#34;obj lua stack:&#34;</span><span class="p">));</span>
+        <span class="nx">end</span>
+
+        <span class="nx">obj</span><span class="p">.</span><span class="kr">class</span> <span class="o">=</span> <span class="nx">class_type</span>
+
+        <span class="k">return</span> <span class="nx">obj</span>
+    <span class="nx">end</span>
+
+    <span class="nx">class_type</span><span class="p">.</span><span class="nx">is</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">self_ptr</span><span class="p">,</span> <span class="nx">compare_class</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">not</span> <span class="nx">compare_class</span> <span class="nx">or</span> <span class="nx">not</span> <span class="nx">self_ptr</span> <span class="nx">then</span> <span class="k">return</span> <span class="kc">false</span> <span class="nx">end</span>
+        <span class="nx">local</span> <span class="nx">raw_class</span> <span class="o">=</span> <span class="nx">self_ptr</span><span class="p">.</span><span class="kr">class</span>
+        <span class="k">while</span> <span class="nx">raw_class</span> <span class="k">do</span>
+            <span class="k">if</span> <span class="nx">raw_class</span> <span class="o">==</span> <span class="nx">compare_class</span> <span class="nx">then</span> <span class="k">return</span> <span class="kc">true</span> <span class="nx">end</span>
+            <span class="nx">raw_class</span> <span class="o">=</span> <span class="nx">raw_class</span><span class="p">.</span><span class="kr">super</span>
+        <span class="nx">end</span>
+        <span class="k">return</span> <span class="kc">false</span>
+    <span class="nx">end</span>
+
+    <span class="k">return</span> <span class="nx">class_type</span>
+<span class="nx">end</span>
+
+<span class="o">--</span><span class="nx">测试代码</span>
+<span class="kd">function</span> <span class="nx">printclass</span><span class="p">(</span><span class="nx">class_type</span><span class="p">)</span>
+	<span class="nx">local</span> <span class="nx">s</span><span class="o">=</span><span class="s2">&#34;{&#34;</span>
+	<span class="k">for</span> <span class="nx">k</span><span class="p">,</span><span class="nx">v</span> <span class="k">in</span> <span class="nx">pairs</span><span class="p">(</span><span class="nx">class_type</span><span class="p">)</span><span class="k">do</span>
+		<span class="nx">s</span><span class="o">=</span><span class="nx">s</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">k</span><span class="p">)..</span><span class="s2">&#34;:&#34;</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">v</span><span class="p">)..</span><span class="s2">&#34;,&#34;</span>
+	<span class="nx">end</span>
+	<span class="nx">s</span><span class="o">=</span><span class="nx">s</span><span class="p">..</span><span class="s2">&#34;}&#34;</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">class_type</span><span class="p">)</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s2">&#34;class_type::&#34;</span><span class="p">..</span><span class="nx">s</span><span class="p">);</span>
+
+	<span class="nx">s</span><span class="o">=</span><span class="s2">&#34;{&#34;</span>
+    <span class="nx">local</span> <span class="nx">vtbl</span><span class="o">=</span><span class="nx">_class</span><span class="p">[</span><span class="nx">class_type</span><span class="p">]</span>
+	<span class="k">for</span> <span class="nx">k</span><span class="p">,</span><span class="nx">v</span> <span class="k">in</span> <span class="nx">pairs</span><span class="p">(</span><span class="nx">vtbl</span><span class="p">)</span><span class="k">do</span>
+		<span class="nx">s</span><span class="o">=</span><span class="nx">s</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">k</span><span class="p">)..</span><span class="s2">&#34;:&#34;</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">v</span><span class="p">)..</span><span class="s2">&#34;,&#34;</span>
+	<span class="nx">end</span>
+	<span class="nx">s</span><span class="o">=</span><span class="nx">s</span><span class="p">..</span><span class="s2">&#34;}&#34;</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">vtbl</span><span class="p">)</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s2">&#34;vtbl::&#34;</span><span class="p">..</span><span class="nx">s</span><span class="p">);</span>
+<span class="nx">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>这里说下，类的实现由两种，一种是纯copy所有的域，还有一种是元表访问，只有修改时才会在当前类真的添加父类的键，而不是修改父类的，这里用的是元表访问</strong></p>
+<p>下面来做测试代码，文件名字<code>test.lua</code>，需要把<code>class.lua</code>和<code>test.lua</code>放在同一个目录下，require文件需要</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">require</span><span class="s2">&#34;class&#34;</span>
+
+<span class="o">--</span><span class="nx">转table成为字符串</span>
+<span class="nx">log</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span>
+	<span class="nx">local</span> <span class="nx">s</span><span class="o">=</span><span class="s2">&#34;{&#34;</span>
+	<span class="k">for</span> <span class="nx">k</span><span class="p">,</span><span class="nx">v</span> <span class="k">in</span> <span class="nx">pairs</span><span class="p">(</span><span class="nx">t</span><span class="p">)</span><span class="k">do</span>
+		<span class="nx">s</span><span class="o">=</span><span class="nx">s</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">k</span><span class="p">)..</span><span class="s2">&#34;:&#34;</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">v</span><span class="p">)..</span><span class="s2">&#34;,&#34;</span>
+	<span class="nx">end</span>
+	<span class="nx">s</span><span class="o">=</span><span class="nx">s</span><span class="p">..</span><span class="s2">&#34;}&#34;</span>
+	<span class="k">return</span> <span class="nx">s</span><span class="p">;</span>
+<span class="nx">end</span>
+
+
+
+<span class="o">--</span><span class="nx">定义一个类A</span>
+<span class="nx">A</span><span class="o">=</span><span class="kr">class</span><span class="p">()</span>
+<span class="o">--</span><span class="nx">定义一个静态变量</span>
+<span class="nx">A</span><span class="p">.</span><span class="kr">static</span><span class="o">=</span><span class="mi">10</span>
+
+<span class="kd">function</span> <span class="nx">A</span><span class="o">:</span><span class="nx">ctor</span><span class="p">()</span>
+	<span class="nx">self</span><span class="p">.</span><span class="nx">a</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span>
+	<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;---A:ctor----&#34;</span><span class="p">)</span>
+<span class="nx">end</span>
+<span class="kd">function</span> <span class="nx">A</span><span class="o">:</span><span class="nx">test</span><span class="p">()</span>
+	<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;---A:test----a:&#34;</span><span class="p">..</span><span class="nx">self</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+<span class="nx">end</span>
+
+<span class="o">--</span><span class="nx">定义一个类B</span><span class="p">,</span><span class="nx">继承A</span>
+<span class="nx">B</span><span class="o">=</span><span class="kr">class</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span>
+<span class="kd">function</span> <span class="nx">B</span><span class="o">:</span><span class="nx">ctor</span><span class="p">()</span>
+	<span class="nx">self</span><span class="p">.</span><span class="nx">b</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+	<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;---B:ctor----&#34;</span><span class="p">)</span>
+<span class="nx">end</span>
+<span class="kd">function</span> <span class="nx">B</span><span class="o">:</span><span class="nx">test</span><span class="p">()</span>
+	<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;---B:test----a:&#34;</span><span class="p">..</span><span class="nx">self</span><span class="p">.</span><span class="nx">a</span><span class="p">)</span>
+<span class="nx">end</span>
+
+<span class="o">--</span><span class="nx">构建实例</span>
+<span class="nx">local</span> <span class="nx">a</span><span class="o">=</span> <span class="nx">A</span><span class="p">.</span><span class="nx">New</span><span class="p">()</span>
+<span class="nx">a</span><span class="o">:</span><span class="nx">test</span><span class="p">();</span>
+<span class="nx">local</span> <span class="nx">b</span><span class="o">=</span><span class="nx">B</span><span class="p">.</span><span class="nx">New</span><span class="p">()</span>
+<span class="nx">b</span><span class="o">:</span><span class="nx">test</span><span class="p">();</span>
+
+<span class="o">--</span><span class="nx">打印</span>
+<span class="nx">printclass</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;a::&#34;</span><span class="p">..</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">))</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;------------------------------------------------------------&#34;</span><span class="p">)</span>
+<span class="nx">printclass</span><span class="p">(</span><span class="nx">B</span><span class="p">)</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;b::&#34;</span><span class="p">..</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">))</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;--------------------------modify static of B----------------------------------&#34;</span><span class="p">)</span>
+<span class="nx">B</span><span class="p">.</span><span class="kr">static</span>  <span class="o">=</span><span class="mi">20</span><span class="p">;</span>
+<span class="nx">printclass</span><span class="p">(</span><span class="nx">B</span><span class="p">)</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;b::&#34;</span><span class="p">..</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">))</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;--------------------------modify static of b----------------------------------&#34;</span><span class="p">)</span>
+<span class="nx">b</span><span class="p">.</span><span class="kr">static</span>  <span class="o">=</span><span class="mi">30</span><span class="p">;</span>
+<span class="nx">printclass</span><span class="p">(</span><span class="nx">B</span><span class="p">)</span>
+<span class="nx">print</span><span class="p">(</span><span class="s2">&#34;b::&#34;</span><span class="p">..</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">))</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>结果：注意标红的a，是因为B实例化时执行了父类的ctor构造函数产生的，static:20和static:30,是因为  B.static=20,b.static=30代码通过__newindex实现的</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20181011230250419.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/20181011230250419.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/20181011230250419.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/20181011230250419.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/20181011230250419.png"
+        title="在这里插入图片描述" /></p>
+<h2 id="0x03-lua简单的类的实现">0X03 lua简单的类的实现</h2>
+<p>lua类的实现，==简单版本==</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">
+<span class="o">--</span><span class="nx">简单的类的实现</span>
+<span class="kd">function</span> <span class="kr">class</span><span class="p">(</span><span class="kr">super</span><span class="p">)</span>
+	<span class="nx">local</span> <span class="nx">class_type</span><span class="o">=</span><span class="p">{</span><span class="nx">ctor</span><span class="o">=</span><span class="kc">false</span><span class="p">,</span><span class="kr">super</span><span class="o">=</span><span class="kr">super</span><span class="p">}</span>
+	<span class="k">if</span> <span class="kr">super</span> <span class="nx">then</span>
+		<span class="nx">setmetatable</span><span class="p">(</span><span class="nx">class_type</span><span class="p">,{</span>
+			<span class="nx">__index</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="nx">k</span><span class="p">)</span>
+				<span class="k">if</span> <span class="nx">k</span> <span class="nx">then</span>
+					<span class="k">return</span> <span class="kr">super</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
+				<span class="k">else</span>
+					<span class="k">return</span> <span class="nx">nil</span>
+				<span class="nx">end</span>
+			<span class="nx">end</span>
+		<span class="p">})</span>
+	<span class="nx">end</span>
+	
+	<span class="nx">class_type</span><span class="p">.</span><span class="nx">New</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(...)</span>
+		<span class="nx">local</span> <span class="nx">obj</span><span class="o">=</span><span class="p">{</span><span class="kr">class</span> <span class="o">=</span> <span class="nx">class_type</span><span class="p">}</span>
+		<span class="nx">setmetatable</span><span class="p">(</span><span class="nx">obj</span><span class="p">,{</span>
+			<span class="nx">__index</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="nx">k</span><span class="p">)</span>
+				<span class="k">if</span> <span class="nx">k</span> <span class="nx">then</span>
+					<span class="k">return</span> <span class="nx">class_type</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
+				<span class="k">else</span>
+					<span class="k">return</span> <span class="nx">nil</span>
+				<span class="nx">end</span>
+			<span class="nx">end</span>
+		<span class="p">})</span>
+		
+		<span class="nx">local</span> <span class="nx">ctor_list</span><span class="o">=</span><span class="p">{}</span>
+        <span class="nx">local</span> <span class="nx">class_ptr</span> <span class="o">=</span> <span class="nx">class_type</span>
+        <span class="k">while</span> <span class="nx">class_ptr</span> <span class="k">do</span>
+            <span class="k">if</span> <span class="nx">class_ptr</span><span class="p">.</span><span class="nx">ctor</span> <span class="nx">then</span> <span class="nx">table</span><span class="p">.</span><span class="nx">insert</span><span class="p">(</span><span class="nx">ctor_list</span><span class="p">,</span> <span class="nx">class_ptr</span><span class="p">)</span> <span class="nx">end</span>
+            <span class="nx">class_ptr</span> <span class="o">=</span> <span class="nx">class_ptr</span><span class="p">.</span><span class="kr">super</span>
+        <span class="nx">end</span>		
+		<span class="k">for</span> <span class="nx">i</span><span class="o">=</span><span class="err">#</span><span class="nx">ctor_list</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span> <span class="k">do</span>
+			<span class="nx">ctor_list</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">ctor</span><span class="p">(</span><span class="nx">obj</span><span class="p">,...)</span>
+		<span class="nx">end</span>
+		<span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
+	<span class="nx">end</span>
+
+	<span class="k">return</span> <span class="nx">class_type</span>
+<span class="nx">end</span>
+
+
+<span class="o">--</span><span class="nx">测试代码</span>
+<span class="kd">function</span> <span class="nx">printclass</span><span class="p">(</span><span class="nx">class_type</span><span class="p">)</span>
+	<span class="nx">local</span> <span class="nx">s</span><span class="o">=</span><span class="s2">&#34;{&#34;</span>
+	<span class="k">for</span> <span class="nx">k</span><span class="p">,</span><span class="nx">v</span> <span class="k">in</span> <span class="nx">pairs</span><span class="p">(</span><span class="nx">class_type</span><span class="p">)</span><span class="k">do</span>
+		<span class="nx">s</span><span class="o">=</span><span class="nx">s</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">k</span><span class="p">)..</span><span class="s2">&#34;:&#34;</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">v</span><span class="p">)..</span><span class="s2">&#34;,&#34;</span>
+	<span class="nx">end</span>
+	<span class="nx">s</span><span class="o">=</span><span class="nx">s</span><span class="p">..</span><span class="s2">&#34;}&#34;</span><span class="p">..</span><span class="nx">tostring</span><span class="p">(</span><span class="nx">class_type</span><span class="p">)</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s2">&#34;class_type::&#34;</span><span class="p">..</span><span class="nx">s</span><span class="p">);</span>
+<span class="nx">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>根据第二节的测试代码<code>test.lua</code>执行的结果：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20181011231837306.png"
+        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/20181011231837306.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/20181011231837306.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/20181011231837306.png 2x"
+        data-sizes="auto"
+        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/20181011231837306.png"
+        title="在这里插入图片描述" /></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-12-01 21:57:40</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-hashtag="lua"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-title="lua中类的实现" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-title="lua中类的实现"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-title="lua中类的实现" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-title="lua中类的实现" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-title="lua中类的实现" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-title="lua中类的实现"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/lua/">lua</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/mac%E8%AE%BE%E7%BD%AElibrary-%E6%98%BE%E7%A4%BA/" class="prev" rel="prev" title="mac 设置 ~/Library 显示"><i class="fas fa-angle-left fa-fw"></i>mac 设置 ~/Library 显示</a>
+            <a href="/luaforwindows-%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/" class="next" rel="next" title="LuaForWindows-安装报错">LuaForWindows-安装报错<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
