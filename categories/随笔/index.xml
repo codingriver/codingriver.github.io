@@ -26,13 +26,6 @@
     <guid>https://codingriver.github.io/github-ssh%E5%A4%B1%E8%B4%A5permission-denied-publickey/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>git提交空文件夹</title>
-    <link>https://codingriver.github.io/git%E6%8F%90%E4%BA%A4%E7%A9%BA%E6%96%87%E4%BB%B6%E5%A4%B9/</link>
-    <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://codingriver.github.io/git%E6%8F%90%E4%BA%A4%E7%A9%BA%E6%96%87%E4%BB%B6%E5%A4%B9/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
     <title>Hugo 入门 安装（Windows）</title>
     <link>https://codingriver.github.io/hugo-%E5%85%A5%E9%97%A8-%E5%AE%89%E8%A3%85windows/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
@@ -73,6 +66,13 @@
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://codingriver.github.io/mac-%E5%88%9B%E5%BB%BA-ipv6-wifi%E7%83%AD%E7%82%B9%E4%B8%8D%E7%94%A8%E4%BB%A5%E5%A4%AA%E7%BD%91%E6%8E%A5%E5%8F%A3/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Sourcetree Mac安装跳过注册登陆和选择服务器</title>
+    <link>https://codingriver.github.io/sourcetree-mac%E5%AE%89%E8%A3%85%E8%B7%B3%E8%BF%87%E6%B3%A8%E5%86%8C%E7%99%BB%E9%99%86%E5%92%8C%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/sourcetree-mac%E5%AE%89%E8%A3%85%E8%B7%B3%E8%BF%87%E6%B3%A8%E5%86%8C%E7%99%BB%E9%99%86%E5%92%8C%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

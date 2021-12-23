@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-        <title>unity性能优化总结 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="unity性能优化总结" />
+        <title>unity性能优化笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="unity性能优化笔记" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" />
@@ -15,7 +15,7 @@
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
-<meta name="twitter:title" content="unity性能优化总结"/>
+<meta name="twitter:title" content="unity性能优化笔记"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="codingriver">
 <meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -24,12 +24,12 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "unity性能优化总结",
+        "headline": "unity性能优化笔记",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/"
-        },"genre": "posts","keywords": "","wordcount":  6125 ,
+        },"genre": "posts","keywords": "Unity","wordcount":  9256 ,
         "url": "https:\/\/codingriver.github.io\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -104,10 +104,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">unity性能优化总结</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href=""><i class="far fa-folder fa-fw"></i></a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6125 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="unity性能优化总结">
+        </div><article class="page single"><h1 class="single-title animated flipInX">unity性能优化笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a>&nbsp;<a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9256 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 19 分钟&nbsp;<span id="/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="unity性能优化笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -119,6 +119,7 @@
   <ul>
     <li>
       <ul>
+        <li><a href="#基本优化">基本优化</a></li>
         <li><a href="#一内存的优化">一、内存的优化：</a>
           <ul>
             <li><a href="#优化程序代码的内存占用">优化程序代码的内存占用</a></li>
@@ -137,6 +138,7 @@
             <li><a href="#顶点优化减少顶点数量">顶点优化（减少顶点数量）</a></li>
             <li><a href="#片元优化减少片元数量减少overdrawoverdraw指的就是一个像素被绘制了多次透明物体">片元优化（减少片元数量）（减少overdraw，overdraw指的就是一个像素被绘制了多次。透明物体）</a></li>
             <li><a href="#减少计算复杂度">减少计算复杂度</a></li>
+            <li><a href="#其他优化">其他优化</a></li>
           </ul>
         </li>
         <li><a href="#优化内存带宽">优化内存带宽：</a></li>
@@ -150,7 +152,14 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="一内存的优化">一、内存的优化：</h3>
+            </div><div class="content" id="content"><h3 id="基本优化">基本优化</h3>
+<ul>
+<li>控制帧率，在非操作和没有特效播放时可以降低帧率（有效控制部分发热）</li>
+<li>降低分辨率</li>
+<li>缓存池的应用（资源缓存和class对象缓存），使用引用计数，定期调用 UnloadUnusedAssets</li>
+<li>原生层和热更层互相调用应该减少在update中每一帧调用</li>
+</ul>
+<h3 id="一内存的优化">一、内存的优化：</h3>
 <blockquote>
 <p>Unity中的内存种类
 实际上Unity游戏使用的内存一共有三种：程序代码、托管堆（Managed Heap）以及本机堆（Native Heap）。</p>
@@ -172,8 +181,9 @@
 <li>非二次幂的纹理（不压缩 ，ui图集，可以是非正方形）</li>
 <li>Ui的背景可以适当选用1024</li>
 <li>Android平台贴图压缩用etc2 8bit，占用原来的1/4内存（etc 8bit注意下）</li>
-<li>Ios平台贴图压缩用astc 4*4 block 占用原来的1/4内存（不要求正方形也不要求2的幂次方，建议2的幂次方）（全部opengl es 3.1支持astc ios和android）（ 如果是pvrtc 则还得必须是正方形 1/8）</li>
+<li>Ios平台贴图压缩用astc 4x4 block(也可用astc6x6) 占用原来的1/4内存（不要求正方形也不要求2的幂次方，建议2的幂次方）（全部opengl es 3.1支持astc ios和android）（ 如果是pvrtc 则还得必须是正方形 1/8）,法线需要更高的精度，要避免压缩纹理导致的失真。</li>
 <li>压缩贴图的话贴图本身必须是二次幂的</li>
+<li>光照贴图和shadowmask图的压缩纹理选项。ios下可以统一使用astc6x6。android下shadowmask图使用rgb16，否则阴影会有明显的模糊或者锯齿。lightmap图倒是没有太大限制，尽量使用压缩纹理即可。</li>
 </ul>
 <p><strong>音频</strong></p>
 <ul>
@@ -192,6 +202,13 @@
 <li>动画压缩</li>
 <li>一个角色有多个动画的情况下，单独导出一份角色的骨骼，角色导出的多个动画不用带骨骼</li>
 </ul>
+<p><strong>其他</strong></p>
+<ul>
+<li>导出的配置的格式是数组结构，不是key value结构。通过给每个条目设置metatable，业务层同样可以用key来访问对应的数据。这样可以节省一半以上的内存。</li>
+<li>将配置存为二进制文件，文本文件占用空间大</li>
+<li>注意Shader变体的数量，Shader Lab内存；</li>
+<li>游戏中大量的数据导出配置尽量使用untiy内置的Asset管理，效率很高</li>
+</ul>
 <h3 id="二cpu的方面的优化">二、CPU的方面的优化：</h3>
 <blockquote>
 <p>Drawcall：<br>
@@ -202,7 +219,11 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 <li>
 <p>使用Draw Call Batching，也就是描绘调用批处理。Unity在运行时可以将一些物体进行合并，从而用一个描绘调用来渲染他们。</p>
 <ul>
-<li>静态批处理Static Batching，只要是静态不动的物体且具有相同材质的话就可以使用静态批处理来降低描绘调用（注：shader不同则会增加纹理的拼合降低渲染效率）</li>
+<li>静态批处理Static Batching，只要是静态不动的物体且具有相同材质的话就可以使用静态批处理来降低描绘调用（注：shader不同则会增加纹理的拼合降低渲染效率）
+<blockquote>
+<p>要勾选StaticBatch，但是不能滥用。有color、uv3的，顶点超过4000个以上的，数量超多，但是同屏显示不多的模型。这些都不应该勾选StaticBatch。否则会导致包体积明显增大。因为StaticBatch会把模型都build到场景的ab包内。</p>
+</blockquote>
+</li>
 <li>动态批处理Dynamic Batching：动态批处理是引擎自动进行，无需设置，当物体共享相同的材质，则引擎就会自动对Drawcall进行优化，也就是动态批处理（如实例化预制件）。动态批处理存在约束，稍有不慎就会增加Drawcall
 <blockquote>
 <p>动态批处理的约束：<br>
@@ -246,6 +267,12 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 </li>
 <li>
 <p>脚本动态合并mesh</p>
+</li>
+<li>
+<p>尽量使用GPU Instanc</p>
+</li>
+<li>
+<p>URP使用SRPBatcher</p>
 </li>
 </ul>
 <h4 id="物理组件">物理组件：</h4>
@@ -305,6 +332,14 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 </ol>
 </li>
 </ol>
+<h4 id="其他优化">其他优化</h4>
+<ul>
+<li>使用Mobile版本的shader。比如Particle/Additive中有ColorMask，这个在移动平台比较耗。</li>
+<li>避免使用昂贵的数学函数。比如 pow exp log cos sin tan 等</li>
+<li>尽可能减少纹理采样数目。 比如roughness和metal贴图合并成一张贴图</li>
+<li>如果有一些计算比较复杂，可以使用查找纹理（lut）</li>
+<li>优先使用低精度的数字格式。优先使用half。在现代gpu上fixed等同于half。 部分对精度有特殊需求的情况下才使用float。个别情况下，尤其是与法线相关的时候，使用half容易因为精度不足导致渲染结果错误，这个时候还是应该使用float。</li>
+</ul>
 <h3 id="优化内存带宽">优化内存带宽：</h3>
 <ul>
 <li>1	减少纹理大小（压缩纹理，使用mipmap，mipmap图片渲染的质量比压缩要好））</li>
@@ -314,17 +349,63 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 </blockquote>
 </li>
 <li>3 纹理压缩（ETC2 8bit，ASTC 4x4 block，PVRTC）</li>
-<li>4 降低分辨率（Screen.SetResolution）</li>
+<li>4 降低分辨率尤其是在android平台上，有效缓解GPU压力（实际分辨率*0.85左右）,<code>Screen.SetResolution</code></li>
 <li>5 关闭图片ReadWrite</li>
+<li>6 尽量提高GPU缓存命中率</li>
 </ul>
 <h3 id="ui优化">UI优化</h3>
+<blockquote>
+<p>主要思想：<strong>动静分离；降低drawcall</strong></p>
+</blockquote>
 <ul>
-<li>fillcenter</li>
-<li>动静网格分离（通过增加canvas）</li>
-<li>修改image的color会造成canvas.rebuildbatch  如果是颜色动画可以但是单独创建一个material 直接修改color，不会rebuild（动静网格分离）</li>
-<li>EventSystem.Update（）消耗大  ，raycasttarget 关掉，分离canvas，需要的挂上GraphicRaycaster</li>
-<li>图片如果是左右对称和上下对称可以使用mirrorImage类似的自定义Image组件，使用原始Sprite图片的四分之或者二分之一即可</li>
-<li>图集尽量根据业务去划分</li>
+<li>
+<p>fillcenter</p>
+</li>
+<li>
+<p>动静网格分离（通过增加canvas）</p>
+</li>
+<li>
+<p>修改image的color会造成canvas.rebuildbatch  如果是颜色动画可以但是单独创建一个material 直接修改color，不会rebuild（动静网格分离）</p>
+</li>
+<li>
+<p>EventSystem.Update（）消耗大  ，raycasttarget 关掉，分离canvas，需要的挂上GraphicRaycaster</p>
+</li>
+<li>
+<p>图片如果是左右对称和上下对称可以使用mirrorImage类似的自定义Image组件，使用原始Sprite图片的四分之或者二分之一即可</p>
+</li>
+<li>
+<p>图集尽量根据业务去划分</p>
+</li>
+<li>
+<p>玩家头顶血条的HUD要使用3D的，而不是UGUI。否则同屏玩家数量很多的时候Mesh合并开销很大（大概率没帧刷新）。</p>
+</li>
+<li>
+<p>UI上使用TextMeshPro。可以很大程度上缓解UI打开卡顿的问题。描边、阴影开销很低（如果是多语言支持的话可能比较麻烦，需要提前将字体库制作成TextMeshPro内置的库，不便通用）。</p>
+</li>
+<li>
+<p>使用TextMeshPro。减少GC，减少字体生成的开销。字体放大缩小依然保持锐利清晰。</p>
+</li>
+<li>
+<p>写一个UICollider而不是透明的Image，可以减少overdraw</p>
+</li>
+<li>
+<p>小地图用shader实现指定位置的图片渲染，而不是RectMask2D，可以减少overdraw。因为RectMask2D是使用alpha=0来实现裁剪的。</p>
+</li>
+<li>
+<p>血条的减少动画之前是Image和DOTween来实现的。后面修改为shader实现。(坐标计算)</p>
+</li>
+<li>
+<p>战斗飘字，原先是DOTween来实现的，后面修改为直接在Update里面计算坐标。目的是减少DOTween动画初始化的GC开销。自己实现简化版的动画，性能也更好一些；终极优化是在shader中实现且飘字使用GPU Instance（自动计算mesh且调用<code>DrawMesh</code>接口绘制）。</p>
+</li>
+<li>
+<p>使用SimpleAnimationComponent 来做UI动画，而不直接使用Animator。因为Animator在动画播放完毕之后，依然会Update。这会导致两个问题，一个是性能隐患，另外一个是被动画控制的控件无法再通过代码设置位置。在动画播放完毕之后再禁用动画组件，实现起来比较复杂。相比而言，直接使用SimpleAnimationComponent就要简单干净很多，也更加高效。</p>
+</li>
+<li>
+<p>禁用不必要的raycastTarget。</p>
+</li>
+<li>
+<p>实现一个UICircleImage来替代用Mask实现的圆形遮罩裁剪。一般64个点就可以形成圆形。外部再罩一个边框图，就可以消除边缘锯齿。</p>
+</li>
 </ul>
 <h3 id="程序代码优化">程序代码优化</h3>
 <ul>
@@ -345,20 +426,37 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 <li>减少使用sin，cos，pow等三角函数，如果使用量大则建议使用查表法来优化三角函数的计算量</li>
 <li>尽量不要在Update中做复杂的计算，如果有需要在隔几帧计算一次</li>
 <li>不要动态的生产字符串，例如使用Debug.Log（“a”+“b”），尽量预先创建好字符串资源，还有一个打印变量时不要用+号去链接也不要用$符去格式化，而是用Debug.logFormat去输出，这样关闭Debug时就能关闭和Debug输出相关的动态字符串</li>
-<li>应使用支持Conditional的日志输出机制，支持log关闭</li>
+<li>应使用支持[Conditional(&ldquo;DEBUG&rdquo;)]的日志输出机制，支持log关闭</li>
 <li>不要直接访问gameobject的tag属性(可以用if (go.CompareTag (“human”))， 因为访问物体的tag属性会在堆上额外的分配空间)</li>
 <li>String拼接时尽量使用System.Text.StringBuilder代替</li>
 <li>避免频繁调用GameObject.SetActive</li>
 <li>减少material频繁的set参数，如果量大，则使用字符串key获取唯一id</li>
+<li>使用同一的CoroutineManager而不是直接用MonoBehaviour的StartCoroutine，可以提高性能。</li>
+<li>在每帧执行的代码中，尽可能避免闭包。减少匿名方法。这些可能会产生GCAlloc</li>
+<li>避免使用枚举作为字典的key。会有装箱操作。原因是enum为值类型，Dictionary实现会调用Object.getHashCode获取key的哈希代码，这里期望的是引用类型。（可以考虑强制转换为int即可。或者实现一个 IEqualityComparer。）</li>
+<li>慎用 mesh.vertices 等接口。它每次调用都会生成一个新的内存副本。同理 Input.touches类似。</li>
+<li>foreach与for相比还是有性能差距。所以在调用不频繁的地方，可以使用foreach以提高可读性。频繁调用的地方还是推荐直接用for进行遍历。</li>
+<li>C#的string是不可变的，任何SubSting等操作都会产生新的副本。</li>
+<li>按ID寻址属性。比如 Animator、Shader都有对应的接口。Animator.StringToHash。Shader.PropertyToID。</li>
+<li>使用非分配物理API。替换Physics.RaycastAll为Physics.RaycastNonAlloc等,当然能不用Raycast最好（例如地面时平的想知道点击屏幕位置对应的地面位置，则可以通过线与面相交计算出位置）。</li>
+<li>尽可能减少 Camera.,main 的调用。它内部会调用 Object.FindObjectWithTag。在Start中进行缓存。</li>
+<li>不要用 type[x, y] 这样的多维数组。性能很低。</li>
+<li>合理使用C#的委托。每次添加或者删除回调的时候，C#的委托都会执行回调列表的完整拷贝。所以不要在Update中进行委托的添加或者删除回调的操作。如果有频繁添加的需求，可以考虑使用List维护回调数组而不是委托。</li>
+<li>手工编码的 String.StartsWithFast 会比内置方法快 10~100倍。</li>
+<li>Vector3.zero 会返回一个新的Vector3对象。虽然因为其是值类型，远比引用类型性能要高。但是频繁调用的地方还是应该维护一个const的对象用来进行比对或者赋值。</li>
+<li>更新材质属性的时候，使用MaterialPropertyBlock。性能更好。且可以避免实例化一份新的材质对象。而且GPU Instance支持使用MaterialPropertyBlock</li>
+<li>AlphaBlend会比AlphaTest性能要好一些。因为移动平台的GPU会有EarlyZ的优化，而AlphaTest会使EarlyZ无效。</li>
+<li>使用SimpleAnimationComponent来替代Unity的Animator来做UI动画。主要是Animator会一直更新，即便动画已经播放完毕了。这个一方面会有性能问题，另外一方面被动画驱动的控件无法再通过脚本移动。</li>
 </ul>
 <h3 id="资源规范">资源规范：</h3>
 <ul>
 <li>建筑升级的资源是拼接的（节省内存）</li>
-<li>面数在1500以内将得到好的效率</li>
+<li>模型角色高模 6000+面，低模 3000面。顶点数不定，因为顶点存在共用的情况，所以顶点数量可能是面数的两倍，也可能比面数低。纹理使用1024大小的贴图。低模纹理大小减半。主角因为有高低模，所以不开mipmap。个别精度比较高的npc（有UI显示需求）需要开mipmap，否则场景中会有明显的闪烁。</li>
 <li>不使用大的prefab 增加io的负担（多棵草做一个prefab）</li>
 <li>每个模型只使用一个skinned mesh renderer</li>
 <li>每个mesh不要超过2个material</li>
 <li>骨骼数量不要超过30</li>
+<li>场景的面数在100k~300k之间都是合理的数值（手游一般是100k同屏）。</li>
 </ul>
 <h3 id="打包和资源加载">打包和资源加载</h3>
 <div class="highlight"><div class="chroma">
@@ -414,6 +512,10 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 <li>构建时开启Development Build</li>
 <li>UWA</li>
 <li>WeTest PerfDog性能狗</li>
+<li>Snapdragon Profiler 或者 RenderDoc</li>
+<li>Unity的Profiler不会跟踪主线程之外的GCAlloc分配。如果在子线程需要进行分析，可以考虑把子线程切换的主线程进行调试，或者使用功能BeginThreadProfiling API。</li>
+<li>Miku-LuaProfiler</li>
+<li>Intel GPA</li>
 </ul>
 <blockquote>
 <ul>
@@ -426,6 +528,11 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 </li>
 <li>Ui动画：帧动画、Animation、脚本动画</li>
 </ul>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/157877557" target="_blank" rel="noopener noreffer">性能优化相关知识</a></p>
+</blockquote>
 </blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -437,13 +544,13 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-hashtag=""><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化总结"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-hashtag="Unity"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=""></a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/unity/">Unity</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>

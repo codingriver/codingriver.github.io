@@ -1,0 +1,57 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>笔记 - 分类 - codingriver blog</title>
+        <link>https://codingriver.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
+        <description>笔记 - 分类 - codingriver blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 07 Dec 2021 13:39:26 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/categories/%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
+    <title>PBR笔记</title>
+    <link>https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Tue, 07 Dec 2021 13:39:26 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Unity URP笔记</title>
+    <link>https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Mon, 26 Jul 2021 14:36:31 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Shader笔记</title>
+    <link>https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Wed, 07 Apr 2021 21:39:06 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>OpenGL 图形学记录</title>
+    <link>https://codingriver.github.io/opengl%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sun, 27 Sep 2020 16:03:56 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/opengl%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>SSH笔记</title>
+    <link>https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Thu, 19 Dec 2019 22:39:07 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>unity性能优化笔记</title>
+    <link>https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/</link>
+    <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Git笔记</title>
+    <link>https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sat, 30 Nov 2019 14:18:54 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[git clone命令 git clone -b ${branch} --depth=1 可以拉对应分支 git clone --depth=1后只有一个分支的解决办法 git clone --depth=1克隆项目后，使用git branch -r查看]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>git - 标签 - codingriver blog</title>
+        <link>https://codingriver.github.io/tags/git/</link>
+        <description>git - 标签 - codingriver blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 19 Dec 2019 22:39:07 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/tags/git/" rel="self" type="application/rss+xml" /><item>
+    <title>SSH笔记</title>
+    <link>https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Thu, 19 Dec 2019 22:39:07 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Git笔记</title>
+    <link>https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sat, 30 Nov 2019 14:18:54 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[git clone命令 git clone -b ${branch} --depth=1 可以拉对应分支 git clone --depth=1后只有一个分支的解决办法 git clone --depth=1克隆项目后，使用git branch -r查看]]></description>
+</item></channel>
+</rss>

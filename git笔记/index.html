@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","wordcount":  784 ,
+        },"genre": "posts","keywords": "git","wordcount":  1043 ,
         "url": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/","datePublished": "2019-11-30T14:18:54+08:00","dateModified": "2019-11-30T14:18:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -105,9 +105,9 @@
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Git笔记</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 784 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/git%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Git笔记">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1043 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/git%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Git笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -137,6 +137,7 @@
       </ul>
     </li>
     <li><a href="#git-config">Git Config</a></li>
+    <li><a href="#git-提交空文件夹">Git 提交空文件夹</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="git-clone命令"><code>git clone</code>命令</h2>
@@ -233,7 +234,32 @@ git config --global user.email “email@email.com ”
 git config --global user.email &#34;codingriver@163.com&#34;
 </code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h2 id="git-提交空文件夹">Git 提交空文件夹</h2>
+<p>git设计时是不支持空文件夹提交的，这里是在文件夹里面新建.gitignore文件或者.gitkeep空文件来处理的</p>
+<blockquote>
+<p>unity也支持忽略以.开头的文件的</p>
+</blockquote>
+<p><strong>新建.gitignore文件</strong>
+在空文件夹下新建.gitignore文件，文件内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">## Ignore everything in this directory
+</span><span class="cp"></span><span class="o">*</span>
+<span class="cp">## Except this file
+</span><span class="cp"></span><span class="o">!</span><span class="p">.</span><span class="n">gitignore</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样就能提交git仓库了
+<em>我这是在windows上操作的，不能直接创建以.开头的文件，参考这篇文章<a href="https://blog.csdn.net/codingriver/article/details/83414019" target="_blank" rel="noopener noreffer">Windows创建.开头的文件或者.开头的文件夹</a></em></p>
+<p><strong>新建.gitkeep文件</strong>
+在空文件夹下新建.gitkeep文件，是空文件，这样就能提交git仓库了</p>
+</div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -244,13 +270,13 @@ git config --global user.email &#34;codingriver@163.com&#34;
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-hashtag="git"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" data-title="Git笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/git/">git</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>

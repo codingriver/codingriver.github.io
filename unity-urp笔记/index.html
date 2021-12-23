@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Unity URP笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Unity URP笔记" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2021-07-26T14:36:31+08:00" />
+<meta property="article:modified_time" content="2021-07-26T14:36:31+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Unity URP笔记"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://codingriver.github.io/directx%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" /><link rel="next" href="https://codingriver.github.io/bloom%E5%AE%9E%E7%8E%B0/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Unity URP笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/unity-urp%E7%AC%94%E8%AE%B0\/"
+        },"genre": "posts","keywords": "shader","wordcount":  3273 ,
+        "url": "https:\/\/codingriver.github.io\/unity-urp%E7%AC%94%E8%AE%B0\/","datePublished": "2021-07-26T14:36:31+08:00","dateModified": "2021-07-26T14:36:31+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Unity URP笔记</h1><h2 class="single-subtitle">Unity URP笔记</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/shader/"><i class="far fa-folder fa-fw"></i>shader</a>&nbsp;<a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-26 14:36:31">2021-07-26 14:36:31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3273 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/unity-urp%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Unity URP笔记">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#srpurphdrp之间的关系">SRP/URP/HDRP之间的关系</a></li>
+    <li><a href="#srp是什么">SRP是什么？</a></li>
+    <li><a href="#urp是什么">URP是什么？</a></li>
+    <li><a href="#hdrp是什么">HDRP是什么？</a></li>
+    <li><a href="#为什么诞生srp">为什么诞生SRP？</a></li>
+    <li><a href="#srpbatcher">SRPBatcher</a></li>
+    <li><a href="#urp-面板详解">URP 面板详解</a></li>
+    <li><a href="#universalrenderpipeline-源码分析">UniversalRenderPipeline 源码分析</a>
+      <ul>
+        <li><a href="#render分析"><code>Render</code>分析</a></li>
+        <li><a href="#rendersinglecamera-分析"><code>RenderSingleCamera</code> 分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#urp笔记">URP笔记</a>
+      <ul>
+        <li><a href="#urp-lightmodetags-说明">URP <code>LightMode</code>Tags 说明</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="srpurphdrp之间的关系">SRP/URP/HDRP之间的关系</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/HcRCKSxZ2brWFNs.png"
+        data-srcset="../../imgs/HcRCKSxZ2brWFNs.png, ../../imgs/HcRCKSxZ2brWFNs.png 1.5x, ../../imgs/HcRCKSxZ2brWFNs.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/HcRCKSxZ2brWFNs.png"
+        title="../../imgs/HcRCKSxZ2brWFNs.png" /></p>
+<h2 id="srp是什么">SRP是什么？</h2>
+<p>SRP全称为Scriptable Render Pipeline（可编程渲染管线/脚本化渲染管线），是Unity提供的新渲染系统，可以在Unity通过C#脚本调用一系列API配置和执行渲染命令的方式来实现渲染流程，SRP将这些命令传递给Unity底层图形体系结构，然后再将指令发送给图形API。</p>
+<p>说白了就是我们可以用SRP的API来创建自定义的渲染管线，可用来调整渲染流程或修改或增加功能。</p>
+<p>它主要把渲染管线拆分成二层：</p>
+<ul>
+<li>
+<p>一层是比较底层的渲染API层，像OpenGL，D3D等相关的都封装起来。</p>
+</li>
+<li>
+<p>另一层是渲染管线上层，上层代码使用C#来编写。在C#这层不需要关注底层在不同平台上渲染API的差别，也不需要关注具体如何做一个Draw Call</p>
+</li>
+</ul>
+<h2 id="urp是什么">URP是什么？</h2>
+<p>它的全称为Universal Render Pipeline(通用渲染管线)，简称 <code>Universal RP</code>, 它是Unity官方基于SRP提供的模板，它的前身是 <code>LWRP</code>(<code>Lightweight RP</code> 即轻量级渲染管线), 在2019.3开始改名为URP，它涵盖了范围广泛的不同平台，是针对跨平台开发而构建的，性能比内置管线要好，另外可以进行自定义，实现不同风格的渲染，通用渲染管线未来将成为在Unity中进行渲染的基础 。</p>
+<p>**平台范围：**可以在Unity当前支持的任何平台上使用</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/xTS4cWCkB5mGjq3.png"
+        data-srcset="../../imgs/xTS4cWCkB5mGjq3.png, ../../imgs/xTS4cWCkB5mGjq3.png 1.5x, ../../imgs/xTS4cWCkB5mGjq3.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/xTS4cWCkB5mGjq3.png"
+        title="../../imgs/xTS4cWCkB5mGjq3.png" /></p>
+<h2 id="hdrp是什么">HDRP是什么？</h2>
+<p>它的全称为High Definition Render Pipeline（高清晰度渲染管线），它也是Unity官方基于SRP提供的模板，它更多是针对高端设备，如游戏主机和高端台式机，它更关注于真实感图形和渲染，该管线仅于以下平台兼容：</p>
+<ul>
+<li>Windows和Windows Store，带有DirectX 11或DirectX 12和Shader Model 5.0</li>
+<li>现代游戏机（Sony PS4和Microsoft Xbox One）</li>
+<li>使用金属图形的MacOS（最低版本10.13）</li>
+<li>具有Vulkan的Linux和Windows平台
+<em>在此文章对HDRP不过多描述。</em></li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/gxXTIEYSa1s6GcA.png"
+        data-srcset="../../imgs/gxXTIEYSa1s6GcA.png, ../../imgs/gxXTIEYSa1s6GcA.png 1.5x, ../../imgs/gxXTIEYSa1s6GcA.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/gxXTIEYSa1s6GcA.png"
+        title="../../imgs/gxXTIEYSa1s6GcA.png" /></p>
+<h2 id="为什么诞生srp">为什么诞生SRP？</h2>
+<ul>
+<li>
+<p><strong>内置渲染管线的缺陷</strong></p>
+<ul>
+<li><strong>定制性差</strong>：过去，Unity有一套内置渲染管线，渲染管线全部写在引擎的源码里。大家基本上不能改动，除非是买了Unity源码客户，当然大部分开发者是不会去改源码，所以过去的管线对开发者来说，很难进行定制。</li>
+<li><strong>代码脓肿，效果效率无法做到最佳</strong>：内置渲染管线在一个渲染管线里面支持所有的二十多个平台，包括非常高端的PC平台，也包括非常低端的平台，很老的手机也要支持，所以代码越来越浓肿，很难做到使效率和效果做到最佳。</li>
+</ul>
+</li>
+<li>
+<p><strong>目的</strong></p>
+<ul>
+<li>为了解决仅有一个默认渲染管线，造成的可配置型、可发现性、灵活性等问题。决定在C++端保留一个非常小的渲染内核，让C#端可以通过API暴露出更多的选择性，也就是说，Unity会提供一系列的C# API以及内置渲染管线的C#实现；这样一来，一方面可以保证C++端的代码都能严格通过各种白盒测试，另一方面C#端代码就可以在实际项目中调整。</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/QvCf5GZmbrxEcjW.png"
+        data-srcset="../../imgs/QvCf5GZmbrxEcjW.png, ../../imgs/QvCf5GZmbrxEcjW.png 1.5x, ../../imgs/QvCf5GZmbrxEcjW.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/QvCf5GZmbrxEcjW.png"
+        title="../../imgs/QvCf5GZmbrxEcjW.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/d3ACNrGKf984cqp.png"
+        data-srcset="../../imgs/d3ACNrGKf984cqp.png, ../../imgs/d3ACNrGKf984cqp.png 1.5x, ../../imgs/d3ACNrGKf984cqp.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/d3ACNrGKf984cqp.png"
+        title="../../imgs/d3ACNrGKf984cqp.png" /></p>
+<blockquote>
+<p>渲染流水线图：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/eJD95mkRaKYfXCI.png"
+        data-srcset="../../imgs/eJD95mkRaKYfXCI.png, ../../imgs/eJD95mkRaKYfXCI.png 1.5x, ../../imgs/eJD95mkRaKYfXCI.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/eJD95mkRaKYfXCI.png"
+        title="20210726144830" /></p>
+</blockquote>
+<blockquote>
+<p>ref: <a href="https://blog.csdn.net/qq_30259857/article/details/108318528" target="_blank" rel="noopener noreffer">https://blog.csdn.net/qq_30259857/article/details/108318528</a><br>
+ref: <a href="https://blog.csdn.net/qq_33700123/article/details/114092028" target="_blank" rel="noopener noreffer">https://blog.csdn.net/qq_33700123/article/details/114092028</a></p>
+</blockquote>
+<h2 id="srpbatcher">SRPBatcher</h2>
+<blockquote>
+<p>详解参考官方文档: <a href="https://docs.unity3d.com/cn/2019.4/Manual/SRPBatcher.html" target="_blank" rel="noopener noreffer">可编程渲染管线 SRP Batcher</a></p>
+</blockquote>
+<h2 id="urp-面板详解">URP 面板详解</h2>
+<blockquote>
+<p>面板详解: <a href="https://blog.csdn.net/LKR0325/article/details/108402518" target="_blank" rel="noopener noreffer">通用渲染管线(URP)_学习笔记</a><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2ZhH9TmRF4YnbvM.png"
+        data-srcset="../../imgs/2ZhH9TmRF4YnbvM.png, ../../imgs/2ZhH9TmRF4YnbvM.png 1.5x, ../../imgs/2ZhH9TmRF4YnbvM.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2ZhH9TmRF4YnbvM.png"
+        title="20210726180522" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/zSdjiUr5RY8DhxW.png"
+        data-srcset="../../imgs/zSdjiUr5RY8DhxW.png, ../../imgs/zSdjiUr5RY8DhxW.png 1.5x, ../../imgs/zSdjiUr5RY8DhxW.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/zSdjiUr5RY8DhxW.png"
+        title="20210726180600" /></p>
+</blockquote>
+<h2 id="universalrenderpipeline-源码分析">UniversalRenderPipeline 源码分析</h2>
+<blockquote>
+<p><code>UnityEngine.Rendering.Universal.UniversalRenderPipeline</code>
+<code>public sealed partial class UniversalRenderPipeline : RenderPipeline</code>
+不包括XR，SceneView,Camera Preview，只是前向渲染的分析；不包括<code>RenderingMode.Deferred</code>的分析</p>
+</blockquote>
+<h3 id="render分析"><code>Render</code>分析</h3>
+<blockquote>
+<p><code>protected override void Render(ScriptableRenderContext renderContext, Camera[] cameras)</code>的执行流程</p>
+</blockquote>
+<ul>
+<li><code>BeginFrameRendering(renderContext, cameras);</code></li>
+<li>配置<code>GraphicsSettings</code></li>
+<li>设置Shader全局变量 <code>SetupPerFrameShaderConstants();</code></li>
+<li><code>SortCameras(cameras); // 根据camera.depth排序</code></li>
+<li><code>RenderCameraStack(renderContext, camera);</code>
+<ul>
+<li><code>UpdateVolumeFramework(baseCamera, baseCameraAdditionalData);</code></li>
+<li><code>BeginCameraRendering(renderContext, camera);</code></li>
+<li><code>UpdateVolumeFramework(camera, null);</code></li>
+<li><code>RenderSingleCamera(renderContext, camera);</code></li>
+<li><code>EndCameraRendering(renderContext, camera);</code></li>
+<li><code>EndFrameRendering(renderContext, cameras);</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="n">Render</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">renderContext</span><span class="p">,</span> <span class="n">Camera</span><span class="p">[]</span> <span class="n">cameras</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">BeginFrameRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">cameras</span><span class="p">);</span>
+            <span class="n">GraphicsSettings</span><span class="p">.</span><span class="n">lightsUseLinearIntensity</span> <span class="p">=</span> <span class="p">(</span><span class="n">QualitySettings</span><span class="p">.</span><span class="n">activeColorSpace</span> <span class="p">==</span> <span class="n">ColorSpace</span><span class="p">.</span><span class="n">Linear</span><span class="p">);</span>
+            <span class="n">GraphicsSettings</span><span class="p">.</span><span class="n">useScriptableRenderPipelineBatching</span> <span class="p">=</span> <span class="n">asset</span><span class="p">.</span><span class="n">useSRPBatcher</span><span class="p">;</span>
+            <span class="n">SetupPerFrameShaderConstants</span><span class="p">();</span>
+            <span class="n">SortCameras</span><span class="p">(</span><span class="n">cameras</span><span class="p">);</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">cameras</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">){</span>
+                <span class="kt">var</span> <span class="n">camera</span> <span class="p">=</span> <span class="n">cameras</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">IsGameCamera</span><span class="p">(</span><span class="n">camera</span><span class="p">))</span>
+                <span class="p">{</span>
+                    <span class="n">RenderCameraStack</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">else</span>
+                <span class="p">{</span>
+                    <span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
+                    <span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+                    <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
+					<span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+            <span class="n">EndFrameRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">cameras</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">Camera</span> <span class="n">camera</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">UniversalAdditionalCameraData</span> <span class="n">additionalCameraData</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">IsGameCamera</span><span class="p">(</span><span class="n">camera</span><span class="p">))</span>
+                <span class="n">camera</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">additionalCameraData</span><span class="p">);</span>
+            <span class="n">InitializeCameraData</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">additionalCameraData</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">cameraData</span><span class="p">);</span>
+            <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">cameraData</span><span class="p">,</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">postProcessEnabled</span><span class="p">);</span>
+        <span class="p">}</span>	 
+        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// Renders a single camera. This method will do culling, setup and execution of the renderer.
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;context&#34;&gt;Render context used to record commands during execution.&lt;/param&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;cameraData&#34;&gt;Camera rendering data. This might contain data inherited from a base camera.&lt;/param&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;anyPostProcessingEnabled&#34;&gt;True if at least one camera has post-processing enabled in the stack, false otherwise.&lt;/param&gt;
+</span><span class="c1"></span>        <span class="k">static</span> <span class="k">void</span> <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">CameraData</span> <span class="n">cameraData</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">anyPostProcessingEnabled</span><span class="p">)</span>
+		<span class="p">{</span>
+            <span class="n">Camera</span> <span class="n">camera</span> <span class="p">=</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">camera</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">renderer</span> <span class="p">=</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">renderer</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(!</span><span class="n">TryGetCullingParameters</span><span class="p">(</span><span class="n">cameraData</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">cullingParameters</span><span class="p">))</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="n">ScriptableRenderer</span><span class="p">.</span><span class="n">current</span> <span class="p">=</span> <span class="n">renderer</span><span class="p">;</span>
+            <span class="kt">bool</span> <span class="n">isSceneViewCamera</span> <span class="p">=</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">isSceneViewCamera</span><span class="p">;</span>
+            <span class="n">CommandBuffer</span> <span class="n">cmd</span> <span class="p">=</span> <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
+                <span class="n">renderer</span><span class="p">.</span><span class="n">Clear</span><span class="p">(</span><span class="n">cameraData</span><span class="p">.</span><span class="n">renderType</span><span class="p">);</span>
+                <span class="n">renderer</span><span class="p">.</span><span class="n">SetupCullingParameters</span><span class="p">(</span><span class="k">ref</span> <span class="n">cullingParameters</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cameraData</span><span class="p">);</span>
+                <span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span> <span class="c1">// Send all the commands enqueued so far in the CommandBuffer cmd, to the ScriptableRenderContext context
+</span><span class="c1"></span>                <span class="n">cmd</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+                <span class="kt">var</span> <span class="n">cullResults</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">Cull</span><span class="p">(</span><span class="k">ref</span> <span class="n">cullingParameters</span><span class="p">);</span>
+                <span class="n">InitializeRenderingData</span><span class="p">(</span><span class="n">asset</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cameraData</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cullResults</span><span class="p">,</span> <span class="n">anyPostProcessingEnabled</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">renderingData</span><span class="p">);</span>
+                <span class="n">renderer</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span>
+                <span class="n">renderer</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span>
+            <span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span> <span class="c1">// Sends to ScriptableRenderContext all the commands enqueued since cmd.Clear, i.e the &#34;EndSample&#34; command
+</span><span class="c1"></span>            <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Release</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+                <span class="n">context</span><span class="p">.</span><span class="n">Submit</span><span class="p">();</span> <span class="c1">// Actually execute the commands that we previously sent to the ScriptableRenderContext context
+</span><span class="c1"></span>        <span class="p">}</span>     
+
+        <span class="c1">/// &lt;summary&gt;
+</span><span class="c1"></span>        <span class="c1">// Renders a camera stack. This method calls RenderSingleCamera for each valid camera in the stack.
+</span><span class="c1"></span>        <span class="c1">// The last camera resolves the final target to screen.
+</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;context&#34;&gt;Render context used to record commands during execution.&lt;/param&gt;
+</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;camera&#34;&gt;Camera to render.&lt;/param&gt;
+</span><span class="c1"></span>        <span class="k">static</span> <span class="k">void</span> <span class="n">RenderCameraStack</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">Camera</span> <span class="n">baseCamera</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">baseCamera</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="p">&lt;</span><span class="n">UniversalAdditionalCameraData</span><span class="p">&gt;(</span><span class="k">out</span> <span class="kt">var</span> <span class="n">baseCameraAdditionalData</span><span class="p">);</span>
+            <span class="c1">// Overlay cameras will be rendered stacked while rendering base cameras
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">baseCameraAdditionalData</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">renderType</span> <span class="p">==</span> <span class="n">CameraRenderType</span><span class="p">.</span><span class="n">Overlay</span><span class="p">)</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="c1">// renderer contains a stack if it has additional data and the renderer supports stacking
+</span><span class="c1"></span>            <span class="kt">var</span> <span class="n">renderer</span> <span class="p">=</span> <span class="n">baseCameraAdditionalData</span><span class="p">?.</span><span class="n">scriptableRenderer</span><span class="p">;</span>
+            <span class="kt">bool</span> <span class="n">supportsCameraStacking</span> <span class="p">=</span> <span class="n">renderer</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">renderer</span><span class="p">.</span><span class="n">supportedRenderingFeatures</span><span class="p">.</span><span class="n">cameraStacking</span><span class="p">;</span>
+            <span class="n">List</span><span class="p">&lt;</span><span class="n">Camera</span><span class="p">&gt;</span> <span class="n">cameraStack</span> <span class="p">=</span> <span class="p">(</span><span class="n">supportsCameraStacking</span><span class="p">)</span> <span class="p">?</span> <span class="n">baseCameraAdditionalData</span><span class="p">?.</span><span class="n">cameraStack</span> <span class="p">:</span> <span class="k">null</span><span class="p">;</span>
+            <span class="kt">bool</span> <span class="n">anyPostProcessingEnabled</span> <span class="p">=</span> <span class="n">baseCameraAdditionalData</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">renderPostProcessing</span><span class="p">;</span>
+            <span class="c1">// We need to know the last active camera in the stack to be able to resolve
+</span><span class="c1"></span>            <span class="c1">// rendering to screen when rendering it. The last camera in the stack is not
+</span><span class="c1"></span>            <span class="c1">// necessarily the last active one as it users might disable it.
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">lastActiveOverlayCameraIndex</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">cameraStack</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="kt">var</span> <span class="n">baseCameraRendererType</span> <span class="p">=</span> <span class="n">baseCameraAdditionalData</span><span class="p">?.</span><span class="n">scriptableRenderer</span><span class="p">.</span><span class="n">GetType</span><span class="p">();</span>
+				<span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">UpdateCameraStack</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="c1">// Post-processing not supported in GLES2.
+</span><span class="c1"></span>            <span class="n">anyPostProcessingEnabled</span> <span class="p">&amp;=</span> <span class="n">SystemInfo</span><span class="p">.</span><span class="n">graphicsDeviceType</span> <span class="p">!=</span> <span class="n">GraphicsDeviceType</span><span class="p">.</span><span class="n">OpenGLES2</span><span class="p">;</span>
+            <span class="kt">bool</span> <span class="n">isStackedRendering</span> <span class="p">=</span> <span class="n">lastActiveOverlayCameraIndex</span> <span class="p">!=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+			<span class="c1">// Update volumeframework before initializing additional camera data
+</span><span class="c1"></span>			<span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">baseCamera</span><span class="p">,</span> <span class="n">baseCameraAdditionalData</span><span class="p">);</span>
+			<span class="n">InitializeCameraData</span><span class="p">(</span><span class="n">baseCamera</span><span class="p">,</span> <span class="n">baseCameraAdditionalData</span><span class="p">,</span> <span class="p">!</span><span class="n">isStackedRendering</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">baseCameraData</span><span class="p">);</span>
+			<span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">baseCamera</span><span class="p">);</span>
+			<span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">baseCameraData</span><span class="p">,</span> <span class="n">anyPostProcessingEnabled</span><span class="p">);</span>
+			<span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">baseCamera</span><span class="p">);</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">isStackedRendering</span><span class="p">)</span>
+			<span class="p">{</span>
+				<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">cameraStack</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">)</span>
+				<span class="p">{</span>
+					<span class="kt">var</span> <span class="n">currCamera</span> <span class="p">=</span> <span class="n">cameraStack</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+					<span class="k">if</span> <span class="p">(!</span><span class="n">currCamera</span><span class="p">.</span><span class="n">isActiveAndEnabled</span><span class="p">)</span>
+						<span class="k">continue</span><span class="p">;</span>
+					<span class="n">currCamera</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="p">&lt;</span><span class="n">UniversalAdditionalCameraData</span><span class="p">&gt;(</span><span class="k">out</span> <span class="kt">var</span> <span class="n">currCameraData</span><span class="p">);</span>
+					<span class="c1">// Camera is overlay and enabled
+</span><span class="c1"></span>					<span class="c1">// Copy base settings from base camera data and initialize initialize remaining specific settings for this camera type.
+</span><span class="c1"></span>					<span class="n">CameraData</span> <span class="n">overlayCameraData</span> <span class="p">=</span> <span class="n">baseCameraData</span><span class="p">;</span>
+					<span class="kt">bool</span> <span class="n">lastCamera</span> <span class="p">=</span> <span class="n">i</span> <span class="p">==</span> <span class="n">lastActiveOverlayCameraIndex</span><span class="p">;</span>
+					<span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">currCamera</span><span class="p">);</span>
+					<span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">currCamera</span><span class="p">,</span> <span class="n">currCameraData</span><span class="p">);</span>
+					<span class="n">InitializeAdditionalCameraData</span><span class="p">(</span><span class="n">currCamera</span><span class="p">,</span> <span class="n">currCameraData</span><span class="p">,</span> <span class="n">lastCamera</span><span class="p">,</span> <span class="k">ref</span> <span class="n">overlayCameraData</span><span class="p">);</span>
+					<span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">overlayCameraData</span><span class="p">,</span> <span class="n">anyPostProcessingEnabled</span><span class="p">);</span>
+					<span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">currCamera</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+        <span class="p">}</span>                  
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>如果Unity版本高<code>UNITY_2021_1_OR_NEWER</code>宏生效则<code>BeginContextRendering(renderContext, cameras);</code>替换<code>BeginFrameRendering(renderContext, cameras);</code>，<code> EndContextRendering(renderContext, cameras);</code>替换<code>EndFrameRendering(renderContext, cameras);</code></p>
+</blockquote>
+<h3 id="rendersinglecamera-分析"><code>RenderSingleCamera</code> 分析</h3>
+<blockquote>
+<p><code>static void RenderSingleCamera(ScriptableRenderContext context, CameraData cameraData, bool anyPostProcessingEnabled)</code>的执行流程 <br>
+<code>ScriptableRender renderer= cameraData.renderer;</code></p>
+</blockquote>
+<ul>
+<li>
+<p>剔除操作，返回一个剔除参数（被摄象机渲染的游戏物体和光照的列表 ）<code>TryGetCullingParameters(cameraData, out var cullingParameters)</code></p>
+<blockquote>
+<p><code>static bool TryGetCullingParameters(CameraData cameraData, out ScriptableCullingParameters cullingParams)</code></p>
+</blockquote>
+<ul>
+<li>cameraData.camera.TryGetCullingParameters(false, out cullingParams)</li>
+</ul>
+</li>
+<li>
+<p>修改剔除参数（是否投射阴影，最大灯光数量，阴影距离shadowDistance，）<code>renderer.SetupCullingParameters(ref cullingParameters, ref cameraData);</code></p>
+<blockquote>
+<p><code>  public virtual void SetupCullingParameters(ref ScriptableCullingParameters cullingParameters, ref CameraData cameraData)</code></p>
+</blockquote>
+</li>
+<li>
+<p><code>context.ExecuteCommandBuffer(cmd);</code></p>
+<blockquote>
+<p><code>public void ExecuteCommandBuffer(CommandBuffer commandBuffer);</code></p>
+</blockquote>
+</li>
+<li>
+<p>根据剔除参数执行剔除，获得剔除结果 <code>var cullResults = context.Cull(ref cullingParameters);</code></p>
+<blockquote>
+<p><code>public CullingResults Cull(ref ScriptableCullingParameters parameters)</code></p>
+</blockquote>
+</li>
+<li>
+<p>初始化渲染数据<code>RenderingData</code>（灯光数据，阴影数据，后处理数据,是否动态批处理，是否启用后处理，相机数据，剔除结果数据）<code>InitializeRenderingData(asset, ref cameraData, ref cullResults, anyPostProcessingEnabled, out var renderingData);</code></p>
+<blockquote>
+<p><code>        static void InitializeRenderingData(UniversalRenderPipelineAsset settings, ref CameraData cameraData, ref CullingResults cullResults, bool anyPostProcessingEnabled, out RenderingData renderingData)</code></p>
+</blockquote>
+</li>
+<li>
+<p><code>renderer.Setup(context, ref renderingData)</code></p>
+<blockquote>
+<p><code>public abstract void Setup(ScriptableRenderContext context, ref RenderingData renderingData);</code></p>
+</blockquote>
+<ul>
+<li>如果获取深度
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="n">ConfigureCameraTarget</span><span class="p">(</span><span class="n">BuiltinRenderTextureType</span><span class="p">.</span><span class="n">CameraTarget</span><span class="p">,</span> <span class="n">BuiltinRenderTextureType</span><span class="p">.</span><span class="n">CameraTarget</span><span class="p">);</span>
+<span class="n">AddRenderPasses</span><span class="p">(</span><span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span>
+<span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_RenderOpaqueForwardPass</span><span class="p">);</span>
+
+<span class="c1">// TODO: Do we need to inject transparents and skybox when rendering depth only camera? They don&#39;t  write to depth.
+</span><span class="c1"></span><span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_DrawSkyboxPass</span><span class="p">);</span>    
+<span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_RenderTransparentForwardPass</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><code>ConfigureCameraColorTarget(activeColorRenderTargetId);</code></li>
+<li><code>AddRenderPasses(ref renderingData); // rendererFeatures AddRenderPasses</code></li>
+<li><code>CreateCameraRenderTarget(context, ref cameraTargetDescriptor, createColorTexture, createDepthTexture);  // CameraRenderType.Base</code></li>
+<li><code>EnqueuePass(m_MainLightShadowCasterPass);</code></li>
+<li><code>EnqueuePass(m_AdditionalLightsShadowCasterPass);</code></li>
+<li><code>EnqueuePass(m_DepthNormalPrepass);</code>或者 <code>EnqueuePass(m_DepthPrepass);</code></li>
+<li><code>EnqueuePass(m_ColorGradingLutPass);</code></li>
+<li><code>EnqueuePass(m_RenderOpaqueForwardPass);</code></li>
+<li><code>EnqueuePass(m_DrawSkyboxPass);</code></li>
+<li><code>EnqueuePass(m_CopyDepthPass);</code></li>
+<li><code>EnqueuePass(m_CopyColorPass);</code></li>
+<li><code>EnqueuePass(m_TransparentSettingsPass);</code></li>
+<li><code>EnqueuePass(m_RenderTransparentForwardPass);</code></li>
+<li><code>EnqueuePass(m_OnRenderObjectCallbackPass);</code></li>
+<li><code>EnqueuePass(m_PostProcessPass);</code></li>
+<li><code>EnqueuePass(m_FinalPostProcessPass);</code></li>
+<li><code>EnqueuePass(m_CapturePass);</code></li>
+<li><code>EnqueuePass(m_FinalBlitPass);</code></li>
+<li><code>EnqueuePass(m_PostProcessPass);</code></li>
+</ul>
+</li>
+<li>
+<p><code>renderer.Execute(context, ref renderingData);</code></p>
+<blockquote>
+<p><code>public void Execute(ScriptableRenderContext context, ref RenderingData renderingData)</code>
+<code>ref CameraData cameraData = ref renderingData.cameraData;</code></p>
+</blockquote>
+<ul>
+<li>
+<p><code>InternalStartRendering(context, ref renderingData);</code></p>
+</li>
+<li>
+<p><code>SetPerCameraShaderVariables(cmd, ref cameraData);</code></p>
+</li>
+<li>
+<p><code>SetShaderTimeValues(cmd, time, deltaTime, smoothDeltaTime);</code></p>
+</li>
+<li>
+<p><code>context.ExecuteCommandBuffer(cmd);</code></p>
+</li>
+<li>
+<p><code> SortStable(m_ActiveRenderPassQueue);                   // Sort the render pass queue</code></p>
+</li>
+<li>
+<p><code>SetupLights(context, ref renderingData);</code></p>
+</li>
+<li>
+<p>执行所有Pass的Execute方法 <code>ExecuteBlock(RenderPassBlock.BeforeRendering, in renderBlocks, context, ref renderingData);</code></p>
+<blockquote>
+<p>// Before Render Block. This render blocks always execute in mono rendering.<br>
+// Camera is not setup. Lights are not setup.<br>
+// Used to render input textures like shadowmaps.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp">    <span class="k">void</span> <span class="n">ExecuteBlock</span><span class="p">(</span><span class="kt">int</span> <span class="n">blockIndex</span><span class="p">,</span> <span class="k">in</span> <span class="n">RenderBlocks</span> <span class="n">renderBlocks</span><span class="p">,</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">RenderingData</span> <span class="n">renderingData</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">submit</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+    <span class="p">{</span>   <span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">currIndex</span> <span class="k">in</span> <span class="n">renderBlocks</span><span class="p">.</span><span class="n">GetRange</span><span class="p">(</span><span class="n">blockIndex</span><span class="p">))</span> <span class="c1">//循环所有Pass
+</span><span class="c1"></span>        <span class="p">{</span><span class="kt">var</span> <span class="n">renderPass</span> <span class="p">=</span> <span class="n">m_ActiveRenderPassQueue</span><span class="p">[</span><span class="n">currIndex</span><span class="p">];</span>
+            <span class="n">ExecuteRenderPass</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">renderPass</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">submit</span><span class="p">)</span> <span class="n">context</span><span class="p">.</span><span class="n">Submit</span><span class="p">();}</span>      
+    <span class="k">void</span> <span class="n">ExecuteRenderPass</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">ScriptableRenderPass</span> <span class="n">renderPass</span><span class="p">,</span> <span class="k">ref</span>    <span class="n">RenderingData</span> <span class="n">renderingData</span><span class="p">){</span>
+        <span class="k">using</span> <span class="nn">var</span> <span class="n">profScope</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ProfilingScope</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">renderPass</span><span class="p">.</span><span class="n">profilingSampler</span><span class="p">);</span>
+        <span class="k">ref</span> <span class="n">CameraData</span> <span class="n">cameraData</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">.</span><span class="n">cameraData</span><span class="p">;</span>
+        <span class="n">CommandBuffer</span> <span class="n">cmd</span> <span class="p">=</span> <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
+        <span class="c1">// Track CPU only as GPU markers for this scope were &#34;too noisy&#34;.
+</span><span class="c1"></span>        <span class="k">using</span> <span class="p">(</span><span class="k">new</span> <span class="n">ProfilingScope</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">Profiling</span><span class="p">.</span><span class="n">RenderPass</span><span class="p">.</span><span class="n">configure</span><span class="p">))</span>
+        <span class="p">{</span>   <span class="n">renderPass</span><span class="p">.</span><span class="n">Configure</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">cameraTargetDescriptor</span><span class="p">);</span> <span class="c1">//配置Pass数据
+</span><span class="c1"></span>            <span class="n">SetRenderPassAttachments</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">renderPass</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cameraData</span><span class="p">);}</span>
+        <span class="c1">// Also, we execute the commands recorded at this point to ensure SetRenderTarget is called     before RenderPass.Execute
+</span><span class="c1"></span>        <span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+        <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Release</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+        <span class="n">renderPass</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span> <span class="c1">//执行对应Pass的Execute
+</span><span class="c1"></span>    <span class="p">}</span>                  
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>context.SetupCameraProperties(camera); </code></p>
+<blockquote>
+<p>// This is still required because of the following reasons:
+// - Camera billboard properties.
+// - Camera frustum planes: unity_CameraWorldClipPlanes[6]
+// - _ProjectionParams.x logic is deep inside GfxDevice
+// NOTE: The only reason we have to call this here and not at the beginning (before shadows)
+// is because this need to be called for each eye in multi pass VR.
+// The side effect is that this will override some shader properties we already setup and we will have to
+// reset them.</p>
+</blockquote>
+</li>
+<li>
+<p><code>SetCameraMatrices(cmd, ref cameraData, true);</code></p>
+</li>
+<li>
+<p><code>context.ExecuteCommandBuffer(cmd);</code></p>
+</li>
+<li>
+<p><code>context.DrawWireOverlay(camera);</code></p>
+</li>
+<li>
+<p><code>InternalFinishRendering(context, cameraData.resolveFinalTarget);</code></p>
+<blockquote>
+<p><code>context.ExecuteCommandBuffer(cmd);</code></p>
+</blockquote>
+</li>
+<li>
+<p><code>context.ExecuteCommandBuffer(cmd);</code></p>
+</li>
+<li>
+<p><code> context.ExecuteCommandBuffer(cmd);</code></p>
+</li>
+<li>
+<p><code>context.Submit();</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="urp笔记">URP笔记</h2>
+<h3 id="urp-lightmodetags-说明">URP <code>LightMode</code>Tags 说明</h3>
+<blockquote>
+<p>Tags{“LightMode” = “XXX”}</p>
+</blockquote>
+<ul>
+<li><code>UniversalForward</code>：前向渲染物件之用，<code>SRPDefaultUnlit</code>也用该pass渲染</li>
+<li><code>ShadowCaster</code>： 投射阴影之用</li>
+<li><code>DepthOnly</code>：只用来产生深度图</li>
+<li><code>Mata</code>：来用烘焙光照图之用</li>
+<li><code>Universal2D</code> ：做2D游戏用的，用来替代前向渲染</li>
+<li><code>UniversalGBuffer</code> ： 貌似与延迟渲染相关（开发中）, Does GI + emission. All additional lights are done deferred as well as fog</li>
+<li><code>UniversalForwardOnly</code>:</li>
+<li><code>NormalsRendering</code>:</li>
+<li><code>SceneSelectionPass</code>:Scene view outline pass.</li>
+<li><code>Picking</code>:Scene picking buffer pass</li>
+<li><code>DepthNormals</code>: 只是用俩产生法线贴图<code>_CameraNormalsTexture</code></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-07-26 14:36:31</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" data-hashtag="shader"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" data-title="Unity URP笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" data-title="Unity URP笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" data-title="Unity URP笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" data-title="Unity URP笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" data-title="Unity URP笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" data-title="Unity URP笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/shader/">shader</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/directx%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="prev" rel="prev" title="DirectX环境搭建(Win10&#43;VS2019&#43;dx11&amp;&amp;dx12)"><i class="fas fa-angle-left fa-fw"></i>DirectX环境搭建(Win10&#43;VS2019&#43;dx11&amp;&amp;dx12)</a>
+            <a href="/bloom%E5%AE%9E%E7%8E%B0/" class="next" rel="next" title="泛光（Bloom）实现">泛光（Bloom）实现<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
