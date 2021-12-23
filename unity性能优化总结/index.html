@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/"
-        },"genre": "posts","keywords": "Unity","wordcount":  9256 ,
+        },"genre": "posts","keywords": "Unity","wordcount":  9282 ,
         "url": "https:\/\/codingriver.github.io\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">unity性能优化笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a>&nbsp;<a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9256 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9282 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 19 分钟&nbsp;<span id="/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="unity性能优化笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -526,13 +526,22 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 <li>从磁盘流(Stream from disc): 直接从磁盘流读取音频数据。这只使用了原始声音占内存大小的很小一部分。使用这个用于很长的音乐。取决于硬件，一般建议1-2线程同时流。</li>
 </ul>
 </li>
+<li>Audio Source 优化
+<ul>
+<li>Short Clips – Native</li>
+<li>Longer (or looping) clips – compressed in memory</li>
+<li>Music – Stream from disc</li>
+<li>Files which consistently cause CPU spikes – Decompress on load</li>
+</ul>
+</li>
 <li>Ui动画：帧动画、Animation、脚本动画</li>
 </ul>
 </blockquote>
 <blockquote>
-<blockquote>
-<p>参考：<a href="https://zhuanlan.zhihu.com/p/157877557" target="_blank" rel="noopener noreffer">性能优化相关知识</a></p>
-</blockquote>
+<p>参考：<br>
+<a href="https://zhuanlan.zhihu.com/p/157877557">https://zhuanlan.zhihu.com/p/157877557</a><br>
+<a href="https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html">https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html</a><br>
+<a href="https://docs.unity3d.com/353/Documentation/Manual/iphone-Optimizing-Scripts.html">https://docs.unity3d.com/353/Documentation/Manual/iphone-Optimizing-Scripts.html</a></p>
 </blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
