@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/pbr%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "shader","wordcount":  19324 ,
+        },"genre": "posts","keywords": "shader","wordcount":  19328 ,
         "url": "https:\/\/codingriver.github.io\/pbr%E7%AC%94%E8%AE%B0\/","datePublished": "2021-12-07T13:39:26+08:00","dateModified": "2021-12-07T13:39:26+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">PBR笔记</h1><h2 class="single-subtitle">PBR笔记</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/shader/"><i class="far fa-folder fa-fw"></i>shader</a>&nbsp;<a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-07 13:39:26">2021-12-07 13:39:26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 19324 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-07 13:39:26">2021-12-07 13:39:26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 19328 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 39 分钟&nbsp;<span id="/pbr%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="PBR笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -703,7 +703,7 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
         data-sizes="auto"
         alt="../../imgs/2021-12-07-18-32-18.png"
         title="../../imgs/2021-12-07-18-32-18.png" /><br>
-<strong>𝐹<sub>0</sub></strong>表示的是表面基础反射率，这个我们可以使用一种叫做<strong>Indices of refraction(IOR)<strong>的方法计算得到。运用在球面上的效果就是你看到的那样，观察方向越是接近</strong>掠射角</strong>（grazing angle，又叫切线角，与正视角相差90度），菲涅尔现象导致的反射就越强：<br>
+<strong>𝐹<sub>0</sub><strong>表示的是表面基础反射率，这个我们可以使用一种叫做</strong>Indices of refraction(IOR)<strong>的方法计算得到。运用在球面上的效果就是你看到的那样，观察方向越是接近</strong>掠射角</strong>（grazing angle，又叫切线角，与正视角相差90度），菲涅尔现象导致的反射就越强：<br>
 <img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -737,7 +737,7 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 <span class="n">F0</span>      <span class="o">=</span> <span class="n">mix</span><span class="p">(</span><span class="n">F0</span><span class="p">,</span> <span class="n">surfaceColor</span><span class="p">.</span><span class="n">rgb</span><span class="p">,</span> <span class="n">metalness</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>我们为大多数电介质表面定义了一个近似的基础反射率。<strong>𝐹<sub>0</sub></strong>取最常见的电解质表面的平均值，这又是一个近似值。不过对于大多数电介质表面而言使用0.04作为基础反射率已经足够好了，而且可以在不需要输入额外表面参数的情况下得到物理可信的结果。然后，基于金属表面特性，我们要么使用电介质的基础反射率要么就使用𝐹0作来为表面颜色。因为金属表面会吸收所有折射光线而没有漫反射，所以我们可以直接使用表面颜色纹理来作为它们的基础反射率。</p>
+</div><p>我们为大多数电介质表面定义了一个近似的基础反射率。**𝐹<sub>0</sub>**取最常见的电解质表面的平均值，这又是一个近似值。不过对于大多数电介质表面而言使用0.04作为基础反射率已经足够好了，而且可以在不需要输入额外表面参数的情况下得到物理可信的结果。然后，基于金属表面特性，我们要么使用电介质的基础反射率要么就使用𝐹0作来为表面颜色。因为金属表面会吸收所有折射光线而没有漫反射，所以我们可以直接使用表面颜色纹理来作为它们的基础反射率。</p>
 <p>Fresnel Schlick近似可以用GLSL代码实现：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1288,8 +1288,8 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

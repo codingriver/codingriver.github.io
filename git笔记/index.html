@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "git","wordcount":  1043 ,
+        },"genre": "posts","keywords": "git","wordcount":  1864 ,
         "url": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/","datePublished": "2019-11-30T14:18:54+08:00","dateModified": "2019-11-30T14:18:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Git笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1043 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/git%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Git笔记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1864 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/git%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Git笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -138,6 +138,8 @@
     </li>
     <li><a href="#git-config">Git Config</a></li>
     <li><a href="#git-提交空文件夹">Git 提交空文件夹</a></li>
+    <li><a href="#git文件内容没变但status显示不同的解决方案">git文件内容没变但status显示不同的解决方案</a></li>
+    <li><a href="#git处理换行符问题">Git处理换行符问题</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="git-clone命令"><code>git clone</code>命令</h2>
@@ -259,7 +261,305 @@ git config --global user.email &#34;codingriver@163.com&#34;
 <em>我这是在windows上操作的，不能直接创建以.开头的文件，参考这篇文章<a href="https://blog.csdn.net/codingriver/article/details/83414019" target="_blank" rel="noopener noreffer">Windows创建.开头的文件或者.开头的文件夹</a></em></p>
 <p><strong>新建.gitkeep文件</strong>
 在空文件夹下新建.gitkeep文件，是空文件，这样就能提交git仓库了</p>
-</div><div class="post-footer" id="post-footer">
+<h2 id="git文件内容没变但status显示不同的解决方案">git文件内容没变但status显示不同的解决方案</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-17-21-47-17.png"
+        data-srcset="../../imgs/2022-01-17-21-47-17.png, ../../imgs/2022-01-17-21-47-17.png 1.5x, ../../imgs/2022-01-17-21-47-17.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-17-21-47-17.png"
+        title="../../imgs/2022-01-17-21-47-17.png" /></p>
+<p>这里提示的不同，是文件的权限改变了。</p>
+<p>SO，解决方案奏是：不让git检测文件权限的区别</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">git config core.filemode <span class="nb">false</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参考: <a href="https://blog.csdn.net/u012109105/article/details/51252242">https://blog.csdn.net/u012109105/article/details/51252242</a></p>
+</blockquote>
+<h2 id="git处理换行符问题">Git处理换行符问题</h2>
+<p>对仓库使用 <code>.gitattributes</code>文件进行配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># Set the default behavior, in case people don&#39;t have core.autocrlf set.</span>
+* <span class="nv">text</span><span class="o">=</span>auto <span class="c1">#让git自行处理左边匹配的文件使用何种换行符格式，这是默认选项。</span>
+<span class="c1"># text eol=lf</span>
+
+<span class="c1"># Explicitly declare text files you want to always be normalized and converted</span>
+<span class="c1"># to native line endings on checkout.</span>
+*.c text
+*.h text
+
+<span class="c1"># Declare files that will always have CRLF line endings on checkout.</span>
+*.sln text <span class="nv">eol</span><span class="o">=</span>crlf
+
+<span class="c1"># Denote all files that are truly binary and should not be modified.</span>
+*.png binary
+*.jpg binary
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参考: <a href="https://blog.csdn.net/github_30605157/article/details/56680990">https://blog.csdn.net/github_30605157/article/details/56680990</a></p>
+</blockquote>
+<p>项目在用的<code>.gitattributes</code>文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">* <span class="nv">text</span><span class="o">=</span>auto
+
+*.cs <span class="nv">diff</span><span class="o">=</span>csharp text
+*.cginc text
+*.shader text
+*.spriteatlas text <span class="nv">eol</span><span class="o">=</span>lf
+<span class="c1"># Unity YAML</span>
+*.anim -text <span class="nv">merge</span><span class="o">=</span>unityyamlmerge diff
+*.asset -text <span class="nv">merge</span><span class="o">=</span>unityyamlmerge diff
+*.controller -text <span class="nv">merge</span><span class="o">=</span>unityyamlmerge diff
+*.mat -text <span class="nv">merge</span><span class="o">=</span>unityyamlmerge diff
+*.meta -text <span class="nv">merge</span><span class="o">=</span>unityyamlmerge diff
+*.physicMaterial -text <span class="nv">merge</span><span class="o">=</span>unityyamlmerge diff
+*.physicsMaterial2D -text <span class="nv">merge</span><span class="o">=</span>unityyamlmerge diff
+*.prefab -text <span class="nv">merge</span><span class="o">=</span>unityyamlmerge diff
+*.unity -text <span class="nv">merge</span><span class="o">=</span>unityyamlmerge diff
+
+<span class="c1"># Unity LFS</span>
+*.cubemap <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.unitypackage <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+
+<span class="c1"># 2D formats</span>
+*.<span class="o">[</span>aA<span class="o">][</span>iI<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>bB<span class="o">][</span>mM<span class="o">][</span>pP<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>dD<span class="o">][</span>dD<span class="o">][</span>sS<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>eE<span class="o">][</span>xX<span class="o">][</span>rR<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>gG<span class="o">][</span>iI<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>hH<span class="o">][</span>dD<span class="o">][</span>rR<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>iI<span class="o">][</span>fF<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>jJ<span class="o">][</span>pP<span class="o">][</span>eE<span class="o">][</span>gG<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>jJ<span class="o">][</span>pP<span class="o">][</span>gG<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>pP<span class="o">][</span>iI<span class="o">][</span>cC<span class="o">][</span>tT<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>pP<span class="o">][</span>nN<span class="o">][</span>gG<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>pP<span class="o">][</span>sS<span class="o">][</span>dD<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>tT<span class="o">][</span>gG<span class="o">][</span>aA<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>tT<span class="o">][</span>iI<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>tT<span class="o">][</span>iI<span class="o">][</span>fF<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+
+<span class="c1"># 3D formats</span>
+*.3<span class="o">[</span>dD<span class="o">][</span>mM<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.3<span class="o">[</span>dD<span class="o">][</span>sS<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>aA<span class="o">][</span>bB<span class="o">][</span>cC<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>bB<span class="o">][</span>lL<span class="o">][</span>eE<span class="o">][</span>nN<span class="o">][</span>dD<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>cC<span class="o">]</span>4<span class="o">[</span>dD<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>cC<span class="o">][</span>oO<span class="o">][</span>lL<span class="o">][</span>lL<span class="o">][</span>aA<span class="o">][</span>dD<span class="o">][</span>aA<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>dD<span class="o">][</span>aA<span class="o">][</span>eE<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>dD<span class="o">][</span>xX<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>fF<span class="o">][</span>bB<span class="o">][</span>xX<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>jJ<span class="o">][</span>aA<span class="o">][</span>sS<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>lL<span class="o">][</span>wW<span class="o">][</span>oO<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>lL<span class="o">][</span>wW<span class="o">][</span>oO<span class="o">]</span><span class="m">2</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>lL<span class="o">][</span>wW<span class="o">][</span>sS<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>lL<span class="o">][</span>xX<span class="o">][</span>oO<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>mM<span class="o">][</span>aA<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>mM<span class="o">][</span>aA<span class="o">][</span>xX<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>mM<span class="o">][</span>bB<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>oO<span class="o">][</span>bB<span class="o">][</span>jJ<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>pP<span class="o">][</span>lL<span class="o">][</span>yY<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>sS<span class="o">][</span>kK<span class="o">][</span>pP<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>sS<span class="o">][</span>tT<span class="o">][</span>lL<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>zZ<span class="o">][</span>tT<span class="o">][</span>lL<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+
+<span class="c1"># Audio formats</span>
+*.<span class="o">[</span>aA<span class="o">][</span>iI<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>aA<span class="o">][</span>iI<span class="o">][</span>fF<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>bB<span class="o">][</span>aA<span class="o">][</span>nN<span class="o">][</span>kK<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>iI<span class="o">][</span>tT<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>mM<span class="o">][</span>oO<span class="o">][</span>dD<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>mM<span class="o">][</span>pP<span class="o">]</span><span class="m">3</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>oO<span class="o">][</span>gG<span class="o">][</span>gG<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>sS<span class="o">]</span>3<span class="o">[</span>mM<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>wW<span class="o">][</span>aA<span class="o">][</span>vV<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>xX<span class="o">][</span>mM<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+
+<span class="c1"># Video formats</span>
+*.<span class="o">[</span>aA<span class="o">][</span>sS<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>aA<span class="o">][</span>vV<span class="o">][</span>iI<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>fF<span class="o">][</span>lL<span class="o">][</span>vV<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>mM<span class="o">][</span>oO<span class="o">][</span>vV<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>mM<span class="o">][</span>pP<span class="o">]</span><span class="m">4</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>mM<span class="o">][</span>pP<span class="o">][</span>eE<span class="o">][</span>gG<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>mM<span class="o">][</span>pP<span class="o">][</span>gG<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>oO<span class="o">][</span>gG<span class="o">][</span>vV<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>wW<span class="o">][</span>mM<span class="o">][</span>vV<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+
+<span class="c1"># Build</span>
+*.<span class="o">[</span>dD<span class="o">][</span>lL<span class="o">][</span>lL<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>mM<span class="o">][</span>dD<span class="o">][</span>bB<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>pP<span class="o">][</span>dD<span class="o">][</span>bB<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>sS<span class="o">][</span>oO<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+
+<span class="c1"># Packaging</span>
+*.7<span class="o">[</span>zZ<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>bB<span class="o">][</span>zZ<span class="o">]</span><span class="m">2</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>gG<span class="o">][</span>zZ<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>rR<span class="o">][</span>aA<span class="o">][</span>rR<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>tT<span class="o">][</span>aA<span class="o">][</span>rR<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>tT<span class="o">][</span>aA<span class="o">][</span>rR<span class="o">]</span>.<span class="o">[</span>gG<span class="o">][</span>zZ<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>zZ<span class="o">][</span>iI<span class="o">][</span>pP<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+
+<span class="c1"># Fonts</span>
+*.<span class="o">[</span>oO<span class="o">][</span>tT<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+*.<span class="o">[</span>tT<span class="o">][</span>tT<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+
+<span class="c1"># Documents</span>
+*.<span class="o">[</span>pP<span class="o">][</span>dD<span class="o">][</span>fF<span class="o">]</span> <span class="nv">filter</span><span class="o">=</span>lfs <span class="nv">diff</span><span class="o">=</span>lfs <span class="nv">merge</span><span class="o">=</span>lfs -text
+
+<span class="c1"># Collapse Unity-generated files on GitHub</span>
+*.asset             linguist-generated
+*.mat               linguist-generated
+*.meta              linguist-generated
+*.prefab            linguist-generated
+*.unity             linguist-generated
+
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -289,8 +589,8 @@ git config --global user.email &#34;codingriver@163.com&#34;
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

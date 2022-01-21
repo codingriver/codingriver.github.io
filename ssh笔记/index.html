@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/ssh%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "git","wordcount":  765 ,
+        },"genre": "posts","keywords": "git","wordcount":  1075 ,
         "url": "https:\/\/codingriver.github.io\/ssh%E7%AC%94%E8%AE%B0\/","datePublished": "2019-12-19T22:39:07+08:00","dateModified": "2019-12-19T22:39:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SSH笔记</h1><h2 class="single-subtitle">SSH笔记</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-19 22:39:07">2019-12-19 22:39:07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 765 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/ssh%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="SSH笔记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-19 22:39:07">2019-12-19 22:39:07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1075 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/ssh%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="SSH笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -119,6 +119,7 @@
   <ul>
     <li><a href="#ssh-keygen-基本用法">ssh-keygen 基本用法</a></li>
     <li><a href="#验证ssh">验证ssh</a></li>
+    <li><a href="#配置ssh密钥登录">配置ssh密钥登录</a></li>
     <li><a href="#问题">问题</a>
       <ul>
         <li>
@@ -197,7 +198,82 @@ ssh -vT git@github.com
 ssh -vT git@github.com
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="问题">问题</h2>
+</div><h2 id="配置ssh密钥登录">配置ssh密钥登录</h2>
+<ul>
+<li>在本地电脑上生成密钥
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ssh-keygen -t rsa
+</code></pre></td></tr></table>
+</div>
+</div><p>生成密钥和公钥，将公钥复制到远程服务器的.ssh目录下</p>
+</li>
+<li>远程ssh配置
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">cd</span> <span class="o">~/</span><span class="p">.</span><span class="n">ssh</span>
+<span class="n">ls</span>                 <span class="c1">//ls你可以看到这个文件
+</span><span class="c1"></span><span class="n">touch</span> <span class="n">authorized_keys</span>  <span class="c1">//生成认证文件，其实已经有了
+</span><span class="c1"></span><span class="n">cat</span> <span class="n">id_rsa</span><span class="p">.</span><span class="n">pub</span> <span class="o">&gt;&gt;</span> <span class="n">authorized_keys</span> <span class="c1">// 将上面生成公钥复制到.ssh后然后复制到authorized_keys文件
+</span><span class="c1"></span><span class="n">chmod</span> <span class="mi">600</span> <span class="n">authorized_keys</span>    <span class="c1">//设置文件权限
+</span><span class="c1"></span><span class="n">chmod</span> <span class="mi">700</span> <span class="o">-</span><span class="n">R</span> <span class="p">.</span><span class="n">ssh</span>              <span class="c1">//是指文件夹权限
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>远程sshd_config文件配置
+文件位置： <code>/etc/ssh/sshd_config</code>,需要使用管理员权限打开
+几步处理：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">//使用密钥登录
+</span><span class="c1"></span><span class="n">RSAAuthentication</span> <span class="n">yes</span>
+<span class="n">PubkeyAuthentication</span> <span class="n">yes</span>
+<span class="c1">//禁止空密码和Root密码登录：
+</span><span class="c1"></span><span class="n">PermitEmptyPasswords</span> <span class="n">no</span>
+<span class="n">PasswordAuthentication</span> <span class="n">no</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>ssh登录测试</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">ssh -i .ssh/remote_rsa root@101.43.160.247
+// - i 指定密钥的文件路径
+// root 登录的用户名
+// 最后是ip
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参考 <a href="https://blog.csdn.net/ouzuosong/article/details/52225087">https://blog.csdn.net/ouzuosong/article/details/52225087</a><br>
+安装ssh <a href="https://www.cnblogs.com/wangboyu/articles/11611925.html">https://www.cnblogs.com/wangboyu/articles/11611925.html</a></p>
+</blockquote>
+<h2 id="问题">问题</h2>
 <h4 id="关于ecdsa-key-fingerprint-is">关于ECDSA key fingerprint is</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -305,8 +381,8 @@ and the repository exists.
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

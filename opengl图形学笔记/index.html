@@ -323,7 +323,7 @@ VAO的这种方式有点像一个中介，把所有繁琐的绑定和顶点设�
 <h3 id="vao的使用">VAO的使用</h3>
 <h5 id="1创建vao">1.创建VAO</h5>
 <p>创建VAO使用<code>glGenVertexArrays</code>参数与创建其他缓冲区对象的glGenBuffers类似
-<code>void glGenVertexArrays( GLsizei n, GLuint *arrays);</code></p>
+<code>void glGenVertexArrays( GLsizei n, GLuint *arrays);</code></p>
 <h5 id="2绑定并设置vao">2.绑定并设置VAO</h5>
 <p>在创建VAO之后，需要使用<code>glBindVertexArray</code>设置它为当前操作的VAO，之后我们所有关于顶点数据的设置（包括数据使用的VBO对象，顶点的属性设置的信息都会被存储在VAO之中），在设置完成之后一般会解绑VAO，然后在需要绘制的时候启用相应的VAO对象。具体的代码如下所示：</p>
 <div class="highlight"><div class="chroma">
@@ -1573,7 +1573,7 @@ vertex shader代码：</p>
 <h3 id="点光源阴影point-shadows">点光源阴影(Point Shadows)</h3>
 <blockquote>
 <p>原文：<a href="https://learnopengl-cn.github.io/05%20Advanced%20Lighting/03%20Shadows/02%20Point%20Shadows/" target="_blank" rel="noopener noreffer">点光源阴影</a>
-点光源：使用透视相机获取深度图，透视投影矩阵变换 ，阴影投射到立方体贴图
+点光源：使用透视相机获取深度图，透视投影矩阵变换 ，阴影投射到立方体贴图 
 点光阴影，过去的名字是万向阴影贴图（omnidirectional shadow maps）技术。
 定向阴影映射(方向光阴影)和万向阴影映射的主要不同在于深度贴图的使用上。</p>
 </blockquote>
@@ -2394,7 +2394,7 @@ vertex shader代码：</p>
 <li>count，数组中顶点的数量。</li>
 </ul>
 <h4 id="gldrawelements">glDrawElements</h4>
-<p><code>void glDrawElements( GLenum mode, GLsizei count, GLenum type, const GLvoid *indices）；</code>
+<p><code>void glDrawElements( GLenum mode, GLsizei count, GLenum type, const GLvoid *indices）；</code>
 参数说明：</p>
 <ul>
 <li>mode指定绘制图元的类型，它应该是下列值之一，GL_POINTS, GL_LINE_STRIP, GL_LINE_LOOP, GL_LINES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN, GL_TRIANGLES, GL_QUAD_STRIP, GL_QUADS, and GL_POLYGON.</li>
@@ -2413,7 +2413,7 @@ vertex shader代码：</p>
 </code></pre></td></tr></table>
 </div>
 </div><h4 id="glteximage2d">glTexImage2D</h4>
-<p><code>void GL_APIENTRY glTexImage2D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const void* pixels);</code></p>
+<p><code>void GL_APIENTRY glTexImage2D(GLenum target, GLint level, GLenum internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const void* pixels);</code></p>
 <p>参数说明：</p>
 <ul>
 <li>target 指定目标纹理，这个值必须是GL_TEXTURE_2D。</li>
@@ -2737,8 +2737,8 @@ Location索引为0和2属性的Divisor=0；索引3属性的Divisor=1；<br>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

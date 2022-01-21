@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC\/"
-        },"genre": "posts","wordcount":  6147 ,
+        },"genre": "posts","wordcount":  6135 ,
         "url": "https:\/\/codingriver.github.io\/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC\/","datePublished": "2021-04-21T20:09:51+08:00","dateModified": "2021-04-21T20:09:51+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">透视投影(Perspective Projection)变换推导过程</h1><h2 class="single-subtitle">透视投影(Perspective Projection)变换推导过程</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-21 20:09:51">2021-04-21 20:09:51</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6147 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-21 20:09:51">2021-04-21 20:09:51</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6135 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" class="leancloud_visitors" data-flag-title="透视投影(Perspective Projection)变换推导过程">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -282,7 +282,7 @@
         data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232008.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232008.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e5%8f%98%e6%8d%a2%e6%8e%a8%e5%af%bc/20210421232008.png 2x"
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232008.png"
-        title="20210421232008" />
+        title="20210421232008" /> 
 的一步我们是使用齐次坐标变普通坐标的规则完成的。这一步在透视投影过程中称为透视除法（Perspective Division），这是透视投影变换的第2步，经过这一步，就丢弃了原始的z值（得到了CVV中对应的z值，后面解释），顶点才算完成了投影。而在这两步之间的就是CVV裁剪过程，所以裁剪空间使用的是齐次坐标<br>
 <img
         class="lazyload"
@@ -315,7 +315,7 @@
 <blockquote>
 <p>有三个原因：</p>
 <ol>
-<li>后面投影之后的光栅化阶段，要通过x&rsquo;和y&rsquo;对z进行线性插值，以求出三角形内部片元的z，进行z缓冲深度测试。在数学上，投影后的x&rsquo;和y&rsquo;，与z不是线性关系，与1/z才是线性关系。而正
+<li>后面投影之后的光栅化阶段，要通过x&rsquo;和y&rsquo;对z进行线性插值，以求出三角形内部片元的z，进行z缓冲深度测试。在数学上，投影后的x&rsquo;和y'，与z不是线性关系，与1/z才是线性关系。而正
 <img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -324,7 +324,7 @@
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210421232253.png"
         title="20210421232253" />
-是1/z的线性关系，即-a+b/z。用这个1/z的线性组合值和x&rsquo;、y&rsquo;进行插值才是正确的。</li>
+是1/z的线性关系，即-a+b/z。用这个1/z的线性组合值和x'、y&rsquo;进行插值才是正确的。</li>
 <li>P’的3个代数分量统一地除以分母-z，易于使用齐次坐标变为普通坐标来完成，使得处理更加一致、高效。</li>
 <li>后面的CVV是一个x,y,z的范围都为[-1，1]的规则体，便于进行多边形裁剪。而我们可以适当的选择系数a和b，使得
 <img
@@ -832,8 +832,8 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 
