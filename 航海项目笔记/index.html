@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/%E8%88%AA%E6%B5%B7%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "笔记","wordcount":  2971 ,
+        },"genre": "posts","keywords": "笔记","wordcount":  4678 ,
         "url": "https:\/\/codingriver.github.io\/%E8%88%AA%E6%B5%B7%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0\/","datePublished": "2022-01-17T21:51:13+08:00","dateModified": "2022-01-17T21:51:13+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">航海项目笔记</h1><h2 class="single-subtitle">壳木航海项目笔记</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17 21:51:13">2022-01-17 21:51:13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2971 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/%E8%88%AA%E6%B5%B7%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="航海项目笔记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17 21:51:13">2022-01-17 21:51:13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4678 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/%E8%88%AA%E6%B5%B7%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="航海项目笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -140,9 +140,19 @@
             <li><a href="#视频文件">视频文件</a></li>
             <li><a href="#textasset检查">TextAsset检查</a></li>
             <li><a href="#mesh-animator使用">Mesh Animator使用</a></li>
+            <li><a href="#disablewritetypetree问题">DisableWriteTypeTree问题</a></li>
           </ul>
         </li>
         <li><a href="#ab加载和卸载策略">AB加载和卸载策略</a></li>
+        <li><a href="#shader打包">Shader打包</a>
+          <ul>
+            <li><a href="#urp-package-内置shader打包问题">URP Package 内置shader打包问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#包体优化结果">包体优化结果</a></li>
+        <li><a href="#shader变体处理">Shader变体处理</a></li>
+        <li><a href="#关于urp-shader打包问题">关于URP Shader打包问题</a></li>
+        <li><a href="#今日工作计划">今日工作计划</a></li>
       </ul>
     </li>
   </ul>
@@ -165,11 +175,17 @@
 </ul>
 </li>
 <li><i class="far fa-square fa-fw"></i> Resource目录下的文件是否有用？</li>
-<li><i class="far fa-square fa-fw"></i> Resource目录下的文件是否有用？</li>
+<li><i class="far fa-square fa-fw"></i> Timeline在资源量很大的情况下会很卡，使用视频替代，暂时确定不用了？</li>
+<li><i class="far fa-square fa-fw"></i> 使用Mesh Animator替代Animation 来进行合批处理，Mesh Animator依赖的动画数据打包后很大，需用Animation合批测试，或者用丧尸项目的合批处理方案（可能是3D纹理，需测试）</li>
 </ul>
 <h4 id="一些记录">一些记录</h4>
 <ul>
-<li><i class="far fa-square fa-fw"></i> <a href="https://www.cnblogs.com/startkey/p/10678173.html" target="_blank" rel="noopener noreffer">bsdiff差分算法</a></li>
+<li><a href="https://www.cnblogs.com/startkey/p/10678173.html" target="_blank" rel="noopener noreffer">bsdiff差分算法</a></li>
+<li>出正式包怎么剥离无用的dll，比如log插件dll，Debug库，绘制插件dll（仅dev使用）<a href="https://docs.unity3d.com/cn/2020.3/Manual/ManagedCodeStripping.html" target="_blank" rel="noopener noreffer">参考</a>
+<ul>
+<li>这里可以在打包正式包时将dll删除后打包</li>
+</ul>
+</li>
 </ul>
 <h3 id="打包策略问题">打包策略问题</h3>
 <ul>
@@ -344,7 +360,23 @@ textures 文件过大，内容过多，太杂,依赖管理混乱
 <p>主要问题：纹理，Shader，Mesh，Terrain，FBX动画，</p>
 </blockquote>
 <h4 id="打包避免冗余">打包避免冗余</h4>
+<ul>
+<li>
 <p>每个角色的AB文件中都有 <code>Universal Render Pipeline/Lit</code>和<code>&quot;Hidden/Universal Render Pipeline/FallbackError&quot;</code>两个Shader，出现严重冗余，需要调整打包策略，建议所有Shader打包一个AB文件</p>
+</li>
+<li>
+<p>基类公共状态机冗余
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-24-21-54-50.png"
+        data-srcset="../../imgs/2022-01-24-21-54-50.png, ../../imgs/2022-01-24-21-54-50.png 1.5x, ../../imgs/2022-01-24-21-54-50.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-24-21-54-50.png"
+        title="../../imgs/2022-01-24-21-54-50.png" /><br>
+<em>每个角色的包内都有该资源</em>，<strong>需要验证</strong></p>
+</li>
+</ul>
 <h4 id="图集图片文件过大">图集、图片文件过大</h4>
 <p><img
         class="lazyload"
@@ -363,6 +395,13 @@ textures 文件过大，内容过多，太杂,依赖管理混乱
         alt="../../imgs/2022-01-20-11-48-28.png"
         title="../../imgs/2022-01-20-11-48-28.png" />
 使用第三方无损压缩，减小文件大小，这里文件大小是原来的1/3。</p>
+<p><em>使用图片无损压缩打包测试，图片属性：RGBA 2048*2048,使用<code>RGBA Crunched ETC2</code>内存压缩</em>
+| |压缩尺寸|压缩前|压缩后
+|-|-|-|-|
+|图片文件||1564kb|481kb|
+|AB文件|2048|268kb|260kb|
+|AB文件|1024|96kb|89kb|
+<em>可以发现压缩后的图片打包AB文件比压缩前小大概7kb左右</em></p>
 <ul>
 <li>图片在内存中没有压缩</li>
 </ul>
@@ -397,6 +436,10 @@ textures 文件过大，内容过多，太杂,依赖管理混乱
         data-sizes="auto"
         alt="../../imgs/2022-01-20-11-53-24.png"
         title="../../imgs/2022-01-20-11-53-24.png" /></p>
+<blockquote>
+<p>推荐 Android 和IOS都用ASTC;<br>
+参考：<a href="https://zhuanlan.zhihu.com/p/158740249" target="_blank" rel="noopener noreffer">ASTC纹理压缩格式详解</a></p>
+</blockquote>
 <h4 id="无用资源进入ab文件中">无用资源进入AB文件中</h4>
 <p>需要分析及分解路径下的图片资源，使用策略去拆分剔除无用资源，最优方案是给美术和程序提供一套标准
 <img
@@ -500,7 +543,7 @@ textures 文件过大，内容过多，太杂,依赖管理混乱
         alt="../../imgs/2022-01-20-15-44-33.png"
         title="../../imgs/2022-01-20-15-44-33.png" /><br>
 修改后的内存大小是原来的1/4，Ab文件是原来的1/3  （动画表现一致）</p>
-<p>使用脚本剔除无用scale数据及修改数据精度（没有勾选 Resample Curves） 
+<p>使用脚本剔除无用scale数据及修改数据精度（没有勾选 Resample Curves）
 <em>这种方式每次animation导入修改后都不会保持，因为untiy默认重新导入animation并计算数据，需要在animation后处理中处理，每次变化都要执行一遍</em><br>
 <img
         class="lazyload"
@@ -528,6 +571,27 @@ textures 文件过大，内容过多，太杂,依赖管理混乱
 <a href="https://blog.uwa4d.com/archives/Optimization_Animation.html">https://blog.uwa4d.com/archives/Optimization_Animation.html</a><br>
 <a href="https://zhuanlan.zhihu.com/p/353402448">https://zhuanlan.zhihu.com/p/353402448</a></p>
 </blockquote>
+<blockquote>
+<p>处理Animation时遇到的问题:<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-24-20-27-28.png"
+        data-srcset="../../imgs/2022-01-24-20-27-28.png, ../../imgs/2022-01-24-20-27-28.png 1.5x, ../../imgs/2022-01-24-20-27-28.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-24-20-27-28.png"
+        title="../../imgs/2022-01-24-20-27-28.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-24-20-33-18.png"
+        data-srcset="../../imgs/2022-01-24-20-33-18.png, ../../imgs/2022-01-24-20-33-18.png 1.5x, ../../imgs/2022-01-24-20-33-18.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-24-20-33-18.png"
+        title="../../imgs/2022-01-24-20-33-18.png" /><br>
+一个fbx上出现两个animation 动画，<code>__preview_Take 001</code>应该是美术没有删除干净
+打包AB文件没有发现<code>__preview_Take 001</code>资源打包进去</p>
+</blockquote>
 <h4 id="sound音频文件过大不合理">Sound音频文件过大，不合理</h4>
 <blockquote>
 <p>可进行二次处理</p>
@@ -540,8 +604,16 @@ textures 文件过大，内容过多，太杂,依赖管理混乱
         data-sizes="auto"
         alt="../../imgs/2022-01-20-17-10-26.png"
         title="../../imgs/2022-01-20-17-10-26.png" /><br>
+<em>音频长度2分钟15秒</em><br>
 音频单个文件1M多，会影响加载速度，比较慢</p>
 <p>需要降低下音频质量，或者无损压缩，这个应该是背景，一般几百kb就可以，200kb-500kb左右即可</p>
+<blockquote>
+<p>优化参考：<br>
+<a href="https://blog.csdn.net/qq_37672438/article/details/105071162">https://blog.csdn.net/qq_37672438/article/details/105071162</a><br>
+<a href="https://blog.csdn.net/Czhenya/article/details/102579237">https://blog.csdn.net/Czhenya/article/details/102579237</a><br>
+<a href="https://www.icode9.com/content-4-980583.html">https://www.icode9.com/content-4-980583.html</a><br>
+<a href="https://zhuanlan.zhihu.com/p/193012525">https://zhuanlan.zhihu.com/p/193012525</a></p>
+</blockquote>
 <h4 id="terrain使用问题">Terrain使用问题</h4>
 <p>有多个Terrain Data占用太大<br>
 <img
@@ -656,6 +728,31 @@ keywords组合不低于236种，造成Shader的AB文件太大，而且Sahder.Par
 这个fly.asset文件大小是15M左右，内存占用4M左右，打包AB文件比较大，这个AB文件3M左右<br>
 <strong>是否有其他方式去替代优化</strong><br>
 <strong>内存分析需要着重关注</strong></p>
+<h4 id="disablewritetypetree问题">DisableWriteTypeTree问题</h4>
+<p>关闭Bundle文件的<code>type information</code>数据写入，这是为了使用Unity版本不同做的兼容（标记数据，unity版本相同无用）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="c1">//BuildAssetBundleOptions.DisableWriteTypeTree
+</span><span class="c1"></span><span class="n">BuildPipeline</span><span class="p">.</span><span class="n">BuildAssetBundles</span><span class="p">(</span><span class="n">dir</span><span class="p">,</span><span class="n">ls</span><span class="p">.</span><span class="n">ToArray</span><span class="p">(),</span><span class="n">BuildAssetBundleOptions</span><span class="p">.</span><span class="n">DeterministicAssetBundle</span> <span class="p">|</span> <span class="n">BuildAssetBundleOptions</span><span class="p">.</span><span class="n">ChunkBasedCompression</span><span class="p">|</span><span class="n">BuildAssetBundleOptions</span><span class="p">.</span><span class="n">DisableWriteTypeTree</span><span class="p">,</span> <span class="n">BuildTarget</span><span class="p">.</span><span class="n">Android</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-26-17-18-18.png"
+        data-srcset="../../imgs/2022-01-26-17-18-18.png, ../../imgs/2022-01-26-17-18-18.png 1.5x, ../../imgs/2022-01-26-17-18-18.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-26-17-18-18.png"
+        title="../../imgs/2022-01-26-17-18-18.png" />
+<em>红色是开启默认<code>type information</code>写入，asset classes就是写入的数据，左侧蓝色是关闭<code>type information</code>写入的大小</em>
+bundle文件大小差5k多（每个bundle文件内容不一样，大小也不一样），还是很可观的</p>
+<blockquote>
+<p>参考：<a href="https://blog.csdn.net/kangluo1/article/details/119089200">https://blog.csdn.net/kangluo1/article/details/119089200</a></p>
+</blockquote>
 <h3 id="ab加载和卸载策略">AB加载和卸载策略</h3>
 <blockquote>
 <p>现有加载策略：</p>
@@ -685,7 +782,172 @@ keywords组合不低于236种，造成Shader的AB文件太大，而且Sahder.Par
 <li>使用引用计数方案对Bundle和Asset管理</li>
 <li>增加图集管理(图集制作细分方案待定)</li>
 <li>使用加载和卸载成对管理，或者做内置管理和实例对象绑定</li>
-</ol></div><div class="post-footer" id="post-footer">
+</ol>
+<h3 id="shader打包">Shader打包</h3>
+<h4 id="urp-package-内置shader打包问题">URP Package 内置shader打包问题</h4>
+<ul>
+<li>Universal Render Pipeline/Lit has too many Shader variants(150994944)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-24-14-05-37.png"
+        data-srcset="../../imgs/2022-01-24-14-05-37.png, ../../imgs/2022-01-24-14-05-37.png 1.5x, ../../imgs/2022-01-24-14-05-37.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-24-14-05-37.png"
+        title="../../imgs/2022-01-24-14-05-37.png" /></li>
+</ul>
+<p>URP 自带Lit Shader变体太多问题</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-24-14-23-38.png"
+        data-srcset="../../imgs/2022-01-24-14-23-38.png, ../../imgs/2022-01-24-14-23-38.png 1.5x, ../../imgs/2022-01-24-14-23-38.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-24-14-23-38.png"
+        title="../../imgs/2022-01-24-14-23-38.png" /></p>
+<p>可能因为在Project Setting&ndash;&gt;Graphing设置All include 然后打包又打进去所以报错了</p>
+<h3 id="包体优化结果">包体优化结果</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-10-17-42.png"
+        data-srcset="../../imgs/2022-01-27-10-17-42.png, ../../imgs/2022-01-27-10-17-42.png 1.5x, ../../imgs/2022-01-27-10-17-42.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-10-17-42.png"
+        title="../../imgs/2022-01-27-10-17-42.png" />
+<em>左侧蓝色是优化后的，右侧红色是优化前的</em></p>
+<h3 id="shader变体处理">Shader变体处理</h3>
+<ul>
+<li>
+<p>Graphics APIs 只保留<code>OpenGLEL3</code>就可以了,否则打包Shader时每个平台生成一套代码导致AB包过大
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-24-08.png"
+        data-srcset="../../imgs/2022-01-27-18-24-08.png, ../../imgs/2022-01-27-18-24-08.png 1.5x, ../../imgs/2022-01-27-18-24-08.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-24-08.png"
+        title="../../imgs/2022-01-27-18-24-08.png" /></p>
+</li>
+<li>
+<p>Graphics -&gt; Tier Settings默认三种配置，每个shader会生成对应三套代码，这里将Tier三种配置设置成相同的，则Shader只会生成一套代码，减小包体</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-26-27.png"
+        data-srcset="../../imgs/2022-01-27-18-26-27.png, ../../imgs/2022-01-27-18-26-27.png 1.5x, ../../imgs/2022-01-27-18-26-27.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-26-27.png"
+        title="../../imgs/2022-01-27-18-26-27.png" /></p>
+<ul>
+<li>单独打包Shader文件（没有材质球） 关于<code>#pragma multi_compile</code>和<code>#pragma shader_feature </code>测试</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-glsl" data-lang="glsl">            <span class="err">#</span><span class="n">pragma</span> <span class="n">multi_compile</span>  <span class="n">COM_M</span> <span class="n">COM_N</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">multi_compile</span>  <span class="n">COM_X</span> <span class="n">COM_Y</span> <span class="n">COM_Z</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">shader_feature</span> <span class="n">_</span> <span class="n">A</span> <span class="n">B</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">shader_feature</span> <span class="n">E</span> <span class="n">F</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>打包的AB包中的Shader keywords数量<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-39-42.png"
+        data-srcset="../../imgs/2022-01-27-18-39-42.png, ../../imgs/2022-01-27-18-39-42.png 1.5x, ../../imgs/2022-01-27-18-39-42.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-39-42.png"
+        title="../../imgs/2022-01-27-18-39-42.png" />
+<code>multi_compile</code>两行的keywords组合相乘是最后的shader代码的数量，注意数量<br>
+这里<code>#pragma shader_feature </code> 如果第一项是<code>_</code>则认为没有keywords,如果不是<code>_</code>，则默认打包进第一个选项（这里是<code>E</code>）</p>
+<ul>
+<li>单独打包材质球（将材质球和shader打包一起）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-glsl" data-lang="glsl">            <span class="err">#</span><span class="n">pragma</span> <span class="n">multi_compile</span>  <span class="n">COM_M</span> <span class="n">COM_N</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">multi_compile</span>  <span class="n">COM_X</span> <span class="n">COM_Y</span> <span class="n">COM_Z</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">shader_feature</span> <span class="n">_</span> <span class="n">A</span> <span class="n">B</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">shader_feature</span> <span class="n">E</span> <span class="n">F</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>打包的AB包中的Shader keywords数量</p>
+<p>材质球keywords默认：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-48-01.png"
+        data-srcset="../../imgs/2022-01-27-18-48-01.png, ../../imgs/2022-01-27-18-48-01.png 1.5x, ../../imgs/2022-01-27-18-48-01.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-48-01.png"
+        title="../../imgs/2022-01-27-18-48-01.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-39-42.png"
+        data-srcset="../../imgs/2022-01-27-18-39-42.png, ../../imgs/2022-01-27-18-39-42.png 1.5x, ../../imgs/2022-01-27-18-39-42.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-39-42.png"
+        title="../../imgs/2022-01-27-18-39-42.png" /></p>
+<p>材质球指定keywords后<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-47-30.png"
+        data-srcset="../../imgs/2022-01-27-18-47-30.png, ../../imgs/2022-01-27-18-47-30.png 1.5x, ../../imgs/2022-01-27-18-47-30.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-47-30.png"
+        title="../../imgs/2022-01-27-18-47-30.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-46-29.png"
+        data-srcset="../../imgs/2022-01-27-18-46-29.png, ../../imgs/2022-01-27-18-46-29.png 1.5x, ../../imgs/2022-01-27-18-46-29.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-46-29.png"
+        title="../../imgs/2022-01-27-18-46-29.png" /><br>
+<em>指定keywords后等于选择<code>shader_feature</code>的变体，<code>multi_compile</code>进行全部组合</em></p>
+<p>总结：<strong>材质球指定<code>shader_feature</code> keywords后和shader打包到AB文件中，shader的keywords是受材质球的keywords配置影响的</strong></p>
+<p>可以用<code>Shader Variant Collection</code>单独控制keywords，把collection和shader打包到一个AB文件中
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-51-53.png"
+        data-srcset="../../imgs/2022-01-27-18-51-53.png, ../../imgs/2022-01-27-18-51-53.png 1.5x, ../../imgs/2022-01-27-18-51-53.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-51-53.png"
+        title="../../imgs/2022-01-27-18-51-53.png" /></p>
+<blockquote>
+<p>参考：
+<a href="https://zhuanlan.zhihu.com/p/68888831">https://zhuanlan.zhihu.com/p/68888831</a><br>
+<a href="https://blog.csdn.net/eevee_1/article/details/118632371">https://blog.csdn.net/eevee_1/article/details/118632371</a><br>
+<a href="https://zhuanlan.zhihu.com/p/392004640">https://zhuanlan.zhihu.com/p/392004640</a>
+<a href="https://blog.csdn.net/danteshenqu/article/details/78170745">https://blog.csdn.net/danteshenqu/article/details/78170745</a>
+<a href="https://zhuanlan.zhihu.com/p/83780152">https://zhuanlan.zhihu.com/p/83780152</a></p>
+</blockquote>
+<h3 id="关于urp-shader打包问题">关于URP Shader打包问题</h3>
+<blockquote>
+<p>由于URP内部的Shader在Packages中，不能设置AssetBundleName,在Graphics中添加shader，但是打包还是会被打进去</p>
+</blockquote>
+<h3 id="今日工作计划">今日工作计划</h3>
+<ul>
+<li><i class="far fa-square fa-fw"></i> 对Packages内资源没有办法设置bundle name，URP内的资源需要转移到Assets目录下才行，找出解决方案</li>
+</ul></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -715,7 +977,7 @@ keywords组合不低于236种，造成Shader的AB文件太大，而且Sahder.Par
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

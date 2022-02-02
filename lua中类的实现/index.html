@@ -156,12 +156,12 @@
 算数运算符：<code>__add</code>(加法)[+]、<code>__mul</code>(乘法)[*]、<code>__sub</code>(减法)[-]、<code>__div</code>(除法)[/]、<code>__unm</code>(相反数)[-]、<code>__mod</code>(取模)[%]、<code>__pow</code>(乘幂)[^]。
 逻辑运算符：<code>__eq</code>(等于)[=]、<code>__lt</code>(小于)[&lt;]、<code>__le</code>(小于等于)[&lt;=]。
 其他运算符：<code>__concat</code>(连接)[..]、<code>__len</code>(取长度)[#]。
-其他元方法： 
+其他元方法：
 <code>__tostring</code>：返回值(可接受参数：table)
 <code> __call</code>：函数调用(可接受参数：table, key)
 <code>__metatable</code>：保护元方法(字符串)
 <code>__index</code>：查找表索引(可接受参数：table, key)
-<code>__newindex</code>：添加新索引(可接受参数：table, key, value) 
+<code>__newindex</code>：添加新索引(可接受参数：table, key, value)
 <strong>说明：</strong>
 <strong><code>__add</code></strong>
 如果任何不是数字的值（包括不能转换为数字的字符串）做加法， Lua 就会尝试调用元方法。 首先、Lua 检查第一个操作数（即使它是合法的）， 如果这个操作数没有为 &ldquo;__add&rdquo; 事件定义元方法， Lua 就会接着检查第二个操作数。 一旦 Lua 找到了元方法， 它将把两个操作数作为参数传入元方法， 元方法的结果（调整为单个值）作为这个操作的结果。 如果找不到元方法，将抛出一个错误。(其它 算数运算符和逻辑运算符及其它运算符跟这个类似)</p>
@@ -170,7 +170,7 @@
 <p><strong><code>__newindex</code></strong></p>
 <p>__newindex元方法用来对表更新，__index则用来对表访问。当你给表的一个缺少的域赋值，解释器就会查找__newindex元方法：如果存在则调用这个函数而不进行赋值操作。像__index一样，如果元方法是一个表，解释器对指定的那个表，而不是原始的表进行赋值操作。另外，有一个raw函数可以绕过元方法：调用rawset(t,k,v)不掉用任何元方法对表t的k域赋值为v。__index和__newindex 元方法的混合使用提供了强大的结构：从只读表到面向对象编程的带有继承默认值的表。</p>
 <blockquote>
-<p>参考文章 
+<p>参考文章
 <a href="https://blog.csdn.net/jingangxin666/article/details/80382748" target="_blank" rel="noopener noreffer">Lua 元表与元方法</a>
 <a href="https://www.cnblogs.com/Dong-Forward/p/6063365.html" target="_blank" rel="noopener noreffer">lua元表以及元方法</a></p>
 </blockquote>
@@ -671,7 +671,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

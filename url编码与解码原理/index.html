@@ -319,7 +319,7 @@ escape和encodeURI的百分号编码的根本区别在于，encodeURI是W3C的�
             <div class="admonition-content"><p>encodeURI的 <strong>不编码集（82个）</strong> =</p>
 <p><em>66个未保留字符<code>-_.~A-Za-z0-9</code></em></p>
 <p>加上</p>
-<p><em>18个保留字符:/?#[]@!$&amp;'()</em>+,;=*</p>
+<p>*18个保留字符:/?#[]@!$&amp;'()<em>+,;=</em></p>
 <p>减去</p>
 <p><em>2个不安全的保留字符[]</em></p>
 </div>
@@ -386,29 +386,29 @@ UTF-8根据不同的符号而变化字节长度，编码规则如下：</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">Unicode符号范围（十六进制）</th>
+<th align="center">Unicode符号范围（十六进制）</th>
 <th>UTF-8编码（二进制）</th>
 <th>解释</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">0000 0000~0000 007F</td>
+<td align="center">0000 0000~0000 007F</td>
 <td>0xxxxxxx</td>
 <td>字节的第一位设为0，代表是单字节字符。</td>
 </tr>
 <tr>
-<td style="text-align:center">0000 0080~0000 07FF</td>
+<td align="center">0000 0080~0000 07FF</td>
 <td>110xxxxx 10xxxxxx</td>
 <td>n=2个字节，第一个字节的前n位设为1，第n+1位设为0，其他字节的前2位为10。</td>
 </tr>
 <tr>
-<td style="text-align:center">0000 0800~0000 FFFF</td>
+<td align="center">0000 0800~0000 FFFF</td>
 <td>1110xxxx 10xxxxxx 10xxxxxx</td>
 <td>n=3个字节，第一个字节的前n位设为1，第n+1位设为0，其他字节的前2位为10。</td>
 </tr>
 <tr>
-<td style="text-align:center">0001 0000~0010 FFFF</td>
+<td align="center">0001 0000~0010 FFFF</td>
 <td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
 <td>n=4个字节，第一个字节的前n位设为1，第n+1位设为0，其他字节的前2位为10。</td>
 </tr>
@@ -474,7 +474,7 @@ UTF-8根据不同的符号而变化字节长度，编码规则如下：</p>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

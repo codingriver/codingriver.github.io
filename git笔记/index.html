@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "git","wordcount":  1864 ,
+        },"genre": "posts","keywords": "git","wordcount":  2898 ,
         "url": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/","datePublished": "2019-11-30T14:18:54+08:00","dateModified": "2019-11-30T14:18:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Git笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1864 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/git%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Git笔记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2898 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/git%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Git笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -136,8 +136,11 @@
         <li><a href="#git-push-origin-mastermaster">git push origin master:master</a></li>
       </ul>
     </li>
+    <li><a href="#git-clean">Git Clean</a></li>
     <li><a href="#git-config">Git Config</a></li>
     <li><a href="#git-提交空文件夹">Git 提交空文件夹</a></li>
+    <li><a href="#shell判断git-remote是否存在">shell判断git remote是否存在</a></li>
+    <li><a href="#shell-判断-git-branch-分支是否存在">shell 判断 git branch 分支是否存在</a></li>
     <li><a href="#git文件内容没变但status显示不同的解决方案">git文件内容没变但status显示不同的解决方案</a></li>
     <li><a href="#git处理换行符问题">Git处理换行符问题</a></li>
   </ul>
@@ -214,6 +217,51 @@ git push --force origin master:master
 </code></pre></td></tr></table>
 </div>
 </div><p>在local repository中找到名字为master的branch，使用它去更新remote repository下名字为master的branch，如果remote repository下不存在名字是master的branch，那么新建一个</p>
+<h2 id="git-clean">Git Clean</h2>
+<blockquote>
+<p>git clean命令用来从你的工作目录中删除所有没有tracked过的文件</p>
+<p><strong>git clean经常和<code>git reset --hard</code>一起结合使用</strong>. 记住reset只影响被track过的文件, 所以需要clean来删除没有track过的文件. 结合使用这两个命令能让你的工作目录完全回到一个指定的<commit>的状态</p>
+</blockquote>
+<ul>
+<li>
+<p><code>git clean -n</code>
+是一次clean的演习, 告诉你哪些文件会被删除. 记住他不会真正的删除文件, 只是一个提醒</p>
+</li>
+<li>
+<p><code>git clean -f</code>
+删除当前目录下所有没有track过的文件. 他不会删除.gitignore文件里面指定的文件夹和文件, 不管这些文件有没有被track过</p>
+</li>
+<li>
+<p><code>git clean -f &lt;path&gt;</code>
+删除指定路径下的没有被track过的文件</p>
+</li>
+<li>
+<p><code>git clean -df</code>
+删除当前目录下没有被track过的文件和文件夹</p>
+</li>
+<li>
+<p><code>git clean -xf</code>
+删除当前目录下所有没有track过的文件. 不管他是否是.gitignore文件里面指定的文件夹和文件</p>
+</li>
+</ul>
+<p>下面的例子要删除所有工作目录下面的修改, 包括新添加的文件. 假设你已经提交了一些快照了, 而且做了一些新的开发</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">git reset --hard
+
+git clean -df
+</code></pre></td></tr></table>
+</div>
+</div><p>运行后, 工作目录和缓存区回到最近一次commit时候一摸一样的状态.<br>
+<code>git status</code>会告诉你这是一个干净的工作目录, 又是一个新的开始了！</p>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/0b05ef199749">https://www.jianshu.com/p/0b05ef199749</a></p>
+</blockquote>
 <h2 id="git-config">Git Config</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -261,7 +309,95 @@ git config --global user.email &#34;codingriver@163.com&#34;
 <em>我这是在windows上操作的，不能直接创建以.开头的文件，参考这篇文章<a href="https://blog.csdn.net/codingriver/article/details/83414019" target="_blank" rel="noopener noreffer">Windows创建.开头的文件或者.开头的文件夹</a></em></p>
 <p><strong>新建.gitkeep文件</strong>
 在空文件夹下新建.gitkeep文件，是空文件，这样就能提交git仓库了</p>
-<h2 id="git文件内容没变但status显示不同的解决方案">git文件内容没变但status显示不同的解决方案</h2>
+<h2 id="shell判断git-remote是否存在">shell判断git remote是否存在</h2>
+<p>假如，要判断的 remote 的名字为 faraway。</p>
+<ul>
+<li>第一种方案</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="k">if</span> git config remote.faraway.url &gt; /dev/null<span class="p">;</span> <span class="k">then</span> 
+ …
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>第二种方案</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="k">if</span> git remote <span class="p">|</span> grep faraway &gt; /dev/null<span class="p">;</span> <span class="k">then</span> 
+ …
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>判断 remote 是否已存在，如果已存在，直接进行 git fetch faraway 等操作，如果不存在，git add remote faraway http://xxxxx 后，再进行操作。</p>
+<blockquote>
+<p>参考：<br>
+<a href="https://www.jianshu.com/p/e4b9c6c6bab7">https://www.jianshu.com/p/e4b9c6c6bab7</a><br>
+<a href="https://blog.csdn.net/longerzone/article/details/12948925">https://blog.csdn.net/longerzone/article/details/12948925</a></p>
+</blockquote>
+<h2 id="shell-判断-git-branch-分支是否存在">shell 判断 git branch 分支是否存在</h2>
+<p>举例：判断当前分支是否为master，本地分支master是否存在，远端分支master是否存在</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="k">if</span> git branch --list master <span class="p">|</span> grep <span class="s2">&#34;*&#34;</span><span class="p">;</span> <span class="k">then</span> 
+    <span class="c1">## 分支名字完全匹配，不是模糊匹配！只能匹配master，不能匹配mastertest等</span>
+    <span class="nb">echo</span> <span class="s2">&#34;当前分支是master&#34;</span>
+    git reset --hard
+    git clean -df &gt; /dev/null    
+<span class="k">elif</span> git branch --list <span class="p">|</span> grep -w master &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
+    <span class="c1">## 分支名字完全匹配，不是模糊匹配！只能匹配master，不能匹配mastertest等</span>
+    <span class="nb">echo</span> <span class="s2">&#34;master不是当前分支，但本地分支master存在&#34;</span>
+    git reset --hard
+    git clean -df &gt; /dev/null
+    git checkout  master
+<span class="k">elif</span> git branch -r <span class="p">|</span> grep -w master<span class="p">;</span> <span class="k">then</span>
+    <span class="c1">## 分支名字完全匹配，不是模糊匹配，只能匹配origin/master,不能匹配origin/mastertest等</span>
+    <span class="nb">echo</span> <span class="s2">&#34;本地分支master不存在,远端master分支存在&#34;</span>
+    git reset --hard
+    git clean -df &gt; /dev/null
+    git checkout -b  master origin/master
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s2">&#34;本地分支master不存在,远端master分支也不存在&#34;</span>
+<span class="k">fi</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="git文件内容没变但status显示不同的解决方案">git文件内容没变但status显示不同的解决方案</h2>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -589,7 +725,7 @@ git config --global user.email &#34;codingriver@163.com&#34;
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

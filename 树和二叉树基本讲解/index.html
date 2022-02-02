@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E6%9C%AC%E8%AE%B2%E8%A7%A3\/"
-        },"genre": "posts","keywords": "数据结构","wordcount":  2245 ,
+        },"genre": "posts","keywords": "数据结构","wordcount":  2246 ,
         "url": "https:\/\/codingriver.github.io\/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E6%9C%AC%E8%AE%B2%E8%A7%A3\/","datePublished": "2020-09-03T21:09:12+08:00","dateModified": "2020-09-03T21:09:12+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">【数据结构】树和二叉树基本讲解</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-03 21:09:12">2020-09-03 21:09:12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2245 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-03 21:09:12">2020-09-03 21:09:12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2246 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E6%9C%AC%E8%AE%B2%E8%A7%A3/" class="leancloud_visitors" data-flag-title="【数据结构】树和二叉树基本讲解">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -165,7 +165,7 @@
 <em>(03) 每一个非根节点有且只有一个父节点；</em>
 <em>(04) 除了根节点外，每个子节点可以分为多个不相交的子树。</em></p>
 <h4 id="2-树的基本术语">2. 树的基本术语</h4>
-<p>若一个结点有子树，那么该结点称为子树根的&quot;双亲&quot;，子树的根是该结点的&quot;孩子&quot;。有相同双亲的结点互为&quot;兄弟&quot;。一个结点的所有子树上的任何结点都是该结点的后裔。从根结点到某个结点的路径上的所有结点都是该结点的祖先。</p>
+<p>若一个结点有子树，那么该结点称为子树根的&quot;双亲&rdquo;，子树的根是该结点的&quot;孩子&rdquo;。有相同双亲的结点互为&quot;兄弟&rdquo;。一个结点的所有子树上的任何结点都是该结点的后裔。从根结点到某个结点的路径上的所有结点都是该结点的祖先。</p>
 <p><strong>结点的度</strong>：结点拥有的子树的数目。
 <strong>叶子</strong>：度为零的结点。
 <strong>分支结点</strong>：度不为零的结点。
@@ -196,7 +196,7 @@
 <p>证明：下面用&quot;数学归纳法&quot;进行证明。
 (01) 当i=1时，第i层的节点数目为2^{i-1}^=2^{0}^=1。因为第1层上只有一个根结点，所以命题成立。
 (02) 假设当i&gt;1，第i层的节点数目为2^{i-1}^。这个是根据(01)推断出来的！
-下面根据这个假设，推断出&quot;第(i+1)层的节点数目为2^{i}^&ldquo;即可。
+下面根据这个假设，推断出&quot;第(i+1)层的节点数目为2^{i}^&quot;即可。
 由于二叉树的每个结点至多有两个孩子，故&quot;第(i+1)层上的结点数目&rdquo; 最多是 &ldquo;第i层的结点数目的2倍&rdquo;。即，第(i+1)层上的结点数目最大值=2×2^{i-1}^=2^{i}^。
 故假设成立，原命题得证！</p>
 <p><strong>2.2 性质2：深度为k的二叉树至多有2^{k}^-1个结点(k≥1)</strong></p>
@@ -206,7 +206,7 @@
 <h5 id="23-性质3包含n个结点的二叉树的高度至少为log2-n1">2.3 性质3：包含n个结点的二叉树的高度至少为log~2~ (n+1)</h5>
 <p>证明：根据&quot;性质2&quot;可知，高度为h的二叉树最多有2^{h}^–1个结点。反之，对于包含n个节点的二叉树的高度至少为log~2~(n+1)。</p>
 <h5 id="24-性质4在任意一棵二叉树中若终端结点的个数为n0度为2的结点数为n2则n0n21">2.4 性质4：在任意一棵二叉树中，若终端结点的个数为n~0~，度为2的结点数为n~2~，则n~0~=n~2~+1</h5>
-<p>证明：因为二叉树中所有结点的度数均不大于2，所以结点总数(记为n)=&ldquo;0度结点数(n~0~)&rdquo; + &ldquo;1度结点数(n~1~)&rdquo; + &ldquo;2度结点数(n~2~)&quot;。由此，得到等式一。
+<p>证明：因为二叉树中所有结点的度数均不大于2，所以结点总数(记为n)=&quot;0度结点数(n~0~)&rdquo; + &ldquo;1度结点数(n~1~)&rdquo; + &ldquo;2度结点数(n~2~)&quot;。由此，得到等式一。
 (等式一) n=n~0~+n~1~+n~2~
 　     另一方面，0度结点没有孩子，1度结点有一个孩子，2度结点有两个孩子，故二叉树中孩子结点总数是：n~1~+2n~2~。此外，只有根不是任何结点的孩子。故二叉树中的结点总数又可表示为等式二。
 (等式二) n=n~1~+2n~2~+1
@@ -280,7 +280,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
