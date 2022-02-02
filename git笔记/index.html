@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "git","wordcount":  2899 ,
+        },"genre": "posts","keywords": "git","wordcount":  2991 ,
         "url": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/","datePublished": "2019-11-30T14:18:54+08:00","dateModified": "2019-11-30T14:18:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Git笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2899 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2991 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/git%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Git笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -141,6 +141,7 @@
     <li><a href="#git-提交空文件夹">Git 提交空文件夹</a></li>
     <li><a href="#shell判断git-remote是否存在">shell判断git remote是否存在</a></li>
     <li><a href="#shell-判断-git-branch-分支是否存在">shell 判断 git branch 分支是否存在</a></li>
+    <li><a href="#shell-判断-git本地工作文件夹是否干净clean">shell 判断 git本地工作文件夹是否干净(clean)</a></li>
     <li><a href="#git文件内容没变但status显示不同的解决方案">git文件内容没变但status显示不同的解决方案</a></li>
     <li><a href="#git处理换行符问题">Git处理换行符问题</a></li>
   </ul>
@@ -398,7 +399,27 @@ git config --global user.email &#34;codingriver@163.com&#34;
 
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="git文件内容没变但status显示不同的解决方案">git文件内容没变但status显示不同的解决方案</h2>
+</div><h2 id="shell-判断-git本地工作文件夹是否干净clean">shell 判断 git本地工作文件夹是否干净(clean)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="k">if</span> <span class="o">[[</span> -z <span class="k">$(</span>git status -s<span class="k">)</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="c1">## 没有修改的文件和未纳入版本控制的文件(untracked)的文件</span>
+  <span class="nb">echo</span> <span class="s2">&#34;没有可提交内容&#34;</span>
+  <span class="nb">exit</span> <span class="m">2</span>
+<span class="k">fi</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><a href="https://blog.csdn.net/10km/article/details/100689481">https://blog.csdn.net/10km/article/details/100689481</a></p>
+</blockquote>
+<h2 id="git文件内容没变但status显示不同的解决方案">git文件内容没变但status显示不同的解决方案</h2>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
