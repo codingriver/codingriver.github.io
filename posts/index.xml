@@ -4,7 +4,7 @@
         <link>https://codingriver.github.io/posts/</link>
         <description>所有文章 | codingriver blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
-            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 17 Jan 2022 21:51:13 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 02 Feb 2022 22:17:18 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>主题文档 - 基本概念</title>
     <link>https://codingriver.github.io/theme-documentation-basics/</link>
     <pubDate>Fri, 06 Mar 2020 21:40:32 &#43;0800</pubDate>
@@ -59,6 +59,13 @@
                 <img src="/images/emoji-support/featured-image.jpg" referrerpolicy="no-referrer">
             </div><p>Emoji 可以通过多种方式在 Hugo 项目中启用.</p>]]></description>
 </item><item>
+    <title>Shell笔记</title>
+    <link>https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Wed, 02 Feb 2022 22:17:18 &#43;0800</pubDate>
+    <author>作者</author>
+    <guid>https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>航海项目笔记</title>
     <link>https://codingriver.github.io/%E8%88%AA%E6%B5%B7%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/</link>
     <pubDate>Mon, 17 Jan 2022 21:51:13 &#43;0800</pubDate>
@@ -78,13 +85,6 @@
     <pubDate>Tue, 07 Dec 2021 13:39:26 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>泛光（Bloom）实现</title>
-    <link>https://codingriver.github.io/bloom%E5%AE%9E%E7%8E%B0/</link>
-    <pubDate>Mon, 09 Aug 2021 20:28:47 &#43;0800</pubDate>
-    <author>作者</author>
-    <guid>https://codingriver.github.io/bloom%E5%AE%9E%E7%8E%B0/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
