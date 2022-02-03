@@ -279,9 +279,9 @@ rsync -r ~/pub/ 101.43.160.247:~/public/
 
 <span class="c1">## --delete 本地如果删除文件或文件夹，同步后会删除远程的文件或文件夹（exclude 忽略的文件或文件夹除外）</span>
 <span class="c1">## --exclude 本地忽略同步的文件或文件夹，例如项目中.git文件夹不需要同步到远程</span>
-rsync -artvpz --delete --exclude .git ~/pub/ root@101.43.160.247:~/public/
+rsync -rtvpz --delete --exclude .git ~/pub/ root@101.43.160.247:~/public/
 
-rsync -rtz --delete --exclude .git ~/pub/ 101.43.160.247:~/public/
+rsync -rt --delete --exclude .git ~/pub/ 101.43.160.247:~/public/
 
 </code></pre></td></tr></table>
 </div>
@@ -308,7 +308,7 @@ rsync -r 101.43.160.247:~/public/ ~/pub/
 
 <span class="c1">## --delete 本地如果删除文件或文件夹，同步后会删除远程的文件或文件夹（exclude 忽略的文件或文件夹除外）</span>
 <span class="c1">## --exclude 本地忽略同步的文件或文件夹，例如项目中.git文件夹不需要同步到远程</span>
-rsync -artvpz --delete --exclude .git 101.43.160.247:~/public/ ~/pub/ 
+rsync -rtvpz --delete --exclude .git 101.43.160.247:~/public/ ~/pub/ 
 
 </code></pre></td></tr></table>
 </div>
