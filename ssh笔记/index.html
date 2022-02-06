@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/ssh%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "git","wordcount":  1075 ,
+        },"genre": "posts","keywords": "git","wordcount":  1458 ,
         "url": "https:\/\/codingriver.github.io\/ssh%E7%AC%94%E8%AE%B0\/","datePublished": "2019-12-19T22:39:07+08:00","dateModified": "2019-12-19T22:39:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SSH笔记</h1><h2 class="single-subtitle">SSH笔记</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-19 22:39:07">2019-12-19 22:39:07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1075 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-19 22:39:07">2019-12-19 22:39:07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1458 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/ssh%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="SSH笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -120,6 +120,7 @@
     <li><a href="#ssh-keygen-基本用法">ssh-keygen 基本用法</a></li>
     <li><a href="#验证ssh">验证ssh</a></li>
     <li><a href="#配置ssh密钥登录">配置ssh密钥登录</a></li>
+    <li><a href="#ssh登录">ssh登录</a></li>
     <li><a href="#问题">问题</a>
       <ul>
         <li>
@@ -272,6 +273,113 @@ ssh -vT git@github.com
 </div><blockquote>
 <p>参考 <a href="https://blog.csdn.net/ouzuosong/article/details/52225087">https://blog.csdn.net/ouzuosong/article/details/52225087</a><br>
 安装ssh <a href="https://www.cnblogs.com/wangboyu/articles/11611925.html">https://www.cnblogs.com/wangboyu/articles/11611925.html</a></p>
+</blockquote>
+<h2 id="ssh登录">ssh登录</h2>
+<ul>
+<li>第一种 在命令行中指定私钥文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># -i 指定私钥地址（私钥和公钥的文件名是一样的，只不过公钥文件有一个 .pub 后缀名。换句话说，如果把本地公钥给删了，只剩下私钥是无法登录的，因为在登录时要将公钥id发送给服务端，这样服务端才知道要选择哪个公钥加密）</span>
+$ ssh -p <span class="m">22</span> root@192.168.56.102 -i ~/.ssh/id_rsa_server
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>第二种 使用 ssh-agent 代理</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 先添加私钥</span>
+$ ssh-add ~/.ssh/id_rsa_server
+<span class="c1"># 查看添加的私钥</span>
+$ ssh-add -l
+<span class="c1"># 使用 ssh-agent 代理，ssh-agent 会在 ssh-add 列表中寻找到合适的私钥</span>
+$ ssh root@192.168.56.102
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>第三种 在 SSH 配置中指定私钥文件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">$ vim ~/.ssh/config
+
+Host gateway <span class="c1"># 主机别名，使用 ssh gateway 命令可以直接登录该主机</span>
+Protocol <span class="m">2</span>  <span class="c1"># SSH 协议版本</span>
+HostName example.com <span class="c1"># 主机地址，支持IP或域名</span>
+Port <span class="m">22</span>  <span class="c1"># SSH 服务端口号</span>
+User ubuntu <span class="c1"># 登录用户名，会被 ssh root@gateway 覆盖，除非使用 ssh gateway</span>
+IdentityFile ~/.ssh/id_rsa <span class="c1"># 使用的私钥文件</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>例子：<code>~/.ssh/config</code>
+权限：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 为.ssh目录设置权限</span>
+chmod <span class="m">600</span> ~/.ssh/config
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Host server
+  HostName 101.43.160.247
+  IdentityFile ~/.ssh/remote_rsa
+  User root
+  Port 22
+
+Host remote
+  HostName wgqing.com
+  IdentityFile ~/.ssh/remote_rsa
+  User root
+  Port 22
+
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参考：<br>
+<a href="https://zhuanlan.zhihu.com/p/257430478">https://zhuanlan.zhihu.com/p/257430478</a> <br>
+<a href="https://blog.csdn.net/baalhuo/article/details/78067621">https://blog.csdn.net/baalhuo/article/details/78067621</a></p>
 </blockquote>
 <h2 id="问题">问题</h2>
 <h4 id="关于ecdsa-key-fingerprint-is">关于ECDSA key fingerprint is</h4>
