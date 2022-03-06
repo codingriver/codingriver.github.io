@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/ssh%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "git","wordcount":  1458 ,
+        },"genre": "posts","keywords": "笔记, git, ssh","wordcount":  1465 ,
         "url": "https:\/\/codingriver.github.io\/ssh%E7%AC%94%E8%AE%B0\/","datePublished": "2019-12-19T22:39:07+08:00","dateModified": "2019-12-19T22:39:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">SSH笔记</h1><h2 class="single-subtitle">SSH笔记</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-19 22:39:07">2019-12-19 22:39:07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1458 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-19 22:39:07">2019-12-19 22:39:07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1465 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/ssh%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="SSH笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -174,12 +174,16 @@
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">ssh-keygen -t rsa -f github_rsa -C <span class="s2">&#34;codingriver@163.com&#34;</span>
+<pre class="chroma"><code class="language-sh" data-lang="sh">ssh-keygen -t rsa -f id_rsa_github -C <span class="s2">&#34;codingriver@163.com&#34;</span>
 <span class="c1"># -t 指定要创建的密钥类型</span>
 <span class="c1"># -f 指定创建的密钥文件名字</span>
 <span class="c1"># -C 注释 注意如果是github配置ssh，这里必须是github的邮箱名称</span>
+
+ssh-keygen -t ed25519 -C <span class="s2">&#34;codingriver@163.com&#34;</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id="验证ssh">验证ssh</h2>
@@ -470,13 +474,13 @@ and the repository exists.
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-hashtag="git"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-hashtag="笔记"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/ssh%E7%AC%94%E8%AE%B0/" data-title="SSH笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/git/">git</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>,&nbsp;<a href="/tags/git/">git</a>,&nbsp;<a href="/tags/ssh/">ssh</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>

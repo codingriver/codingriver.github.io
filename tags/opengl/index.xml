@@ -4,12 +4,12 @@
         <link>https://codingriver.github.io/tags/opengl/</link>
         <description>opengl - 标签 - codingriver blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
-            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 27 Sep 2020 16:03:56 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/tags/opengl/" rel="self" type="application/rss+xml" /><item>
-    <title>OpenGL 图形学记录</title>
-    <link>https://codingriver.github.io/opengl%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0/</link>
-    <pubDate>Sun, 27 Sep 2020 16:03:56 &#43;0800</pubDate>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 29 Jun 2021 16:02:18 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/tags/opengl/" rel="self" type="application/rss+xml" /><item>
+    <title>RenderDoc 调试</title>
+    <link>https://codingriver.github.io/renderdoc-%E8%B0%83%E8%AF%95/</link>
+    <pubDate>Tue, 29 Jun 2021 16:02:18 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/opengl%E5%9B%BE%E5%BD%A2%E5%AD%A6%E7%AC%94%E8%AE%B0/</guid>
+    <guid>https://codingriver.github.io/renderdoc-%E8%B0%83%E8%AF%95/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

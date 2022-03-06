@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/"
-        },"genre": "posts","keywords": "Unity","wordcount":  9282 ,
+        },"genre": "posts","keywords": "Unity","wordcount":  9273 ,
         "url": "https:\/\/codingriver.github.io\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">unity性能优化笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a>&nbsp;<a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9282 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9273 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 19 分钟&nbsp;<span id="/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="unity性能优化笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -505,17 +505,13 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 <ul>
 <li>MAT（Memory Analyzer Tool） 需要导入HPROF文件再分析 只能查看java层的内存情况，看不到native堆的详情</li>
 <li>Xcode Instrument工具 只能用于Mac,iOS 只能查看C++ 或 object C 的情况，看不到mono堆的详情</li>
-<li>Unity自带Profiler 需要单独编译develop版本 在PC上执行，没法捕获真机数据 内存数据跟实际真机的数据差异很大、多的时候有几十M差距 只能看到最近一段时间的数据，看不到总体的详情</li>
-<li>官方开源Memory Profiler</li>
-<li>Unity5.3及其以上</li>
-<li>使用IL2CPP</li>
-<li>构建时开启Development Build</li>
+<li>Unity自带Profiler 需要单独编译develop版本 在PC上执行，没法捕获真机数据 内存数据跟实际真机的数据差异很大、多的时候有几十M差距 只能看到最近一段时间的数据，看不到总体的详情（Unity的Profiler不会跟踪主线程之外的GCAlloc分配。如果在子线程需要进行分析，可以考虑把子线程切换的主线程进行调试，或者使用功能BeginThreadProfiling API）。</li>
+<li>官方开源Memory Profiler （使用IL2CPP，构建时开启Development Build）</li>
 <li>UWA</li>
-<li>WeTest PerfDog性能狗</li>
+<li>WeTest PerfDog 性能狗</li>
 <li>Snapdragon Profiler 或者 RenderDoc</li>
-<li>Unity的Profiler不会跟踪主线程之外的GCAlloc分配。如果在子线程需要进行分析，可以考虑把子线程切换的主线程进行调试，或者使用功能BeginThreadProfiling API。</li>
-<li>Miku-LuaProfiler</li>
 <li>Intel GPA</li>
+<li>Miku-LuaProfiler</li>
 </ul>
 <blockquote>
 <ul>

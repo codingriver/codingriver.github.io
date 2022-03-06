@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>包体大小优化笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="包体大小优化笔记" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://codingriver.github.io/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" />
+<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="article:published_time" content="2022-01-17T21:51:13+08:00" />
+<meta property="article:modified_time" content="2022-01-17T21:51:13+08:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+
+<meta name="twitter:title" content="包体大小优化笔记"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="codingriver">
+<meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://codingriver.github.io/shader%E6%A1%88%E4%BE%8B/" /><link rel="next" href="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "包体大小优化笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/codingriver.github.io\/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0\/"
+        },"genre": "posts","keywords": "笔记","wordcount":  4287 ,
+        "url": "https:\/\/codingriver.github.io\/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0\/","datePublished": "2022-01-17T21:51:13+08:00","dateModified": "2022-01-17T21:51:13+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="codingriver blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">包体大小优化笔记</h1><h2 class="single-subtitle">AssetBundle大小管理策略（航海项目包体管理）</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17 21:51:13">2022-01-17 21:51:13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4287 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="包体大小优化笔记">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#一些记录">一些记录</a></li>
+          </ul>
+        </li>
+        <li><a href="#assetbundle大小管理策略">AssetBundle大小管理策略</a>
+          <ul>
+            <li><a href="#图集图片文件过大">图集、图片文件过大</a></li>
+            <li><a href="#fbx文件过大">FBX文件过大</a></li>
+          </ul>
+        </li>
+        <li><a href="#ab加载和卸载策略">AB加载和卸载策略</a></li>
+        <li><a href="#urp-package-内置shader打包问题">URP Package 内置shader打包问题</a></li>
+        <li><a href="#包体优化结果">包体优化结果</a>
+          <ul>
+            <li><a href="#disablewritetypetree问题">DisableWriteTypeTree问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#shader变体处理">Shader变体处理</a></li>
+        <li><a href="#关于urp-shader打包问题">关于URP Shader打包问题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><!--
+### 问题
+- [ ] ab文件只有同步加载没有异步加载
+- [ ] 场景是使用实时光
+- [ ] Terrain分块加载问题
+    - LOD处理 （GPU Instance 数量过多），DrawCall占用严重
+    - 视野范围需要调整，加载量太大
+    - 分块的粒度是否合理，有没有优化空间
+- [ ] 设置游戏后台运行？ 战斗在后台是否运行？
+- [ ] 首包是整包？ 还是需要下载部分资源？
+    - 这里现用策略是整包出，不带多语言
+- [ ] Resource目录下的文件是否有用？
+- [ ] Timeline在资源量很大的情况下会很卡，使用视频替代，暂时确定不用了？
+- [ ] 使用Mesh Animator替代Animation 来进行合批处理，Mesh Animator依赖的动画数据打包后很大，需用Animation合批测试，或者用丧尸项目的合批处理方案（可能是3D纹理，需测试） 
+
+```
+        // 关闭stack trace，让资源编译中的日志短小精悍一些....
+        // Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.None);
+```
+    -->
+<blockquote>
+<h4 id="一些记录">一些记录</h4>
+<ul>
+<li><a href="https://www.cnblogs.com/startkey/p/10678173.html" target="_blank" rel="noopener noreffer">bsdiff差分算法</a></li>
+<li>出正式包怎么剥离无用的dll，比如log插件dll，Debug库，绘制插件dll（仅dev使用）<a href="https://docs.unity3d.com/cn/2020.3/Manual/ManagedCodeStripping.html" target="_blank" rel="noopener noreffer">参考</a>
+- 这里可以在打包正式包时将dll删除后打包</li>
+</ul>
+</blockquote>
+<!--
+### 打包策略问题
+
+- 图集打包Textures文件问题
+textures 文件过大，内容过多，太杂,依赖管理混乱
+![](../../imgs/2022-01-20-11-34-30.png)
+这个AB包文件大小是200M多，过于庞大
+
+![](../../imgs/2022-01-17-21-54-35.png)
+
+将所有图片打包成一个ab文件
+
+![](../../imgs/2022-01-17-21-55-59.png)
+
+![](../../imgs/2022-01-17-21-56-27.png)
+
+
+![](../../imgs/2022-01-17-21-57-54.png)
+
+
+打包ab包是散图，不是图集（后面放个正常图集的AB包的截图）
+
+
+
+![](../../imgs/2022-01-18-17-43-57.png)
+
+
+![](../../imgs/2022-01-18-17-44-40.png)
+打包图集正常的
+
+
+- Font字体划分依赖错误
+
+![](../../imgs/2022-01-19-15-21-59.png)
+
+![](../../imgs/2022-01-19-15-22-30.png)
+
+依赖的另外两个资源打包到textures文件中了
+
+
+- prefab划分依赖过多
+    角色的prefab和fbx是要打包到一个Bundle中的，现在是prefab一个文件，fbx一个文件，增加IO，颗粒度不够
+![](../../imgs/2022-01-19-16-15-01.png)
+
+- 多语言文件划分错误
+多语言文件应当每个文件一个AB包，玩家选择语言后重启加载对应语言文件的AB包即可
+![](../../imgs/2022-01-19-16-56-21.png)
+
+- 有的设置BundleName，有的没有
+ 第一个文件夹内容设置BundleName，下面三个文件夹内容没有设置
+![](../../imgs/2022-01-19-17-00-03.png)
+
+- Shader冗余严重
+
+city AB包  
+![](../../imgs/2022-01-20-11-14-53.png)
+
+reet_challenge AB包  
+![](../../imgs/2022-01-20-11-24-38.png)
+
+![](../../imgs/2022-01-20-11-41-31.png)
+
+> 解决方案  
+> 1. 将所有Shader抽出打成一个独立bundle  
+> 2. 配置到工程设置中(需要测试)  
+> ![](../../imgs/2022-01-20-11-30-10.png)  
+> 3. 不建议使用URP自带shader 变体数量庞大，TA部门提供简化版本的Lit shader等等  
+-->
+<h3 id="assetbundle大小管理策略">AssetBundle大小管理策略</h3>
+<p>主要问题：纹理，Shader，FBX动画</p>
+<!--
+> 主要问题：纹理，Shader，Mesh，Terrain，FBX动画，
+#### 打包避免冗余
+- 每个角色的AB文件中都有 `Universal Render Pipeline/Lit`和`"Hidden/Universal Render Pipeline/FallbackError"`两个Shader，出现严重冗余，需要调整打包策略，建议所有Shader打包一个AB文件
+
+
+- 基类公共状态机冗余
+![](../../imgs/2022-01-24-21-54-50.png)  
+*每个角色的包内都有该资源*，**需要验证**
+-->
+<h4 id="图集图片文件过大">图集、图片文件过大</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-11-41-31.png"
+        data-srcset="../../imgs/2022-01-20-11-41-31.png, ../../imgs/2022-01-20-11-41-31.png 1.5x, ../../imgs/2022-01-20-11-41-31.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-11-41-31.png"
+        title="../../imgs/2022-01-20-11-41-31.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-11-48-28.png"
+        data-srcset="../../imgs/2022-01-20-11-48-28.png, ../../imgs/2022-01-20-11-48-28.png 1.5x, ../../imgs/2022-01-20-11-48-28.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-11-48-28.png"
+        title="../../imgs/2022-01-20-11-48-28.png" />
+使用第三方无损压缩，减小文件大小，这里文件大小是原来的1/3。</p>
+<p><em>使用图片无损压缩打包测试，图片属性：RGBA 2048*2048,使用<code>RGBA Crunched ETC2</code>内存压缩</em>
+| |压缩尺寸|压缩前|压缩后
+|-|-|-|-|
+|图片文件||1564kb|481kb|
+|AB文件|2048|268kb|260kb|
+|AB文件|1024|96kb|89kb|
+<em>可以发现压缩后的图片打包AB文件比压缩前小大概7kb左右</em></p>
+<ul>
+<li>图片在内存中没有压缩</li>
+</ul>
+<blockquote>
+<p>纹理的压缩格式影响AB包的大小   (Android平台测试)<br>
+使用ETC2压缩生成AB包比使用 Crunched ETC生成AB包大3倍(这里只是说明压缩格式影响AB包文件大小，不说明压缩格式和包体的具体关系)。</p>
+</blockquote>
+<p>Android平台</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-11-51-05.png"
+        data-srcset="../../imgs/2022-01-20-11-51-05.png, ../../imgs/2022-01-20-11-51-05.png 1.5x, ../../imgs/2022-01-20-11-51-05.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-11-51-05.png"
+        title="../../imgs/2022-01-20-11-51-05.png" /></p>
+<p>使用ETC 4Bit压缩后</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-11-52-38.png"
+        data-srcset="../../imgs/2022-01-20-11-52-38.png, ../../imgs/2022-01-20-11-52-38.png 1.5x, ../../imgs/2022-01-20-11-52-38.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-11-52-38.png"
+        title="../../imgs/2022-01-20-11-52-38.png" /></p>
+<p>使用 Crunched ETC 压缩（需要真机测试性能及是否支持该压缩格式），这个格式消耗cpu，进入GPU处理阶段会解压成etc压缩，GPU本身不支持 Crunched ETC压缩
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-11-53-24.png"
+        data-srcset="../../imgs/2022-01-20-11-53-24.png, ../../imgs/2022-01-20-11-53-24.png 1.5x, ../../imgs/2022-01-20-11-53-24.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-11-53-24.png"
+        title="../../imgs/2022-01-20-11-53-24.png" /></p>
+<blockquote>
+<p>推荐 Android 和IOS都用ASTC;<br>
+参考：<a href="https://zhuanlan.zhihu.com/p/158740249" target="_blank" rel="noopener noreffer">ASTC纹理压缩格式详解</a></p>
+</blockquote>
+<!--
+#### 无用资源进入AB文件中
+需要分析及分解路径下的图片资源，使用策略去拆分剔除无用资源，最优方案是给美术和程序提供一套标准
+![](../../imgs/2022-01-21-10-24-42.png)
+
+#### 图片素材尺寸合理性需要规划
+这个图太大，需要调整策略  
+![](../../imgs/2022-01-21-10-27-01.png)  
+![](../../imgs/2022-01-21-10-29-35.png)  
+
+![](../../imgs/2022-01-21-10-32-09.png)  
+
+-->
+<h4 id="fbx文件过大">FBX文件过大</h4>
+<blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-21-11-14-07.png"
+        data-srcset="../../imgs/2022-01-21-11-14-07.png, ../../imgs/2022-01-21-11-14-07.png 1.5x, ../../imgs/2022-01-21-11-14-07.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-21-11-14-07.png"
+        title="../../imgs/2022-01-21-11-14-07.png" /><br>
+<em>主要是animation和纹理占用比较大,每个带动画的角色都是这样的情况</em></p>
+</blockquote>
+<ul>
+<li><a href="https://blog.csdn.net/qq_34755472/article/details/105857330" target="_blank" rel="noopener noreffer">FBX模型通过draco算法压缩为gltf格式</a></li>
+</ul>
+<blockquote>
+<p>压缩大小比10倍，待测，不知道animation压缩怎么样</p>
+</blockquote>
+<ul>
+<li>设置FBX Animation Compress格式</li>
+</ul>
+<p><em>使用<code>R220002@ui_comeout.fbx</code>动画文件测试</em></p>
+<p>现在的FBX配置<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-15-39-33.png"
+        data-srcset="../../imgs/2022-01-20-15-39-33.png, ../../imgs/2022-01-20-15-39-33.png 1.5x, ../../imgs/2022-01-20-15-39-33.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-15-39-33.png"
+        title="../../imgs/2022-01-20-15-39-33.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-15-38-38.png"
+        data-srcset="../../imgs/2022-01-20-15-38-38.png, ../../imgs/2022-01-20-15-38-38.png 1.5x, ../../imgs/2022-01-20-15-38-38.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-15-38-38.png"
+        title="../../imgs/2022-01-20-15-38-38.png" /><br>
+文件大小是4322kb，打包AB文件大小是1553kb</p>
+<p>修改FBX配置（没有勾选 Resample Curves）
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-15-41-33.png"
+        data-srcset="../../imgs/2022-01-20-15-41-33.png, ../../imgs/2022-01-20-15-41-33.png 1.5x, ../../imgs/2022-01-20-15-41-33.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-15-41-33.png"
+        title="../../imgs/2022-01-20-15-41-33.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-15-41-49.png"
+        data-srcset="../../imgs/2022-01-20-15-41-49.png, ../../imgs/2022-01-20-15-41-49.png 1.5x, ../../imgs/2022-01-20-15-41-49.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-15-41-49.png"
+        title="../../imgs/2022-01-20-15-41-49.png" /><br>
+文件大小是4322kb,打包AB文件大小是499kb  （这里fbx文件本身大小没变，untiy不修改源文件）<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-15-44-33.png"
+        data-srcset="../../imgs/2022-01-20-15-44-33.png, ../../imgs/2022-01-20-15-44-33.png 1.5x, ../../imgs/2022-01-20-15-44-33.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-15-44-33.png"
+        title="../../imgs/2022-01-20-15-44-33.png" /><br>
+修改后的内存大小是原来的1/4，Ab文件是原来的1/3  （动画表现一致）</p>
+<p>使用脚本剔除无用scale数据及修改数据精度（没有勾选 Resample Curves）
+<em>这种方式每次animation导入修改后都不会保持，因为untiy默认重新导入animation并计算数据，需要在animation后处理中处理，每次变化都要执行一遍</em><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-16-10-03.png"
+        data-srcset="../../imgs/2022-01-20-16-10-03.png, ../../imgs/2022-01-20-16-10-03.png 1.5x, ../../imgs/2022-01-20-16-10-03.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-16-10-03.png"
+        title="../../imgs/2022-01-20-16-10-03.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-20-16-34-32.png"
+        data-srcset="../../imgs/2022-01-20-16-34-32.png, ../../imgs/2022-01-20-16-34-32.png 1.5x, ../../imgs/2022-01-20-16-34-32.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-20-16-34-32.png"
+        title="../../imgs/2022-01-20-16-34-32.png" /><br>
+文件大小是4322kb,打包AB文件大小是310kb<br>
+修改后内存更低了和原始比是原来的不到1/4，AB文件是原来的1/5  （这里fbx文件本身大小没变，untiy不修改源文件） （动画表现一致）</p>
+<p><strong>如果所有的角色动画都进行调整，包体可以明显减小</strong></p>
+<p><em>fbx导入到Unity之后是不会变化的，就是说Unity里面的所有编辑都不会保存在FBX文件里,可能在meta文件中，这里没有测试。</em></p>
+<p><strong>注意压缩后需要真机测试看看动画是否一致，这里是win editor测试的，没有真机测试</strong></p>
+<blockquote>
+<p>参考：<br>
+<a href="https://blog.uwa4d.com/archives/Optimization_Animation.html">https://blog.uwa4d.com/archives/Optimization_Animation.html</a><br>
+<a href="https://zhuanlan.zhihu.com/p/353402448">https://zhuanlan.zhihu.com/p/353402448</a><br>
+<a href="https://www.bzetu.com/344/.html">https://www.bzetu.com/344/.html</a><br>
+<a href="https://blog.uwa4d.com/archives/UWA_Pipeline22.html">https://blog.uwa4d.com/archives/UWA_Pipeline22.html</a></p>
+</blockquote>
+<blockquote>
+<p>处理Animation时遇到的问题:<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-24-20-27-28.png"
+        data-srcset="../../imgs/2022-01-24-20-27-28.png, ../../imgs/2022-01-24-20-27-28.png 1.5x, ../../imgs/2022-01-24-20-27-28.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-24-20-27-28.png"
+        title="../../imgs/2022-01-24-20-27-28.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-24-20-33-18.png"
+        data-srcset="../../imgs/2022-01-24-20-33-18.png, ../../imgs/2022-01-24-20-33-18.png 1.5x, ../../imgs/2022-01-24-20-33-18.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-24-20-33-18.png"
+        title="../../imgs/2022-01-24-20-33-18.png" /><br>
+一个fbx上出现两个animation 动画，<code>__preview_Take 001</code>应该是美术没有删除干净
+打包AB文件没有发现<code>__preview_Take 001</code>资源打包进去</p>
+</blockquote>
+<!--
+#### Sound音频文件过大，不合理
+> 可进行二次处理
+
+![](../../imgs/2022-01-20-17-10-26.png)  
+*音频长度2分钟15秒*  
+音频单个文件1M多，会影响加载速度，比较慢
+
+
+
+
+需要降低下音频质量，或者无损压缩，这个应该是背景，一般几百kb就可以，200kb-500kb左右即可
+
+> 优化参考：  
+> <https://blog.csdn.net/qq_37672438/article/details/105071162>  
+> <https://blog.csdn.net/Czhenya/article/details/102579237>  
+> <https://www.icode9.com/content-4-980583.html>  
+> <https://zhuanlan.zhihu.com/p/193012525>  
+
+
+#### Terrain使用问题
+有多个Terrain Data占用太大  
+![](../../imgs/2022-01-21-10-55-02.png)  
+![](../../imgs/2022-01-21-10-56-27.png)  
+如果确定不使用分块的方式处理场景，则需要Terrain导出Mesh，美术对Mesh直接减面去处理
+
+
+**Terrain地形制作后最直接的问题是Mesh太大，没用的三角面太多**
+#### Mesh问题
+有多个mesh占用太大，根据具体情况减面，是否没用的三角面过多
+![](../../imgs/2022-01-21-10-55-02.png)  
+![](../../imgs/2022-01-21-10-56-27.png)  
+
+![](../../imgs/2022-01-21-11-12-10.png)  
+静态批处理的Mesh占用比较大(new_scene)
+
+#### 图集优化
+> 使用图集可以影响包体大小，需要测试
+
+
+![](../../imgs/2022-01-20-17-33-07.png)
+![](../../imgs/2022-01-20-18-35-15.png)
+*蓝框中的new_common图集打包出错了，texture2D纹理没有打包进去，只是打包进去sprite数据，可能因为Library异常*
+
+上面atlas前缀得AB文件是按照图集打包总共AB文件大小是`1.87M`，下面是散图打包的，总共AB文件大小是`6.93M`。对包体影响很大，需要细测，和图集利用率有关系
+
+#### Shader过大
+![](../../imgs/2022-01-21-10-42-53.png)
+keywords组合不低于236种，造成Shader的AB文件太大，而且Sahder.Parse开销也会很大
+
+所有Shader需要单独打包测试
+
+
+#### 视频文件
+![](../../imgs/2022-01-21-11-07-54.png)  
+单个音频AB文件30M，内存占用也是30M左右
+最后需要检查是否有优化的可能
+
+#### TextAsset检查
+![](../../imgs/2022-01-21-11-24-01.png)
+有几个场景Terrain分块后的数据AB包大概是9M左右（只是分块后的数据，没有素材和材质球等）  
+这里是Terrain分块后的数据，量比较大，检查是否有优化可能性
+
+#### Mesh Animator使用
+![](../../imgs/2022-01-21-11-30-37.png)  
+这个fly.asset文件大小是15M左右，内存占用4M左右，打包AB文件比较大，这个AB文件3M左右  
+**是否有其他方式去替代优化**   
+**内存分析需要着重关注**  
+-->
+<h3 id="ab加载和卸载策略">AB加载和卸载策略</h3>
+<blockquote>
+<p>现有加载策略：</p>
+<ol>
+<li>根据manifest配置文件进行加载资源并且找到依赖进行加载</li>
+<li>只有同步加载没有异步加载</li>
+<li>加载的Bundle和LoadAsset资源都做了缓存，但是没有引用计数</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>现有资源卸载策略:</p>
+<ol>
+<li>lua Bundle加载资源后直接卸载bundle；</li>
+<li>场景加载后将bundle卸载,在切换场景时：
+- 执行LuaGC处理
+- 清理所有Asset的引用（将缓存的Dict清空）（资源泄露:bundle没有卸载，清空了asset引用，再次加载资源时会再次LoadAsset，会存在多份相同asset;加载效率利用率低，没有区分常驻内存资源和非常驻内存资源，bundle管理粗放）
+<!-- - SpriteManager好像没有用（这里没有细看） --></li>
+<li>非场景资源加载后没有卸载流程,全部依靠场景卸载时清理</li>
+<li>除了上述bundle卸载之外，游戏运行中没有卸载bundle，内存占用过高容易崩溃</li>
+<li>业务层只管加载，不处理卸载</li>
+<li><code>Resources.UnloadUnusedAssets()</code>没有调用(场景加载时会自动调用，记不清了)</li>
+</ol>
+</blockquote>
+<p>调整方案：</p>
+<ol>
+<li>同步和异步加载</li>
+<li>使用引用计数方案对Bundle和Asset管理</li>
+<li>增加图集管理(图集制作细分方案待定)</li>
+<li>使用加载和卸载成对管理，或者做内置管理和实例对象绑定</li>
+</ol>
+<h3 id="urp-package-内置shader打包问题">URP Package 内置shader打包问题</h3>
+<ul>
+<li>
+<p>Universal Render Pipeline/Lit has too many Shader variants(150994944)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-24-14-05-37.png"
+        data-srcset="../../imgs/2022-01-24-14-05-37.png, ../../imgs/2022-01-24-14-05-37.png 1.5x, ../../imgs/2022-01-24-14-05-37.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-24-14-05-37.png"
+        title="../../imgs/2022-01-24-14-05-37.png" /><br>
+URP 自带Lit Shader变体太多问题</p>
+</li>
+<li>
+<p>Assertion failed on expression:`m_UserPathRemap.count(pathStr) == 0`
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-24-14-23-38.png"
+        data-srcset="../../imgs/2022-01-24-14-23-38.png, ../../imgs/2022-01-24-14-23-38.png 1.5x, ../../imgs/2022-01-24-14-23-38.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-24-14-23-38.png"
+        title="../../imgs/2022-01-24-14-23-38.png" /></p>
+</li>
+</ul>
+<p>可能因为在Project Setting&ndash;&gt;Graphing设置All include 然后打包又打进去所以报错了</p>
+<h3 id="包体优化结果">包体优化结果</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-10-17-42.png"
+        data-srcset="../../imgs/2022-01-27-10-17-42.png, ../../imgs/2022-01-27-10-17-42.png 1.5x, ../../imgs/2022-01-27-10-17-42.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-10-17-42.png"
+        title="../../imgs/2022-01-27-10-17-42.png" />
+<em>左侧蓝色是优化后的，右侧红色是优化前的</em></p>
+<h4 id="disablewritetypetree问题">DisableWriteTypeTree问题</h4>
+<p>关闭Bundle文件的<code>type information</code>数据写入，这是为了使用Unity版本不同做的兼容（标记数据，unity版本相同无用）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="c1">//BuildAssetBundleOptions.DisableWriteTypeTree
+</span><span class="c1"></span><span class="n">BuildPipeline</span><span class="p">.</span><span class="n">BuildAssetBundles</span><span class="p">(</span><span class="n">dir</span><span class="p">,</span><span class="n">ls</span><span class="p">.</span><span class="n">ToArray</span><span class="p">(),</span><span class="n">BuildAssetBundleOptions</span><span class="p">.</span><span class="n">DeterministicAssetBundle</span> <span class="p">|</span> <span class="n">BuildAssetBundleOptions</span><span class="p">.</span><span class="n">ChunkBasedCompression</span><span class="p">|</span><span class="n">BuildAssetBundleOptions</span><span class="p">.</span><span class="n">DisableWriteTypeTree</span><span class="p">,</span> <span class="n">BuildTarget</span><span class="p">.</span><span class="n">Android</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-26-17-18-18.png"
+        data-srcset="../../imgs/2022-01-26-17-18-18.png, ../../imgs/2022-01-26-17-18-18.png 1.5x, ../../imgs/2022-01-26-17-18-18.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-26-17-18-18.png"
+        title="../../imgs/2022-01-26-17-18-18.png" />
+<em>红色是开启默认<code>type information</code>写入，asset classes就是写入的数据，左侧蓝色是关闭<code>type information</code>写入的大小</em>
+bundle文件大小差5k多（每个bundle文件内容不一样，大小也不一样），还是很可观的</p>
+<blockquote>
+<p>参考：<a href="https://blog.csdn.net/kangluo1/article/details/119089200">https://blog.csdn.net/kangluo1/article/details/119089200</a></p>
+</blockquote>
+<h3 id="shader变体处理">Shader变体处理</h3>
+<ul>
+<li>
+<p>Graphics APIs 只保留<code>OpenGLEL3</code>就可以了,否则打包Shader时每个平台生成一套代码导致AB包过大
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-24-08.png"
+        data-srcset="../../imgs/2022-01-27-18-24-08.png, ../../imgs/2022-01-27-18-24-08.png 1.5x, ../../imgs/2022-01-27-18-24-08.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-24-08.png"
+        title="../../imgs/2022-01-27-18-24-08.png" /></p>
+</li>
+<li>
+<p>Graphics -&gt; Tier Settings默认三种配置，每个shader会生成对应三套代码，这里将Tier三种配置设置成相同的，则Shader只会生成一套代码，减小包体</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-26-27.png"
+        data-srcset="../../imgs/2022-01-27-18-26-27.png, ../../imgs/2022-01-27-18-26-27.png 1.5x, ../../imgs/2022-01-27-18-26-27.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-26-27.png"
+        title="../../imgs/2022-01-27-18-26-27.png" /></p>
+<ul>
+<li>单独打包Shader文件（没有材质球） 关于<code>#pragma multi_compile</code>和<code>#pragma shader_feature </code>测试</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-glsl" data-lang="glsl">            <span class="err">#</span><span class="n">pragma</span> <span class="n">multi_compile</span>  <span class="n">COM_M</span> <span class="n">COM_N</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">multi_compile</span>  <span class="n">COM_X</span> <span class="n">COM_Y</span> <span class="n">COM_Z</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">shader_feature</span> <span class="n">_</span> <span class="n">A</span> <span class="n">B</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">shader_feature</span> <span class="n">E</span> <span class="n">F</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>打包的AB包中的Shader keywords数量<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-39-42.png"
+        data-srcset="../../imgs/2022-01-27-18-39-42.png, ../../imgs/2022-01-27-18-39-42.png 1.5x, ../../imgs/2022-01-27-18-39-42.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-39-42.png"
+        title="../../imgs/2022-01-27-18-39-42.png" />
+<code>multi_compile</code>两行的keywords组合相乘是最后的shader代码的数量，注意数量<br>
+这里<code>#pragma shader_feature </code> 如果第一项是<code>_</code>则认为没有keywords,如果不是<code>_</code>，则默认打包进第一个选项（这里是<code>E</code>）</p>
+<ul>
+<li>单独打包材质球（将材质球和shader打包一起）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-glsl" data-lang="glsl">            <span class="err">#</span><span class="n">pragma</span> <span class="n">multi_compile</span>  <span class="n">COM_M</span> <span class="n">COM_N</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">multi_compile</span>  <span class="n">COM_X</span> <span class="n">COM_Y</span> <span class="n">COM_Z</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">shader_feature</span> <span class="n">_</span> <span class="n">A</span> <span class="n">B</span>
+            <span class="err">#</span><span class="n">pragma</span> <span class="n">shader_feature</span> <span class="n">E</span> <span class="n">F</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>打包的AB包中的Shader keywords数量</p>
+<p>材质球keywords默认：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-48-01.png"
+        data-srcset="../../imgs/2022-01-27-18-48-01.png, ../../imgs/2022-01-27-18-48-01.png 1.5x, ../../imgs/2022-01-27-18-48-01.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-48-01.png"
+        title="../../imgs/2022-01-27-18-48-01.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-39-42.png"
+        data-srcset="../../imgs/2022-01-27-18-39-42.png, ../../imgs/2022-01-27-18-39-42.png 1.5x, ../../imgs/2022-01-27-18-39-42.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-39-42.png"
+        title="../../imgs/2022-01-27-18-39-42.png" /></p>
+<p>材质球指定keywords后<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-47-30.png"
+        data-srcset="../../imgs/2022-01-27-18-47-30.png, ../../imgs/2022-01-27-18-47-30.png 1.5x, ../../imgs/2022-01-27-18-47-30.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-47-30.png"
+        title="../../imgs/2022-01-27-18-47-30.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-46-29.png"
+        data-srcset="../../imgs/2022-01-27-18-46-29.png, ../../imgs/2022-01-27-18-46-29.png 1.5x, ../../imgs/2022-01-27-18-46-29.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-46-29.png"
+        title="../../imgs/2022-01-27-18-46-29.png" /><br>
+<em>指定keywords后等于选择<code>shader_feature</code>的变体，<code>multi_compile</code>进行全部组合</em></p>
+<p>总结：<strong>材质球指定<code>shader_feature</code> keywords后和shader打包到AB文件中，shader的keywords是受材质球的keywords配置影响的;加入了GraphicsSetting-&gt; always included shader后，会将它所有的keywords变体打包到游戏中</strong></p>
+<p>可以用<code>Shader Variant Collection</code>单独控制keywords，把collection和shader打包到一个AB文件中
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-01-27-18-51-53.png"
+        data-srcset="../../imgs/2022-01-27-18-51-53.png, ../../imgs/2022-01-27-18-51-53.png 1.5x, ../../imgs/2022-01-27-18-51-53.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-01-27-18-51-53.png"
+        title="../../imgs/2022-01-27-18-51-53.png" /></p>
+<blockquote>
+<p>参考：
+<a href="https://zhuanlan.zhihu.com/p/68888831">https://zhuanlan.zhihu.com/p/68888831</a><br>
+<a href="https://blog.csdn.net/eevee_1/article/details/118632371">https://blog.csdn.net/eevee_1/article/details/118632371</a><br>
+<a href="https://zhuanlan.zhihu.com/p/392004640">https://zhuanlan.zhihu.com/p/392004640</a>
+<a href="https://blog.csdn.net/danteshenqu/article/details/78170745">https://blog.csdn.net/danteshenqu/article/details/78170745</a>
+<a href="https://zhuanlan.zhihu.com/p/83780152">https://zhuanlan.zhihu.com/p/83780152</a></p>
+</blockquote>
+<h3 id="关于urp-shader打包问题">关于URP Shader打包问题</h3>
+<blockquote>
+<p>由于<code>URP</code>内部的<code>Shader</code>在<code>Packages</code>中，不能使用<code>Inspector</code>面板设置<code>AssetBundleName</code>及脚本代码设置<code>AssetBundleName</code>。在<code>Graphics</code>面板中添加<code>URP shader</code>，但是打包还是会被打进去
+解决方案：
+1. 使用<code>AssetBundleBuild</code>方式打包可以控制Packages内的资源
+2. 使用<code>Addressables</code>官方插件打包可以设置Packages内的资源</p>
+<p>材质球和shader打包到一起，会根据材质球引用的keywords变体打包，而加入了GraphicsSetting-&gt; always included shader后，会将它所有的keywords变体打包到游戏中</p>
+<p>关于shader变体说明：<a href="https://blog.csdn.net/kuangben2000/article/details/105400835">https://blog.csdn.net/kuangben2000/article/details/105400835</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-01-17 21:51:13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" data-hashtag="笔记"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" data-title="包体大小优化笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" data-title="包体大小优化笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" data-title="包体大小优化笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" data-title="包体大小优化笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" data-title="包体大小优化笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" data-title="包体大小优化笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/shader%E6%A1%88%E4%BE%8B/" class="prev" rel="prev" title="Shader案例"><i class="fas fa-angle-left fa-fw"></i>Shader案例</a>
+            <a href="/shell%E7%AC%94%E8%AE%B0/" class="next" rel="next" title="Shell笔记">Shell笔记<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

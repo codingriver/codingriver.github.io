@@ -20,7 +20,7 @@
 <meta name="application-name" content="codingriver">
 <meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://codingriver.github.io/%E8%88%AA%E6%B5%B7%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/" /><link rel="next" href="https://codingriver.github.io/theme-emoji-support/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://codingriver.github.io/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" /><link rel="next" href="https://codingriver.github.io/xlua%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/shell%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","wordcount":  2305 ,
+        },"genre": "posts","keywords": "笔记, shell","wordcount":  3676 ,
         "url": "https:\/\/codingriver.github.io\/shell%E7%AC%94%E8%AE%B0\/","datePublished": "2022-02-02T22:17:18+08:00","dateModified": "2022-02-02T22:17:18+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -105,9 +105,9 @@
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shell笔记</h1><h2 class="single-subtitle">Shell笔记</h2><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-02 22:17:18">2022-02-02 22:17:18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2305 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/shell%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Shell笔记">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-02 22:17:18">2022-02-02 22:17:18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3676 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/shell%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Shell笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -136,6 +136,10 @@
         </li>
       </ul>
     </li>
+    <li><a href="#md5sum-使用">md5sum 使用</a></li>
+    <li><a href="#find-命令">find 命令</a></li>
+    <li><a href="#tail-命令">tail 命令</a></li>
+    <li><a href="#读取文件每一行">读取文件每一行</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="常用快捷键">常用快捷键</h2>
@@ -611,6 +615,326 @@ rsync -rtvpz --delete --exclude .git 101.43.160.247:~/public/ ~/pub/
 <a href="https://www.cnblogs.com/kevingrace/p/5766139.html" target="_blank" rel="noopener noreffer">Rsync同步时删除多余文件</a><br>
 <a href="https://www.cnblogs.com/bass6/p/5542079.html" target="_blank" rel="noopener noreffer">rsync &ndash;exclude 参数</a><br>
 <a href="https://blog.csdn.net/admin_root1/article/details/78911674" target="_blank" rel="noopener noreffer">windows 上rsync客户端使用方法</a></p>
+</blockquote>
+<h2 id="md5sum-使用">md5sum 使用</h2>
+<blockquote>
+<p>centos 默认安装了<code>md5sum</code>命令</p>
+</blockquote>
+<ul>
+<li>计算二进制文件的md5:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># -b, --binary         Read files in binary mode</span>
+<span class="c1"># -t, --text           Read files in ASCII mode</span>
+md5sum  filename
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>计算字符串md5值：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@xyz.com ~<span class="o">]</span>$ <span class="nb">echo</span> -n <span class="s1">&#39;hello world!&#39;</span> <span class="p">|</span> md5sum
+fc3ff98e8c6a0d3087d515c0473f8677  -
+</code></pre></td></tr></table>
+</div>
+</div><p>注：一定要加上&rsquo;-n&rsquo;参数，代表去掉控制字符。</p>
+<p>错误命令示例1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@xyz.com ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="s1">&#39;hello world!&#39;</span> <span class="p">|</span> md5sum
+c897d1410af8f2c74fba11b1db511e9e  -
+</code></pre></td></tr></table>
+</div>
+</div><p>错误操作2：将文本<code>hello world！</code>写在文本文件中进行保存<code>test</code>文件，然后对文件进行<code>md5sum</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">mrwang@CodingdeMBP Sites % <span class="nb">echo</span> <span class="s1">&#39;hello world!&#39;</span> <span class="p">|</span> md5sum 
+c897d1410af8f2c74fba11b1db511e9e  -
+mrwang@CodingdeMBP Sites % cat <span class="nb">test</span> <span class="p">|</span> md5sum
+c897d1410af8f2c74fba11b1db511e9e  -
+mrwang@CodingdeMBP Sites % md5sum <span class="nb">test</span>
+c897d1410af8f2c74fba11b1db511e9e  <span class="nb">test</span>
+mrwang@CodingdeMBP Sites % 
+</code></pre></td></tr></table>
+</div>
+</div><p>此错误操作与错误1得到的结果一样，都是因为文本中会自动带上一些控制字符，从而导致最终计算出来的md5值不是纯粹字符串的md5值。</p>
+<p>用vi打开test文件 使用vi 命令&rdquo;：set list&rdquo;，显示如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">hello world!$
+</code></pre></td></tr></table>
+</div>
+</div><p>多了控制字符。</p>
+<ul>
+<li>批量文件计算md5:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/sh
+</span><span class="cp"></span>
+<span class="c1">#获取文件夹下所有文件</span>
+<span class="nv">folder</span><span class="o">=</span><span class="s2">&#34;./&#34;</span>
+
+<span class="nv">softfiles</span><span class="o">=</span><span class="k">$(</span>ls <span class="nv">$folder</span><span class="k">)</span>
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">folder</span><span class="si">}</span>
+<span class="k">for</span> sfile in <span class="si">${</span><span class="nv">softfiles</span><span class="si">}</span>
+<span class="k">do</span>
+    md5sum <span class="nv">$sfile</span> &gt;&gt; ../md5sum.txt
+    <span class="c1"># md5sum $sfile</span>
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Mac 使用 md5sum: <br>
+Mac没有自带<code>md5sum</code>， 需要安装<code>md5sum</code>。<br>
+使用brew安装  <code>brew install md5sha1sum</code></p>
+</blockquote>
+<blockquote>
+<p>参考：<br>
+<a href="https://www.cnblogs.com/xd502djj/p/7055228.html">https://www.cnblogs.com/xd502djj/p/7055228.html</a>
+<a href="http://www.blogjava.net/anchor110/articles/433319.html">http://www.blogjava.net/anchor110/articles/433319.html</a></p>
+</blockquote>
+<h2 id="find-命令">find 命令</h2>
+<p>查找文件或者文件夹<code>test</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 在当前目录查找文件或文件夹 test</span>
+find <span class="nb">test</span>
+<span class="c1"># 在根目录查找文件或文件夹 test</span>
+find / -name <span class="nb">test</span>
+<span class="c1"># 在根目录查找文件或文件夹 以test开头的</span>
+find / -name test*
+find / -name ‘test*’
+<span class="c1"># 在 home 目录查找文件或文件夹 包含 test 的</span>
+find /home -name *test*
+find /home -name ‘*test*’
+
+</code></pre></td></tr></table>
+</div>
+</div><p>查找文件<code>test</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 在当前目录查找文件 test</span>
+find <span class="nb">test</span> -type f
+<span class="c1"># 在根目录查找文件 test</span>
+find / -name <span class="nb">test</span> -type -f
+</code></pre></td></tr></table>
+</div>
+</div><p>查找文件夹<code>test</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 在当前目录查找文件夹 test</span>
+find <span class="nb">test</span> -type f
+<span class="c1"># 在根目录查找文件夹 test</span>
+find / -name <span class="nb">test</span> -type -f
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参考：<br>
+<a href="https://www.runoob.com/linux/linux-comm-find.html">https://www.runoob.com/linux/linux-comm-find.html</a><br>
+<a href="https://blog.csdn.net/l_liangkk/article/details/81294260">https://blog.csdn.net/l_liangkk/article/details/81294260</a></p>
+</blockquote>
+<h2 id="tail-命令">tail 命令</h2>
+<p>Linux中用于查看文件尾部的内容，与<code>head</code>相对应。<br>
+常用来查看日志文件，通过 <code>tail -f</code> 实时查看文件最新内容。</p>
+<p>尤其是对于日志文件较大的时候，通过tail指定输出的行数来查看日志。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">// 输出最后10行的内容
+tail test.log
+
+// 输出最后10行的内容，同时监视文件的变化，一旦变化就显示出来
+tail -f test.log
+
+// 输出最后n行的内容，同时监视文件的变化，一旦变化就显示出来
+tail -nf test.log
+
+// 输出文件最后10行的内容
+tail -n <span class="m">10</span> filename
+// 除第9行不显示外，显示第10行到末尾行
+tail -n -10 filename
+
+// 从第20行至末尾
+tail +20 test.log
+
+// 显示最后10个字符
+tail -c <span class="m">10</span> test.log
+
+// 实时日志查看与grep过滤关键字
+// -A 除显示符合t匹配内容的那一行之外，并显示该行之后的内容
+// -B 除显示符合匹配内容的那一行之外，并显示该行之前的内容
+// -C 除显示符合匹配内容的那一列之外，并显示该列前后的内容
+tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</span> -C <span class="m">5</span>
+tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</span> -5
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参考：<a href="https://blog.csdn.net/mo_247/article/details/103567545">https://blog.csdn.net/mo_247/article/details/103567545</a></p>
+</blockquote>
+<h2 id="读取文件每一行">读取文件每一行</h2>
+<ol>
+<li>使用for循环</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 换行符必须是unix的\n,不能是windows的\r\n,mac是\r结尾</span>
+<span class="c1"># `cat img.txt | tr &#34;\r\n&#34; &#34;\n&#34; | tr &#34;\r&#34; &#34;\n&#34;`</span>
+<span class="k">for</span> line in <span class="sb">`</span>cat img.txt <span class="p">|</span> tr <span class="s1">&#39;\r\n&#39;</span> <span class="s1">&#39;\n&#39;</span><span class="sb">`</span>
+<span class="k">do</span>
+  <span class="nb">echo</span> <span class="nv">$line</span>
+  cp -f <span class="s2">&#34;/d/Sites/hugo-project/content/imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;./imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>使用for循环</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 换行符必须是unix的\n,不能是windows的\r\n,mac是\r结尾</span>
+<span class="c1"># $(cat img.txt | tr &#34;\r\n&#34; &#34;\n&#34; | tr &#34;\r&#34; &#34;\n&#34;)</span>
+<span class="k">for</span> line in <span class="k">$(</span>cat img.txt<span class="p">|</span> tr <span class="s1">&#39;\r\n&#39;</span> <span class="s1">&#39;\n&#39;</span><span class="k">)</span>
+<span class="k">do</span>
+  <span class="nb">echo</span> <span class="nv">$line</span>
+  cp -f <span class="s2">&#34;/d/Sites/hugo-project/content/imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;./imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="k">done</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>使用while循环</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 换行符必须是unix的\n,不能是windows的\r\n,mac是\r结尾</span>
+<span class="k">while</span> <span class="nb">read</span> -r line
+<span class="k">do</span>
+  <span class="nb">echo</span> <span class="nv">$line</span>
+  cp -f <span class="s2">&#34;/d/Sites/hugo-project/content/imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;./imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="k">done</span> &lt; filename
+</code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参考：<a href="https://www.cnblogs.com/oskb/p/9669186.html">https://www.cnblogs.com/oskb/p/9669186.html</a></p>
 </blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -622,20 +946,20 @@ rsync -rtvpz --delete --exclude .git 101.43.160.247:~/public/ ~/pub/
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-hashtag="笔记"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" data-title="Shell笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>,&nbsp;<a href="/tags/shell/">shell</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/%E8%88%AA%E6%B5%B7%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/" class="prev" rel="prev" title="航海项目笔记"><i class="fas fa-angle-left fa-fw"></i>航海项目笔记</a>
-            <a href="/theme-emoji-support/" class="next" rel="next" title="主题文档 - Emoji 支持">主题文档 - Emoji 支持<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" class="prev" rel="prev" title="包体大小优化笔记"><i class="fas fa-angle-left fa-fw"></i>包体大小优化笔记</a>
+            <a href="/xlua%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="next" rel="next" title="Xlua性能测试">Xlua性能测试<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
