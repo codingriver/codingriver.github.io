@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity%E6%B8%B2%E6%9F%93%E9%A1%BA%E5%BA%8F\/"
-        },"genre": "posts","keywords": "Unity","wordcount":  200 ,
+        },"genre": "posts","keywords": "Unity","wordcount":  1311 ,
         "url": "https:\/\/codingriver.github.io\/unity%E6%B8%B2%E6%9F%93%E9%A1%BA%E5%BA%8F\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -104,10 +104,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">目录</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animated flipInX">Unity渲染顺序</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animated flipInX">Unity渲染顺序</h1><h2 class="single-subtitle">Unity 渲染层级 RenderQueue SortingLayer</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 200 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/unity%E6%B8%B2%E6%9F%93%E9%A1%BA%E5%BA%8F/" class="leancloud_visitors" data-flag-title="Unity渲染顺序">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1311 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/unity%E6%B8%B2%E6%9F%93%E9%A1%BA%E5%BA%8F/" class="leancloud_visitors" data-flag-title="Unity渲染顺序">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -115,29 +115,76 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#相机渲染顺序">相机渲染顺序</a></li>
+    <li><a href="#renderqueue">RenderQueue</a></li>
+    <li><a href="#renderqueue与sortinglayer与order之间的关系">RenderQueue与SortingLayer与Order之间的关系</a></li>
+    <li><a href="#opaque调整sortinglayersortingorder为什么没作用">Opaque调整SortingLayer，SortingOrder为什么没作用？</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><p>Unity中的渲染顺序有三层：</p>
 <ul>
 <li><strong>第一层：Camera的depth，值越大渲染越在前面</strong></li>
 <li><strong>第二层：Sorting Layer，配置SortingLayer面板（越在下面的layer渲染越在前面），然后在Canvas上设置或者在Renderer组件上设置</strong></li>
 <li><strong>第三层:SortingOrder,值越大越在前面渲染，然后在Canvas上设置或者在Renderer组件上设置</strong>
-<em>决定渲染顺序:第一层&gt;第二层&gt;第三层</em></li>
+<em>决定渲染顺序:第一层&gt;第二层和第三层</em></li>
 </ul>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-798cee6f38385334.png"
-        data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-798cee6f38385334.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-798cee6f38385334.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-798cee6f38385334.png 2x"
-        data-sizes="auto"
-        alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-798cee6f38385334.png"
-        title="render1.png" /><img
+<p><a href="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-798cee6f38385334.png" target="_blank" rel="noopener noreffer">render1.png</a>
+<img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-3da8b646958023e6.png"
         data-srcset="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-3da8b646958023e6.png, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-3da8b646958023e6.png 1.5x, https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-3da8b646958023e6.png 2x"
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/1095643-3da8b646958023e6.png"
-        title="render2.png" /></p></div><div class="post-footer" id="post-footer">
+        title="render2.png" /></p>
+<h2 id="相机渲染顺序">相机渲染顺序</h2>
+<p>　　相机的渲染顺序，由Camera的Depth参数控制</p>
+<h2 id="renderqueue">RenderQueue</h2>
+<p>　　Queue分为五个队列：</p>
+<p>　　　　Background，天空盒，天生用来被覆盖的（1000）</p>
+<p>　　　　Geometry，不透明物渲染队列（2000）</p>
+<p>　　　　AlphaTest，通道测试的几何体使用这个队列，这些物体的渲染有点介于Opaue与Transparent之间（2450）</p>
+<p>　　　　Geometrylast，特殊的点，定义了透明与不透明的分界点（2500），属于不透明队列</p>
+<p>　　　　Transparent，不写深度的物体，一般是透明物或粒子效果（3000）</p>
+<p>　　　　Overlay，最后渲染的内容，天生覆盖别人的，如UI（4000）</p>
+<h2 id="renderqueue与sortinglayer与order之间的关系">RenderQueue与SortingLayer与Order之间的关系</h2>
+<ol>
+<li>
+<p><code>Queue &gt; 2500</code> 的物体绝对会在 <code>Queue &lt;= 2500</code> 之后渲染，这时<code>Layer</code>、<code>Order</code>将完全不起作用</p>
+</li>
+<li>
+<p><code>Queue</code> 位于1中的同一侧时，<code>Layer</code>低的先渲染，无视<code>Queue</code>与<code>Order</code>值</p>
+</li>
+<li>
+<p><code>Queue</code> 位于1中的同一侧时，<code>Layer</code> 相同，<code>Order</code> 低的先渲染，无视 <code>Queue</code></p>
+</li>
+<li>
+<p><code>Layer</code>与<code>Order</code>都一样时，<code>Queue</code> 低的先渲染</p>
+</li>
+</ol>
+<h2 id="opaque调整sortinglayersortingorder为什么没作用">Opaque调整SortingLayer，SortingOrder为什么没作用？</h2>
+<p>　　因为不透明物体是打开ZWrite的，即使改了SortingLayer与Order，让一个本来在后边（Z值大）的物体先渲染了，但是另一个物体渲染时</p>
+<p>　　　　由于Z值小，写深度以后，立马把前边的物体覆盖了，结果总是一样的；透明物渲染时，关闭了ZWrite，渲染的结果不是替换的，是</p>
+<p>　　　　混合的，所以先渲染后渲染，结果就可能会不同（与混合的方式有关）</p>
+<h2 id="总结">总结</h2>
+<blockquote>
+<p><code>Geometry</code>不透明队列是<code>RenderQueue&lt;=2500</code>的<br>
+<code>Transparent</code>透明队列是<code>RenderQueue&gt;2500</code>的</p>
+</blockquote>
+<ol>
+<li>如果两个物体分别属于 <code>Geometry</code>不透明队列 和 <code>Transparent</code>透明队列，则<code>Sorting Layer</code> 和 <code>Order in Layer</code> 怎么设置都是不起作用的 (Z值是最后决定前后关系的)</li>
+<li>如果两个物体都在<code>Geometry</code>不透明队列 或者都属于 <code>Transparent</code>透明队列，则
+在<code>Sorting Layer</code>高的绝对会在<code>Sorting Layer</code>前面，无视<code>RenderQueue</code>跟<code>Order in Layer</code>，只有在<code>Sorting Layer</code>相同的前提下，<code>Order in Layer</code>高的会在<code>Order in Layer</code>低的前面，无视<code>RenderQueue</code>。当<code>Sorting Layer</code>跟<code>Order in Layer</code>相同时，才看<code>RenderQueue</code>的高低，高的在前面。（假设ZWrite和ZTest关闭）<br>
+<em>简要概括：物体属于同一队列则<code>Layer</code>比<code>Queue</code>优先</em></li>
+</ol>
+<blockquote>
+<p>如果要测试，则使用<code>Transparent</code>透明队列测试，且把shader的深度写入和深度测试关闭
+参考：<br>
+<a href="https://www.cnblogs.com/hiker-online/p/12489252.html">https://www.cnblogs.com/hiker-online/p/12489252.html</a></p>
+</blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

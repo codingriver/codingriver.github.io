@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "笔记","wordcount":  4287 ,
+        },"genre": "posts","keywords": "笔记","wordcount":  4790 ,
         "url": "https:\/\/codingriver.github.io\/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0\/","datePublished": "2022-01-17T21:51:13+08:00","dateModified": "2022-01-17T21:51:13+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">包体大小优化笔记</h1><h2 class="single-subtitle">AssetBundle大小管理策略（航海项目包体管理）</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17 21:51:13">2022-01-17 21:51:13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4287 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="包体大小优化笔记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-17 21:51:13">2022-01-17 21:51:13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4790 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="包体大小优化笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -730,13 +730,41 @@ bundle文件大小差5k多（每个bundle文件内容不一样，大小也不一
 <a href="https://blog.csdn.net/danteshenqu/article/details/78170745">https://blog.csdn.net/danteshenqu/article/details/78170745</a>
 <a href="https://zhuanlan.zhihu.com/p/83780152">https://zhuanlan.zhihu.com/p/83780152</a></p>
 </blockquote>
+<blockquote>
+<p>关于 <code>GraphicsSetting-&gt; always included shader</code>说明：<br>
+如果打AB时不想shader被打包进AB包，则用 <code>always included shader</code> 添加shader，单只能是unity buildin 内置shader（Packages内的shader不是内置的）。<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-03-07-11-15-01.png"
+        data-srcset="../../imgs/2022-03-07-11-15-01.png, ../../imgs/2022-03-07-11-15-01.png 1.5x, ../../imgs/2022-03-07-11-15-01.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-03-07-11-15-01.png"
+        title="../../imgs/2022-03-07-11-15-01.png" /><br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-03-07-11-21-04.png"
+        data-srcset="../../imgs/2022-03-07-11-21-04.png, ../../imgs/2022-03-07-11-21-04.png 1.5x, ../../imgs/2022-03-07-11-21-04.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-03-07-11-21-04.png"
+        title="../../imgs/2022-03-07-11-21-04.png" /><br>
+<em>cube11和cube1使用的shader是<code>Unlit/Color</code>,Cube22和Cube2使用的shader是<code>custom/Cube2</code>；每个ab文件内只有一个cube物体的prefab，引用一个材质球和对应的shader</em><br>
+<em>AB文件cube11和cube22是在<code>always included shader</code>添加前打包的，AB文件Cube1和Cube2是在<code>always included shader</code>添加后打包的</em><br>
+根据上面打包测试分析出结果：</p>
+<ul>
+<li>Cube22和Cube2使用自定义shader <code>custom/Cube2</code> ，不管<code>always included shader</code>内是否添加该shader，打AB包都会把该shader打包进去</li>
+<li>Cube11和Cube1使用内置shader <code>Unlit/Color</code>,<code>always included shader</code>内添加该shader，打包AB包不会把该内置shader打包进去；否则会打包进AB包内</li>
+<li>URP内Shader算是自定义shader，不管<code>always included shader</code>内是否添加，都会将使用的URP Shader打包到对应AB包中</li>
+</ul>
+</blockquote>
 <h3 id="关于urp-shader打包问题">关于URP Shader打包问题</h3>
 <blockquote>
 <p>由于<code>URP</code>内部的<code>Shader</code>在<code>Packages</code>中，不能使用<code>Inspector</code>面板设置<code>AssetBundleName</code>及脚本代码设置<code>AssetBundleName</code>。在<code>Graphics</code>面板中添加<code>URP shader</code>，但是打包还是会被打进去
 解决方案：
 1. 使用<code>AssetBundleBuild</code>方式打包可以控制Packages内的资源
 2. 使用<code>Addressables</code>官方插件打包可以设置Packages内的资源</p>
-<p>材质球和shader打包到一起，会根据材质球引用的keywords变体打包，而加入了GraphicsSetting-&gt; always included shader后，会将它所有的keywords变体打包到游戏中</p>
+<p>材质球和shader打包到一起，会根据材质球引用的keywords变体打包，而加入了<code>GraphicsSetting-&gt; always included shader</code>后，会将它所有的keywords变体打包到游戏中</p>
 <p>关于shader变体说明：<a href="https://blog.csdn.net/kuangben2000/article/details/105400835">https://blog.csdn.net/kuangben2000/article/details/105400835</a></p>
 </blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">

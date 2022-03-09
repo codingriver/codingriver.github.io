@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/shader%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "shader, 笔记","wordcount":  6031 ,
+        },"genre": "posts","keywords": "shader, 笔记","wordcount":  6005 ,
         "url": "https:\/\/codingriver.github.io\/shader%E7%AC%94%E8%AE%B0\/","datePublished": "2021-04-07T21:39:06+08:00","dateModified": "2021-04-07T21:39:06+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shader笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/shader/"><i class="far fa-folder fa-fw"></i>shader</a>&nbsp;<a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-07 21:39:06">2021-04-07 21:39:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6031 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/shader%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Shader笔记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-07 21:39:06">2021-04-07 21:39:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6005 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;<span id="/shader%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Shader笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -437,7 +437,7 @@ NDC归一化后进行背面剔剔除（Back Face Culling）根据三角形的索
 <p>点线代表线性颜色/亮度值（译注：这表示的是理想状态，Gamma为1），实线代表监视器显示的颜色。</p>
 <p><code>Gamma校正</code>(Gamma Correction)的思路是<strong>在最终的颜色输出上应用监视器Gamma的倒数</strong>。回头看前面的Gamma曲线图，你会有一个短划线，它是监视器Gamma曲线的翻转曲线。我们在颜色显示到监视器的时候把每个颜色输出都加上这个翻转的Gamma曲线，这样应用了监视器Gamma以后最终的颜色将会变为线性的。我们所得到的中间色调就会更亮，所以虽然监视器使它们变暗，但是我们又将其平衡回来了。</p>
 <ul>
-<li>显示器的输出在Gamma2.2空间。(显示器自动计算或者GPU，这里是自动的，没弄明白哪里会自动计算转换)</li>
+<li>显示器的输出在Gamma2.2空间。(显示器自动计算)</li>
 <li>伽马校正会将颜色转换到Gamma0.45空间。</li>
 <li>伽马校正和显示器输出平衡之后，结果就是Gamma1.0的线性空间。</li>
 </ul>

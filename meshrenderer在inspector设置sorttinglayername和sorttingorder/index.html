@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/meshrenderer%E5%9C%A8inspector%E8%AE%BE%E7%BD%AEsorttinglayername%E5%92%8Csorttingorder\/"
-        },"genre": "posts","keywords": "Unity编辑器","wordcount":  1016 ,
+        },"genre": "posts","keywords": "Unity编辑器","wordcount":  1039 ,
         "url": "https:\/\/codingriver.github.io\/meshrenderer%E5%9C%A8inspector%E8%AE%BE%E7%BD%AEsorttinglayername%E5%92%8Csorttingorder\/","datePublished": "2020-09-14T20:55:09+08:00","dateModified": "2020-09-14T20:55:09+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -103,7 +103,7 @@
 <main class="main">
                 <div class="container"><article class="page single"><h1 class="single-title animated flipInX">【Unity编辑器】MeshRenderer和SkinnedMeshRenderer在Inspector增加sortingLayer选项</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity%E7%BC%96%E8%BE%91%E5%99%A8/"><i class="far fa-folder fa-fw"></i>Unity编辑器</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-14 20:55:09">2020-09-14 20:55:09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1016 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-14 20:55:09">2020-09-14 20:55:09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1039 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/meshrenderer%E5%9C%A8inspector%E8%AE%BE%E7%BD%AEsorttinglayername%E5%92%8Csorttingorder/" class="leancloud_visitors" data-flag-title="【Unity编辑器】MeshRenderer和SkinnedMeshRenderer在Inspector增加sortingLayer选项">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -206,6 +206,16 @@ Unity的SortingLayer在MeshRenderer和SkinnedMeshRendererEditor中的Inspector�
 </span><span class="lnt">84
 </span><span class="lnt">85
 </span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
@@ -261,8 +271,18 @@ Unity的SortingLayer在MeshRenderer和SkinnedMeshRendererEditor中的Inspector�
             <span class="p">}</span>
 
             <span class="n">choice</span> <span class="p">=</span> <span class="n">EditorGUILayout</span><span class="p">.</span><span class="n">IntPopup</span><span class="p">(</span><span class="s">&#34;Sorting Layer&#34;</span><span class="p">,</span> <span class="n">choice</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span> <span class="n">picks</span><span class="p">);</span>
+
+
+            <span class="kt">string</span> <span class="n">oldLayerName</span> <span class="p">=</span> <span class="n">renderer</span><span class="p">.</span><span class="n">sortingLayerName</span><span class="p">;</span>
             <span class="n">renderer</span><span class="p">.</span><span class="n">sortingLayerName</span> <span class="p">=</span> <span class="n">options</span><span class="p">[</span><span class="n">choice</span><span class="p">];</span>
+
+            <span class="kt">int</span> <span class="n">order</span> <span class="p">=</span> <span class="n">renderer</span><span class="p">.</span><span class="n">sortingOrder</span><span class="p">;</span>
             <span class="n">renderer</span><span class="p">.</span><span class="n">sortingOrder</span> <span class="p">=</span> <span class="n">EditorGUILayout</span><span class="p">.</span><span class="n">IntField</span><span class="p">(</span><span class="s">&#34;Sorting Order&#34;</span><span class="p">,</span> <span class="n">renderer</span><span class="p">.</span><span class="n">sortingOrder</span><span class="p">);</span>
+
+            <span class="k">if</span><span class="p">(</span><span class="n">renderer</span><span class="p">.</span><span class="n">sortingOrder</span><span class="p">!=</span><span class="n">order</span><span class="p">||</span><span class="n">renderer</span><span class="p">.</span><span class="n">sortingLayerName</span><span class="p">!=</span> <span class="n">oldLayerName</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">EditorUtility</span><span class="p">.</span><span class="n">SetDirty</span><span class="p">(</span><span class="n">renderer</span><span class="p">);</span>
+            <span class="p">}</span>
             <span class="k">if</span><span class="p">(</span><span class="n">editor</span><span class="p">.</span><span class="n">target</span> <span class="k">is</span> <span class="n">MeshRenderer</span><span class="p">)</span>
             <span class="p">{</span>
                 <span class="n">SubRendererOnInspectorGUIProxy</span><span class="p">(</span><span class="n">editor</span><span class="p">);</span>
