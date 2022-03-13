@@ -8,10 +8,10 @@
         <title>ZipHelper压缩工具 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="ZipHelper压缩工具" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/ziphelper%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/ziphelper%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-19T18:44:48+08:00" />
 <meta property="article:modified_time" content="2020-09-19T18:44:48+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -125,13 +125,13 @@
         </div>
         <div class="details-content">
             <div class="admonition-content">使用<code>ICSharpCode.SharpZipLib.dll</code>来压缩/解压（压缩效率比GZip要高一点）<br>
-<code>ICSharpCode.SharpZipLib.dll</code>下载： <a href="https://github.com/codingriver/tools/tree/master/thirdPlugins">https://github.com/codingriver/tools/tree/master/thirdPlugins</a></div>
+<code>ICSharpCode.SharpZipLib.dll</code>下载： <a href="https://github.com/codingriver/tools/tree/master/thirdPlugins" target="_blank" rel="noopener noreffer">https://github.com/codingriver/tools/tree/master/thirdPlugins</a></div>
         </div>
     </div>
 <p><code>ZipHelper.cs</code>文件：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -284,158 +284,158 @@
 </span><span class="lnt">151
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.IO.Compression</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">ICSharpCode.SharpZipLib.Zip.Compression</span><span class="p">;</span>
-
-
-<span class="k">namespace</span> <span class="nn">Codingriver</span>
-<span class="p">{</span>
-	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">ZipHelper</span>
-	<span class="p">{</span>
-
-
-        <span class="c1">//压缩字节
-</span><span class="c1"></span>        <span class="c1">//1.创建压缩的数据流 
-</span><span class="c1"></span>        <span class="c1">//2.设定compressStream为存放被压缩的文件流,并设定为压缩模式
-</span><span class="c1"></span>        <span class="c1">//3.将需要压缩的字节写到被压缩的文件流
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">GZipCompress</span><span class="p">(</span><span class="kt">byte</span><span class="p">[]</span> <span class="n">bytes</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">using</span> <span class="p">(</span><span class="n">MemoryStream</span> <span class="n">compressStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">())</span>
-            <span class="p">{</span>
-                <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">zipStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">GZipStream</span><span class="p">(</span><span class="n">compressStream</span><span class="p">,</span> <span class="n">CompressionMode</span><span class="p">.</span><span class="n">Compress</span><span class="p">))</span>
-                    <span class="n">zipStream</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">bytes</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
-                <span class="kt">byte</span><span class="p">[]</span> <span class="n">data</span><span class="p">=</span> <span class="n">compressStream</span><span class="p">.</span><span class="n">ToArray</span><span class="p">();</span>
-                <span class="n">compressStream</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
-                <span class="k">return</span> <span class="n">data</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-
-        <span class="c1">//解压缩字节
-</span><span class="c1"></span>        <span class="c1">//1.创建被压缩的数据流
-</span><span class="c1"></span>        <span class="c1">//2.创建zipStream对象，并传入解压的文件流
-</span><span class="c1"></span>        <span class="c1">//3.创建目标流
-</span><span class="c1"></span>        <span class="c1">//4.zipStream拷贝到目标流
-</span><span class="c1"></span>        <span class="c1">//5.返回目标流输出字节
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">GZipDecompress</span><span class="p">(</span><span class="kt">byte</span><span class="p">[]</span> <span class="n">bytes</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">compressStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">(</span><span class="n">bytes</span><span class="p">))</span>
-            <span class="p">{</span>
-                <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">zipStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">GZipStream</span><span class="p">(</span><span class="n">compressStream</span><span class="p">,</span> <span class="n">CompressionMode</span><span class="p">.</span><span class="n">Decompress</span><span class="p">))</span>
-                <span class="p">{</span>
-                    <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">resultStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">())</span>
-                    <span class="p">{</span>
-                        <span class="n">zipStream</span><span class="p">.</span><span class="n">CopyTo</span><span class="p">(</span><span class="n">resultStream</span><span class="p">);</span>
-                        <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">resultStream</span><span class="p">.</span><span class="n">Capacity</span><span class="p">);</span>
-                        <span class="k">return</span> <span class="n">resultStream</span><span class="p">.</span><span class="n">ToArray</span><span class="p">();</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-
-
-        <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// Zip
-</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;content&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>        <span class="k">public</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">Compress</span><span class="p">(</span><span class="kt">byte</span><span class="p">[]</span> <span class="n">content</span><span class="p">)</span>
-		<span class="p">{</span>
-            
-            <span class="c1">//return content;
-</span><span class="c1"></span>            <span class="n">Deflater</span> <span class="n">compressor</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Deflater</span><span class="p">();</span>
-			<span class="n">compressor</span><span class="p">.</span><span class="n">SetLevel</span><span class="p">(</span><span class="n">Deflater</span><span class="p">.</span><span class="n">BEST_COMPRESSION</span><span class="p">);</span>
-
-			<span class="n">compressor</span><span class="p">.</span><span class="n">SetInput</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
-			<span class="n">compressor</span><span class="p">.</span><span class="n">Finish</span><span class="p">();</span>
-
-			<span class="k">using</span> <span class="p">(</span><span class="n">MemoryStream</span> <span class="n">bos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">(</span><span class="n">content</span><span class="p">.</span><span class="n">Length</span><span class="p">))</span>
-			<span class="p">{</span>
-				<span class="kt">var</span> <span class="n">buf</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="p">[</span><span class="m">1024</span><span class="p">];</span>
-				<span class="k">while</span> <span class="p">(!</span><span class="n">compressor</span><span class="p">.</span><span class="n">IsFinished</span><span class="p">)</span>
-				<span class="p">{</span>
-					<span class="kt">int</span> <span class="n">n</span> <span class="p">=</span> <span class="n">compressor</span><span class="p">.</span><span class="n">Deflate</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
-					<span class="n">bos</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-				<span class="p">}</span>
-				<span class="k">return</span> <span class="n">bos</span><span class="p">.</span><span class="n">ToArray</span><span class="p">();</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-
-        <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// Unzip
-</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;content&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>		<span class="k">public</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">Decompress</span><span class="p">(</span><span class="kt">byte</span><span class="p">[]</span> <span class="n">content</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="k">return</span> <span class="n">Decompress</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">content</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="k">public</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">Decompress</span><span class="p">(</span><span class="kt">byte</span><span class="p">[]</span> <span class="n">content</span><span class="p">,</span> <span class="kt">int</span> <span class="n">offset</span><span class="p">,</span> <span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="c1">//return content;
-</span><span class="c1"></span>			<span class="n">Inflater</span> <span class="n">decompressor</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Inflater</span><span class="p">();</span>
-			<span class="n">decompressor</span><span class="p">.</span><span class="n">SetInput</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">count</span><span class="p">);</span>
-
-			<span class="k">using</span> <span class="p">(</span><span class="n">MemoryStream</span> <span class="n">bos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">(</span><span class="n">content</span><span class="p">.</span><span class="n">Length</span><span class="p">))</span>
-			<span class="p">{</span>
-				<span class="kt">var</span> <span class="n">buf</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="p">[</span><span class="m">1024</span><span class="p">];</span>
-				<span class="k">while</span> <span class="p">(!</span><span class="n">decompressor</span><span class="p">.</span><span class="n">IsFinished</span><span class="p">)</span>
-				<span class="p">{</span>
-					<span class="kt">int</span> <span class="n">n</span> <span class="p">=</span> <span class="n">decompressor</span><span class="p">.</span><span class="n">Inflate</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
-					<span class="n">bos</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-				<span class="p">}</span>
-				<span class="k">return</span> <span class="n">bos</span><span class="p">.</span><span class="n">ToArray</span><span class="p">();</span>
-			<span class="p">}</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-<span class="cm">/*
-</span><span class="cm">using System.IO;
-</span><span class="cm">using System.IO.Compression;
-</span><span class="cm">
-</span><span class="cm">namespace Codingriver
-</span><span class="cm">{
-</span><span class="cm">	public static class ZipHelper
-</span><span class="cm">	{
-</span><span class="cm">		public static byte[] Compress(byte[] content)
-</span><span class="cm">		{
-</span><span class="cm">			using (MemoryStream ms = new MemoryStream())
-</span><span class="cm">			using (DeflateStream stream = new DeflateStream(ms, CompressionMode.Compress, true))
-</span><span class="cm">			{
-</span><span class="cm">				stream.Write(content, 0, content.Length);
-</span><span class="cm">				return ms.ToArray();
-</span><span class="cm">			}
-</span><span class="cm">		}
-</span><span class="cm">
-</span><span class="cm">		public static byte[] Decompress(byte[] content)
-</span><span class="cm">		{
-</span><span class="cm">			return Decompress(content, 0, content.Length);
-</span><span class="cm">		}
-</span><span class="cm">
-</span><span class="cm">		public static byte[] Decompress(byte[] content, int offset, int count)
-</span><span class="cm">		{
-</span><span class="cm">			using (MemoryStream ms = new MemoryStream())
-</span><span class="cm">			using (DeflateStream stream = new DeflateStream(new MemoryStream(content, offset, count), CompressionMode.Decompress, true))
-</span><span class="cm">			{
-</span><span class="cm">				byte[] buffer = new byte[1024];
-</span><span class="cm">				while (true)
-</span><span class="cm">				{
-</span><span class="cm">					int bytesRead = stream.Read(buffer, 0, 1024);
-</span><span class="cm">					if (bytesRead == 0)
-</span><span class="cm">					{
-</span><span class="cm">						break;
-</span><span class="cm">					}
-</span><span class="cm">					ms.Write(buffer, 0, bytesRead);
-</span><span class="cm">				}
-</span><span class="cm">				return ms.ToArray();
-</span><span class="cm">			}
-</span><span class="cm">		}
-</span><span class="cm">	}
-</span><span class="cm">}
-</span><span class="cm">*/</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.IO.Compression</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">ICSharpCode.SharpZipLib.Zip.Compression</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">Codingriver</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">ZipHelper</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//压缩字节</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//1.创建压缩的数据流 </span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//2.设定compressStream为存放被压缩的文件流,并设定为压缩模式</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//3.将需要压缩的字节写到被压缩的文件流</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">GZipCompress</span><span class="p">(</span><span class="kt">byte</span><span class="p">[]</span> <span class="n">bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">using</span> <span class="p">(</span><span class="n">MemoryStream</span> <span class="n">compressStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">zipStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">GZipStream</span><span class="p">(</span><span class="n">compressStream</span><span class="p">,</span> <span class="n">CompressionMode</span><span class="p">.</span><span class="n">Compress</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">zipStream</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">bytes</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">bytes</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">byte</span><span class="p">[]</span> <span class="n">data</span><span class="p">=</span> <span class="n">compressStream</span><span class="p">.</span><span class="n">ToArray</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">compressStream</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//解压缩字节</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//1.创建被压缩的数据流</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//2.创建zipStream对象，并传入解压的文件流</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//3.创建目标流</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//4.zipStream拷贝到目标流</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//5.返回目标流输出字节</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">GZipDecompress</span><span class="p">(</span><span class="kt">byte</span><span class="p">[]</span> <span class="n">bytes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">compressStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">(</span><span class="n">bytes</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">zipStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">GZipStream</span><span class="p">(</span><span class="n">compressStream</span><span class="p">,</span> <span class="n">CompressionMode</span><span class="p">.</span><span class="n">Decompress</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">resultStream</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">zipStream</span><span class="p">.</span><span class="n">CopyTo</span><span class="p">(</span><span class="n">resultStream</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">resultStream</span><span class="p">.</span><span class="n">Capacity</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">return</span> <span class="n">resultStream</span><span class="p">.</span><span class="n">ToArray</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// Zip</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;param name=&#34;content&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">Compress</span><span class="p">(</span><span class="kt">byte</span><span class="p">[]</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1">//return content;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Deflater</span> <span class="n">compressor</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Deflater</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">			<span class="n">compressor</span><span class="p">.</span><span class="n">SetLevel</span><span class="p">(</span><span class="n">Deflater</span><span class="p">.</span><span class="n">BEST_COMPRESSION</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="n">compressor</span><span class="p">.</span><span class="n">SetInput</span><span class="p">(</span><span class="n">content</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">compressor</span><span class="p">.</span><span class="n">Finish</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">using</span> <span class="p">(</span><span class="n">MemoryStream</span> <span class="n">bos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">(</span><span class="n">content</span><span class="p">.</span><span class="n">Length</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="kt">var</span> <span class="n">buf</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="p">[</span><span class="m">1024</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">				<span class="k">while</span> <span class="p">(!</span><span class="n">compressor</span><span class="p">.</span><span class="n">IsFinished</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="kt">int</span> <span class="n">n</span> <span class="p">=</span> <span class="n">compressor</span><span class="p">.</span><span class="n">Deflate</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">					<span class="n">bos</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span> <span class="n">bos</span><span class="p">.</span><span class="n">ToArray</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// Unzip</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;param name=&#34;content&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">public</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">Decompress</span><span class="p">(</span><span class="kt">byte</span><span class="p">[]</span> <span class="n">content</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">Decompress</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">content</span><span class="p">.</span><span class="n">Length</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">public</span> <span class="k">static</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">Decompress</span><span class="p">(</span><span class="kt">byte</span><span class="p">[]</span> <span class="n">content</span><span class="p">,</span> <span class="kt">int</span> <span class="n">offset</span><span class="p">,</span> <span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">//return content;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">Inflater</span> <span class="n">decompressor</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Inflater</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">			<span class="n">decompressor</span><span class="p">.</span><span class="n">SetInput</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">using</span> <span class="p">(</span><span class="n">MemoryStream</span> <span class="n">bos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">MemoryStream</span><span class="p">(</span><span class="n">content</span><span class="p">.</span><span class="n">Length</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="kt">var</span> <span class="n">buf</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="p">[</span><span class="m">1024</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">				<span class="k">while</span> <span class="p">(!</span><span class="n">decompressor</span><span class="p">.</span><span class="n">IsFinished</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="kt">int</span> <span class="n">n</span> <span class="p">=</span> <span class="n">decompressor</span><span class="p">.</span><span class="n">Inflate</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">					<span class="n">bos</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span> <span class="n">bos</span><span class="p">.</span><span class="n">ToArray</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">using System.IO;
+</span></span></span><span class="line"><span class="cl"><span class="cm">using System.IO.Compression;
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">namespace Codingriver
+</span></span></span><span class="line"><span class="cl"><span class="cm">{
+</span></span></span><span class="line"><span class="cl"><span class="cm">	public static class ZipHelper
+</span></span></span><span class="line"><span class="cl"><span class="cm">	{
+</span></span></span><span class="line"><span class="cl"><span class="cm">		public static byte[] Compress(byte[] content)
+</span></span></span><span class="line"><span class="cl"><span class="cm">		{
+</span></span></span><span class="line"><span class="cl"><span class="cm">			using (MemoryStream ms = new MemoryStream())
+</span></span></span><span class="line"><span class="cl"><span class="cm">			using (DeflateStream stream = new DeflateStream(ms, CompressionMode.Compress, true))
+</span></span></span><span class="line"><span class="cl"><span class="cm">			{
+</span></span></span><span class="line"><span class="cl"><span class="cm">				stream.Write(content, 0, content.Length);
+</span></span></span><span class="line"><span class="cl"><span class="cm">				return ms.ToArray();
+</span></span></span><span class="line"><span class="cl"><span class="cm">			}
+</span></span></span><span class="line"><span class="cl"><span class="cm">		}
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">		public static byte[] Decompress(byte[] content)
+</span></span></span><span class="line"><span class="cl"><span class="cm">		{
+</span></span></span><span class="line"><span class="cl"><span class="cm">			return Decompress(content, 0, content.Length);
+</span></span></span><span class="line"><span class="cl"><span class="cm">		}
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">		public static byte[] Decompress(byte[] content, int offset, int count)
+</span></span></span><span class="line"><span class="cl"><span class="cm">		{
+</span></span></span><span class="line"><span class="cl"><span class="cm">			using (MemoryStream ms = new MemoryStream())
+</span></span></span><span class="line"><span class="cl"><span class="cm">			using (DeflateStream stream = new DeflateStream(new MemoryStream(content, offset, count), CompressionMode.Decompress, true))
+</span></span></span><span class="line"><span class="cl"><span class="cm">			{
+</span></span></span><span class="line"><span class="cl"><span class="cm">				byte[] buffer = new byte[1024];
+</span></span></span><span class="line"><span class="cl"><span class="cm">				while (true)
+</span></span></span><span class="line"><span class="cl"><span class="cm">				{
+</span></span></span><span class="line"><span class="cl"><span class="cm">					int bytesRead = stream.Read(buffer, 0, 1024);
+</span></span></span><span class="line"><span class="cl"><span class="cm">					if (bytesRead == 0)
+</span></span></span><span class="line"><span class="cl"><span class="cm">					{
+</span></span></span><span class="line"><span class="cl"><span class="cm">						break;
+</span></span></span><span class="line"><span class="cl"><span class="cm">					}
+</span></span></span><span class="line"><span class="cl"><span class="cm">					ms.Write(buffer, 0, bytesRead);
+</span></span></span><span class="line"><span class="cl"><span class="cm">				}
+</span></span></span><span class="line"><span class="cl"><span class="cm">				return ms.ToArray();
+</span></span></span><span class="line"><span class="cl"><span class="cm">			}
+</span></span></span><span class="line"><span class="cl"><span class="cm">		}
+</span></span></span><span class="line"><span class="cl"><span class="cm">	}
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -467,7 +467,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

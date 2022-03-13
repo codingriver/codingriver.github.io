@@ -8,10 +8,10 @@
         <title>【数据结构】 A* 算法理解(C#) - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="【数据结构】 A* 算法理解(C#)" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/a%E6%98%9F%E7%AE%97%E6%B3%95%E7%90%86%E8%A7%A3/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/a%E6%98%9F%E7%AE%97%E6%B3%95%E7%90%86%E8%A7%A3/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-03T21:09:12+08:00" />
 <meta property="article:modified_time" content="2020-09-03T21:09:12+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -160,7 +160,7 @@
 <p>寻路关键代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -250,95 +250,95 @@
 </span><span class="lnt">88
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 使用A*算法寻路
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;start&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;end&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">FindPath</span><span class="p">(</span><span class="n">Vector2</span> <span class="n">start</span><span class="p">,</span><span class="n">Vector2</span> <span class="n">end</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="c1">//和A*算法无关，只是为了显示使用
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">showFindNum</span><span class="p">=</span><span class="m">1</span><span class="p">;</span>
-
-        <span class="c1">//开启列表
-</span><span class="c1"></span>        <span class="n">List</span><span class="p">&lt;</span><span class="n">Cell</span><span class="p">&gt;</span> <span class="n">openLs</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Cell</span><span class="p">&gt;();</span>
-        <span class="c1">//关闭列表
-</span><span class="c1"></span>        <span class="n">List</span><span class="p">&lt;</span><span class="n">Cell</span><span class="p">&gt;</span> <span class="n">closeLs</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Cell</span><span class="p">&gt;();</span>
-
-        <span class="c1">//起点
-</span><span class="c1"></span>        <span class="n">Cell</span> <span class="n">startCell</span> <span class="p">=</span> <span class="n">grid</span><span class="p">.</span><span class="n">GetCell</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
-        <span class="c1">//终点
-</span><span class="c1"></span>        <span class="n">Cell</span> <span class="n">endCell</span> <span class="p">=</span> <span class="n">grid</span><span class="p">.</span><span class="n">GetCell</span><span class="p">(</span><span class="n">end</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;寻路开始,start({0}),end({1})!&#34;</span><span class="p">,</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">);</span>
-
-        <span class="c1">//将起点作为待处理的点放入开启列表，
-</span><span class="c1"></span>        <span class="n">openLs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">startCell</span><span class="p">);</span>
-
-        <span class="c1">//如果开启列表没有待处理点表示寻路失败，此路不通
-</span><span class="c1"></span>        <span class="k">while</span><span class="p">(</span><span class="n">openLs</span><span class="p">.</span><span class="n">Count</span><span class="p">&gt;</span><span class="m">0</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="c1">//遍历开启列表，找到消费最小的点作为检查点
-</span><span class="c1"></span>            <span class="n">Cell</span> <span class="n">cur</span> <span class="p">=</span> <span class="n">openLs</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">openLs</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
-            <span class="p">{</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">openLs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">fCost</span><span class="p">&lt;</span><span class="n">cur</span><span class="p">.</span><span class="n">fCost</span><span class="p">&amp;&amp;</span><span class="n">openLs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">hCost</span><span class="p">&lt;</span><span class="n">cur</span><span class="p">.</span><span class="n">hCost</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="n">cur</span> <span class="p">=</span> <span class="n">openLs</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;当前检查点：&#34;</span> <span class="p">+</span> <span class="n">cur</span><span class="p">.</span><span class="n">ToString</span><span class="p">()+</span><span class="s">&#34; 编号：&#34;</span><span class="p">+</span><span class="n">showFindNum</span><span class="p">+</span><span class="s">&#34;  open列表节点数量：&#34;</span><span class="p">+</span><span class="n">openLs</span><span class="p">.</span><span class="n">Count</span><span class="p">);</span>
-            <span class="c1">//显示在界面，和A*算法无关
-</span><span class="c1"></span>            <span class="n">cur</span><span class="p">.</span><span class="n">obj</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="s">&#34;Num&#34;</span><span class="p">).</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Text</span><span class="p">&gt;().</span><span class="n">text</span><span class="p">=</span><span class="n">showFindNum</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
-            <span class="n">showFindNum</span><span class="p">++;</span>
-
-            <span class="c1">//从开启列表中删除检查点，把它加入到一个“关闭列表”，列表中保存所有不需要再次检查的方格。
-</span><span class="c1"></span>            <span class="n">openLs</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
-            <span class="n">closeLs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
-
-            <span class="c1">//检查是否找到终点
-</span><span class="c1"></span>            <span class="k">if</span><span class="p">(</span><span class="n">cur</span><span class="p">==</span><span class="n">endCell</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;寻路结束!&#34;</span><span class="p">);</span>
-                <span class="n">grid</span><span class="p">.</span><span class="n">CreatePath</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
-                <span class="k">return</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="c1">//根据检查点来找到周围可行走的点
-</span><span class="c1"></span>            <span class="c1">//1.如果是墙或者在关闭列表中则跳过
-</span><span class="c1"></span>            <span class="c1">//2.如果点不在开启列表中则添加
-</span><span class="c1"></span>            <span class="c1">//3.如果点在开启列表中且当前的总花费比之前的总花费小，则更新该点信息
-</span><span class="c1"></span>            <span class="n">List</span><span class="p">&lt;</span><span class="n">Cell</span><span class="p">&gt;</span> <span class="n">aroundCells</span> <span class="p">=</span> <span class="n">GetAllAroundCells</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
-            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">cell</span> <span class="k">in</span> <span class="n">aroundCells</span><span class="p">)</span>
-            <span class="p">{</span>
-                
-                <span class="k">if</span> <span class="p">(</span><span class="n">cell</span><span class="p">.</span><span class="n">isWall</span> <span class="p">||</span> <span class="n">closeLs</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span>
-                    <span class="k">continue</span><span class="p">;</span>
-
-                <span class="kt">int</span> <span class="n">cost</span><span class="p">=</span> <span class="n">cur</span><span class="p">.</span><span class="n">gCost</span><span class="p">+</span> <span class="n">GetDistanceCost</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">cur</span><span class="p">);</span>
-
-                <span class="k">if</span><span class="p">(</span><span class="n">cost</span><span class="p">&lt;</span><span class="n">cell</span><span class="p">.</span><span class="n">gCost</span><span class="p">||!</span><span class="n">openLs</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span>
-                <span class="p">{</span>
-                    <span class="n">cell</span><span class="p">.</span><span class="n">gCost</span> <span class="p">=</span> <span class="n">cost</span><span class="p">;</span>
-                    <span class="n">cell</span><span class="p">.</span><span class="n">hCost</span> <span class="p">=</span> <span class="n">GetDistanceCost</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span><span class="n">endCell</span><span class="p">);</span>
-                    <span class="n">cell</span><span class="p">.</span><span class="n">parent</span> <span class="p">=</span> <span class="n">cur</span><span class="p">;</span>
-                    <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;cell:&#34;</span> <span class="p">+</span> <span class="n">cell</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s">&#34;  parent:&#34;</span> <span class="p">+</span> <span class="n">cur</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s">&#34;  &#34;</span> <span class="p">+</span> <span class="n">cell</span><span class="p">.</span><span class="n">PrintCost</span><span class="p">());</span>
-                    <span class="k">if</span><span class="p">(!</span><span class="n">openLs</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span>
-                    <span class="p">{</span>
-                        <span class="n">openLs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">cell</span><span class="p">);</span>
-                    <span class="p">}</span>
-
-                    <span class="c1">//显示在界面，和A*算法无关
-</span><span class="c1"></span>                    <span class="n">cell</span><span class="p">.</span><span class="n">obj</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="s">&#34;Cost&#34;</span><span class="p">).</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Text</span><span class="p">&gt;().</span><span class="n">text</span> <span class="p">=</span> <span class="n">cell</span><span class="p">.</span><span class="n">fCost</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
-                <span class="p">}</span>
-
-
-            <span class="p">}</span>
-
-        <span class="p">}</span>
-
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;寻路失败!&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 使用A*算法寻路</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;start&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;end&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">FindPath</span><span class="p">(</span><span class="n">Vector2</span> <span class="n">start</span><span class="p">,</span><span class="n">Vector2</span> <span class="n">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//和A*算法无关，只是为了显示使用</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">showFindNum</span><span class="p">=</span><span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//开启列表</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="p">&lt;</span><span class="n">Cell</span><span class="p">&gt;</span> <span class="n">openLs</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Cell</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//关闭列表</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="p">&lt;</span><span class="n">Cell</span><span class="p">&gt;</span> <span class="n">closeLs</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">Cell</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//起点</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Cell</span> <span class="n">startCell</span> <span class="p">=</span> <span class="n">grid</span><span class="p">.</span><span class="n">GetCell</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//终点</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Cell</span> <span class="n">endCell</span> <span class="p">=</span> <span class="n">grid</span><span class="p">.</span><span class="n">GetCell</span><span class="p">(</span><span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;寻路开始,start({0}),end({1})!&#34;</span><span class="p">,</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//将起点作为待处理的点放入开启列表，</span>
+</span></span><span class="line"><span class="cl">        <span class="n">openLs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">startCell</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//如果开启列表没有待处理点表示寻路失败，此路不通</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="n">openLs</span><span class="p">.</span><span class="n">Count</span><span class="p">&gt;</span><span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//遍历开启列表，找到消费最小的点作为检查点</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Cell</span> <span class="n">cur</span> <span class="p">=</span> <span class="n">openLs</span><span class="p">[</span><span class="m">0</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">openLs</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">openLs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">fCost</span><span class="p">&lt;</span><span class="n">cur</span><span class="p">.</span><span class="n">fCost</span><span class="p">&amp;&amp;</span><span class="n">openLs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">hCost</span><span class="p">&lt;</span><span class="n">cur</span><span class="p">.</span><span class="n">hCost</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">cur</span> <span class="p">=</span> <span class="n">openLs</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;当前检查点：&#34;</span> <span class="p">+</span> <span class="n">cur</span><span class="p">.</span><span class="n">ToString</span><span class="p">()+</span><span class="s">&#34; 编号：&#34;</span><span class="p">+</span><span class="n">showFindNum</span><span class="p">+</span><span class="s">&#34;  open列表节点数量：&#34;</span><span class="p">+</span><span class="n">openLs</span><span class="p">.</span><span class="n">Count</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//显示在界面，和A*算法无关</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cur</span><span class="p">.</span><span class="n">obj</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="s">&#34;Num&#34;</span><span class="p">).</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Text</span><span class="p">&gt;().</span><span class="n">text</span><span class="p">=</span><span class="n">showFindNum</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">showFindNum</span><span class="p">++;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//从开启列表中删除检查点，把它加入到一个“关闭列表”，列表中保存所有不需要再次检查的方格。</span>
+</span></span><span class="line"><span class="cl">            <span class="n">openLs</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">closeLs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//检查是否找到终点</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">cur</span><span class="p">==</span><span class="n">endCell</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;寻路结束!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">grid</span><span class="p">.</span><span class="n">CreatePath</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//根据检查点来找到周围可行走的点</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//1.如果是墙或者在关闭列表中则跳过</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//2.如果点不在开启列表中则添加</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//3.如果点在开启列表中且当前的总花费比之前的总花费小，则更新该点信息</span>
+</span></span><span class="line"><span class="cl">            <span class="n">List</span><span class="p">&lt;</span><span class="n">Cell</span><span class="p">&gt;</span> <span class="n">aroundCells</span> <span class="p">=</span> <span class="n">GetAllAroundCells</span><span class="p">(</span><span class="n">cur</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">cell</span> <span class="k">in</span> <span class="n">aroundCells</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">cell</span><span class="p">.</span><span class="n">isWall</span> <span class="p">||</span> <span class="n">closeLs</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">cost</span><span class="p">=</span> <span class="n">cur</span><span class="p">.</span><span class="n">gCost</span><span class="p">+</span> <span class="n">GetDistanceCost</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">cur</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">cost</span><span class="p">&lt;</span><span class="n">cell</span><span class="p">.</span><span class="n">gCost</span><span class="p">||!</span><span class="n">openLs</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">cell</span><span class="p">.</span><span class="n">gCost</span> <span class="p">=</span> <span class="n">cost</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">cell</span><span class="p">.</span><span class="n">hCost</span> <span class="p">=</span> <span class="n">GetDistanceCost</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span><span class="n">endCell</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">cell</span><span class="p">.</span><span class="n">parent</span> <span class="p">=</span> <span class="n">cur</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;cell:&#34;</span> <span class="p">+</span> <span class="n">cell</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s">&#34;  parent:&#34;</span> <span class="p">+</span> <span class="n">cur</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span> <span class="p">+</span> <span class="s">&#34;  &#34;</span> <span class="p">+</span> <span class="n">cell</span><span class="p">.</span><span class="n">PrintCost</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span><span class="p">(!</span><span class="n">openLs</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">cell</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">openLs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">cell</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="c1">//显示在界面，和A*算法无关</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">cell</span><span class="p">.</span><span class="n">obj</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="s">&#34;Cost&#34;</span><span class="p">).</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Text</span><span class="p">&gt;().</span><span class="n">text</span> <span class="p">=</span> <span class="n">cell</span><span class="p">.</span><span class="n">fCost</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;寻路失败!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>根据上面的工程得到这个图：</p>
 <a class="lightgallery" href="https://cdn.jsdelivr.net/gh/codingriver/cdn/20181019163900234.png" title="https://cdn.jsdelivr.net/gh/codingriver/cdn/20181019163900234.png" data-thumbnail="https://cdn.jsdelivr.net/gh/codingriver/cdn/20181019163900234.png">
@@ -523,7 +523,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -8,10 +8,10 @@
         <title>C#-Unicode编码和中文互转 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="C#-Unicode编码和中文互转" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/csharp-unicode%E7%BC%96%E7%A0%81%E5%92%8C%E4%B8%AD%E6%96%87%E4%BA%92%E8%BD%AC/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/csharp-unicode%E7%BC%96%E7%A0%81%E5%92%8C%E4%B8%AD%E6%96%87%E4%BA%92%E8%BD%AC/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/csharp-unicode%E7%BC%96%E7%A0%81%E5%92%8C%E4%B8%AD%E6%96%87%E4%BA%92%E8%BD%AC\/"
-        },"genre": "posts","keywords": "Unicode编码","wordcount":  690 ,
+        },"genre": "posts","keywords": "Unicode编码","wordcount":  687 ,
         "url": "https:\/\/codingriver.github.io\/csharp-unicode%E7%BC%96%E7%A0%81%E5%92%8C%E4%B8%AD%E6%96%87%E4%BA%92%E8%BD%AC\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">C#-Unicode编码和中文互转</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="far fa-folder fa-fw"></i>计算机基础</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 690 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 687 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/csharp-unicode%E7%BC%96%E7%A0%81%E5%92%8C%E4%B8%AD%E6%96%87%E4%BA%92%E8%BD%AC/" class="leancloud_visitors" data-flag-title="C#-Unicode编码和中文互转">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -119,7 +119,7 @@
             </div><div class="content" id="content"><p><strong>直接上代码</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -258,159 +258,153 @@
 </span><span class="lnt">137
 </span><span class="lnt">138
 </span><span class="lnt">139
-</span><span class="lnt">140
-</span><span class="lnt">141
-</span><span class="lnt">142
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//=====================================================
-// - FileName:    	UnicodeTools 
-// - Description:
-// - Author:		wangguoqing
-// - Email:			wangguoqing@hehemj.com
-// - Created:		2018/3/2 17:17:50
-// - CLR version: 	4.0.30319.42000
-// - UserName:		Wang
-// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
-// -  All Rights Reserved.
-//======================================================
-
-using System;
-using System.Text;
-/// &lt;summary&gt;
-/// Unicode编码和中文互转
-/// 这里的Unicode编码是Unicode Big Endian (UCS-2 Big Endian)
-/// &lt;/summary&gt;
-class UnicodeTools
-{
-
-    /// &lt;summary&gt;
-    /// 标准unicode编码
-    /// &lt;/summary&gt;
-    /// &lt;param name=&#34;text&#34;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static string EncodeString(string text)
-    {
-        if (string.IsNullOrEmpty(text))
-        {
-            return string.Empty;
-        }
-        int len = text.Length;
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i &lt; len; i++)
-        {
-            builder.Append(&#34;\\u&#34;);
-            builder.Append(UShortToHex((ushort)text[i]));
-        }
-        return builder.ToString();
-    }
-    /// &lt;summary&gt;
-    /// 编码Unicode
-    /// &lt;/summary&gt;
-    /// &lt;param name=&#34;text&#34;&gt;原字符串&lt;/param&gt;
-    /// &lt;returns&gt;unicode编码&lt;/returns&gt;
-    public static string EncodeString1(string text)
-    {
-        if (string.IsNullOrEmpty(text))
-        {
-            return string.Empty;
-        }
-        var bytes = Encoding.Unicode.GetBytes(text);
-        int len = bytes.Length;
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i &lt; len; i += 2)
-        {
-            builder.Append(&#34;\\u&#34;);
-            builder.Append(bytes[i + 1].ToString(&#34;x2&#34;));
-            builder.Append(bytes[i].ToString(&#34;x2&#34;));
-        }
-        return builder.ToString();
-    }
-
-    public static string EncodeString2(string text)
-    {
-        if (string.IsNullOrEmpty(text))
-        {
-            return string.Empty;
-        }
-        int len = text.Length;
-        StringBuilder builder = new StringBuilder();
-        for (int i = 0; i &lt; len; i++)
-        {
-            builder.Append(&#34;\\u&#34;);
-            builder.Append(((ushort)text[i]).ToString(&#34;x4&#34;));
-        }
-        return builder.ToString();
-    }
-
-
-    private static char[] UShortToHex(ushort n)
-    {
-        int num;
-        char[] hex = new char[4];
-        for (int i = 0; i &lt; 4; i++)
-        {
-            num = n % 16;
-
-            if (num &lt; 10)
-                hex[3 - i] = (char)(&#39;0&#39; + num);
-            else
-                hex[3 - i] = (char)(&#39;A&#39; + (num - 10));
-
-            n &gt;&gt;= 4;
-        }
-        return hex;
-    }
-    private static char[] UShortToHexE(ushort n)
-    {
-        var hex = n.ToString(&#34;x&#34;).ToCharArray();
-        return hex;
-    }
-
-    public static string DecodeString(string unicode)
-    {
-        if (string.IsNullOrEmpty(unicode))
-        {
-            return string.Empty;
-        }
-        //string[] ls = unicode.Replace(&#34;\\&#34;, &#34;&#34;).Split(new char[]{&#39;u&#39;},StringSplitOptions.RemoveEmptyEntries);
-        string[] ls = unicode.Split(new string[] { &#34;\\u&#34; }, StringSplitOptions.RemoveEmptyEntries);
-        StringBuilder builder = new StringBuilder();
-        int len = ls.Length;
-        for (int i = 0; i &lt; len; i++)
-        {
-            //builder.Append((Char)ushort.Parse(ls[i], System.Globalization.NumberStyles.HexNumber));
-            builder.Append(Convert.ToChar(ushort.Parse(ls[i], System.Globalization.NumberStyles.HexNumber)));
-
-        }
-        return builder.ToString();
-    }
-
-    
-    /// &lt;summary&gt;
-    /// 这种只能解出标准unicode编码
-    /// &lt;/summary&gt;
-    /// &lt;param name=&#34;unicode&#34;&gt;&lt;/param&gt;
-    /// &lt;returns&gt;&lt;/returns&gt;
-    public static string DecodeString1(string unicode)
-    {
-        if (string.IsNullOrEmpty(unicode))
-        {
-            return string.Empty;
-        }
-        return System.Text.RegularExpressions.Regex.Unescape(unicode);
-    }
-    
-}
-
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//=====================================================
+</span></span><span class="line"><span class="cl">// - FileName:    	UnicodeTools 
+</span></span><span class="line"><span class="cl">// - Description:
+</span></span><span class="line"><span class="cl">// - Author:		wangguoqing
+</span></span><span class="line"><span class="cl">// - Email:			wangguoqing@hehemj.com
+</span></span><span class="line"><span class="cl">// - Created:		2018/3/2 17:17:50
+</span></span><span class="line"><span class="cl">// - CLR version: 	4.0.30319.42000
+</span></span><span class="line"><span class="cl">// - UserName:		Wang
+</span></span><span class="line"><span class="cl">// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
+</span></span><span class="line"><span class="cl">// -  All Rights Reserved.
+</span></span><span class="line"><span class="cl">//======================================================
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">using System;
+</span></span><span class="line"><span class="cl">using System.Text;
+</span></span><span class="line"><span class="cl">/// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">/// Unicode编码和中文互转
+</span></span><span class="line"><span class="cl">/// 这里的Unicode编码是Unicode Big Endian (UCS-2 Big Endian)
+</span></span><span class="line"><span class="cl">/// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">class UnicodeTools
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// 标准unicode编码
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;text&#34;&gt;&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;returns&gt;&lt;/returns&gt;
+</span></span><span class="line"><span class="cl">    public static string EncodeString(string text)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        if (string.IsNullOrEmpty(text))
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            return string.Empty;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        int len = text.Length;
+</span></span><span class="line"><span class="cl">        StringBuilder builder = new StringBuilder();
+</span></span><span class="line"><span class="cl">        for (int i = 0; i &lt; len; i++)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            builder.Append(&#34;\\u&#34;);
+</span></span><span class="line"><span class="cl">            builder.Append(UShortToHex((ushort)text[i]));
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return builder.ToString();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// 编码Unicode
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;text&#34;&gt;原字符串&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;returns&gt;unicode编码&lt;/returns&gt;
+</span></span><span class="line"><span class="cl">    public static string EncodeString1(string text)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        if (string.IsNullOrEmpty(text))
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            return string.Empty;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        var bytes = Encoding.Unicode.GetBytes(text);
+</span></span><span class="line"><span class="cl">        int len = bytes.Length;
+</span></span><span class="line"><span class="cl">        StringBuilder builder = new StringBuilder();
+</span></span><span class="line"><span class="cl">        for (int i = 0; i &lt; len; i += 2)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            builder.Append(&#34;\\u&#34;);
+</span></span><span class="line"><span class="cl">            builder.Append(bytes[i + 1].ToString(&#34;x2&#34;));
+</span></span><span class="line"><span class="cl">            builder.Append(bytes[i].ToString(&#34;x2&#34;));
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return builder.ToString();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public static string EncodeString2(string text)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        if (string.IsNullOrEmpty(text))
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            return string.Empty;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        int len = text.Length;
+</span></span><span class="line"><span class="cl">        StringBuilder builder = new StringBuilder();
+</span></span><span class="line"><span class="cl">        for (int i = 0; i &lt; len; i++)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            builder.Append(&#34;\\u&#34;);
+</span></span><span class="line"><span class="cl">            builder.Append(((ushort)text[i]).ToString(&#34;x4&#34;));
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return builder.ToString();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    private static char[] UShortToHex(ushort n)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        int num;
+</span></span><span class="line"><span class="cl">        char[] hex = new char[4];
+</span></span><span class="line"><span class="cl">        for (int i = 0; i &lt; 4; i++)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            num = n % 16;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            if (num &lt; 10)
+</span></span><span class="line"><span class="cl">                hex[3 - i] = (char)(&#39;0&#39; + num);
+</span></span><span class="line"><span class="cl">            else
+</span></span><span class="line"><span class="cl">                hex[3 - i] = (char)(&#39;A&#39; + (num - 10));
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            n &gt;&gt;= 4;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return hex;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    private static char[] UShortToHexE(ushort n)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        var hex = n.ToString(&#34;x&#34;).ToCharArray();
+</span></span><span class="line"><span class="cl">        return hex;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public static string DecodeString(string unicode)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        if (string.IsNullOrEmpty(unicode))
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            return string.Empty;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        //string[] ls = unicode.Replace(&#34;\\&#34;, &#34;&#34;).Split(new char[]{&#39;u&#39;},StringSplitOptions.RemoveEmptyEntries);
+</span></span><span class="line"><span class="cl">        string[] ls = unicode.Split(new string[] { &#34;\\u&#34; }, StringSplitOptions.RemoveEmptyEntries);
+</span></span><span class="line"><span class="cl">        StringBuilder builder = new StringBuilder();
+</span></span><span class="line"><span class="cl">        int len = ls.Length;
+</span></span><span class="line"><span class="cl">        for (int i = 0; i &lt; len; i++)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            //builder.Append((Char)ushort.Parse(ls[i], System.Globalization.NumberStyles.HexNumber));
+</span></span><span class="line"><span class="cl">            builder.Append(Convert.ToChar(ushort.Parse(ls[i], System.Globalization.NumberStyles.HexNumber)));
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return builder.ToString();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// 这种只能解出标准unicode编码
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;unicode&#34;&gt;&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;returns&gt;&lt;/returns&gt;
+</span></span><span class="line"><span class="cl">    public static string DecodeString1(string unicode)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        if (string.IsNullOrEmpty(unicode))
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            return string.Empty;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return System.Text.RegularExpressions.Regex.Unescape(unicode);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>测试</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -422,17 +416,17 @@ class UnicodeTools
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c++" data-lang="c++">            <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&#34;天空测试s&#34;</span><span class="p">;</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString1</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString2</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString1</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString2</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString1</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString1</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString1</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString1</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString2</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl">            <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&#34;天空测试s&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString1</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString2</span><span class="p">(</span><span class="n">s</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString1</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString2</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString1</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString1</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString1</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">DecodeString1</span><span class="p">(</span><span class="n">UnicodeTools</span><span class="p">.</span><span class="n">EncodeString2</span><span class="p">(</span><span class="n">s</span><span class="p">)));</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>结果</strong></p>
 <p><img
@@ -472,7 +466,7 @@ class UnicodeTools
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -8,10 +8,10 @@
         <title>Hugo 入门 安装（Windows） - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Hugo 入门 安装（Windows）" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/hugo-%E5%85%A5%E9%97%A8-%E5%AE%89%E8%A3%85windows/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/hugo-%E5%85%A5%E9%97%A8-%E5%AE%89%E8%A3%85windows/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -235,27 +235,27 @@
 <p>启动 hugo 内置服务器时，会在当前目录执行的目录中寻找项目的配置文件。所以，需要在项目根目录中执行这个命令，否则报错如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">C:\Users\kika\kikakika\themes&gt;hugo server --theme=hugo-bootstrap --buildDrafts --watch
-Error: Unable to locate Config file. Perhaps you need to create a new site.
-       Run `hugo help new` for details. (Config File &#34;config&#34; Not Found in &#34;[C:\\Users\\kika\\kikakika\\themes]&#34;)
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Users\kika\kikakika\themes&gt;hugo server --theme=hugo-bootstrap --buildDrafts --watch
+</span></span><span class="line"><span class="cl">Error: Unable to locate Config file. Perhaps you need to create a new site.
+</span></span><span class="line"><span class="cl">       Run `hugo help new` for details. (Config File &#34;config&#34; Not Found in &#34;[C:\\Users\\kika\\kikakika\\themes]&#34;)
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="unable-to-find-theme-directory">Unable to find theme Directory</h4>
 <p>hugo 默认在项目中的 themes 目录中寻找指定的主题。所有下载的主题都要放在这个目录中才能使用，否则报错如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">C:\Users\kika\kikakika&gt;hugo server --theme=hugo-bootstrap --buildDrafts --watch
-Error: Unable to find theme Directory: C:\Users\kika\kikakika\themes\hugo-bootstrap
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Users\kika\kikakika&gt;hugo server --theme=hugo-bootstrap --buildDrafts --watch
+</span></span><span class="line"><span class="cl">Error: Unable to find theme Directory: C:\Users\kika\kikakika\themes\hugo-bootstrap
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="生成的网站没有文章">生成的网站没有文章</h4>
 <p>生成静态网站时，hugo 会忽略所有通过 draft: true 标记为草稿的文件。必须改为 draft: false 才会编译进 HTML 文件。</p></div><div class="post-footer" id="post-footer">
@@ -275,7 +275,7 @@ Error: Unable to find theme Directory: C:\Users\kika\kikakika\themes\hugo-bootst
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=""></a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/">Tags</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
@@ -288,7 +288,7 @@ Error: Unable to find theme Directory: C:\Users\kika\kikakika\themes\hugo-bootst
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

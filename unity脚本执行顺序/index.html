@@ -8,10 +8,10 @@
         <title>Unity脚本执行顺序 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Unity脚本执行顺序" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F\/"
-        },"genre": "posts","keywords": "Unity","wordcount":  2194 ,
+        },"genre": "posts","keywords": "Unity","wordcount":  2193 ,
         "url": "https:\/\/codingriver.github.io\/unity%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Unity脚本执行顺序</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2194 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2193 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/unity%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" class="leancloud_visitors" data-flag-title="Unity脚本执行顺序">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -118,12 +118,12 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
             </div><div class="content" id="content"><blockquote>
 <p>进阶测试参考[<a href="http://www.jianshu.com/p/574910aa3f52" target="_blank" rel="noopener noreffer">unity脚本MonoBehaviour默认方法执行顺序测试</a>
-](<a href="http://www.jianshu.com/p/574910aa3f52">http://www.jianshu.com/p/574910aa3f52</a>)</p>
+](<a href="http://www.jianshu.com/p/574910aa3f52" target="_blank" rel="noopener noreffer">http://www.jianshu.com/p/574910aa3f52</a>)</p>
 </blockquote>
 <p>将脚本挂到空物体上执行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -187,75 +187,73 @@
 </span><span class="lnt">62
 </span><span class="lnt">63
 </span><span class="lnt">64
-</span><span class="lnt">65
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-/// &lt;summary&gt;
-/// Unity脚本执行顺序 测试
-/// &lt;/summary&gt;
-public class TestCallSequence : MonoBehaviour
-{
-
-    void Awake()
-    {
-        Debug.Log(&#34;Awake^^^^^^^^^^^^^&#34;);
-    }
-
-    void OnEnable()
-    {
-        Debug.Log(&#34;OnEnable^^^^^^^^^^^^^&#34;);
-    }    
-    // Use this for initialization
-    void Start()
-   {
-       Debug.Log(&#34;Start^^^^^^^^^^^^^&#34;);
-    }
-
-
-    void FixedUpdate()
-    {
-        Debug.Log(&#34;FixedUpdate^^^^^^^^^^^^^&#34;);
-
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(&#34;Update^^^^^^^^^^^^^&#34;);
-        
-    }
-
-    void LateUpdate()
-    {
-        Debug.Log(&#34;LateUpdate^^^^^^^^^^^^^&#34;);
-        
-    }
-
-    void OnGUI()
-    {
-        Debug.Log(&#34;OnGUI^^^^^^^^^^^^^&#34;);
-    }
-
-    void Reset()
-    {
-        Debug.Log(&#34;Reset^^^^^^^^^^^^^&#34;);
-    }
-
-    void OnDisable()
-    {
-        Debug.Log(&#34;OnDisable^^^^^^^^^^^^^&#34;);
-    }   
-
-    void OnDestroy()
-    {
-        Debug.Log(&#34;OnDestroy^^^^^^^^^^^^^&#34;);
-    }
-}
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">using System.Collections;
+</span></span><span class="line"><span class="cl">using System.Collections.Generic;
+</span></span><span class="line"><span class="cl">using UnityEngine;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">/// Unity脚本执行顺序 测试
+</span></span><span class="line"><span class="cl">/// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">public class TestCallSequence : MonoBehaviour
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    void Awake()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Debug.Log(&#34;Awake^^^^^^^^^^^^^&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    void OnEnable()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Debug.Log(&#34;OnEnable^^^^^^^^^^^^^&#34;);
+</span></span><span class="line"><span class="cl">    }    
+</span></span><span class="line"><span class="cl">    // Use this for initialization
+</span></span><span class="line"><span class="cl">    void Start()
+</span></span><span class="line"><span class="cl">   {
+</span></span><span class="line"><span class="cl">       Debug.Log(&#34;Start^^^^^^^^^^^^^&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    void FixedUpdate()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Debug.Log(&#34;FixedUpdate^^^^^^^^^^^^^&#34;);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    // Update is called once per frame
+</span></span><span class="line"><span class="cl">    void Update()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Debug.Log(&#34;Update^^^^^^^^^^^^^&#34;);
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    void LateUpdate()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Debug.Log(&#34;LateUpdate^^^^^^^^^^^^^&#34;);
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    void OnGUI()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Debug.Log(&#34;OnGUI^^^^^^^^^^^^^&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    void Reset()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Debug.Log(&#34;Reset^^^^^^^^^^^^^&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    void OnDisable()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Debug.Log(&#34;OnDisable^^^^^^^^^^^^^&#34;);
+</span></span><span class="line"><span class="cl">    }   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    void OnDestroy()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Debug.Log(&#34;OnDestroy^^^^^^^^^^^^^&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>执行结果</p>
 <p><img
@@ -285,7 +283,7 @@ Awake &ndash;&gt; Start &ndash;&gt; Update &ndash;&gt; FixedUpdate &ndash;&gt; L
 协同程序，即在主程序运行时同时开启另一段逻辑处理，来协同当前程序的执行。换句话说，开启协同程序就是开启一个线程。在中，使用MonoBehaviour.StartCoroutine方法即可开启一个协同程序，也就是说该方法必须在MonoBehaviour或继承于MonoBehaviour的类中调用。
 unity的生命周期;unity中画线;<a href="http://www.manew.com/" target="_blank" rel="noopener noreffer">unity3d</a>使用ondestroy;unity生命周期函数;unity onenable start;unity awake onenable;unity 生命周期;在unity画线;unity画线;unity3d ondestroy;unity 函数生命周期;unity start onenable;unity onenable awake
 引用文章:
-<a href="http://www.manew.com/thread-14461-1-1.html">http://www.manew.com/thread-14461-1-1.html</a></p>
+<a href="http://www.manew.com/thread-14461-1-1.html" target="_blank" rel="noopener noreffer">http://www.manew.com/thread-14461-1-1.html</a></p>
 </blockquote>
 <p><img
         class="lazyload"
@@ -296,7 +294,7 @@ unity的生命周期;unity中画线;<a href="http://www.manew.com/" target="_bla
         alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/85844-f30df6032371595b.png"
         title="脚本的生命周期流程图" />;</p>
 <blockquote>
-<p>引用文章: <a href="http://www.jianshu.com/p/1d93ece664e2">http://www.jianshu.com/p/1d93ece664e2</a></p>
+<p>引用文章: <a href="http://www.jianshu.com/p/1d93ece664e2" target="_blank" rel="noopener noreffer">http://www.jianshu.com/p/1d93ece664e2</a></p>
 </blockquote>
 <p>#####如果在其他脚本里面实例化物体，且物体上挂有该脚本：
 脚本会在实例化时（Instantiate）Awake直接同步执行，执行完后才执行Instantiate后面的代码</p></div><div class="post-footer" id="post-footer">
@@ -329,7 +327,7 @@ unity的生命周期;unity中画线;<a href="http://www.manew.com/" target="_bla
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

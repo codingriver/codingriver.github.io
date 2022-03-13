@@ -8,10 +8,10 @@
         <title>unity-ios审核ipv6 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="unity-ios审核ipv6" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity-ios%E5%AE%A1%E6%A0%B8ipv6/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity-ios%E5%AE%A1%E6%A0%B8ipv6/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -122,7 +122,7 @@
 <p><strong>简单版本：需要用域名</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -161,51 +161,51 @@
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">            IPAddress[] address = null;
-
-		
-                      
-            try
-            {
-                //string HostName = Dns.GetHostName(); //得到主机名  
-      //www.***.com自己的域名
-                address = Dns.GetHostAddresses(&#34;www.***.com&#34;);
-//本机ip不行，有bug
-//                address= Dns.GetHostAddresses(ip);
-            }
-            catch (Exception ex)
-            {
-                Dg.LogError(&#34;Dns.GetHostAddresses::Error:&#34;, ex.ToString());
-            }
-
-            if(address!=null)
-            {
-                foreach (var item in address)
-                {
-                    Dg.Log(&#34;address:::::::::&#34;, item.ToString());
-                }
-            }
-
-            if (address != null &amp;&amp; address.Length&gt;0&amp;&amp;address[0].AddressFamily == AddressFamily.InterNetworkV6)
-            {
-                Dg.Log(&#34;网络类型:::InterNetworkV6&#34;);
-                client = new TcpClient(AddressFamily.InterNetworkV6);
-            }  
-            else  
-            {
-                Dg.Log(&#34;网络类型:::InterNetwork&#34;);
-                client = new TcpClient(AddressFamily.InterNetwork);
-
-            }
-//connect时用adress
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">            IPAddress[] address = null;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">                      
+</span></span><span class="line"><span class="cl">            try
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                //string HostName = Dns.GetHostName(); //得到主机名  
+</span></span><span class="line"><span class="cl">      //www.***.com自己的域名
+</span></span><span class="line"><span class="cl">                address = Dns.GetHostAddresses(&#34;www.***.com&#34;);
+</span></span><span class="line"><span class="cl">//本机ip不行，有bug
+</span></span><span class="line"><span class="cl">//                address= Dns.GetHostAddresses(ip);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            catch (Exception ex)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                Dg.LogError(&#34;Dns.GetHostAddresses::Error:&#34;, ex.ToString());
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            if(address!=null)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                foreach (var item in address)
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    Dg.Log(&#34;address:::::::::&#34;, item.ToString());
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            if (address != null &amp;&amp; address.Length&gt;0&amp;&amp;address[0].AddressFamily == AddressFamily.InterNetworkV6)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                Dg.Log(&#34;网络类型:::InterNetworkV6&#34;);
+</span></span><span class="line"><span class="cl">                client = new TcpClient(AddressFamily.InterNetworkV6);
+</span></span><span class="line"><span class="cl">            }  
+</span></span><span class="line"><span class="cl">            else  
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                Dg.Log(&#34;网络类型:::InterNetwork&#34;);
+</span></span><span class="line"><span class="cl">                client = new TcpClient(AddressFamily.InterNetwork);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">//connect时用adress
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <p><strong>复杂版本：可以用ipv4的ip地址</strong>
 c#部分</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -290,95 +290,95 @@ c#部分</p>
 </span><span class="lnt">83
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">
-#if UNITY_IPHONE &amp;&amp; !UNITY_EDITOR    
-[DllImport(&#34;__Internal&#34;)]
-	private static extern string getIPv6(string mHost, string mPort);  
-#endif
-    //&#34;192.168.1.1&amp;&amp;ipv4&#34;
-    public static string GetIPv6(string mHost, string mPort)
-    {
-#if UNITY_IPHONE &amp;&amp; !UNITY_EDITOR
-		string mIPv6 = getIPv6(mHost, mPort);
-		return mIPv6;
-#else
-        return mHost + &#34;&amp;&amp;ipv4&#34;;
-#endif
-    }
-
-    void getIPType(String serverIp, String serverPorts, out String newServerIp, out AddressFamily mIPType)
-    {
-        mIPType = AddressFamily.InterNetwork;
-        newServerIp = serverIp;
-        try
-        {
-            string mIPv6 = GetIPv6(serverIp, serverPorts);
-            if (!string.IsNullOrEmpty(mIPv6))
-            {
-                string[] m_StrTemp = System.Text.RegularExpressions.Regex.Split(mIPv6, &#34;&amp;&amp;&#34;);
-                if (m_StrTemp != null &amp;&amp; m_StrTemp.Length &gt;= 2)
-                {
-                    string IPType = m_StrTemp[1];
-                    if (IPType == &#34;ipv6&#34;)
-                    {
-                        newServerIp = m_StrTemp[0];
-                        mIPType = AddressFamily.InterNetworkV6;
-                    }
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            Dg.LogError(&#34;GetIPv6 error:&#34; + e.ToString());
-        }
-
-    }
-
-	public TcpClient CreateTcpClient(String serverIp, String serverPorts,out String newServerIP)
-    {
-        String newServerIp = &#34;&#34;;
-        AddressFamily newAddressFamily = AddressFamily.InterNetwork;
-#if UNITY_IPHONE &amp;&amp; !UNITY_EDITOR
-        getIPType(serverIp, serverPorts, out newServerIp, out newAddressFamily);
-        if (!string.IsNullOrEmpty(newServerIp)) { serverIp = newServerIp; }
-#endif
-        TcpClient client = new TcpClient(newAddressFamily);
-        Dg.Log(&#34;网络类型 AddressFamily :&#34; + newAddressFamily.ToString() + &#34;  ServerIp:&#34; + serverIp);
-		newServerIP = serverIp;
-        return client;
-    }
-
-private TcpClient client;
-//ip ：ipv4地址，
-        public void Connect(string ip, int port,int connectTimeout)
-        {
-			string newIp=ip;
-			client = ProviderService.Instance.CreateTcpClient(ip, port.ToString(),out newIp);
-                      client.BeginConnect(newIp, port, ConnectCallBack, client);
-      }
-          private void ConnectCallBack(IAsyncResult ar)
-        {
-            Dg.Log(&#34;ConnectCallBack&#34;);
-            try
-            {
-                if (client == null) return;
-
-                client.EndConnect(ar);
-                Dg.Log(&#34;ConnectCallBack1111&#34;);
-                //连接成功了
-
-            }
-            catch (SocketException e)
-            {
-                Dg.LogError(&#34;SOCKET::ERROR:&#34;, e.ToString());
-            }            
-        }
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#if UNITY_IPHONE &amp;&amp; !UNITY_EDITOR    
+</span></span><span class="line"><span class="cl">[DllImport(&#34;__Internal&#34;)]
+</span></span><span class="line"><span class="cl">	private static extern string getIPv6(string mHost, string mPort);  
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">    //&#34;192.168.1.1&amp;&amp;ipv4&#34;
+</span></span><span class="line"><span class="cl">    public static string GetIPv6(string mHost, string mPort)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">#if UNITY_IPHONE &amp;&amp; !UNITY_EDITOR
+</span></span><span class="line"><span class="cl">		string mIPv6 = getIPv6(mHost, mPort);
+</span></span><span class="line"><span class="cl">		return mIPv6;
+</span></span><span class="line"><span class="cl">#else
+</span></span><span class="line"><span class="cl">        return mHost + &#34;&amp;&amp;ipv4&#34;;
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    void getIPType(String serverIp, String serverPorts, out String newServerIp, out AddressFamily mIPType)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        mIPType = AddressFamily.InterNetwork;
+</span></span><span class="line"><span class="cl">        newServerIp = serverIp;
+</span></span><span class="line"><span class="cl">        try
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            string mIPv6 = GetIPv6(serverIp, serverPorts);
+</span></span><span class="line"><span class="cl">            if (!string.IsNullOrEmpty(mIPv6))
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                string[] m_StrTemp = System.Text.RegularExpressions.Regex.Split(mIPv6, &#34;&amp;&amp;&#34;);
+</span></span><span class="line"><span class="cl">                if (m_StrTemp != null &amp;&amp; m_StrTemp.Length &gt;= 2)
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    string IPType = m_StrTemp[1];
+</span></span><span class="line"><span class="cl">                    if (IPType == &#34;ipv6&#34;)
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        newServerIp = m_StrTemp[0];
+</span></span><span class="line"><span class="cl">                        mIPType = AddressFamily.InterNetworkV6;
+</span></span><span class="line"><span class="cl">                    }
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        catch (Exception e)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            Dg.LogError(&#34;GetIPv6 error:&#34; + e.ToString());
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	public TcpClient CreateTcpClient(String serverIp, String serverPorts,out String newServerIP)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        String newServerIp = &#34;&#34;;
+</span></span><span class="line"><span class="cl">        AddressFamily newAddressFamily = AddressFamily.InterNetwork;
+</span></span><span class="line"><span class="cl">#if UNITY_IPHONE &amp;&amp; !UNITY_EDITOR
+</span></span><span class="line"><span class="cl">        getIPType(serverIp, serverPorts, out newServerIp, out newAddressFamily);
+</span></span><span class="line"><span class="cl">        if (!string.IsNullOrEmpty(newServerIp)) { serverIp = newServerIp; }
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">        TcpClient client = new TcpClient(newAddressFamily);
+</span></span><span class="line"><span class="cl">        Dg.Log(&#34;网络类型 AddressFamily :&#34; + newAddressFamily.ToString() + &#34;  ServerIp:&#34; + serverIp);
+</span></span><span class="line"><span class="cl">		newServerIP = serverIp;
+</span></span><span class="line"><span class="cl">        return client;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">private TcpClient client;
+</span></span><span class="line"><span class="cl">//ip ：ipv4地址，
+</span></span><span class="line"><span class="cl">        public void Connect(string ip, int port,int connectTimeout)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">			string newIp=ip;
+</span></span><span class="line"><span class="cl">			client = ProviderService.Instance.CreateTcpClient(ip, port.ToString(),out newIp);
+</span></span><span class="line"><span class="cl">                      client.BeginConnect(newIp, port, ConnectCallBack, client);
+</span></span><span class="line"><span class="cl">      }
+</span></span><span class="line"><span class="cl">          private void ConnectCallBack(IAsyncResult ar)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            Dg.Log(&#34;ConnectCallBack&#34;);
+</span></span><span class="line"><span class="cl">            try
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                if (client == null) return;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                client.EndConnect(ar);
+</span></span><span class="line"><span class="cl">                Dg.Log(&#34;ConnectCallBack1111&#34;);
+</span></span><span class="line"><span class="cl">                //连接成功了
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            catch (SocketException e)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                Dg.LogError(&#34;SOCKET::ERROR:&#34;, e.ToString());
+</span></span><span class="line"><span class="cl">            }            
+</span></span><span class="line"><span class="cl">        }
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>object-c</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -451,78 +451,78 @@ private TcpClient client;
 </span><span class="lnt">71
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//#import &#34;BundleId.h&#34;
-#include &lt;sys/socket.h&gt;
-#include &lt;netdb.h&gt;
-#include &lt;arpa/inet.h&gt;
-#include &lt;err.h&gt;
-
-#define MakeStringCopy( _x_ ) ( _x_ != NULL &amp;&amp; [_x_ isKindOfClass:[NSString class]] ) ? strdup( [_x_ UTF8String] ) : NULL
-
-const char* getIPv6(const char *mHost,const char *mPort)
-{
-	if( nil == mHost )
-		return NULL;
-	const char *newChar = &#34;No&#34;;
-	const char *cause = NULL;
-	struct addrinfo* res0;
-	struct addrinfo hints;
-	struct addrinfo* res;
-	int n, s;
-	
-	memset(&amp;hints, 0, sizeof(hints));
-	
-	hints.ai_flags = AI_DEFAULT;
-	hints.ai_family = PF_UNSPEC;
-	hints.ai_socktype = SOCK_STREAM;
-	//IOS9.2及以后的版本才支持IPv6
-	if((n=getaddrinfo(mHost, &#34;http&#34;, &amp;hints, &amp;res0))!=0)
-	{
-		printf(&#34;getaddrinfo error: %s\n&#34;,gai_strerror(n));
-		return NULL;
-	}
-	
-	struct sockaddr_in6* addr6;
-	struct sockaddr_in* addr;
-	NSString * NewStr = NULL;
-	char ipbuf[32];
-	s = -1;
-	for(res = res0; res; res = res-&gt;ai_next)
-	{
-		if (res-&gt;ai_family == AF_INET6)
-		{
-			addr6 =( struct sockaddr_in6*)res-&gt;ai_addr;
-			newChar = inet_ntop(AF_INET6, &amp;addr6-&gt;sin6_addr, ipbuf, sizeof(ipbuf));
-			NSString * TempA = [[NSString alloc] initWithCString:(const char*)newChar 
-encoding:NSASCIIStringEncoding];
-			NSString * TempB = [NSString stringWithUTF8String:&#34;&amp;&amp;ipv6&#34;];
-			
-			NewStr = [TempA stringByAppendingString: TempB];
-			printf(&#34;%s\n&#34;, newChar);
-		}
-		else
-		{
-			addr =( struct sockaddr_in*)res-&gt;ai_addr;
-			newChar = inet_ntop(AF_INET, &amp;addr-&gt;sin_addr, ipbuf, sizeof(ipbuf));
-			NSString * TempA = [[NSString alloc] initWithCString:(const char*)newChar 
-encoding:NSASCIIStringEncoding];
-			NSString * TempB = [NSString stringWithUTF8String:&#34;&amp;&amp;ipv4&#34;];
-			
-			NewStr = [TempA stringByAppendingString: TempB];			
-			printf(&#34;%s\n&#34;, newChar);
-		}
-		break;
-	}
-	
-	
-	freeaddrinfo(res0);
-	
-	printf(&#34;getaddrinfo OK&#34;);
-	
-	NSString * mIPaddr = NewStr;
-	return MakeStringCopy(mIPaddr);
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//#import &#34;BundleId.h&#34;
+</span></span><span class="line"><span class="cl">#include &lt;sys/socket.h&gt;
+</span></span><span class="line"><span class="cl">#include &lt;netdb.h&gt;
+</span></span><span class="line"><span class="cl">#include &lt;arpa/inet.h&gt;
+</span></span><span class="line"><span class="cl">#include &lt;err.h&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#define MakeStringCopy( _x_ ) ( _x_ != NULL &amp;&amp; [_x_ isKindOfClass:[NSString class]] ) ? strdup( [_x_ UTF8String] ) : NULL
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">const char* getIPv6(const char *mHost,const char *mPort)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	if( nil == mHost )
+</span></span><span class="line"><span class="cl">		return NULL;
+</span></span><span class="line"><span class="cl">	const char *newChar = &#34;No&#34;;
+</span></span><span class="line"><span class="cl">	const char *cause = NULL;
+</span></span><span class="line"><span class="cl">	struct addrinfo* res0;
+</span></span><span class="line"><span class="cl">	struct addrinfo hints;
+</span></span><span class="line"><span class="cl">	struct addrinfo* res;
+</span></span><span class="line"><span class="cl">	int n, s;
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	memset(&amp;hints, 0, sizeof(hints));
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	hints.ai_flags = AI_DEFAULT;
+</span></span><span class="line"><span class="cl">	hints.ai_family = PF_UNSPEC;
+</span></span><span class="line"><span class="cl">	hints.ai_socktype = SOCK_STREAM;
+</span></span><span class="line"><span class="cl">	//IOS9.2及以后的版本才支持IPv6
+</span></span><span class="line"><span class="cl">	if((n=getaddrinfo(mHost, &#34;http&#34;, &amp;hints, &amp;res0))!=0)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		printf(&#34;getaddrinfo error: %s\n&#34;,gai_strerror(n));
+</span></span><span class="line"><span class="cl">		return NULL;
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	struct sockaddr_in6* addr6;
+</span></span><span class="line"><span class="cl">	struct sockaddr_in* addr;
+</span></span><span class="line"><span class="cl">	NSString * NewStr = NULL;
+</span></span><span class="line"><span class="cl">	char ipbuf[32];
+</span></span><span class="line"><span class="cl">	s = -1;
+</span></span><span class="line"><span class="cl">	for(res = res0; res; res = res-&gt;ai_next)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		if (res-&gt;ai_family == AF_INET6)
+</span></span><span class="line"><span class="cl">		{
+</span></span><span class="line"><span class="cl">			addr6 =( struct sockaddr_in6*)res-&gt;ai_addr;
+</span></span><span class="line"><span class="cl">			newChar = inet_ntop(AF_INET6, &amp;addr6-&gt;sin6_addr, ipbuf, sizeof(ipbuf));
+</span></span><span class="line"><span class="cl">			NSString * TempA = [[NSString alloc] initWithCString:(const char*)newChar 
+</span></span><span class="line"><span class="cl">encoding:NSASCIIStringEncoding];
+</span></span><span class="line"><span class="cl">			NSString * TempB = [NSString stringWithUTF8String:&#34;&amp;&amp;ipv6&#34;];
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			NewStr = [TempA stringByAppendingString: TempB];
+</span></span><span class="line"><span class="cl">			printf(&#34;%s\n&#34;, newChar);
+</span></span><span class="line"><span class="cl">		}
+</span></span><span class="line"><span class="cl">		else
+</span></span><span class="line"><span class="cl">		{
+</span></span><span class="line"><span class="cl">			addr =( struct sockaddr_in*)res-&gt;ai_addr;
+</span></span><span class="line"><span class="cl">			newChar = inet_ntop(AF_INET, &amp;addr-&gt;sin_addr, ipbuf, sizeof(ipbuf));
+</span></span><span class="line"><span class="cl">			NSString * TempA = [[NSString alloc] initWithCString:(const char*)newChar 
+</span></span><span class="line"><span class="cl">encoding:NSASCIIStringEncoding];
+</span></span><span class="line"><span class="cl">			NSString * TempB = [NSString stringWithUTF8String:&#34;&amp;&amp;ipv4&#34;];
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			NewStr = [TempA stringByAppendingString: TempB];			
+</span></span><span class="line"><span class="cl">			printf(&#34;%s\n&#34;, newChar);
+</span></span><span class="line"><span class="cl">		}
+</span></span><span class="line"><span class="cl">		break;
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	freeaddrinfo(res0);
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	printf(&#34;getaddrinfo OK&#34;);
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	NSString * mIPaddr = NewStr;
+</span></span><span class="line"><span class="cl">	return MakeStringCopy(mIPaddr);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -554,7 +554,7 @@ encoding:NSASCIIStringEncoding];
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

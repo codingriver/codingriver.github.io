@@ -8,10 +8,10 @@
         <title>unity 矩阵变换从模型空间到屏幕空间的转换 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="unity 矩阵变换从模型空间到屏幕空间的转换" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2%E4%BB%8E%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4%E5%88%B0%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2%E4%BB%8E%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4%E5%88%B0%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -20,7 +20,7 @@
 <meta name="application-name" content="codingriver">
 <meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/unity%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2%E4%BB%8E%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4%E5%88%B0%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" /><link rel="prev" href="https://codingriver.github.io/unity-android%E8%8E%B7%E5%8F%96%E7%94%B5%E9%87%8F%E5%92%8Cwifi%E4%BF%A1%E5%8F%B7%E5%BC%BA%E5%BA%A6/" /><link rel="next" href="https://codingriver.github.io/unity%E5%B9%B3%E5%8F%B0%E5%AE%8F%E5%AE%9A%E4%B9%89%E5%B8%B8%E7%94%A8%E8%AF%B4%E6%98%8E/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/unity%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2%E4%BB%8E%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4%E5%88%B0%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" /><link rel="prev" href="https://codingriver.github.io/unity--android%E8%8E%B7%E5%8F%96%E7%94%B5%E9%87%8F%E5%92%8Cwifi%E4%BF%A1%E5%8F%B7%E5%BC%BA%E5%BA%A6/" /><link rel="next" href="https://codingriver.github.io/unity%E5%B9%B3%E5%8F%B0%E5%AE%8F%E5%AE%9A%E4%B9%89%E5%B8%B8%E7%94%A8%E8%AF%B4%E6%98%8E/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2%E4%BB%8E%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4%E5%88%B0%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2\/"
-        },"genre": "posts","keywords": "Math","wordcount":  6314 ,
+        },"genre": "posts","keywords": "Math","wordcount":  6310 ,
         "url": "https:\/\/codingriver.github.io\/unity%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2%E4%BB%8E%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4%E5%88%B0%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">unity 矩阵变换从模型空间到屏幕空间的转换</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/math/"><i class="far fa-folder fa-fw"></i>Math</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6314 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6310 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/unity%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2%E4%BB%8E%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4%E5%88%B0%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" class="leancloud_visitors" data-flag-title="unity 矩阵变换从模型空间到屏幕空间的转换">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -139,8 +139,8 @@
             </div><div class="content" id="content"><blockquote>
 <p>这里参考 《unity shader 入门精要》冯乐乐的这本书
 <a href="https://blog.csdn.net/cbbbc/article/details/51296804" target="_blank" rel="noopener noreffer">深入探索透视投影变换</a><br>
-<a href="https://github.com/candycat1992/Unity_Shaders_Book">https://github.com/candycat1992/Unity_Shaders_Book</a><br>
-<a href="https://blog.csdn.net/lzhq1982/article/details/73612170">https://blog.csdn.net/lzhq1982/article/details/73612170</a></p>
+<a href="https://github.com/candycat1992/Unity_Shaders_Book" target="_blank" rel="noopener noreffer">https://github.com/candycat1992/Unity_Shaders_Book</a><br>
+<a href="https://blog.csdn.net/lzhq1982/article/details/73612170" target="_blank" rel="noopener noreffer">https://blog.csdn.net/lzhq1982/article/details/73612170</a></p>
 </blockquote>
 <h2 id="0x01-变换">0X01 变换</h2>
 <p><em>变换这里粗略的讲解下，为了后面的空间转换做铺垫，不是重点，如果看不 明白则看考其他文章</em>
@@ -318,7 +318,7 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
         alt="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/unity矩阵从模型空间到屏幕空间的转换/20210420210311.png"
         title="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/unity矩阵从模型空间到屏幕空间的转换/20210420210311.png" /></p>
 <h2 id="0x03-空间变换过程">0X03 空间变换过程</h2>
-<p>空间变换经历这几个过程：<strong>模型空间(model  space)</strong>&mdash;&gt;<strong>世界空间(world space)</strong>&ndash;&gt;<strong>观察空间(view space)<strong><code>（右手坐标系）</code>&ndash;&gt;</strong>裁剪空间(clip space)</strong>&ndash;&gt;<strong>屏幕空间(screen space)</strong></p>
+<p>空间变换经历这几个过程：<strong>模型空间(model  space)</strong>&mdash;&gt;<strong>世界空间(world space)</strong>&ndash;&gt;<strong>观察空间(view space)</strong><code>（右手坐标系）</code>&ndash;&gt;<strong>裁剪空间(clip space)</strong>&ndash;&gt;<strong>屏幕空间(screen space)</strong></p>
 <p><em>除了观察空间是右手坐标系外其他的全是左手坐标系</em><br>
 <img
         class="lazyload"
@@ -336,7 +336,7 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 建立一个 测试脚本<code>TestMatrix.cs</code> 来测试变换坐标</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -374,43 +374,43 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 </span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">TestMatrix</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span>
-
-    <span class="c1">// Use this for initialization
-</span><span class="c1"></span>    <span class="n">Camera</span> <span class="n">cam</span><span class="p">;</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 模型空间的物体，localPosition作为模型空间的坐标
-</span><span class="c1"></span>    <span class="c1">/// 父物体的Transform作为世界空间对模型空间的变换
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="n">Transform</span> <span class="n">trans1</span><span class="p">;</span>
-    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">cam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
-        <span class="n">TestModelSpaceToWorldSpace</span><span class="p">();</span>
-    <span class="p">}</span>
-    
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 模型空间转世界空间的坐标
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">TestModelSpaceToWorldSpace</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Transform</span> <span class="n">_parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
-        <span class="c1">//模型空间转世界空间
-</span><span class="c1"></span>        <span class="n">Vector3</span> <span class="n">p</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWPosition</span><span class="p">(</span><span class="n">_parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;模型空间转世界空间的坐标：&#34;</span> <span class="p">+</span> <span class="n">p</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;物体的世界坐标&#34;</span> <span class="p">+</span> <span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
-        <span class="c1">//模型空间转世界空间
-</span><span class="c1"></span>        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWMatrix</span><span class="p">(</span><span class="n">_parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\nlocalToWorldMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localToWorldMatrix</span><span class="p">,</span> <span class="n">matrix</span> <span class="p">==</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localToWorldMatrix</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">TestMatrix</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Use this for initialization</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Camera</span> <span class="n">cam</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 模型空间的物体，localPosition作为模型空间的坐标</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 父物体的Transform作为世界空间对模型空间的变换</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">Transform</span> <span class="n">trans1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TestModelSpaceToWorldSpace</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 模型空间转世界空间的坐标</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">TestModelSpaceToWorldSpace</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Transform</span> <span class="m">_</span><span class="n">parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//模型空间转世界空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">p</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWPosition</span><span class="p">(</span><span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;模型空间转世界空间的坐标：&#34;</span> <span class="p">+</span> <span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;物体的世界坐标&#34;</span> <span class="p">+</span> <span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//模型空间转世界空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWMatrix</span><span class="p">(</span><span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\nlocalToWorldMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localToWorldMatrix</span><span class="p">,</span> <span class="n">matrix</span> <span class="p">==</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localToWorldMatrix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>场景中配置两个物体 Root，Cube；Root的Transform代表世界空间对Cube模型空间的变换</p>
 <p><img
@@ -442,7 +442,7 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 继续增加测试代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -460,23 +460,23 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 世界空间到模型空间变换对比
-</span><span class="c1"></span>    <span class="c1">/// 这里直接对比变换矩阵是否相同
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">TestWorldSpaceToModelSpace</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">//检查世界空间到模型空间
-</span><span class="c1"></span>        <span class="n">Transform</span> <span class="n">_parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
-        <span class="c1">//模型空间转世界空间
-</span><span class="c1"></span>        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWMatrix</span><span class="p">(</span><span class="n">_parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
-        <span class="c1">//世界空间转模型空间；就是matrix的逆矩阵
-</span><span class="c1"></span>        <span class="n">matrix</span> <span class="p">=</span> <span class="n">matrix</span><span class="p">.</span><span class="n">inverse</span><span class="p">;</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\nworldToLocalMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">worldToLocalMatrix</span><span class="p">,</span> <span class="n">matrix</span><span class="p">==</span> <span class="n">_parent</span><span class="p">.</span><span class="n">worldToLocalMatrix</span><span class="p">);</span>
-        
-
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 世界空间到模型空间变换对比</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 这里直接对比变换矩阵是否相同</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">TestWorldSpaceToModelSpace</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//检查世界空间到模型空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Transform</span> <span class="m">_</span><span class="n">parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//模型空间转世界空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWMatrix</span><span class="p">(</span><span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//世界空间转模型空间；就是matrix的逆矩阵</span>
+</span></span><span class="line"><span class="cl">        <span class="n">matrix</span> <span class="p">=</span> <span class="n">matrix</span><span class="p">.</span><span class="n">inverse</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\nworldToLocalMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">worldToLocalMatrix</span><span class="p">,</span> <span class="n">matrix</span><span class="p">==</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">worldToLocalMatrix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在Start方法中调用后的结果：</p>
 <p><img
@@ -491,7 +491,7 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 <p>继续增加测试代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -507,27 +507,25 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 </span><span class="lnt">14
 </span><span class="lnt">15
 </span><span class="lnt">16
-</span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 世界空间到观察空间变换对比
-</span><span class="c1"></span>    <span class="c1">/// 这里是透视相机，没有做正交相机的
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">TestWorldSpaceToViewSpace</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">//注意这里是透视相机，没有做正交相机变换矩阵
-</span><span class="c1"></span>        <span class="n">cam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
-        <span class="c1">//世界空间坐标到观察空间坐标
-</span><span class="c1"></span>        <span class="n">Vector3</span> <span class="n">viewPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVPosition</span><span class="p">(</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
-        <span class="c1">//结果是z轴相反，因为世界空间是左手坐标系，而观察空间是右手坐标系
-</span><span class="c1"></span>        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;世界空间:{0},观察空间:{1}&#34;</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">viewPos</span><span class="p">);</span>
-        <span class="c1">//世界空间到观察空间
-</span><span class="c1"></span>        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVMatrix</span><span class="p">();</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\n worldToCameraMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">cam</span><span class="p">.</span><span class="n">worldToCameraMatrix</span><span class="p">,</span> <span class="n">matrix</span> <span class="p">==</span> <span class="n">cam</span><span class="p">.</span><span class="n">worldToCameraMatrix</span><span class="p">);</span>
-    <span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 世界空间到观察空间变换对比</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 这里是透视相机，没有做正交相机的</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">TestWorldSpaceToViewSpace</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//注意这里是透视相机，没有做正交相机变换矩阵</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//世界空间坐标到观察空间坐标</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">viewPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVPosition</span><span class="p">(</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//结果是z轴相反，因为世界空间是左手坐标系，而观察空间是右手坐标系</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;世界空间:{0},观察空间:{1}&#34;</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">viewPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//世界空间到观察空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVMatrix</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\n worldToCameraMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">cam</span><span class="p">.</span><span class="n">worldToCameraMatrix</span><span class="p">,</span> <span class="n">matrix</span> <span class="p">==</span> <span class="n">cam</span><span class="p">.</span><span class="n">worldToCameraMatrix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在Start方法中调用后的结果：</p>
 <p><img
@@ -542,7 +540,7 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 <p>继续增加测试代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -553,16 +551,16 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    /// &lt;summary&gt;
-    /// 测试观察空间到裁剪空间的变换矩阵
-    /// &lt;/summary&gt;
-    void TestViewSpaceToClipSpace()
-    {
-        //观察空间到裁剪空间矩阵，注意这里是透视相机，没有做正交相机变换矩阵
-        Matrix4x4 matrix = TransformationMatrixUtil.VToPMatrix();
-        Debug.LogFormat(&#34;matrix:\n{0}\n\n projectionMatrix:\n{1}\n\n是否相等：{2}&#34;, matrix, cam.projectionMatrix, matrix == cam.projectionMatrix);
-    }
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// 测试观察空间到裁剪空间的变换矩阵
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    void TestViewSpaceToClipSpace()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        //观察空间到裁剪空间矩阵，注意这里是透视相机，没有做正交相机变换矩阵
+</span></span><span class="line"><span class="cl">        Matrix4x4 matrix = TransformationMatrixUtil.VToPMatrix();
+</span></span><span class="line"><span class="cl">        Debug.LogFormat(&#34;matrix:\n{0}\n\n projectionMatrix:\n{1}\n\n是否相等：{2}&#34;, matrix, cam.projectionMatrix, matrix == cam.projectionMatrix);
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在Start方法中调用后的结果：</p>
 <p><img
@@ -577,7 +575,7 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 <p>这里直接测试从模型空间到世界空间到观察空间到屏幕空间变换</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -601,29 +599,29 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 测试模型空间到屏幕空间的变换
-</span><span class="c1"></span>    <span class="c1">/// 只验证 屏幕坐标xy，不验证zw
-</span><span class="c1"></span>    <span class="c1">/// 注意这里是透视相机，没有做正交相机变换矩阵
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">TestModelSpaceToScreenSpace</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Transform</span> <span class="n">_parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
-        <span class="c1">//模型空间转世界空间
-</span><span class="c1"></span>        <span class="n">Vector3</span> <span class="n">worldPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWPosition</span><span class="p">(</span><span class="n">_parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
-        <span class="c1">//世界空间转观察空间
-</span><span class="c1"></span>        <span class="n">Vector3</span> <span class="n">viewPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVPosition</span><span class="p">(</span><span class="n">worldPos</span><span class="p">);</span>
-        <span class="c1">//观察空间转透视裁剪空间
-</span><span class="c1"></span>        <span class="n">Vector4</span> <span class="n">clipPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">VToPPosition</span><span class="p">(</span><span class="n">viewPos</span><span class="p">);</span>
-        <span class="c1">//裁剪空间到屏幕空间变换
-</span><span class="c1"></span>        <span class="n">Vector4</span> <span class="n">screenPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">PToScreenPosition</span><span class="p">(</span><span class="n">clipPos</span><span class="p">);</span>
-
-        <span class="n">Vector4</span> <span class="n">screenPos1</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">WorldToScreenPoint</span><span class="p">(</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
-        <span class="c1">//Vector4 viewportPos = cam.WorldToViewportPoint(trans1.position);
-</span><span class="c1"></span>        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34; worldPos:{0},trans1.positon:{1}\n viewPos:{2}\n clipPos:{3}\n screenPos:{4},screenPos1:{5}&#34;</span><span class="p">,</span><span class="n">worldPos</span><span class="p">,</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="n">viewPos</span><span class="p">,</span><span class="n">clipPos</span><span class="p">,</span><span class="n">screenPos</span><span class="p">,</span><span class="n">screenPos1</span><span class="p">);</span>
-        
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 测试模型空间到屏幕空间的变换</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 只验证 屏幕坐标xy，不验证zw</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 注意这里是透视相机，没有做正交相机变换矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">TestModelSpaceToScreenSpace</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Transform</span> <span class="m">_</span><span class="n">parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//模型空间转世界空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">worldPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWPosition</span><span class="p">(</span><span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//世界空间转观察空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">viewPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVPosition</span><span class="p">(</span><span class="n">worldPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//观察空间转透视裁剪空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">clipPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">VToPPosition</span><span class="p">(</span><span class="n">viewPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//裁剪空间到屏幕空间变换</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">screenPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">PToScreenPosition</span><span class="p">(</span><span class="n">clipPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">screenPos1</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">WorldToScreenPoint</span><span class="p">(</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//Vector4 viewportPos = cam.WorldToViewportPoint(trans1.position);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34; worldPos:{0},trans1.positon:{1}\n viewPos:{2}\n clipPos:{3}\n screenPos:{4},screenPos1:{5}&#34;</span><span class="p">,</span><span class="n">worldPos</span><span class="p">,</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="n">viewPos</span><span class="p">,</span><span class="n">clipPos</span><span class="p">,</span><span class="n">screenPos</span><span class="p">,</span><span class="n">screenPos1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在Start方法中调用后的结果：（如果想要一样的结果则需要设置分辨率为1280*720，并且相机配置一样）
 这里只验证屏幕坐标x和y，z值是世界坐标的z值，没有变换的，w值没有研究</p>
@@ -638,7 +636,7 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 <p><strong>脚本 <code>TransformationMatrixUtil.cs</code></strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -867,247 +865,243 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 </span><span class="lnt">227
 </span><span class="lnt">228
 </span><span class="lnt">229
-</span><span class="lnt">230
-</span><span class="lnt">231
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="c1">//=====================================================
-</span><span class="c1">// - FileName:      TransformationMatrixUtil.cs
-</span><span class="c1">// - Created:       wangguoqing
-</span><span class="c1">// - UserName:      2018/09/03 17:18:56
-</span><span class="c1">// - Email:         wangguoqing@hehegames.cn
-</span><span class="c1">// - Description:   
-</span><span class="c1">// -  (C) Copyright 2008 - 2015, codingriver,Inc.
-</span><span class="c1">// -  All Rights Reserved.
-</span><span class="c1">//======================================================
-</span><span class="c1"></span><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">TransformationMatrixUtil</span> <span class="p">{</span>
-
-	
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 模型空间的坐标转世界空间坐标
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;scale&#34;&gt;世界空间对模型的缩放&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;rotation&#34;&gt;世界空间对模型的旋转&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;translate&#34;&gt;世界空间对模型的平移&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;currentPos&#34;&gt;模型空间的坐标&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector3</span> <span class="n">MToWPosition</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">scale</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">translate</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">currentPos</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Matrix4x4</span> <span class="n">convertMatrix</span> <span class="p">=</span> <span class="n">MToWMatrix</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">translate</span><span class="p">);</span>
-        <span class="n">Vector3</span> <span class="n">pos</span><span class="p">=</span> <span class="n">convertMatrix</span><span class="p">.</span><span class="n">MultiplyPoint</span><span class="p">(</span><span class="n">currentPos</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 世界空间的坐标转模型空间坐标
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;scale&#34;&gt;世界空间对模型的缩放&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;rotation&#34;&gt;世界空间对模型的旋转&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;translate&#34;&gt;世界空间对模型的平移&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;currentPos&#34;&gt;世界空间的坐标&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector3</span> <span class="n">WToMPosition</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">scale</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">translate</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">currentPos</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Matrix4x4</span> <span class="n">convertMatrix</span> <span class="p">=</span> <span class="n">MToWMatrix</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">translate</span><span class="p">);</span>
-        <span class="n">Vector3</span> <span class="n">pos</span> <span class="p">=</span> <span class="n">convertMatrix</span><span class="p">.</span><span class="n">inverse</span><span class="p">.</span><span class="n">MultiplyPoint</span><span class="p">(</span><span class="n">currentPos</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 模型空间到世界空间的变换矩阵
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;scale&#34;&gt;世界空间对模型空间的缩放&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;rotation&#34;&gt;世界空间对模型空间的旋转&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;translate&#34;&gt;世界空间对模型空间的平移&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Matrix4x4</span> <span class="n">MToWMatrix</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">scale</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">translate</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Matrix4x4</span> <span class="n">scaleMatrix</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
-        <span class="n">scaleMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">scaleMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">scale</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">scaleMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">scale</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">scaleMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
-
-        <span class="n">rotation</span> <span class="p">*=</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Deg2Rad</span><span class="p">;</span>
-        <span class="n">Matrix4x4</span> <span class="n">rotateMatrixZ</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
-        <span class="n">rotateMatrixZ</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="p">-</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">rotateMatrixZ</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">rotateMatrixZ</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">rotateMatrixZ</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
-
-        <span class="n">Matrix4x4</span> <span class="n">rotateMatrixY</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
-        <span class="n">rotateMatrixY</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">rotateMatrixY</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">rotateMatrixY</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(-</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">rotateMatrixY</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
-
-        <span class="n">Matrix4x4</span> <span class="n">rotateMatrixX</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
-        <span class="n">rotateMatrixX</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">rotateMatrixX</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="p">-</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">rotateMatrixX</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">rotateMatrixX</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
-
-        <span class="n">Matrix4x4</span> <span class="n">translateMatrix</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
-        <span class="n">translateMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">translate</span><span class="p">.</span><span class="n">x</span><span class="p">));</span>
-        <span class="n">translateMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">translate</span><span class="p">.</span><span class="n">y</span><span class="p">));</span>
-        <span class="n">translateMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">translate</span><span class="p">.</span><span class="n">z</span><span class="p">));</span>
-        <span class="n">translateMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
-
-
-        <span class="c1">//这里注意顺序，矩阵不满足左右交换的，
-</span><span class="c1"></span>        <span class="c1">//unity中旋转的顺序是首先绕Z轴进行旋转，然后绕X轴进行旋转，最后绕Y轴进行旋转
-</span><span class="c1"></span>        <span class="n">Matrix4x4</span> <span class="n">convertMatrix</span> <span class="p">=</span> <span class="n">translateMatrix</span> <span class="p">*</span> <span class="n">rotateMatrixY</span> <span class="p">*</span> <span class="n">rotateMatrixX</span> <span class="p">*</span> <span class="n">rotateMatrixZ</span> <span class="p">*</span> <span class="n">scaleMatrix</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">convertMatrix</span><span class="p">;</span>
-    <span class="p">}</span>
-
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 世界空间 转到 观察空间
-</span><span class="c1"></span>    <span class="c1">/// 观察空间是右手坐标系
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;worldPos&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector3</span> <span class="n">WToVPosition</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">worldPos</span><span class="p">)</span>
-    <span class="p">{</span>
-
-        <span class="n">Matrix4x4</span> <span class="n">mat</span> <span class="p">=</span> <span class="n">WToVMatrix</span><span class="p">();</span>
-        <span class="n">Vector3</span> <span class="n">viewPos</span> <span class="p">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">MultiplyPoint</span><span class="p">(</span><span class="n">worldPos</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">viewPos</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 世界空间转观察空间的矩阵
-</span><span class="c1"></span>    <span class="c1">/// 观察空间是右手坐标系
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Matrix4x4</span> <span class="n">WToVMatrix</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">//先获取世界空间转模型空间的矩阵（变换矩阵可逆，取逆矩阵）
-</span><span class="c1"></span>        <span class="n">Transform</span> <span class="n">camTrans</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">transform</span><span class="p">;</span>
-        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">MToWMatrix</span><span class="p">(</span><span class="n">camTrans</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="n">camTrans</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="n">camTrans</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
-        <span class="n">Matrix4x4</span> <span class="n">inverseMatrix</span> <span class="p">=</span> <span class="n">matrix</span><span class="p">.</span><span class="n">inverse</span><span class="p">;</span>
-
-        <span class="c1">//将矩阵改成右手坐标系的矩阵，即z取反
-</span><span class="c1"></span>        <span class="n">inverseMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="p">-</span><span class="n">inverseMatrix</span><span class="p">.</span><span class="n">GetRow</span><span class="p">(</span><span class="m">2</span><span class="p">));</span>
-        <span class="k">return</span> <span class="n">inverseMatrix</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 观察空间到裁剪空间
-</span><span class="c1"></span>    <span class="c1">/// 
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;vPos&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector4</span> <span class="n">VToPPosition</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">vPos</span><span class="p">)</span>
-    <span class="p">{</span>
-
-        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">VToPMatrix</span><span class="p">();</span>
-        <span class="n">Vector4</span> <span class="n">p</span> <span class="p">=</span> <span class="n">matrix</span><span class="p">*</span><span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span> <span class="n">vPos</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">vPos</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">vPos</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="m">1</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 观察空间到裁剪空间的变换矩阵
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Matrix4x4</span> <span class="n">VToPMatrix</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Camera</span> <span class="n">cam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">near</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">nearClipPlane</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">far</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">farClipPlane</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">fov</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">fieldOfView</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">aspect</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">aspect</span><span class="p">;</span>
-        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">VToPMatrix</span><span class="p">(</span><span class="n">fov</span><span class="p">,</span> <span class="n">near</span><span class="p">,</span> <span class="n">far</span><span class="p">,</span> <span class="n">aspect</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">matrix</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 透视裁剪矩阵
-</span><span class="c1"></span>    <span class="c1">/// 透视投影矩阵
-</span><span class="c1"></span>    <span class="c1">/// 参考（https://blog.csdn.net/cbbbc/article/details/51296804）
-</span><span class="c1"></span>    <span class="c1">/// View to Projection
-</span><span class="c1"></span>    <span class="c1">/// 观察空间到裁剪空间
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;fov&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;near&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;far&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;aspect&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Matrix4x4</span> <span class="n">VToPMatrix</span><span class="p">(</span><span class="kt">float</span> <span class="n">fov</span><span class="p">,</span><span class="kt">float</span> <span class="n">near</span><span class="p">,</span><span class="kt">float</span> <span class="n">far</span><span class="p">,</span><span class="kt">float</span> <span class="n">aspect</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">float</span> <span class="n">tan</span><span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Tan</span><span class="p">((</span><span class="n">fov</span> <span class="p">*</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Deg2Rad</span><span class="p">)</span> <span class="p">/</span> <span class="m">2</span><span class="p">);</span>
-
-        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
-        <span class="n">matrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">1</span> <span class="p">/</span> <span class="p">(</span><span class="n">aspect</span> <span class="p">*</span> <span class="n">tan</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">matrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span> <span class="p">/</span> <span class="p">(</span><span class="n">tan</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-        <span class="n">matrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="p">-(</span><span class="n">far</span> <span class="p">+</span> <span class="n">near</span><span class="p">)</span> <span class="p">/</span> <span class="p">(</span><span class="n">far</span> <span class="p">-</span> <span class="n">near</span><span class="p">),</span> <span class="p">-</span><span class="m">2</span> <span class="p">*</span> <span class="n">far</span> <span class="p">*</span> <span class="n">near</span> <span class="p">/</span> <span class="p">(</span><span class="n">far</span> <span class="p">-</span> <span class="n">near</span><span class="p">)));</span>
-        <span class="n">matrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="p">-</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
-
-        <span class="k">return</span> <span class="n">matrix</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 裁剪空间到屏幕空间的坐标变换（x,y是有效的）
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;p&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector4</span> <span class="n">PToScreenPosition</span><span class="p">(</span><span class="n">Vector4</span> <span class="n">p</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Vector4</span> <span class="n">ndcPos</span><span class="p">=</span> <span class="n">PToNDCPosition</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-        <span class="n">Vector4</span> <span class="n">texPos</span> <span class="p">=</span> <span class="n">NDCToTexturePosition</span><span class="p">(</span><span class="n">ndcPos</span><span class="p">);</span>
-        <span class="n">Vector4</span> <span class="n">screenPos</span> <span class="p">=</span> <span class="n">TextureToScreenPosition</span><span class="p">(</span><span class="n">texPos</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">screenPos</span><span class="p">;</span>
-    <span class="p">}</span>
-
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// NDC是一个归一化的空间，坐标空间范围为[-1, 1]。从Projection空间到NDC空间的做法就是做了一个齐次除法！
-</span><span class="c1"></span>    <span class="c1">/// Projection to NDC
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;p&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector4</span> <span class="n">PToNDCPosition</span><span class="p">(</span><span class="n">Vector4</span> <span class="n">p</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="n">p</span> <span class="p">/</span> <span class="n">p</span><span class="p">.</span><span class="n">w</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// NDC - Texture Space
-</span><span class="c1"></span>    <span class="c1">/// (NDC - Viewport Space 视口空间,z的值这里和视口空间不一样，z的范围是[-1,1],视口坐标的z值是实际的z值)
-</span><span class="c1"></span>    <span class="c1">/// 这个过程是将[-1, 1]映射到[0, 1]之间。
-</span><span class="c1"></span>    <span class="c1">/// NDC to Texture space
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;p&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector4</span> <span class="n">NDCToTexturePosition</span><span class="p">(</span><span class="n">Vector4</span> <span class="n">ndcPoint</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">ndcPoint</span> <span class="p">+</span> <span class="n">Vector4</span><span class="p">.</span><span class="n">one</span><span class="p">)</span> <span class="p">/</span> <span class="m">2</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// Texture Space - Screen Space
-</span><span class="c1"></span>    <span class="c1">/// 这个过程就是得到顶点最终在屏幕上的坐标，其实就是利用Texture Space的坐标乘上屏幕的宽高。
-</span><span class="c1"></span>    <span class="c1">/// Texture to Screen
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;param name=&#34;p&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector4</span> <span class="n">TextureToScreenPosition</span><span class="p">(</span><span class="n">Vector4</span> <span class="n">texturePoint</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Vector4</span> <span class="n">screenPos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">texturePoint</span><span class="p">.</span><span class="n">x</span> <span class="p">*</span> <span class="n">Screen</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">texturePoint</span><span class="p">.</span><span class="n">y</span> <span class="p">*</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span><span class="p">,</span> <span class="n">texturePoint</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">texturePoint</span><span class="p">.</span><span class="n">w</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">screenPos</span><span class="p">;</span>
-    <span class="p">}</span>
-
-<span class="p">}</span>
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="c1">//=====================================================</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - FileName:      TransformationMatrixUtil.cs</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Created:       wangguoqing</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - UserName:      2018/09/03 17:18:56</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Email:         wangguoqing@hehegames.cn</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Description:   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">// -  (C) Copyright 2008 - 2015, codingriver,Inc.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// -  All Rights Reserved.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//======================================================</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">TransformationMatrixUtil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 模型空间的坐标转世界空间坐标</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;scale&#34;&gt;世界空间对模型的缩放&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;rotation&#34;&gt;世界空间对模型的旋转&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;translate&#34;&gt;世界空间对模型的平移&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;currentPos&#34;&gt;模型空间的坐标&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector3</span> <span class="n">MToWPosition</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">scale</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">translate</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">currentPos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">convertMatrix</span> <span class="p">=</span> <span class="n">MToWMatrix</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">translate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">pos</span><span class="p">=</span> <span class="n">convertMatrix</span><span class="p">.</span><span class="n">MultiplyPoint</span><span class="p">(</span><span class="n">currentPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 世界空间的坐标转模型空间坐标</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;scale&#34;&gt;世界空间对模型的缩放&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;rotation&#34;&gt;世界空间对模型的旋转&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;translate&#34;&gt;世界空间对模型的平移&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;currentPos&#34;&gt;世界空间的坐标&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector3</span> <span class="n">WToMPosition</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">scale</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">translate</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">currentPos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">convertMatrix</span> <span class="p">=</span> <span class="n">MToWMatrix</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">translate</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">pos</span> <span class="p">=</span> <span class="n">convertMatrix</span><span class="p">.</span><span class="n">inverse</span><span class="p">.</span><span class="n">MultiplyPoint</span><span class="p">(</span><span class="n">currentPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 模型空间到世界空间的变换矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;scale&#34;&gt;世界空间对模型空间的缩放&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;rotation&#34;&gt;世界空间对模型空间的旋转&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;translate&#34;&gt;世界空间对模型空间的平移&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Matrix4x4</span> <span class="n">MToWMatrix</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">scale</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">Vector3</span> <span class="n">translate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">scaleMatrix</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scaleMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scaleMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">scale</span><span class="p">.</span><span class="n">y</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scaleMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">scale</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">scaleMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">rotation</span> <span class="p">*=</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Deg2Rad</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">rotateMatrixZ</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixZ</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="p">-</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixZ</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">z</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixZ</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixZ</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">rotateMatrixY</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixY</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixY</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixY</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(-</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixY</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">rotateMatrixX</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixX</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixX</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="p">-</span><span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixX</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Sin</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Cos</span><span class="p">(</span><span class="n">rotation</span><span class="p">.</span><span class="n">x</span><span class="p">),</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">rotateMatrixX</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">translateMatrix</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">translateMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">translate</span><span class="p">.</span><span class="n">x</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">translateMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">translate</span><span class="p">.</span><span class="n">y</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">translateMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">translate</span><span class="p">.</span><span class="n">z</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">translateMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//这里注意顺序，矩阵不满足左右交换的，</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//unity中旋转的顺序是首先绕Z轴进行旋转，然后绕X轴进行旋转，最后绕Y轴进行旋转</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">convertMatrix</span> <span class="p">=</span> <span class="n">translateMatrix</span> <span class="p">*</span> <span class="n">rotateMatrixY</span> <span class="p">*</span> <span class="n">rotateMatrixX</span> <span class="p">*</span> <span class="n">rotateMatrixZ</span> <span class="p">*</span> <span class="n">scaleMatrix</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">convertMatrix</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 世界空间 转到 观察空间</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 观察空间是右手坐标系</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;worldPos&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector3</span> <span class="n">WToVPosition</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">worldPos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">mat</span> <span class="p">=</span> <span class="n">WToVMatrix</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">viewPos</span> <span class="p">=</span> <span class="n">mat</span><span class="p">.</span><span class="n">MultiplyPoint</span><span class="p">(</span><span class="n">worldPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">viewPos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 世界空间转观察空间的矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 观察空间是右手坐标系</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Matrix4x4</span> <span class="n">WToVMatrix</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//先获取世界空间转模型空间的矩阵（变换矩阵可逆，取逆矩阵）</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Transform</span> <span class="n">camTrans</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">transform</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">MToWMatrix</span><span class="p">(</span><span class="n">camTrans</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="n">camTrans</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="n">camTrans</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">inverseMatrix</span> <span class="p">=</span> <span class="n">matrix</span><span class="p">.</span><span class="n">inverse</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">//将矩阵改成右手坐标系的矩阵，即z取反</span>
+</span></span><span class="line"><span class="cl">        <span class="n">inverseMatrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="p">-</span><span class="n">inverseMatrix</span><span class="p">.</span><span class="n">GetRow</span><span class="p">(</span><span class="m">2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">inverseMatrix</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 观察空间到裁剪空间</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// </span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;vPos&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector4</span> <span class="n">VToPPosition</span><span class="p">(</span><span class="n">Vector3</span> <span class="n">vPos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">VToPMatrix</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">p</span> <span class="p">=</span> <span class="n">matrix</span><span class="p">*</span><span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span> <span class="n">vPos</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="n">vPos</span><span class="p">.</span><span class="n">y</span><span class="p">,</span><span class="n">vPos</span><span class="p">.</span><span class="n">z</span><span class="p">,</span><span class="m">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 观察空间到裁剪空间的变换矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Matrix4x4</span> <span class="n">VToPMatrix</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Camera</span> <span class="n">cam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">float</span> <span class="n">near</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">nearClipPlane</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">float</span> <span class="n">far</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">farClipPlane</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">float</span> <span class="n">fov</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">fieldOfView</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">float</span> <span class="n">aspect</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">aspect</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">VToPMatrix</span><span class="p">(</span><span class="n">fov</span><span class="p">,</span> <span class="n">near</span><span class="p">,</span> <span class="n">far</span><span class="p">,</span> <span class="n">aspect</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">matrix</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 透视裁剪矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 透视投影矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 参考（https://blog.csdn.net/cbbbc/article/details/51296804）</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// View to Projection</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 观察空间到裁剪空间</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;fov&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;near&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;far&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;aspect&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Matrix4x4</span> <span class="n">VToPMatrix</span><span class="p">(</span><span class="kt">float</span> <span class="n">fov</span><span class="p">,</span><span class="kt">float</span> <span class="n">near</span><span class="p">,</span><span class="kt">float</span> <span class="n">far</span><span class="p">,</span><span class="kt">float</span> <span class="n">aspect</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">float</span> <span class="n">tan</span><span class="p">=</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Tan</span><span class="p">((</span><span class="n">fov</span> <span class="p">*</span> <span class="n">Mathf</span><span class="p">.</span><span class="n">Deg2Rad</span><span class="p">)</span> <span class="p">/</span> <span class="m">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Matrix4x4</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">matrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">1</span> <span class="p">/</span> <span class="p">(</span><span class="n">aspect</span> <span class="p">*</span> <span class="n">tan</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">matrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span> <span class="p">/</span> <span class="p">(</span><span class="n">tan</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">matrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="p">-(</span><span class="n">far</span> <span class="p">+</span> <span class="n">near</span><span class="p">)</span> <span class="p">/</span> <span class="p">(</span><span class="n">far</span> <span class="p">-</span> <span class="n">near</span><span class="p">),</span> <span class="p">-</span><span class="m">2</span> <span class="p">*</span> <span class="n">far</span> <span class="p">*</span> <span class="n">near</span> <span class="p">/</span> <span class="p">(</span><span class="n">far</span> <span class="p">-</span> <span class="n">near</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">matrix</span><span class="p">.</span><span class="n">SetRow</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="p">-</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">matrix</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 裁剪空间到屏幕空间的坐标变换（x,y是有效的）</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;p&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector4</span> <span class="n">PToScreenPosition</span><span class="p">(</span><span class="n">Vector4</span> <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">ndcPos</span><span class="p">=</span> <span class="n">PToNDCPosition</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">texPos</span> <span class="p">=</span> <span class="n">NDCToTexturePosition</span><span class="p">(</span><span class="n">ndcPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">screenPos</span> <span class="p">=</span> <span class="n">TextureToScreenPosition</span><span class="p">(</span><span class="n">texPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">screenPos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// NDC是一个归一化的空间，坐标空间范围为[-1, 1]。从Projection空间到NDC空间的做法就是做了一个齐次除法！</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// Projection to NDC</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;p&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector4</span> <span class="n">PToNDCPosition</span><span class="p">(</span><span class="n">Vector4</span> <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">p</span> <span class="p">/</span> <span class="n">p</span><span class="p">.</span><span class="n">w</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// NDC - Texture Space</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// (NDC - Viewport Space 视口空间,z的值这里和视口空间不一样，z的范围是[-1,1],视口坐标的z值是实际的z值)</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 这个过程是将[-1, 1]映射到[0, 1]之间。</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// NDC to Texture space</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;p&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector4</span> <span class="n">NDCToTexturePosition</span><span class="p">(</span><span class="n">Vector4</span> <span class="n">ndcPoint</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="p">(</span><span class="n">ndcPoint</span> <span class="p">+</span> <span class="n">Vector4</span><span class="p">.</span><span class="n">one</span><span class="p">)</span> <span class="p">/</span> <span class="m">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// Texture Space - Screen Space</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 这个过程就是得到顶点最终在屏幕上的坐标，其实就是利用Texture Space的坐标乘上屏幕的宽高。</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// Texture to Screen</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;param name=&#34;p&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">Vector4</span> <span class="n">TextureToScreenPosition</span><span class="p">(</span><span class="n">Vector4</span> <span class="n">texturePoint</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">screenPos</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector4</span><span class="p">(</span><span class="n">texturePoint</span><span class="p">.</span><span class="n">x</span> <span class="p">*</span> <span class="n">Screen</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">texturePoint</span><span class="p">.</span><span class="n">y</span> <span class="p">*</span> <span class="n">Screen</span><span class="p">.</span><span class="n">height</span><span class="p">,</span> <span class="n">texturePoint</span><span class="p">.</span><span class="n">z</span><span class="p">,</span> <span class="n">texturePoint</span><span class="p">.</span><span class="n">w</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">screenPos</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>测试脚本<code>TestMatrix.cs</code>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -1227,138 +1221,136 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
 </span><span class="lnt">118
 </span><span class="lnt">119
 </span><span class="lnt">120
-</span><span class="lnt">121
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">   <span class="c1">//=====================================================
-</span><span class="c1">// - FileName:      TestMatrix.cs
-</span><span class="c1">// - Created:       wangguoqing
-</span><span class="c1">// - UserName:      2018/09/03 17:18:56
-</span><span class="c1">// - Email:         wangguoqing@hehegames.cn
-</span><span class="c1">// - Description:   
-</span><span class="c1">// -  (C) Copyright 2008 - 2015, codingriver,Inc.
-</span><span class="c1">// -  All Rights Reserved.
-</span><span class="c1">//======================================================
-</span><span class="c1"></span><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-
-<span class="c1">/// &lt;summary&gt;
-</span><span class="c1">/// 测试空间变换
-</span><span class="c1">/// 这里是透视相机，没有做正交相机的
-</span><span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span><span class="k">public</span> <span class="k">class</span> <span class="nc">TestMatrix</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span>
-
-    <span class="c1">// Use this for initialization
-</span><span class="c1"></span>    <span class="n">Camera</span> <span class="n">cam</span><span class="p">;</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 模型空间的物体，localPosition作为模型空间的坐标
-</span><span class="c1"></span>    <span class="c1">/// 父物体的Transform作为世界空间对模型空间的变换
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="n">Transform</span> <span class="n">trans1</span><span class="p">;</span>
-    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">cam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
-        <span class="n">TestModelSpaceToWorldSpace</span><span class="p">();</span>
-        <span class="c1">//TestWorldSpaceToModelSpace();
-</span><span class="c1"></span>        <span class="c1">//TestWorldSpaceToViewSpace();
-</span><span class="c1"></span>        <span class="c1">//TestViewSpaceToClipSpace();
-</span><span class="c1"></span>        <span class="c1">//TestModelSpaceToScreenSpace();
-</span><span class="c1"></span>    <span class="p">}</span>
-    
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 模型空间转世界空间的坐标
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">TestModelSpaceToWorldSpace</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Transform</span> <span class="n">_parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
-        <span class="c1">//模型空间转世界空间
-</span><span class="c1"></span>        <span class="n">Vector3</span> <span class="n">p</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWPosition</span><span class="p">(</span><span class="n">_parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;模型空间转世界空间的坐标：&#34;</span> <span class="p">+</span> <span class="n">p</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;物体的世界坐标&#34;</span> <span class="p">+</span> <span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
-        <span class="c1">//模型空间转世界空间
-</span><span class="c1"></span>        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWMatrix</span><span class="p">(</span><span class="n">_parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\nlocalToWorldMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localToWorldMatrix</span><span class="p">,</span> <span class="n">matrix</span> <span class="p">==</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localToWorldMatrix</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 世界空间到模型空间变换对比
-</span><span class="c1"></span>    <span class="c1">/// 这里直接对比变换矩阵是否相同
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">TestWorldSpaceToModelSpace</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">//检查世界空间到模型空间
-</span><span class="c1"></span>        <span class="n">Transform</span> <span class="n">_parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
-        <span class="c1">//模型空间转世界空间
-</span><span class="c1"></span>        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWMatrix</span><span class="p">(</span><span class="n">_parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
-        <span class="c1">//世界空间转模型空间；就是matrix的逆矩阵
-</span><span class="c1"></span>        <span class="n">matrix</span> <span class="p">=</span> <span class="n">matrix</span><span class="p">.</span><span class="n">inverse</span><span class="p">;</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\nworldToLocalMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">worldToLocalMatrix</span><span class="p">,</span> <span class="n">matrix</span><span class="p">==</span> <span class="n">_parent</span><span class="p">.</span><span class="n">worldToLocalMatrix</span><span class="p">);</span>
-        
-
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 世界空间到观察空间变换对比
-</span><span class="c1"></span>    <span class="c1">/// 这里是透视相机，没有做正交相机的
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">TestWorldSpaceToViewSpace</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">//注意这里是透视相机，没有做正交相机变换矩阵
-</span><span class="c1"></span>        <span class="n">cam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
-        <span class="c1">//世界空间坐标到观察空间坐标
-</span><span class="c1"></span>        <span class="n">Vector3</span> <span class="n">viewPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVPosition</span><span class="p">(</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
-        <span class="c1">//结果是z轴相反，因为世界空间是左手坐标系，而观察空间是右手坐标系
-</span><span class="c1"></span>        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;世界空间:{0},观察空间:{1}&#34;</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">viewPos</span><span class="p">);</span>
-        <span class="c1">//世界空间到观察空间
-</span><span class="c1"></span>        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVMatrix</span><span class="p">();</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\n worldToCameraMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">cam</span><span class="p">.</span><span class="n">worldToCameraMatrix</span><span class="p">,</span> <span class="n">matrix</span> <span class="p">==</span> <span class="n">cam</span><span class="p">.</span><span class="n">worldToCameraMatrix</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 测试观察空间到裁剪空间的变换矩阵
-</span><span class="c1"></span>    <span class="c1">/// 注意这里是透视相机，没有做正交相机变换矩阵
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">TestViewSpaceToClipSpace</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="c1">//观察空间到裁剪空间矩阵，注意这里是透视相机，没有做正交相机变换矩阵
-</span><span class="c1"></span>        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">VToPMatrix</span><span class="p">();</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\n projectionMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">cam</span><span class="p">.</span><span class="n">projectionMatrix</span><span class="p">,</span> <span class="n">matrix</span> <span class="p">==</span> <span class="n">cam</span><span class="p">.</span><span class="n">projectionMatrix</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 测试模型空间到屏幕空间的变换
-</span><span class="c1"></span>    <span class="c1">/// 只验证 屏幕坐标xy，不验证zw
-</span><span class="c1"></span>    <span class="c1">/// 注意这里是透视相机，没有做正交相机变换矩阵
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">TestModelSpaceToScreenSpace</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Transform</span> <span class="n">_parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
-        <span class="c1">//模型空间转世界空间
-</span><span class="c1"></span>        <span class="n">Vector3</span> <span class="n">worldPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWPosition</span><span class="p">(</span><span class="n">_parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="n">_parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
-        <span class="c1">//世界空间转观察空间
-</span><span class="c1"></span>        <span class="n">Vector3</span> <span class="n">viewPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVPosition</span><span class="p">(</span><span class="n">worldPos</span><span class="p">);</span>
-        <span class="c1">//观察空间转透视裁剪空间
-</span><span class="c1"></span>        <span class="n">Vector4</span> <span class="n">clipPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">VToPPosition</span><span class="p">(</span><span class="n">viewPos</span><span class="p">);</span>
-        <span class="c1">//裁剪空间到屏幕空间变换
-</span><span class="c1"></span>        <span class="n">Vector4</span> <span class="n">screenPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">PToScreenPosition</span><span class="p">(</span><span class="n">clipPos</span><span class="p">);</span>
-
-        <span class="n">Vector4</span> <span class="n">screenPos1</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">WorldToScreenPoint</span><span class="p">(</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
-        <span class="c1">//Vector4 viewportPos = cam.WorldToViewportPoint(trans1.position);
-</span><span class="c1"></span>        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34; worldPos:{0},trans1.positon:{1}\n viewPos:{2}\n clipPos:{3}\n screenPos:{4},screenPos1:{5}&#34;</span><span class="p">,</span><span class="n">worldPos</span><span class="p">,</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="n">viewPos</span><span class="p">,</span><span class="n">clipPos</span><span class="p">,</span><span class="n">screenPos</span><span class="p">,</span><span class="n">screenPos1</span><span class="p">);</span>
-        
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">   <span class="c1">//=====================================================</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - FileName:      TestMatrix.cs</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Created:       wangguoqing</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - UserName:      2018/09/03 17:18:56</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Email:         wangguoqing@hehegames.cn</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Description:   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">// -  (C) Copyright 2008 - 2015, codingriver,Inc.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// -  All Rights Reserved.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//======================================================</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// 测试空间变换</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// 这里是透视相机，没有做正交相机的</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">TestMatrix</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Use this for initialization</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Camera</span> <span class="n">cam</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 模型空间的物体，localPosition作为模型空间的坐标</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 父物体的Transform作为世界空间对模型空间的变换</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">Transform</span> <span class="n">trans1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TestModelSpaceToWorldSpace</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//TestWorldSpaceToModelSpace();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//TestWorldSpaceToViewSpace();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//TestViewSpaceToClipSpace();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//TestModelSpaceToScreenSpace();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 模型空间转世界空间的坐标</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">TestModelSpaceToWorldSpace</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Transform</span> <span class="m">_</span><span class="n">parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//模型空间转世界空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">p</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWPosition</span><span class="p">(</span><span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;模型空间转世界空间的坐标：&#34;</span> <span class="p">+</span> <span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;物体的世界坐标&#34;</span> <span class="p">+</span> <span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//模型空间转世界空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWMatrix</span><span class="p">(</span><span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\nlocalToWorldMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localToWorldMatrix</span><span class="p">,</span> <span class="n">matrix</span> <span class="p">==</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localToWorldMatrix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 世界空间到模型空间变换对比</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 这里直接对比变换矩阵是否相同</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">TestWorldSpaceToModelSpace</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//检查世界空间到模型空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Transform</span> <span class="m">_</span><span class="n">parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//模型空间转世界空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWMatrix</span><span class="p">(</span><span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//世界空间转模型空间；就是matrix的逆矩阵</span>
+</span></span><span class="line"><span class="cl">        <span class="n">matrix</span> <span class="p">=</span> <span class="n">matrix</span><span class="p">.</span><span class="n">inverse</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\nworldToLocalMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">worldToLocalMatrix</span><span class="p">,</span> <span class="n">matrix</span><span class="p">==</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">worldToLocalMatrix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 世界空间到观察空间变换对比</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 这里是透视相机，没有做正交相机的</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">TestWorldSpaceToViewSpace</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//注意这里是透视相机，没有做正交相机变换矩阵</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cam</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//世界空间坐标到观察空间坐标</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">viewPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVPosition</span><span class="p">(</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//结果是z轴相反，因为世界空间是左手坐标系，而观察空间是右手坐标系</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;世界空间:{0},观察空间:{1}&#34;</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">viewPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//世界空间到观察空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVMatrix</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\n worldToCameraMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">cam</span><span class="p">.</span><span class="n">worldToCameraMatrix</span><span class="p">,</span> <span class="n">matrix</span> <span class="p">==</span> <span class="n">cam</span><span class="p">.</span><span class="n">worldToCameraMatrix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 测试观察空间到裁剪空间的变换矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 注意这里是透视相机，没有做正交相机变换矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">TestViewSpaceToClipSpace</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//观察空间到裁剪空间矩阵，注意这里是透视相机，没有做正交相机变换矩阵</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Matrix4x4</span> <span class="n">matrix</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">VToPMatrix</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34;matrix:\n{0}\n\n projectionMatrix:\n{1}\n\n是否相等：{2}&#34;</span><span class="p">,</span> <span class="n">matrix</span><span class="p">,</span> <span class="n">cam</span><span class="p">.</span><span class="n">projectionMatrix</span><span class="p">,</span> <span class="n">matrix</span> <span class="p">==</span> <span class="n">cam</span><span class="p">.</span><span class="n">projectionMatrix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 测试模型空间到屏幕空间的变换</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 只验证 屏幕坐标xy，不验证zw</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 注意这里是透视相机，没有做正交相机变换矩阵</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">TestModelSpaceToScreenSpace</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Transform</span> <span class="m">_</span><span class="n">parent</span> <span class="p">=</span> <span class="n">trans1</span><span class="p">.</span><span class="n">parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//模型空间转世界空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">worldPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">MToWPosition</span><span class="p">(</span><span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localScale</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localEulerAngles</span><span class="p">,</span> <span class="m">_</span><span class="n">parent</span><span class="p">.</span><span class="n">localPosition</span><span class="p">,</span> <span class="n">trans1</span><span class="p">.</span><span class="n">localPosition</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//世界空间转观察空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector3</span> <span class="n">viewPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">WToVPosition</span><span class="p">(</span><span class="n">worldPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//观察空间转透视裁剪空间</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">clipPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">VToPPosition</span><span class="p">(</span><span class="n">viewPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//裁剪空间到屏幕空间变换</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">screenPos</span> <span class="p">=</span> <span class="n">TransformationMatrixUtil</span><span class="p">.</span><span class="n">PToScreenPosition</span><span class="p">(</span><span class="n">clipPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">Vector4</span> <span class="n">screenPos1</span> <span class="p">=</span> <span class="n">cam</span><span class="p">.</span><span class="n">WorldToScreenPoint</span><span class="p">(</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//Vector4 viewportPos = cam.WorldToViewportPoint(trans1.position);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">LogFormat</span><span class="p">(</span><span class="s">&#34; worldPos:{0},trans1.positon:{1}\n viewPos:{2}\n clipPos:{3}\n screenPos:{4},screenPos1:{5}&#34;</span><span class="p">,</span><span class="n">worldPos</span><span class="p">,</span><span class="n">trans1</span><span class="p">.</span><span class="n">position</span><span class="p">,</span><span class="n">viewPos</span><span class="p">,</span><span class="n">clipPos</span><span class="p">,</span><span class="n">screenPos</span><span class="p">,</span><span class="n">screenPos1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><a href="https://github.com/codingriver/UnityProjectTest/tree/master/MatrixTest" target="_blank" rel="noopener noreffer">github项目</a></p>
 <blockquote>
 <p>这篇文章整理太麻烦了，前面关于使用矩阵做变换的原理的整理很粗糙，只是为了下面的使用，这篇文章不做过多介绍，之前研究过了，没有记录现在反过头来整理需要仔细理理</p>
 </blockquote>
 <blockquote>
-<p>参考：<a href="https://blog.csdn.net/xzw734173384/article/details/90080889">https://blog.csdn.net/xzw734173384/article/details/90080889</a></p>
+<p>参考：<a href="https://blog.csdn.net/xzw734173384/article/details/90080889" target="_blank" rel="noopener noreffer">https://blog.csdn.net/xzw734173384/article/details/90080889</a></p>
 </blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -1382,14 +1374,14 @@ x<sub>c</sub>设为(x<sub>cx</sub>,x<sub>cy</sub>,x<sub>cz</sub>),y<sub>c</sub>�
         </section>
     </div>
 
-    <div class="post-nav"><a href="/unity-android%E8%8E%B7%E5%8F%96%E7%94%B5%E9%87%8F%E5%92%8Cwifi%E4%BF%A1%E5%8F%B7%E5%BC%BA%E5%BA%A6/" class="prev" rel="prev" title="unity--android获取电量和wifi信号强度"><i class="fas fa-angle-left fa-fw"></i>unity--android获取电量和wifi信号强度</a>
+    <div class="post-nav"><a href="/unity--android%E8%8E%B7%E5%8F%96%E7%94%B5%E9%87%8F%E5%92%8Cwifi%E4%BF%A1%E5%8F%B7%E5%BC%BA%E5%BA%A6/" class="prev" rel="prev" title="unity--android获取电量和wifi信号强度"><i class="fas fa-angle-left fa-fw"></i>unity--android获取电量和wifi信号强度</a>
             <a href="/unity%E5%B9%B3%E5%8F%B0%E5%AE%8F%E5%AE%9A%E4%B9%89%E5%B8%B8%E7%94%A8%E8%AF%B4%E6%98%8E/" class="next" rel="next" title="Unity 平台宏定义常用说明">Unity 平台宏定义常用说明<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

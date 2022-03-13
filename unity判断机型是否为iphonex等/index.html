@@ -8,10 +8,10 @@
         <title>Unity判断机型是否为iPhoneX，iPhoneXS，iPhoneXR，以及iPhoneXS Max - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Unity判断机型是否为iPhoneX，iPhoneXS，iPhoneXR，以及iPhoneXS Max" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E5%88%A4%E6%96%AD%E6%9C%BA%E5%9E%8B%E6%98%AF%E5%90%A6%E4%B8%BAiphonex%E7%AD%89/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity%E5%88%A4%E6%96%AD%E6%9C%BA%E5%9E%8B%E6%98%AF%E5%90%A6%E4%B8%BAiphonex%E7%AD%89/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -130,19 +130,19 @@
 <p>例如获取屏幕宽高：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+</span></span><span class="line"><span class="cl">CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="unity中通过device-model判断">Unity中通过device model判断</h2>
 <p>unity中通常获取iPhone设备的device model来进行机型判断，iPhoneX以后的设备判断方法如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -150,13 +150,13 @@ CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="kt">bool</span> <span class="n">IsIphoneXDevice</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-	<span class="kt">string</span> <span class="n">modelStr</span> <span class="p">=</span> <span class="n">SystemInfo</span><span class="p">.</span><span class="n">deviceModel</span><span class="p">;</span>
-<span class="cp">#if UNITY_IOS
-</span><span class="cp"></span>    <span class="c1">// iPhoneX:&#34;iPhone10,3&#34;,&#34;iPhone10,6&#34;  iPhoneXR:&#34;iPhone11,8&#34;  iPhoneXS:&#34;iPhone11,2&#34;  iPhoneXS Max:&#34;iPhone11,6&#34;
-</span><span class="c1"></span>    <span class="n">IsIphoneXDevice</span> <span class="p">=</span> <span class="n">modelStr</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&#34;iPhone10,3&#34;</span><span class="p">)</span> <span class="p">||</span> <span class="n">modelStr</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&#34;iPhone10,6&#34;</span><span class="p">)</span> <span class="p">||</span> <span class="n">modelStr</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&#34;iPhone11,8&#34;</span><span class="p">)</span> <span class="p">||</span> <span class="n">modelStr</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&#34;iPhone11,2&#34;</span><span class="p">)</span> <span class="p">||</span> <span class="n">modelStr</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&#34;iPhone11,6&#34;</span><span class="p">);</span>
-<span class="cp">#endif
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="n">IsIphoneXDevice</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">string</span> <span class="n">modelStr</span> <span class="p">=</span> <span class="n">SystemInfo</span><span class="p">.</span><span class="n">deviceModel</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if UNITY_IOS</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// iPhoneX:&#34;iPhone10,3&#34;,&#34;iPhone10,6&#34;  iPhoneXR:&#34;iPhone11,8&#34;  iPhoneXS:&#34;iPhone11,2&#34;  iPhoneXS Max:&#34;iPhone11,6&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IsIphoneXDevice</span> <span class="p">=</span> <span class="n">modelStr</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&#34;iPhone10,3&#34;</span><span class="p">)</span> <span class="p">||</span> <span class="n">modelStr</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&#34;iPhone10,6&#34;</span><span class="p">)</span> <span class="p">||</span> <span class="n">modelStr</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&#34;iPhone11,8&#34;</span><span class="p">)</span> <span class="p">||</span> <span class="n">modelStr</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&#34;iPhone11,2&#34;</span><span class="p">)</span> <span class="p">||</span> <span class="n">modelStr</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&#34;iPhone11,6&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">endif</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="不同机型对应的model如下">不同机型对应的model如下：</h3>
 <p>iPhoneX: “iPhone10,3”, “iPhone10,6”
@@ -164,7 +164,7 @@ iPhoneXR: “iPhone11,8”
 iPhoneXS: “iPhone11,2”
 iPhoneXS Max: “iPhone11,6”
 维基百科中有最新的iPhone设备model表可查看：
-<a href="https://www.theiphonewiki.com/wiki/Models">https://www.theiphonewiki.com/wiki/Models</a></p>
+<a href="https://www.theiphonewiki.com/wiki/Models" target="_blank" rel="noopener noreffer">https://www.theiphonewiki.com/wiki/Models</a></p>
 <hr>
 <blockquote>
 <p>参考文章：
@@ -199,7 +199,7 @@ iPhoneXS Max: “iPhone11,6”
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

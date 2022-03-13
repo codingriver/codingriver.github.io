@@ -8,10 +8,10 @@
         <title>主题文档 - 内置 Shortcodes - codingriver blog</title><meta name="Description" content="Hugo 提供了多个内置的 Shortcodes, 以方便作者保持 Markdown 内容的整洁."><meta property="og:title" content="主题文档 - 内置 Shortcodes" />
 <meta property="og:description" content="Hugo 提供了多个内置的 Shortcodes, 以方便作者保持 Markdown 内容的整洁." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/theme-documentation-built-in-shortcodes/" />
-<meta property="og:image" content="https://codingriver.github.io/images/theme-documentation-built-in-shortcodes/featured-image.png" />
+<meta property="og:url" content="https://codingriver.github.io/theme-documentation-built-in-shortcodes/" /><meta property="og:image" content="https://codingriver.github.io/images/theme-documentation-built-in-shortcodes/featured-image.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-03-04T16:29:59+08:00" />
 <meta property="article:modified_time" content="2021-12-10T13:48:12+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/images/theme-documentation-built-in-shortcodes/featured-image.png"/>
 
@@ -147,15 +147,14 @@ shortcode 是一个简单代码段, 可以生成合理的 HTML 代码, 并且符
 <p>一个 <code>figure</code> 示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-markdown" data-lang="markdown">{{<span class="p">&lt;</span> <span class="nt">figure</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/images/theme-documentation-built-in-shortcodes/lighthouse.jpg&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Lighthouse (figure)&#34;</span> <span class="p">&gt;</span>}}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">figure</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/images/theme-documentation-built-in-shortcodes/lighthouse.jpg&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;Lighthouse (figure)&#34;</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>呈现的输出效果如下:</p>
-<figure>
-    <img src="/images/theme-documentation-built-in-shortcodes/lighthouse.jpg"/> <figcaption>
+<figure><img src="/images/theme-documentation-built-in-shortcodes/lighthouse.jpg"/><figcaption>
             <h4>Lighthouse (figure)</h4>
         </figcaption>
 </figure>
@@ -163,7 +162,7 @@ shortcode 是一个简单代码段, 可以生成合理的 HTML 代码, 并且符
 <p>输出的 HTML 看起来像这样:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -171,24 +170,24 @@ shortcode 是一个简单代码段, 可以生成合理的 HTML 代码, 并且符
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/images/theme-documentation-built-in-shortcodes/lighthouse.jpg&#34;</span><span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>Lighthouse (figure)<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/images/theme-documentation-built-in-shortcodes/lighthouse.jpg&#34;</span><span class="p">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>Lighthouse (figure)<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="2-gist">2 gist</h2>
 <p><a href="https://gohugo.io/content-management/shortcodes#gist" target="_blank" rel="noopener noreffer"><code>gist</code> 的文档</a></p>
 <p>一个 <code>gist</code> 示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-markdown" data-lang="markdown">{{<span class="p">&lt;</span> <span class="nt">gist</span> <span class="na">spf13</span> <span class="na">7896402</span> <span class="p">&gt;</span>}}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">gist</span> <span class="na">spf13</span> <span class="na">7896402</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>呈现的输出效果如下:</p>
 <script type="application/javascript" src="https://gist.github.com/spf13/7896402.js"></script>
@@ -196,18 +195,18 @@ shortcode 是一个简单代码段, 可以生成合理的 HTML 代码, 并且符
 <p>输出的 HTML 看起来像这样:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;application/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://gist.github.com/spf13/7896402.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;application/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://gist.github.com/spf13/7896402.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="3-highlight">3 highlight</h2>
 <p><a href="https://gohugo.io/content-management/shortcodes#instagram" target="_blank" rel="noopener noreffer"><code>highlight</code> 的文档</a></p>
 <p>一个 <code>highlight</code> 示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -219,22 +218,22 @@ shortcode 是一个简单代码段, 可以生成合理的 HTML 代码, 并且符
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-markdown" data-lang="markdown">{{<span class="p">&lt;</span> <span class="nt">highlight</span> <span class="na">html</span> <span class="p">&gt;</span>}}
-<span class="p">&lt;</span><span class="nt">section</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;</span>{{ .Title }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-        {{ range .Pages }}
-            {{ .Render &#34;summary&#34;}}
-        {{ end }}
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
-{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">highlight</span> <span class="p">&gt;</span>}}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">highlight</span> <span class="na">html</span> <span class="p">&gt;</span>}}
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">section</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;</span>{{ .Title }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        {{ range .Pages }}
+</span></span><span class="line"><span class="cl">            {{ .Render &#34;summary&#34;}}
+</span></span><span class="line"><span class="cl">        {{ end }}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">highlight</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>呈现的输出效果如下:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -244,14 +243,14 @@ shortcode 是一个简单代码段, 可以生成合理的 HTML 代码, 并且符
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">section</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-        <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;</span>{{ .Title }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-        {{ range .Pages }}
-            {{ .Render &#34;summary&#34;}}
-        {{ end }}
-    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">section</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;main&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;title&#34;</span><span class="p">&gt;</span>{{ .Title }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        {{ range .Pages }}
+</span></span><span class="line"><span class="cl">            {{ .Render &#34;summary&#34;}}
+</span></span><span class="line"><span class="cl">        {{ end }}
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span></span></span></code></pre></td></tr></table>
 </div>
 </div>
 <h2 id="4-instagram">4 instagram</h2>
@@ -259,11 +258,11 @@ shortcode 是一个简单代码段, 可以生成合理的 HTML 代码, 并且符
 <p>一个 <code>instagram</code> 示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-markdown" data-lang="markdown">{{<span class="p">&lt;</span> <span class="nt">instagram</span> <span class="na">BWNjjyYFxVx</span> <span class="na">hidecaption</span> <span class="p">&gt;</span>}}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">instagram</span> <span class="na">BWNjjyYFxVx</span> <span class="na">hidecaption</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>呈现的输出效果如下:</p>
 <!--\{\{< instagram BWNjjyYFxVx hidecaption >\}\}-->
@@ -272,11 +271,11 @@ shortcode 是一个简单代码段, 可以生成合理的 HTML 代码, 并且符
 <p>一个 <code>param</code> 示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-markdown" data-lang="markdown">{{<span class="p">&lt;</span> <span class="nt">param</span> <span class="na">description</span> <span class="p">&gt;</span>}}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">param</span> <span class="na">description</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>呈现的输出效果如下:</p>
 Hugo 提供了多个内置的 Shortcodes, 以方便作者保持 Markdown 内容的整洁.
@@ -287,11 +286,11 @@ Hugo 提供了多个内置的 Shortcodes, 以方便作者保持 Markdown 内容�
 <p>一个 <code>tweet</code> 示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-markdown" data-lang="markdown">{{<span class="p">&lt;</span> <span class="nt">tweet</span> <span class="na">877500564405444608</span> <span class="p">&gt;</span>}}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">tweet</span> <span class="na">877500564405444608</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>呈现的输出效果如下:</p>
 <!--\{\{< tweet 877500564405444608 >\}\}-->
@@ -300,28 +299,28 @@ Hugo 提供了多个内置的 Shortcodes, 以方便作者保持 Markdown 内容�
 <p>一个 <code>vimeo</code> 示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-markdown" data-lang="markdown">{{<span class="p">&lt;</span> <span class="nt">vimeo</span> <span class="na">146022717</span> <span class="p">&gt;</span>}}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">vimeo</span> <span class="na">146022717</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>呈现的输出效果如下:</p>
 
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe src="https://player.vimeo.com/video/146022717" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="vimeo video" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
- </div>
+</div>
 
 <h2 id="9-youtube">9 youtube</h2>
 <p><a href="https://gohugo.io/content-management/shortcodes#youtube" target="_blank" rel="noopener noreffer"><code>youtube</code> 的文档</a></p>
 <p>一个 <code>youtube</code> 示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-markdown" data-lang="markdown">{{<span class="p">&lt;</span> <span class="nt">youtube</span> <span class="na">w7Ft2ymGmfc</span> <span class="p">&gt;</span>}}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">youtube</span> <span class="na">w7Ft2ymGmfc</span> <span class="p">&gt;</span>}}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>呈现的输出效果如下:</p>
 
@@ -358,7 +357,7 @@ Hugo 提供了多个内置的 Shortcodes, 以方便作者保持 Markdown 内容�
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

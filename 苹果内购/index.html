@@ -8,10 +8,10 @@
         <title>苹果内购 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="苹果内购" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/%E8%8B%B9%E6%9E%9C%E5%86%85%E8%B4%AD/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/%E8%8B%B9%E6%9E%9C%E5%86%85%E8%B4%AD/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/%E8%8B%B9%E6%9E%9C%E5%86%85%E8%B4%AD\/"
-        },"genre": "posts","keywords": "Unity, IOS","wordcount":  5276 ,
+        },"genre": "posts","keywords": "Unity, IOS","wordcount":  5270 ,
         "url": "https:\/\/codingriver.github.io\/%E8%8B%B9%E6%9E%9C%E5%86%85%E8%B4%AD\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">苹果内购</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5276 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5270 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/%E8%8B%B9%E6%9E%9C%E5%86%85%E8%B4%AD/" class="leancloud_visitors" data-flag-title="苹果内购">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -122,7 +122,7 @@
 <p>直接上代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -154,49 +154,45 @@
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//
-//  PurchaseSDK.h
-//  Unity-iPhone
-//
-//  Created by wang guo qing on 2017/3/24.
-//
-//
-#import &lt;Foundation/Foundation.h&gt;
-#import &#34;StoreKit/StoreKit.h&#34;
-@protocol IAPPayResult &lt;NSObject&gt;
--(void)OnPayResult:(NSString*)res;
-@end
-
-@interface PurchaseSDK : NSObject &lt;SKProductsRequestDelegate, SKPaymentTransactionObserver&gt;
-
-+(instancetype) Instance;
-
-@property double SystemVersion;
-@property (retain)id&lt;IAPPayResult&gt; PayResultObj;
-@property (nonatomic, retain)NSMutableDictionary* TransactionDict;
-
--(void)Init:(id&lt;IAPPayResult&gt;)obj;
-
--(void)BuyProduct:(NSString * )productId Quantity:(NSInteger)quantity SignId:(NSString * )signId;
-
--(void)FinishTransaction:(NSString*)transactionIdentifier;
-
--(void)BuyProductBySKProductsRequest:(NSString * )productId;
-
-- (void)provideContentWithTransaction:(SKPaymentTransaction *)transaction;
-
-@end
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//
+</span></span><span class="line"><span class="cl">//  PurchaseSDK.h
+</span></span><span class="line"><span class="cl">//  Unity-iPhone
+</span></span><span class="line"><span class="cl">//
+</span></span><span class="line"><span class="cl">//  Created by wang guo qing on 2017/3/24.
+</span></span><span class="line"><span class="cl">//
+</span></span><span class="line"><span class="cl">//
+</span></span><span class="line"><span class="cl">#import &lt;Foundation/Foundation.h&gt;
+</span></span><span class="line"><span class="cl">#import &#34;StoreKit/StoreKit.h&#34;
+</span></span><span class="line"><span class="cl">@protocol IAPPayResult &lt;NSObject&gt;
+</span></span><span class="line"><span class="cl">-(void)OnPayResult:(NSString*)res;
+</span></span><span class="line"><span class="cl">@end
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@interface PurchaseSDK : NSObject &lt;SKProductsRequestDelegate, SKPaymentTransactionObserver&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+(instancetype) Instance;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@property double SystemVersion;
+</span></span><span class="line"><span class="cl">@property (retain)id&lt;IAPPayResult&gt; PayResultObj;
+</span></span><span class="line"><span class="cl">@property (nonatomic, retain)NSMutableDictionary* TransactionDict;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-(void)Init:(id&lt;IAPPayResult&gt;)obj;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-(void)BuyProduct:(NSString * )productId Quantity:(NSInteger)quantity SignId:(NSString * )signId;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-(void)FinishTransaction:(NSString*)transactionIdentifier;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-(void)BuyProductBySKProductsRequest:(NSString * )productId;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- (void)provideContentWithTransaction:(SKPaymentTransaction *)transaction;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@end
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -521,340 +517,338 @@
 </span><span class="lnt">323
 </span><span class="lnt">324
 </span><span class="lnt">325
-</span><span class="lnt">326
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//
-//  PurchaseSDK.m
-//  Unity-iPhone
-//
-//  Created by wang guo qing on 2017/3/24.
-//
-//
-
-#import &lt;Foundation/Foundation.h&gt;
-#import &#34;PurchaseSDK.h&#34;
-
-@implementation PurchaseSDK
-
-static PurchaseSDK*instance=nil;
-
-+(instancetype) Instance{
-    
-    static dispatch_once_t onceToken=0;
-    dispatch_once(&amp;onceToken,^{
-        instance=[[PurchaseSDK alloc] init];
-        NSLog(@&#34;PurchaseSDK Instance alloc!!!!&#34;);
-    });
-    return instance;
-}
-
--(void)Init:(id&lt;IAPPayResult&gt;)obj{
-    self.PayResultObj=obj;
-    self.TransactionDict=[[NSMutableDictionary alloc] init];
-    NSString *version=[UIDevice currentDevice].systemVersion;
-    NSLog(@&#34;系统版本号：%@&#34;,version);
-    _SystemVersion=[[UIDevice currentDevice] systemVersion].floatValue;
-    //NSLog(@&#34;系统版本号：%f&#34;,_SystemVersion);
-    //注册观察者
-//    NSLog(@&#34;Purchase obj::%@&#34;,self);
-    [[SKPaymentQueue defaultQueue]addTransactionObserver:self];
-    
-    //获取购买过所有的非消耗商品
-    //[[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-}
-
-//使用商品查询会有bug，当查询时断网，回调方法productsRequest始终不会被调用，网络恢复后也不会被调用；在上一种情况操作的基础上网络恢复后再次查询商品也不会有回调，大约5-10分钟后再次查询商品才有回调
--(void)BuyProductBySKProductsRequest:(NSString * )productId
-{
-    
-    if([SKPaymentQueue canMakePayments])
-    {
-        NSLog(@&#34;---------查询商品请求------------&#34;);
-        //请求商品信息
-        NSSet* dataSet = [[NSSet alloc] initWithObjects:productId, nil];
-        SKProductsRequest* request = [[SKProductsRequest alloc] initWithProductIdentifiers:dataSet];
-        request.delegate = self;
-        [request start];
-    }
-    else
-    {
-        NSLog(@&#34;应用内不允许购买！&#34;);
-    }
-}
-// 请求商品信息回调，商品信息
-- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
-    NSLog(@&#34;productsRequest=======&#34;);
-    NSArray * products = response.products;
-    NSLog(@&#34;产品Product count:%d&#34;,(int)response.invalidProductIdentifiers.count);
-    NSLog(@&#34;产品付费数量: %d&#34;, (int)[products count]);
-    for(SKProduct *product in products){
-        NSLog(@&#34;SKProduct 描述信息%@&#34;, [product description]);
-        NSLog(@&#34;产品标题 %@&#34; , product.localizedTitle);
-        NSLog(@&#34;产品描述信息: %@&#34; , product.localizedDescription);
-        NSLog(@&#34;价格: %@&#34; , product.price);
-        NSLog(@&#34;Product id: %@&#34; , product.productIdentifier);
-    }
-    if(products.count&gt;0)
-    {
-        SKPayment *payment = [SKPayment paymentWithProduct:products[0]];
-        NSLog(@&#34;Purchase obj::%@&#34;,self);
-        //payment.applicationUsername=;
-        //NSLog(@&#34;buyProduct::updatedTransactions,applicationUsername:%@&#34;,payment.applicationUsername);
-         NSLog(@&#34;---------发送商品信息请求------------&#34;);
-        if ([SKPaymentQueue defaultQueue]) {
-            [[SKPaymentQueue defaultQueue] addPayment:payment];
-        }
-    }
-    else
-    {
-        NSLog(@&#34;获取商品信息失败,连接AppStore失败，请稍后再试,或则商品不存在!&#34;);
-    }
-    
-}
-
--(void)BuyProduct:(NSString * )productId  Quantity:(NSInteger)quantity SignId:(NSString * )signId
-{
-    
-    if([SKPaymentQueue canMakePayments])
-    {
-//        NSLog(@&#34;Purchase obj::%@&#34;,self);
-        NSLog(@&#34;---------发送购买请求------------&#34;);
-        //请求商品信息
-        SKMutablePayment *payment = [[SKMutablePayment alloc] init];
-        payment.productIdentifier=productId;
-        payment.quantity=quantity;
-        payment.applicationUsername=signId;
-        if ([SKPaymentQueue defaultQueue]) {
-            [[SKPaymentQueue defaultQueue] addPayment:payment];
-        }
-    }
-    else
-    {
-        NSLog(@&#34;游戏内不允许购买！&#34;);
-        //self.PayCallBack(@&#34;-10&#34;);
-        //UnitySendMessage([_ObjName UTF8String],[_FailCall UTF8String],[@&#34;游戏内不允许购买!&#34; UTF8String]);
-    }
-}
-
-
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray&lt;SKPaymentTransaction *&gt; *)transactions
-{
-    for (SKPaymentTransaction *transaction in transactions)
-    {
-
-        switch (transaction.transactionState)
-        {
-            case SKPaymentTransactionStatePurchasing:
-                NSLog(@&#34;paymentQueue::updatedTransactions,SKPaymentTransactionStatePurchasing&#34;);
-                break;
-            case SKPaymentTransactionStatePurchased:
-                NSLog(@&#34;paymentQueue::updatedTransactions,SKPaymentTransactionStatePurchased&#34;);
-                [self completeTransaction:transaction];
-                break;
-            case SKPaymentTransactionStateFailed:
-                NSLog(@&#34;paymentQueue::updatedTransactions,SKPaymentTransactionStateFailed&#34;);
-                [self failedTransaction:transaction];
-                break;
-            case SKPaymentTransactionStateRestored:
-                NSLog(@&#34;paymentQueue::updatedTransactions,SKPaymentTransactionStateRestored&#34;);
-                [self restoreTransaction:transaction];
-            //case SKPaymentTransactionStateDeferred:
-              //  NSLog(@&#34;paymentQueue::updatedTransactions,SKPaymentTransactionStateDeferred&#34;);
-            default:
-                NSLog(@&#34;paymentQueue::updatedTransactions,default null error&#34;);
-                //UnitySendMessage([_ObjName UTF8String],[_FailCall UTF8String],[@&#34;购买失败!&#34; UTF8String]);
-                //_PayCallBack(@&#34;-9&#34;);
-                break;
-        }
-    }
-}
-
-//购买成功
-- (void)completeTransaction:(SKPaymentTransaction *)transaction {
-    
-    //获取receipt
-    //NSString* receipt=@&#34;&#34;;
-    NSString*base64Receipt=@&#34;&#34;;
-    //NSLog(@&#34;completeTransaction productId::%@&#34;,transaction.payment.productIdentifier);
-    //% if(_SystemVersion&gt;=8.0)
-    //% {
-    //    % //NSURLRequest*request=[NSURLRequest requestWithURL:[[NSBundle mainBundle]appStoreReceiptURL]];
-    //    % //NSError*error=nil;
-    //    % //NSData * receiptData=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&amp;error ];
-    //    
-    //    
-    //    % // appStoreReceiptURL iOS7.0增加的，购买交易完成后，会将凭据存放在该地址
-    //    % NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-    //    % // 从沙盒中获取到购买凭据
-    //    % NSData *receiptData = [NSData dataWithContentsOfURL:receiptURL];
-    //    % //receipt=[[NSString alloc] initWithData:receiptData encoding:NSASCIIStringEncoding];
-    //    % base64Receipt=[[NSString alloc] initWithData:[receiptData base64EncodedDataWithOptions:NSDataBase64EncodingEndLineWithLineFeed] encoding:NSUTF8StringEncoding];
-    //% }
-    //% else
-    //% {
-    //    % //receipt=[[NSString alloc] initWithData:[transaction transactionReceipt] encoding:NSUTF8StringEncoding];
-    //    % base64Receipt=[[NSString alloc] initWithData:[[transaction transactionReceipt]  base64EncodedDataWithOptions:NSDataBase64EncodingEndLineWithLineFeed] encoding:NSUTF8StringEncoding];
-    //% }
-        NSString *temptransactionReceipt  = [[NSString alloc] initWithData:[transaction transactionReceipt] encoding:NSUTF8StringEncoding];
-        temptransactionReceipt =  [temptransactionReceipt stringByReplacingOccurrencesOfString:@&#34;+&#34; withString:@&#34;%2B&#34;];
-        NSLog(@&#34;temptransactionReceipt =%@&#34;,temptransactionReceipt);
-        
-        NSString *receipt = [transaction.transactionReceipt base64Encoding];
-    //NSLog(@&#34;completeTransaction Receipt::%@&#34;,receipt);
-    NSLog(@&#34;购买成功::transactionIdentifier:%@,applicationUsername:%@, quantity::%d&#34;,transaction.transactionIdentifier,transaction.payment.applicationUsername,(int)transaction.payment.quantity);
-
-    
-    //缓存当前订单数据，直到业务层将订单处理完成才通知appstore该订单已经成功处理；不通知则认为该订单未完成，在下次打开应用的时候appstore重新下发未完成的订单
-    NSString* identifier=transaction.transactionIdentifier;
-    NSLog(@&#34;%@&#34;,identifier);
-    [self.TransactionDict setObject:transaction forKey:identifier];
-    //回调unity
-	NSString* userName=transaction.payment.applicationUsername;
-	if(userName==nil)
-	{
-		userName=@&#34;&#34;;
-	}
-    NSString* res=@&#34;&#34;;
-    //res=[res stringByAppendingFormat:@&#34;%@,%@,%d,%@,%@&#34;, transaction.transactionIdentifier,transaction.payment.productIdentifier,(int)transaction.payment.quantity,userName,base64Receipt];
-    //UnitySendMessage([_ObjName UTF8String],[_SuccCall UTF8String],[res UTF8String]);
-    res=[res stringByAppendingFormat:@&#34;0|%@|%@|%@&#34;, transaction.transactionIdentifier,receipt,userName];
-    [self.PayResultObj OnPayResult:res];
-
-}
-
-//通知appstore该订单已经成功处理,不通知则appstore认为该订单未完成，在下次打开应用的时候appstore重新下发未完成的订单
--(void)FinishTransaction:(NSString*)transactionIdentifier
-{
-    SKPaymentTransaction* transaction=[_TransactionDict objectForKey:transactionIdentifier];
-    if(transaction!=nil)
-    {
-        if ([SKPaymentQueue defaultQueue]) {
-            [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-        }
-        
-        [_TransactionDict removeObjectForKey:transactionIdentifier];
-    }
-}
-
-//购买失败
-- (void)failedTransaction:(SKPaymentTransaction *)transaction {
-    
-    NSString* errStr=@&#34;&#34;;
-	NSString* err=@&#34;-1&#34;;
-    if (transaction.error.code == SKErrorPaymentCancelled) {
-        NSLog(@&#34;SKErrorPaymentCancelled&#34;);
-        errStr=@&#34;SKErrorPaymentCancelled&#34;;
-		err=@&#34;-2&#34;;
-    }else if (transaction.error.code == SKErrorClientInvalid) {
-        NSLog(@&#34;SKErrorClientInvalid&#34;);
-        errStr=@&#34;SKErrorClientInvalid&#34;;
-		err=@&#34;-3&#34;;
-    }else if (transaction.error.code == SKErrorPaymentInvalid) {
-        NSLog(@&#34;SKErrorPaymentInvalid&#34;);
-        errStr=@&#34;SKErrorPaymentInvalid&#34;;
-		err=@&#34;-4&#34;;
-    }else if (transaction.error.code == SKErrorPaymentNotAllowed) {
-        NSLog(@&#34;SKErrorPaymentNotAllowed&#34;);
-        errStr=@&#34;SKErrorPaymentNotAllowed&#34;;
-		err=@&#34;-5&#34;;
-    }else if (transaction.error.code == SKErrorStoreProductNotAvailable) {
-        NSLog(@&#34;SKErrorStoreProductNotAvailable&#34;);
-        errStr=@&#34;SKErrorStoreProductNotAvailable&#34;;
-		err=@&#34;-6&#34;;
-    }else{
-        //商品不存在，支付中断网，支付中应用被切到后台自动终止支付
-        errStr=@&#34;支付失败!!!&#34;;
-    }
-		  NSLog(@&#34;SKPaymentTransactionStateFailed：%@&#34;,transaction.error.description);
-    if ([SKPaymentQueue defaultQueue]) {
-        [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-    }
-	NSString*res=@&#34;&#34;;
-	res=[res stringByAppendingFormat:@&#34;%@|%@&#34;, err,errStr];
-	[self.PayResultObj OnPayResult:res];
-    //UnitySendMessage([_ObjName UTF8String],[_FailCall UTF8String],[errStr UTF8String]);
-}
-
-
-//恢复购买
-- (void)restoreTransaction:(SKPaymentTransaction *)transaction {
-    NSLog(@&#34;------恢复购买-----------&#34;);
-    //[self provideContentWithTransaction:transaction];
-    
-    if ([SKPaymentQueue defaultQueue]) {
-        [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-        
-        
-    }
-    
-}
-- (void)provideContentWithTransaction:(SKPaymentTransaction *)transaction {
-    
-    NSString* productIdentifier = @&#34;&#34;;
-    
-    if (transaction.originalTransaction) {
-        productIdentifier = transaction.originalTransaction.payment.productIdentifier;
-    }
-    else {
-        productIdentifier = transaction.payment.productIdentifier;
-    }
-    
-    //check productIdentifier exist or not
-    //it can be possible nil
-    if (productIdentifier) {
-        //[SFHFKeychainUtils storeUsername:productIdentifier andPassword:@&#34;YES&#34; forServiceName:@&#34;IAPHelper&#34; updateExisting:YES error:nil];
-        //[_purchasedProducts addObject:productIdentifier];
-    }
-}
-
-// Sent when transactions are removed from the queue (via finishTransaction:).
-- (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray&lt;SKPaymentTransaction *&gt; *)transactions
-{
-    
-}
-// Sent when an error is encountered while adding transactions from the user&#39;s purchase history back to the queue.
-- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
-{
-    
-    NSLog(@&#34;支付失败：%d,%@&#34;,(int)error.code,error.localizedDescription);
-}
-// Sent when all transactions from the user&#39;s purchase history have successfully been added back to the queue.
-- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
-{
-    NSLog(@&#34;已购买商品数量：%i&#34;,(int)queue.transactions.count);
-    for (SKPaymentTransaction*transaction in queue.transactions) {
-        NSString*productId=transaction.payment.productIdentifier;
-        NSString*transactionId=transaction.transactionIdentifier;
-        NSLog(@&#34;已购买商品,id:%@,productId:%@&#34;,transactionId,productId);
-    }
-}
-
-// Sent when the download state has changed.
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray&lt;SKDownload *&gt; *)downloads
-{
-    
-}
-
-
-- (void)dealloc
-{
-//    NSLog(@&#34;PurchaseSDK dealloc!!!!&#34;);
-//    [super dealloc];
-    if ([SKPaymentQueue defaultQueue]) {
-        [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
-    }
-}
-
-
-
-@end
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//
+</span></span><span class="line"><span class="cl">//  PurchaseSDK.m
+</span></span><span class="line"><span class="cl">//  Unity-iPhone
+</span></span><span class="line"><span class="cl">//
+</span></span><span class="line"><span class="cl">//  Created by wang guo qing on 2017/3/24.
+</span></span><span class="line"><span class="cl">//
+</span></span><span class="line"><span class="cl">//
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#import &lt;Foundation/Foundation.h&gt;
+</span></span><span class="line"><span class="cl">#import &#34;PurchaseSDK.h&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@implementation PurchaseSDK
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">static PurchaseSDK*instance=nil;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+(instancetype) Instance{
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    static dispatch_once_t onceToken=0;
+</span></span><span class="line"><span class="cl">    dispatch_once(&amp;onceToken,^{
+</span></span><span class="line"><span class="cl">        instance=[[PurchaseSDK alloc] init];
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;PurchaseSDK Instance alloc!!!!&#34;);
+</span></span><span class="line"><span class="cl">    });
+</span></span><span class="line"><span class="cl">    return instance;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-(void)Init:(id&lt;IAPPayResult&gt;)obj{
+</span></span><span class="line"><span class="cl">    self.PayResultObj=obj;
+</span></span><span class="line"><span class="cl">    self.TransactionDict=[[NSMutableDictionary alloc] init];
+</span></span><span class="line"><span class="cl">    NSString *version=[UIDevice currentDevice].systemVersion;
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;系统版本号：%@&#34;,version);
+</span></span><span class="line"><span class="cl">    _SystemVersion=[[UIDevice currentDevice] systemVersion].floatValue;
+</span></span><span class="line"><span class="cl">    //NSLog(@&#34;系统版本号：%f&#34;,_SystemVersion);
+</span></span><span class="line"><span class="cl">    //注册观察者
+</span></span><span class="line"><span class="cl">//    NSLog(@&#34;Purchase obj::%@&#34;,self);
+</span></span><span class="line"><span class="cl">    [[SKPaymentQueue defaultQueue]addTransactionObserver:self];
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    //获取购买过所有的非消耗商品
+</span></span><span class="line"><span class="cl">    //[[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//使用商品查询会有bug，当查询时断网，回调方法productsRequest始终不会被调用，网络恢复后也不会被调用；在上一种情况操作的基础上网络恢复后再次查询商品也不会有回调，大约5-10分钟后再次查询商品才有回调
+</span></span><span class="line"><span class="cl">-(void)BuyProductBySKProductsRequest:(NSString * )productId
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    if([SKPaymentQueue canMakePayments])
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;---------查询商品请求------------&#34;);
+</span></span><span class="line"><span class="cl">        //请求商品信息
+</span></span><span class="line"><span class="cl">        NSSet* dataSet = [[NSSet alloc] initWithObjects:productId, nil];
+</span></span><span class="line"><span class="cl">        SKProductsRequest* request = [[SKProductsRequest alloc] initWithProductIdentifiers:dataSet];
+</span></span><span class="line"><span class="cl">        request.delegate = self;
+</span></span><span class="line"><span class="cl">        [request start];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    else
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;应用内不允许购买！&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">// 请求商品信息回调，商品信息
+</span></span><span class="line"><span class="cl">- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;productsRequest=======&#34;);
+</span></span><span class="line"><span class="cl">    NSArray * products = response.products;
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;产品Product count:%d&#34;,(int)response.invalidProductIdentifiers.count);
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;产品付费数量: %d&#34;, (int)[products count]);
+</span></span><span class="line"><span class="cl">    for(SKProduct *product in products){
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;SKProduct 描述信息%@&#34;, [product description]);
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;产品标题 %@&#34; , product.localizedTitle);
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;产品描述信息: %@&#34; , product.localizedDescription);
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;价格: %@&#34; , product.price);
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;Product id: %@&#34; , product.productIdentifier);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    if(products.count&gt;0)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        SKPayment *payment = [SKPayment paymentWithProduct:products[0]];
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;Purchase obj::%@&#34;,self);
+</span></span><span class="line"><span class="cl">        //payment.applicationUsername=;
+</span></span><span class="line"><span class="cl">        //NSLog(@&#34;buyProduct::updatedTransactions,applicationUsername:%@&#34;,payment.applicationUsername);
+</span></span><span class="line"><span class="cl">         NSLog(@&#34;---------发送商品信息请求------------&#34;);
+</span></span><span class="line"><span class="cl">        if ([SKPaymentQueue defaultQueue]) {
+</span></span><span class="line"><span class="cl">            [[SKPaymentQueue defaultQueue] addPayment:payment];
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    else
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;获取商品信息失败,连接AppStore失败，请稍后再试,或则商品不存在!&#34;);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-(void)BuyProduct:(NSString * )productId  Quantity:(NSInteger)quantity SignId:(NSString * )signId
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    if([SKPaymentQueue canMakePayments])
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">//        NSLog(@&#34;Purchase obj::%@&#34;,self);
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;---------发送购买请求------------&#34;);
+</span></span><span class="line"><span class="cl">        //请求商品信息
+</span></span><span class="line"><span class="cl">        SKMutablePayment *payment = [[SKMutablePayment alloc] init];
+</span></span><span class="line"><span class="cl">        payment.productIdentifier=productId;
+</span></span><span class="line"><span class="cl">        payment.quantity=quantity;
+</span></span><span class="line"><span class="cl">        payment.applicationUsername=signId;
+</span></span><span class="line"><span class="cl">        if ([SKPaymentQueue defaultQueue]) {
+</span></span><span class="line"><span class="cl">            [[SKPaymentQueue defaultQueue] addPayment:payment];
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    else
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;游戏内不允许购买！&#34;);
+</span></span><span class="line"><span class="cl">        //self.PayCallBack(@&#34;-10&#34;);
+</span></span><span class="line"><span class="cl">        //UnitySendMessage([_ObjName UTF8String],[_FailCall UTF8String],[@&#34;游戏内不允许购买!&#34; UTF8String]);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray&lt;SKPaymentTransaction *&gt; *)transactions
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    for (SKPaymentTransaction *transaction in transactions)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        switch (transaction.transactionState)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            case SKPaymentTransactionStatePurchasing:
+</span></span><span class="line"><span class="cl">                NSLog(@&#34;paymentQueue::updatedTransactions,SKPaymentTransactionStatePurchasing&#34;);
+</span></span><span class="line"><span class="cl">                break;
+</span></span><span class="line"><span class="cl">            case SKPaymentTransactionStatePurchased:
+</span></span><span class="line"><span class="cl">                NSLog(@&#34;paymentQueue::updatedTransactions,SKPaymentTransactionStatePurchased&#34;);
+</span></span><span class="line"><span class="cl">                [self completeTransaction:transaction];
+</span></span><span class="line"><span class="cl">                break;
+</span></span><span class="line"><span class="cl">            case SKPaymentTransactionStateFailed:
+</span></span><span class="line"><span class="cl">                NSLog(@&#34;paymentQueue::updatedTransactions,SKPaymentTransactionStateFailed&#34;);
+</span></span><span class="line"><span class="cl">                [self failedTransaction:transaction];
+</span></span><span class="line"><span class="cl">                break;
+</span></span><span class="line"><span class="cl">            case SKPaymentTransactionStateRestored:
+</span></span><span class="line"><span class="cl">                NSLog(@&#34;paymentQueue::updatedTransactions,SKPaymentTransactionStateRestored&#34;);
+</span></span><span class="line"><span class="cl">                [self restoreTransaction:transaction];
+</span></span><span class="line"><span class="cl">            //case SKPaymentTransactionStateDeferred:
+</span></span><span class="line"><span class="cl">              //  NSLog(@&#34;paymentQueue::updatedTransactions,SKPaymentTransactionStateDeferred&#34;);
+</span></span><span class="line"><span class="cl">            default:
+</span></span><span class="line"><span class="cl">                NSLog(@&#34;paymentQueue::updatedTransactions,default null error&#34;);
+</span></span><span class="line"><span class="cl">                //UnitySendMessage([_ObjName UTF8String],[_FailCall UTF8String],[@&#34;购买失败!&#34; UTF8String]);
+</span></span><span class="line"><span class="cl">                //_PayCallBack(@&#34;-9&#34;);
+</span></span><span class="line"><span class="cl">                break;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//购买成功
+</span></span><span class="line"><span class="cl">- (void)completeTransaction:(SKPaymentTransaction *)transaction {
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    //获取receipt
+</span></span><span class="line"><span class="cl">    //NSString* receipt=@&#34;&#34;;
+</span></span><span class="line"><span class="cl">    NSString*base64Receipt=@&#34;&#34;;
+</span></span><span class="line"><span class="cl">    //NSLog(@&#34;completeTransaction productId::%@&#34;,transaction.payment.productIdentifier);
+</span></span><span class="line"><span class="cl">    //% if(_SystemVersion&gt;=8.0)
+</span></span><span class="line"><span class="cl">    //% {
+</span></span><span class="line"><span class="cl">    //    % //NSURLRequest*request=[NSURLRequest requestWithURL:[[NSBundle mainBundle]appStoreReceiptURL]];
+</span></span><span class="line"><span class="cl">    //    % //NSError*error=nil;
+</span></span><span class="line"><span class="cl">    //    % //NSData * receiptData=[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&amp;error ];
+</span></span><span class="line"><span class="cl">    //    
+</span></span><span class="line"><span class="cl">    //    
+</span></span><span class="line"><span class="cl">    //    % // appStoreReceiptURL iOS7.0增加的，购买交易完成后，会将凭据存放在该地址
+</span></span><span class="line"><span class="cl">    //    % NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+</span></span><span class="line"><span class="cl">    //    % // 从沙盒中获取到购买凭据
+</span></span><span class="line"><span class="cl">    //    % NSData *receiptData = [NSData dataWithContentsOfURL:receiptURL];
+</span></span><span class="line"><span class="cl">    //    % //receipt=[[NSString alloc] initWithData:receiptData encoding:NSASCIIStringEncoding];
+</span></span><span class="line"><span class="cl">    //    % base64Receipt=[[NSString alloc] initWithData:[receiptData base64EncodedDataWithOptions:NSDataBase64EncodingEndLineWithLineFeed] encoding:NSUTF8StringEncoding];
+</span></span><span class="line"><span class="cl">    //% }
+</span></span><span class="line"><span class="cl">    //% else
+</span></span><span class="line"><span class="cl">    //% {
+</span></span><span class="line"><span class="cl">    //    % //receipt=[[NSString alloc] initWithData:[transaction transactionReceipt] encoding:NSUTF8StringEncoding];
+</span></span><span class="line"><span class="cl">    //    % base64Receipt=[[NSString alloc] initWithData:[[transaction transactionReceipt]  base64EncodedDataWithOptions:NSDataBase64EncodingEndLineWithLineFeed] encoding:NSUTF8StringEncoding];
+</span></span><span class="line"><span class="cl">    //% }
+</span></span><span class="line"><span class="cl">        NSString *temptransactionReceipt  = [[NSString alloc] initWithData:[transaction transactionReceipt] encoding:NSUTF8StringEncoding];
+</span></span><span class="line"><span class="cl">        temptransactionReceipt =  [temptransactionReceipt stringByReplacingOccurrencesOfString:@&#34;+&#34; withString:@&#34;%2B&#34;];
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;temptransactionReceipt =%@&#34;,temptransactionReceipt);
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        NSString *receipt = [transaction.transactionReceipt base64Encoding];
+</span></span><span class="line"><span class="cl">    //NSLog(@&#34;completeTransaction Receipt::%@&#34;,receipt);
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;购买成功::transactionIdentifier:%@,applicationUsername:%@, quantity::%d&#34;,transaction.transactionIdentifier,transaction.payment.applicationUsername,(int)transaction.payment.quantity);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    //缓存当前订单数据，直到业务层将订单处理完成才通知appstore该订单已经成功处理；不通知则认为该订单未完成，在下次打开应用的时候appstore重新下发未完成的订单
+</span></span><span class="line"><span class="cl">    NSString* identifier=transaction.transactionIdentifier;
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;%@&#34;,identifier);
+</span></span><span class="line"><span class="cl">    [self.TransactionDict setObject:transaction forKey:identifier];
+</span></span><span class="line"><span class="cl">    //回调unity
+</span></span><span class="line"><span class="cl">	NSString* userName=transaction.payment.applicationUsername;
+</span></span><span class="line"><span class="cl">	if(userName==nil)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		userName=@&#34;&#34;;
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">    NSString* res=@&#34;&#34;;
+</span></span><span class="line"><span class="cl">    //res=[res stringByAppendingFormat:@&#34;%@,%@,%d,%@,%@&#34;, transaction.transactionIdentifier,transaction.payment.productIdentifier,(int)transaction.payment.quantity,userName,base64Receipt];
+</span></span><span class="line"><span class="cl">    //UnitySendMessage([_ObjName UTF8String],[_SuccCall UTF8String],[res UTF8String]);
+</span></span><span class="line"><span class="cl">    res=[res stringByAppendingFormat:@&#34;0|%@|%@|%@&#34;, transaction.transactionIdentifier,receipt,userName];
+</span></span><span class="line"><span class="cl">    [self.PayResultObj OnPayResult:res];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//通知appstore该订单已经成功处理,不通知则appstore认为该订单未完成，在下次打开应用的时候appstore重新下发未完成的订单
+</span></span><span class="line"><span class="cl">-(void)FinishTransaction:(NSString*)transactionIdentifier
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    SKPaymentTransaction* transaction=[_TransactionDict objectForKey:transactionIdentifier];
+</span></span><span class="line"><span class="cl">    if(transaction!=nil)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        if ([SKPaymentQueue defaultQueue]) {
+</span></span><span class="line"><span class="cl">            [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        [_TransactionDict removeObjectForKey:transactionIdentifier];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//购买失败
+</span></span><span class="line"><span class="cl">- (void)failedTransaction:(SKPaymentTransaction *)transaction {
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    NSString* errStr=@&#34;&#34;;
+</span></span><span class="line"><span class="cl">	NSString* err=@&#34;-1&#34;;
+</span></span><span class="line"><span class="cl">    if (transaction.error.code == SKErrorPaymentCancelled) {
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;SKErrorPaymentCancelled&#34;);
+</span></span><span class="line"><span class="cl">        errStr=@&#34;SKErrorPaymentCancelled&#34;;
+</span></span><span class="line"><span class="cl">		err=@&#34;-2&#34;;
+</span></span><span class="line"><span class="cl">    }else if (transaction.error.code == SKErrorClientInvalid) {
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;SKErrorClientInvalid&#34;);
+</span></span><span class="line"><span class="cl">        errStr=@&#34;SKErrorClientInvalid&#34;;
+</span></span><span class="line"><span class="cl">		err=@&#34;-3&#34;;
+</span></span><span class="line"><span class="cl">    }else if (transaction.error.code == SKErrorPaymentInvalid) {
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;SKErrorPaymentInvalid&#34;);
+</span></span><span class="line"><span class="cl">        errStr=@&#34;SKErrorPaymentInvalid&#34;;
+</span></span><span class="line"><span class="cl">		err=@&#34;-4&#34;;
+</span></span><span class="line"><span class="cl">    }else if (transaction.error.code == SKErrorPaymentNotAllowed) {
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;SKErrorPaymentNotAllowed&#34;);
+</span></span><span class="line"><span class="cl">        errStr=@&#34;SKErrorPaymentNotAllowed&#34;;
+</span></span><span class="line"><span class="cl">		err=@&#34;-5&#34;;
+</span></span><span class="line"><span class="cl">    }else if (transaction.error.code == SKErrorStoreProductNotAvailable) {
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;SKErrorStoreProductNotAvailable&#34;);
+</span></span><span class="line"><span class="cl">        errStr=@&#34;SKErrorStoreProductNotAvailable&#34;;
+</span></span><span class="line"><span class="cl">		err=@&#34;-6&#34;;
+</span></span><span class="line"><span class="cl">    }else{
+</span></span><span class="line"><span class="cl">        //商品不存在，支付中断网，支付中应用被切到后台自动终止支付
+</span></span><span class="line"><span class="cl">        errStr=@&#34;支付失败!!!&#34;;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">		  NSLog(@&#34;SKPaymentTransactionStateFailed：%@&#34;,transaction.error.description);
+</span></span><span class="line"><span class="cl">    if ([SKPaymentQueue defaultQueue]) {
+</span></span><span class="line"><span class="cl">        [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">	NSString*res=@&#34;&#34;;
+</span></span><span class="line"><span class="cl">	res=[res stringByAppendingFormat:@&#34;%@|%@&#34;, err,errStr];
+</span></span><span class="line"><span class="cl">	[self.PayResultObj OnPayResult:res];
+</span></span><span class="line"><span class="cl">    //UnitySendMessage([_ObjName UTF8String],[_FailCall UTF8String],[errStr UTF8String]);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//恢复购买
+</span></span><span class="line"><span class="cl">- (void)restoreTransaction:(SKPaymentTransaction *)transaction {
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;------恢复购买-----------&#34;);
+</span></span><span class="line"><span class="cl">    //[self provideContentWithTransaction:transaction];
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    if ([SKPaymentQueue defaultQueue]) {
+</span></span><span class="line"><span class="cl">        [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">- (void)provideContentWithTransaction:(SKPaymentTransaction *)transaction {
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    NSString* productIdentifier = @&#34;&#34;;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    if (transaction.originalTransaction) {
+</span></span><span class="line"><span class="cl">        productIdentifier = transaction.originalTransaction.payment.productIdentifier;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    else {
+</span></span><span class="line"><span class="cl">        productIdentifier = transaction.payment.productIdentifier;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    //check productIdentifier exist or not
+</span></span><span class="line"><span class="cl">    //it can be possible nil
+</span></span><span class="line"><span class="cl">    if (productIdentifier) {
+</span></span><span class="line"><span class="cl">        //[SFHFKeychainUtils storeUsername:productIdentifier andPassword:@&#34;YES&#34; forServiceName:@&#34;IAPHelper&#34; updateExisting:YES error:nil];
+</span></span><span class="line"><span class="cl">        //[_purchasedProducts addObject:productIdentifier];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// Sent when transactions are removed from the queue (via finishTransaction:).
+</span></span><span class="line"><span class="cl">- (void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray&lt;SKPaymentTransaction *&gt; *)transactions
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">// Sent when an error is encountered while adding transactions from the user&#39;s purchase history back to the queue.
+</span></span><span class="line"><span class="cl">- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;支付失败：%d,%@&#34;,(int)error.code,error.localizedDescription);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">// Sent when all transactions from the user&#39;s purchase history have successfully been added back to the queue.
+</span></span><span class="line"><span class="cl">- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;已购买商品数量：%i&#34;,(int)queue.transactions.count);
+</span></span><span class="line"><span class="cl">    for (SKPaymentTransaction*transaction in queue.transactions) {
+</span></span><span class="line"><span class="cl">        NSString*productId=transaction.payment.productIdentifier;
+</span></span><span class="line"><span class="cl">        NSString*transactionId=transaction.transactionIdentifier;
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;已购买商品,id:%@,productId:%@&#34;,transactionId,productId);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// Sent when the download state has changed.
+</span></span><span class="line"><span class="cl">- (void)paymentQueue:(SKPaymentQueue *)queue updatedDownloads:(NSArray&lt;SKDownload *&gt; *)downloads
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- (void)dealloc
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">//    NSLog(@&#34;PurchaseSDK dealloc!!!!&#34;);
+</span></span><span class="line"><span class="cl">//    [super dealloc];
+</span></span><span class="line"><span class="cl">    if ([SKPaymentQueue defaultQueue]) {
+</span></span><span class="line"><span class="cl">        [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@end
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -873,34 +867,32 @@ static PurchaseSDK*instance=nil;
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
-</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//IosTools .h
-
-#import &lt;Foundation/Foundation.h&gt;
-#import &#34;PurchaseSDK.h&#34;
-#import &#34;UnityAppController.h&#34;
-
-
-@interface IosTools : NSObject&lt;IAPPayResult&gt;
-
-+ (instancetype)Instance;
--(void)IAPInit;
--(void) BuyProduct:(NSString*) productId userId:(NSString*)userId;
--(void) FinishTransaction:(NSString*) transactionIdentifier;
-- (BOOL) isWiFiEnabled;
-- (int)getWifiSignalStrength;
-- (NSString *)getNetworkType;
-- (NSString*)GetDeviceModelName;
-- (bool) IsIphoneX;
-@end
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//IosTools .h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#import &lt;Foundation/Foundation.h&gt;
+</span></span><span class="line"><span class="cl">#import &#34;PurchaseSDK.h&#34;
+</span></span><span class="line"><span class="cl">#import &#34;UnityAppController.h&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@interface IosTools : NSObject&lt;IAPPayResult&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+ (instancetype)Instance;
+</span></span><span class="line"><span class="cl">-(void)IAPInit;
+</span></span><span class="line"><span class="cl">-(void) BuyProduct:(NSString*) productId userId:(NSString*)userId;
+</span></span><span class="line"><span class="cl">-(void) FinishTransaction:(NSString*) transactionIdentifier;
+</span></span><span class="line"><span class="cl">- (BOOL) isWiFiEnabled;
+</span></span><span class="line"><span class="cl">- (int)getWifiSignalStrength;
+</span></span><span class="line"><span class="cl">- (NSString *)getNetworkType;
+</span></span><span class="line"><span class="cl">- (NSString*)GetDeviceModelName;
+</span></span><span class="line"><span class="cl">- (bool) IsIphoneX;
+</span></span><span class="line"><span class="cl">@end
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -1376,491 +1368,489 @@ static PurchaseSDK*instance=nil;
 </span><span class="lnt">474
 </span><span class="lnt">475
 </span><span class="lnt">476
-</span><span class="lnt">477
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">
-#import &#34;IosTools.h&#34;
-#import &lt;ifaddrs.h&gt;
-#import &lt;net/if.h&gt;
-#import &lt;sys/utsname.h&gt;
-//#define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
-
-//#define kSCREEN_WIDTH          ([UIScreen mainScreen].bounds.size.width)
-//#define kSCREEN_HEIGHT         ([UIScreen mainScreen].bounds.size.height)
-////iPhone X
-//#define iPhoneX     (kSCREEN_WIDTH == 375.f &amp;&amp; kSCREEN_HEIGHT == 812.f)
-
-#if defined (__cplusplus)
-extern &#34;C&#34; {
-#endif
-	//char*分配内存
-    char* StringCopy (const char* string)
-    {
-        
-        if (string == NULL)
-            return NULL;
-        
-        char* res = (char*)malloc(strlen(string) + 1);
-        
-        strcpy(res, string);
-        
-        return res;
-        
-    }
-
-char* GetImei ()
-{
-    NSLog(@&#34;GetImei&#34;);
-	NSString *uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    char* id=[uuid UTF8String];
-    
-    return StringCopy(id);
-}
-    //获取设备自定义名称
-char* GetDeviceName()
-    {
-        NSString *deviceName = [[UIDevice currentDevice] name];
-        NSLog(@&#34;GetDeviceName:::::::::::::::::::::::::::::::%@&#34;,deviceName);
-        return StringCopy([deviceName UTF8String]);
-    }
-float GetBatteryLevel  ()
-{
-    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
-	float batteryLevel = [[UIDevice currentDevice] batteryLevel];
-    return batteryLevel;
-}
-    // show toast
-    void ShowToastE(char*str)
-    {
-        NSString* content = [[NSString alloc] initWithUTF8String:str];
-        [[[ZFToast alloc] init] popUpToastWithMessage:content];
-    }
-    
-    
-//复制到剪贴板
-void SetClipboardE(char* str)
-{
-	NSString* content = [[NSString alloc] initWithUTF8String:str];
-	UIPasteboard*pasteboard = [UIPasteboard generalPasteboard];
-	pasteboard.string=content;
-	ShowToastE(&#34;复制成功&#34;);
-}
-
-
-
-//open url
-void OpenWebViewE(char*_url)
-{
-	NSString* url = [[NSString alloc] initWithUTF8String:_url];
-	[[UIApplication sharedApplication]openURL:[NSURL URLWithString:url]];
-}
-
-//获取wifi信号强度
- int GetWifiSignalStrength(){
-     if (![[IosTools Instance] isWiFiEnabled]) {
-         return 1;
-     }
-     
-     
-     NSLog(@&#34;GetDeviceName:::::::::::::::::::::::::::::::%@&#34;,[[IosTools Instance] GetDeviceModelName]);
-//     NSString *deviceName = [[UIDevice currentDevice] systemName];
-//     NSLog(@&#34;GetDeviceName:::::::::::::::::::::::::::::::%@&#34;,deviceName);
-//     NSLog(@&#34;phone height:%f&#34;,[[UIScreen mainScreen] fixedCoordinateSpace].bounds.size.height);
-     
-//     return [[IosTools Instance] getWifiSignalStrength];
-    UIApplication *app = [UIApplication sharedApplication];
-     NSLog(@&#34;app::::%@&#34;,app);
-     if(app==NULL)
-     {
-         return 0;
-     }
-     
-//    NSArray *subviews = [[[app valueForKey:@&#34;statusBar&#34;] valueForKey:@&#34;foregroundView&#34;] subviews];
-     NSArray *subviews = nil;
-     id statusBar = [[UIApplication sharedApplication] valueForKey:@&#34;statusBar&#34;];
-     if ([statusBar isKindOfClass:NSClassFromString(@&#34;UIStatusBar_Modern&#34;)]) {
-         subviews = [[[statusBar valueForKey:@&#34;statusBar&#34;] valueForKey:@&#34;foregroundView&#34;] subviews];
-     } else {
-         subviews = [[statusBar valueForKey:@&#34;foregroundView&#34;] subviews];
-     }
-    NSString *dataNetworkItemView = nil;
-
-    for (id subview in subviews) {
-        if([subview isKindOfClass:[NSClassFromString(@&#34;UIStatusBarDataNetworkItemView&#34;) class]]) {
-            dataNetworkItemView = subview;
-            break;
-        }
-    }
-
-    int signalStrength = [[dataNetworkItemView valueForKey:@&#34;_wifiStrengthBars&#34;] intValue];
-
-    NSLog(@&#34;signal %d&#34;, signalStrength);
-	return signalStrength;
-}
-
- 
-
-    
-    
-//获取网络类型
- int GetNetworkType()
-{
-    UIApplication *app = [UIApplication sharedApplication];
-    NSArray *subviews = [[[app valueForKeyPath:@&#34;statusBar&#34;] valueForKeyPath:@&#34;foregroundView&#34;] subviews];
-    for (id subview in subviews) {
-        if ([subview isKindOfClass:NSClassFromString(@&#34;UIStatusBarDataNetworkItemView&#34;)]) {
-            int networkType = [[subview valueForKeyPath:@&#34;dataNetworkType&#34;] intValue];
-            switch (networkType) {
-                case 0:
-                    NSLog(@&#34;NONE&#34;);
-                    break;
-                case 1:
-                    NSLog(@&#34;2G&#34;);
-                    break;
-                case 2:
-                    NSLog(@&#34;3G&#34;);
-                    break;
-                case 3:
-                    NSLog(@&#34;4G&#34;);
-                    break;
-                case 5:
-                {
-                    NSLog(@&#34;WIFI&#34;);
-                }
-                    break;
-                default:
-                    break;
-            }
-			return networkType;
-        }
-    }
-	 return 0;
-}
-
-//get start applink 
-char* GetStartApplinkUrlE()
-{
-    
-	NSString* url=[UnityAppController GetStartApplink];
-    char* _url=&#34;&#34;;
-    if(url)
-    {
-        _url=[url UTF8String];
-    }
-    
-    NSLog(@&#34;GetStartApplinkUrlE:::%@&#34;,url);
-    return StringCopy(_url);	
-}
-
-//ios pay
-void IAPInit()
-{
-	[[IosTools Instance] IAPInit];
-}
-
-void BuyProduct(char* _productId,char* _userId)
-{
-	NSString* productId = [[NSString alloc] initWithUTF8String:_productId];
-	NSString* userId = [[NSString alloc] initWithUTF8String:_userId];
-	[[IosTools Instance] BuyProduct:productId userId:userId];
-}
-
-void FinishTransaction(char* _transactionIdentifier)
-{
-	NSString* transactionIdentifier = [[NSString alloc] initWithUTF8String:_transactionIdentifier];
-	[[IosTools Instance] FinishTransaction:transactionIdentifier];
-}
-
-#if defined (__cplusplus)
-}
-#endif
-
-@implementation IosTools
-
-+(instancetype)Instance {
-    static dispatch_once_t onceToken;
-    static IosTools *instance;
-    dispatch_once(&amp;onceToken, ^{
-        instance = [[IosTools alloc] init];
-    });
-    return instance;
-}
-
-//苹果支付
--(void)IAPInit
-{
-    [PurchaseSDK.Instance Init:self];
-}
-
--(void)OnPayResult:(NSString*)res{
-	char* result=[res UTF8String];
-	UnitySendMessage(&#34;Service&#34;, &#34;OnPayResult&#34;, result);
-}
-
-
--(void) BuyProduct:(NSString*) productId userId:(NSString*)userId
-{
-    [[PurchaseSDK Instance] BuyProduct:productId Quantity:1 SignId:userId];
-}
-
-
--(void) FinishTransaction:(NSString*) transactionIdentifier
-{
-    [[PurchaseSDK Instance] FinishTransaction:transactionIdentifier];
-}
-
-- (BOOL) isWiFiEnabled {
-    
-    NSCountedSet * cset = [NSCountedSet new];
-    
-    struct ifaddrs *interfaces;
-    
-    if( ! getifaddrs(&amp;interfaces) ) {
-        for( struct ifaddrs *interface = interfaces; interface; interface = interface-&gt;ifa_next) {
-            if ( (interface-&gt;ifa_flags &amp; IFF_UP) == IFF_UP ) {
-                [cset addObject:[NSString stringWithUTF8String:interface-&gt;ifa_name]];
-            }
-        }
-    }
-    
-    return [cset countForObject:@&#34;awdl0&#34;] &gt; 1 ? YES : NO;
-}
-
-- (NSString *)getNetworkType
-{
-    UIApplication *app = [UIApplication sharedApplication];
-    id statusBar = [app valueForKeyPath:@&#34;statusBar&#34;];
-    NSString *network = @&#34;&#34;;
-    NSArray *children;
-    NSString *state = [[NSString alloc] init];
-    if ([self IsIphoneX]) {
-        //        iPhone X
-//        NSLog(@&#34;IsIphoneX:::type:::::::&#34;);
-//        id statusBarView = [statusBar valueForKeyPath:@&#34;statusBar&#34;];
-//        UIView *foregroundView = [statusBarView valueForKeyPath:@&#34;foregroundView&#34;];
-//        NSLog(@&#34;foregroundView:::type:::::::%@&#34;,foregroundView);
-//        NSArray *subviews = [[foregroundView subviews][2] subviews];
-//        NSLog(@&#34;subviews:::type:::::::%@&#34;,subviews);
-//        for (id subview in subviews) {
-//            NSLog(@&#34;subview:::type:::::::%@&#34;,subview);
-//            if ([subview isKindOfClass:NSClassFromString(@&#34;_UIStatusBarWifiSignalView&#34;)]) {
-//                network = @&#34;WIFI&#34;;
-//            }else if ([subview isKindOfClass:NSClassFromString(@&#34;_UIStatusBarStringView&#34;)]) {
-//                network = [subview valueForKeyPath:@&#34;originalText&#34;];
-//            }
-//        }
-        children = [[[[app valueForKeyPath:@&#34;_statusBar&#34;] valueForKeyPath:@&#34;_statusBar&#34;] valueForKeyPath:@&#34;foregroundView&#34;] subviews];
-        for (UIView *view in children) {
-            NSLog(@&#34;UIVIEW::::::%@&#34;,view);
-            for (id child in view.subviews) {
-                //wifi
-                if ([child isKindOfClass:NSClassFromString(@&#34;_UIStatusBarWifiSignalView&#34;)]) {
-                    state = @&#34;WIFI&#34;;
-                }
-                //2G 3G 4G
-                if ([child isKindOfClass:NSClassFromString(@&#34;_UIStatusBarStringView&#34;)]) {
-                    if ([[child valueForKey:@&#34;_originalText&#34;] containsString:@&#34;G&#34;]) {
-                        state = [child valueForKey:@&#34;_originalText&#34;];
-                    }
-                }
-            }
-        }
-        NSLog(@&#34;iphone x net type::::::::%@&#34;,state);
-//        if (![state isStringValid]) {
-//            state = @&#34;无网络&#34;;
-//        }
-        network=state;
-    }else {
-        //        非 iPhone X
-        UIView *foregroundView = [statusBar valueForKeyPath:@&#34;foregroundView&#34;];
-        NSArray *subviews = [foregroundView subviews];
-        
-        for (id subview in subviews) {
-            if ([subview isKindOfClass:NSClassFromString(@&#34;UIStatusBarDataNetworkItemView&#34;)]) {
-                int networkType = [[subview valueForKeyPath:@&#34;dataNetworkType&#34;] intValue];
-                switch (networkType) {
-                    case 0:
-                        network = @&#34;NONE&#34;;
-                        break;
-                    case 1:
-                        network = @&#34;2G&#34;;
-                        break;
-                    case 2:
-                        network = @&#34;3G&#34;;
-                        break;
-                    case 3:
-                        network = @&#34;4G&#34;;
-                        break;
-                    case 5:
-                        network = @&#34;WIFI&#34;;
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-    if ([network isEqualToString:@&#34;&#34;]) {
-        network = @&#34;NO DISPLAY&#34;;
-    }
-    NSLog(@&#34;getNetworkType;::::::::%@&#34;,network);
-    return network;
-}
-
-
-#pragma mark 获取Wifi信号强度
-- (int)getWifiSignalStrength{
-    
-    int signalStrength = 0;
-    //    判断类型是否为WIFI
-    if ([[self getNetworkType]isEqualToString:@&#34;WIFI&#34;]) {
-        UIApplication *app = [UIApplication sharedApplication];
-        id statusBar = [app valueForKey:@&#34;statusBar&#34;];
-        if ([self IsIphoneX]) {
-            //            iPhone X
-            id statusBarView = [statusBar valueForKeyPath:@&#34;statusBar&#34;];
-            UIView *foregroundView = [statusBarView valueForKeyPath:@&#34;foregroundView&#34;];
-            NSArray *subviews = [[foregroundView subviews][2] subviews];
-            
-            for (id subview in subviews) {
-                NSLog(@&#34;subview::::::::%@&#34;,subview);
-                if ([subview isKindOfClass:NSClassFromString(@&#34;_UIStatusBarWifiSignalView&#34;)]) {
-                    signalStrength = [[subview valueForKey:@&#34;_numberOfActiveBars&#34;] intValue];
-                }
-            }
-        }else {
-            //            非 iPhone X
-            UIView *foregroundView = [statusBar valueForKey:@&#34;foregroundView&#34;];
-            
-            NSArray *subviews = [foregroundView subviews];
-            NSString *dataNetworkItemView = nil;
-            
-            for (id subview in subviews) {
-                if([subview isKindOfClass:[NSClassFromString(@&#34;UIStatusBarDataNetworkItemView&#34;) class]]) {
-                    dataNetworkItemView = subview;
-                    break;
-                }
-            }
-            
-            signalStrength = [[dataNetworkItemView valueForKey:@&#34;_wifiStrengthBars&#34;] intValue];
-        }
-    }
-    NSLog(@&#34;signal %d&#34;, signalStrength);
-    return signalStrength;
-}
-// 需要#import &lt;sys/utsname.h&gt;
-- (NSString*)GetDeviceModelName
-{
-    struct utsname systemInfo;
-    uname(&amp;systemInfo);
-    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-    NSLog(@&#34;deviceString:::::::::::::::::::::::::: %@&#34;, deviceString);
-    if ([deviceString isEqualToString:@&#34;iPhone3,1&#34;])    return @&#34;iPhone 4&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone3,2&#34;])    return @&#34;iPhone 4&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone3,3&#34;])    return @&#34;iPhone 4&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone4,1&#34;])    return @&#34;iPhone 4S&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone5,1&#34;])    return @&#34;iPhone 5&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone5,2&#34;])    return @&#34;iPhone 5 (GSM+CDMA)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone5,3&#34;])    return @&#34;iPhone 5c (GSM)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone5,4&#34;])    return @&#34;iPhone 5c (GSM+CDMA)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone6,1&#34;])    return @&#34;iPhone 5s (GSM)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone6,2&#34;])    return @&#34;iPhone 5s (GSM+CDMA)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone7,1&#34;])    return @&#34;iPhone 6 Plus&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone7,2&#34;])    return @&#34;iPhone 6&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone8,1&#34;])    return @&#34;iPhone 6s&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone8,2&#34;])    return @&#34;iPhone 6s Plus&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone8,4&#34;])    return @&#34;iPhone SE&#34;;
-    // 日行两款手机型号均为日本独占，可能使用索尼FeliCa支付方案而不是苹果支付
-    if ([deviceString isEqualToString:@&#34;iPhone9,1&#34;])    return @&#34;国行、日版、港行iPhone 7&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone9,2&#34;])    return @&#34;港行、国行iPhone 7 Plus&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone9,3&#34;])    return @&#34;美版、台版iPhone 7&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone9,4&#34;])    return @&#34;美版、台版iPhone 7 Plus&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone10,1&#34;])   return @&#34;国行(A1863)、日行(A1906)iPhone 8&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone10,4&#34;])   return @&#34;美版(Global/A1905)iPhone 8&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone10,2&#34;])   return @&#34;国行(A1864)、日行(A1898)iPhone 8 Plus&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone10,5&#34;])   return @&#34;美版(Global/A1897)iPhone 8 Plus&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone10,3&#34;])   return @&#34;国行(A1865)、日行(A1902)iPhone X&#34;;
-    if ([deviceString isEqualToString:@&#34;iPhone10,6&#34;])   return @&#34;美版(Global/A1901)iPhone X&#34;;
-    
-    if ([deviceString isEqualToString:@&#34;iPod1,1&#34;])      return @&#34;iPod Touch 1G&#34;;
-    if ([deviceString isEqualToString:@&#34;iPod2,1&#34;])      return @&#34;iPod Touch 2G&#34;;
-    if ([deviceString isEqualToString:@&#34;iPod3,1&#34;])      return @&#34;iPod Touch 3G&#34;;
-    if ([deviceString isEqualToString:@&#34;iPod4,1&#34;])      return @&#34;iPod Touch 4G&#34;;
-    if ([deviceString isEqualToString:@&#34;iPod5,1&#34;])      return @&#34;iPod Touch (5 Gen)&#34;;
-    
-    if ([deviceString isEqualToString:@&#34;iPad1,1&#34;])      return @&#34;iPad&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad1,2&#34;])      return @&#34;iPad 3G&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad2,1&#34;])      return @&#34;iPad 2 (WiFi)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad2,2&#34;])      return @&#34;iPad 2&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad2,3&#34;])      return @&#34;iPad 2 (CDMA)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad2,4&#34;])      return @&#34;iPad 2&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad2,5&#34;])      return @&#34;iPad Mini (WiFi)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad2,6&#34;])      return @&#34;iPad Mini&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad2,7&#34;])      return @&#34;iPad Mini (GSM+CDMA)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad3,1&#34;])      return @&#34;iPad 3 (WiFi)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad3,2&#34;])      return @&#34;iPad 3 (GSM+CDMA)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad3,3&#34;])      return @&#34;iPad 3&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad3,4&#34;])      return @&#34;iPad 4 (WiFi)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad3,5&#34;])      return @&#34;iPad 4&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad3,6&#34;])      return @&#34;iPad 4 (GSM+CDMA)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad4,1&#34;])      return @&#34;iPad Air (WiFi)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad4,2&#34;])      return @&#34;iPad Air (Cellular)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad4,4&#34;])      return @&#34;iPad Mini 2 (WiFi)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad4,5&#34;])      return @&#34;iPad Mini 2 (Cellular)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad4,6&#34;])      return @&#34;iPad Mini 2&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad4,7&#34;])      return @&#34;iPad Mini 3&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad4,8&#34;])      return @&#34;iPad Mini 3&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad4,9&#34;])      return @&#34;iPad Mini 3&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad5,1&#34;])      return @&#34;iPad Mini 4 (WiFi)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad5,2&#34;])      return @&#34;iPad Mini 4 (LTE)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad5,3&#34;])      return @&#34;iPad Air 2&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad5,4&#34;])      return @&#34;iPad Air 2&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad6,3&#34;])      return @&#34;iPad Pro 9.7&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad6,4&#34;])      return @&#34;iPad Pro 9.7&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad6,7&#34;])      return @&#34;iPad Pro 12.9&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad6,8&#34;])      return @&#34;iPad Pro 12.9&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad6,11&#34;])    return @&#34;iPad 5 (WiFi)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad6,12&#34;])    return @&#34;iPad 5 (Cellular)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad7,1&#34;])     return @&#34;iPad Pro 12.9 inch 2nd gen (WiFi)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad7,2&#34;])     return @&#34;iPad Pro 12.9 inch 2nd gen (Cellular)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad7,3&#34;])     return @&#34;iPad Pro 10.5 inch (WiFi)&#34;;
-    if ([deviceString isEqualToString:@&#34;iPad7,4&#34;])     return @&#34;iPad Pro 10.5 inch (Cellular)&#34;;
-    
-    if ([deviceString isEqualToString:@&#34;AppleTV2,1&#34;])    return @&#34;Apple TV 2&#34;;
-    if ([deviceString isEqualToString:@&#34;AppleTV3,1&#34;])    return @&#34;Apple TV 3&#34;;
-    if ([deviceString isEqualToString:@&#34;AppleTV3,2&#34;])    return @&#34;Apple TV 3&#34;;
-    if ([deviceString isEqualToString:@&#34;AppleTV5,3&#34;])    return @&#34;Apple TV 4&#34;;
-    
-    if ([deviceString isEqualToString:@&#34;i386&#34;])         return @&#34;Simulator&#34;;
-    if ([deviceString isEqualToString:@&#34;x86_64&#34;])       return @&#34;Simulator&#34;;
-    
-    return deviceString;
-
-}
-- (bool) IsIphoneX
-{
-    struct utsname systemInfo;
-    uname(&amp;systemInfo);
-    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-    NSLog(@&#34;deviceString:::::::::::::::::::::::::: %@&#34;, deviceString);
-    if ([deviceString isEqualToString:@&#34;iPhone10,3&#34;])   return true;
-    if ([deviceString isEqualToString:@&#34;iPhone10,6&#34;])   return true;
-    return false;
-}
-- (void)dealloc {
-}
-
-
-
-
-@end
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#import &#34;IosTools.h&#34;
+</span></span><span class="line"><span class="cl">#import &lt;ifaddrs.h&gt;
+</span></span><span class="line"><span class="cl">#import &lt;net/if.h&gt;
+</span></span><span class="line"><span class="cl">#import &lt;sys/utsname.h&gt;
+</span></span><span class="line"><span class="cl">//#define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//#define kSCREEN_WIDTH          ([UIScreen mainScreen].bounds.size.width)
+</span></span><span class="line"><span class="cl">//#define kSCREEN_HEIGHT         ([UIScreen mainScreen].bounds.size.height)
+</span></span><span class="line"><span class="cl">////iPhone X
+</span></span><span class="line"><span class="cl">//#define iPhoneX     (kSCREEN_WIDTH == 375.f &amp;&amp; kSCREEN_HEIGHT == 812.f)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#if defined (__cplusplus)
+</span></span><span class="line"><span class="cl">extern &#34;C&#34; {
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">	//char*分配内存
+</span></span><span class="line"><span class="cl">    char* StringCopy (const char* string)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        if (string == NULL)
+</span></span><span class="line"><span class="cl">            return NULL;
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        char* res = (char*)malloc(strlen(string) + 1);
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        strcpy(res, string);
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        return res;
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">char* GetImei ()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;GetImei&#34;);
+</span></span><span class="line"><span class="cl">	NSString *uuid = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+</span></span><span class="line"><span class="cl">    char* id=[uuid UTF8String];
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    return StringCopy(id);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">    //获取设备自定义名称
+</span></span><span class="line"><span class="cl">char* GetDeviceName()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        NSString *deviceName = [[UIDevice currentDevice] name];
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;GetDeviceName:::::::::::::::::::::::::::::::%@&#34;,deviceName);
+</span></span><span class="line"><span class="cl">        return StringCopy([deviceName UTF8String]);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">float GetBatteryLevel  ()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+</span></span><span class="line"><span class="cl">	float batteryLevel = [[UIDevice currentDevice] batteryLevel];
+</span></span><span class="line"><span class="cl">    return batteryLevel;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">    // show toast
+</span></span><span class="line"><span class="cl">    void ShowToastE(char*str)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        NSString* content = [[NSString alloc] initWithUTF8String:str];
+</span></span><span class="line"><span class="cl">        [[[ZFToast alloc] init] popUpToastWithMessage:content];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">//复制到剪贴板
+</span></span><span class="line"><span class="cl">void SetClipboardE(char* str)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	NSString* content = [[NSString alloc] initWithUTF8String:str];
+</span></span><span class="line"><span class="cl">	UIPasteboard*pasteboard = [UIPasteboard generalPasteboard];
+</span></span><span class="line"><span class="cl">	pasteboard.string=content;
+</span></span><span class="line"><span class="cl">	ShowToastE(&#34;复制成功&#34;);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//open url
+</span></span><span class="line"><span class="cl">void OpenWebViewE(char*_url)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	NSString* url = [[NSString alloc] initWithUTF8String:_url];
+</span></span><span class="line"><span class="cl">	[[UIApplication sharedApplication]openURL:[NSURL URLWithString:url]];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//获取wifi信号强度
+</span></span><span class="line"><span class="cl"> int GetWifiSignalStrength(){
+</span></span><span class="line"><span class="cl">     if (![[IosTools Instance] isWiFiEnabled]) {
+</span></span><span class="line"><span class="cl">         return 1;
+</span></span><span class="line"><span class="cl">     }
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl">     NSLog(@&#34;GetDeviceName:::::::::::::::::::::::::::::::%@&#34;,[[IosTools Instance] GetDeviceModelName]);
+</span></span><span class="line"><span class="cl">//     NSString *deviceName = [[UIDevice currentDevice] systemName];
+</span></span><span class="line"><span class="cl">//     NSLog(@&#34;GetDeviceName:::::::::::::::::::::::::::::::%@&#34;,deviceName);
+</span></span><span class="line"><span class="cl">//     NSLog(@&#34;phone height:%f&#34;,[[UIScreen mainScreen] fixedCoordinateSpace].bounds.size.height);
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl">//     return [[IosTools Instance] getWifiSignalStrength];
+</span></span><span class="line"><span class="cl">    UIApplication *app = [UIApplication sharedApplication];
+</span></span><span class="line"><span class="cl">     NSLog(@&#34;app::::%@&#34;,app);
+</span></span><span class="line"><span class="cl">     if(app==NULL)
+</span></span><span class="line"><span class="cl">     {
+</span></span><span class="line"><span class="cl">         return 0;
+</span></span><span class="line"><span class="cl">     }
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl">//    NSArray *subviews = [[[app valueForKey:@&#34;statusBar&#34;] valueForKey:@&#34;foregroundView&#34;] subviews];
+</span></span><span class="line"><span class="cl">     NSArray *subviews = nil;
+</span></span><span class="line"><span class="cl">     id statusBar = [[UIApplication sharedApplication] valueForKey:@&#34;statusBar&#34;];
+</span></span><span class="line"><span class="cl">     if ([statusBar isKindOfClass:NSClassFromString(@&#34;UIStatusBar_Modern&#34;)]) {
+</span></span><span class="line"><span class="cl">         subviews = [[[statusBar valueForKey:@&#34;statusBar&#34;] valueForKey:@&#34;foregroundView&#34;] subviews];
+</span></span><span class="line"><span class="cl">     } else {
+</span></span><span class="line"><span class="cl">         subviews = [[statusBar valueForKey:@&#34;foregroundView&#34;] subviews];
+</span></span><span class="line"><span class="cl">     }
+</span></span><span class="line"><span class="cl">    NSString *dataNetworkItemView = nil;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    for (id subview in subviews) {
+</span></span><span class="line"><span class="cl">        if([subview isKindOfClass:[NSClassFromString(@&#34;UIStatusBarDataNetworkItemView&#34;) class]]) {
+</span></span><span class="line"><span class="cl">            dataNetworkItemView = subview;
+</span></span><span class="line"><span class="cl">            break;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    int signalStrength = [[dataNetworkItemView valueForKey:@&#34;_wifiStrengthBars&#34;] intValue];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;signal %d&#34;, signalStrength);
+</span></span><span class="line"><span class="cl">	return signalStrength;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">//获取网络类型
+</span></span><span class="line"><span class="cl"> int GetNetworkType()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    UIApplication *app = [UIApplication sharedApplication];
+</span></span><span class="line"><span class="cl">    NSArray *subviews = [[[app valueForKeyPath:@&#34;statusBar&#34;] valueForKeyPath:@&#34;foregroundView&#34;] subviews];
+</span></span><span class="line"><span class="cl">    for (id subview in subviews) {
+</span></span><span class="line"><span class="cl">        if ([subview isKindOfClass:NSClassFromString(@&#34;UIStatusBarDataNetworkItemView&#34;)]) {
+</span></span><span class="line"><span class="cl">            int networkType = [[subview valueForKeyPath:@&#34;dataNetworkType&#34;] intValue];
+</span></span><span class="line"><span class="cl">            switch (networkType) {
+</span></span><span class="line"><span class="cl">                case 0:
+</span></span><span class="line"><span class="cl">                    NSLog(@&#34;NONE&#34;);
+</span></span><span class="line"><span class="cl">                    break;
+</span></span><span class="line"><span class="cl">                case 1:
+</span></span><span class="line"><span class="cl">                    NSLog(@&#34;2G&#34;);
+</span></span><span class="line"><span class="cl">                    break;
+</span></span><span class="line"><span class="cl">                case 2:
+</span></span><span class="line"><span class="cl">                    NSLog(@&#34;3G&#34;);
+</span></span><span class="line"><span class="cl">                    break;
+</span></span><span class="line"><span class="cl">                case 3:
+</span></span><span class="line"><span class="cl">                    NSLog(@&#34;4G&#34;);
+</span></span><span class="line"><span class="cl">                    break;
+</span></span><span class="line"><span class="cl">                case 5:
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    NSLog(@&#34;WIFI&#34;);
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">                    break;
+</span></span><span class="line"><span class="cl">                default:
+</span></span><span class="line"><span class="cl">                    break;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">			return networkType;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">	 return 0;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//get start applink 
+</span></span><span class="line"><span class="cl">char* GetStartApplinkUrlE()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">	NSString* url=[UnityAppController GetStartApplink];
+</span></span><span class="line"><span class="cl">    char* _url=&#34;&#34;;
+</span></span><span class="line"><span class="cl">    if(url)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        _url=[url UTF8String];
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;GetStartApplinkUrlE:::%@&#34;,url);
+</span></span><span class="line"><span class="cl">    return StringCopy(_url);	
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//ios pay
+</span></span><span class="line"><span class="cl">void IAPInit()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	[[IosTools Instance] IAPInit];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void BuyProduct(char* _productId,char* _userId)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	NSString* productId = [[NSString alloc] initWithUTF8String:_productId];
+</span></span><span class="line"><span class="cl">	NSString* userId = [[NSString alloc] initWithUTF8String:_userId];
+</span></span><span class="line"><span class="cl">	[[IosTools Instance] BuyProduct:productId userId:userId];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void FinishTransaction(char* _transactionIdentifier)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	NSString* transactionIdentifier = [[NSString alloc] initWithUTF8String:_transactionIdentifier];
+</span></span><span class="line"><span class="cl">	[[IosTools Instance] FinishTransaction:transactionIdentifier];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#if defined (__cplusplus)
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@implementation IosTools
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">+(instancetype)Instance {
+</span></span><span class="line"><span class="cl">    static dispatch_once_t onceToken;
+</span></span><span class="line"><span class="cl">    static IosTools *instance;
+</span></span><span class="line"><span class="cl">    dispatch_once(&amp;onceToken, ^{
+</span></span><span class="line"><span class="cl">        instance = [[IosTools alloc] init];
+</span></span><span class="line"><span class="cl">    });
+</span></span><span class="line"><span class="cl">    return instance;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//苹果支付
+</span></span><span class="line"><span class="cl">-(void)IAPInit
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    [PurchaseSDK.Instance Init:self];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-(void)OnPayResult:(NSString*)res{
+</span></span><span class="line"><span class="cl">	char* result=[res UTF8String];
+</span></span><span class="line"><span class="cl">	UnitySendMessage(&#34;Service&#34;, &#34;OnPayResult&#34;, result);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-(void) BuyProduct:(NSString*) productId userId:(NSString*)userId
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    [[PurchaseSDK Instance] BuyProduct:productId Quantity:1 SignId:userId];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-(void) FinishTransaction:(NSString*) transactionIdentifier
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    [[PurchaseSDK Instance] FinishTransaction:transactionIdentifier];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- (BOOL) isWiFiEnabled {
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    NSCountedSet * cset = [NSCountedSet new];
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    struct ifaddrs *interfaces;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    if( ! getifaddrs(&amp;interfaces) ) {
+</span></span><span class="line"><span class="cl">        for( struct ifaddrs *interface = interfaces; interface; interface = interface-&gt;ifa_next) {
+</span></span><span class="line"><span class="cl">            if ( (interface-&gt;ifa_flags &amp; IFF_UP) == IFF_UP ) {
+</span></span><span class="line"><span class="cl">                [cset addObject:[NSString stringWithUTF8String:interface-&gt;ifa_name]];
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    return [cset countForObject:@&#34;awdl0&#34;] &gt; 1 ? YES : NO;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- (NSString *)getNetworkType
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    UIApplication *app = [UIApplication sharedApplication];
+</span></span><span class="line"><span class="cl">    id statusBar = [app valueForKeyPath:@&#34;statusBar&#34;];
+</span></span><span class="line"><span class="cl">    NSString *network = @&#34;&#34;;
+</span></span><span class="line"><span class="cl">    NSArray *children;
+</span></span><span class="line"><span class="cl">    NSString *state = [[NSString alloc] init];
+</span></span><span class="line"><span class="cl">    if ([self IsIphoneX]) {
+</span></span><span class="line"><span class="cl">        //        iPhone X
+</span></span><span class="line"><span class="cl">//        NSLog(@&#34;IsIphoneX:::type:::::::&#34;);
+</span></span><span class="line"><span class="cl">//        id statusBarView = [statusBar valueForKeyPath:@&#34;statusBar&#34;];
+</span></span><span class="line"><span class="cl">//        UIView *foregroundView = [statusBarView valueForKeyPath:@&#34;foregroundView&#34;];
+</span></span><span class="line"><span class="cl">//        NSLog(@&#34;foregroundView:::type:::::::%@&#34;,foregroundView);
+</span></span><span class="line"><span class="cl">//        NSArray *subviews = [[foregroundView subviews][2] subviews];
+</span></span><span class="line"><span class="cl">//        NSLog(@&#34;subviews:::type:::::::%@&#34;,subviews);
+</span></span><span class="line"><span class="cl">//        for (id subview in subviews) {
+</span></span><span class="line"><span class="cl">//            NSLog(@&#34;subview:::type:::::::%@&#34;,subview);
+</span></span><span class="line"><span class="cl">//            if ([subview isKindOfClass:NSClassFromString(@&#34;_UIStatusBarWifiSignalView&#34;)]) {
+</span></span><span class="line"><span class="cl">//                network = @&#34;WIFI&#34;;
+</span></span><span class="line"><span class="cl">//            }else if ([subview isKindOfClass:NSClassFromString(@&#34;_UIStatusBarStringView&#34;)]) {
+</span></span><span class="line"><span class="cl">//                network = [subview valueForKeyPath:@&#34;originalText&#34;];
+</span></span><span class="line"><span class="cl">//            }
+</span></span><span class="line"><span class="cl">//        }
+</span></span><span class="line"><span class="cl">        children = [[[[app valueForKeyPath:@&#34;_statusBar&#34;] valueForKeyPath:@&#34;_statusBar&#34;] valueForKeyPath:@&#34;foregroundView&#34;] subviews];
+</span></span><span class="line"><span class="cl">        for (UIView *view in children) {
+</span></span><span class="line"><span class="cl">            NSLog(@&#34;UIVIEW::::::%@&#34;,view);
+</span></span><span class="line"><span class="cl">            for (id child in view.subviews) {
+</span></span><span class="line"><span class="cl">                //wifi
+</span></span><span class="line"><span class="cl">                if ([child isKindOfClass:NSClassFromString(@&#34;_UIStatusBarWifiSignalView&#34;)]) {
+</span></span><span class="line"><span class="cl">                    state = @&#34;WIFI&#34;;
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">                //2G 3G 4G
+</span></span><span class="line"><span class="cl">                if ([child isKindOfClass:NSClassFromString(@&#34;_UIStatusBarStringView&#34;)]) {
+</span></span><span class="line"><span class="cl">                    if ([[child valueForKey:@&#34;_originalText&#34;] containsString:@&#34;G&#34;]) {
+</span></span><span class="line"><span class="cl">                        state = [child valueForKey:@&#34;_originalText&#34;];
+</span></span><span class="line"><span class="cl">                    }
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        NSLog(@&#34;iphone x net type::::::::%@&#34;,state);
+</span></span><span class="line"><span class="cl">//        if (![state isStringValid]) {
+</span></span><span class="line"><span class="cl">//            state = @&#34;无网络&#34;;
+</span></span><span class="line"><span class="cl">//        }
+</span></span><span class="line"><span class="cl">        network=state;
+</span></span><span class="line"><span class="cl">    }else {
+</span></span><span class="line"><span class="cl">        //        非 iPhone X
+</span></span><span class="line"><span class="cl">        UIView *foregroundView = [statusBar valueForKeyPath:@&#34;foregroundView&#34;];
+</span></span><span class="line"><span class="cl">        NSArray *subviews = [foregroundView subviews];
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        for (id subview in subviews) {
+</span></span><span class="line"><span class="cl">            if ([subview isKindOfClass:NSClassFromString(@&#34;UIStatusBarDataNetworkItemView&#34;)]) {
+</span></span><span class="line"><span class="cl">                int networkType = [[subview valueForKeyPath:@&#34;dataNetworkType&#34;] intValue];
+</span></span><span class="line"><span class="cl">                switch (networkType) {
+</span></span><span class="line"><span class="cl">                    case 0:
+</span></span><span class="line"><span class="cl">                        network = @&#34;NONE&#34;;
+</span></span><span class="line"><span class="cl">                        break;
+</span></span><span class="line"><span class="cl">                    case 1:
+</span></span><span class="line"><span class="cl">                        network = @&#34;2G&#34;;
+</span></span><span class="line"><span class="cl">                        break;
+</span></span><span class="line"><span class="cl">                    case 2:
+</span></span><span class="line"><span class="cl">                        network = @&#34;3G&#34;;
+</span></span><span class="line"><span class="cl">                        break;
+</span></span><span class="line"><span class="cl">                    case 3:
+</span></span><span class="line"><span class="cl">                        network = @&#34;4G&#34;;
+</span></span><span class="line"><span class="cl">                        break;
+</span></span><span class="line"><span class="cl">                    case 5:
+</span></span><span class="line"><span class="cl">                        network = @&#34;WIFI&#34;;
+</span></span><span class="line"><span class="cl">                        break;
+</span></span><span class="line"><span class="cl">                    default:
+</span></span><span class="line"><span class="cl">                        break;
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    if ([network isEqualToString:@&#34;&#34;]) {
+</span></span><span class="line"><span class="cl">        network = @&#34;NO DISPLAY&#34;;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;getNetworkType;::::::::%@&#34;,network);
+</span></span><span class="line"><span class="cl">    return network;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#pragma mark 获取Wifi信号强度
+</span></span><span class="line"><span class="cl">- (int)getWifiSignalStrength{
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    int signalStrength = 0;
+</span></span><span class="line"><span class="cl">    //    判断类型是否为WIFI
+</span></span><span class="line"><span class="cl">    if ([[self getNetworkType]isEqualToString:@&#34;WIFI&#34;]) {
+</span></span><span class="line"><span class="cl">        UIApplication *app = [UIApplication sharedApplication];
+</span></span><span class="line"><span class="cl">        id statusBar = [app valueForKey:@&#34;statusBar&#34;];
+</span></span><span class="line"><span class="cl">        if ([self IsIphoneX]) {
+</span></span><span class="line"><span class="cl">            //            iPhone X
+</span></span><span class="line"><span class="cl">            id statusBarView = [statusBar valueForKeyPath:@&#34;statusBar&#34;];
+</span></span><span class="line"><span class="cl">            UIView *foregroundView = [statusBarView valueForKeyPath:@&#34;foregroundView&#34;];
+</span></span><span class="line"><span class="cl">            NSArray *subviews = [[foregroundView subviews][2] subviews];
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            for (id subview in subviews) {
+</span></span><span class="line"><span class="cl">                NSLog(@&#34;subview::::::::%@&#34;,subview);
+</span></span><span class="line"><span class="cl">                if ([subview isKindOfClass:NSClassFromString(@&#34;_UIStatusBarWifiSignalView&#34;)]) {
+</span></span><span class="line"><span class="cl">                    signalStrength = [[subview valueForKey:@&#34;_numberOfActiveBars&#34;] intValue];
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }else {
+</span></span><span class="line"><span class="cl">            //            非 iPhone X
+</span></span><span class="line"><span class="cl">            UIView *foregroundView = [statusBar valueForKey:@&#34;foregroundView&#34;];
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            NSArray *subviews = [foregroundView subviews];
+</span></span><span class="line"><span class="cl">            NSString *dataNetworkItemView = nil;
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            for (id subview in subviews) {
+</span></span><span class="line"><span class="cl">                if([subview isKindOfClass:[NSClassFromString(@&#34;UIStatusBarDataNetworkItemView&#34;) class]]) {
+</span></span><span class="line"><span class="cl">                    dataNetworkItemView = subview;
+</span></span><span class="line"><span class="cl">                    break;
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            signalStrength = [[dataNetworkItemView valueForKey:@&#34;_wifiStrengthBars&#34;] intValue];
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;signal %d&#34;, signalStrength);
+</span></span><span class="line"><span class="cl">    return signalStrength;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">// 需要#import &lt;sys/utsname.h&gt;
+</span></span><span class="line"><span class="cl">- (NSString*)GetDeviceModelName
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    struct utsname systemInfo;
+</span></span><span class="line"><span class="cl">    uname(&amp;systemInfo);
+</span></span><span class="line"><span class="cl">    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;deviceString:::::::::::::::::::::::::: %@&#34;, deviceString);
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone3,1&#34;])    return @&#34;iPhone 4&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone3,2&#34;])    return @&#34;iPhone 4&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone3,3&#34;])    return @&#34;iPhone 4&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone4,1&#34;])    return @&#34;iPhone 4S&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone5,1&#34;])    return @&#34;iPhone 5&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone5,2&#34;])    return @&#34;iPhone 5 (GSM+CDMA)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone5,3&#34;])    return @&#34;iPhone 5c (GSM)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone5,4&#34;])    return @&#34;iPhone 5c (GSM+CDMA)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone6,1&#34;])    return @&#34;iPhone 5s (GSM)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone6,2&#34;])    return @&#34;iPhone 5s (GSM+CDMA)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone7,1&#34;])    return @&#34;iPhone 6 Plus&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone7,2&#34;])    return @&#34;iPhone 6&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone8,1&#34;])    return @&#34;iPhone 6s&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone8,2&#34;])    return @&#34;iPhone 6s Plus&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone8,4&#34;])    return @&#34;iPhone SE&#34;;
+</span></span><span class="line"><span class="cl">    // 日行两款手机型号均为日本独占，可能使用索尼FeliCa支付方案而不是苹果支付
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone9,1&#34;])    return @&#34;国行、日版、港行iPhone 7&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone9,2&#34;])    return @&#34;港行、国行iPhone 7 Plus&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone9,3&#34;])    return @&#34;美版、台版iPhone 7&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone9,4&#34;])    return @&#34;美版、台版iPhone 7 Plus&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone10,1&#34;])   return @&#34;国行(A1863)、日行(A1906)iPhone 8&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone10,4&#34;])   return @&#34;美版(Global/A1905)iPhone 8&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone10,2&#34;])   return @&#34;国行(A1864)、日行(A1898)iPhone 8 Plus&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone10,5&#34;])   return @&#34;美版(Global/A1897)iPhone 8 Plus&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone10,3&#34;])   return @&#34;国行(A1865)、日行(A1902)iPhone X&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone10,6&#34;])   return @&#34;美版(Global/A1901)iPhone X&#34;;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPod1,1&#34;])      return @&#34;iPod Touch 1G&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPod2,1&#34;])      return @&#34;iPod Touch 2G&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPod3,1&#34;])      return @&#34;iPod Touch 3G&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPod4,1&#34;])      return @&#34;iPod Touch 4G&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPod5,1&#34;])      return @&#34;iPod Touch (5 Gen)&#34;;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad1,1&#34;])      return @&#34;iPad&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad1,2&#34;])      return @&#34;iPad 3G&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad2,1&#34;])      return @&#34;iPad 2 (WiFi)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad2,2&#34;])      return @&#34;iPad 2&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad2,3&#34;])      return @&#34;iPad 2 (CDMA)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad2,4&#34;])      return @&#34;iPad 2&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad2,5&#34;])      return @&#34;iPad Mini (WiFi)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad2,6&#34;])      return @&#34;iPad Mini&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad2,7&#34;])      return @&#34;iPad Mini (GSM+CDMA)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad3,1&#34;])      return @&#34;iPad 3 (WiFi)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad3,2&#34;])      return @&#34;iPad 3 (GSM+CDMA)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad3,3&#34;])      return @&#34;iPad 3&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad3,4&#34;])      return @&#34;iPad 4 (WiFi)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad3,5&#34;])      return @&#34;iPad 4&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad3,6&#34;])      return @&#34;iPad 4 (GSM+CDMA)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad4,1&#34;])      return @&#34;iPad Air (WiFi)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad4,2&#34;])      return @&#34;iPad Air (Cellular)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad4,4&#34;])      return @&#34;iPad Mini 2 (WiFi)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad4,5&#34;])      return @&#34;iPad Mini 2 (Cellular)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad4,6&#34;])      return @&#34;iPad Mini 2&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad4,7&#34;])      return @&#34;iPad Mini 3&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad4,8&#34;])      return @&#34;iPad Mini 3&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad4,9&#34;])      return @&#34;iPad Mini 3&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad5,1&#34;])      return @&#34;iPad Mini 4 (WiFi)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad5,2&#34;])      return @&#34;iPad Mini 4 (LTE)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad5,3&#34;])      return @&#34;iPad Air 2&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad5,4&#34;])      return @&#34;iPad Air 2&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad6,3&#34;])      return @&#34;iPad Pro 9.7&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad6,4&#34;])      return @&#34;iPad Pro 9.7&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad6,7&#34;])      return @&#34;iPad Pro 12.9&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad6,8&#34;])      return @&#34;iPad Pro 12.9&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad6,11&#34;])    return @&#34;iPad 5 (WiFi)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad6,12&#34;])    return @&#34;iPad 5 (Cellular)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad7,1&#34;])     return @&#34;iPad Pro 12.9 inch 2nd gen (WiFi)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad7,2&#34;])     return @&#34;iPad Pro 12.9 inch 2nd gen (Cellular)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad7,3&#34;])     return @&#34;iPad Pro 10.5 inch (WiFi)&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPad7,4&#34;])     return @&#34;iPad Pro 10.5 inch (Cellular)&#34;;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;AppleTV2,1&#34;])    return @&#34;Apple TV 2&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;AppleTV3,1&#34;])    return @&#34;Apple TV 3&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;AppleTV3,2&#34;])    return @&#34;Apple TV 3&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;AppleTV5,3&#34;])    return @&#34;Apple TV 4&#34;;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;i386&#34;])         return @&#34;Simulator&#34;;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;x86_64&#34;])       return @&#34;Simulator&#34;;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    return deviceString;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">- (bool) IsIphoneX
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    struct utsname systemInfo;
+</span></span><span class="line"><span class="cl">    uname(&amp;systemInfo);
+</span></span><span class="line"><span class="cl">    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+</span></span><span class="line"><span class="cl">    NSLog(@&#34;deviceString:::::::::::::::::::::::::: %@&#34;, deviceString);
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone10,3&#34;])   return true;
+</span></span><span class="line"><span class="cl">    if ([deviceString isEqualToString:@&#34;iPhone10,6&#34;])   return true;
+</span></span><span class="line"><span class="cl">    return false;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">- (void)dealloc {
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">@end
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -1963,114 +1953,112 @@ void FinishTransaction(char* _transactionIdentifier)
 </span><span class="lnt">101
 </span><span class="lnt">102
 </span><span class="lnt">103
-</span><span class="lnt">104
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//=====================================================
-// - FileName:    	ProviderService 
-// - Description:
-// - Author:		wangguoqing
-// - Email:			wangguoqing@hehemj.com
-// - Created:		2017/12/13 17:12:17
-// - CLR version: 	4.0.30319.42000
-// - UserName:		Wang
-// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
-// -  All Rights Reserved.
-//======================================================
-
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Sockets;
-using System.Runtime.InteropServices;
-using UnityEngine;
-using Random = UnityEngine.Random;
-/// &lt;summary&gt;
-/// 和平台层交互必须通过unity主线程调用
-/// &lt;/summary&gt;
-public class ProviderService : MonoBehaviour
-{
-    public static ProviderService Instance;
-
-    private XLua.LuaFunction iosPayCallback = null;
-
-#if UNITY_IOS
-
-    //ios pay
-	[DllImport(&#34;__Internal&#34;)]
-   private static extern void IAPInit();
-	[DllImport(&#34;__Internal&#34;)]
-   private static extern void BuyProduct(string productId,string userId);
-	[DllImport(&#34;__Internal&#34;)]
-   private static extern void FinishTransaction(string transactionIdentifier);
-
-    //open url
-	[DllImport(&#34;__Internal&#34;)]
-   private static extern void OpenWebViewE(string url);
-
-
-#endif
-
-    /// &lt;summary&gt;
-    /// ios pay init
-    /// &lt;/summary&gt;
-    public void IAPInitE(XLua.LuaFunction callback)
-    {
-        this.iosPayCallback = callback;
-#if UNITY_IOS&amp;&amp;!UNITY_EDITOR
-        IAPInit();
-#endif
-    }
-
-    /// &lt;summary&gt;
-    /// ios pay buy
-    /// &lt;/summary&gt;
-    /// &lt;param name=&#34;productId&#34;&gt;商品id&lt;/param&gt;
-    /// &lt;param name=&#34;userId&#34;&gt;&lt;/param&gt;
-    public void BuyProductE(string productId, string userId, XLua.LuaFunction callback)
-    {
-        this.iosPayCallback = callback;
-        Dg.Log(&#34;ProviderService::BuyProductE:productId:&#34;, productId, &#34;  userId:&#34;, userId);
-#if UNITY_IOS&amp;&amp;!UNITY_EDITOR
-        BuyProduct(productId,userId);
-#endif
-    }
-
-    /// &lt;summary&gt;
-    /// ios pay  finish
-    /// &lt;/summary&gt;
-    /// &lt;param name=&#34;transactionIdentifier&#34;&gt;订单号&lt;/param&gt;
-    public void FinishTransactionE(string transactionIdentifier)
-    {
-        Dg.Log(&#34;ProviderService::FinishTransactionE,transactionIdentifier:&#34;, transactionIdentifier);
-#if UNITY_IOS&amp;&amp;!UNITY_EDITOR
-        FinishTransaction(transactionIdentifier);
-#endif
-    }
-
-
-    /// &lt;summary&gt;
-    /// ios支付结果
-    /// ios pay
-    /// &lt;/summary&gt;
-    /// &lt;param name=&#34;res&#34;&gt;&lt;/param&gt;
-    public void OnPayResult(string res)
-    {
-        Dg.Log(&#34;ProviderService::OnPayResult::::&#34;, res);
-        if (this.iosPayCallback != null)
-        {
-            this.iosPayCallback.Call(res);
-            //this.iosPayCallback.Dispose();
-            this.iosPayCallback = null;
-        }
-        else
-        {
-            Dg.Log(&#34;ProviderService::OnPayResult:::: iosPayCallback is null!&#34;);
-        }
-    }
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//=====================================================
+</span></span><span class="line"><span class="cl">// - FileName:    	ProviderService 
+</span></span><span class="line"><span class="cl">// - Description:
+</span></span><span class="line"><span class="cl">// - Author:		wangguoqing
+</span></span><span class="line"><span class="cl">// - Email:			wangguoqing@hehemj.com
+</span></span><span class="line"><span class="cl">// - Created:		2017/12/13 17:12:17
+</span></span><span class="line"><span class="cl">// - CLR version: 	4.0.30319.42000
+</span></span><span class="line"><span class="cl">// - UserName:		Wang
+</span></span><span class="line"><span class="cl">// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
+</span></span><span class="line"><span class="cl">// -  All Rights Reserved.
+</span></span><span class="line"><span class="cl">//======================================================
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">using System;
+</span></span><span class="line"><span class="cl">using System.Collections;
+</span></span><span class="line"><span class="cl">using System.Collections.Generic;
+</span></span><span class="line"><span class="cl">using System.IO;
+</span></span><span class="line"><span class="cl">using System.Net.Sockets;
+</span></span><span class="line"><span class="cl">using System.Runtime.InteropServices;
+</span></span><span class="line"><span class="cl">using UnityEngine;
+</span></span><span class="line"><span class="cl">using Random = UnityEngine.Random;
+</span></span><span class="line"><span class="cl">/// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">/// 和平台层交互必须通过unity主线程调用
+</span></span><span class="line"><span class="cl">/// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">public class ProviderService : MonoBehaviour
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    public static ProviderService Instance;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    private XLua.LuaFunction iosPayCallback = null;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#if UNITY_IOS
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    //ios pay
+</span></span><span class="line"><span class="cl">	[DllImport(&#34;__Internal&#34;)]
+</span></span><span class="line"><span class="cl">   private static extern void IAPInit();
+</span></span><span class="line"><span class="cl">	[DllImport(&#34;__Internal&#34;)]
+</span></span><span class="line"><span class="cl">   private static extern void BuyProduct(string productId,string userId);
+</span></span><span class="line"><span class="cl">	[DllImport(&#34;__Internal&#34;)]
+</span></span><span class="line"><span class="cl">   private static extern void FinishTransaction(string transactionIdentifier);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    //open url
+</span></span><span class="line"><span class="cl">	[DllImport(&#34;__Internal&#34;)]
+</span></span><span class="line"><span class="cl">   private static extern void OpenWebViewE(string url);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// ios pay init
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    public void IAPInitE(XLua.LuaFunction callback)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        this.iosPayCallback = callback;
+</span></span><span class="line"><span class="cl">#if UNITY_IOS&amp;&amp;!UNITY_EDITOR
+</span></span><span class="line"><span class="cl">        IAPInit();
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// ios pay buy
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;productId&#34;&gt;商品id&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;userId&#34;&gt;&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    public void BuyProductE(string productId, string userId, XLua.LuaFunction callback)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        this.iosPayCallback = callback;
+</span></span><span class="line"><span class="cl">        Dg.Log(&#34;ProviderService::BuyProductE:productId:&#34;, productId, &#34;  userId:&#34;, userId);
+</span></span><span class="line"><span class="cl">#if UNITY_IOS&amp;&amp;!UNITY_EDITOR
+</span></span><span class="line"><span class="cl">        BuyProduct(productId,userId);
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// ios pay  finish
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;transactionIdentifier&#34;&gt;订单号&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    public void FinishTransactionE(string transactionIdentifier)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Dg.Log(&#34;ProviderService::FinishTransactionE,transactionIdentifier:&#34;, transactionIdentifier);
+</span></span><span class="line"><span class="cl">#if UNITY_IOS&amp;&amp;!UNITY_EDITOR
+</span></span><span class="line"><span class="cl">        FinishTransaction(transactionIdentifier);
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// ios支付结果
+</span></span><span class="line"><span class="cl">    /// ios pay
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;res&#34;&gt;&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    public void OnPayResult(string res)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Dg.Log(&#34;ProviderService::OnPayResult::::&#34;, res);
+</span></span><span class="line"><span class="cl">        if (this.iosPayCallback != null)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            this.iosPayCallback.Call(res);
+</span></span><span class="line"><span class="cl">            //this.iosPayCallback.Dispose();
+</span></span><span class="line"><span class="cl">            this.iosPayCallback = null;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        else
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            Dg.Log(&#34;ProviderService::OnPayResult:::: iosPayCallback is null!&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -2102,7 +2090,7 @@ public class ProviderService : MonoBehaviour
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

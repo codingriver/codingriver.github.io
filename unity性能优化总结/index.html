@@ -8,10 +8,10 @@
         <title>unity性能优化笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="unity性能优化笔记" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -461,15 +461,15 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 <h3 id="打包和资源加载">打包和资源加载</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    BuildPipeline.BuildPlayer(BuildConfig.scenes, outputPath, target, buildOptions);
-    BuildPipeline.BuildAssetBundles(rABPath, rOptions, (BuildTarget)CurBuildPlatform);  (BuildAssetBundleOptions.DeterministicAssetBundle | BuildAssetBundleOptions. ChunkBasedCompression)
-    UnityEditor.U2D.SpriteAtlasUtility.PackAllAtlases(EditorUserBuildSettings.  activeBuildTarget); 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    BuildPipeline.BuildPlayer(BuildConfig.scenes, outputPath, target, buildOptions);
+</span></span><span class="line"><span class="cl">    BuildPipeline.BuildAssetBundles(rABPath, rOptions, (BuildTarget)CurBuildPlatform);  (BuildAssetBundleOptions.DeterministicAssetBundle | BuildAssetBundleOptions. ChunkBasedCompression)
+</span></span><span class="line"><span class="cl">    UnityEditor.U2D.SpriteAtlasUtility.PackAllAtlases(EditorUserBuildSettings.  activeBuildTarget); 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>打包使用LZ4格式压缩，压缩比1:3;LZMA 压缩比1:4。</li>
@@ -535,9 +535,9 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 </blockquote>
 <blockquote>
 <p>参考：<br>
-<a href="https://zhuanlan.zhihu.com/p/157877557">https://zhuanlan.zhihu.com/p/157877557</a><br>
-<a href="https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html">https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html</a><br>
-<a href="https://docs.unity3d.com/353/Documentation/Manual/iphone-Optimizing-Scripts.html">https://docs.unity3d.com/353/Documentation/Manual/iphone-Optimizing-Scripts.html</a></p>
+<a href="https://zhuanlan.zhihu.com/p/157877557" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/157877557</a><br>
+<a href="https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html" target="_blank" rel="noopener noreffer">https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html</a><br>
+<a href="https://docs.unity3d.com/353/Documentation/Manual/iphone-Optimizing-Scripts.html" target="_blank" rel="noopener noreffer">https://docs.unity3d.com/353/Documentation/Manual/iphone-Optimizing-Scripts.html</a></p>
 </blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -568,7 +568,7 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

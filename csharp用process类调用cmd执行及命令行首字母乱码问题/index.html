@@ -8,10 +8,10 @@
         <title>C#用Process类调用cmd执行及命令行首字母乱码问题 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="C#用Process类调用cmd执行及命令行首字母乱码问题" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/csharp%E7%94%A8process%E7%B1%BB%E8%B0%83%E7%94%A8cmd%E6%89%A7%E8%A1%8C%E5%8F%8A%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%A6%96%E5%AD%97%E6%AF%8D%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/csharp%E7%94%A8process%E7%B1%BB%E8%B0%83%E7%94%A8cmd%E6%89%A7%E8%A1%8C%E5%8F%8A%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%A6%96%E5%AD%97%E6%AF%8D%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/csharp%E7%94%A8process%E7%B1%BB%E8%B0%83%E7%94%A8cmd%E6%89%A7%E8%A1%8C%E5%8F%8A%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%A6%96%E5%AD%97%E6%AF%8D%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98\/"
-        },"genre": "posts","keywords": "Unicode编码","wordcount":  957 ,
+        },"genre": "posts","keywords": "Unicode编码","wordcount":  955 ,
         "url": "https:\/\/codingriver.github.io\/csharp%E7%94%A8process%E7%B1%BB%E8%B0%83%E7%94%A8cmd%E6%89%A7%E8%A1%8C%E5%8F%8A%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%A6%96%E5%AD%97%E6%AF%8D%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">C#用Process类调用cmd执行及命令行首字母乱码问题</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/csharp/"><i class="far fa-folder fa-fw"></i>C#</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 957 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 955 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/csharp%E7%94%A8process%E7%B1%BB%E8%B0%83%E7%94%A8cmd%E6%89%A7%E8%A1%8C%E5%8F%8A%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%A6%96%E5%AD%97%E6%AF%8D%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="C#用Process类调用cmd执行及命令行首字母乱码问题">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -119,7 +119,7 @@
             </div><div class="content" id="content"><p>直接上代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -292,207 +292,203 @@
 </span><span class="lnt">171
 </span><span class="lnt">172
 </span><span class="lnt">173
-</span><span class="lnt">174
-</span><span class="lnt">175
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//=====================================================
-// - FileName:    	ProcessTask 
-// - Description:
-// - Author:		wangguoqing
-// - Email:			wangguoqing@hehemj.com
-// - Created:		2017/12/13 17:12:17
-// - CLR version: 	4.0.30319.42000
-// - UserName:		Wang
-// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
-// -  All Rights Reserved.
-//======================================================
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using System.Threading;
-using UnityEngine;
-using Debug = UnityEngine.Debug;
- 
-    class ProcessTask
-    {
-
-
-
-
-        public static bool RunProcess(string filePath,string args=&#34;&#34;)
-        {
-            bool isSuncc = true;
-            ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = filePath;
-            //start.Arguments = args+&#34;&amp;exit&#34;;
-            start.UseShellExecute = false;//是否使用操作系统shell启动
-            start.RedirectStandardOutput = true;//由调用程序获取输出信息
-            start.RedirectStandardError = true;//重定向标准错误输出
-            start.RedirectStandardInput = true;//接受来自调用程序的输入信息
-            //start.CreateNoWindow = true;/不显示程序窗口
-            //start.WorkingDirectory = &#34;&#34;;
-            using (Process process = Process.Start(start))
-            {
-                process.StandardInput.WriteLine(args);
-                process.StandardInput.WriteLine(&#34;exit&#34;);
-                process.EnableRaisingEvents = true;
-                process.BeginOutputReadLine();
-
-                process.OutputDataReceived += (s, e) =&gt;
-                {
-                    if (!string.IsNullOrEmpty(e.Data)) Console.WriteLine(e.Data);
-                };
-                using (StreamReader reader = process.StandardError)
-                {
-                    string result = reader.ReadToEnd();
-                    if (!string.IsNullOrEmpty(result))
-                    {
-                        Debug.LogError(result);
-                        isSuncc = false;
-                    }
-
-                }
-                //using (StreamReader reader = process.StandardOutput)
-                //{
-                //    string result = reader.ReadToEnd();
-                //    if (!string.IsNullOrEmpty(result))
-                //    {
-                //        UnityEngine.Debug.Log(&#34;&#34; + result);
-                //    }
-
-                //}
-                process.WaitForExit();
-            }
-            return isSuncc;
-        }
-
-
-
-        public static string[] RunProcess(string filePath, string args, string workDir)
-        {
-            bool isSuncc = true;
-            List&lt;string&gt; ls = new List&lt;string&gt;();
-            ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = filePath;
-            start.Arguments = args;
-            start.UseShellExecute = false;
-            start.RedirectStandardOutput = true;
-            start.RedirectStandardError = true;
-            start.RedirectStandardInput = true;
-            //start.CreateNoWindow = true;
-            //start.WorkingDirectory = workDir;
-            string CurDir = Environment.CurrentDirectory;
-            Environment.CurrentDirectory = workDir;
-            using (Process process = Process.Start(start))
-            {
-                process.EnableRaisingEvents = true;
-                //process.BeginOutputReadLine();
-
-                process.OutputDataReceived += (s, e) =&gt;
-                {
-                    if (!string.IsNullOrEmpty(e.Data)) Console.WriteLine(e.Data);
-                };
-                using (StreamReader reader = process.StandardError)
-                {
-                    string result = reader.ReadToEnd();
-                    if (!string.IsNullOrEmpty(result))
-                    {
-                        Debug.LogError(result);
-                        isSuncc = false;
-                    }
-
-                }
-                using (StreamReader reader = process.StandardOutput)
-                {
-                    string line = string.Empty;
-                    while((line=reader.ReadLine())!=null)
-                    {
-                        ls.Add(line);
-                    }
-
-                }
-                process.WaitForExit();
-            }
-            Environment.CurrentDirectory = CurDir;
-            if(isSuncc)
-            {
-                return ls.ToArray();
-            }
-
-            return null;
-        }
-
-
-        public static void RunCmdAsync(string arg)
-        {
-            System.Console.InputEncoding = System.Text.Encoding.UTF8;
-            Process process = new Process();
-            process.StartInfo.FileName = &#34;cmd.exe&#34;;
-            //process.StartInfo.Arguments = arg;
-            process.StartInfo.UseShellExecute = false;//是否使用操作系统shell启动
-            process.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
-            process.StartInfo.RedirectStandardError = true;//重定向标准错误输出
-            process.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
-            //process.StartInfo.CreateNoWindow = true;//不显示程序窗口
-            //process.StartInfo.WorkingDirectory = &#34;./&#34;;
-            process.OutputDataReceived += new DataReceivedEventHandler(OutputReceived);
-            process.ErrorDataReceived += new DataReceivedEventHandler(ErrorReceived);            
-            process.EnableRaisingEvents = true;                      // 启用Exited事件  
-            process.Exited += new EventHandler(ExitReceived);   // 注册进程结束事件  
-
-            process.Start();
-            process.StandardInput.WriteLine(arg);
-            process.StandardInput.WriteLine(&#34;exit&#34;);
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
-            // 如果打开注释，则以同步方式执行命令，此例子中用Exited事件异步执行。  
-            // CmdProcess.WaitForExit();    
-        }
-
-        private static void OutputReceived(object sender,DataReceivedEventArgs e)
-        {
-            Debug.Log(e.Data);
-        }
-        private static void ErrorReceived(object sender, DataReceivedEventArgs e)
-        {
-            if (e.Data!=null&amp;&amp;e.Data!=string.Empty)
-            {
-                Debug.LogError(&#34;Error::&#34; + e.Data);
-            }
-            
-        }
-        private static void ExitReceived(object sender, EventArgs e)
-        {
-            //Debug.Log(&#34;Exit::&#34;+e.ToString());
-        }        
-    }
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//=====================================================
+</span></span><span class="line"><span class="cl">// - FileName:    	ProcessTask 
+</span></span><span class="line"><span class="cl">// - Description:
+</span></span><span class="line"><span class="cl">// - Author:		wangguoqing
+</span></span><span class="line"><span class="cl">// - Email:			wangguoqing@hehemj.com
+</span></span><span class="line"><span class="cl">// - Created:		2017/12/13 17:12:17
+</span></span><span class="line"><span class="cl">// - CLR version: 	4.0.30319.42000
+</span></span><span class="line"><span class="cl">// - UserName:		Wang
+</span></span><span class="line"><span class="cl">// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
+</span></span><span class="line"><span class="cl">// -  All Rights Reserved.
+</span></span><span class="line"><span class="cl">//======================================================
+</span></span><span class="line"><span class="cl">using System;
+</span></span><span class="line"><span class="cl">using System.Collections.Generic;
+</span></span><span class="line"><span class="cl">using System.Diagnostics;
+</span></span><span class="line"><span class="cl">using System.IO;
+</span></span><span class="line"><span class="cl">using System.Text;
+</span></span><span class="line"><span class="cl">using System.Threading;
+</span></span><span class="line"><span class="cl">using UnityEngine;
+</span></span><span class="line"><span class="cl">using Debug = UnityEngine.Debug;
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    class ProcessTask
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        public static bool RunProcess(string filePath,string args=&#34;&#34;)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            bool isSuncc = true;
+</span></span><span class="line"><span class="cl">            ProcessStartInfo start = new ProcessStartInfo();
+</span></span><span class="line"><span class="cl">            start.FileName = filePath;
+</span></span><span class="line"><span class="cl">            //start.Arguments = args+&#34;&amp;exit&#34;;
+</span></span><span class="line"><span class="cl">            start.UseShellExecute = false;//是否使用操作系统shell启动
+</span></span><span class="line"><span class="cl">            start.RedirectStandardOutput = true;//由调用程序获取输出信息
+</span></span><span class="line"><span class="cl">            start.RedirectStandardError = true;//重定向标准错误输出
+</span></span><span class="line"><span class="cl">            start.RedirectStandardInput = true;//接受来自调用程序的输入信息
+</span></span><span class="line"><span class="cl">            //start.CreateNoWindow = true;/不显示程序窗口
+</span></span><span class="line"><span class="cl">            //start.WorkingDirectory = &#34;&#34;;
+</span></span><span class="line"><span class="cl">            using (Process process = Process.Start(start))
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                process.StandardInput.WriteLine(args);
+</span></span><span class="line"><span class="cl">                process.StandardInput.WriteLine(&#34;exit&#34;);
+</span></span><span class="line"><span class="cl">                process.EnableRaisingEvents = true;
+</span></span><span class="line"><span class="cl">                process.BeginOutputReadLine();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                process.OutputDataReceived += (s, e) =&gt;
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    if (!string.IsNullOrEmpty(e.Data)) Console.WriteLine(e.Data);
+</span></span><span class="line"><span class="cl">                };
+</span></span><span class="line"><span class="cl">                using (StreamReader reader = process.StandardError)
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    string result = reader.ReadToEnd();
+</span></span><span class="line"><span class="cl">                    if (!string.IsNullOrEmpty(result))
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        Debug.LogError(result);
+</span></span><span class="line"><span class="cl">                        isSuncc = false;
+</span></span><span class="line"><span class="cl">                    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">                //using (StreamReader reader = process.StandardOutput)
+</span></span><span class="line"><span class="cl">                //{
+</span></span><span class="line"><span class="cl">                //    string result = reader.ReadToEnd();
+</span></span><span class="line"><span class="cl">                //    if (!string.IsNullOrEmpty(result))
+</span></span><span class="line"><span class="cl">                //    {
+</span></span><span class="line"><span class="cl">                //        UnityEngine.Debug.Log(&#34;&#34; + result);
+</span></span><span class="line"><span class="cl">                //    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                //}
+</span></span><span class="line"><span class="cl">                process.WaitForExit();
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            return isSuncc;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        public static string[] RunProcess(string filePath, string args, string workDir)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            bool isSuncc = true;
+</span></span><span class="line"><span class="cl">            List&lt;string&gt; ls = new List&lt;string&gt;();
+</span></span><span class="line"><span class="cl">            ProcessStartInfo start = new ProcessStartInfo();
+</span></span><span class="line"><span class="cl">            start.FileName = filePath;
+</span></span><span class="line"><span class="cl">            start.Arguments = args;
+</span></span><span class="line"><span class="cl">            start.UseShellExecute = false;
+</span></span><span class="line"><span class="cl">            start.RedirectStandardOutput = true;
+</span></span><span class="line"><span class="cl">            start.RedirectStandardError = true;
+</span></span><span class="line"><span class="cl">            start.RedirectStandardInput = true;
+</span></span><span class="line"><span class="cl">            //start.CreateNoWindow = true;
+</span></span><span class="line"><span class="cl">            //start.WorkingDirectory = workDir;
+</span></span><span class="line"><span class="cl">            string CurDir = Environment.CurrentDirectory;
+</span></span><span class="line"><span class="cl">            Environment.CurrentDirectory = workDir;
+</span></span><span class="line"><span class="cl">            using (Process process = Process.Start(start))
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                process.EnableRaisingEvents = true;
+</span></span><span class="line"><span class="cl">                //process.BeginOutputReadLine();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                process.OutputDataReceived += (s, e) =&gt;
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    if (!string.IsNullOrEmpty(e.Data)) Console.WriteLine(e.Data);
+</span></span><span class="line"><span class="cl">                };
+</span></span><span class="line"><span class="cl">                using (StreamReader reader = process.StandardError)
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    string result = reader.ReadToEnd();
+</span></span><span class="line"><span class="cl">                    if (!string.IsNullOrEmpty(result))
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        Debug.LogError(result);
+</span></span><span class="line"><span class="cl">                        isSuncc = false;
+</span></span><span class="line"><span class="cl">                    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">                using (StreamReader reader = process.StandardOutput)
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    string line = string.Empty;
+</span></span><span class="line"><span class="cl">                    while((line=reader.ReadLine())!=null)
+</span></span><span class="line"><span class="cl">                    {
+</span></span><span class="line"><span class="cl">                        ls.Add(line);
+</span></span><span class="line"><span class="cl">                    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">                process.WaitForExit();
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            Environment.CurrentDirectory = CurDir;
+</span></span><span class="line"><span class="cl">            if(isSuncc)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                return ls.ToArray();
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            return null;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        public static void RunCmdAsync(string arg)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            System.Console.InputEncoding = System.Text.Encoding.UTF8;
+</span></span><span class="line"><span class="cl">            Process process = new Process();
+</span></span><span class="line"><span class="cl">            process.StartInfo.FileName = &#34;cmd.exe&#34;;
+</span></span><span class="line"><span class="cl">            //process.StartInfo.Arguments = arg;
+</span></span><span class="line"><span class="cl">            process.StartInfo.UseShellExecute = false;//是否使用操作系统shell启动
+</span></span><span class="line"><span class="cl">            process.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
+</span></span><span class="line"><span class="cl">            process.StartInfo.RedirectStandardError = true;//重定向标准错误输出
+</span></span><span class="line"><span class="cl">            process.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
+</span></span><span class="line"><span class="cl">            //process.StartInfo.CreateNoWindow = true;//不显示程序窗口
+</span></span><span class="line"><span class="cl">            //process.StartInfo.WorkingDirectory = &#34;./&#34;;
+</span></span><span class="line"><span class="cl">            process.OutputDataReceived += new DataReceivedEventHandler(OutputReceived);
+</span></span><span class="line"><span class="cl">            process.ErrorDataReceived += new DataReceivedEventHandler(ErrorReceived);            
+</span></span><span class="line"><span class="cl">            process.EnableRaisingEvents = true;                      // 启用Exited事件  
+</span></span><span class="line"><span class="cl">            process.Exited += new EventHandler(ExitReceived);   // 注册进程结束事件  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            process.Start();
+</span></span><span class="line"><span class="cl">            process.StandardInput.WriteLine(arg);
+</span></span><span class="line"><span class="cl">            process.StandardInput.WriteLine(&#34;exit&#34;);
+</span></span><span class="line"><span class="cl">            process.BeginOutputReadLine();
+</span></span><span class="line"><span class="cl">            process.BeginErrorReadLine();
+</span></span><span class="line"><span class="cl">            // 如果打开注释，则以同步方式执行命令，此例子中用Exited事件异步执行。  
+</span></span><span class="line"><span class="cl">            // CmdProcess.WaitForExit();    
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        private static void OutputReceived(object sender,DataReceivedEventArgs e)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            Debug.Log(e.Data);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        private static void ErrorReceived(object sender, DataReceivedEventArgs e)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            if (e.Data!=null&amp;&amp;e.Data!=string.Empty)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                Debug.LogError(&#34;Error::&#34; + e.Data);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        private static void ExitReceived(object sender, EventArgs e)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            //Debug.Log(&#34;Exit::&#34;+e.ToString());
+</span></span><span class="line"><span class="cl">        }        
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">ProcessTask.RunCmdAsync(&#34;ipconfig&#34;);
-ProcessTask.RunCmdAsync(&#34;path&#34;);
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ProcessTask.RunCmdAsync(&#34;ipconfig&#34;);
+</span></span><span class="line"><span class="cl">ProcessTask.RunCmdAsync(&#34;path&#34;);
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里出现错误首字母乱码
 C#用Process类调用cmd时，命令行那里首字母乱码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">&#39;锘縤pconfig&#39; 不是内部或外部命令，也不是可运行的程序或批处理文件。
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#39;锘縤pconfig&#39; 不是内部或外部命令，也不是可运行的程序或批处理文件。
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>把<code>System.Console.InputEncoding = System.Text.Encoding.UTF8;</code>这句代码加上就好了</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -524,7 +520,7 @@ C#用Process类调用cmd时，命令行那里首字母乱码</p>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

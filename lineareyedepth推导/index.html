@@ -8,10 +8,10 @@
         <title>LinearEyeDepth推导 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="LinearEyeDepth推导" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/lineareyedepth%E6%8E%A8%E5%AF%BC/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/lineareyedepth%E6%8E%A8%E5%AF%BC/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-24T15:08:25+08:00" />
 <meta property="article:modified_time" content="2021-04-24T15:08:25+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/lineareyedepth%E6%8E%A8%E5%AF%BC\/"
-        },"genre": "posts","wordcount":  895 ,
+        },"genre": "posts","wordcount":  894 ,
         "url": "https:\/\/codingriver.github.io\/lineareyedepth%E6%8E%A8%E5%AF%BC\/","datePublished": "2021-04-24T15:08:25+08:00","dateModified": "2021-04-24T15:08:25+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">LinearEyeDepth推导</h1><h2 class="single-subtitle">LinearEyeDepth推导</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-24 15:08:25">2021-04-24 15:08:25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 895 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-24 15:08:25">2021-04-24 15:08:25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 894 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/lineareyedepth%E6%8E%A8%E5%AF%BC/" class="leancloud_visitors" data-flag-title="LinearEyeDepth推导">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -122,7 +122,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p>转自 冯乐乐 《unity shader 入门精要》 :<a href="https://blog.csdn.net/linuxheik/article/details/79446780/">https://blog.csdn.net/linuxheik/article/details/79446780/</a></p>
+<p>转自 冯乐乐 《unity shader 入门精要》 :<a href="https://blog.csdn.net/linuxheik/article/details/79446780/" target="_blank" rel="noopener noreffer">https://blog.csdn.net/linuxheik/article/details/79446780/</a></p>
 </blockquote>
 <p>Unity 从<code>相机空间</code> 通过透视投影变换（裁剪矩阵）后到<code>裁剪空间</code>，然后通过透视除法变换到归一化的设备坐标（Normalized Device Coordinates, <code>NDC</code>）,然后转换到视口坐标 。</p>
 <p>z 分量从ndc [-1,1]到屏幕坐标[0,1]的映射方法：<br>
@@ -233,7 +233,7 @@
 <p><code>LinearEyeDepth</code> 方法和 <code>Linear01Depth</code> 方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -257,35 +257,33 @@
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
-</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">
-// Z buffer to linear depth
-inline float LinearEyeDepth( float z )
-{
-return 1.0 / (_ZBufferParams.z * z + _ZBufferParams.w);
-}
-
-
-// Z buffer to linear 0..1 depth (0 at eye, 1 at far plane)
-inline float Linear01Depth( float z )
-{
-return 1.0 / (_ZBufferParams.x * z + _ZBufferParams.y);
-}
-
-
-//其中_ZBufferParams的定义如下：
-//double zc0, zc1;
-// OpenGL would be this:
-// zc0 = (1.0 - m_FarClip / m_NearClip) / 2.0;
-// zc1 = (1.0 + m_FarClip / m_NearClip) / 2.0;
-// D3D is this:
-//zc0 = 1.0 - m_FarClip / m_NearClip;
-//zc1 = m_FarClip / m_NearClip;
-// now set _ZBufferParams with (zc0, zc1, zc0/m_FarClip, zc1/m_FarClip);
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// Z buffer to linear depth
+</span></span><span class="line"><span class="cl">inline float LinearEyeDepth( float z )
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">return 1.0 / (_ZBufferParams.z * z + _ZBufferParams.w);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// Z buffer to linear 0..1 depth (0 at eye, 1 at far plane)
+</span></span><span class="line"><span class="cl">inline float Linear01Depth( float z )
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">return 1.0 / (_ZBufferParams.x * z + _ZBufferParams.y);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//其中_ZBufferParams的定义如下：
+</span></span><span class="line"><span class="cl">//double zc0, zc1;
+</span></span><span class="line"><span class="cl">// OpenGL would be this:
+</span></span><span class="line"><span class="cl">// zc0 = (1.0 - m_FarClip / m_NearClip) / 2.0;
+</span></span><span class="line"><span class="cl">// zc1 = (1.0 + m_FarClip / m_NearClip) / 2.0;
+</span></span><span class="line"><span class="cl">// D3D is this:
+</span></span><span class="line"><span class="cl">//zc0 = 1.0 - m_FarClip / m_NearClip;
+</span></span><span class="line"><span class="cl">//zc1 = m_FarClip / m_NearClip;
+</span></span><span class="line"><span class="cl">// now set _ZBufferParams with (zc0, zc1, zc0/m_FarClip, zc1/m_FarClip);
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li><code>_ZBufferParams</code> 参数：<code>(1-Far/Near, Far/Near, x/Far, y/Far)</code></li>
@@ -293,9 +291,9 @@ return 1.0 / (_ZBufferParams.x * z + _ZBufferParams.y);
 <h2 id="使用">使用</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code></code></pre></td>
+<pre tabindex="0" class="chroma"><code></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -327,7 +325,7 @@ return 1.0 / (_ZBufferParams.x * z + _ZBufferParams.y);
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

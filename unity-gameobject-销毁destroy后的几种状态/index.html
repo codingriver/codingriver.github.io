@@ -8,10 +8,10 @@
         <title>Unity-GameObject-销毁（Destroy）后的几种状态 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Unity-GameObject-销毁（Destroy）后的几种状态" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity-gameobject-%E9%94%80%E6%AF%81destroy%E5%90%8E%E7%9A%84%E5%87%A0%E7%A7%8D%E7%8A%B6%E6%80%81/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity-gameobject-%E9%94%80%E6%AF%81destroy%E5%90%8E%E7%9A%84%E5%87%A0%E7%A7%8D%E7%8A%B6%E6%80%81/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -136,7 +136,7 @@
 <p>Test.cs代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -189,58 +189,58 @@
 </span><span class="lnt">51
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="c1">//=====================================================
-</span><span class="c1">// - FileName:    	Test 
-</span><span class="c1">// - Description:
-</span><span class="c1">// - Author:		wangguoqing
-</span><span class="c1">// - Email:			wangguoqing@hehemj.com
-</span><span class="c1">// - Created:		2017/12/13 17:12:17
-</span><span class="c1">// - CLR version: 	4.0.30319.42000
-</span><span class="c1">// - UserName:		Wang
-</span><span class="c1">// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
-</span><span class="c1">// -  All Rights Reserved.
-</span><span class="c1">//======================================================
-</span><span class="c1"></span><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine.UI</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine.Events</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine.EventSystems</span><span class="p">;</span>
-<span class="k">public</span> <span class="k">class</span> <span class="nc">Test</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="n">GameObject</span> <span class="n">obj</span><span class="p">;</span>
-    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">StartCoroutine</span><span class="p">(</span><span class="n">DestroyObj</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
-    <span class="p">}</span>
-    <span class="n">IEnumerator</span> <span class="n">DestroyObj</span><span class="p">(</span><span class="n">GameObject</span> <span class="n">go</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;StartCoroutine&#34;</span><span class="p">);</span>
-        <span class="n">Destroy</span><span class="p">(</span><span class="n">go</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;go:::&#34;</span> <span class="p">+</span> <span class="n">go</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;go transform::1:::&#34;</span> <span class="p">+</span> <span class="n">go</span><span class="p">.</span><span class="n">transform</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;type::1::&#34;</span><span class="p">+</span> <span class="n">go</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">FullName</span><span class="p">);</span>
-        <span class="c1">//go = null;
-</span><span class="c1"></span>        <span class="k">yield</span> <span class="k">return</span> <span class="k">new</span> <span class="n">WaitForEndOfFrame</span><span class="p">();</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">go</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;null===1&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">go</span> <span class="k">is</span> <span class="n">GameObject</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;type::2::&#34;</span> <span class="p">+</span> <span class="n">go</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">FullName</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="n">Destroy</span><span class="p">(</span><span class="n">go</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">go</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;null===2&#34;</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;go transform::2:::&#34;</span> <span class="p">+</span> <span class="n">go</span><span class="p">.</span><span class="n">transform</span><span class="p">);</span><span class="c1">//这里是77行
-</span><span class="c1"></span>        <span class="n">Destroy</span><span class="p">(</span><span class="n">go</span><span class="p">);</span>
-        <span class="k">yield</span> <span class="k">break</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="c1">//=====================================================</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - FileName:    	Test </span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Description:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Author:		wangguoqing</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Email:			wangguoqing@hehemj.com</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Created:		2017/12/13 17:12:17</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - CLR version: 	4.0.30319.42000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - UserName:		Wang</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// -  All Rights Reserved.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//======================================================</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine.UI</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine.Events</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine.EventSystems</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">Test</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="n">GameObject</span> <span class="n">obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">StartCoroutine</span><span class="p">(</span><span class="n">DestroyObj</span><span class="p">(</span><span class="n">obj</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">IEnumerator</span> <span class="n">DestroyObj</span><span class="p">(</span><span class="n">GameObject</span> <span class="n">go</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;StartCoroutine&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Destroy</span><span class="p">(</span><span class="n">go</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;go:::&#34;</span> <span class="p">+</span> <span class="n">go</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;go transform::1:::&#34;</span> <span class="p">+</span> <span class="n">go</span><span class="p">.</span><span class="n">transform</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;type::1::&#34;</span><span class="p">+</span> <span class="n">go</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">FullName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//go = null;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="k">return</span> <span class="k">new</span> <span class="n">WaitForEndOfFrame</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">go</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;null===1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">go</span> <span class="k">is</span> <span class="n">GameObject</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;type::2::&#34;</span> <span class="p">+</span> <span class="n">go</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">FullName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Destroy</span><span class="p">(</span><span class="n">go</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">go</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;null===2&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;go transform::2:::&#34;</span> <span class="p">+</span> <span class="n">go</span><span class="p">.</span><span class="n">transform</span><span class="p">);</span><span class="c1">//这里是77行</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Destroy</span><span class="p">(</span><span class="n">go</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行结果</p>
 <p><img
@@ -292,7 +292,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

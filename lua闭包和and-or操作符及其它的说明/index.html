@@ -8,10 +8,10 @@
         <title>lua 闭包 和and/or 操作符及其它的说明 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="lua 闭包 和and/or 操作符及其它的说明" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/lua%E9%97%AD%E5%8C%85%E5%92%8Cand-or%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%8F%8A%E5%85%B6%E5%AE%83%E7%9A%84%E8%AF%B4%E6%98%8E/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/lua%E9%97%AD%E5%8C%85%E5%92%8Cand-or%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%8F%8A%E5%85%B6%E5%AE%83%E7%9A%84%E8%AF%B4%E6%98%8E/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/lua%E9%97%AD%E5%8C%85%E5%92%8Cand-or%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%8F%8A%E5%85%B6%E5%AE%83%E7%9A%84%E8%AF%B4%E6%98%8E\/"
-        },"genre": "posts","keywords": "lua","wordcount":  1779 ,
+        },"genre": "posts","keywords": "lua","wordcount":  1775 ,
         "url": "https:\/\/codingriver.github.io\/lua%E9%97%AD%E5%8C%85%E5%92%8Cand-or%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%8F%8A%E5%85%B6%E5%AE%83%E7%9A%84%E8%AF%B4%E6%98%8E\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">lua 闭包 和and/or 操作符及其它的说明</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/lua/"><i class="far fa-folder fa-fw"></i>lua</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1779 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1775 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/lua%E9%97%AD%E5%8C%85%E5%92%8Cand-or%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%8F%8A%E5%85%B6%E5%AE%83%E7%9A%84%E8%AF%B4%E6%98%8E/" class="leancloud_visitors" data-flag-title="lua 闭包 和and/or 操作符及其它的说明">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -143,7 +143,7 @@
 <p>lua的闭包之前自己也研究过这里做下记录吧，直接上代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -162,32 +162,28 @@
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">function</span> <span class="nf">test</span><span class="p">()</span>
-	<span class="n">local</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-	<span class="n">local</span> <span class="n">f</span><span class="o">=</span><span class="n">function</span><span class="p">()</span>
-				<span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-				<span class="k">return</span> <span class="n">i</span>
-			<span class="n">end</span>
-	<span class="k">return</span> <span class="n">f</span>
-<span class="n">end</span>
-<span class="o">--</span><span class="err">这里生成一个闭包</span><span class="n">f1</span><span class="err">，同时变量</span><span class="n">i也是闭包的一部分</span>
-<span class="n">local</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">test</span><span class="p">()</span>
-<span class="n">local</span> <span class="n">a</span> <span class="o">=</span> <span class="n">f1</span><span class="p">()</span>
-<span class="n">local</span> <span class="n">b</span> <span class="o">=</span> <span class="n">f1</span><span class="p">()</span>
-<span class="o">--</span><span class="err">这里再生成一个闭包</span><span class="n">f2</span><span class="err">，同时变量</span><span class="n">i也重新创建也是闭包的一部分</span><span class="err">，是和前面没有任何关系的</span>
-<span class="n">local</span> <span class="n">f2</span><span class="o">=</span><span class="n">test</span><span class="p">()</span>
-<span class="n">local</span> <span class="n">c</span><span class="o">=</span><span class="n">f2</span><span class="p">()</span>
-<span class="n">local</span> <span class="n">e</span><span class="o">=</span><span class="n">f1</span><span class="p">()</span>
-<span class="n">local</span> <span class="n">d</span><span class="o">=</span><span class="n">f2</span><span class="p">()</span>
-
-<span class="n">print</span><span class="p">(</span><span class="s">&#34;a:&#34;</span><span class="p">..</span><span class="n">a</span><span class="p">..</span><span class="s">&#34; b:&#34;</span><span class="p">..</span><span class="n">b</span><span class="p">..</span><span class="s">&#34; c:&#34;</span><span class="p">..</span><span class="n">c</span><span class="p">..</span><span class="s">&#34; d:&#34;</span><span class="p">..</span><span class="n">d</span><span class="p">..</span><span class="s">&#34; e:&#34;</span><span class="p">..</span><span class="n">e</span><span class="p">)</span>
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">function</span> <span class="nf">test</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="n">local</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">local</span> <span class="n">f</span><span class="o">=</span><span class="n">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">				<span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="k">return</span> <span class="n">i</span>
+</span></span><span class="line"><span class="cl">			<span class="n">end</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">f</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="err">这里生成一个闭包</span><span class="n">f1</span><span class="err">，同时变量</span><span class="n">i也是闭包的一部分</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">test</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">a</span> <span class="o">=</span> <span class="n">f1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">b</span> <span class="o">=</span> <span class="n">f1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="err">这里再生成一个闭包</span><span class="n">f2</span><span class="err">，同时变量</span><span class="n">i也重新创建也是闭包的一部分</span><span class="err">，是和前面没有任何关系的</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">f2</span><span class="o">=</span><span class="n">test</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">c</span><span class="o">=</span><span class="n">f2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">e</span><span class="o">=</span><span class="n">f1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">d</span><span class="o">=</span><span class="n">f2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="s">&#34;a:&#34;</span><span class="p">..</span><span class="n">a</span><span class="p">..</span><span class="s">&#34; b:&#34;</span><span class="p">..</span><span class="n">b</span><span class="p">..</span><span class="s">&#34; c:&#34;</span><span class="p">..</span><span class="n">c</span><span class="p">..</span><span class="s">&#34; d:&#34;</span><span class="p">..</span><span class="n">d</span><span class="p">..</span><span class="s">&#34; e:&#34;</span><span class="p">..</span><span class="n">e</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>结果：</p>
 <p><img
@@ -203,7 +199,7 @@
 方法参数button，clickHandler，caller，data，isNotSound对于evtHandler方法是upvalue数据，属于 evtHandler闭包相关的，之前没注意</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -237,45 +233,45 @@
 </span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="o">--</span><span class="nl">isSound</span><span class="p">:</span><span class="nb">true</span><span class="o">:</span><span class="err">没有声音。</span><span class="nb">false</span><span class="err">：有声音</span>
-<span class="n">function</span> <span class="nl">UIComponent</span><span class="p">:</span><span class="n">RegisterButtonClickHandler</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">clickHandler</span><span class="p">,</span> <span class="n">caller</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">isNotSound</span><span class="p">)</span>  
-    <span class="o">--</span><span class="n">local</span> <span class="n">obj</span> <span class="o">=</span> <span class="nl">self</span><span class="p">:</span><span class="n">GetChildObj</span><span class="p">(</span><span class="n">childName</span><span class="p">);</span>
-    <span class="o">--</span><span class="k">if</span> <span class="n">nil</span> <span class="o">==</span> <span class="n">obj</span> <span class="n">then</span> <span class="k">return</span> <span class="n">end</span><span class="p">;</span>
-
-    <span class="k">if</span> <span class="n">nil</span> <span class="o">==</span> <span class="n">button</span> <span class="n">then</span> <span class="k">return</span> <span class="n">end</span><span class="p">;</span>
-
-    <span class="n">local</span> <span class="n">evtHandler</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">isNotSound</span> <span class="o">~=</span> <span class="nb">true</span><span class="p">)</span><span class="n">then</span>
-            <span class="n">local</span> <span class="n">musicstr</span> <span class="o">=</span> <span class="s">&#34;click&#34;</span>
-            <span class="n">audio</span><span class="p">.</span><span class="n">AudioMgr</span><span class="p">.</span><span class="n">GetInstance</span><span class="p">()</span><span class="o">:</span><span class="n">PlayEffect</span><span class="p">(</span><span class="n">musicstr</span><span class="p">)</span> <span class="o">--</span><span class="err">音效</span>
-        <span class="n">end</span>
-        
-        <span class="k">if</span> <span class="n">nil</span> <span class="o">==</span> <span class="n">caller</span> <span class="n">then</span>
-            <span class="n">clickHandler</span><span class="p">();</span>
-        <span class="k">else</span>
-            <span class="k">if</span> <span class="n">data</span> <span class="n">then</span>
-                <span class="nf">clickHandler</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span><span class="n">button</span><span class="p">,</span><span class="n">data</span><span class="p">);</span>
-            <span class="k">else</span>
-                <span class="nf">clickHandler</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span><span class="n">button</span><span class="p">);</span>
-            <span class="n">end</span>
-             
-        <span class="n">end</span>
-<span class="o">--</span>        <span class="n">audios</span><span class="p">.</span><span class="n">AudioManager</span><span class="p">.</span><span class="n">GetInstance</span><span class="p">()</span><span class="o">:</span><span class="n">PlayEffectSound</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
-    <span class="n">end</span>
-
-    <span class="o">--</span><span class="n">button</span><span class="p">.</span><span class="nl">onClick</span><span class="p">:</span><span class="n">AddListener</span><span class="p">(</span><span class="n">evtHandler</span><span class="p">);</span>
-    <span class="o">--</span><span class="n">button</span><span class="p">.</span><span class="n">colors</span><span class="p">.</span><span class="n">pressedColor</span> <span class="o">=</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Color</span><span class="p">.</span><span class="n">black</span>
- 
-    <span class="n">self</span><span class="p">.</span><span class="nl">m_Behaviour</span><span class="p">:</span><span class="n">AddClick</span><span class="p">(</span><span class="n">button</span><span class="p">,</span><span class="n">evtHandler</span><span class="p">,</span> <span class="n">caller</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">obj</span><span class="p">;</span>
-<span class="n">end</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="o">--</span><span class="nl">isSound</span><span class="p">:</span><span class="nb">true</span><span class="o">:</span><span class="err">没有声音。</span><span class="nb">false</span><span class="err">：有声音</span>
+</span></span><span class="line"><span class="cl"><span class="n">function</span> <span class="nl">UIComponent</span><span class="p">:</span><span class="n">RegisterButtonClickHandler</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">clickHandler</span><span class="p">,</span> <span class="n">caller</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">isNotSound</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl">    <span class="o">--</span><span class="n">local</span> <span class="n">obj</span> <span class="o">=</span> <span class="nl">self</span><span class="p">:</span><span class="n">GetChildObj</span><span class="p">(</span><span class="n">childName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">--</span><span class="k">if</span> <span class="n">nil</span> <span class="o">==</span> <span class="n">obj</span> <span class="n">then</span> <span class="k">return</span> <span class="n">end</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">nil</span> <span class="o">==</span> <span class="n">button</span> <span class="n">then</span> <span class="k">return</span> <span class="n">end</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">local</span> <span class="n">evtHandler</span> <span class="o">=</span> <span class="n">function</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">isNotSound</span> <span class="o">~=</span> <span class="nb">true</span><span class="p">)</span><span class="n">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">local</span> <span class="n">musicstr</span> <span class="o">=</span> <span class="s">&#34;click&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">audio</span><span class="p">.</span><span class="n">AudioMgr</span><span class="p">.</span><span class="n">GetInstance</span><span class="p">()</span><span class="o">:</span><span class="n">PlayEffect</span><span class="p">(</span><span class="n">musicstr</span><span class="p">)</span> <span class="o">--</span><span class="err">音效</span>
+</span></span><span class="line"><span class="cl">        <span class="n">end</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">nil</span> <span class="o">==</span> <span class="n">caller</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">clickHandler</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">data</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">clickHandler</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span><span class="n">button</span><span class="p">,</span><span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">clickHandler</span><span class="p">(</span><span class="n">caller</span><span class="p">,</span><span class="n">button</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">end</span>
+</span></span><span class="line"><span class="cl">             
+</span></span><span class="line"><span class="cl">        <span class="n">end</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span>        <span class="n">audios</span><span class="p">.</span><span class="n">AudioManager</span><span class="p">.</span><span class="n">GetInstance</span><span class="p">()</span><span class="o">:</span><span class="n">PlayEffectSound</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="o">--</span><span class="n">button</span><span class="p">.</span><span class="nl">onClick</span><span class="p">:</span><span class="n">AddListener</span><span class="p">(</span><span class="n">evtHandler</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">--</span><span class="n">button</span><span class="p">.</span><span class="n">colors</span><span class="p">.</span><span class="n">pressedColor</span> <span class="o">=</span> <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Color</span><span class="p">.</span><span class="n">black</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="n">self</span><span class="p">.</span><span class="nl">m_Behaviour</span><span class="p">:</span><span class="n">AddClick</span><span class="p">(</span><span class="n">button</span><span class="p">,</span><span class="n">evtHandler</span><span class="p">,</span> <span class="n">caller</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">obj</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>再来一个例子
 方法参数obj,params对于cb方法是upvalue数据，属于 cb闭包相关的，其实用的蛮多的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -289,19 +285,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">function</span> <span class="n">utils</span><span class="p">.</span><span class="n">HttpUtil</span><span class="p">.</span><span class="n">FileUploadAsync</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">fileName</span><span class="p">,</span><span class="n">callback</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
-    <span class="n">local</span> <span class="n">maxRetryCount</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
-    <span class="n">local</span> <span class="n">cb</span><span class="o">=</span><span class="n">function</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="n">errcode</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">obj</span> <span class="n">then</span>
-            <span class="n">callback</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">content</span><span class="p">,</span><span class="n">errcode</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
-        <span class="k">else</span>
-            <span class="n">callback</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="n">errcode</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
-        <span class="n">end</span>
-    <span class="n">end</span>    
-
-    <span class="n">CSHttpUtil</span><span class="p">.</span><span class="n">FileUploadAsync</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">fileName</span><span class="p">,</span><span class="n">cb</span><span class="p">,</span><span class="n">maxRetryCount</span><span class="p">)</span>
-<span class="n">end</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">function</span> <span class="n">utils</span><span class="p">.</span><span class="n">HttpUtil</span><span class="p">.</span><span class="n">FileUploadAsync</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">fileName</span><span class="p">,</span><span class="n">callback</span><span class="p">,</span><span class="n">obj</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local</span> <span class="n">maxRetryCount</span><span class="o">=</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">local</span> <span class="n">cb</span><span class="o">=</span><span class="n">function</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="n">errcode</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">obj</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">callback</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="n">content</span><span class="p">,</span><span class="n">errcode</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">callback</span><span class="p">(</span><span class="n">content</span><span class="p">,</span><span class="n">errcode</span><span class="p">,</span><span class="n">params</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">end</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span>    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">CSHttpUtil</span><span class="p">.</span><span class="n">FileUploadAsync</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">fileName</span><span class="p">,</span><span class="n">cb</span><span class="p">,</span><span class="n">maxRetryCount</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>参考文章
@@ -314,7 +310,7 @@ Lua中的逻辑运算符：与(and)、或(or)和非(not)，与其他语言的逻
 直接上代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -344,43 +340,39 @@ Lua中的逻辑运算符：与(and)、或(or)和非(not)，与其他语言的逻
 </span><span class="lnt">28
 </span><span class="lnt">29
 </span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="o">--</span><span class="n">and</span> <span class="err">操作符</span> <span class="err">如果前面的参数为假则直接输出前面的值</span>
-<span class="n">local</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">and</span> <span class="mi">3</span>
-<span class="n">local</span> <span class="n">b</span> <span class="o">=</span> <span class="n">nil</span> <span class="n">and</span> <span class="mi">3</span>
-<span class="n">local</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">false</span> <span class="n">and</span> <span class="mi">3</span>
-<span class="o">--</span><span class="n">nil和false不能直接拼接字符串</span><span class="err">，所以需要先</span><span class="n">tostring</span>
-<span class="n">print</span><span class="p">(</span> <span class="s">&#34;a:&#34;</span><span class="p">..</span><span class="n">a</span><span class="p">..</span><span class="s">&#34;  b:&#34;</span><span class="p">..</span><span class="n">tostring</span><span class="p">(</span> <span class="n">b</span><span class="p">)..</span><span class="s">&#34; m:&#34;</span><span class="p">..</span><span class="n">tostring</span><span class="p">(</span> <span class="n">m</span><span class="p">))</span>
-
-<span class="o">--</span><span class="n">or</span> <span class="err">操作符</span> <span class="err">如果前面的参数为假则直接输出后面的值</span>
-<span class="n">local</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">or</span> <span class="mi">5</span>
-<span class="n">local</span> <span class="n">d</span> <span class="o">=</span> <span class="n">nil</span> <span class="n">or</span> <span class="mi">5</span>
-<span class="n">local</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">false</span> <span class="n">or</span> <span class="mi">5</span>
-<span class="n">local</span> <span class="n">f</span> <span class="o">=</span> <span class="n">nil</span> <span class="n">or</span> <span class="nb">false</span>
-<span class="n">print</span><span class="p">(</span> <span class="s">&#34;c:&#34;</span><span class="p">..</span><span class="n">c</span><span class="p">..</span><span class="s">&#34;  d:&#34;</span><span class="p">..</span><span class="n">d</span><span class="p">..</span><span class="s">&#34; e:&#34;</span><span class="p">..</span><span class="n">e</span><span class="p">..</span><span class="s">&#34; f:&#34;</span><span class="p">..</span><span class="n">tostring</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
-
-<span class="k">if</span> <span class="mi">0</span> <span class="n">then</span>
-	<span class="n">print</span><span class="p">(</span><span class="s">&#34;0 is true !&#34;</span><span class="p">)</span>
-<span class="k">else</span>
-	<span class="n">print</span><span class="p">(</span><span class="s">&#34;0 is false&#34;</span><span class="p">)</span>
-<span class="n">end</span>
-<span class="k">if</span> <span class="n">nil</span> <span class="n">then</span>
-	<span class="n">print</span><span class="p">(</span><span class="s">&#34;nil is true !&#34;</span><span class="p">)</span>
-<span class="k">else</span>
-	<span class="n">print</span><span class="p">(</span><span class="s">&#34;nil is false&#34;</span><span class="p">)</span>
-<span class="n">end</span>
-
-<span class="k">if</span> <span class="nb">false</span> <span class="n">then</span>
-	<span class="n">print</span><span class="p">(</span><span class="s">&#34;false is true !&#34;</span><span class="p">)</span>
-<span class="k">else</span>
-	<span class="n">print</span><span class="p">(</span><span class="s">&#34;false is false&#34;</span><span class="p">)</span>
-<span class="n">end</span>
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="o">--</span><span class="n">and</span> <span class="err">操作符</span> <span class="err">如果前面的参数为假则直接输出前面的值</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">and</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">b</span> <span class="o">=</span> <span class="n">nil</span> <span class="n">and</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">m</span> <span class="o">=</span> <span class="nb">false</span> <span class="n">and</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">nil和false不能直接拼接字符串</span><span class="err">，所以需要先</span><span class="n">tostring</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span> <span class="s">&#34;a:&#34;</span><span class="p">..</span><span class="n">a</span><span class="p">..</span><span class="s">&#34;  b:&#34;</span><span class="p">..</span><span class="n">tostring</span><span class="p">(</span> <span class="n">b</span><span class="p">)..</span><span class="s">&#34; m:&#34;</span><span class="p">..</span><span class="n">tostring</span><span class="p">(</span> <span class="n">m</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="n">or</span> <span class="err">操作符</span> <span class="err">如果前面的参数为假则直接输出后面的值</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span> <span class="n">or</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">d</span> <span class="o">=</span> <span class="n">nil</span> <span class="n">or</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">false</span> <span class="n">or</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">f</span> <span class="o">=</span> <span class="n">nil</span> <span class="n">or</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span> <span class="s">&#34;c:&#34;</span><span class="p">..</span><span class="n">c</span><span class="p">..</span><span class="s">&#34;  d:&#34;</span><span class="p">..</span><span class="n">d</span><span class="p">..</span><span class="s">&#34; e:&#34;</span><span class="p">..</span><span class="n">e</span><span class="p">..</span><span class="s">&#34; f:&#34;</span><span class="p">..</span><span class="n">tostring</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="mi">0</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">	<span class="n">print</span><span class="p">(</span><span class="s">&#34;0 is true !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="n">print</span><span class="p">(</span><span class="s">&#34;0 is false&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">nil</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">	<span class="n">print</span><span class="p">(</span><span class="s">&#34;nil is true !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="n">print</span><span class="p">(</span><span class="s">&#34;nil is false&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nb">false</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">	<span class="n">print</span><span class="p">(</span><span class="s">&#34;false is true !&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="n">print</span><span class="p">(</span><span class="s">&#34;false is false&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>结果：</p>
 <p><img
@@ -399,7 +391,7 @@ Lua中的逻辑运算符：与(and)、或(or)和非(not)，与其他语言的逻
 <p>一个字符串带换行的怎么处理这里说明下,使用<code>[[   ]]</code>来处理</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -408,14 +400,14 @@ Lua中的逻辑运算符：与(and)、或(or)和非(not)，与其他语言的逻
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">local</span> <span class="n">text</span><span class="o">=</span><span class="p">[[</span>
-<span class="n">abc</span>
-<span class="n">def</span>
-<span class="n">hello</span>
-<span class="n">world</span>
-<span class="p">]]</span>
-<span class="n">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">local</span> <span class="n">text</span><span class="o">=</span><span class="p">[[</span>
+</span></span><span class="line"><span class="cl"><span class="n">abc</span>
+</span></span><span class="line"><span class="cl"><span class="n">def</span>
+</span></span><span class="line"><span class="cl"><span class="n">hello</span>
+</span></span><span class="line"><span class="cl"><span class="n">world</span>
+</span></span><span class="line"><span class="cl"><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img
         class="lazyload"
@@ -430,7 +422,7 @@ Lua中的逻辑运算符：与(and)、或(or)和非(not)，与其他语言的逻
 <strong>递归调用需要先定义一个函数变量，这样在函数内部调用本身的时候后能访问到定义的函数变量地址</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -455,30 +447,30 @@ Lua中的逻辑运算符：与(and)、或(or)和非(not)，与其他语言的逻
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="o">--</span><span class="err">一个阶乘的例子</span>
-<span class="o">--</span><span class="err">递归调用需要先定义一个函数变量，这样在函数内部调用本身的时候后能访问到定义的变量地址</span>
-<span class="n">local</span> <span class="n">fact</span>
-<span class="n">fact</span> <span class="o">=</span> <span class="n">function</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">then</span>
-          <span class="k">return</span> <span class="mi">1</span> 
-     <span class="k">else</span>
-       <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">end</span>
-<span class="n">end</span>
-
-<span class="o">--</span><span class="mi">120</span>
-<span class="n">print</span><span class="p">(</span><span class="n">fact</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-
-<span class="o">--</span><span class="err">错误的用法</span>
-<span class="n">local</span> <span class="n">fact1</span> <span class="o">=</span> <span class="n">function</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">then</span>
-          <span class="k">return</span> <span class="mi">1</span> 
-     <span class="k">else</span>
-       <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">fact1</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">end</span>
-<span class="n">end</span>
-<span class="n">print</span><span class="p">(</span><span class="n">fact1</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="o">--</span><span class="err">一个阶乘的例子</span>
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="err">递归调用需要先定义一个函数变量，这样在函数内部调用本身的时候后能访问到定义的变量地址</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">fact</span>
+</span></span><span class="line"><span class="cl"><span class="n">fact</span> <span class="o">=</span> <span class="n">function</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="mi">1</span> 
+</span></span><span class="line"><span class="cl">     <span class="k">else</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="mi">120</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">fact</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">--</span><span class="err">错误的用法</span>
+</span></span><span class="line"><span class="cl"><span class="n">local</span> <span class="n">fact1</span> <span class="o">=</span> <span class="n">function</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="n">then</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="mi">1</span> 
+</span></span><span class="line"><span class="cl">     <span class="k">else</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">fact1</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">end</span>
+</span></span><span class="line"><span class="cl"><span class="n">end</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">fact1</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>结果：</p>
 <p><img
@@ -518,7 +510,7 @@ Lua中的逻辑运算符：与(and)、或(or)和非(not)，与其他语言的逻
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -8,10 +8,10 @@
         <title>Unity加载场景 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Unity加载场景" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -122,30 +122,30 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//异步加载场景
-public static AsyncOperation LoadSceneAsync(string sceneName, LoadSceneMode mode);
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//异步加载场景
+</span></span><span class="line"><span class="cl">public static AsyncOperation LoadSceneAsync(string sceneName, LoadSceneMode mode);
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>异步加载后执行后面代码时，是在执行完场景中所有Awake方法且没有执行Start的时候</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//同步加载场景
-public static void LoadScene(string sceneName, LoadSceneMode mode);
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//同步加载场景
+</span></span><span class="line"><span class="cl">public static void LoadScene(string sceneName, LoadSceneMode mode);
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>同步加载后执行后面代码时，是在场景中所有Awake方法没有执行的时候调用的，且使用GameObject.Find(&ldquo;Game&rdquo;)方法是找不到场景中该物体的，但是场景中本身有该物体</strong></p>
 <p>脚本：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -201,61 +201,61 @@ public static void LoadScene(string sceneName, LoadSceneMode mode);
 </span><span class="lnt">54
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-using System;
-using System.IO;
-using System.Text;
-using Object = UnityEngine.Object;
-using UnityEngine.SceneManagement;
-public class AssetLoader : MonoBehaviour
-{
-public static AssetLoader Instance { get; private set; }
-void Awake()
-{
-    Instance=this;
-}
-    /// &lt;summary&gt;
-    /// 同步加载场景
-    /// 说明：执行该方法后在后面直接使用GameObject.Find(&#34;Game&#34;),是找不到对应物体的，需要加载完场景后场景的Awake执行后才能Find到物体
-    /// &lt;/summary&gt;
-    /// &lt;param name=&#34;sceneName&#34;&gt;场景名&lt;/param&gt;
-    /// &lt;param name=&#34;isAdditive&#34;&gt;是否叠加场景&lt;/param&gt;
-    public static void LoadSceneSync(string sceneName,bool isAdditive=false)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    /// &lt;summary&gt;
-    /// 异步加载场景
-    /// action调用的时候是在场景加载完成且场景所有的Awake执行完后调用（Start还没有执行的时候）
-    /// &lt;/summary&gt;
-    /// &lt;param name=&#34;sceneName&#34;&gt;场景名&lt;/param&gt;
-    /// &lt;param name=&#34;action&#34;&gt;加载完成回调&lt;/param&gt;
-    /// &lt;param name=&#34;isAdditive&#34;&gt;是否叠加场景&lt;/param&gt;
-    public static void LoadSceneAsync(string sceneName,Action action,bool isAdditive=false)
-    {
-        Instance.InnerLoadSceneAsync(sceneName, action, isAdditive);
-    }
-    private void InnerLoadSceneAsync(string sceneName, Action action, bool isAdditive)
-    {
-        StartCoroutine(LoadLeveAsync(sceneName, action, isAdditive));
-    }
-
-    private IEnumerator LoadLeveAsync(string sceneName, Action action, bool isAdditive)
-    {
-        LoadSceneMode mode = isAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single;
-        yield return SceneManager.LoadSceneAsync(sceneName, mode);
-        if (!isAdditive) GC.Collect();
-        action();
-    }
-
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">using UnityEngine;
+</span></span><span class="line"><span class="cl">using System.Collections;
+</span></span><span class="line"><span class="cl">using System.Collections.Generic;
+</span></span><span class="line"><span class="cl">#if UNITY_EDITOR
+</span></span><span class="line"><span class="cl">using UnityEditor;
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">using System;
+</span></span><span class="line"><span class="cl">using System.IO;
+</span></span><span class="line"><span class="cl">using System.Text;
+</span></span><span class="line"><span class="cl">using Object = UnityEngine.Object;
+</span></span><span class="line"><span class="cl">using UnityEngine.SceneManagement;
+</span></span><span class="line"><span class="cl">public class AssetLoader : MonoBehaviour
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">public static AssetLoader Instance { get; private set; }
+</span></span><span class="line"><span class="cl">void Awake()
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    Instance=this;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// 同步加载场景
+</span></span><span class="line"><span class="cl">    /// 说明：执行该方法后在后面直接使用GameObject.Find(&#34;Game&#34;),是找不到对应物体的，需要加载完场景后场景的Awake执行后才能Find到物体
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;sceneName&#34;&gt;场景名&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;isAdditive&#34;&gt;是否叠加场景&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    public static void LoadSceneSync(string sceneName,bool isAdditive=false)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        SceneManager.LoadScene(sceneName);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// 异步加载场景
+</span></span><span class="line"><span class="cl">    /// action调用的时候是在场景加载完成且场景所有的Awake执行完后调用（Start还没有执行的时候）
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;sceneName&#34;&gt;场景名&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;action&#34;&gt;加载完成回调&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;isAdditive&#34;&gt;是否叠加场景&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    public static void LoadSceneAsync(string sceneName,Action action,bool isAdditive=false)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Instance.InnerLoadSceneAsync(sceneName, action, isAdditive);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    private void InnerLoadSceneAsync(string sceneName, Action action, bool isAdditive)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        StartCoroutine(LoadLeveAsync(sceneName, action, isAdditive));
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    private IEnumerator LoadLeveAsync(string sceneName, Action action, bool isAdditive)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        LoadSceneMode mode = isAdditive ? LoadSceneMode.Additive : LoadSceneMode.Single;
+</span></span><span class="line"><span class="cl">        yield return SceneManager.LoadSceneAsync(sceneName, mode);
+</span></span><span class="line"><span class="cl">        if (!isAdditive) GC.Collect();
+</span></span><span class="line"><span class="cl">        action();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -287,7 +287,7 @@ void Awake()
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

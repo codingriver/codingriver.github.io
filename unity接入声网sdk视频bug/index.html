@@ -8,10 +8,10 @@
         <title>unity接入声网sdk视频bug - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="unity接入声网sdk视频bug" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E6%8E%A5%E5%85%A5%E5%A3%B0%E7%BD%91sdk%E8%A7%86%E9%A2%91bug/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity%E6%8E%A5%E5%85%A5%E5%A3%B0%E7%BD%91sdk%E8%A7%86%E9%A2%91bug/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity%E6%8E%A5%E5%85%A5%E5%A3%B0%E7%BD%91sdk%E8%A7%86%E9%A2%91bug\/"
-        },"genre": "posts","keywords": "SDK","wordcount":  652 ,
+        },"genre": "posts","keywords": "SDK","wordcount":  650 ,
         "url": "https:\/\/codingriver.github.io\/unity%E6%8E%A5%E5%85%A5%E5%A3%B0%E7%BD%91sdk%E8%A7%86%E9%A2%91bug\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">unity接入声网sdk视频bug</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/other/"><i class="far fa-folder fa-fw"></i>other</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 652 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 650 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/unity%E6%8E%A5%E5%85%A5%E5%A3%B0%E7%BD%91sdk%E8%A7%86%E9%A2%91bug/" class="leancloud_visitors" data-flag-title="unity接入声网sdk视频bug">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -119,7 +119,7 @@
             </div><div class="content" id="content"><p>渲染更新每帧纹理后，unity不重新绘制，暂时用每帧移动物体来屏蔽</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -235,133 +235,129 @@
 </span><span class="lnt">114
 </span><span class="lnt">115
 </span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//=====================================================
-// - FileName:    	AgoraDraw 
-// - Description:
-// - Author:		wangguoqing
-// - Email:			wangguoqing@hehemj.com
-// - Created:		2018/1/4 11:30:06
-// - CLR version: 	4.0.30319.42000
-// - UserName:		Wang
-// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
-// -  All Rights Reserved.
-//======================================================
-
-//using System;
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
-using System.Text;
-using agora_gaming_rtc;
-
-
-public class AgoraDraw : MonoBehaviour 
-{
-
-    public delegate void AdjustTransfromDelegate(uint uid, string objName, ref Transform transform);
-    public AdjustTransfromDelegate mAdjustTransfrom = null;
-    private uint mUid = 0;
-    private bool mEnable = false; // if disabled, then no rendering happens
-
-    private Image image;
-    private Sprite sprite;
-    private IRtcEngineForGaming engine;
-    public void SetForUser(uint uid)
-    {
-        mUid = uid;
-        Debug.Log(&#34;Set uid &#34; + uid + &#34; for &#34; + gameObject.name);
-    }
-
-    public void SetEnable(bool enable)
-    {
-        mEnable = enable;
-    }
-
-    
-    // Use this for initialization
-    void Start()
-    {
-        mEnable = true;
-        image = GetComponent&lt;Image&gt;();
-        engine = agora_gaming_rtc.IRtcEngineForGaming.QueryEngine();
-        //Dg.Log(&#34;engine:::&#34;, engine,&#34;  image:&#34;,image,&#34;   sprite:&#34;,image.sprite);
-        mAdjustTransfrom = AgoraController.onTransformDelegate;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // process engine messages (TODO: put in some other place)
-        agora_gaming_rtc.IRtcEngineForGaming engine = agora_gaming_rtc.IRtcEngineForGaming.QueryEngine();
-        if (engine == null)
-            return;
-
-        while (engine.GetMessageCount() &gt; 0)
-            engine.Poll();
-
-
-#if UNITY_IOS || UNITY_ANDROID
-        uint uid = mUid;
-        //Dg.Log(&#34;uid:::&#34; + uid + &#34;  enable:&#34;, mEnable,&#34;  name:&#34;,gameObject.name);
-        if (mEnable)
-        {
-            if (image.sprite==null)
-            {
-                //Debug.Log(&#34;Texture2D.CreateExternalTexture:::&#34;);
-                System.IntPtr texPtr = (System.IntPtr)engine.GenerateNativeTexture();
-                Texture2D tex = Texture2D.CreateExternalTexture(640, 360, TextureFormat.ARGB32, false, false, texPtr); // FIXME! texture size is subject to change
-                Sprite spt = Sprite.Create(tex, new Rect(0, 0, 640, 360), new Vector2(0.5f, 0.5f));
-                this.sprite = spt;
-                image.sprite = spt;
-                //Debug.Log(&#34;Texture2D.CreateExternalTexture:::texPtr:&#34;+texPtr+&#34;  size:&#34;+ tex.texelSize);
-            }
-
-
-            // update texture
-            if (sprite != null)
-            {
-
-                int texId = (int)sprite.texture.GetNativeTexturePtr();
-
-                // update texture (possible size changing)
-                uint texWidth = 0;
-                uint texHeight = 0;
-                if (engine.UpdateTexture(texId, uid, ref texWidth, ref texHeight) == 0)
-                {
-                    // TODO: process texture then render
-                }
-                
-                //image.SetAllDirty();
-            }
-        }
-        else if (sprite != null)
-        {
-           int texId = (int)sprite.texture.GetNativeTexturePtr();
-           image.sprite = null;
-           engine.DeleteTexture(texId);
-        }
-#endif
-
-        if (mAdjustTransfrom != null)
-        {
-            var trans = transform;
-            mAdjustTransfrom(mUid, gameObject.name, ref trans);
-        }        
-    }
-
-
-}
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//=====================================================
+</span></span><span class="line"><span class="cl">// - FileName:    	AgoraDraw 
+</span></span><span class="line"><span class="cl">// - Description:
+</span></span><span class="line"><span class="cl">// - Author:		wangguoqing
+</span></span><span class="line"><span class="cl">// - Email:			wangguoqing@hehemj.com
+</span></span><span class="line"><span class="cl">// - Created:		2018/1/4 11:30:06
+</span></span><span class="line"><span class="cl">// - CLR version: 	4.0.30319.42000
+</span></span><span class="line"><span class="cl">// - UserName:		Wang
+</span></span><span class="line"><span class="cl">// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
+</span></span><span class="line"><span class="cl">// -  All Rights Reserved.
+</span></span><span class="line"><span class="cl">//======================================================
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//using System;
+</span></span><span class="line"><span class="cl">using UnityEngine;
+</span></span><span class="line"><span class="cl">using UnityEngine.UI;
+</span></span><span class="line"><span class="cl">using System.Collections.Generic;
+</span></span><span class="line"><span class="cl">using System.Text;
+</span></span><span class="line"><span class="cl">using agora_gaming_rtc;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">public class AgoraDraw : MonoBehaviour 
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public delegate void AdjustTransfromDelegate(uint uid, string objName, ref Transform transform);
+</span></span><span class="line"><span class="cl">    public AdjustTransfromDelegate mAdjustTransfrom = null;
+</span></span><span class="line"><span class="cl">    private uint mUid = 0;
+</span></span><span class="line"><span class="cl">    private bool mEnable = false; // if disabled, then no rendering happens
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    private Image image;
+</span></span><span class="line"><span class="cl">    private Sprite sprite;
+</span></span><span class="line"><span class="cl">    private IRtcEngineForGaming engine;
+</span></span><span class="line"><span class="cl">    public void SetForUser(uint uid)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        mUid = uid;
+</span></span><span class="line"><span class="cl">        Debug.Log(&#34;Set uid &#34; + uid + &#34; for &#34; + gameObject.name);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public void SetEnable(bool enable)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        mEnable = enable;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    // Use this for initialization
+</span></span><span class="line"><span class="cl">    void Start()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        mEnable = true;
+</span></span><span class="line"><span class="cl">        image = GetComponent&lt;Image&gt;();
+</span></span><span class="line"><span class="cl">        engine = agora_gaming_rtc.IRtcEngineForGaming.QueryEngine();
+</span></span><span class="line"><span class="cl">        //Dg.Log(&#34;engine:::&#34;, engine,&#34;  image:&#34;,image,&#34;   sprite:&#34;,image.sprite);
+</span></span><span class="line"><span class="cl">        mAdjustTransfrom = AgoraController.onTransformDelegate;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // Update is called once per frame
+</span></span><span class="line"><span class="cl">    void Update()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        // process engine messages (TODO: put in some other place)
+</span></span><span class="line"><span class="cl">        agora_gaming_rtc.IRtcEngineForGaming engine = agora_gaming_rtc.IRtcEngineForGaming.QueryEngine();
+</span></span><span class="line"><span class="cl">        if (engine == null)
+</span></span><span class="line"><span class="cl">            return;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        while (engine.GetMessageCount() &gt; 0)
+</span></span><span class="line"><span class="cl">            engine.Poll();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#if UNITY_IOS || UNITY_ANDROID
+</span></span><span class="line"><span class="cl">        uint uid = mUid;
+</span></span><span class="line"><span class="cl">        //Dg.Log(&#34;uid:::&#34; + uid + &#34;  enable:&#34;, mEnable,&#34;  name:&#34;,gameObject.name);
+</span></span><span class="line"><span class="cl">        if (mEnable)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            if (image.sprite==null)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                //Debug.Log(&#34;Texture2D.CreateExternalTexture:::&#34;);
+</span></span><span class="line"><span class="cl">                System.IntPtr texPtr = (System.IntPtr)engine.GenerateNativeTexture();
+</span></span><span class="line"><span class="cl">                Texture2D tex = Texture2D.CreateExternalTexture(640, 360, TextureFormat.ARGB32, false, false, texPtr); // FIXME! texture size is subject to change
+</span></span><span class="line"><span class="cl">                Sprite spt = Sprite.Create(tex, new Rect(0, 0, 640, 360), new Vector2(0.5f, 0.5f));
+</span></span><span class="line"><span class="cl">                this.sprite = spt;
+</span></span><span class="line"><span class="cl">                image.sprite = spt;
+</span></span><span class="line"><span class="cl">                //Debug.Log(&#34;Texture2D.CreateExternalTexture:::texPtr:&#34;+texPtr+&#34;  size:&#34;+ tex.texelSize);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            // update texture
+</span></span><span class="line"><span class="cl">            if (sprite != null)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                int texId = (int)sprite.texture.GetNativeTexturePtr();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                // update texture (possible size changing)
+</span></span><span class="line"><span class="cl">                uint texWidth = 0;
+</span></span><span class="line"><span class="cl">                uint texHeight = 0;
+</span></span><span class="line"><span class="cl">                if (engine.UpdateTexture(texId, uid, ref texWidth, ref texHeight) == 0)
+</span></span><span class="line"><span class="cl">                {
+</span></span><span class="line"><span class="cl">                    // TODO: process texture then render
+</span></span><span class="line"><span class="cl">                }
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                //image.SetAllDirty();
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        else if (sprite != null)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">           int texId = (int)sprite.texture.GetNativeTexturePtr();
+</span></span><span class="line"><span class="cl">           image.sprite = null;
+</span></span><span class="line"><span class="cl">           engine.DeleteTexture(texId);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        if (mAdjustTransfrom != null)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            var trans = transform;
+</span></span><span class="line"><span class="cl">            mAdjustTransfrom(mUid, gameObject.name, ref trans);
+</span></span><span class="line"><span class="cl">        }        
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -400,44 +396,44 @@ public class AgoraDraw : MonoBehaviour
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-C#" data-lang="C#"><span class="c1">//=====================================================
-</span><span class="c1">// - FileName:    	AgoraController 
-</span><span class="c1">// - Description:
-</span><span class="c1">// - Author:		wangguoqing
-</span><span class="c1">// - Email:			wangguoqing@hehemj.com
-</span><span class="c1">// - Created:		2018/1/4 11:48:38
-</span><span class="c1">// - CLR version: 	4.0.30319.42000
-</span><span class="c1">// - UserName:		Wang
-</span><span class="c1">// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
-</span><span class="c1">// -  All Rights Reserved.
-</span><span class="c1">//======================================================
-</span><span class="c1"></span>
-<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine.UI</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">agora_gaming_rtc</span><span class="p">;</span>
-
-<span class="k">class</span> <span class="nc">AgoraController</span>
-<span class="p">{</span>
-    <span class="k">public</span>  <span class="n">IRtcEngineForGaming</span> <span class="n">mRtcEngine</span><span class="p">;</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">appId</span> <span class="p">=</span> <span class="s">&#34;657d422025b44a7793ef3a94a59cae0c&#34;</span><span class="p">;</span>
-
-    <span class="k">private</span> <span class="n">XLua</span><span class="p">.</span><span class="n">LuaFunction</span> <span class="n">func</span><span class="p">;</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">onTransformDelegate</span><span class="p">(</span><span class="kt">uint</span> <span class="n">uid</span><span class="p">,</span> <span class="kt">string</span> <span class="n">objName</span><span class="p">,</span> <span class="k">ref</span> <span class="n">Transform</span> <span class="n">transform</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">pos</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">;</span>
-        <span class="n">transform</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="m">0.00000000001f</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
-        <span class="c1">//if (uid == 0) {
-</span><span class="c1"></span>        <span class="c1">//    //transform.position = new Vector3 (0f, 2f, 0f);
-</span><span class="c1"></span>        <span class="c1">//    //transform.localScale = new Vector3 (2.0f, 2.0f, 1.0f);
-</span><span class="c1"></span>        <span class="c1">//    //transform.Rotate (0f, 1f, 0f);
-</span><span class="c1"></span>        <span class="c1">//} else {
-</span><span class="c1"></span>        <span class="c1">//    //transform.Rotate (0.0f, 1.0f, 0.0f);
-</span><span class="c1"></span>        <span class="c1">//}
-</span><span class="c1"></span>    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C#" data-lang="C#"><span class="line"><span class="cl"><span class="c1">//=====================================================</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - FileName:    	AgoraController </span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Description:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Author:		wangguoqing</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Email:			wangguoqing@hehemj.com</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Created:		2018/1/4 11:48:38</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - CLR version: 	4.0.30319.42000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - UserName:		Wang</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// -  All Rights Reserved.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//======================================================</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine.UI</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">agora_gaming_rtc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">AgoraController</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span>  <span class="n">IRtcEngineForGaming</span> <span class="n">mRtcEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">appId</span> <span class="p">=</span> <span class="s">&#34;657d422025b44a7793ef3a94a59cae0c&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="n">XLua</span><span class="p">.</span><span class="n">LuaFunction</span> <span class="n">func</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">onTransformDelegate</span><span class="p">(</span><span class="kt">uint</span> <span class="n">uid</span><span class="p">,</span> <span class="kt">string</span> <span class="n">objName</span><span class="p">,</span> <span class="k">ref</span> <span class="n">Transform</span> <span class="n">transform</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">pos</span> <span class="p">=</span> <span class="n">transform</span><span class="p">.</span><span class="n">position</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transform</span><span class="p">.</span><span class="n">position</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">pos</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">y</span> <span class="p">+</span> <span class="m">0.00000000001f</span><span class="p">,</span> <span class="n">pos</span><span class="p">.</span><span class="n">z</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//if (uid == 0) {</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//    //transform.position = new Vector3 (0f, 2f, 0f);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//    //transform.localScale = new Vector3 (2.0f, 2.0f, 1.0f);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//    //transform.Rotate (0f, 1f, 0f);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//} else {</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//    //transform.Rotate (0.0f, 1.0f, 0.0f);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -469,7 +465,7 @@ public class AgoraDraw : MonoBehaviour
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

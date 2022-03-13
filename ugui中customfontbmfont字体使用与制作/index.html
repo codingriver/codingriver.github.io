@@ -8,10 +8,10 @@
         <title>UGUI中CustomFont（BMFont）字体使用与制作 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="UGUI中CustomFont（BMFont）字体使用与制作" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/ugui%E4%B8%ADcustomfontbmfont%E5%AD%97%E4%BD%93%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%88%B6%E4%BD%9C/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/ugui%E4%B8%ADcustomfontbmfont%E5%AD%97%E4%BD%93%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%88%B6%E4%BD%9C/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/ugui%E4%B8%ADcustomfontbmfont%E5%AD%97%E4%BD%93%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%88%B6%E4%BD%9C\/"
-        },"genre": "posts","keywords": "UGUI","wordcount":  1149 ,
+        },"genre": "posts","keywords": "UGUI","wordcount":  1148 ,
         "url": "https:\/\/codingriver.github.io\/ugui%E4%B8%ADcustomfontbmfont%E5%AD%97%E4%BD%93%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%88%B6%E4%BD%9C\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">UGUI中CustomFont（BMFont）字体使用与制作</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1149 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1148 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/ugui%E4%B8%ADcustomfontbmfont%E5%AD%97%E4%BD%93%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%88%B6%E4%BD%9C/" class="leancloud_visitors" data-flag-title="UGUI中CustomFont（BMFont）字体使用与制作">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -127,7 +127,7 @@
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -299,183 +299,181 @@
 </span><span class="lnt">170
 </span><span class="lnt">171
 </span><span class="lnt">172
-</span><span class="lnt">173
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">using UnityEngine;
-using UnityEditor;
-using System.Collections.Generic;
-
-
-public class BMFontEditor : EditorWindow {
-    public TextAsset fontPosTbl;
-    public Texture fontTexture;
-    public Vector2 scrollPos;
-
-    struct ChrRect {
-        public int id;
-        public int x;
-        public int y;
-        public int w;
-        public int h;
-        public int xofs;
-        public int yofs;
-
-        public int index;
-        public float uvX;
-        public float uvY;
-        public float uvW;
-        public float uvH;
-        public float vertX;
-        public float vertY;
-        public float vertW;
-        public float vertH;
-        public float width;
-    }
-
-
-    // add menu
-    [MenuItem(&#34;Tools/BMFontTools&#34;)]
-    static void Init() {
-        EditorWindow.GetWindow(typeof(BMFontEditor));
-        
-    }
-
-    // layout window
-    void OnGUI() {
-        //EditorGUILayout.BeginScrollView(scrollPos);
-        EditorGUILayout.BeginVertical();
-        
-        // use .fnt(.txt)
-        fontTexture = (Texture)EditorGUILayout.ObjectField(&#34;Font Texture&#34;, fontTexture, typeof(Texture), false);
-        
-        EditorGUILayout.Space();
-        EditorGUILayout.LabelField(&#34;Use BMFont fnt File&#34;, EditorStyles.boldLabel);
-        EditorGUILayout.LabelField(&#34;(must Font Descriptor select Text)&#34;, EditorStyles.boldLabel);
-        
-        fontPosTbl = (TextAsset)EditorGUILayout.ObjectField(&#34;BMFont fnt (.fnt)&#34;, fontPosTbl, typeof(TextAsset), false);
-        if (GUILayout.Button(&#34;Create(创建后必须重启生效)&#34;)) {
-            
-            if (fontTexture == null) this.ShowNotification(new GUIContent(&#34;No Font Texture selected&#34;));
-            else if (fontPosTbl == null) this.ShowNotification(new GUIContent(&#34;No Font Position Table file selected&#34;));
-            else {
-                CalcChrRect(fontPosTbl, fontTexture);
-            }
-        }
-        EditorGUILayout.LabelField(&#34;(Must Restart unity  valid!)&#34;, EditorStyles.whiteBoldLabel);
-        EditorGUILayout.LabelField(&#34;*********************************&#34;, EditorStyles.largeLabel);
-        EditorGUILayout.EndVertical();
-        //EditorGUILayout.EndScrollView();
-    }
-
-    void OnInspectorUpdate() {
-        this.Repaint();
-    }
-
-    
-    void CalcChrRect(TextAsset posTbl, Texture tex) {
-        string fileName = AssetDatabase.GetAssetPath(fontPosTbl);
-        string texName = AssetDatabase.GetAssetPath(tex);
-        string fontName = System.IO.Path.GetFileNameWithoutExtension(fileName);
-        string fontPath = fileName.Replace(&#34;.fnt&#34;, &#34;.fontsettings&#34;);
-        string matPath = fileName.Replace(&#34;.fnt&#34;, &#34;.mat&#34;);
-        float imgw = (float)tex.width;
-        float imgh = (float)tex.height;
-        string txt = posTbl.text;
-
-        List&lt;ChrRect&gt; tblList = new List&lt;ChrRect&gt;();
-        foreach (string line in txt.Split(&#39;\n&#39;)) {
-            if (line.IndexOf(&#34;char id=&#34;) == 0) {
-                ChrRect d = GetChrRect(line, imgw, imgh);
-                tblList.Add(d);
-            }
-        }
-        if(tblList.Count==0)
-        {
-            new GUIContent(&#34;Failed&#34;);
-            return;
-        }
-
-        ChrRect[] tbls = tblList.ToArray();
-        Font font = new  Font();
-        font.name = fontName;
-        SetCharacterInfo(tbls, font);
-
-
-        Material mat = new Material(Shader.Find(&#34;Unlit/Transparent&#34;));
-        mat.mainTexture = tex;
-        mat.name = fontName;
-        font.material = mat;
-
-        
-         Debug.Log(System.IO.Path.GetFileNameWithoutExtension(fileName));
-        Debug.Log(fileName);
-
-        AssetDatabase.CreateAsset(mat, matPath);
-        AssetDatabase.CreateAsset(font, fontPath);
-        AssetDatabase.SaveAssets();
-        this.ShowNotification(new GUIContent(&#34;Complete&#34;));
-        AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
-    }
-
-    // over write custom font by new CharacterInfo
-    void SetCharacterInfo(ChrRect[] tbls, Font fontObj) {
-        CharacterInfo[] nci = new CharacterInfo[tbls.Length];
-        for (int i = 0; i &lt; tbls.Length; i++) {
-            nci[i].index = tbls[i].index;
-            nci[i].advance = (int)tbls[i].width;
-            nci[i].uv.x = tbls[i].uvX;
-            nci[i].uv.y = tbls[i].uvY;
-            nci[i].uv.width = tbls[i].uvW;
-            nci[i].uv.height = tbls[i].uvH;
-            nci[i].vert.x = tbls[i].vertX;
-            nci[i].vert.y = tbls[i].vertY;
-            nci[i].vert.width = tbls[i].vertW;
-            nci[i].vert.height = tbls[i].vertH;
-        }
-        fontObj.characterInfo = nci;
-    }
-
-    // get font table one line.
-    ChrRect GetChrRect(string line, float imgw, float imgh) {
-        ChrRect d = new ChrRect();
-
-        foreach (string s in line.Split(&#39; &#39;)) {
-            if (s.IndexOf(&#34;id=&#34;) &gt;= 0) d.id = GetParamInt(s, &#34;id=&#34;);
-            else if (s.IndexOf(&#34;x=&#34;) &gt;= 0) d.x = GetParamInt(s, &#34;x=&#34;);
-            else if (s.IndexOf(&#34;y=&#34;) &gt;= 0) d.y = GetParamInt(s, &#34;y=&#34;);
-            else if (s.IndexOf(&#34;width=&#34;) &gt;= 0) d.w = GetParamInt(s, &#34;width=&#34;);
-            else if (s.IndexOf(&#34;height=&#34;) &gt;= 0) d.h = GetParamInt(s, &#34;height=&#34;);
-            else if (s.IndexOf(&#34;xoffset=&#34;) &gt;= 0) d.xofs = GetParamInt(s, &#34;xoffset=&#34;);
-            else if (s.IndexOf(&#34;yoffset=&#34;) &gt;= 0) d.yofs = GetParamInt(s, &#34;yoffset=&#34;);
-            else if (s.IndexOf(&#34;xadvance=&#34;) &gt;= 0) d.width = GetParamInt(s, &#34;xadvance=&#34;);
-        }
-        d.index = d.id;
-        d.uvX = (float)d.x / imgw;
-        d.uvY = (float)(imgh-(d.y)) / imgh;
-        d.uvW = (float)d.w / imgw;
-        //d.uvH = (float)-d.h / imgh;
-        d.uvH = (float)-d.h / imgh;
-
-        d.vertX = (float)d.xofs;
-        d.vertY = (float)d.yofs;
-        d.vertW = d.w;
-        d.vertH = d.h;
-
-        return d;
-    }
-
-    // &#34;wd=int&#34; to int
-    int GetParamInt(string s, string wd) {
-        if (s.IndexOf(wd) &gt;= 0) {
-            int v;
-            if (int.TryParse(s.Substring(wd.Length), out v)) return v;
-        }
-        return int.MaxValue;
-    }
-}
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">using UnityEngine;
+</span></span><span class="line"><span class="cl">using UnityEditor;
+</span></span><span class="line"><span class="cl">using System.Collections.Generic;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">public class BMFontEditor : EditorWindow {
+</span></span><span class="line"><span class="cl">    public TextAsset fontPosTbl;
+</span></span><span class="line"><span class="cl">    public Texture fontTexture;
+</span></span><span class="line"><span class="cl">    public Vector2 scrollPos;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    struct ChrRect {
+</span></span><span class="line"><span class="cl">        public int id;
+</span></span><span class="line"><span class="cl">        public int x;
+</span></span><span class="line"><span class="cl">        public int y;
+</span></span><span class="line"><span class="cl">        public int w;
+</span></span><span class="line"><span class="cl">        public int h;
+</span></span><span class="line"><span class="cl">        public int xofs;
+</span></span><span class="line"><span class="cl">        public int yofs;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        public int index;
+</span></span><span class="line"><span class="cl">        public float uvX;
+</span></span><span class="line"><span class="cl">        public float uvY;
+</span></span><span class="line"><span class="cl">        public float uvW;
+</span></span><span class="line"><span class="cl">        public float uvH;
+</span></span><span class="line"><span class="cl">        public float vertX;
+</span></span><span class="line"><span class="cl">        public float vertY;
+</span></span><span class="line"><span class="cl">        public float vertW;
+</span></span><span class="line"><span class="cl">        public float vertH;
+</span></span><span class="line"><span class="cl">        public float width;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // add menu
+</span></span><span class="line"><span class="cl">    [MenuItem(&#34;Tools/BMFontTools&#34;)]
+</span></span><span class="line"><span class="cl">    static void Init() {
+</span></span><span class="line"><span class="cl">        EditorWindow.GetWindow(typeof(BMFontEditor));
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // layout window
+</span></span><span class="line"><span class="cl">    void OnGUI() {
+</span></span><span class="line"><span class="cl">        //EditorGUILayout.BeginScrollView(scrollPos);
+</span></span><span class="line"><span class="cl">        EditorGUILayout.BeginVertical();
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        // use .fnt(.txt)
+</span></span><span class="line"><span class="cl">        fontTexture = (Texture)EditorGUILayout.ObjectField(&#34;Font Texture&#34;, fontTexture, typeof(Texture), false);
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        EditorGUILayout.Space();
+</span></span><span class="line"><span class="cl">        EditorGUILayout.LabelField(&#34;Use BMFont fnt File&#34;, EditorStyles.boldLabel);
+</span></span><span class="line"><span class="cl">        EditorGUILayout.LabelField(&#34;(must Font Descriptor select Text)&#34;, EditorStyles.boldLabel);
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        fontPosTbl = (TextAsset)EditorGUILayout.ObjectField(&#34;BMFont fnt (.fnt)&#34;, fontPosTbl, typeof(TextAsset), false);
+</span></span><span class="line"><span class="cl">        if (GUILayout.Button(&#34;Create(创建后必须重启生效)&#34;)) {
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            if (fontTexture == null) this.ShowNotification(new GUIContent(&#34;No Font Texture selected&#34;));
+</span></span><span class="line"><span class="cl">            else if (fontPosTbl == null) this.ShowNotification(new GUIContent(&#34;No Font Position Table file selected&#34;));
+</span></span><span class="line"><span class="cl">            else {
+</span></span><span class="line"><span class="cl">                CalcChrRect(fontPosTbl, fontTexture);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        EditorGUILayout.LabelField(&#34;(Must Restart unity  valid!)&#34;, EditorStyles.whiteBoldLabel);
+</span></span><span class="line"><span class="cl">        EditorGUILayout.LabelField(&#34;*********************************&#34;, EditorStyles.largeLabel);
+</span></span><span class="line"><span class="cl">        EditorGUILayout.EndVertical();
+</span></span><span class="line"><span class="cl">        //EditorGUILayout.EndScrollView();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    void OnInspectorUpdate() {
+</span></span><span class="line"><span class="cl">        this.Repaint();
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    void CalcChrRect(TextAsset posTbl, Texture tex) {
+</span></span><span class="line"><span class="cl">        string fileName = AssetDatabase.GetAssetPath(fontPosTbl);
+</span></span><span class="line"><span class="cl">        string texName = AssetDatabase.GetAssetPath(tex);
+</span></span><span class="line"><span class="cl">        string fontName = System.IO.Path.GetFileNameWithoutExtension(fileName);
+</span></span><span class="line"><span class="cl">        string fontPath = fileName.Replace(&#34;.fnt&#34;, &#34;.fontsettings&#34;);
+</span></span><span class="line"><span class="cl">        string matPath = fileName.Replace(&#34;.fnt&#34;, &#34;.mat&#34;);
+</span></span><span class="line"><span class="cl">        float imgw = (float)tex.width;
+</span></span><span class="line"><span class="cl">        float imgh = (float)tex.height;
+</span></span><span class="line"><span class="cl">        string txt = posTbl.text;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        List&lt;ChrRect&gt; tblList = new List&lt;ChrRect&gt;();
+</span></span><span class="line"><span class="cl">        foreach (string line in txt.Split(&#39;\n&#39;)) {
+</span></span><span class="line"><span class="cl">            if (line.IndexOf(&#34;char id=&#34;) == 0) {
+</span></span><span class="line"><span class="cl">                ChrRect d = GetChrRect(line, imgw, imgh);
+</span></span><span class="line"><span class="cl">                tblList.Add(d);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        if(tblList.Count==0)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            new GUIContent(&#34;Failed&#34;);
+</span></span><span class="line"><span class="cl">            return;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        ChrRect[] tbls = tblList.ToArray();
+</span></span><span class="line"><span class="cl">        Font font = new  Font();
+</span></span><span class="line"><span class="cl">        font.name = fontName;
+</span></span><span class="line"><span class="cl">        SetCharacterInfo(tbls, font);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        Material mat = new Material(Shader.Find(&#34;Unlit/Transparent&#34;));
+</span></span><span class="line"><span class="cl">        mat.mainTexture = tex;
+</span></span><span class="line"><span class="cl">        mat.name = fontName;
+</span></span><span class="line"><span class="cl">        font.material = mat;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">         Debug.Log(System.IO.Path.GetFileNameWithoutExtension(fileName));
+</span></span><span class="line"><span class="cl">        Debug.Log(fileName);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        AssetDatabase.CreateAsset(mat, matPath);
+</span></span><span class="line"><span class="cl">        AssetDatabase.CreateAsset(font, fontPath);
+</span></span><span class="line"><span class="cl">        AssetDatabase.SaveAssets();
+</span></span><span class="line"><span class="cl">        this.ShowNotification(new GUIContent(&#34;Complete&#34;));
+</span></span><span class="line"><span class="cl">        AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // over write custom font by new CharacterInfo
+</span></span><span class="line"><span class="cl">    void SetCharacterInfo(ChrRect[] tbls, Font fontObj) {
+</span></span><span class="line"><span class="cl">        CharacterInfo[] nci = new CharacterInfo[tbls.Length];
+</span></span><span class="line"><span class="cl">        for (int i = 0; i &lt; tbls.Length; i++) {
+</span></span><span class="line"><span class="cl">            nci[i].index = tbls[i].index;
+</span></span><span class="line"><span class="cl">            nci[i].advance = (int)tbls[i].width;
+</span></span><span class="line"><span class="cl">            nci[i].uv.x = tbls[i].uvX;
+</span></span><span class="line"><span class="cl">            nci[i].uv.y = tbls[i].uvY;
+</span></span><span class="line"><span class="cl">            nci[i].uv.width = tbls[i].uvW;
+</span></span><span class="line"><span class="cl">            nci[i].uv.height = tbls[i].uvH;
+</span></span><span class="line"><span class="cl">            nci[i].vert.x = tbls[i].vertX;
+</span></span><span class="line"><span class="cl">            nci[i].vert.y = tbls[i].vertY;
+</span></span><span class="line"><span class="cl">            nci[i].vert.width = tbls[i].vertW;
+</span></span><span class="line"><span class="cl">            nci[i].vert.height = tbls[i].vertH;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        fontObj.characterInfo = nci;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // get font table one line.
+</span></span><span class="line"><span class="cl">    ChrRect GetChrRect(string line, float imgw, float imgh) {
+</span></span><span class="line"><span class="cl">        ChrRect d = new ChrRect();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        foreach (string s in line.Split(&#39; &#39;)) {
+</span></span><span class="line"><span class="cl">            if (s.IndexOf(&#34;id=&#34;) &gt;= 0) d.id = GetParamInt(s, &#34;id=&#34;);
+</span></span><span class="line"><span class="cl">            else if (s.IndexOf(&#34;x=&#34;) &gt;= 0) d.x = GetParamInt(s, &#34;x=&#34;);
+</span></span><span class="line"><span class="cl">            else if (s.IndexOf(&#34;y=&#34;) &gt;= 0) d.y = GetParamInt(s, &#34;y=&#34;);
+</span></span><span class="line"><span class="cl">            else if (s.IndexOf(&#34;width=&#34;) &gt;= 0) d.w = GetParamInt(s, &#34;width=&#34;);
+</span></span><span class="line"><span class="cl">            else if (s.IndexOf(&#34;height=&#34;) &gt;= 0) d.h = GetParamInt(s, &#34;height=&#34;);
+</span></span><span class="line"><span class="cl">            else if (s.IndexOf(&#34;xoffset=&#34;) &gt;= 0) d.xofs = GetParamInt(s, &#34;xoffset=&#34;);
+</span></span><span class="line"><span class="cl">            else if (s.IndexOf(&#34;yoffset=&#34;) &gt;= 0) d.yofs = GetParamInt(s, &#34;yoffset=&#34;);
+</span></span><span class="line"><span class="cl">            else if (s.IndexOf(&#34;xadvance=&#34;) &gt;= 0) d.width = GetParamInt(s, &#34;xadvance=&#34;);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        d.index = d.id;
+</span></span><span class="line"><span class="cl">        d.uvX = (float)d.x / imgw;
+</span></span><span class="line"><span class="cl">        d.uvY = (float)(imgh-(d.y)) / imgh;
+</span></span><span class="line"><span class="cl">        d.uvW = (float)d.w / imgw;
+</span></span><span class="line"><span class="cl">        //d.uvH = (float)-d.h / imgh;
+</span></span><span class="line"><span class="cl">        d.uvH = (float)-d.h / imgh;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        d.vertX = (float)d.xofs;
+</span></span><span class="line"><span class="cl">        d.vertY = (float)d.yofs;
+</span></span><span class="line"><span class="cl">        d.vertW = d.w;
+</span></span><span class="line"><span class="cl">        d.vertH = d.h;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        return d;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // &#34;wd=int&#34; to int
+</span></span><span class="line"><span class="cl">    int GetParamInt(string s, string wd) {
+</span></span><span class="line"><span class="cl">        if (s.IndexOf(wd) &gt;= 0) {
+</span></span><span class="line"><span class="cl">            int v;
+</span></span><span class="line"><span class="cl">            if (int.TryParse(s.Substring(wd.Length), out v)) return v;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        return int.MaxValue;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>将脚本放在Unity工程的Editor目录下
 点击Tools&ndash;&gt;BMFontTools按钮</p>
@@ -565,7 +563,7 @@ public class BMFontEditor : EditorWindow {
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

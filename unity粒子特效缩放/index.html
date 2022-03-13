@@ -8,10 +8,10 @@
         <title>Unity粒子特效缩放 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Unity粒子特效缩放" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E7%B2%92%E5%AD%90%E7%89%B9%E6%95%88%E7%BC%A9%E6%94%BE/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity%E7%B2%92%E5%AD%90%E7%89%B9%E6%95%88%E7%BC%A9%E6%94%BE/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity%E7%B2%92%E5%AD%90%E7%89%B9%E6%95%88%E7%BC%A9%E6%94%BE\/"
-        },"genre": "posts","keywords": "Unity","wordcount":  954 ,
+        },"genre": "posts","keywords": "Unity","wordcount":  952 ,
         "url": "https:\/\/codingriver.github.io\/unity%E7%B2%92%E5%AD%90%E7%89%B9%E6%95%88%E7%BC%A9%E6%94%BE\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Unity粒子特效缩放</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 954 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 952 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/unity%E7%B2%92%E5%AD%90%E7%89%B9%E6%95%88%E7%BC%A9%E6%94%BE/" class="leancloud_visitors" data-flag-title="Unity粒子特效缩放">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -119,7 +119,7 @@
             </div><div class="content" id="content"><p>Editor下缩放脚本(非运行情况下)（Unity5.3.6）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -255,354 +255,350 @@
 </span><span class="lnt">134
 </span><span class="lnt">135
 </span><span class="lnt">136
-</span><span class="lnt">137
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="c1">//This script will only work in editor mode. You cannot adjust the scale dynamically in-game!
-</span><span class="c1"></span><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
-
-<span class="cp">#if UNITY_EDITOR 
-</span><span class="cp"></span><span class="k">using</span> <span class="nn">UnityEditor</span><span class="p">;</span>
-<span class="cp">#endif
-</span><span class="cp"></span><span class="na">
-</span><span class="na">[ExecuteInEditMode]</span>
-<span class="k">public</span> <span class="k">class</span> <span class="nc">ParticleScaler</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> 
-<span class="p">{</span>
-	<span class="k">public</span> <span class="kt">float</span> <span class="n">particleScale</span> <span class="p">=</span> <span class="m">1.0f</span><span class="p">;</span>
-	<span class="k">public</span> <span class="kt">bool</span> <span class="n">alsoScaleGameobject</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
-
-	<span class="kt">float</span> <span class="n">prevScale</span><span class="p">;</span>
-
-	<span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
-	<span class="p">{</span>
-        <span class="n">prevScale</span> <span class="p">=</span> <span class="n">particleScale</span><span class="p">;</span>
-	<span class="p">}</span>
-
-	<span class="k">void</span> <span class="n">Update</span> <span class="p">()</span> 
-	<span class="p">{</span>
-<span class="cp">#if UNITY_EDITOR 
-</span><span class="cp"></span>		<span class="c1">//check if we need to update
-</span><span class="c1"></span>		<span class="k">if</span> <span class="p">(</span><span class="n">prevScale</span> <span class="p">!=</span> <span class="n">particleScale</span> <span class="p">&amp;&amp;</span> <span class="n">particleScale</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="k">if</span> <span class="p">(</span><span class="n">alsoScaleGameobject</span><span class="p">)</span>
-				<span class="n">transform</span><span class="p">.</span><span class="n">localScale</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">particleScale</span><span class="p">,</span> <span class="n">particleScale</span><span class="p">,</span> <span class="n">particleScale</span><span class="p">);</span>
-
-			<span class="kt">float</span> <span class="n">scaleFactor</span> <span class="p">=</span> <span class="n">particleScale</span> <span class="p">/</span> <span class="n">prevScale</span><span class="p">;</span>
-
-			<span class="c1">//scale legacy particle systems
-</span><span class="c1"></span>			<span class="n">ScaleLegacySystems</span><span class="p">(</span><span class="n">scaleFactor</span><span class="p">);</span>
-
-			<span class="c1">//scale shuriken particle systems
-</span><span class="c1"></span>			<span class="n">ScaleShurikenSystems</span><span class="p">(</span><span class="n">scaleFactor</span><span class="p">);</span>
-
-			<span class="c1">//scale trail renders
-</span><span class="c1"></span>			<span class="n">ScaleTrailRenderers</span><span class="p">(</span><span class="n">scaleFactor</span><span class="p">);</span>
-
-			<span class="n">prevScale</span> <span class="p">=</span> <span class="n">particleScale</span><span class="p">;</span>
-		<span class="p">}</span>
-<span class="cp">#endif
-</span><span class="cp"></span>	<span class="p">}</span>
-
-	<span class="k">void</span> <span class="n">ScaleShurikenSystems</span><span class="p">(</span><span class="kt">float</span> <span class="n">scaleFactor</span><span class="p">)</span>
-	<span class="p">{</span>
-<span class="cp">#if UNITY_EDITOR 
-</span><span class="cp"></span>		<span class="c1">//get all shuriken systems we need to do scaling on
-</span><span class="c1"></span>		<span class="n">ParticleSystem</span><span class="p">[]</span> <span class="n">systems</span> <span class="p">=</span> <span class="n">GetComponentsInChildren</span><span class="p">&lt;</span><span class="n">ParticleSystem</span><span class="p">&gt;();</span>
-
-		<span class="k">foreach</span> <span class="p">(</span><span class="n">ParticleSystem</span> <span class="n">system</span> <span class="k">in</span> <span class="n">systems</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="n">system</span><span class="p">.</span><span class="n">startSpeed</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-			<span class="n">system</span><span class="p">.</span><span class="n">startSize</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-			<span class="n">system</span><span class="p">.</span><span class="n">gravityModifier</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-
-			<span class="c1">//some variables cannot be accessed through regular script, we will acces them through a serialized object
-</span><span class="c1"></span>			<span class="n">SerializedObject</span> <span class="n">so</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SerializedObject</span><span class="p">(</span><span class="n">system</span><span class="p">);</span>
-			
-			<span class="c1">//unity 4.0 and onwards will already do this one for us
-</span><span class="c1"></span><span class="cp">#if UNITY_3_5 
-</span><span class="cp"></span>			<span class="c1">//so.FindProperty(&#34;ShapeModule.radius&#34;).floatValue *= scaleFactor;
-</span><span class="c1"></span>			<span class="c1">//so.FindProperty(&#34;ShapeModule.boxX&#34;).floatValue *= scaleFactor;
-</span><span class="c1"></span>			<span class="c1">//so.FindProperty(&#34;ShapeModule.boxY&#34;).floatValue *= scaleFactor;
-</span><span class="c1"></span>			<span class="c1">//so.FindProperty(&#34;ShapeModule.boxZ&#34;).floatValue *= scaleFactor;
-</span><span class="c1"></span><span class="cp">#endif
-</span><span class="cp"></span>			
-			<span class="cm">/*so.FindProperty(&#34;VelocityModule.x.scalar&#34;).floatValue *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;VelocityModule.y.scalar&#34;).floatValue *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;VelocityModule.z.scalar&#34;).floatValue *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;ClampVelocityModule.magnitude.scalar&#34;).floatValue *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;ClampVelocityModule.x.scalar&#34;).floatValue *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;ClampVelocityModule.y.scalar&#34;).floatValue *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;ClampVelocityModule.z.scalar&#34;).floatValue *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;ForceModule.x.scalar&#34;).floatValue *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;ForceModule.y.scalar&#34;).floatValue *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;ForceModule.z.scalar&#34;).floatValue *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;ColorBySpeedModule.range&#34;).vector2Value *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;SizeBySpeedModule.range&#34;).vector2Value *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;RotationBySpeedModule.range&#34;).vector2Value *= scaleFactor;
-</span><span class="cm">
-</span><span class="cm">			so.ApplyModifiedProperties();*/</span>
-		<span class="p">}</span>
-<span class="cp">#endif
-</span><span class="cp"></span>	<span class="p">}</span>
-
-	<span class="k">void</span> <span class="n">ScaleLegacySystems</span><span class="p">(</span><span class="kt">float</span> <span class="n">scaleFactor</span><span class="p">)</span>
-	<span class="p">{</span>
-<span class="cp">#if UNITY_EDITOR 
-</span><span class="cp"></span>		<span class="c1">//get all emitters we need to do scaling on
-</span><span class="c1"></span>		<span class="n">ParticleEmitter</span><span class="p">[]</span> <span class="n">emitters</span> <span class="p">=</span> <span class="n">GetComponentsInChildren</span><span class="p">&lt;</span><span class="n">ParticleEmitter</span><span class="p">&gt;();</span>
-
-		<span class="c1">//get all animators we need to do scaling on
-</span><span class="c1"></span>		<span class="n">ParticleAnimator</span><span class="p">[]</span> <span class="n">animators</span> <span class="p">=</span> <span class="n">GetComponentsInChildren</span><span class="p">&lt;</span><span class="n">ParticleAnimator</span><span class="p">&gt;();</span>
-
-		<span class="c1">//apply scaling to emitters
-</span><span class="c1"></span>		<span class="k">foreach</span> <span class="p">(</span><span class="n">ParticleEmitter</span> <span class="n">emitter</span> <span class="k">in</span> <span class="n">emitters</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="n">emitter</span><span class="p">.</span><span class="n">minSize</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-			<span class="n">emitter</span><span class="p">.</span><span class="n">maxSize</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-			<span class="n">emitter</span><span class="p">.</span><span class="n">worldVelocity</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-			<span class="n">emitter</span><span class="p">.</span><span class="n">localVelocity</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-			<span class="n">emitter</span><span class="p">.</span><span class="n">rndVelocity</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-
-			<span class="c1">//some variables cannot be accessed through regular script, we will acces them through a serialized object
-</span><span class="c1"></span>			<span class="cm">/*SerializedObject so = new SerializedObject(emitter);
-</span><span class="cm">
-</span><span class="cm">			so.FindProperty(&#34;m_Ellipsoid&#34;).vector3Value *= scaleFactor;
-</span><span class="cm">			so.FindProperty(&#34;tangentVelocity&#34;).vector3Value *= scaleFactor;
-</span><span class="cm">			so.ApplyModifiedProperties();*/</span>
-		<span class="p">}</span>
-
-		<span class="c1">//apply scaling to animators
-</span><span class="c1"></span>		<span class="k">foreach</span> <span class="p">(</span><span class="n">ParticleAnimator</span> <span class="n">animator</span> <span class="k">in</span> <span class="n">animators</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="n">animator</span><span class="p">.</span><span class="n">force</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-			<span class="n">animator</span><span class="p">.</span><span class="n">rndForce</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-		<span class="p">}</span>
-<span class="cp">#endif
-</span><span class="cp"></span>	<span class="p">}</span>
-
-	<span class="k">void</span> <span class="n">ScaleTrailRenderers</span><span class="p">(</span><span class="kt">float</span> <span class="n">scaleFactor</span><span class="p">)</span>
-	<span class="p">{</span>
-		<span class="c1">//get all animators we need to do scaling on
-</span><span class="c1"></span>		<span class="n">TrailRenderer</span><span class="p">[]</span> <span class="n">trails</span> <span class="p">=</span> <span class="n">GetComponentsInChildren</span><span class="p">&lt;</span><span class="n">TrailRenderer</span><span class="p">&gt;();</span>
-
-		<span class="c1">//apply scaling to animators
-</span><span class="c1"></span>		<span class="k">foreach</span> <span class="p">(</span><span class="n">TrailRenderer</span> <span class="n">trail</span> <span class="k">in</span> <span class="n">trails</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="n">trail</span><span class="p">.</span><span class="n">startWidth</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-			<span class="n">trail</span><span class="p">.</span><span class="n">endWidth</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="c1">//This script will only work in editor mode. You cannot adjust the scale dynamically in-game!</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#if UNITY_EDITOR </span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEditor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">[ExecuteInEditMode]</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">ParticleScaler</span> <span class="p">:</span> <span class="n">MonoBehaviour</span> 
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">public</span> <span class="kt">float</span> <span class="n">particleScale</span> <span class="p">=</span> <span class="m">1.0f</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">public</span> <span class="kt">bool</span> <span class="n">alsoScaleGameobject</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">float</span> <span class="n">prevScale</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prevScale</span> <span class="p">=</span> <span class="n">particleScale</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">void</span> <span class="n">Update</span> <span class="p">()</span> 
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if UNITY_EDITOR </span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//check if we need to update</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="n">prevScale</span> <span class="p">!=</span> <span class="n">particleScale</span> <span class="p">&amp;&amp;</span> <span class="n">particleScale</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">alsoScaleGameobject</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="n">transform</span><span class="p">.</span><span class="n">localScale</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Vector3</span><span class="p">(</span><span class="n">particleScale</span><span class="p">,</span> <span class="n">particleScale</span><span class="p">,</span> <span class="n">particleScale</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="kt">float</span> <span class="n">scaleFactor</span> <span class="p">=</span> <span class="n">particleScale</span> <span class="p">/</span> <span class="n">prevScale</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="c1">//scale legacy particle systems</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ScaleLegacySystems</span><span class="p">(</span><span class="n">scaleFactor</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="c1">//scale shuriken particle systems</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ScaleShurikenSystems</span><span class="p">(</span><span class="n">scaleFactor</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="c1">//scale trail renders</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ScaleTrailRenderers</span><span class="p">(</span><span class="n">scaleFactor</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="n">prevScale</span> <span class="p">=</span> <span class="n">particleScale</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">void</span> <span class="n">ScaleShurikenSystems</span><span class="p">(</span><span class="kt">float</span> <span class="n">scaleFactor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if UNITY_EDITOR </span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//get all shuriken systems we need to do scaling on</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ParticleSystem</span><span class="p">[]</span> <span class="n">systems</span> <span class="p">=</span> <span class="n">GetComponentsInChildren</span><span class="p">&lt;</span><span class="n">ParticleSystem</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">foreach</span> <span class="p">(</span><span class="n">ParticleSystem</span> <span class="n">system</span> <span class="k">in</span> <span class="n">systems</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">system</span><span class="p">.</span><span class="n">startSpeed</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">system</span><span class="p">.</span><span class="n">startSize</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">system</span><span class="p">.</span><span class="n">gravityModifier</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="c1">//some variables cannot be accessed through regular script, we will acces them through a serialized object</span>
+</span></span><span class="line"><span class="cl">			<span class="n">SerializedObject</span> <span class="n">so</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SerializedObject</span><span class="p">(</span><span class="n">system</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			<span class="c1">//unity 4.0 and onwards will already do this one for us</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if UNITY_3_5 </span>
+</span></span><span class="line"><span class="cl">			<span class="c1">//so.FindProperty(&#34;ShapeModule.radius&#34;).floatValue *= scaleFactor;</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">//so.FindProperty(&#34;ShapeModule.boxX&#34;).floatValue *= scaleFactor;</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">//so.FindProperty(&#34;ShapeModule.boxY&#34;).floatValue *= scaleFactor;</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">//so.FindProperty(&#34;ShapeModule.boxZ&#34;).floatValue *= scaleFactor;</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			<span class="cm">/*so.FindProperty(&#34;VelocityModule.x.scalar&#34;).floatValue *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;VelocityModule.y.scalar&#34;).floatValue *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;VelocityModule.z.scalar&#34;).floatValue *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;ClampVelocityModule.magnitude.scalar&#34;).floatValue *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;ClampVelocityModule.x.scalar&#34;).floatValue *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;ClampVelocityModule.y.scalar&#34;).floatValue *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;ClampVelocityModule.z.scalar&#34;).floatValue *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;ForceModule.x.scalar&#34;).floatValue *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;ForceModule.y.scalar&#34;).floatValue *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;ForceModule.z.scalar&#34;).floatValue *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;ColorBySpeedModule.range&#34;).vector2Value *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;SizeBySpeedModule.range&#34;).vector2Value *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;RotationBySpeedModule.range&#34;).vector2Value *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.ApplyModifiedProperties();*/</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">void</span> <span class="n">ScaleLegacySystems</span><span class="p">(</span><span class="kt">float</span> <span class="n">scaleFactor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if UNITY_EDITOR </span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//get all emitters we need to do scaling on</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ParticleEmitter</span><span class="p">[]</span> <span class="n">emitters</span> <span class="p">=</span> <span class="n">GetComponentsInChildren</span><span class="p">&lt;</span><span class="n">ParticleEmitter</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">//get all animators we need to do scaling on</span>
+</span></span><span class="line"><span class="cl">		<span class="n">ParticleAnimator</span><span class="p">[]</span> <span class="n">animators</span> <span class="p">=</span> <span class="n">GetComponentsInChildren</span><span class="p">&lt;</span><span class="n">ParticleAnimator</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">//apply scaling to emitters</span>
+</span></span><span class="line"><span class="cl">		<span class="k">foreach</span> <span class="p">(</span><span class="n">ParticleEmitter</span> <span class="n">emitter</span> <span class="k">in</span> <span class="n">emitters</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">emitter</span><span class="p">.</span><span class="n">minSize</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">emitter</span><span class="p">.</span><span class="n">maxSize</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">emitter</span><span class="p">.</span><span class="n">worldVelocity</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">emitter</span><span class="p">.</span><span class="n">localVelocity</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">emitter</span><span class="p">.</span><span class="n">rndVelocity</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="c1">//some variables cannot be accessed through regular script, we will acces them through a serialized object</span>
+</span></span><span class="line"><span class="cl">			<span class="cm">/*SerializedObject so = new SerializedObject(emitter);
+</span></span></span><span class="line"><span class="cl"><span class="cm">
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;m_Ellipsoid&#34;).vector3Value *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.FindProperty(&#34;tangentVelocity&#34;).vector3Value *= scaleFactor;
+</span></span></span><span class="line"><span class="cl"><span class="cm">			so.ApplyModifiedProperties();*/</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">//apply scaling to animators</span>
+</span></span><span class="line"><span class="cl">		<span class="k">foreach</span> <span class="p">(</span><span class="n">ParticleAnimator</span> <span class="n">animator</span> <span class="k">in</span> <span class="n">animators</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">animator</span><span class="p">.</span><span class="n">force</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">animator</span><span class="p">.</span><span class="n">rndForce</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">void</span> <span class="n">ScaleTrailRenderers</span><span class="p">(</span><span class="kt">float</span> <span class="n">scaleFactor</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">//get all animators we need to do scaling on</span>
+</span></span><span class="line"><span class="cl">		<span class="n">TrailRenderer</span><span class="p">[]</span> <span class="n">trails</span> <span class="p">=</span> <span class="n">GetComponentsInChildren</span><span class="p">&lt;</span><span class="n">TrailRenderer</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="c1">//apply scaling to animators</span>
+</span></span><span class="line"><span class="cl">		<span class="k">foreach</span> <span class="p">(</span><span class="n">TrailRenderer</span> <span class="n">trail</span> <span class="k">in</span> <span class="n">trails</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">trail</span><span class="p">.</span><span class="n">startWidth</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">trail</span><span class="p">.</span><span class="n">endWidth</span> <span class="p">*=</span> <span class="n">scaleFactor</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>运行时使用脚本（Unity5.3.6）</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span><span class="lnt">96
+</span><span class="lnt">97
+</span><span class="lnt">98
+</span><span class="lnt">99
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">//This script will only work in editor mode. You cannot adjust the scale dynamically in-game!
-using UnityEngine;
-using System.Collections;
-
-#if UNITY_EDITOR 
-using UnityEditor;
-#endif
-
-//[ExecuteInEditMode]
-public class ParticleScaler1 : MonoBehaviour 
-{
-	public float particleScale = 1.0f;
-	public bool alsoScaleGameobject = true;
-	float prevScale;
-
-    public void Once()
-    {
-        prevScale = particleScale;
-        if (alsoScaleGameobject)
-            transform.localScale = new Vector3(particleScale, particleScale, particleScale);
-        ScaleLegacySystems(particleScale);
-        ScaleShurikenSystems(particleScale);
-        ScaleTrailRenderers(particleScale);
-    }
-	void ScaleShurikenSystems(float scaleFactor)
-	{
-		//get all shuriken systems we need to do scaling on
-		ParticleSystem[] systems = GetComponentsInChildren&lt;ParticleSystem&gt;();
-
-		foreach (ParticleSystem system in systems)
-		{
-			system.startSpeed *= scaleFactor;
-			system.startSize *= scaleFactor;
-			system.gravityModifier *= scaleFactor;
-            
-			//some variables cannot be accessed through regular script, we will acces them through a serialized object
-            //SerializedObject so = new SerializedObject(system);
-            //so.FindProperty(&#34;VelocityModule.x.scalar&#34;).floatValue *= scaleFactor;
-            //so.FindProperty(&#34;VelocityModule.y.scalar&#34;).floatValue *= scaleFactor;
-            //so.FindProperty(&#34;VelocityModule.z.scalar&#34;).floatValue *= scaleFactor;
-            //so.FindProperty(&#34;ClampVelocityModule.magnitude.scalar&#34;).floatValue *= scaleFactor;
-            //so.FindProperty(&#34;ClampVelocityModule.x.scalar&#34;).floatValue *= scaleFactor;
-            //so.FindProperty(&#34;ClampVelocityModule.y.scalar&#34;).floatValue *= scaleFactor;
-            //so.FindProperty(&#34;ClampVelocityModule.z.scalar&#34;).floatValue *= scaleFactor;
-            //so.FindProperty(&#34;ForceModule.x.scalar&#34;).floatValue *= scaleFactor;
-            //so.FindProperty(&#34;ForceModule.y.scalar&#34;).floatValue *= scaleFactor;
-            //so.FindProperty(&#34;ForceModule.z.scalar&#34;).floatValue *= scaleFactor;
-            //so.FindProperty(&#34;ColorBySpeedModule.range&#34;).vector2Value *= scaleFactor;
-            //so.FindProperty(&#34;SizeBySpeedModule.range&#34;).vector2Value *= scaleFactor;
-            //so.FindProperty(&#34;RotationBySpeedModule.range&#34;).vector2Value *= scaleFactor;
-
-            //so.ApplyModifiedProperties();
-		}
-	}
-
-	void ScaleLegacySystems(float scaleFactor)
-	{
-		//get all emitters we need to do scaling on
-		ParticleEmitter[] emitters = GetComponentsInChildren&lt;ParticleEmitter&gt;();
-		//get all animators we need to do scaling on
-		ParticleAnimator[] animators = GetComponentsInChildren&lt;ParticleAnimator&gt;();
-		//apply scaling to emitters
-		foreach (ParticleEmitter emitter in emitters)
-		{
-			emitter.minSize *= scaleFactor;
-			emitter.maxSize *= scaleFactor;
-			emitter.worldVelocity *= scaleFactor;
-			emitter.localVelocity *= scaleFactor;
-			emitter.rndVelocity *= scaleFactor;
-
-			//some variables cannot be accessed through regular script, we will acces them through a serialized object
-            //SerializedObject so = new SerializedObject(emitter);
-
-            //so.FindProperty(&#34;m_Ellipsoid&#34;).vector3Value *= scaleFactor;
-            //so.FindProperty(&#34;tangentVelocity&#34;).vector3Value *= scaleFactor;
-            //so.ApplyModifiedProperties();
-		}
-
-		//apply scaling to animators
-		foreach (ParticleAnimator animator in animators)
-		{
-			animator.force *= scaleFactor;
-			animator.rndForce *= scaleFactor;
-		}
-	}
-
-	void ScaleTrailRenderers(float scaleFactor)
-	{
-		//get all animators we need to do scaling on
-		TrailRenderer[] trails = GetComponentsInChildren&lt;TrailRenderer&gt;();
-
-		//apply scaling to animators
-		foreach (TrailRenderer trail in trails)
-		{
-			trail.startWidth *= scaleFactor;
-			trail.endWidth *= scaleFactor;
-		}
-	}
-}
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//This script will only work in editor mode. You cannot adjust the scale dynamically in-game!
+</span></span><span class="line"><span class="cl">using UnityEngine;
+</span></span><span class="line"><span class="cl">using System.Collections;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#if UNITY_EDITOR 
+</span></span><span class="line"><span class="cl">using UnityEditor;
+</span></span><span class="line"><span class="cl">#endif
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//[ExecuteInEditMode]
+</span></span><span class="line"><span class="cl">public class ParticleScaler1 : MonoBehaviour 
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	public float particleScale = 1.0f;
+</span></span><span class="line"><span class="cl">	public bool alsoScaleGameobject = true;
+</span></span><span class="line"><span class="cl">	float prevScale;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    public void Once()
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        prevScale = particleScale;
+</span></span><span class="line"><span class="cl">        if (alsoScaleGameobject)
+</span></span><span class="line"><span class="cl">            transform.localScale = new Vector3(particleScale, particleScale, particleScale);
+</span></span><span class="line"><span class="cl">        ScaleLegacySystems(particleScale);
+</span></span><span class="line"><span class="cl">        ScaleShurikenSystems(particleScale);
+</span></span><span class="line"><span class="cl">        ScaleTrailRenderers(particleScale);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">	void ScaleShurikenSystems(float scaleFactor)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		//get all shuriken systems we need to do scaling on
+</span></span><span class="line"><span class="cl">		ParticleSystem[] systems = GetComponentsInChildren&lt;ParticleSystem&gt;();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		foreach (ParticleSystem system in systems)
+</span></span><span class="line"><span class="cl">		{
+</span></span><span class="line"><span class="cl">			system.startSpeed *= scaleFactor;
+</span></span><span class="line"><span class="cl">			system.startSize *= scaleFactor;
+</span></span><span class="line"><span class="cl">			system.gravityModifier *= scaleFactor;
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">			//some variables cannot be accessed through regular script, we will acces them through a serialized object
+</span></span><span class="line"><span class="cl">            //SerializedObject so = new SerializedObject(system);
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;VelocityModule.x.scalar&#34;).floatValue *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;VelocityModule.y.scalar&#34;).floatValue *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;VelocityModule.z.scalar&#34;).floatValue *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;ClampVelocityModule.magnitude.scalar&#34;).floatValue *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;ClampVelocityModule.x.scalar&#34;).floatValue *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;ClampVelocityModule.y.scalar&#34;).floatValue *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;ClampVelocityModule.z.scalar&#34;).floatValue *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;ForceModule.x.scalar&#34;).floatValue *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;ForceModule.y.scalar&#34;).floatValue *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;ForceModule.z.scalar&#34;).floatValue *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;ColorBySpeedModule.range&#34;).vector2Value *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;SizeBySpeedModule.range&#34;).vector2Value *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;RotationBySpeedModule.range&#34;).vector2Value *= scaleFactor;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            //so.ApplyModifiedProperties();
+</span></span><span class="line"><span class="cl">		}
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	void ScaleLegacySystems(float scaleFactor)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		//get all emitters we need to do scaling on
+</span></span><span class="line"><span class="cl">		ParticleEmitter[] emitters = GetComponentsInChildren&lt;ParticleEmitter&gt;();
+</span></span><span class="line"><span class="cl">		//get all animators we need to do scaling on
+</span></span><span class="line"><span class="cl">		ParticleAnimator[] animators = GetComponentsInChildren&lt;ParticleAnimator&gt;();
+</span></span><span class="line"><span class="cl">		//apply scaling to emitters
+</span></span><span class="line"><span class="cl">		foreach (ParticleEmitter emitter in emitters)
+</span></span><span class="line"><span class="cl">		{
+</span></span><span class="line"><span class="cl">			emitter.minSize *= scaleFactor;
+</span></span><span class="line"><span class="cl">			emitter.maxSize *= scaleFactor;
+</span></span><span class="line"><span class="cl">			emitter.worldVelocity *= scaleFactor;
+</span></span><span class="line"><span class="cl">			emitter.localVelocity *= scaleFactor;
+</span></span><span class="line"><span class="cl">			emitter.rndVelocity *= scaleFactor;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			//some variables cannot be accessed through regular script, we will acces them through a serialized object
+</span></span><span class="line"><span class="cl">            //SerializedObject so = new SerializedObject(emitter);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;m_Ellipsoid&#34;).vector3Value *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.FindProperty(&#34;tangentVelocity&#34;).vector3Value *= scaleFactor;
+</span></span><span class="line"><span class="cl">            //so.ApplyModifiedProperties();
+</span></span><span class="line"><span class="cl">		}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		//apply scaling to animators
+</span></span><span class="line"><span class="cl">		foreach (ParticleAnimator animator in animators)
+</span></span><span class="line"><span class="cl">		{
+</span></span><span class="line"><span class="cl">			animator.force *= scaleFactor;
+</span></span><span class="line"><span class="cl">			animator.rndForce *= scaleFactor;
+</span></span><span class="line"><span class="cl">		}
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	void ScaleTrailRenderers(float scaleFactor)
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		//get all animators we need to do scaling on
+</span></span><span class="line"><span class="cl">		TrailRenderer[] trails = GetComponentsInChildren&lt;TrailRenderer&gt;();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		//apply scaling to animators
+</span></span><span class="line"><span class="cl">		foreach (TrailRenderer trail in trails)
+</span></span><span class="line"><span class="cl">		{
+</span></span><span class="line"><span class="cl">			trail.startWidth *= scaleFactor;
+</span></span><span class="line"><span class="cl">			trail.endWidth *= scaleFactor;
+</span></span><span class="line"><span class="cl">		}
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -634,7 +630,7 @@ public class ParticleScaler1 : MonoBehaviour
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

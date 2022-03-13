@@ -8,10 +8,10 @@
         <title>C# 6 字符串插值(使用前缀$) - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="C# 6 字符串插值(使用前缀$)" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/csharp%E8%AF%AD%E8%A8%806-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8F%92%E5%80%BC/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/csharp%E8%AF%AD%E8%A8%806-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8F%92%E5%80%BC/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -117,29 +117,29 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
             </div><div class="content" id="content"><p>string s = &ldquo;hello&rdquo;;</p>
-<p>string y = $&rdquo;{s} world&rdquo;;</p>
+<p>string y = $&quot;{s} world&quot;;</p>
 <p>等同于使用Format方法：</p>
-<p>string y = string.Format(&quot;{0} world&rdquo;,s);</p>
+<p>string y = string.Format(&quot;{0} world&quot;,s);</p>
 <p>并且我们可以调用值的方法，如：</p>
-<p>string y = $&rdquo;{s.ToLower()} world&rdquo;;</p>
+<p>string y = $&quot;{s.ToLower()} world&quot;;</p>
 <p>使用新的字符串格式代码可读性要好一些如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">            <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
-            <span class="kt">int</span> <span class="n">b</span> <span class="p">=</span> <span class="m">2</span><span class="p">;</span>
-            <span class="kt">string</span> <span class="n">c</span> <span class="p">=</span> <span class="s">$&#34;{a} + {b} = {a + b}&#34;</span><span class="p">;</span><span class="c1">//使用$
-</span><span class="c1"></span>            <span class="kt">string</span> <span class="n">d</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} + {1} = {2}&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">);</span><span class="c1">//使用Format
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">b</span> <span class="p">=</span> <span class="m">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">string</span> <span class="n">c</span> <span class="p">=</span> <span class="s">$&#34;{a} + {b} = {a + b}&#34;</span><span class="p">;</span><span class="c1">//使用$</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">string</span> <span class="n">d</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&#34;{0} + {1} = {2}&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="p">+</span> <span class="n">b</span><span class="p">);</span><span class="c1">//使用Format</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>参考文章
-<a href="https://blog.csdn.net/xc917563264/article/details/79348233">https://blog.csdn.net/xc917563264/article/details/79348233</a></p>
+<a href="https://blog.csdn.net/xc917563264/article/details/79348233" target="_blank" rel="noopener noreffer">https://blog.csdn.net/xc917563264/article/details/79348233</a></p>
 </blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -170,7 +170,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

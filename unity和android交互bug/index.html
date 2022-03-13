@@ -8,10 +8,10 @@
         <title>unity和android交互bug - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="unity和android交互bug" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E5%92%8Candroid%E4%BA%A4%E4%BA%92bug/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity%E5%92%8Candroid%E4%BA%A4%E4%BA%92bug/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -118,7 +118,7 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
             </div><div class="content" id="content"><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -141,30 +141,30 @@
 </span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="n">String</span> <span class="n">ApplinkUrl</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">BroadcastApplinkUrl</span><span class="o">(</span><span class="n">String</span> <span class="n">linkUrl</span><span class="o">)</span>
-    <span class="o">{</span>
-    	<span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">AppPackName</span><span class="o">,</span><span class="s">&#34;BroadcastApplinkUrl::linkUrl:&#34;</span><span class="o">+</span><span class="n">linkUrl</span><span class="o">);</span>
-        <span class="c1">//linkUrl 不能传null，否则崩溃
-</span><span class="c1"></span>    	<span class="n">UnityPlayer</span><span class="o">.</span><span class="na">UnitySendMessage</span><span class="o">(</span><span class="n">GameObjectName</span><span class="o">,</span> <span class="n">ApplinkMethodName</span><span class="o">,</span> <span class="n">linkUrl</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onNewIntent</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
-    	<span class="kd">super</span><span class="o">.</span><span class="na">onNewIntent</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
-    	<span class="n">setIntent</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
-    	<span class="n">Uri</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getData</span><span class="o">();</span>
-    	<span class="k">if</span><span class="o">(</span><span class="n">uri</span><span class="o">!=</span><span class="kc">null</span><span class="o">)</span>
-    	<span class="o">{</span>
-    		<span class="n">BroadcastApplinkUrl</span><span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-    	<span class="o">}</span>
-    	<span class="k">else</span>
-    	<span class="o">{</span>
-    		<span class="n">BroadcastApplinkUrl</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
-    	<span class="o">}</span>
-    <span class="o">}</span>    
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="n">ApplinkUrl</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">BroadcastApplinkUrl</span><span class="o">(</span><span class="n">String</span> <span class="n">linkUrl</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">AppPackName</span><span class="o">,</span><span class="s">&#34;BroadcastApplinkUrl::linkUrl:&#34;</span><span class="o">+</span><span class="n">linkUrl</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//linkUrl 不能传null，否则崩溃
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    	<span class="n">UnityPlayer</span><span class="o">.</span><span class="na">UnitySendMessage</span><span class="o">(</span><span class="n">GameObjectName</span><span class="o">,</span> <span class="n">ApplinkMethodName</span><span class="o">,</span> <span class="n">linkUrl</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onNewIntent</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    	<span class="kd">super</span><span class="o">.</span><span class="na">onNewIntent</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">setIntent</span><span class="o">(</span><span class="n">intent</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">Uri</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getData</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    	<span class="k">if</span><span class="o">(</span><span class="n">uri</span><span class="o">!=</span><span class="kc">null</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    	<span class="o">{</span>
+</span></span><span class="line"><span class="cl">    		<span class="n">BroadcastApplinkUrl</span><span class="o">(</span><span class="n">uri</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">    	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">    	<span class="o">{</span>
+</span></span><span class="line"><span class="cl">    		<span class="n">BroadcastApplinkUrl</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>    
+</span></span></code></pre></td></tr></table>
 </div>
-</div><pre><code>    UnityPlayer.UnitySendMessage(GameObjectName, ApplinkMethodName, linkUrl);
+</div><pre><code>	UnityPlayer.UnitySendMessage(GameObjectName, ApplinkMethodName, linkUrl);
 </code></pre>
 <p>在linkUrl这个参数传null的情况下，直接崩溃,这里做下记录</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -196,7 +196,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

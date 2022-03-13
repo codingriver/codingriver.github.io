@@ -8,10 +8,10 @@
         <title>Unity Texture2D的SetPiexl严重耗时的优化方案 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Unity Texture2D的SetPiexl严重耗时的优化方案" />
 <meta property="og:description" content="Unity中使用Texture2D的SetPixel大量调用的时候耗时非常严重。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-10-10T18:02:43+08:00" />
 <meta property="article:modified_time" content="2020-10-10T18:02:43+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88\/"
-        },"genre": "posts","keywords": "Unity","wordcount":  1086 ,
+        },"genre": "posts","keywords": "Unity","wordcount":  1085 ,
         "url": "https:\/\/codingriver.github.io\/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88\/","datePublished": "2020-10-10T18:02:43+08:00","dateModified": "2020-10-10T18:02:43+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -103,7 +103,7 @@
 <main class="main">
                 <div class="container"><article class="page single"><h1 class="single-title animated flipInX">Unity Texture2D的SetPiexl严重耗时的优化方案</h1><h2 class="single-subtitle">Unity Texture2D的SetPiexl严重耗时的优化方案</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-10 18:02:43">2020-10-10 18:02:43</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1086 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-10-10 18:02:43">2020-10-10 18:02:43</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1085 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/unity-texture2d%E7%9A%84setpiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" class="leancloud_visitors" data-flag-title="Unity Texture2D的SetPiexl严重耗时的优化方案">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -127,7 +127,7 @@
 <p><a href="https://docs.unity.cn/cn/current/ScriptReference/Texture2D.GetRawTextureData.html" target="_blank" rel="noopener noreffer">unity官方测试例子</a>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -156,39 +156,39 @@
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">ExampleScript</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
-<span class="p">{</span>
-    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="kt">var</span> <span class="n">texture</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Texture2D</span><span class="p">(</span><span class="m">128</span><span class="p">,</span> <span class="m">128</span><span class="p">,</span> <span class="n">TextureFormat</span><span class="p">.</span><span class="n">RGBA32</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
-        <span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Renderer</span><span class="p">&gt;().</span><span class="n">material</span><span class="p">.</span><span class="n">mainTexture</span> <span class="p">=</span> <span class="n">texture</span><span class="p">;</span>
-
-        <span class="c1">// RGBA32 texture format data layout exactly matches Color32 struct
-</span><span class="c1"></span>        <span class="kt">var</span> <span class="n">data</span> <span class="p">=</span> <span class="n">texture</span><span class="p">.</span><span class="n">GetRawTextureData</span><span class="p">&lt;</span><span class="n">Color32</span><span class="p">&gt;();</span>
-
-        <span class="c1">// fill texture data with a simple pattern
-</span><span class="c1"></span>        <span class="n">Color32</span> <span class="n">orange</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Color32</span><span class="p">(</span><span class="m">255</span><span class="p">,</span> <span class="m">165</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">255</span><span class="p">);</span>
-        <span class="n">Color32</span> <span class="n">teal</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Color32</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">128</span><span class="p">,</span> <span class="m">128</span><span class="p">,</span> <span class="m">255</span><span class="p">);</span>
-        <span class="kt">int</span> <span class="n">index</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">y</span> <span class="p">&lt;</span> <span class="n">texture</span><span class="p">.</span><span class="n">height</span><span class="p">;</span> <span class="n">y</span><span class="p">++)</span>
-        <span class="p">{</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">x</span> <span class="p">&lt;</span> <span class="n">texture</span><span class="p">.</span><span class="n">width</span><span class="p">;</span> <span class="n">x</span><span class="p">++)</span>
-            <span class="p">{</span>
-                <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">++]</span> <span class="p">=</span> <span class="p">((</span><span class="n">x</span> <span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">y</span><span class="p">)</span> <span class="p">==</span> <span class="m">0</span> <span class="p">?</span> <span class="n">orange</span> <span class="p">:</span> <span class="n">teal</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="c1">// upload to the GPU
-</span><span class="c1"></span>        <span class="n">texture</span><span class="p">.</span><span class="n">Apply</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">ExampleScript</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">texture</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Texture2D</span><span class="p">(</span><span class="m">128</span><span class="p">,</span> <span class="m">128</span><span class="p">,</span> <span class="n">TextureFormat</span><span class="p">.</span><span class="n">RGBA32</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">Renderer</span><span class="p">&gt;().</span><span class="n">material</span><span class="p">.</span><span class="n">mainTexture</span> <span class="p">=</span> <span class="n">texture</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// RGBA32 texture format data layout exactly matches Color32 struct</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">var</span> <span class="n">data</span> <span class="p">=</span> <span class="n">texture</span><span class="p">.</span><span class="n">GetRawTextureData</span><span class="p">&lt;</span><span class="n">Color32</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// fill texture data with a simple pattern</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Color32</span> <span class="n">orange</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Color32</span><span class="p">(</span><span class="m">255</span><span class="p">,</span> <span class="m">165</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">255</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Color32</span> <span class="n">teal</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Color32</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">128</span><span class="p">,</span> <span class="m">128</span><span class="p">,</span> <span class="m">255</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">index</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">y</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">y</span> <span class="p">&lt;</span> <span class="n">texture</span><span class="p">.</span><span class="n">height</span><span class="p">;</span> <span class="n">y</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">x</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">x</span> <span class="p">&lt;</span> <span class="n">texture</span><span class="p">.</span><span class="n">width</span><span class="p">;</span> <span class="n">x</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">data</span><span class="p">[</span><span class="n">index</span><span class="p">++]</span> <span class="p">=</span> <span class="p">((</span><span class="n">x</span> <span class="p">&amp;</span><span class="n">amp</span><span class="p">;</span> <span class="n">y</span><span class="p">)</span> <span class="p">==</span> <span class="m">0</span> <span class="p">?</span> <span class="n">orange</span> <span class="p">:</span> <span class="n">teal</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// upload to the GPU</span>
+</span></span><span class="line"><span class="cl">        <span class="n">texture</span><span class="p">.</span><span class="n">Apply</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>测试代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -356,179 +356,177 @@
 </span><span class="lnt">166
 </span><span class="lnt">167
 </span><span class="lnt">168
-</span><span class="lnt">169
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="k">public</span> <span class="k">void</span> <span class="n">Awake</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">MapComponent</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">fogComponent</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
-            <span class="n">jiesuoQueue</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">Log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;FogComponent::DCFog.InstanceFog.Data=null&#34;</span><span class="p">);</span>
-                <span class="k">return</span><span class="p">;</span>
-            <span class="p">}</span>
-
-            <span class="k">if</span> <span class="p">(!</span><span class="n">CheckFog</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">GameObject</span> <span class="n">warFogObj</span> <span class="p">=</span> <span class="n">GameObject</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="s">&#34;WarFog&#34;</span><span class="p">);</span><span class="c1">//TODO TEMP
-</span><span class="c1"></span>                <span class="k">if</span> <span class="p">(</span><span class="n">warFogObj</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="n">warFogObj</span><span class="p">.</span><span class="n">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
-                <span class="p">}</span>
-                <span class="k">return</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">$&#34;FOG LOADType::{LoadType}&#34;</span><span class="p">);</span>
-            <span class="kt">long</span> <span class="n">starttime</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">Ticks</span><span class="p">;</span>
-            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">BeginSample</span><span class="p">(</span><span class="s">&#34;FogComponent::Awake:UpdateLogicCell&#34;</span><span class="p">);</span>
-            <span class="kt">int</span> <span class="n">cell</span> <span class="p">=</span> <span class="n">SN01GameConstCategory</span><span class="p">.</span><span class="n">FogSide</span><span class="p">;</span>
-            <span class="kt">int</span> <span class="n">size</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span> <span class="p">/</span> <span class="n">cell</span><span class="p">);</span>
-            <span class="c1">//texture = new Texture2D(size, size, TextureFormat.R8,false);
-</span><span class="c1"></span>            <span class="n">texture</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Texture2D</span><span class="p">(</span><span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span><span class="p">,</span> <span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span><span class="p">,</span> <span class="n">TextureFormat</span><span class="p">.</span><span class="n">ARGB32</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
-            <span class="c1">//Debug.Log(&#34;FogComponent::texture size:&#34;+MapFactory.MAP_SIZE+&#34;  texture:&#34;+texture+&#34;  data len:&#34;+ DCFog.InstanceFog.Data.Length);
-</span><span class="c1"></span>            <span class="n">texture</span><span class="p">.</span><span class="n">filterMode</span> <span class="p">=</span> <span class="n">FilterMode</span><span class="p">.</span><span class="n">Point</span><span class="p">;</span>
-            <span class="n">texture</span><span class="p">.</span><span class="n">wrapMode</span> <span class="p">=</span> <span class="n">TextureWrapMode</span><span class="p">.</span><span class="n">Clamp</span><span class="p">;</span>
-            <span class="n">texture</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;fogtexture&#34;</span><span class="p">;</span>
-            <span class="n">texture</span><span class="p">.</span><span class="n">anisoLevel</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-            
-            
-            <span class="k">if</span><span class="p">(</span><span class="n">LoadType</span><span class="p">==</span><span class="m">0</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
-                <span class="p">{</span>
-                    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">j</span><span class="p">++)</span>
-                    <span class="p">{</span>
-                        <span class="kt">byte</span> <span class="n">v</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Length</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
-                        <span class="p">{</span>
-                            <span class="n">v</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
-                        <span class="p">}</span>
-                        <span class="k">else</span>
-                        <span class="p">{</span>
-                            <span class="n">v</span> <span class="p">=</span> <span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">i</span> <span class="p">*</span> <span class="n">size</span> <span class="p">+</span> <span class="n">j</span><span class="p">];</span>
-                        <span class="p">}</span>
-
-                        <span class="c1">//if(v==1)
-</span><span class="c1"></span>                        <span class="c1">//{
-</span><span class="c1"></span>                        <span class="c1">//ProfilerHelper.BeginSample(&#34;UpdateCell&#34;);
-</span><span class="c1"></span>                        <span class="n">UpdateLogicCell</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
-                        <span class="c1">//ProfilerHelper.EndSample();
-</span><span class="c1"></span>                        <span class="c1">//}
-</span><span class="c1"></span>
-
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-            <span class="k">else</span>
-            <span class="p">{</span>
-                <span class="kt">var</span> <span class="n">array</span> <span class="p">=</span> <span class="n">texture</span><span class="p">.</span><span class="n">GetRawTextureData</span><span class="p">&lt;</span><span class="n">Color32</span><span class="p">&gt;();</span>
-                <span class="c1">//Debug.Log($&#34;fog::::===&gt;&gt;array:{array.Length},texture:({texture.width},{texture.height}),mipmap:{texture.mipmapCount},curlevel:{texture.loadedMipmapLevel}&#34;);
-</span><span class="c1"></span>                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
-                <span class="p">{</span>
-                    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">j</span><span class="p">++)</span>
-                    <span class="p">{</span>
-                        <span class="kt">byte</span> <span class="n">v</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Length</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
-                        <span class="p">{</span>
-                            <span class="n">v</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
-                        <span class="p">}</span>
-                        <span class="k">else</span>
-                        <span class="p">{</span>
-                            <span class="n">v</span> <span class="p">=</span> <span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">i</span> <span class="p">*</span> <span class="n">size</span> <span class="p">+</span> <span class="n">j</span><span class="p">];</span>
-                        <span class="p">}</span>
-
-                        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">m</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">m</span><span class="p">++)</span>
-                        <span class="p">{</span>
-                            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">n</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">n</span><span class="p">++)</span>
-                            <span class="p">{</span>
-                                <span class="n">array</span><span class="p">[(</span><span class="n">i</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">m</span><span class="p">)</span>  <span class="p">+</span> <span class="p">(</span><span class="n">j</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">n</span><span class="p">)</span> <span class="p">*</span> <span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span><span class="p">]</span> <span class="p">=</span> <span class="n">v</span> <span class="p">!=</span><span class="m">0</span>  <span class="p">?</span> <span class="n">closeCol</span> <span class="p">:</span> <span class="n">openCol</span><span class="p">;</span>
-                            <span class="p">}</span>
-                        <span class="p">}</span>
-
-
-                    <span class="p">}</span>
-                <span class="p">}</span>
-
-
-            <span class="p">}</span>
-
-            <span class="c1">//ProfilerHelper.EndSample();
-</span><span class="c1"></span>            <span class="c1">//ProfilerHelper.BeginSample(&#34;Apply&#34;);
-</span><span class="c1"></span>            <span class="n">texture</span><span class="p">.</span><span class="n">Apply</span><span class="p">();</span>
-            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">EndSample</span><span class="p">();</span>
-            <span class="n">Debug</span><span class="p">.</span><span class="n">LogError</span><span class="p">((</span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">Ticks</span> <span class="p">-</span> <span class="n">starttime</span><span class="p">)/</span><span class="m">10000</span><span class="p">);</span>
-<span class="cp">#if UNITY_EDITOR
-</span><span class="cp"></span>            <span class="kt">float</span> <span class="n">time</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">;</span>
-            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">BeginSample</span><span class="p">(</span><span class="s">&#34;FogComponent::Awake:WritePNG&#34;</span><span class="p">);</span>
-            <span class="n">Debug</span><span class="p">.</span><span class="n">LogError</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">Environment</span><span class="p">.</span><span class="n">CurrentDirectory</span><span class="p">,</span> <span class="s">&#34;fog.png&#34;</span><span class="p">));</span>
-            <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">File</span><span class="p">.</span><span class="n">WriteAllBytes</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">Environment</span><span class="p">.</span><span class="n">CurrentDirectory</span><span class="p">,</span> <span class="s">&#34;fog.png&#34;</span><span class="p">),</span> <span class="n">texture</span><span class="p">.</span><span class="n">EncodeToPNG</span><span class="p">());</span>
-            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">EndSample</span><span class="p">();</span>
-            <span class="n">Log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;EDITOR  FogComponent::Awake:WritePNG Time: &#34;</span> <span class="p">+</span> <span class="p">(</span><span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span> <span class="p">-</span> <span class="n">time</span><span class="p">));</span>
-<span class="cp">#endif
-</span><span class="cp"></span>            <span class="n">FogBlur</span> <span class="n">fogBlur</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">FogBlur</span><span class="p">&gt;();</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">fogBlur</span><span class="p">!=</span><span class="k">null</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="c1">//ProfilerHelper.BeginSample(&#34;FogComponent::ComputeShaderBlur&#34;);
-</span><span class="c1"></span>                <span class="n">fogBlur</span><span class="p">.</span><span class="n">Source</span> <span class="p">=</span> <span class="n">texture</span><span class="p">;</span>
-                <span class="n">fogBlur</span><span class="p">.</span><span class="n">ComputeShaderBlurTextureOfFog</span><span class="p">(</span><span class="n">texture</span><span class="p">,</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">FogBlur</span><span class="p">&gt;().</span><span class="n">PrintTexture</span><span class="p">);</span>
-                <span class="c1">//ProfilerHelper.EndSample();
-</span><span class="c1"></span>            <span class="p">}</span>
-            <span class="k">else</span>
-            <span class="p">{</span>
-                <span class="n">Debug</span><span class="p">.</span><span class="n">LogWarning</span><span class="p">(</span><span class="s">&#34;have no fogBlur&#34;</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="c1">//List&lt;int&gt; ls = new List&lt;int&gt;();
-</span><span class="c1"></span>            <span class="c1">//ls.Add(1024*4+500);
-</span><span class="c1"></span>            <span class="c1">//ls.Add(1024 * 9 + 500);
-</span><span class="c1"></span>            <span class="c1">//ls.Add(1024 * 9 + 501);
-</span><span class="c1"></span>            <span class="c1">//ls.Add(1024 * 10 + 500);
-</span><span class="c1"></span>            <span class="c1">//ls.Add(1024 * 10 + 501);
-</span><span class="c1"></span>            <span class="c1">//UnlockFog(ls, 0);
-</span><span class="c1"></span>            <span class="c1">//List&lt;int&gt; ls = new List&lt;int&gt; { 270, 150, 30};
-</span><span class="c1"></span>
-            <span class="c1">//TimerEventComponent.Instance.CreateEvent(() =&gt; UnLockItemFogArea(ls), 1000 * 5);
-</span><span class="c1"></span>
-        <span class="p">}</span>
-
-
-        <span class="k">private</span> <span class="k">void</span> <span class="n">UpdateLogicCell</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="kt">int</span> <span class="n">j</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span>
-        <span class="p">{</span>
-        <span class="c1">//    ProfilerHelper.BeginSample(&#34;UpdateLogicCell Inner&#34;);
-</span><span class="c1"></span>        <span class="c1">//    ProfilerHelper.BeginSample(&#34;UpdateLogicCell new color&#34;);
-</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">cell</span> <span class="p">=</span> <span class="n">SN01GameConstCategory</span><span class="p">.</span><span class="n">FogSide</span><span class="p">;</span>
-            <span class="n">Color</span> <span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Color</span><span class="p">();</span>
-            <span class="c1">//ProfilerHelper.EndSample();
-</span><span class="c1"></span>            <span class="c1">//Debug.Log($&#34;FogComponent:::UpdateLogicCell:{i }-{j } cell:{cell} value:{1-v}&#34;);
-</span><span class="c1"></span>            <span class="c1">//ProfilerHelper.BeginSample(&#34;UpdateLogicCell loop&#34;);
-</span><span class="c1"></span>            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">m</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">m</span><span class="p">++)</span>
-            <span class="p">{</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">n</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">n</span><span class="p">++)</span>
-                <span class="p">{</span>
-                    
-                    <span class="c1">//if(v==1||v==0)
-</span><span class="c1"></span>                    <span class="p">{</span>
-                        <span class="c1">//ProfilerHelper.BeginSample(&#34;UpdateLogicCell color set&#34;);
-</span><span class="c1"></span>                        <span class="c1">//v = 1-v; //TODO HardReset
-</span><span class="c1"></span>                        <span class="n">color</span><span class="p">.</span><span class="n">r</span> <span class="p">=</span> <span class="n">v</span><span class="p">;</span>
-                        <span class="n">color</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="n">v</span><span class="p">;</span>
-                        <span class="n">color</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
-                        <span class="n">color</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
-                        <span class="c1">//ProfilerHelper.EndSample();
-</span><span class="c1"></span>                        <span class="c1">//Debug.Log($&#34;FogComponent:::UpdateLogicCell:{i * cell + m}-{j * cell + n} value:{v}&#34;);
-</span><span class="c1"></span>                        <span class="c1">//ProfilerHelper.BeginSample(&#34;SetPixel&#34;);
-</span><span class="c1"></span>                        <span class="n">texture</span><span class="p">.</span><span class="n">SetPixel</span><span class="p">(</span><span class="n">i</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">m</span><span class="p">,</span> <span class="n">j</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span><span class="p">);</span>
-                        <span class="c1">//ProfilerHelper.EndSample();
-</span><span class="c1"></span>                    <span class="p">}</span>
-
-                <span class="p">}</span>
-            <span class="p">}</span>
-            <span class="c1">//ProfilerHelper.EndSample();
-</span><span class="c1"></span>            <span class="c1">//ProfilerHelper.EndSample();
-</span><span class="c1"></span>
-        <span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">void</span> <span class="n">Awake</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MapComponent</span><span class="p">.</span><span class="n">Instance</span><span class="p">.</span><span class="n">fogComponent</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">jiesuoQueue</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;FogComponent::DCFog.InstanceFog.Data=null&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(!</span><span class="n">CheckFog</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">GameObject</span> <span class="n">warFogObj</span> <span class="p">=</span> <span class="n">GameObject</span><span class="p">.</span><span class="n">Find</span><span class="p">(</span><span class="s">&#34;WarFog&#34;</span><span class="p">);</span><span class="c1">//TODO TEMP</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">warFogObj</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">warFogObj</span><span class="p">.</span><span class="n">SetActive</span><span class="p">(</span><span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">$&#34;FOG LOADType::{LoadType}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">long</span> <span class="n">starttime</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">Ticks</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">BeginSample</span><span class="p">(</span><span class="s">&#34;FogComponent::Awake:UpdateLogicCell&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">cell</span> <span class="p">=</span> <span class="n">SN01GameConstCategory</span><span class="p">.</span><span class="n">FogSide</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">size</span> <span class="p">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span> <span class="p">/</span> <span class="n">cell</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//texture = new Texture2D(size, size, TextureFormat.R8,false);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">texture</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Texture2D</span><span class="p">(</span><span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span><span class="p">,</span> <span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span><span class="p">,</span> <span class="n">TextureFormat</span><span class="p">.</span><span class="n">ARGB32</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Debug.Log(&#34;FogComponent::texture size:&#34;+MapFactory.MAP_SIZE+&#34;  texture:&#34;+texture+&#34;  data len:&#34;+ DCFog.InstanceFog.Data.Length);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">texture</span><span class="p">.</span><span class="n">filterMode</span> <span class="p">=</span> <span class="n">FilterMode</span><span class="p">.</span><span class="n">Point</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">texture</span><span class="p">.</span><span class="n">wrapMode</span> <span class="p">=</span> <span class="n">TextureWrapMode</span><span class="p">.</span><span class="n">Clamp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">texture</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;fogtexture&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">texture</span><span class="p">.</span><span class="n">anisoLevel</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">LoadType</span><span class="p">==</span><span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">j</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="kt">byte</span> <span class="n">v</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">if</span> <span class="p">(</span><span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Length</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">v</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">v</span> <span class="p">=</span> <span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">i</span> <span class="p">*</span> <span class="n">size</span> <span class="p">+</span> <span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                        <span class="c1">//if(v==1)</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//{</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//ProfilerHelper.BeginSample(&#34;UpdateCell&#34;);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">UpdateLogicCell</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//ProfilerHelper.EndSample();</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">array</span> <span class="p">=</span> <span class="n">texture</span><span class="p">.</span><span class="n">GetRawTextureData</span><span class="p">&lt;</span><span class="n">Color32</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//Debug.Log($&#34;fog::::===&gt;&gt;array:{array.Length},texture:({texture.width},{texture.height}),mipmap:{texture.mipmapCount},curlevel:{texture.loadedMipmapLevel}&#34;);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">j</span> <span class="p">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="n">j</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="kt">byte</span> <span class="n">v</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">if</span> <span class="p">(</span><span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">Length</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">v</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">v</span> <span class="p">=</span> <span class="n">DCFog</span><span class="p">.</span><span class="n">InstanceFog</span><span class="p">.</span><span class="n">Data</span><span class="p">[</span><span class="n">i</span> <span class="p">*</span> <span class="n">size</span> <span class="p">+</span> <span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">m</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">m</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">n</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">n</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">array</span><span class="p">[(</span><span class="n">i</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">m</span><span class="p">)</span>  <span class="p">+</span> <span class="p">(</span><span class="n">j</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">n</span><span class="p">)</span> <span class="p">*</span> <span class="n">MapFactory</span><span class="p">.</span><span class="n">MAP_SIZE</span><span class="p">]</span> <span class="p">=</span> <span class="n">v</span> <span class="p">!=</span><span class="m">0</span>  <span class="p">?</span> <span class="n">closeCol</span> <span class="p">:</span> <span class="n">openCol</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//ProfilerHelper.EndSample();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//ProfilerHelper.BeginSample(&#34;Apply&#34;);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">texture</span><span class="p">.</span><span class="n">Apply</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">EndSample</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Debug</span><span class="p">.</span><span class="n">LogError</span><span class="p">((</span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">Ticks</span> <span class="p">-</span> <span class="n">starttime</span><span class="p">)/</span><span class="m">10000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if UNITY_EDITOR</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">float</span> <span class="n">time</span> <span class="p">=</span> <span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">BeginSample</span><span class="p">(</span><span class="s">&#34;FogComponent::Awake:WritePNG&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Debug</span><span class="p">.</span><span class="n">LogError</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">Environment</span><span class="p">.</span><span class="n">CurrentDirectory</span><span class="p">,</span> <span class="s">&#34;fog.png&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">File</span><span class="p">.</span><span class="n">WriteAllBytes</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">IO</span><span class="p">.</span><span class="n">Path</span><span class="p">.</span><span class="n">Combine</span><span class="p">(</span><span class="n">Environment</span><span class="p">.</span><span class="n">CurrentDirectory</span><span class="p">,</span> <span class="s">&#34;fog.png&#34;</span><span class="p">),</span> <span class="n">texture</span><span class="p">.</span><span class="n">EncodeToPNG</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ProfilerHelper</span><span class="p">.</span><span class="n">EndSample</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Log</span><span class="p">.</span><span class="n">Error</span><span class="p">(</span><span class="s">&#34;EDITOR  FogComponent::Awake:WritePNG Time: &#34;</span> <span class="p">+</span> <span class="p">(</span><span class="n">Time</span><span class="p">.</span><span class="n">realtimeSinceStartup</span> <span class="p">-</span> <span class="n">time</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl">            <span class="n">FogBlur</span> <span class="n">fogBlur</span> <span class="p">=</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">FogBlur</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">fogBlur</span><span class="p">!=</span><span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//ProfilerHelper.BeginSample(&#34;FogComponent::ComputeShaderBlur&#34;);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">fogBlur</span><span class="p">.</span><span class="n">Source</span> <span class="p">=</span> <span class="n">texture</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">fogBlur</span><span class="p">.</span><span class="n">ComputeShaderBlurTextureOfFog</span><span class="p">(</span><span class="n">texture</span><span class="p">,</span> <span class="n">Camera</span><span class="p">.</span><span class="n">main</span><span class="p">.</span><span class="n">GetComponent</span><span class="p">&lt;</span><span class="n">FogBlur</span><span class="p">&gt;().</span><span class="n">PrintTexture</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//ProfilerHelper.EndSample();</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Debug</span><span class="p">.</span><span class="n">LogWarning</span><span class="p">(</span><span class="s">&#34;have no fogBlur&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//List&lt;int&gt; ls = new List&lt;int&gt;();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//ls.Add(1024*4+500);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//ls.Add(1024 * 9 + 500);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//ls.Add(1024 * 9 + 501);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//ls.Add(1024 * 10 + 500);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//ls.Add(1024 * 10 + 501);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//UnlockFog(ls, 0);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//List&lt;int&gt; ls = new List&lt;int&gt; { 270, 150, 30};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//TimerEventComponent.Instance.CreateEvent(() =&gt; UnLockItemFogArea(ls), 1000 * 5);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">private</span> <span class="k">void</span> <span class="n">UpdateLogicCell</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span><span class="kt">int</span> <span class="n">j</span><span class="p">,</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//    ProfilerHelper.BeginSample(&#34;UpdateLogicCell Inner&#34;);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//    ProfilerHelper.BeginSample(&#34;UpdateLogicCell new color&#34;);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">cell</span> <span class="p">=</span> <span class="n">SN01GameConstCategory</span><span class="p">.</span><span class="n">FogSide</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Color</span> <span class="n">color</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Color</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//ProfilerHelper.EndSample();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//Debug.Log($&#34;FogComponent:::UpdateLogicCell:{i }-{j } cell:{cell} value:{1-v}&#34;);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//ProfilerHelper.BeginSample(&#34;UpdateLogicCell loop&#34;);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">m</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">m</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">m</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">n</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">n</span> <span class="p">&lt;</span> <span class="n">cell</span><span class="p">;</span> <span class="n">n</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    
+</span></span><span class="line"><span class="cl">                    <span class="c1">//if(v==1||v==0)</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//ProfilerHelper.BeginSample(&#34;UpdateLogicCell color set&#34;);</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//v = 1-v; //TODO HardReset</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">color</span><span class="p">.</span><span class="n">r</span> <span class="p">=</span> <span class="n">v</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">color</span><span class="p">.</span><span class="n">g</span> <span class="p">=</span> <span class="n">v</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">color</span><span class="p">.</span><span class="n">b</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">color</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//ProfilerHelper.EndSample();</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//Debug.Log($&#34;FogComponent:::UpdateLogicCell:{i * cell + m}-{j * cell + n} value:{v}&#34;);</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//ProfilerHelper.BeginSample(&#34;SetPixel&#34;);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">texture</span><span class="p">.</span><span class="n">SetPixel</span><span class="p">(</span><span class="n">i</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">m</span><span class="p">,</span> <span class="n">j</span> <span class="p">*</span> <span class="n">cell</span> <span class="p">+</span> <span class="n">n</span><span class="p">,</span> <span class="n">color</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">//ProfilerHelper.EndSample();</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//ProfilerHelper.EndSample();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//ProfilerHelper.EndSample();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -560,7 +558,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

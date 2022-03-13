@@ -8,10 +8,10 @@
         <title>Shell笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Shell笔记" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/shell%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-02-02T22:17:18+08:00" />
 <meta property="article:modified_time" content="2022-02-02T22:17:18+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/shell%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "笔记, shell","wordcount":  3676 ,
+        },"genre": "posts","keywords": "笔记, shell","wordcount":  3668 ,
         "url": "https:\/\/codingriver.github.io\/shell%E7%AC%94%E8%AE%B0\/","datePublished": "2022-02-02T22:17:18+08:00","dateModified": "2022-02-02T22:17:18+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shell笔记</h1><h2 class="single-subtitle">Shell笔记</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-02 22:17:18">2022-02-02 22:17:18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3676 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-02 22:17:18">2022-02-02 22:17:18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3668 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/shell%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Shell笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -149,30 +149,30 @@
 <p>打印变量</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> <span class="nv">$?</span>
-
-<span class="nb">echo</span> <span class="nv">$PATH</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$?</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$PATH</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="显示shell变量">显示shell变量</h2>
 <p><code>set | less -N</code></p>
 <p>打印变量</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> <span class="nv">$?</span>
-
-<span class="nb">echo</span> <span class="nv">$TERM</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$?</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$TERM</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>unset 复位变量</p>
@@ -180,26 +180,24 @@
 <h2 id="whereis-和-whatis">whereis 和 whatis</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@VM-24-15-centos ~<span class="o">]</span><span class="c1"># whatis cp</span>
-cp <span class="o">(</span>1<span class="o">)</span>               - copy files and directories
-<span class="o">[</span>root@VM-24-15-centos ~<span class="o">]</span><span class="c1"># whereis cp</span>
-cp: /usr/bin/cp /usr/share/man/man1/cp.1.gz
-<span class="o">[</span>root@VM-24-15-centos ~<span class="o">]</span># 
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>root@VM-24-15-centos ~<span class="o">]</span><span class="c1"># whatis cp</span>
+</span></span><span class="line"><span class="cl">cp <span class="o">(</span>1<span class="o">)</span>               - copy files and directories
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@VM-24-15-centos ~<span class="o">]</span><span class="c1"># whereis cp</span>
+</span></span><span class="line"><span class="cl">cp: /usr/bin/cp /usr/share/man/man1/cp.1.gz
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@VM-24-15-centos ~<span class="o">]</span><span class="c1"># </span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="who-am-i">who am i</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -209,15 +207,15 @@ cp: /usr/bin/cp /usr/share/man/man1/cp.1.gz
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">mrwang@CodingdeMBP hugo-project % who am i 
-mrwang   ttys000  Feb  <span class="m">3</span> 12:43 
-mrwang@CodingdeMBP hugo-project % who are you
-mrwang   ttys000  Feb  <span class="m">3</span> 12:44 
-mrwang@CodingdeMBP hugo-project % who goes there
-mrwang   ttys000  Feb  <span class="m">3</span> 12:44 
-mrwang@CodingdeMBP hugo-project % who is god
-mrwang   ttys000  Feb  <span class="m">3</span> 12:44 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mrwang@CodingdeMBP hugo-project % who am i 
+</span></span><span class="line"><span class="cl">mrwang   ttys000  Feb  <span class="m">3</span> 12:43 
+</span></span><span class="line"><span class="cl">mrwang@CodingdeMBP hugo-project % who are you
+</span></span><span class="line"><span class="cl">mrwang   ttys000  Feb  <span class="m">3</span> 12:44 
+</span></span><span class="line"><span class="cl">mrwang@CodingdeMBP hugo-project % who goes there
+</span></span><span class="line"><span class="cl">mrwang   ttys000  Feb  <span class="m">3</span> 12:44 
+</span></span><span class="line"><span class="cl">mrwang@CodingdeMBP hugo-project % who is god
+</span></span><span class="line"><span class="cl">mrwang   ttys000  Feb  <span class="m">3</span> 12:44 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="键入信号erase-werase-kill">键入信号：erase, werase, kill</h2>
 <table>
@@ -250,7 +248,7 @@ mrwang   ttys000  Feb  <span class="m">3</span> 12:44
 <h2 id="stty命令">stty命令</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -265,20 +263,20 @@ mrwang   ttys000  Feb  <span class="m">3</span> 12:44
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1">## 显示所有键盘映射当前设置</span>
-stty -a
-
-<span class="c1">## 屏蔽显示</span>
-stty -echo <span class="c1">#禁止回显</span>
-stty <span class="nb">echo</span> <span class="c1">#打开回显</span>
-
-<span class="c1">## 忽略回车符</span>
-stty igncr  <span class="c1"># 开启</span>
-stty -igncr <span class="c1"># 恢复</span>
-
-<span class="c1">## 改变ctrl+D的方法:</span>
-stty eof <span class="s2">&#34;string&#34;</span> <span class="c1"># 系统默认是ctrl+D来表示文件的结束,而通过这种方法,可以改变!</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">## 显示所有键盘映射当前设置</span>
+</span></span><span class="line"><span class="cl">stty -a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 屏蔽显示</span>
+</span></span><span class="line"><span class="cl">stty -echo <span class="c1">#禁止回显</span>
+</span></span><span class="line"><span class="cl">stty <span class="nb">echo</span> <span class="c1">#打开回显</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 忽略回车符</span>
+</span></span><span class="line"><span class="cl">stty igncr  <span class="c1"># 开启</span>
+</span></span><span class="line"><span class="cl">stty -igncr <span class="c1"># 恢复</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 改变ctrl+D的方法:</span>
+</span></span><span class="line"><span class="cl">stty eof <span class="s2">&#34;string&#34;</span> <span class="c1"># 系统默认是ctrl+D来表示文件的结束,而通过这种方法,可以改变! </span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><table>
 <thead>
@@ -325,7 +323,7 @@ stty eof <span class="s2">&#34;string&#34;</span> <span class="c1"># 系统默�
 <p>less 与 more 类似，但使用 less 可以随意浏览文件，而 more 仅能向前移动，却不能向后移动，而且 less 在查看之前不会加载整个文件。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -349,55 +347,55 @@ stty eof <span class="s2">&#34;string&#34;</span> <span class="c1"># 系统默�
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">
-b  向上翻一页
-空格键 向下翻一页
-y  向上滚动一行
-回车键 向下滚动一行
-u  向上翻半页
-d  向下翻半页
-
-
--i  忽略搜索时的大小写
--N  显示每行的行号
--o  &lt;文件名&gt; 将less 输出的内容在指定文件中保存起来
--s  显示连续空行为一行
-/字符串：向下搜索“字符串”的功能
-?字符串：向上搜索“字符串”的功能
-n：重复前一个搜索（与 / 或 ? 有关）
-N：反向重复前一个搜索（与 / 或 ? 有关）
--x &lt;数字&gt; 将“tab”键显示为规定的数字空格
-h  显示帮助界面
-Q  退出less 命令
-[pagedown]： 向下翻动一页
-[pageup]：   向上翻动一页
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">b  向上翻一页
+</span></span><span class="line"><span class="cl">空格键 向下翻一页
+</span></span><span class="line"><span class="cl">y  向上滚动一行
+</span></span><span class="line"><span class="cl">回车键 向下滚动一行
+</span></span><span class="line"><span class="cl">u  向上翻半页
+</span></span><span class="line"><span class="cl">d  向下翻半页
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-i  忽略搜索时的大小写
+</span></span><span class="line"><span class="cl">-N  显示每行的行号
+</span></span><span class="line"><span class="cl">-o  &lt;文件名&gt; 将less 输出的内容在指定文件中保存起来
+</span></span><span class="line"><span class="cl">-s  显示连续空行为一行
+</span></span><span class="line"><span class="cl">/字符串：向下搜索“字符串”的功能
+</span></span><span class="line"><span class="cl">?字符串：向上搜索“字符串”的功能
+</span></span><span class="line"><span class="cl">n：重复前一个搜索（与 / 或 ? 有关）
+</span></span><span class="line"><span class="cl">N：反向重复前一个搜索（与 / 或 ? 有关）
+</span></span><span class="line"><span class="cl">-x &lt;数字&gt; 将“tab”键显示为规定的数字空格
+</span></span><span class="line"><span class="cl">h  显示帮助界面
+</span></span><span class="line"><span class="cl">Q  退出less 命令
+</span></span><span class="line"><span class="cl">[pagedown]： 向下翻动一页
+</span></span><span class="line"><span class="cl">[pageup]：   向上翻动一页
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>案例一 分页查看ps进程信息</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1">## -N 显示行号</span>
-ps -aux <span class="p">|</span> less -N
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">## -N 显示行号</span>
+</span></span><span class="line"><span class="cl">ps -aux <span class="p">|</span> less -N
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>案例二 查看多个文件</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1">## 可以使用 n 查看下一个，使用 p 查看前一个。</span>
-less 1.log 2.log
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">## 可以使用 n 查看下一个，使用 p 查看前一个。</span>
+</span></span><span class="line"><span class="cl">less 1.log 2.log
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="scp-命令">scp 命令</h2>
 <blockquote>
@@ -407,77 +405,77 @@ less 1.log 2.log
 <p>命令格式</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">scp [参数] [原路径] [目标路径]
-[目标路径]: user@server-ip:server-path
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scp [参数] [原路径] [目标路径]
+</span></span><span class="line"><span class="cl">[目标路径]: user@server-ip:server-path
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>常用命令参数</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">-C - 这会在复制过程中压缩文件或目录。
--P - 如果默认 SSH 端口不是 22，则使用此选项指定 SSH 端口。
--r - 此选项递归复制目录及其内容。
--p - 保留文件的访问和修改时间。
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-C - 这会在复制过程中压缩文件或目录。
+</span></span><span class="line"><span class="cl">-P - 如果默认 SSH 端口不是 22，则使用此选项指定 SSH 端口。
+</span></span><span class="line"><span class="cl">-r - 此选项递归复制目录及其内容。
+</span></span><span class="line"><span class="cl">-p - 保留文件的访问和修改时间。
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>复制文件到远程服务器</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">scp logs.tar.gz root@192.168.43.137:/root
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scp logs.tar.gz root@192.168.43.137:/root
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>复制远程服务器文件到本地</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">scp  root@192.168.43.137:/root/logs.tar.gz ./
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scp  root@192.168.43.137:/root/logs.tar.gz ./
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>复制文件夹到远程服务器</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">scp -rC syslog root@192.168.43.137:/root
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scp -rC syslog root@192.168.43.137:/root
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>复制远程服务器文件夹到本地</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">scp -rC  root@192.168.43.137:/root syslog
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">scp -rC  root@192.168.43.137:/root syslog
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>参考:<br>
-<a href="https://www.cnblogs.com/peida/archive/2013/03/15/2960802.html">https://www.cnblogs.com/peida/archive/2013/03/15/2960802.html</a><br>
-<a href="https://www.linuxprobe.com/scp-cmd-usage.html">https://www.linuxprobe.com/scp-cmd-usage.html</a></p>
+<a href="https://www.cnblogs.com/peida/archive/2013/03/15/2960802.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/peida/archive/2013/03/15/2960802.html</a><br>
+<a href="https://www.linuxprobe.com/scp-cmd-usage.html" target="_blank" rel="noopener noreffer">https://www.linuxprobe.com/scp-cmd-usage.html</a></p>
 </blockquote>
 <h2 id="rsync-命令">rsync 命令</h2>
 <blockquote>
@@ -488,7 +486,7 @@ less 1.log 2.log
 <p>常用参数：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -505,22 +503,22 @@ less 1.log 2.log
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">-a 包含-rtplgoD
--r 同步目录时要加上，类似cp时的-r选项
--v 同步时显示一些信息，让我们知道同步的过程
--l 保留软连接
--L 加上该选项后，同步软链接时会把源文件给同步
--p 保持文件的权限属性
--o 保持文件的属主
--g 保持文件的属组
--D 保持设备文件信息
--t 保持文件的时间属性
---delete 删除DEST中SRC没有的文件
---exclude 过滤指定文件，如--exclude “logs”会把文件名包含logs的文件或者目录过滤掉，不同步
--P 显示同步过程，比如速率，比-v更加详细
--u 加上该选项后，如果DEST中的文件比SRC新，则不同步
--z 传输时压缩
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-a 包含-rtplgoD
+</span></span><span class="line"><span class="cl">-r 同步目录时要加上，类似cp时的-r选项
+</span></span><span class="line"><span class="cl">-v 同步时显示一些信息，让我们知道同步的过程
+</span></span><span class="line"><span class="cl">-l 保留软连接
+</span></span><span class="line"><span class="cl">-L 加上该选项后，同步软链接时会把源文件给同步
+</span></span><span class="line"><span class="cl">-p 保持文件的权限属性
+</span></span><span class="line"><span class="cl">-o 保持文件的属主
+</span></span><span class="line"><span class="cl">-g 保持文件的属组
+</span></span><span class="line"><span class="cl">-D 保持设备文件信息
+</span></span><span class="line"><span class="cl">-t 保持文件的时间属性
+</span></span><span class="line"><span class="cl">--delete 删除DEST中SRC没有的文件
+</span></span><span class="line"><span class="cl">--exclude 过滤指定文件，如--exclude “logs”会把文件名包含logs的文件或者目录过滤掉，不同步
+</span></span><span class="line"><span class="cl">-P 显示同步过程，比如速率，比-v更加详细
+</span></span><span class="line"><span class="cl">-u 加上该选项后，如果DEST中的文件比SRC新，则不同步
+</span></span><span class="line"><span class="cl">-z 传输时压缩
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="同步文件夹">同步文件夹</h4>
 <ul>
@@ -528,7 +526,7 @@ less 1.log 2.log
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -538,28 +536,26 @@ less 1.log 2.log
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1">## -r 递归处理文件夹</span>
-<span class="c1">## 文件夹最后必须带斜杠(/)，不带则远程会创建文件夹</span>
-<span class="c1">## 第一次同步后，第二次及后面的同步都是增量同步，存在的文件且相同的不会传输</span>
-rsync -r ~/pub/ 101.43.160.247:~/public/
-
-<span class="c1">## --delete 本地如果删除文件或文件夹，同步后会删除远程的文件或文件夹（exclude 忽略的文件或文件夹除外）</span>
-<span class="c1">## --exclude 本地忽略同步的文件或文件夹，例如项目中.git文件夹不需要同步到远程</span>
-rsync -rtvpz --delete --exclude .git ~/pub/ root@101.43.160.247:~/public/
-
-rsync -rt --delete --exclude .git ~/pub/ 101.43.160.247:~/public/
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">## -r 递归处理文件夹</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 文件夹最后必须带斜杠(/)，不带则远程会创建文件夹</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 第一次同步后，第二次及后面的同步都是增量同步，存在的文件且相同的不会传输</span>
+</span></span><span class="line"><span class="cl">rsync -r ~/pub/ 101.43.160.247:~/public/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## --delete 本地如果删除文件或文件夹，同步后会删除远程的文件或文件夹（exclude 忽略的文件或文件夹除外）</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## --exclude 本地忽略同步的文件或文件夹，例如项目中.git文件夹不需要同步到远程</span>
+</span></span><span class="line"><span class="cl">rsync -rtvpz --delete --exclude .git ~/pub/ root@101.43.160.247:~/public/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">rsync -rt --delete --exclude .git ~/pub/ 101.43.160.247:~/public/
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>下载文件夹及同步</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -567,19 +563,17 @@ rsync -rt --delete --exclude .git ~/pub/ 101.43.160.247:~/public/
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1">## -r 递归处理文件夹</span>
-<span class="c1">## 文件夹最后必须带斜杠(/)，不带则远程会创建文件夹</span>
-<span class="c1">## 第一次同步后，第二次及后面的同步都是增量同步，存在的文件且相同的不会传输</span>
-rsync -r 101.43.160.247:~/public/ ~/pub/ 
-
-<span class="c1">## --delete 本地如果删除文件或文件夹，同步后会删除远程的文件或文件夹（exclude 忽略的文件或文件夹除外）</span>
-<span class="c1">## --exclude 本地忽略同步的文件或文件夹，例如项目中.git文件夹不需要同步到远程</span>
-rsync -rtvpz --delete --exclude .git 101.43.160.247:~/public/ ~/pub/ 
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">## -r 递归处理文件夹</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 文件夹最后必须带斜杠(/)，不带则远程会创建文件夹</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 第一次同步后，第二次及后面的同步都是增量同步，存在的文件且相同的不会传输</span>
+</span></span><span class="line"><span class="cl">rsync -r 101.43.160.247:~/public/ ~/pub/ 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## --delete 本地如果删除文件或文件夹，同步后会删除远程的文件或文件夹（exclude 忽略的文件或文件夹除外）</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## --exclude 本地忽略同步的文件或文件夹，例如项目中.git文件夹不需要同步到远程</span>
+</span></span><span class="line"><span class="cl">rsync -rtvpz --delete --exclude .git 101.43.160.247:~/public/ ~/pub/ 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="同步文件">同步文件</h4>
 <ul>
@@ -587,31 +581,27 @@ rsync -rtvpz --delete --exclude .git 101.43.160.247:~/public/ ~/pub/
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">rsync  ~/pub/a.txt 101.43.160.247:~/public/f.txt 
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rsync  ~/pub/a.txt 101.43.160.247:~/public/f.txt 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>下载文件及同步</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">rsync  101.43.160.247:~/public/f.txt ~/pub/a.txt
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">rsync  101.43.160.247:~/public/f.txt ~/pub/a.txt
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>参考：<br>
-<a href="https://www.jianshu.com/p/5a799b36c7e1">https://www.jianshu.com/p/5a799b36c7e1</a><br>
-<a href="https://blog.csdn.net/allway2/article/details/103073243">https://blog.csdn.net/allway2/article/details/103073243</a><br>
+<a href="https://www.jianshu.com/p/5a799b36c7e1" target="_blank" rel="noopener noreffer">https://www.jianshu.com/p/5a799b36c7e1</a><br>
+<a href="https://blog.csdn.net/allway2/article/details/103073243" target="_blank" rel="noopener noreffer">https://blog.csdn.net/allway2/article/details/103073243</a><br>
 <a href="https://www.cnblogs.com/kevingrace/p/5766139.html" target="_blank" rel="noopener noreffer">Rsync同步时删除多余文件</a><br>
 <a href="https://www.cnblogs.com/bass6/p/5542079.html" target="_blank" rel="noopener noreffer">rsync &ndash;exclude 参数</a><br>
 <a href="https://blog.csdn.net/admin_root1/article/details/78911674" target="_blank" rel="noopener noreffer">windows 上rsync客户端使用方法</a></p>
@@ -625,45 +615,45 @@ rsync -rtvpz --delete --exclude .git 101.43.160.247:~/public/ ~/pub/
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># -b, --binary         Read files in binary mode</span>
-<span class="c1"># -t, --text           Read files in ASCII mode</span>
-md5sum  filename
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># -b, --binary         Read files in binary mode</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -t, --text           Read files in ASCII mode</span>
+</span></span><span class="line"><span class="cl">md5sum  filename
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>计算字符串md5值：</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@xyz.com ~<span class="o">]</span>$ <span class="nb">echo</span> -n <span class="s1">&#39;hello world!&#39;</span> <span class="p">|</span> md5sum
-fc3ff98e8c6a0d3087d515c0473f8677  -
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>root@xyz.com ~<span class="o">]</span>$ <span class="nb">echo</span> -n <span class="s1">&#39;hello world!&#39;</span> <span class="p">|</span> md5sum
+</span></span><span class="line"><span class="cl">fc3ff98e8c6a0d3087d515c0473f8677  -
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>注：一定要加上&rsquo;-n&rsquo;参数，代表去掉控制字符。</p>
 <p>错误命令示例1：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="o">[</span>root@xyz.com ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="s1">&#39;hello world!&#39;</span> <span class="p">|</span> md5sum
-c897d1410af8f2c74fba11b1db511e9e  -
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>root@xyz.com ~<span class="o">]</span>$ <span class="nb">echo</span> <span class="s1">&#39;hello world!&#39;</span> <span class="p">|</span> md5sum
+</span></span><span class="line"><span class="cl">c897d1410af8f2c74fba11b1db511e9e  -
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>错误操作2：将文本<code>hello world！</code>写在文本文件中进行保存<code>test</code>文件，然后对文件进行<code>md5sum</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -672,24 +662,24 @@ c897d1410af8f2c74fba11b1db511e9e  -
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">mrwang@CodingdeMBP Sites % <span class="nb">echo</span> <span class="s1">&#39;hello world!&#39;</span> <span class="p">|</span> md5sum 
-c897d1410af8f2c74fba11b1db511e9e  -
-mrwang@CodingdeMBP Sites % cat <span class="nb">test</span> <span class="p">|</span> md5sum
-c897d1410af8f2c74fba11b1db511e9e  -
-mrwang@CodingdeMBP Sites % md5sum <span class="nb">test</span>
-c897d1410af8f2c74fba11b1db511e9e  <span class="nb">test</span>
-mrwang@CodingdeMBP Sites % 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mrwang@CodingdeMBP Sites % <span class="nb">echo</span> <span class="s1">&#39;hello world!&#39;</span> <span class="p">|</span> md5sum 
+</span></span><span class="line"><span class="cl">c897d1410af8f2c74fba11b1db511e9e  -
+</span></span><span class="line"><span class="cl">mrwang@CodingdeMBP Sites % cat <span class="nb">test</span> <span class="p">|</span> md5sum
+</span></span><span class="line"><span class="cl">c897d1410af8f2c74fba11b1db511e9e  -
+</span></span><span class="line"><span class="cl">mrwang@CodingdeMBP Sites % md5sum <span class="nb">test</span>
+</span></span><span class="line"><span class="cl">c897d1410af8f2c74fba11b1db511e9e  <span class="nb">test</span>
+</span></span><span class="line"><span class="cl">mrwang@CodingdeMBP Sites % 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>此错误操作与错误1得到的结果一样，都是因为文本中会自动带上一些控制字符，从而导致最终计算出来的md5值不是纯粹字符串的md5值。</p>
-<p>用vi打开test文件 使用vi 命令&rdquo;：set list&rdquo;，显示如下：</p>
+<p>用vi打开test文件 使用vi 命令&quot;：set list&quot;，显示如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">hello world!$
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hello world!$
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>多了控制字符。</p>
 <ul>
@@ -697,7 +687,7 @@ mrwang@CodingdeMBP Sites %
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -711,19 +701,19 @@ mrwang@CodingdeMBP Sites %
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="cp">#!/bin/sh
-</span><span class="cp"></span>
-<span class="c1">#获取文件夹下所有文件</span>
-<span class="nv">folder</span><span class="o">=</span><span class="s2">&#34;./&#34;</span>
-
-<span class="nv">softfiles</span><span class="o">=</span><span class="k">$(</span>ls <span class="nv">$folder</span><span class="k">)</span>
-<span class="nb">cd</span> <span class="si">${</span><span class="nv">folder</span><span class="si">}</span>
-<span class="k">for</span> sfile in <span class="si">${</span><span class="nv">softfiles</span><span class="si">}</span>
-<span class="k">do</span>
-    md5sum <span class="nv">$sfile</span> &gt;&gt; ../md5sum.txt
-    <span class="c1"># md5sum $sfile</span>
-<span class="k">done</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">#获取文件夹下所有文件</span>
+</span></span><span class="line"><span class="cl"><span class="nv">folder</span><span class="o">=</span><span class="s2">&#34;./&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">softfiles</span><span class="o">=</span><span class="k">$(</span>ls <span class="nv">$folder</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="si">${</span><span class="nv">folder</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> sfile in <span class="si">${</span><span class="nv">softfiles</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    md5sum <span class="nv">$sfile</span> &gt;&gt; ../md5sum.txt
+</span></span><span class="line"><span class="cl">    <span class="c1"># md5sum $sfile</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>Mac 使用 md5sum: <br>
@@ -732,14 +722,14 @@ Mac没有自带<code>md5sum</code>， 需要安装<code>md5sum</code>。<br>
 </blockquote>
 <blockquote>
 <p>参考：<br>
-<a href="https://www.cnblogs.com/xd502djj/p/7055228.html">https://www.cnblogs.com/xd502djj/p/7055228.html</a>
-<a href="http://www.blogjava.net/anchor110/articles/433319.html">http://www.blogjava.net/anchor110/articles/433319.html</a></p>
+<a href="https://www.cnblogs.com/xd502djj/p/7055228.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/xd502djj/p/7055228.html</a>
+<a href="http://www.blogjava.net/anchor110/articles/433319.html" target="_blank" rel="noopener noreffer">http://www.blogjava.net/anchor110/articles/433319.html</a></p>
 </blockquote>
 <h2 id="find-命令">find 命令</h2>
 <p>查找文件或者文件夹<code>test</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -749,56 +739,54 @@ Mac没有自带<code>md5sum</code>， 需要安装<code>md5sum</code>。<br>
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
-</span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 在当前目录查找文件或文件夹 test</span>
-find <span class="nb">test</span>
-<span class="c1"># 在根目录查找文件或文件夹 test</span>
-find / -name <span class="nb">test</span>
-<span class="c1"># 在根目录查找文件或文件夹 以test开头的</span>
-find / -name test*
-find / -name ‘test*’
-<span class="c1"># 在 home 目录查找文件或文件夹 包含 test 的</span>
-find /home -name *test*
-find /home -name ‘*test*’
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 在当前目录查找文件或文件夹 test</span>
+</span></span><span class="line"><span class="cl">find <span class="nb">test</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在根目录查找文件或文件夹 test</span>
+</span></span><span class="line"><span class="cl">find / -name <span class="nb">test</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在根目录查找文件或文件夹 以test开头的</span>
+</span></span><span class="line"><span class="cl">find / -name test*
+</span></span><span class="line"><span class="cl">find / -name ‘test*’
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 home 目录查找文件或文件夹 包含 test 的</span>
+</span></span><span class="line"><span class="cl">find /home -name *test*
+</span></span><span class="line"><span class="cl">find /home -name ‘*test*’
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>查找文件<code>test</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 在当前目录查找文件 test</span>
-find <span class="nb">test</span> -type f
-<span class="c1"># 在根目录查找文件 test</span>
-find / -name <span class="nb">test</span> -type -f
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 在当前目录查找文件 test</span>
+</span></span><span class="line"><span class="cl">find <span class="nb">test</span> -type f
+</span></span><span class="line"><span class="cl"><span class="c1"># 在根目录查找文件 test</span>
+</span></span><span class="line"><span class="cl">find / -name <span class="nb">test</span> -type -f
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>查找文件夹<code>test</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 在当前目录查找文件夹 test</span>
-find <span class="nb">test</span> -type f
-<span class="c1"># 在根目录查找文件夹 test</span>
-find / -name <span class="nb">test</span> -type -f
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 在当前目录查找文件夹 test</span>
+</span></span><span class="line"><span class="cl">find <span class="nb">test</span> -type f
+</span></span><span class="line"><span class="cl"><span class="c1"># 在根目录查找文件夹 test</span>
+</span></span><span class="line"><span class="cl">find / -name <span class="nb">test</span> -type -f
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>参考：<br>
-<a href="https://www.runoob.com/linux/linux-comm-find.html">https://www.runoob.com/linux/linux-comm-find.html</a><br>
-<a href="https://blog.csdn.net/l_liangkk/article/details/81294260">https://blog.csdn.net/l_liangkk/article/details/81294260</a></p>
+<a href="https://www.runoob.com/linux/linux-comm-find.html" target="_blank" rel="noopener noreffer">https://www.runoob.com/linux/linux-comm-find.html</a><br>
+<a href="https://blog.csdn.net/l_liangkk/article/details/81294260" target="_blank" rel="noopener noreffer">https://blog.csdn.net/l_liangkk/article/details/81294260</a></p>
 </blockquote>
 <h2 id="tail-命令">tail 命令</h2>
 <p>Linux中用于查看文件尾部的内容，与<code>head</code>相对应。<br>
@@ -806,7 +794,7 @@ find / -name <span class="nb">test</span> -type -f
 <p>尤其是对于日志文件较大的时候，通过tail指定输出的行数来查看日志。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -834,36 +822,36 @@ find / -name <span class="nb">test</span> -type -f
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">// 输出最后10行的内容
-tail test.log
-
-// 输出最后10行的内容，同时监视文件的变化，一旦变化就显示出来
-tail -f test.log
-
-// 输出最后n行的内容，同时监视文件的变化，一旦变化就显示出来
-tail -nf test.log
-
-// 输出文件最后10行的内容
-tail -n <span class="m">10</span> filename
-// 除第9行不显示外，显示第10行到末尾行
-tail -n -10 filename
-
-// 从第20行至末尾
-tail +20 test.log
-
-// 显示最后10个字符
-tail -c <span class="m">10</span> test.log
-
-// 实时日志查看与grep过滤关键字
-// -A 除显示符合t匹配内容的那一行之外，并显示该行之后的内容
-// -B 除显示符合匹配内容的那一行之外，并显示该行之前的内容
-// -C 除显示符合匹配内容的那一列之外，并显示该列前后的内容
-tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</span> -C <span class="m">5</span>
-tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</span> -5
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">// 输出最后10行的内容
+</span></span><span class="line"><span class="cl">tail test.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 输出最后10行的内容，同时监视文件的变化，一旦变化就显示出来
+</span></span><span class="line"><span class="cl">tail -f test.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 输出最后n行的内容，同时监视文件的变化，一旦变化就显示出来
+</span></span><span class="line"><span class="cl">tail -nf test.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 输出文件最后10行的内容
+</span></span><span class="line"><span class="cl">tail -n <span class="m">10</span> filename
+</span></span><span class="line"><span class="cl">// 除第9行不显示外，显示第10行到末尾行
+</span></span><span class="line"><span class="cl">tail -n -10 filename
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 从第20行至末尾
+</span></span><span class="line"><span class="cl">tail +20 test.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 显示最后10个字符
+</span></span><span class="line"><span class="cl">tail -c <span class="m">10</span> test.log
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">// 实时日志查看与grep过滤关键字
+</span></span><span class="line"><span class="cl">// -A 除显示符合t匹配内容的那一行之外，并显示该行之后的内容
+</span></span><span class="line"><span class="cl">// -B 除显示符合匹配内容的那一行之外，并显示该行之前的内容
+</span></span><span class="line"><span class="cl">// -C 除显示符合匹配内容的那一列之外，并显示该列前后的内容
+</span></span><span class="line"><span class="cl">tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</span> -C <span class="m">5</span>
+</span></span><span class="line"><span class="cl">tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</span> -5
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p>参考：<a href="https://blog.csdn.net/mo_247/article/details/103567545">https://blog.csdn.net/mo_247/article/details/103567545</a></p>
+<p>参考：<a href="https://blog.csdn.net/mo_247/article/details/103567545" target="_blank" rel="noopener noreffer">https://blog.csdn.net/mo_247/article/details/103567545</a></p>
 </blockquote>
 <h2 id="读取文件每一行">读取文件每一行</h2>
 <ol>
@@ -871,7 +859,7 @@ tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -880,21 +868,21 @@ tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 换行符必须是unix的\n,不能是windows的\r\n,mac是\r结尾</span>
-<span class="c1"># `cat img.txt | tr &#34;\r\n&#34; &#34;\n&#34; | tr &#34;\r&#34; &#34;\n&#34;`</span>
-<span class="k">for</span> line in <span class="sb">`</span>cat img.txt <span class="p">|</span> tr <span class="s1">&#39;\r\n&#39;</span> <span class="s1">&#39;\n&#39;</span><span class="sb">`</span>
-<span class="k">do</span>
-  <span class="nb">echo</span> <span class="nv">$line</span>
-  cp -f <span class="s2">&#34;/d/Sites/hugo-project/content/imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;./imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="k">done</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 换行符必须是unix的\n,不能是windows的\r\n,mac是\r结尾</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># `cat img.txt | tr &#34;\r\n&#34; &#34;\n&#34; | tr &#34;\r&#34; &#34;\n&#34;`</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> line in <span class="sb">`</span>cat img.txt <span class="p">|</span> tr <span class="s1">&#39;\r\n&#39;</span> <span class="s1">&#39;\n&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="nv">$line</span>
+</span></span><span class="line"><span class="cl">  cp -f <span class="s2">&#34;/d/Sites/hugo-project/content/imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;./imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="2">
 <li>使用for循环</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -903,21 +891,21 @@ tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 换行符必须是unix的\n,不能是windows的\r\n,mac是\r结尾</span>
-<span class="c1"># $(cat img.txt | tr &#34;\r\n&#34; &#34;\n&#34; | tr &#34;\r&#34; &#34;\n&#34;)</span>
-<span class="k">for</span> line in <span class="k">$(</span>cat img.txt<span class="p">|</span> tr <span class="s1">&#39;\r\n&#39;</span> <span class="s1">&#39;\n&#39;</span><span class="k">)</span>
-<span class="k">do</span>
-  <span class="nb">echo</span> <span class="nv">$line</span>
-  cp -f <span class="s2">&#34;/d/Sites/hugo-project/content/imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;./imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="k">done</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 换行符必须是unix的\n,不能是windows的\r\n,mac是\r结尾</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># $(cat img.txt | tr &#34;\r\n&#34; &#34;\n&#34; | tr &#34;\r&#34; &#34;\n&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> line in <span class="k">$(</span>cat img.txt<span class="p">|</span> tr <span class="s1">&#39;\r\n&#39;</span> <span class="s1">&#39;\n&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="nv">$line</span>
+</span></span><span class="line"><span class="cl">  cp -f <span class="s2">&#34;/d/Sites/hugo-project/content/imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;./imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="3">
 <li>使用while循环</li>
 </ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -925,16 +913,16 @@ tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 换行符必须是unix的\n,不能是windows的\r\n,mac是\r结尾</span>
-<span class="k">while</span> <span class="nb">read</span> -r line
-<span class="k">do</span>
-  <span class="nb">echo</span> <span class="nv">$line</span>
-  cp -f <span class="s2">&#34;/d/Sites/hugo-project/content/imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;./imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="k">done</span> &lt; filename
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 换行符必须是unix的\n,不能是windows的\r\n,mac是\r结尾</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="nb">read</span> -r line
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="nv">$line</span>
+</span></span><span class="line"><span class="cl">  cp -f <span class="s2">&#34;/d/Sites/hugo-project/content/imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;./imgs/</span><span class="si">${</span><span class="nv">line</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span> &lt; filename
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
-<p>参考：<a href="https://www.cnblogs.com/oskb/p/9669186.html">https://www.cnblogs.com/oskb/p/9669186.html</a></p>
+<p>参考：<a href="https://www.cnblogs.com/oskb/p/9669186.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/oskb/p/9669186.html</a></p>
 </blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -965,7 +953,7 @@ tail -f test.log <span class="p">|</span> grep <span class="s1">&#39;test&#39;</
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -8,10 +8,10 @@
         <title>JsonHelper工具 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="JsonHelper工具" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/jsonhelper%E5%B7%A5%E5%85%B7/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/jsonhelper%E5%B7%A5%E5%85%B7/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-16T17:31:14+08:00" />
 <meta property="article:modified_time" content="2020-09-16T17:31:14+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/jsonhelper%E5%B7%A5%E5%85%B7\/"
-        },"genre": "posts","keywords": "Unity Tool, Json, LitJson","wordcount":  1014 ,
+        },"genre": "posts","keywords": "Unity Tool, Json, LitJson","wordcount":  1012 ,
         "url": "https:\/\/codingriver.github.io\/jsonhelper%E5%B7%A5%E5%85%B7\/","datePublished": "2020-09-16T17:31:14+08:00","dateModified": "2020-09-16T17:31:14+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">JsonHelper工具</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity-tool/"><i class="far fa-folder fa-fw"></i>Unity Tool</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-16 17:31:14">2020-09-16 17:31:14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1014 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-16 17:31:14">2020-09-16 17:31:14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1012 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/jsonhelper%E5%B7%A5%E5%85%B7/" class="leancloud_visitors" data-flag-title="JsonHelper工具">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -124,7 +124,7 @@
 <p><code>JsonHelper.cs</code>代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -182,68 +182,68 @@
 </span><span class="lnt">56
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.ComponentModel</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Runtime.Serialization</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">Codingriver</span>
-<span class="p">{</span>
-	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">JsonHelper</span>
-	<span class="p">{</span>
-		<span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">ToJson</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">)</span>
-		<span class="p">{</span>
-
-			<span class="k">return</span> <span class="n">JsonUtility</span><span class="p">.</span><span class="n">ToJson</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
-		<span class="p">}</span>
-
-		<span class="k">public</span> <span class="k">static</span> <span class="n">T</span> <span class="n">FromJson</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kt">string</span> <span class="n">str</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="n">T</span> <span class="n">t</span> <span class="p">=</span> <span class="n">JsonUtility</span><span class="p">.</span><span class="n">FromJson</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">str</span><span class="p">);</span>
-			<span class="n">ISupportInitialize</span> <span class="n">iSupportInitialize</span> <span class="p">=</span> <span class="n">t</span> <span class="k">as</span> <span class="n">ISupportInitialize</span><span class="p">;</span>
-			<span class="k">if</span> <span class="p">(</span><span class="n">iSupportInitialize</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-			<span class="p">{</span>
-                <span class="n">iSupportInitialize</span><span class="p">.</span><span class="n">EndInit</span><span class="p">();</span>
-            <span class="p">}</span>
-			
-
-            <span class="n">IDeserializationCallback</span> <span class="n">deserializationCallback</span> <span class="p">=</span> <span class="n">t</span> <span class="k">as</span> <span class="n">IDeserializationCallback</span><span class="p">;</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">deserializationCallback</span><span class="p">!=</span><span class="k">null</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">deserializationCallback</span><span class="p">.</span><span class="n">OnDeserialization</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-            <span class="p">}</span>
-            <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="k">public</span> <span class="k">static</span> <span class="kt">object</span> <span class="n">FromJson</span><span class="p">(</span><span class="n">Type</span> <span class="n">type</span><span class="p">,</span> <span class="kt">string</span> <span class="n">str</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="kt">object</span> <span class="n">t</span> <span class="p">=</span> <span class="n">JsonUtility</span><span class="p">.</span><span class="n">FromJson</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="n">type</span><span class="p">);</span>
-			<span class="n">ISupportInitialize</span> <span class="n">iSupportInitialize</span> <span class="p">=</span> <span class="n">t</span> <span class="k">as</span> <span class="n">ISupportInitialize</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">iSupportInitialize</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">iSupportInitialize</span><span class="p">.</span><span class="n">EndInit</span><span class="p">();</span>
-            <span class="p">}</span>
-
-            <span class="n">IDeserializationCallback</span> <span class="n">deserializationCallback</span> <span class="p">=</span> <span class="n">t</span> <span class="k">as</span> <span class="n">IDeserializationCallback</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">deserializationCallback</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="n">deserializationCallback</span><span class="p">.</span><span class="n">OnDeserialization</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
-            <span class="p">}</span>
-            <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
-		<span class="p">}</span>
-
-		<span class="k">public</span> <span class="k">static</span> <span class="n">T</span> <span class="n">Clone</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span>
-		<span class="p">{</span>
-			<span class="k">return</span> <span class="n">FromJson</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">ToJson</span><span class="p">(</span><span class="n">t</span><span class="p">));</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.ComponentModel</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Serialization</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">Codingriver</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">JsonHelper</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">ToJson</span><span class="p">(</span><span class="kt">object</span> <span class="n">obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">JsonUtility</span><span class="p">.</span><span class="n">ToJson</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">public</span> <span class="k">static</span> <span class="n">T</span> <span class="n">FromJson</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="kt">string</span> <span class="n">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">T</span> <span class="n">t</span> <span class="p">=</span> <span class="n">JsonUtility</span><span class="p">.</span><span class="n">FromJson</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ISupportInitialize</span> <span class="n">iSupportInitialize</span> <span class="p">=</span> <span class="n">t</span> <span class="k">as</span> <span class="n">ISupportInitialize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">iSupportInitialize</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">iSupportInitialize</span><span class="p">.</span><span class="n">EndInit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">IDeserializationCallback</span> <span class="n">deserializationCallback</span> <span class="p">=</span> <span class="n">t</span> <span class="k">as</span> <span class="n">IDeserializationCallback</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">deserializationCallback</span><span class="p">!=</span><span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">deserializationCallback</span><span class="p">.</span><span class="n">OnDeserialization</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">public</span> <span class="k">static</span> <span class="kt">object</span> <span class="n">FromJson</span><span class="p">(</span><span class="n">Type</span> <span class="n">type</span><span class="p">,</span> <span class="kt">string</span> <span class="n">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">object</span> <span class="n">t</span> <span class="p">=</span> <span class="n">JsonUtility</span><span class="p">.</span><span class="n">FromJson</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="n">type</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">ISupportInitialize</span> <span class="n">iSupportInitialize</span> <span class="p">=</span> <span class="n">t</span> <span class="k">as</span> <span class="n">ISupportInitialize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">iSupportInitialize</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">iSupportInitialize</span><span class="p">.</span><span class="n">EndInit</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">IDeserializationCallback</span> <span class="n">deserializationCallback</span> <span class="p">=</span> <span class="n">t</span> <span class="k">as</span> <span class="n">IDeserializationCallback</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">deserializationCallback</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">deserializationCallback</span><span class="p">.</span><span class="n">OnDeserialization</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="k">public</span> <span class="k">static</span> <span class="n">T</span> <span class="n">Clone</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="n">FromJson</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">ToJson</span><span class="p">(</span><span class="n">t</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>JsonUtility和LitJson对比测试代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -335,105 +335,101 @@
 </span><span class="lnt">90
 </span><span class="lnt">91
 </span><span class="lnt">92
-</span><span class="lnt">93
-</span><span class="lnt">94
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">Codingriver</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">LitJson</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Runtime.Serialization</span><span class="p">;</span>
-
-<span class="k">public</span> <span class="k">class</span> <span class="nc">JsonHelperTest</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
-<span class="p">{</span>
-<span class="na">
-</span><span class="na">    [Serializable]</span>
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">InnerTest</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="k">class</span> <span class="nc">InnerA</span>
-        <span class="p">{</span>
-           <span class="k">public</span> <span class="kt">string</span> <span class="n">innerStr</span> <span class="p">=</span> <span class="s">&#34;严&#34;</span><span class="p">;</span>
-            <span class="kt">int</span> <span class="n">key</span> <span class="p">=</span> <span class="m">99</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">public</span> <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">b</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span><span class="p">;</span>
-        <span class="kt">int</span><span class="p">[]</span> <span class="n">arr</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[]</span> <span class="p">{</span> <span class="m">5</span><span class="p">,</span> <span class="m">76</span><span class="p">,</span> <span class="m">12</span> <span class="p">};</span>
-        <span class="k">public</span> <span class="n">InnerA</span> <span class="n">innerA</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InnerA</span><span class="p">();</span>
-    <span class="p">}</span>
-
-    
-    <span class="k">public</span> <span class="k">class</span> <span class="nc">TestData</span><span class="p">:</span> <span class="n">IDeserializationCallback</span>
-    <span class="p">{</span>
-        <span class="k">public</span> <span class="kt">string</span><span class="p">[]</span> <span class="n">Sitekeys</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">[]</span> <span class="p">{</span> <span class="s">&#34;river&#34;</span><span class="p">,</span> <span class="s">&#34;coding&#34;</span> <span class="p">};</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;codingriver&#34;</span><span class="p">;</span>
-        
-        <span class="k">public</span> <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="m">1000</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">int</span> <span class="n">d</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
-        <span class="k">public</span> <span class="kt">string</span> <span class="n">b</span> <span class="p">=</span> <span class="s">&#34;哈哈哈哈&#34;</span><span class="p">;</span>
-<span class="na">        [NonSerialized]</span>
-        <span class="k">public</span> <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
-        <span class="k">protected</span> <span class="kt">string</span> <span class="n">protect</span> <span class="p">=</span> <span class="s">&#34;11111&#34;</span><span class="p">;</span>
-        
-        <span class="kt">int</span> <span class="n">m_Main</span> <span class="p">=</span> <span class="m">1024</span><span class="p">;</span>
-<span class="na">
-</span><span class="na">        [NonSerialized]</span>
-        <span class="k">public</span> <span class="n">InnerTest</span> <span class="n">obj</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InnerTest</span><span class="p">();</span>
-
-        <span class="k">public</span> <span class="kt">int</span> <span class="n">Main</span>
-        <span class="p">{</span>
-            <span class="k">get</span>
-            <span class="p">{</span>
-                <span class="k">return</span> <span class="n">m_Main</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">set</span>
-            <span class="p">{</span>
-                <span class="n">m_Main</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-
-        <span class="k">public</span> <span class="k">void</span> <span class="n">OnDeserialization</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">c</span> <span class="p">=</span> <span class="n">a</span> <span class="p">*</span> <span class="n">d</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-
-    <span class="c1">// Start is called before the first frame update
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">TestData</span> <span class="n">data</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TestData</span><span class="p">();</span>
-        <span class="n">data</span><span class="p">.</span><span class="n">Main</span> <span class="p">=</span> <span class="m">2048</span><span class="p">;</span>
-        <span class="n">data</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;你们好吗！&#34;</span><span class="p">;</span>
-        <span class="n">data</span><span class="p">.</span><span class="n">obj</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="m">9</span><span class="p">;</span>
-        <span class="n">data</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="m">7</span><span class="p">;</span>
-        <span class="n">data</span><span class="p">.</span><span class="n">d</span> <span class="p">=</span> <span class="m">2</span><span class="p">;</span>
-        
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;origin:&#34;</span><span class="p">+</span><span class="n">Dumper</span><span class="p">.</span><span class="n">DumpAsString</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
-        <span class="kt">string</span> <span class="n">json</span><span class="p">=</span> <span class="n">JsonHelper</span><span class="p">.</span><span class="n">ToJson</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;json:&#34;</span><span class="p">+</span><span class="n">json</span><span class="p">);</span>
-        <span class="n">File</span><span class="p">.</span><span class="n">WriteAllText</span><span class="p">(</span><span class="s">&#34;./test.json&#34;</span><span class="p">,</span> <span class="n">json</span><span class="p">);</span>
-        <span class="n">TestData</span> <span class="n">data1</span> <span class="p">=</span> <span class="n">JsonHelper</span><span class="p">.</span><span class="n">FromJson</span><span class="p">&lt;</span><span class="n">TestData</span><span class="p">&gt;(</span><span class="n">json</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;data1:&#34;</span><span class="p">+</span> <span class="n">Dumper</span><span class="p">.</span><span class="n">DumpAsString</span><span class="p">(</span><span class="n">data1</span><span class="p">));</span>
-
-        <span class="kt">string</span> <span class="n">litJson</span> <span class="p">=</span> <span class="n">JsonMapper</span><span class="p">.</span><span class="n">ToJson</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">$&#34;litJson:{litJson}&#34;</span><span class="p">);</span>
-        <span class="n">TestData</span> <span class="n">data2</span> <span class="p">=</span> <span class="n">JsonMapper</span><span class="p">.</span><span class="n">ToObject</span><span class="p">&lt;</span><span class="n">TestData</span><span class="p">&gt;(</span><span class="n">litJson</span><span class="p">);</span>
-        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">$&#34;data2:{Dumper.DumpAsString(data2)}&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="c1">// Update is called once per frame
-</span><span class="c1"></span>    <span class="k">void</span> <span class="n">Update</span><span class="p">()</span>
-    <span class="p">{</span>
-        
-    <span class="p">}</span>
-<span class="p">}</span>
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">Codingriver</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">LitJson</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.Serialization</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">JsonHelperTest</span> <span class="p">:</span> <span class="n">MonoBehaviour</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">    [Serializable]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">class</span> <span class="nc">InnerTest</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">class</span> <span class="nc">InnerA</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">           <span class="k">public</span> <span class="kt">string</span> <span class="n">innerStr</span> <span class="p">=</span> <span class="s">&#34;严&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">key</span> <span class="p">=</span> <span class="m">99</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">string</span> <span class="n">b</span> <span class="p">=</span> <span class="s">&#34;hello&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span><span class="p">[]</span> <span class="n">arr</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[]</span> <span class="p">{</span> <span class="m">5</span><span class="p">,</span> <span class="m">76</span><span class="p">,</span> <span class="m">12</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="n">InnerA</span> <span class="n">innerA</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InnerA</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">class</span> <span class="nc">TestData</span><span class="p">:</span> <span class="n">IDeserializationCallback</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">string</span><span class="p">[]</span> <span class="n">Sitekeys</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">string</span><span class="p">[]</span> <span class="p">{</span> <span class="s">&#34;river&#34;</span><span class="p">,</span> <span class="s">&#34;coding&#34;</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span> <span class="p">=</span> <span class="s">&#34;codingriver&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="m">1000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">int</span> <span class="n">d</span> <span class="p">=</span> <span class="m">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">string</span> <span class="n">b</span> <span class="p">=</span> <span class="s">&#34;哈哈哈哈&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="na">        [NonSerialized]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">protected</span> <span class="kt">string</span> <span class="n">protect</span> <span class="p">=</span> <span class="s">&#34;11111&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">m_Main</span> <span class="p">=</span> <span class="m">1024</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="na">
+</span></span></span><span class="line"><span class="cl"><span class="na">        [NonSerialized]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="n">InnerTest</span> <span class="n">obj</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InnerTest</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="kt">int</span> <span class="n">Main</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">get</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">m_Main</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">set</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">m_Main</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">void</span> <span class="n">OnDeserialization</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">c</span> <span class="p">=</span> <span class="n">a</span> <span class="p">*</span> <span class="n">d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Start is called before the first frame update</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TestData</span> <span class="n">data</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TestData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">.</span><span class="n">Main</span> <span class="p">=</span> <span class="m">2048</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">&#34;你们好吗！&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">.</span><span class="n">obj</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="m">9</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">.</span><span class="n">a</span> <span class="p">=</span> <span class="m">7</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="p">.</span><span class="n">d</span> <span class="p">=</span> <span class="m">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;origin:&#34;</span><span class="p">+</span><span class="n">Dumper</span><span class="p">.</span><span class="n">DumpAsString</span><span class="p">(</span><span class="n">data</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">string</span> <span class="n">json</span><span class="p">=</span> <span class="n">JsonHelper</span><span class="p">.</span><span class="n">ToJson</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;json:&#34;</span><span class="p">+</span><span class="n">json</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">File</span><span class="p">.</span><span class="n">WriteAllText</span><span class="p">(</span><span class="s">&#34;./test.json&#34;</span><span class="p">,</span> <span class="n">json</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TestData</span> <span class="n">data1</span> <span class="p">=</span> <span class="n">JsonHelper</span><span class="p">.</span><span class="n">FromJson</span><span class="p">&lt;</span><span class="n">TestData</span><span class="p">&gt;(</span><span class="n">json</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">&#34;data1:&#34;</span><span class="p">+</span> <span class="n">Dumper</span><span class="p">.</span><span class="n">DumpAsString</span><span class="p">(</span><span class="n">data1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kt">string</span> <span class="n">litJson</span> <span class="p">=</span> <span class="n">JsonMapper</span><span class="p">.</span><span class="n">ToJson</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">$&#34;litJson:{litJson}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">TestData</span> <span class="n">data2</span> <span class="p">=</span> <span class="n">JsonMapper</span><span class="p">.</span><span class="n">ToObject</span><span class="p">&lt;</span><span class="n">TestData</span><span class="p">&gt;(</span><span class="n">litJson</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="s">$&#34;data2:{Dumper.DumpAsString(data2)}&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// Update is called once per frame</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">Update</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>测试结果：</p>
 <p><img
@@ -492,7 +488,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

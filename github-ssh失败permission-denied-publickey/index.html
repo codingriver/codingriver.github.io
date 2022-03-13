@@ -8,10 +8,10 @@
         <title>GitHub-ssh失败Permission-denied-(publickey) - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="GitHub-ssh失败Permission-denied-(publickey)" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/github-ssh%E5%A4%B1%E8%B4%A5permission-denied-publickey/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/github-ssh%E5%A4%B1%E8%B4%A5permission-denied-publickey/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/github-ssh%E5%A4%B1%E8%B4%A5permission-denied-publickey\/"
-        },"genre": "posts","keywords": "","wordcount":  485 ,
+        },"genre": "posts","keywords": "","wordcount":  484 ,
         "url": "https:\/\/codingriver.github.io\/github-ssh%E5%A4%B1%E8%B4%A5permission-denied-publickey\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">GitHub-ssh失败Permission-denied-(publickey)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E9%9A%8F%E7%AC%94/"><i class="far fa-folder fa-fw"></i>随笔</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 485 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 484 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/github-ssh%E5%A4%B1%E8%B4%A5permission-denied-publickey/" class="leancloud_visitors" data-flag-title="GitHub-ssh失败Permission-denied-(publickey)">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -119,28 +119,26 @@
             </div><div class="content" id="content"><p>在执行命令时报错<code>ssh -T git@github.com</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ssh -T git@github.com
-The authenticity of host &#39;github.com (192.30.255.113)&#39; can&#39;t be established.
-RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added &#39;github.com,192.30.255.113&#39; (RSA) to the list of known hosts.
-git@github.com: Permission denied (publickey).
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ ssh -T git@github.com
+</span></span><span class="line"><span class="cl">The authenticity of host &#39;github.com (192.30.255.113)&#39; can&#39;t be established.
+</span></span><span class="line"><span class="cl">RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+</span></span><span class="line"><span class="cl">Are you sure you want to continue connecting (yes/no)? yes
+</span></span><span class="line"><span class="cl">Warning: Permanently added &#39;github.com,192.30.255.113&#39; (RSA) to the list of known hosts.
+</span></span><span class="line"><span class="cl">git@github.com: Permission denied (publickey).
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用命令查看 <code>ssh -v git@github.com</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -192,57 +190,57 @@ git@github.com: Permission denied (publickey).
 </span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ ssh -v git@github.com
-OpenSSH_7.6p1, OpenSSL 1.0.2l  25 May 2017
-debug1: Reading configuration data /etc/ssh/ssh_config
-debug1: Connecting to github.com [192.30.255.112] port 22.
-debug1: Connection established.
-debug1: key_load_public: No such file or directory
-debug1: identity file /c/Users/Wang/.ssh/id_rsa type -1
-debug1: key_load_public: No such file or directory
-debug1: identity file /c/Users/Wang/.ssh/id_rsa-cert type -1
-debug1: key_load_public: No such file or directory
-debug1: identity file /c/Users/Wang/.ssh/id_dsa type -1
-debug1: key_load_public: No such file or directory
-debug1: identity file /c/Users/Wang/.ssh/id_dsa-cert type -1
-debug1: key_load_public: No such file or directory
-debug1: identity file /c/Users/Wang/.ssh/id_ecdsa type -1
-debug1: key_load_public: No such file or directory
-debug1: identity file /c/Users/Wang/.ssh/id_ecdsa-cert type -1
-debug1: key_load_public: No such file or directory
-debug1: identity file /c/Users/Wang/.ssh/id_ed25519 type -1
-debug1: key_load_public: No such file or directory
-debug1: identity file /c/Users/Wang/.ssh/id_ed25519-cert type -1
-debug1: Local version string SSH-2.0-OpenSSH_7.6
-debug1: Remote protocol version 2.0, remote software version libssh_0.7.0
-debug1: no match: libssh_0.7.0
-debug1: Authenticating to github.com:22 as &#39;git&#39;
-debug1: SSH2_MSG_KEXINIT sent
-debug1: SSH2_MSG_KEXINIT received
-debug1: kex: algorithm: curve25519-sha256@libssh.org
-debug1: kex: host key algorithm: ssh-rsa
-debug1: kex: server-&gt;client cipher: aes128-ctr MAC: hmac-sha2-256 compression: none
-debug1: kex: client-&gt;server cipher: aes128-ctr MAC: hmac-sha2-256 compression: none
-debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
-debug1: Server host key: ssh-rsa SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
-debug1: Host &#39;github.com&#39; is known and matches the RSA host key.
-debug1: Found key in /c/Users/Wang/.ssh/known_hosts:1
-Warning: Permanently added the RSA host key for IP address &#39;192.30.255.112&#39; to the list of known hosts.
-debug1: rekey after 4294967296 blocks
-debug1: SSH2_MSG_NEWKEYS sent
-debug1: expecting SSH2_MSG_NEWKEYS
-debug1: SSH2_MSG_NEWKEYS received
-debug1: rekey after 4294967296 blocks
-debug1: SSH2_MSG_SERVICE_ACCEPT received
-debug1: Authentications that can continue: publickey
-debug1: Next authentication method: publickey
-debug1: Trying private key: /c/Users/Wang/.ssh/id_rsa
-debug1: Trying private key: /c/Users/Wang/.ssh/id_dsa
-debug1: Trying private key: /c/Users/Wang/.ssh/id_ecdsa
-debug1: Trying private key: /c/Users/Wang/.ssh/id_ed25519
-debug1: No more authentication methods to try.
-git@github.com: Permission denied (publickey).
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ ssh -v git@github.com
+</span></span><span class="line"><span class="cl">OpenSSH_7.6p1, OpenSSL 1.0.2l  25 May 2017
+</span></span><span class="line"><span class="cl">debug1: Reading configuration data /etc/ssh/ssh_config
+</span></span><span class="line"><span class="cl">debug1: Connecting to github.com [192.30.255.112] port 22.
+</span></span><span class="line"><span class="cl">debug1: Connection established.
+</span></span><span class="line"><span class="cl">debug1: key_load_public: No such file or directory
+</span></span><span class="line"><span class="cl">debug1: identity file /c/Users/Wang/.ssh/id_rsa type -1
+</span></span><span class="line"><span class="cl">debug1: key_load_public: No such file or directory
+</span></span><span class="line"><span class="cl">debug1: identity file /c/Users/Wang/.ssh/id_rsa-cert type -1
+</span></span><span class="line"><span class="cl">debug1: key_load_public: No such file or directory
+</span></span><span class="line"><span class="cl">debug1: identity file /c/Users/Wang/.ssh/id_dsa type -1
+</span></span><span class="line"><span class="cl">debug1: key_load_public: No such file or directory
+</span></span><span class="line"><span class="cl">debug1: identity file /c/Users/Wang/.ssh/id_dsa-cert type -1
+</span></span><span class="line"><span class="cl">debug1: key_load_public: No such file or directory
+</span></span><span class="line"><span class="cl">debug1: identity file /c/Users/Wang/.ssh/id_ecdsa type -1
+</span></span><span class="line"><span class="cl">debug1: key_load_public: No such file or directory
+</span></span><span class="line"><span class="cl">debug1: identity file /c/Users/Wang/.ssh/id_ecdsa-cert type -1
+</span></span><span class="line"><span class="cl">debug1: key_load_public: No such file or directory
+</span></span><span class="line"><span class="cl">debug1: identity file /c/Users/Wang/.ssh/id_ed25519 type -1
+</span></span><span class="line"><span class="cl">debug1: key_load_public: No such file or directory
+</span></span><span class="line"><span class="cl">debug1: identity file /c/Users/Wang/.ssh/id_ed25519-cert type -1
+</span></span><span class="line"><span class="cl">debug1: Local version string SSH-2.0-OpenSSH_7.6
+</span></span><span class="line"><span class="cl">debug1: Remote protocol version 2.0, remote software version libssh_0.7.0
+</span></span><span class="line"><span class="cl">debug1: no match: libssh_0.7.0
+</span></span><span class="line"><span class="cl">debug1: Authenticating to github.com:22 as &#39;git&#39;
+</span></span><span class="line"><span class="cl">debug1: SSH2_MSG_KEXINIT sent
+</span></span><span class="line"><span class="cl">debug1: SSH2_MSG_KEXINIT received
+</span></span><span class="line"><span class="cl">debug1: kex: algorithm: curve25519-sha256@libssh.org
+</span></span><span class="line"><span class="cl">debug1: kex: host key algorithm: ssh-rsa
+</span></span><span class="line"><span class="cl">debug1: kex: server-&gt;client cipher: aes128-ctr MAC: hmac-sha2-256 compression: none
+</span></span><span class="line"><span class="cl">debug1: kex: client-&gt;server cipher: aes128-ctr MAC: hmac-sha2-256 compression: none
+</span></span><span class="line"><span class="cl">debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+</span></span><span class="line"><span class="cl">debug1: Server host key: ssh-rsa SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
+</span></span><span class="line"><span class="cl">debug1: Host &#39;github.com&#39; is known and matches the RSA host key.
+</span></span><span class="line"><span class="cl">debug1: Found key in /c/Users/Wang/.ssh/known_hosts:1
+</span></span><span class="line"><span class="cl">Warning: Permanently added the RSA host key for IP address &#39;192.30.255.112&#39; to the list of known hosts.
+</span></span><span class="line"><span class="cl">debug1: rekey after 4294967296 blocks
+</span></span><span class="line"><span class="cl">debug1: SSH2_MSG_NEWKEYS sent
+</span></span><span class="line"><span class="cl">debug1: expecting SSH2_MSG_NEWKEYS
+</span></span><span class="line"><span class="cl">debug1: SSH2_MSG_NEWKEYS received
+</span></span><span class="line"><span class="cl">debug1: rekey after 4294967296 blocks
+</span></span><span class="line"><span class="cl">debug1: SSH2_MSG_SERVICE_ACCEPT received
+</span></span><span class="line"><span class="cl">debug1: Authentications that can continue: publickey
+</span></span><span class="line"><span class="cl">debug1: Next authentication method: publickey
+</span></span><span class="line"><span class="cl">debug1: Trying private key: /c/Users/Wang/.ssh/id_rsa
+</span></span><span class="line"><span class="cl">debug1: Trying private key: /c/Users/Wang/.ssh/id_dsa
+</span></span><span class="line"><span class="cl">debug1: Trying private key: /c/Users/Wang/.ssh/id_ecdsa
+</span></span><span class="line"><span class="cl">debug1: Trying private key: /c/Users/Wang/.ssh/id_ed25519
+</span></span><span class="line"><span class="cl">debug1: No more authentication methods to try.
+</span></span><span class="line"><span class="cl">git@github.com: Permission denied (publickey).
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后发现使用.ssh目录下的几个private key ，把自己私钥的文件名改成第一个Trying private key的名字id_rsa
 然后在重新执行就能连上了</p></div><div class="post-footer" id="post-footer">
@@ -262,7 +260,7 @@ git@github.com: Permission denied (publickey).
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=""></a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/">Tags</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
@@ -275,7 +273,7 @@ git@github.com: Permission denied (publickey).
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

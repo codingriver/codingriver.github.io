@@ -8,10 +8,10 @@
         <title>C# async与await的使用说明 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="C# async与await的使用说明" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/async%E4%B8%8Eawait%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/async%E4%B8%8Eawait%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/async%E4%B8%8Eawait%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E\/"
-        },"genre": "posts","keywords": "CSharp","wordcount":  2256 ,
+        },"genre": "posts","keywords": "CSharp","wordcount":  2252 ,
         "url": "https:\/\/codingriver.github.io\/async%E4%B8%8Eawait%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">C# async与await的使用说明</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/csharp/"><i class="far fa-folder fa-fw"></i>C#</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2256 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2252 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/async%E4%B8%8Eawait%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="leancloud_visitors" data-flag-title="C# async与await的使用说明">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -143,7 +143,7 @@ async 用在方法定义前面，await只能写在带有async标记的方法中�
 <p><strong>测试代码</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -189,57 +189,55 @@ async 用在方法定义前面，await只能写在带有async标记的方法中�
 </span><span class="lnt">44
 </span><span class="lnt">45
 </span><span class="lnt">46
-</span><span class="lnt">47
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">AsyncAndAwait_Test</span>
-<span class="p">{</span>
-    <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;主线程ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-            <span class="n">AsyncTest</span><span class="p">();</span>
-        <span class="p">}</span>
-
-        <span class="k">static</span> <span class="k">async</span> <span class="k">void</span> <span class="n">AsyncTest</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;*******Start************ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-            <span class="n">Task</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">taskA</span><span class="p">=</span>  <span class="n">Print</span><span class="p">();</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;*********Middle**********ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-            <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="k">await</span> <span class="n">taskA</span><span class="p">;</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;*********End**********ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-        <span class="p">}</span>
-
-
-        <span class="k">static</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">Print</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="kt">var</span> <span class="n">tcs</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
-            <span class="kt">var</span> <span class="n">thrd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(()</span> <span class="p">=&gt;</span>
-            <span class="p">{</span>
-                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;子线程ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">3</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
-                <span class="p">{</span>
-                    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;===========等待==========&#34;</span> <span class="p">+</span> <span class="n">i</span><span class="p">);</span>
-                    <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
-                <span class="p">}</span>
-                <span class="n">tcs</span><span class="p">.</span><span class="n">SetResult</span><span class="p">(</span><span class="m">99</span><span class="p">);</span>
-
-            <span class="p">});</span>
-            <span class="n">thrd</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
-            <span class="k">return</span> <span class="n">tcs</span><span class="p">.</span><span class="n">Task</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">AsyncAndAwait_Test</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;主线程ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">AsyncTest</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">async</span> <span class="k">void</span> <span class="n">AsyncTest</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;*******Start************ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Task</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">taskA</span><span class="p">=</span>  <span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;*********Middle**********ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="k">await</span> <span class="n">taskA</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;*********End**********ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">Print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">tcs</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">thrd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(()</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;子线程ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">3</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;===========等待==========&#34;</span> <span class="p">+</span> <span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">tcs</span><span class="p">.</span><span class="n">SetResult</span><span class="p">(</span><span class="m">99</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>
+</span></span><span class="line"><span class="cl">            <span class="n">thrd</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">tcs</span><span class="p">.</span><span class="n">Task</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>结果</p>
 <p><img
@@ -254,7 +252,7 @@ async 用在方法定义前面，await只能写在带有async标记的方法中�
 <p>再看一个测试例子</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -318,75 +316,73 @@ async 用在方法定义前面，await只能写在带有async标记的方法中�
 </span><span class="lnt">62
 </span><span class="lnt">63
 </span><span class="lnt">64
-</span><span class="lnt">65
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">AsyncAndAwait_Test</span>
-<span class="p">{</span>
-    <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-        <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// async 和await 实践测试
-</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;args&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-        <span class="p">{</span>
-            
-            <span class="kt">var</span> <span class="n">tcs1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
-            <span class="kt">var</span> <span class="n">tcs2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;主线程ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-            <span class="n">AsyncTest</span><span class="p">(</span><span class="n">tcs1</span><span class="p">,</span><span class="n">tcs2</span><span class="p">);</span>
-
-            <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
-            <span class="n">tcs1</span><span class="p">.</span><span class="n">SetResult</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
-
-            <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">5000</span><span class="p">);</span>
-            <span class="n">tcs2</span><span class="p">.</span><span class="n">SetResult</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;主线程结束ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">static</span> <span class="k">async</span> <span class="k">void</span> <span class="n">AsyncTest</span><span class="p">(</span><span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">tcs1</span><span class="p">,</span> <span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">tcs2</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;AsyncTest方法执行的线程id:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-            <span class="c1">//await后线程出现变化，异步执行（线程id不一样）
-</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="k">await</span> <span class="n">Print</span><span class="p">();</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;11****await tcs3后的线程id:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-            <span class="c1">//await后的线程没有变化，是因为SetResult比较早，这里可以直接同步执行（我认为的）
-</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">b</span> <span class="p">=</span> <span class="k">await</span> <span class="n">tcs1</span><span class="p">.</span><span class="n">Task</span><span class="p">;</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;22****await tcs1后的线程id:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-            <span class="c1">//await后线程出现变化，异步执行（线程id不一样）
-</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">c</span><span class="p">=</span> <span class="k">await</span> <span class="n">tcs2</span><span class="p">.</span><span class="n">Task</span><span class="p">;</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;33****await tcs2后的线程id：&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-        <span class="p">}</span>
-
-
-        <span class="k">static</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">Print</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="kt">var</span> <span class="n">tcs3</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
-            <span class="kt">var</span> <span class="n">thrd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(()</span> <span class="p">=&gt;</span>
-            <span class="p">{</span>
-                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;子线程ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">3</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
-                <span class="p">{</span>
-                    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;===========等待==========&#34;</span> <span class="p">+</span> <span class="n">i</span><span class="p">);</span>
-                    <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
-                <span class="p">}</span>
-                <span class="n">tcs3</span><span class="p">.</span><span class="n">SetResult</span><span class="p">(</span><span class="m">99</span><span class="p">);</span>
-
-            <span class="p">});</span>
-            <span class="n">thrd</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
-            <span class="k">return</span> <span class="n">tcs3</span><span class="p">.</span><span class="n">Task</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">AsyncAndAwait_Test</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// async 和await 实践测试</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;param name=&#34;args&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">tcs1</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">tcs2</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;主线程ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">AsyncTest</span><span class="p">(</span><span class="n">tcs1</span><span class="p">,</span><span class="n">tcs2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tcs1</span><span class="p">.</span><span class="n">SetResult</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tcs2</span><span class="p">.</span><span class="n">SetResult</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;主线程结束ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">async</span> <span class="k">void</span> <span class="n">AsyncTest</span><span class="p">(</span><span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">tcs1</span><span class="p">,</span> <span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">tcs2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;AsyncTest方法执行的线程id:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//await后线程出现变化，异步执行（线程id不一样）</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">a</span> <span class="p">=</span> <span class="k">await</span> <span class="n">Print</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;11****await tcs3后的线程id:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//await后的线程没有变化，是因为SetResult比较早，这里可以直接同步执行（我认为的）</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">b</span> <span class="p">=</span> <span class="k">await</span> <span class="n">tcs1</span><span class="p">.</span><span class="n">Task</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;22****await tcs1后的线程id:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//await后线程出现变化，异步执行（线程id不一样）</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">c</span><span class="p">=</span> <span class="k">await</span> <span class="n">tcs2</span><span class="p">.</span><span class="n">Task</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;33****await tcs2后的线程id：&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;</span> <span class="n">Print</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">tcs3</span> <span class="p">=</span> <span class="k">new</span> <span class="n">TaskCompletionSource</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">&gt;();</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">thrd</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">(()</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;子线程ManagedThreadId:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">3</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;===========等待==========&#34;</span> <span class="p">+</span> <span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">System</span><span class="p">.</span><span class="n">Threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">tcs3</span><span class="p">.</span><span class="n">SetResult</span><span class="p">(</span><span class="m">99</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>
+</span></span><span class="line"><span class="cl">            <span class="n">thrd</span><span class="p">.</span><span class="n">Start</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">tcs3</span><span class="p">.</span><span class="n">Task</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>结果：</p>
 <p><img
@@ -404,7 +400,7 @@ async 用在方法定义前面，await只能写在带有async标记的方法中�
 <h4 id="0x02-深入用法">0X02 深入用法</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -486,93 +482,91 @@ async 用在方法定义前面，await只能写在带有async标记的方法中�
 </span><span class="lnt">80
 </span><span class="lnt">81
 </span><span class="lnt">82
-</span><span class="lnt">83
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">AsyncAwaitTest</span>
-<span class="p">{</span>
-    <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-        <span class="p">{</span>
-
-            <span class="n">Main1</span><span class="p">();</span>
-            <span class="n">Main2</span><span class="p">();</span>
-        <span class="p">}</span>
-
-
-        <span class="k">static</span> <span class="k">void</span> <span class="n">Main1</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">AsyncMethod1</span><span class="p">();</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Main finished!!!&#34;</span><span class="p">);</span>
-            <span class="c1">//这里是为了处理Task启动一个后台线程的问题，主线程结束时，后台线程自动关闭
-</span><span class="c1"></span>            <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">5000</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">static</span> <span class="k">async</span> <span class="k">void</span> <span class="n">AsyncMethod1</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;主线程id:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-
-
-            <span class="c1">//切换线程等待完成
-</span><span class="c1"></span>            <span class="kt">string</span> <span class="n">res</span> <span class="p">=</span> <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span> <span class="p">()</span> <span class="p">=&gt;{</span>
-                <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
-                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;func thread id:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
-                <span class="k">return</span> <span class="s">&#34;hello&#34;</span><span class="p">;</span>
-            <span class="p">});</span>
-
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;AsyncMethod finished!!!&#34;</span><span class="p">);</span>
-
-        <span class="p">}</span>
-
-        <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// 
-</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>        <span class="k">static</span> <span class="k">void</span> <span class="n">Main2</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;===============================================&#34;</span><span class="p">);</span>
-            <span class="n">AsyncMethod2</span><span class="p">();</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Main2 finished!!!&#34;</span><span class="p">);</span>
-            <span class="c1">//这里是为了处理Task启动一个后台线程的问题，主线程结束时，后台线程自动关闭
-</span><span class="c1"></span>            <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">5000</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// 两个task同时执行
-</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>        <span class="k">static</span> <span class="k">async</span> <span class="k">void</span> <span class="n">AsyncMethod2</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">t1</span> <span class="p">=</span> <span class="n">GreetingAsync</span><span class="p">(</span><span class="s">&#34;Wang&#34;</span><span class="p">,</span><span class="m">500</span><span class="p">);</span>
-            <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">t2</span> <span class="p">=</span> <span class="n">GreetingAsync</span><span class="p">(</span><span class="s">&#34;Codingriver&#34;</span><span class="p">);</span>
-            <span class="c1">//两个异步task同时执行，直到所有task执行完 await才返回
-</span><span class="c1"></span>            <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">WhenAll</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">);</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;result:::&#34;</span> <span class="p">+</span> <span class="n">t1</span><span class="p">.</span><span class="n">Result</span> <span class="p">+</span> <span class="s">&#34;    &#34;</span> <span class="p">+</span> <span class="n">t2</span><span class="p">.</span><span class="n">Result</span><span class="p">);</span>
-        <span class="p">}</span>
-
-
-
-
-        <span class="k">static</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span><span class="n">GreetingAsync</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">,</span><span class="kt">int</span> <span class="n">time</span><span class="p">=</span><span class="m">1000</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">return</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(()=&gt;{</span>
-                <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
-                <span class="k">return</span> <span class="n">Greeting</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-            <span class="p">});</span>
-        <span class="p">}</span>
-
-        <span class="k">static</span> <span class="kt">string</span> <span class="n">Greeting</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">return</span> <span class="s">&#34;Hello &#34;</span> <span class="p">+</span> <span class="n">name</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">AsyncAwaitTest</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">Main1</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Main2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">AsyncMethod1</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Main finished!!!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//这里是为了处理Task启动一个后台线程的问题，主线程结束时，后台线程自动关闭</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">async</span> <span class="k">void</span> <span class="n">AsyncMethod1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;主线程id:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">//切换线程等待完成</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">string</span> <span class="n">res</span> <span class="p">=</span> <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(</span> <span class="p">()</span> <span class="p">=&gt;{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;func thread id:&#34;</span> <span class="p">+</span> <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">ManagedThreadId</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="s">&#34;hello&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;AsyncMethod finished!!!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;===============================================&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">AsyncMethod2</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Main2 finished!!!&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//这里是为了处理Task启动一个后台线程的问题，主线程结束时，后台线程自动关闭</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// 两个task同时执行</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">async</span> <span class="k">void</span> <span class="n">AsyncMethod2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">t1</span> <span class="p">=</span> <span class="n">GreetingAsync</span><span class="p">(</span><span class="s">&#34;Wang&#34;</span><span class="p">,</span><span class="m">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">t2</span> <span class="p">=</span> <span class="n">GreetingAsync</span><span class="p">(</span><span class="s">&#34;Codingriver&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//两个异步task同时执行，直到所有task执行完 await才返回</span>
+</span></span><span class="line"><span class="cl">            <span class="k">await</span> <span class="n">Task</span><span class="p">.</span><span class="n">WhenAll</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;result:::&#34;</span> <span class="p">+</span> <span class="n">t1</span><span class="p">.</span><span class="n">Result</span> <span class="p">+</span> <span class="s">&#34;    &#34;</span> <span class="p">+</span> <span class="n">t2</span><span class="p">.</span><span class="n">Result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span><span class="n">GreetingAsync</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">,</span><span class="kt">int</span> <span class="n">time</span><span class="p">=</span><span class="m">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(()=&gt;{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">Greeting</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="kt">string</span> <span class="n">Greeting</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s">&#34;Hello &#34;</span> <span class="p">+</span> <span class="n">name</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>结果：</p>
 <p><img
@@ -587,7 +581,7 @@ async 用在方法定义前面，await只能写在带有async标记的方法中�
 捕获多个异步的异常例子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -644,68 +638,66 @@ async 用在方法定义前面，await只能写在带有async标记的方法中�
 </span><span class="lnt">55
 </span><span class="lnt">56
 </span><span class="lnt">57
-</span><span class="lnt">58
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
-
-<span class="k">namespace</span> <span class="nn">AsyncAwaitTest</span>
-<span class="p">{</span>
-    <span class="k">class</span> <span class="nc">Program</span>
-    <span class="p">{</span>
-        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">TestMoreTaskException</span><span class="p">();</span>
-        <span class="p">}</span>
-
-
-
-
-        <span class="k">static</span> <span class="k">async</span> <span class="k">void</span> <span class="n">TestMoreTaskException</span><span class="p">()</span>
-        <span class="p">{</span>
-
-            <span class="n">Task</span> <span class="n">results</span><span class="p">=</span><span class="k">null</span><span class="p">;</span>
-            <span class="k">try</span>
-            <span class="p">{</span>
-
-                <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">t1</span> <span class="p">=</span> <span class="n">GreetingAsync</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="m">500</span><span class="p">);</span>
-                <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">t2</span> <span class="p">=</span> <span class="n">GreetingAsync</span><span class="p">(</span><span class="s">&#34;Codingriver&#34;</span><span class="p">);</span>
-                <span class="c1">//两个异步task同时执行，直到所有task执行完 await才返回
-</span><span class="c1"></span>                <span class="k">await</span><span class="p">(</span><span class="n">results</span><span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">WhenAll</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">));</span>
-                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;TestMoreTaskException&#34;</span><span class="p">);</span>
-
-
-            <span class="p">}</span>
-            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="c1">//AggregateException
-</span><span class="c1"></span>                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Exception:::::::::&#34;</span> <span class="p">+</span> <span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-                <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">results</span><span class="p">.</span><span class="n">Exception</span><span class="p">.</span><span class="n">InnerExceptions</span><span class="p">)</span>
-                <span class="p">{</span>
-                    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;InnerException:::::::::&#34;</span> <span class="p">+</span> <span class="n">item</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-
-        <span class="p">}</span>
-        <span class="k">static</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">GreetingAsync</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">time</span> <span class="p">=</span> <span class="m">1000</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">return</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(()</span> <span class="p">=&gt;</span>
-            <span class="p">{</span>
-                <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">IsBackground</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
-                <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
-                <span class="k">throw</span> <span class="k">new</span> <span class="n">Exception</span><span class="p">(</span><span class="s">&#34;codingriver test&#34;</span><span class="p">);</span>
-                <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
-            <span class="p">});</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Threading.Tasks</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">namespace</span> <span class="nn">AsyncAwaitTest</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">class</span> <span class="nc">Program</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">TestMoreTaskException</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">async</span> <span class="k">void</span> <span class="n">TestMoreTaskException</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">Task</span> <span class="n">results</span><span class="p">=</span><span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">t1</span> <span class="p">=</span> <span class="n">GreetingAsync</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="m">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">t2</span> <span class="p">=</span> <span class="n">GreetingAsync</span><span class="p">(</span><span class="s">&#34;Codingriver&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//两个异步task同时执行，直到所有task执行完 await才返回</span>
+</span></span><span class="line"><span class="cl">                <span class="k">await</span><span class="p">(</span><span class="n">results</span><span class="p">=</span> <span class="n">Task</span><span class="p">.</span><span class="n">WhenAll</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;TestMoreTaskException&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//AggregateException</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;Exception:::::::::&#34;</span> <span class="p">+</span> <span class="n">ex</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="k">foreach</span> <span class="p">(</span><span class="kt">var</span> <span class="n">item</span> <span class="k">in</span> <span class="n">results</span><span class="p">.</span><span class="n">Exception</span><span class="p">.</span><span class="n">InnerExceptions</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;InnerException:::::::::&#34;</span> <span class="p">+</span> <span class="n">item</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">GreetingAsync</span><span class="p">(</span><span class="kt">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">time</span> <span class="p">=</span> <span class="m">1000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">Task</span><span class="p">.</span><span class="n">Run</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;(()</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Thread</span><span class="p">.</span><span class="n">CurrentThread</span><span class="p">.</span><span class="n">IsBackground</span> <span class="p">=</span> <span class="k">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">time</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="k">new</span> <span class="n">Exception</span><span class="p">(</span><span class="s">&#34;codingriver test&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kt">string</span><span class="p">.</span><span class="n">Empty</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>结果：</p>
 <p><img
@@ -749,7 +741,7 @@ async 用在方法定义前面，await只能写在带有async标记的方法中�
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

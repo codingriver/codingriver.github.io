@@ -8,10 +8,10 @@
         <title>【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-14T13:15:46+08:00" />
 <meta property="article:modified_time" content="2020-09-14T13:15:46+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0\/"
-        },"genre": "posts","keywords": "shader","wordcount":  6083 ,
+        },"genre": "posts","keywords": "shader","wordcount":  6075 ,
         "url": "https:\/\/codingriver.github.io\/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0\/","datePublished": "2020-09-14T13:15:46+08:00","dateModified": "2020-09-14T13:15:46+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/shader/"><i class="far fa-folder fa-fw"></i>shader</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-14 13:15:46">2020-09-14 13:15:46</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6083 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-14 13:15:46">2020-09-14 13:15:46</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6075 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/unityshader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/" class="leancloud_visitors" data-flag-title="【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -157,42 +157,42 @@
 <table>
 <thead>
 <tr>
-<th align="center">修饰符</th>
-<th align="center">解析</th>
+<th style="text-align:center">修饰符</th>
+<th style="text-align:center">解析</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">const</td>
-<td align="center">变量被定义成常量的话，在程序中，就不能再对该变量赋值，除非const和uniform，varying一起使用。const修饰的变量，需要在声明时给予一个初始值</td>
+<td style="text-align:center">const</td>
+<td style="text-align:center">变量被定义成常量的话，在程序中，就不能再对该变量赋值，除非const和uniform，varying一起使用。const修饰的变量，需要在声明时给予一个初始值</td>
 </tr>
 <tr>
-<td align="center">extern</td>
-<td align="center">extern表明声明仅仅是声明，而非定义。在程序中一定有一个地方存在一个非extern的对应的声明</td>
+<td style="text-align:center">extern</td>
+<td style="text-align:center">extern表明声明仅仅是声明，而非定义。在程序中一定有一个地方存在一个非extern的对应的声明</td>
 </tr>
 <tr>
-<td align="center">in</td>
-<td align="center">只在声明参数，或是使用varying修饰符时使用。将参数，或是varying作为函数或是程序的输入值。函数参数如果没有in，out，或者inout的话，隐式的默认为in</td>
+<td style="text-align:center">in</td>
+<td style="text-align:center">只在声明参数，或是使用varying修饰符时使用。将参数，或是varying作为函数或是程序的输入值。函数参数如果没有in，out，或者inout的话，隐式的默认为in</td>
 </tr>
 <tr>
-<td align="center">inline</td>
-<td align="center">只在函数定义时有用，告诉编译器始终对该函数采取内联调用</td>
+<td style="text-align:center">inline</td>
+<td style="text-align:center">只在函数定义时有用，告诉编译器始终对该函数采取内联调用</td>
 </tr>
 <tr>
-<td align="center">inout</td>
-<td align="center">只在声明为参数和varying时使用，将参数或是varying声明为函数或是程序的输入输出值</td>
+<td style="text-align:center">inout</td>
+<td style="text-align:center">只在声明为参数和varying时使用，将参数或是varying声明为函数或是程序的输入输出值</td>
 </tr>
 <tr>
-<td align="center">static</td>
-<td align="center">只在声明全局变量时使用，static将使变量对程序而言成为私有的，外部不可见，不能和uniform，varying一起使用</td>
+<td style="text-align:center">static</td>
+<td style="text-align:center">只在声明全局变量时使用，static将使变量对程序而言成为私有的，外部不可见，不能和uniform，varying一起使用</td>
 </tr>
 <tr>
-<td align="center">out</td>
-<td align="center">只在声明参数和varying时使用，将变量或varying定义为函数或是程序的输出值</td>
+<td style="text-align:center">out</td>
+<td style="text-align:center">只在声明参数和varying时使用，将变量或varying定义为函数或是程序的输出值</td>
 </tr>
 <tr>
-<td align="center">uniform</td>
-<td align="center">用于全局变量和程序的入口函数的参数，用来定义constant buffers(常量缓存)。如果用于一个非入口函数的参数，它将被忽略。这样做的目的是为了使一个函数既能作为入口函数，又能作为非入口函数。uniform的变量可以像非uniform的变量那样读写。uniform修饰符通过向外部语言提供一个机制，来提供变量的初始值是如何指定和保存的信息。</td>
+<td style="text-align:center">uniform</td>
+<td style="text-align:center">用于全局变量和程序的入口函数的参数，用来定义constant buffers(常量缓存)。如果用于一个非入口函数的参数，它将被忽略。这样做的目的是为了使一个函数既能作为入口函数，又能作为非入口函数。uniform的变量可以像非uniform的变量那样读写。uniform修饰符通过向外部语言提供一个机制，来提供变量的初始值是如何指定和保存的信息。</td>
 </tr>
 </tbody>
 </table>
@@ -200,332 +200,330 @@
 <table>
 <thead>
 <tr>
-<th align="center">CG语言</th>
-<th align="center">GLSL语言</th>
-<th align="center">功能描述</th>
+<th style="text-align:center">CG语言</th>
+<th style="text-align:center">GLSL语言</th>
+<th style="text-align:center">功能描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">ceil(x)</td>
-<td align="center">ceil(x)</td>
-<td align="center">对输入参数向上取整。例如： ceil(float(1.3)) ，其返回值为2.0</td>
+<td style="text-align:center">ceil(x)</td>
+<td style="text-align:center">ceil(x)</td>
+<td style="text-align:center">对输入参数向上取整。例如： ceil(float(1.3)) ，其返回值为2.0</td>
 </tr>
 <tr>
-<td align="center">floor(x)</td>
-<td align="center">floor(x)</td>
-<td align="center">对输入参数向下取整。例如floor(float(1.3))返回的值为1.0；但是floor(float(-1.3))返回的值为-2.0。该函数与ceil(x)函数相对应。</td>
+<td style="text-align:center">floor(x)</td>
+<td style="text-align:center">floor(x)</td>
+<td style="text-align:center">对输入参数向下取整。例如floor(float(1.3))返回的值为1.0；但是floor(float(-1.3))返回的值为-2.0。该函数与ceil(x)函数相对应。</td>
 </tr>
 <tr>
-<td align="center">fmod(x,y)</td>
-<td align="center">mod(x, y)</td>
-<td align="center">返回x/y的余数。如果y为0，结果不可预料。</td>
+<td style="text-align:center">fmod(x,y)</td>
+<td style="text-align:center">mod(x, y)</td>
+<td style="text-align:center">返回x/y的余数。如果y为0，结果不可预料。</td>
 </tr>
 <tr>
-<td align="center">frac(x)</td>
-<td align="center">fract(x)</td>
-<td align="center">返回标量或矢量的小数</td>
+<td style="text-align:center">frac(x)</td>
+<td style="text-align:center">fract(x)</td>
+<td style="text-align:center">返回标量或矢量的小数</td>
 </tr>
 <tr>
-<td align="center">frexp(x, out i)</td>
-<td align="center"></td>
-<td align="center">将浮点数 x 分解为尾数和指数，即 x = m* 2^exp，返回 m，并将指数存入 exp 中；如果 x 为 0，则尾数和指数都返回 0</td>
+<td style="text-align:center">frexp(x, out i)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">将浮点数 x 分解为尾数和指数，即 x = m* 2^exp，返回 m，并将指数存入 exp 中；如果 x 为 0，则尾数和指数都返回 0</td>
 </tr>
 <tr>
-<td align="center">modf(x, out ip)</td>
-<td align="center"></td>
-<td align="center">把x分解成整数和分数两部分，每部分都和x有着相同的符号，整数部分被保存在ip中，分数部分由函数返回</td>
+<td style="text-align:center">modf(x, out ip)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">把x分解成整数和分数两部分，每部分都和x有着相同的符号，整数部分被保存在ip中，分数部分由函数返回</td>
 </tr>
 <tr>
-<td align="center">round(x)</td>
-<td align="center"></td>
-<td align="center">返回四舍五入值。</td>
+<td style="text-align:center">round(x)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">返回四舍五入值。</td>
 </tr>
 <tr>
-<td align="center">exp(x)</td>
-<td align="center">exp(x)</td>
-<td align="center">计算e <sup>x</sup>  的值，e=2.71828182845904523536</td>
+<td style="text-align:center">exp(x)</td>
+<td style="text-align:center">exp(x)</td>
+<td style="text-align:center">计算e <sup>x</sup>  的值，e=2.71828182845904523536</td>
 </tr>
 <tr>
-<td align="center">exp2(x)</td>
-<td align="center">exp2(x)</td>
-<td align="center">计 算 2 <sup>x</sup> 的 值</td>
+<td style="text-align:center">exp2(x)</td>
+<td style="text-align:center">exp2(x)</td>
+<td style="text-align:center">计 算 2 <sup>x</sup> 的 值</td>
 </tr>
 <tr>
-<td align="center">log(x)</td>
-<td align="center">log(x)</td>
-<td align="center">计 算 ln ⁡ ( x ) 的 值 ， x 必 须 大 于 0</td>
+<td style="text-align:center">log(x)</td>
+<td style="text-align:center">log(x)</td>
+<td style="text-align:center">计 算 ln ⁡ ( x ) 的 值 ， x 必 须 大 于 0</td>
 </tr>
 <tr>
-<td align="center">log2(x)</td>
-<td align="center">log2(x)</td>
-<td align="center">计 算 log ⁡ 2 ( x ) 的 值 ， x 必 须 大 于 0</td>
+<td style="text-align:center">log2(x)</td>
+<td style="text-align:center">log2(x)</td>
+<td style="text-align:center">计 算 log ⁡ 2 ( x ) 的 值 ， x 必 须 大 于 0</td>
 </tr>
 <tr>
-<td align="center">log10(x)</td>
-<td align="center"></td>
-<td align="center">计 算 lg ⁡ ( x ) 的 值 ， x 必 须 大 于 0</td>
+<td style="text-align:center">log10(x)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">计 算 lg ⁡ ( x ) 的 值 ， x 必 须 大 于 0</td>
 </tr>
 <tr>
-<td align="center">max(a, b)</td>
-<td align="center">max(a, b)</td>
-<td align="center">比较两个标量或等长向量元素，返回最大值。</td>
+<td style="text-align:center">max(a, b)</td>
+<td style="text-align:center">max(a, b)</td>
+<td style="text-align:center">比较两个标量或等长向量元素，返回最大值。</td>
 </tr>
 <tr>
-<td align="center">min(a,b)</td>
-<td align="center">min(a,b)</td>
-<td align="center">比较两个标量或等长向量元素，返回最小值。</td>
+<td style="text-align:center">min(a,b)</td>
+<td style="text-align:center">min(a,b)</td>
+<td style="text-align:center">比较两个标量或等长向量元素，返回最小值。</td>
 </tr>
 <tr>
-<td align="center">pow(x, y)</td>
-<td align="center">pow(x, y)</td>
-<td align="center">计 算 x <sup>y</sup> 的 值</td>
+<td style="text-align:center">pow(x, y)</td>
+<td style="text-align:center">pow(x, y)</td>
+<td style="text-align:center">计 算 x <sup>y</sup> 的 值</td>
 </tr>
 <tr>
-<td align="center">sqrt(x)</td>
-<td align="center">sqrt(x)</td>
-<td align="center">求x的平方根，，x必须大于0</td>
+<td style="text-align:center">sqrt(x)</td>
+<td style="text-align:center">sqrt(x)</td>
+<td style="text-align:center">求x的平方根，，x必须大于0</td>
 </tr>
 <tr>
-<td align="center">rsqrt(x)</td>
-<td align="center">inversesqrt(x)</td>
-<td align="center">x的平方根的倒数，x必须大于0</td>
+<td style="text-align:center">rsqrt(x)</td>
+<td style="text-align:center">inversesqrt(x)</td>
+<td style="text-align:center">x的平方根的倒数，x必须大于0</td>
 </tr>
 <tr>
-<td align="center">abs(x)</td>
-<td align="center">abs(x)</td>
-<td align="center">返回输入参数的绝对值</td>
+<td style="text-align:center">abs(x)</td>
+<td style="text-align:center">abs(x)</td>
+<td style="text-align:center">返回输入参数的绝对值</td>
 </tr>
 <tr>
-<td align="center">ldexp(x, n)</td>
-<td align="center"></td>
-<td align="center">计 算 x ∗ 2 <sup>n</sup> 的 值</td>
+<td style="text-align:center">ldexp(x, n)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">计 算 x ∗ 2 <sup>n</sup> 的 值</td>
 </tr>
 <tr>
-<td align="center">mul(M, N)</td>
-<td align="center">M*N</td>
-<td align="center">矩阵M和矩阵N的积</td>
+<td style="text-align:center">mul(M, N)</td>
+<td style="text-align:center">M*N</td>
+<td style="text-align:center">矩阵M和矩阵N的积</td>
 </tr>
 <tr>
-<td align="center">mul(M, v)</td>
-<td align="center">M*v</td>
-<td align="center">矩阵M和列向量v的积</td>
+<td style="text-align:center">mul(M, v)</td>
+<td style="text-align:center">M*v</td>
+<td style="text-align:center">矩阵M和列向量v的积</td>
 </tr>
 <tr>
-<td align="center">mul(v, M)</td>
-<td align="center">v* M</td>
-<td align="center">行向量v和矩阵M的积</td>
+<td style="text-align:center">mul(v, M)</td>
+<td style="text-align:center">v* M</td>
+<td style="text-align:center">行向量v和矩阵M的积</td>
 </tr>
 <tr>
-<td align="center">determinant(m)</td>
-<td align="center"></td>
-<td align="center">计算矩阵的行列式因子。</td>
+<td style="text-align:center">determinant(m)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">计算矩阵的行列式因子。</td>
 </tr>
 <tr>
-<td align="center">transpose(M)</td>
-<td align="center"></td>
-<td align="center">矩阵M的转置矩阵 如果M是一个AxB矩阵，M的转置是一个BxA矩阵，它第一列是M的第一行，第二列是M的第二行，第三列是M的第三行，等等</td>
+<td style="text-align:center">transpose(M)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">矩阵M的转置矩阵 如果M是一个AxB矩阵，M的转置是一个BxA矩阵，它第一列是M的第一行，第二列是M的第二行，第三列是M的第三行，等等</td>
 </tr>
 <tr>
-<td align="center">asin(x)</td>
-<td align="center">asin(x)</td>
-<td align="center">反正弦函数,输入参数取值区间为，返回角度值范围为[−π/2,π/2]</td>
+<td style="text-align:center">asin(x)</td>
+<td style="text-align:center">asin(x)</td>
+<td style="text-align:center">反正弦函数,输入参数取值区间为，返回角度值范围为[−π/2,π/2]</td>
 </tr>
 <tr>
-<td align="center">acos(x)</td>
-<td align="center">acos(x)</td>
-<td align="center">反余切函数，输入参数范围为[-1,1]， 返回[0,π]区间的角度值</td>
+<td style="text-align:center">acos(x)</td>
+<td style="text-align:center">acos(x)</td>
+<td style="text-align:center">反余切函数，输入参数范围为[-1,1]， 返回[0,π]区间的角度值</td>
 </tr>
 <tr>
-<td align="center">atan(x)</td>
-<td align="center">atan(x)</td>
-<td align="center">反正切函数，返回角度值范围为[−π/2,π/2]</td>
+<td style="text-align:center">atan(x)</td>
+<td style="text-align:center">atan(x)</td>
+<td style="text-align:center">反正切函数，返回角度值范围为[−π/2,π/2]</td>
 </tr>
 <tr>
-<td align="center">atan2(y,x)</td>
-<td align="center">atan2(y,x)</td>
-<td align="center">计算y/x的反正切值。实际上和atan(x)函数功能完全一样，至少输入参数不同。atan(x) = atan2(x, float(1))。</td>
+<td style="text-align:center">atan2(y,x)</td>
+<td style="text-align:center">atan2(y,x)</td>
+<td style="text-align:center">计算y/x的反正切值。实际上和atan(x)函数功能完全一样，至少输入参数不同。atan(x) = atan2(x, float(1))。</td>
 </tr>
 <tr>
-<td align="center">sin(x)</td>
-<td align="center">sin(x)</td>
-<td align="center">输入参数为弧度，计算正弦值，返回值范围 为[-1,1]</td>
+<td style="text-align:center">sin(x)</td>
+<td style="text-align:center">sin(x)</td>
+<td style="text-align:center">输入参数为弧度，计算正弦值，返回值范围 为[-1,1]</td>
 </tr>
 <tr>
-<td align="center">cos(x)</td>
-<td align="center">cos(x)</td>
-<td align="center">返回弧度x的余弦值。返回值范围为</td>
+<td style="text-align:center">cos(x)</td>
+<td style="text-align:center">cos(x)</td>
+<td style="text-align:center">返回弧度x的余弦值。返回值范围为</td>
 </tr>
 <tr>
-<td align="center">tan(x)</td>
-<td align="center">tan(x)</td>
-<td align="center">计算x正切值</td>
+<td style="text-align:center">tan(x)</td>
+<td style="text-align:center">tan(x)</td>
+<td style="text-align:center">计算x正切值</td>
 </tr>
 <tr>
-<td align="center">sincos(float x, out s, out c)</td>
-<td align="center"></td>
-<td align="center">该函数是同时计算x的sin值和cos值，其中s=sin(x)，c=cos(x)。该函数用于“同时需要计算sin值和cos值的情况”，比分别运算要快很多!</td>
+<td style="text-align:center">sincos(float x, out s, out c)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">该函数是同时计算x的sin值和cos值，其中s=sin(x)，c=cos(x)。该函数用于“同时需要计算sin值和cos值的情况”，比分别运算要快很多!</td>
 </tr>
 <tr>
-<td align="center">sinh(x)</td>
-<td align="center"></td>
-<td align="center">计算x的双曲正弦</td>
+<td style="text-align:center">sinh(x)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">计算x的双曲正弦</td>
 </tr>
 <tr>
-<td align="center">cosh(x)</td>
-<td align="center"></td>
-<td align="center">双曲余弦（hyperbolic cosine）函数，计算x的双曲余弦值。</td>
+<td style="text-align:center">cosh(x)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">双曲余弦（hyperbolic cosine）函数，计算x的双曲余弦值。</td>
 </tr>
 <tr>
-<td align="center">tanh(x)</td>
-<td align="center"></td>
-<td align="center">计算x的双曲线切线</td>
+<td style="text-align:center">tanh(x)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">计算x的双曲线切线</td>
 </tr>
 <tr>
-<td align="center">radians(x)</td>
-<td align="center">radians(x)</td>
-<td align="center">函数将角度值转换为弧度值</td>
+<td style="text-align:center">radians(x)</td>
+<td style="text-align:center">radians(x)</td>
+<td style="text-align:center">函数将角度值转换为弧度值</td>
 </tr>
 <tr>
-<td align="center">degrees(x)</td>
-<td align="center">degrees(x)</td>
-<td align="center">输入参数为弧度值(radians)，函数将其转换为角度值(degrees)</td>
+<td style="text-align:center">degrees(x)</td>
+<td style="text-align:center">degrees(x)</td>
+<td style="text-align:center">输入参数为弧度值(radians)，函数将其转换为角度值(degrees)</td>
 </tr>
 <tr>
-<td align="center">cross(A,B)</td>
-<td align="center">cross(A,B)</td>
-<td align="center">返回两个三元向量的叉积(cross product)。注意，输入参数必须是三元向量！</td>
+<td style="text-align:center">cross(A,B)</td>
+<td style="text-align:center">cross(A,B)</td>
+<td style="text-align:center">返回两个三元向量的叉积(cross product)。注意，输入参数必须是三元向量！</td>
 </tr>
 <tr>
-<td align="center">lit(NdotL, NdotH, m)</td>
-<td align="center"></td>
-<td align="center">函数计算环境光、散射光、镜面光的贡献，返回的4元向量。<br>N表示法向量；<br>L表示入射光向量；<br>H表示半角向量；<br>m表示高光系数。<br>X位表示环境光的贡献，总是1.0;<br>Y位代表散射光的贡献，如果 N∙L&lt;0，则为0；否则为N∙L<br>Z位代表镜面光的贡献，如果N∙L&lt;0 或者N∙H &lt; 0，则位0；否则为(N∙L)m; <br>W位始终位1.0</td>
+<td style="text-align:center">lit(NdotL, NdotH, m)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">函数计算环境光、散射光、镜面光的贡献，返回的4元向量。<br>N表示法向量；<br>L表示入射光向量；<br>H表示半角向量；<br>m表示高光系数。<br>X位表示环境光的贡献，总是1.0;<br>Y位代表散射光的贡献，如果 N∙L&lt;0，则为0；否则为N∙L<br>Z位代表镜面光的贡献，如果N∙L&lt;0 或者N∙H &lt; 0，则位0；否则为(N∙L)m; <br>W位始终位1.0</td>
 </tr>
 <tr>
-<td align="center">all(x)</td>
-<td align="center">all(x)</td>
-<td align="center">如果输入参数均不为0，则返回ture； 否则返回flase。&amp;&amp;运算</td>
+<td style="text-align:center">all(x)</td>
+<td style="text-align:center">all(x)</td>
+<td style="text-align:center">如果输入参数均不为0，则返回ture； 否则返回flase。&amp;&amp;运算</td>
 </tr>
 <tr>
-<td align="center">any(x)</td>
-<td align="center">any(x)</td>
-<td align="center">输入参数只要有其中一个不为0，则返回true。</td>
+<td style="text-align:center">any(x)</td>
+<td style="text-align:center">any(x)</td>
+<td style="text-align:center">输入参数只要有其中一个不为0，则返回true。</td>
 </tr>
 <tr>
-<td align="center">isfinite(x)</td>
-<td align="center"></td>
-<td align="center">判断标量或者向量中的每个数据是否是有限数，如果是返回true；否则返回false;</td>
+<td style="text-align:center">isfinite(x)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">判断标量或者向量中的每个数据是否是有限数，如果是返回true；否则返回false;</td>
 </tr>
 <tr>
-<td align="center">isinf(x)</td>
-<td align="center"></td>
-<td align="center">判断标量或者向量中的每个数据是否是无限，如果是返回true；否则返回false;</td>
+<td style="text-align:center">isinf(x)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">判断标量或者向量中的每个数据是否是无限，如果是返回true；否则返回false;</td>
 </tr>
 <tr>
-<td align="center">isnan(x)</td>
-<td align="center"></td>
-<td align="center">判断标量或者向量中的每个数据是否是非数据(not-a-number NaN)，如果是返回true；否则返回false;</td>
+<td style="text-align:center">isnan(x)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">判断标量或者向量中的每个数据是否是非数据(not-a-number NaN)，如果是返回true；否则返回false;</td>
 </tr>
 <tr>
-<td align="center">step(a, x)</td>
-<td align="center">step(a, x)</td>
-<td align="center">如果x&lt;a, 返回0；否则返回1</td>
+<td style="text-align:center">step(a, x)</td>
+<td style="text-align:center">step(a, x)</td>
+<td style="text-align:center">如果x&lt;a, 返回0；否则返回1</td>
 </tr>
 <tr>
-<td align="center">sign(x)</td>
-<td align="center">sign(x)</td>
-<td align="center">如果x&gt;0则返回1；如果x=0返回0；如果x&lt;0则返回-1</td>
+<td style="text-align:center">sign(x)</td>
+<td style="text-align:center">sign(x)</td>
+<td style="text-align:center">如果x&gt;0则返回1；如果x=0返回0；如果x&lt;0则返回-1</td>
 </tr>
 <tr>
-<td align="center">dot(A,B)</td>
-<td align="center">dot(A,B)</td>
-<td align="center">返回A和B的点积(dot product)。参数A和B可以是标量，也可以是向量（输入参数方面，点积和叉积函数有很大不同）。</td>
+<td style="text-align:center">dot(A,B)</td>
+<td style="text-align:center">dot(A,B)</td>
+<td style="text-align:center">返回A和B的点积(dot product)。参数A和B可以是标量，也可以是向量（输入参数方面，点积和叉积函数有很大不同）。</td>
 </tr>
 <tr>
-<td align="center">noise(x)</td>
-<td align="center"></td>
-<td align="center">根据它的参数类型，这个函数可以是一元、二元或三元噪音函数。返回的值在0和1之间，并且通常与给定的输入值一样</td>
+<td style="text-align:center">noise(x)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">根据它的参数类型，这个函数可以是一元、二元或三元噪音函数。返回的值在0和1之间，并且通常与给定的输入值一样</td>
 </tr>
 <tr>
-<td align="center">clamp(x,a,b)</td>
-<td align="center">clamp(x,a,b)</td>
-<td align="center">如果x值小于a，则返回a； <br>如果x值大于b，返回b；<br>否则，返回x。</td>
+<td style="text-align:center">clamp(x,a,b)</td>
+<td style="text-align:center">clamp(x,a,b)</td>
+<td style="text-align:center">如果x值小于a，则返回a； <br>如果x值大于b，返回b；<br>否则，返回x。</td>
 </tr>
 <tr>
-<td align="center">lerp(a, b, f)</td>
-<td align="center">mix(a, b, f)</td>
-<td align="center">计算或者的值。即在下限a和上限b之间进行插值，f表示权值。注意，如果a和b是向量，则权值f必须是标量或者等长的向量。</td>
+<td style="text-align:center">lerp(a, b, f)</td>
+<td style="text-align:center">mix(a, b, f)</td>
+<td style="text-align:center">计算或者的值。即在下限a和上限b之间进行插值，f表示权值。注意，如果a和b是向量，则权值f必须是标量或者等长的向量。</td>
 </tr>
 <tr>
-<td align="center">saturate(x)</td>
-<td align="center"></td>
-<td align="center">把x限制到[0,1]之间</td>
+<td style="text-align:center">saturate(x)</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">把x限制到[0,1]之间</td>
 </tr>
 <tr>
-<td align="center">smoothstep(min, max, x)</td>
-<td align="center">smoothstep(min, max, x)</td>
-<td align="center">值x位于min、max区间中。 <br>如果x=min，返回0；如果x=max，返回1；<br>如果x在两者之间，按照下列公式返回数据：<br>**– 2 ∗ ( ( x – m i n ) / ( m a x – m i n ) ) <sup>3</sup> + 3 ∗ ( ( x – m i n ) / ( m a x – m i n ) ) <sup>2</sup>**</td>
+<td style="text-align:center">smoothstep(min, max, x)</td>
+<td style="text-align:center">smoothstep(min, max, x)</td>
+<td style="text-align:center">值x位于min、max区间中。 <br>如果x=min，返回0；如果x=max，返回1；<br>如果x在两者之间，按照下列公式返回数据：<br><strong>– 2 ∗ ( ( x – m i n ) / ( m a x – m i n ) ) <sup>3</sup> + 3 ∗ ( ( x – m i n ) / ( m a x – m i n ) ) <sup>2</sup></strong></td>
 </tr>
 </tbody>
 </table>
 <p>smoothstep(min, max, x)对于参数全是float的重载</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-glsl" data-lang="glsl"><span class="k">float</span> <span class="n">smoothstep</span><span class="p">(</span><span class="k">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">float</span> <span class="n">b</span><span class="p">,</span> <span class="k">float</span> <span class="n">x</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">));</span>
-    <span class="k">return</span> <span class="n">t</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="mf">3.0</span> <span class="o">-</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">t</span><span class="p">));</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-glsl" data-lang="glsl"><span class="line"><span class="cl"><span class="k">float</span> <span class="n">smoothstep</span><span class="p">(</span><span class="k">float</span> <span class="n">a</span><span class="p">,</span> <span class="k">float</span> <span class="n">b</span><span class="p">,</span> <span class="k">float</span> <span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">float</span> <span class="n">t</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">a</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">t</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="mf">3.0</span> <span class="o">-</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">t</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="2几何函数">2、几何函数</h3>
 <table>
 <thead>
 <tr>
-<th align="center">CG语言</th>
-<th align="center">GLSL语言</th>
-<th align="center">功能描述</th>
+<th style="text-align:center">CG语言</th>
+<th style="text-align:center">GLSL语言</th>
+<th style="text-align:center">功能描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">distance(pt1, pt2)</td>
-<td align="center">distance(pt1, pt2)</td>
-<td align="center">两点之间的欧几里德距离（Euclidean distance）</td>
+<td style="text-align:center">distance(pt1, pt2)</td>
+<td style="text-align:center">distance(pt1, pt2)</td>
+<td style="text-align:center">两点之间的欧几里德距离（Euclidean distance）</td>
 </tr>
 <tr>
-<td align="center">faceforward(N,I,Ng)</td>
-<td align="center">faceforward(N,I,Ng)</td>
-<td align="center">根据 矢量 N 与Nref 调整法向量,如果Ng•I &lt; 0 ，返回 N；否则返回-N。</td>
+<td style="text-align:center">faceforward(N,I,Ng)</td>
+<td style="text-align:center">faceforward(N,I,Ng)</td>
+<td style="text-align:center">根据 矢量 N 与Nref 调整法向量,如果Ng•I &lt; 0 ，返回 N；否则返回-N。</td>
 </tr>
 <tr>
-<td align="center">length(v)</td>
-<td align="center">length(v)</td>
-<td align="center">返回一个向量的模，即sqrt(dot(v,v))</td>
+<td style="text-align:center">length(v)</td>
+<td style="text-align:center">length(v)</td>
+<td style="text-align:center">返回一个向量的模，即sqrt(dot(v,v))</td>
 </tr>
 <tr>
-<td align="center">normalize(v)</td>
-<td align="center">normalize(v)</td>
-<td align="center">返回v向量的单位向量</td>
+<td style="text-align:center">normalize(v)</td>
+<td style="text-align:center">normalize(v)</td>
+<td style="text-align:center">返回v向量的单位向量</td>
 </tr>
 <tr>
-<td align="center">reflect(I, N)</td>
-<td align="center">reflect(I, N)</td>
-<td align="center">根据入射光方向向量 I，和顶点法向量 N，计算反射光方向向量。 <br>其中 I 和 N 必须被归一化，需要非常注意的是，这个 I 是指向顶点的；<br>函数只对三元向量有效</td>
+<td style="text-align:center">reflect(I, N)</td>
+<td style="text-align:center">reflect(I, N)</td>
+<td style="text-align:center">根据入射光方向向量 I，和顶点法向量 N，计算反射光方向向量。 <br>其中 I 和 N 必须被归一化，需要非常注意的是，这个 I 是指向顶点的；<br>函数只对三元向量有效</td>
 </tr>
 <tr>
-<td align="center">refract(I,N,eta)</td>
-<td align="center">refract(I,N,eta)</td>
-<td align="center">计算折射向量，I 为入射光线，N 为法向量，eta 为折射系数； <br>其中 I 和 N 必须被归一化，如果 I 和 N 之间的夹角太大，则返回（0，0，0），也就是没有折射光线；I 是指向顶点的；函数只对三元向量有效</td>
+<td style="text-align:center">refract(I,N,eta)</td>
+<td style="text-align:center">refract(I,N,eta)</td>
+<td style="text-align:center">计算折射向量，I 为入射光线，N 为法向量，eta 为折射系数； <br>其中 I 和 N 必须被归一化，如果 I 和 N 之间的夹角太大，则返回（0，0，0），也就是没有折射光线；I 是指向顶点的；函数只对三元向量有效</td>
 </tr>
 </tbody>
 </table>
@@ -533,106 +531,106 @@
 <table>
 <thead>
 <tr>
-<th align="center">CG语言</th>
-<th align="center">功能描述</th>
+<th style="text-align:center">CG语言</th>
+<th style="text-align:center">功能描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">tex1D(sampler1D tex, float s)</td>
-<td align="center">一维纹理查询</td>
+<td style="text-align:center">tex1D(sampler1D tex, float s)</td>
+<td style="text-align:center">一维纹理查询</td>
 </tr>
 <tr>
-<td align="center">tex1D(sampler1D tex, float s, float dsdx, float dsdy)</td>
-<td align="center">使用导数值（derivatives）查询一维纹理</td>
+<td style="text-align:center">tex1D(sampler1D tex, float s, float dsdx, float dsdy)</td>
+<td style="text-align:center">使用导数值（derivatives）查询一维纹理</td>
 </tr>
 <tr>
-<td align="center">Tex1D(sampler1D tex, float2 sz)</td>
-<td align="center">一维纹理查询，并进行深度值比较</td>
+<td style="text-align:center">Tex1D(sampler1D tex, float2 sz)</td>
+<td style="text-align:center">一维纹理查询，并进行深度值比较</td>
 </tr>
 <tr>
-<td align="center">Tex1D(sampler1D tex, float2 sz, float dsdx,float dsdy)</td>
-<td align="center">使用导数值（derivatives）查询一维纹理， 并进行深度值比较</td>
+<td style="text-align:center">Tex1D(sampler1D tex, float2 sz, float dsdx,float dsdy)</td>
+<td style="text-align:center">使用导数值（derivatives）查询一维纹理， 并进行深度值比较</td>
 </tr>
 <tr>
-<td align="center">Tex1Dproj(sampler1D tex, float2 sq)</td>
-<td align="center">一维投影纹理查询</td>
+<td style="text-align:center">Tex1Dproj(sampler1D tex, float2 sq)</td>
+<td style="text-align:center">一维投影纹理查询</td>
 </tr>
 <tr>
-<td align="center">Tex1Dproj(sampler1D tex, float3 szq)</td>
-<td align="center">一维投影纹理查询，并比较深度值</td>
+<td style="text-align:center">Tex1Dproj(sampler1D tex, float3 szq)</td>
+<td style="text-align:center">一维投影纹理查询，并比较深度值</td>
 </tr>
 <tr>
-<td align="center">Tex2D(sampler2D tex, float2 s)</td>
-<td align="center">二维纹理查询</td>
+<td style="text-align:center">Tex2D(sampler2D tex, float2 s)</td>
+<td style="text-align:center">二维纹理查询</td>
 </tr>
 <tr>
-<td align="center">Tex2D(sampler2D tex, float2 s, float2 dsdx, float2 dsdy)</td>
-<td align="center">使用导数值（derivatives）查询二维纹理</td>
+<td style="text-align:center">Tex2D(sampler2D tex, float2 s, float2 dsdx, float2 dsdy)</td>
+<td style="text-align:center">使用导数值（derivatives）查询二维纹理</td>
 </tr>
 <tr>
-<td align="center">Tex2D(sampler2D tex, float3 sz)</td>
-<td align="center">二维纹理查询，并进行深度值比较</td>
+<td style="text-align:center">Tex2D(sampler2D tex, float3 sz)</td>
+<td style="text-align:center">二维纹理查询，并进行深度值比较</td>
 </tr>
 <tr>
-<td align="center">Tex2D(sampler2D tex, float3 sz, float2 dsdx,float2 dsdy)</td>
-<td align="center">使用导数值（derivatives）查询二维纹理，并进行深度值比较</td>
+<td style="text-align:center">Tex2D(sampler2D tex, float3 sz, float2 dsdx,float2 dsdy)</td>
+<td style="text-align:center">使用导数值（derivatives）查询二维纹理，并进行深度值比较</td>
 </tr>
 <tr>
-<td align="center">Tex2Dproj(sampler2D tex, float3 sq)</td>
-<td align="center">二维投影纹理查询</td>
+<td style="text-align:center">Tex2Dproj(sampler2D tex, float3 sq)</td>
+<td style="text-align:center">二维投影纹理查询</td>
 </tr>
 <tr>
-<td align="center">Tex2Dproj(sampler2D tex, float4 szq)</td>
-<td align="center">二维投影纹理查询，并进行深度值比较</td>
+<td style="text-align:center">Tex2Dproj(sampler2D tex, float4 szq)</td>
+<td style="text-align:center">二维投影纹理查询，并进行深度值比较</td>
 </tr>
 <tr>
-<td align="center">texRECT(samplerRECT tex, float2 s)</td>
-<td align="center">二维非投影矩形纹理查询（OpenGL独有）</td>
+<td style="text-align:center">texRECT(samplerRECT tex, float2 s)</td>
+<td style="text-align:center">二维非投影矩形纹理查询（OpenGL独有）</td>
 </tr>
 <tr>
-<td align="center">texRECT (samplerRECT tex, float3 sz, float2 dsdx,float2 dsdy)</td>
-<td align="center">二维非投影使用导数的矩形纹理查询（OpenGL独有）</td>
+<td style="text-align:center">texRECT (samplerRECT tex, float3 sz, float2 dsdx,float2 dsdy)</td>
+<td style="text-align:center">二维非投影使用导数的矩形纹理查询（OpenGL独有）</td>
 </tr>
 <tr>
-<td align="center">texRECT (samplerRECT tex, float3 sz)</td>
-<td align="center">二维非投影深度比较矩形纹理查询（OpenGL独有）</td>
+<td style="text-align:center">texRECT (samplerRECT tex, float3 sz)</td>
+<td style="text-align:center">二维非投影深度比较矩形纹理查询（OpenGL独有）</td>
 </tr>
 <tr>
-<td align="center">texRECT (samplerRECT tex, float3 sz, float2 dsdx,float2 dsdy)</td>
-<td align="center">二维非投影深度比较并使用导数的矩形纹理查询（OpenGL独有）</td>
+<td style="text-align:center">texRECT (samplerRECT tex, float3 sz, float2 dsdx,float2 dsdy)</td>
+<td style="text-align:center">二维非投影深度比较并使用导数的矩形纹理查询（OpenGL独有）</td>
 </tr>
 <tr>
-<td align="center">texRECT proj(samplerRECT tex, float3 sq)</td>
-<td align="center">二维投影矩形纹理查询（OpenGL独有）</td>
+<td style="text-align:center">texRECT proj(samplerRECT tex, float3 sq)</td>
+<td style="text-align:center">二维投影矩形纹理查询（OpenGL独有）</td>
 </tr>
 <tr>
-<td align="center">texRECT proj(samplerRECT tex, float3 szq)</td>
-<td align="center">二维投影矩形纹理深度比较查询（OpenGL独有）</td>
+<td style="text-align:center">texRECT proj(samplerRECT tex, float3 szq)</td>
+<td style="text-align:center">二维投影矩形纹理深度比较查询（OpenGL独有）</td>
 </tr>
 <tr>
-<td align="center">Tex3D(sampler3D tex, float s)</td>
-<td align="center">三维纹理查询</td>
+<td style="text-align:center">Tex3D(sampler3D tex, float s)</td>
+<td style="text-align:center">三维纹理查询</td>
 </tr>
 <tr>
-<td align="center">Tex3D(sampler3D tex, float3 s, float3 dsdx, float3 dsdy)</td>
-<td align="center">结合导数值（derivatives）查询三维纹理</td>
+<td style="text-align:center">Tex3D(sampler3D tex, float3 s, float3 dsdx, float3 dsdy)</td>
+<td style="text-align:center">结合导数值（derivatives）查询三维纹理</td>
 </tr>
 <tr>
-<td align="center">Tex3Dproj(sampler3D tex, float4 szq)</td>
-<td align="center">查询三维投影纹理，并进行深度值比较</td>
+<td style="text-align:center">Tex3Dproj(sampler3D tex, float4 szq)</td>
+<td style="text-align:center">查询三维投影纹理，并进行深度值比较</td>
 </tr>
 <tr>
-<td align="center">texCUBE(samplerCUBE tex, float3 s)</td>
-<td align="center">查询立方体纹理</td>
+<td style="text-align:center">texCUBE(samplerCUBE tex, float3 s)</td>
+<td style="text-align:center">查询立方体纹理</td>
 </tr>
 <tr>
-<td align="center">texCUBE (samplerCUBE tex, float3 s, float3 dsdx, float3 dsdy)</td>
-<td align="center">结合导数值（derivatives）查询立方体纹理</td>
+<td style="text-align:center">texCUBE (samplerCUBE tex, float3 s, float3 dsdx, float3 dsdy)</td>
+<td style="text-align:center">结合导数值（derivatives）查询立方体纹理</td>
 </tr>
 <tr>
-<td align="center">texCUBEproj (samplerCUBE tex, float4 sq)</td>
-<td align="center">查询投影立方体纹理</td>
+<td style="text-align:center">texCUBEproj (samplerCUBE tex, float4 sq)</td>
+<td style="text-align:center">查询投影立方体纹理</td>
 </tr>
 </tbody>
 </table>
@@ -640,18 +638,18 @@
 <table>
 <thead>
 <tr>
-<th align="center">函数</th>
-<th align="center">功能描述</th>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">功能描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">ddx(a)</td>
-<td align="center">近似a关于屏幕空间x轴的偏导数</td>
+<td style="text-align:center">ddx(a)</td>
+<td style="text-align:center">近似a关于屏幕空间x轴的偏导数</td>
 </tr>
 <tr>
-<td align="center">ddy(a)</td>
-<td align="center">近似a关于屏幕空间y轴的偏导数</td>
+<td style="text-align:center">ddy(a)</td>
+<td style="text-align:center">近似a关于屏幕空间y轴的偏导数</td>
 </tr>
 </tbody>
 </table>
@@ -661,37 +659,37 @@
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">描述</th>
-<th align="center">包含的变量</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">包含的变量</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">appdata_base</td>
-<td align="center">用于顶点着色器输入</td>
-<td align="center">顶点位置、顶点法线、第一组纹理坐标</td>
+<td style="text-align:center">appdata_base</td>
+<td style="text-align:center">用于顶点着色器输入</td>
+<td style="text-align:center">顶点位置、顶点法线、第一组纹理坐标</td>
 </tr>
 <tr>
-<td align="center">appdata_tan</td>
-<td align="center">用于顶点着色器输入</td>
-<td align="center">顶点位置、顶点切线、顶点法线、第一组纹理坐标</td>
+<td style="text-align:center">appdata_tan</td>
+<td style="text-align:center">用于顶点着色器输入</td>
+<td style="text-align:center">顶点位置、顶点切线、顶点法线、第一组纹理坐标</td>
 </tr>
 <tr>
-<td align="center">appdata_full</td>
-<td align="center">用于顶点着色器输入</td>
-<td align="center">顶点位置、顶点切线、顶点法线、四组（或更多）纹理坐标</td>
+<td style="text-align:center">appdata_full</td>
+<td style="text-align:center">用于顶点着色器输入</td>
+<td style="text-align:center">顶点位置、顶点切线、顶点法线、四组（或更多）纹理坐标</td>
 </tr>
 <tr>
-<td align="center">appdata_img</td>
-<td align="center">用于顶点着色器输入</td>
-<td align="center">顶点位置、第一组纹理坐标</td>
+<td style="text-align:center">appdata_img</td>
+<td style="text-align:center">用于顶点着色器输入</td>
+<td style="text-align:center">顶点位置、第一组纹理坐标</td>
 </tr>
 </tbody>
 </table>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -723,146 +721,140 @@
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
-</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-glsl" data-lang="glsl"><span class="k">struct</span> <span class="n">appdata_base</span> <span class="p">{</span>
-    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
-    <span class="n">float3</span> <span class="n">normal</span> <span class="o">:</span> <span class="n">NORMAL</span><span class="p">;</span>
-    <span class="n">float4</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
-    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="n">appdata_tan</span> <span class="p">{</span>
-    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
-    <span class="n">float4</span> <span class="n">tangent</span> <span class="o">:</span> <span class="n">TANGENT</span><span class="p">;</span>
-    <span class="n">float3</span> <span class="n">normal</span> <span class="o">:</span> <span class="n">NORMAL</span><span class="p">;</span>
-    <span class="n">float4</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
-    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
-<span class="p">};</span>
-
-<span class="k">struct</span> <span class="n">appdata_full</span> <span class="p">{</span>
-    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
-    <span class="n">float4</span> <span class="n">tangent</span> <span class="o">:</span> <span class="n">TANGENT</span><span class="p">;</span>
-    <span class="n">float3</span> <span class="n">normal</span> <span class="o">:</span> <span class="n">NORMAL</span><span class="p">;</span>
-    <span class="n">float4</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
-    <span class="n">float4</span> <span class="n">texcoord1</span> <span class="o">:</span> <span class="n">TEXCOORD1</span><span class="p">;</span>
-    <span class="n">float4</span> <span class="n">texcoord2</span> <span class="o">:</span> <span class="n">TEXCOORD2</span><span class="p">;</span>
-    <span class="n">float4</span> <span class="n">texcoord3</span> <span class="o">:</span> <span class="n">TEXCOORD3</span><span class="p">;</span>
-    <span class="n">fixed4</span> <span class="n">color</span> <span class="o">:</span> <span class="n">COLOR</span><span class="p">;</span>
-    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
-<span class="p">};</span>
-<span class="k">struct</span> <span class="n">appdata_img</span>
-<span class="p">{</span>
-    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
-    <span class="n">half2</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
-    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
-<span class="p">};</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-glsl" data-lang="glsl"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">appdata_base</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float3</span> <span class="n">normal</span> <span class="o">:</span> <span class="n">NORMAL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">appdata_tan</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">tangent</span> <span class="o">:</span> <span class="n">TANGENT</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float3</span> <span class="n">normal</span> <span class="o">:</span> <span class="n">NORMAL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">appdata_full</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">tangent</span> <span class="o">:</span> <span class="n">TANGENT</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float3</span> <span class="n">normal</span> <span class="o">:</span> <span class="n">NORMAL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">texcoord1</span> <span class="o">:</span> <span class="n">TEXCOORD1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">texcoord2</span> <span class="o">:</span> <span class="n">TEXCOORD2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">texcoord3</span> <span class="o">:</span> <span class="n">TEXCOORD3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fixed4</span> <span class="n">color</span> <span class="o">:</span> <span class="n">COLOR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">appdata_img</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">vertex</span> <span class="o">:</span> <span class="n">POSITION</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">half2</span> <span class="n">texcoord</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="12顶点着色器输出">1.2、顶点着色器输出</h4>
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">描述</th>
-<th align="center">包含的变量</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">描述</th>
+<th style="text-align:center">包含的变量</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">v2f_img</td>
-<td align="center">用于顶点着色器输出</td>
-<td align="center">裁剪空间中的位置、纹理坐标</td>
+<td style="text-align:center">v2f_img</td>
+<td style="text-align:center">用于顶点着色器输出</td>
+<td style="text-align:center">裁剪空间中的位置、纹理坐标</td>
 </tr>
 </tbody>
 </table>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-glsl" data-lang="glsl"><span class="k">struct</span> <span class="n">v2f_img</span>
-<span class="p">{</span>
-    <span class="n">float4</span> <span class="n">pos</span> <span class="o">:</span> <span class="n">SV_POSITION</span><span class="p">;</span>
-    <span class="n">half2</span> <span class="n">uv</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
-    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
-    <span class="n">UNITY_VERTEX_OUTPUT_STEREO</span>
-<span class="p">};</span>
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-glsl" data-lang="glsl"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">v2f_img</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">float4</span> <span class="n">pos</span> <span class="o">:</span> <span class="n">SV_POSITION</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">half2</span> <span class="n">uv</span> <span class="o">:</span> <span class="n">TEXCOORD0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UNITY_VERTEX_OUTPUT_STEREO</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="2空间变换函数及内置变量">2、空间变换函数及内置变量</h3>
 <h4 id="a空间变换函数">A、空间变换函数</h4>
 <table>
 <thead>
 <tr>
-<th align="center">函数名</th>
-<th align="center">描述</th>
+<th style="text-align:center">函数名</th>
+<th style="text-align:center">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">float4 UnityWorldToClipPos(float3 pos )</td>
-<td align="center">把世界坐标空间中某一点pos变换到齐次裁剪空间</td>
+<td style="text-align:center">float4 UnityWorldToClipPos(float3 pos )</td>
+<td style="text-align:center">把世界坐标空间中某一点pos变换到齐次裁剪空间</td>
 </tr>
 <tr>
-<td align="center">float4 UnityViewToClipPos(float3 pos )</td>
-<td align="center">把观察坐标空间中某一点pos变换到齐次裁剪空间</td>
+<td style="text-align:center">float4 UnityViewToClipPos(float3 pos )</td>
+<td style="text-align:center">把观察坐标空间中某一点pos变换到齐次裁剪空间</td>
 </tr>
 <tr>
-<td align="center">float3 UnityObjectToViewPos(float3 pos或float4 pos)</td>
-<td align="center">模型局部空间坐标系中某一个点pos变换到观察空间坐标系</td>
+<td style="text-align:center">float3 UnityObjectToViewPos(float3 pos或float4 pos)</td>
+<td style="text-align:center">模型局部空间坐标系中某一个点pos变换到观察空间坐标系</td>
 </tr>
 <tr>
-<td align="center">float3 UnityWorldToViewPos(float3 pos )</td>
-<td align="center">把世界坐标系下的一个点pos变换到观察空间坐标系</td>
+<td style="text-align:center">float3 UnityWorldToViewPos(float3 pos )</td>
+<td style="text-align:center">把世界坐标系下的一个点pos变换到观察空间坐标系</td>
 </tr>
 <tr>
-<td align="center">float3 UnityObjectToWorldDir(float3 dir )</td>
-<td align="center">把方向矢量从模型空间转换到世界空间（方向已单位化）</td>
+<td style="text-align:center">float3 UnityObjectToWorldDir(float3 dir )</td>
+<td style="text-align:center">把方向矢量从模型空间转换到世界空间（方向已单位化）</td>
 </tr>
 <tr>
-<td align="center">float3 UnityWorldToObjectDir(float3 dir )</td>
-<td align="center">把方向矢量从世界空间转换到模型空间（方向已单位化）</td>
+<td style="text-align:center">float3 UnityWorldToObjectDir(float3 dir )</td>
+<td style="text-align:center">把方向矢量从世界空间转换到模型空间（方向已单位化）</td>
 </tr>
 <tr>
-<td align="center">float3 UnityObjectToWorldNormal(float3 norm )</td>
-<td align="center">将法线从模型空间转换到世界空间（方向已单位化）</td>
+<td style="text-align:center">float3 UnityObjectToWorldNormal(float3 norm )</td>
+<td style="text-align:center">将法线从模型空间转换到世界空间（方向已单位化）</td>
 </tr>
 <tr>
-<td align="center">float3 UnityWorldSpaceLightDir(float3 worldPos )</td>
-<td align="center">输入参数worldPos是一个世界坐标系下的坐标，得到世界空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
+<td style="text-align:center">float3 UnityWorldSpaceLightDir(float3 worldPos )</td>
+<td style="text-align:center">输入参数worldPos是一个世界坐标系下的坐标，得到世界空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
 </tr>
 <tr>
-<td align="center">float3 WorldSpaceLightDir(float4 localPos )</td>
-<td align="center">输入一个模型顶点坐标，得到世界空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
+<td style="text-align:center">float3 WorldSpaceLightDir(float4 localPos )</td>
+<td style="text-align:center">输入一个模型顶点坐标，得到世界空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
 </tr>
 <tr>
-<td align="center">float3 ObjSpaceLightDir(float4 v )</td>
-<td align="center">输入一个模型顶点坐标，得到模型空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
+<td style="text-align:center">float3 ObjSpaceLightDir(float4 v )</td>
+<td style="text-align:center">输入一个模型顶点坐标，得到模型空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
 </tr>
 <tr>
-<td align="center">float3 UnityWorldSpaceViewDir(float3 worldPos )</td>
-<td align="center">输入参数worldPos是一个世界坐标系下的坐标，得到世界空间中从该点到摄像机的观察方向。（方向没单位化）</td>
+<td style="text-align:center">float3 UnityWorldSpaceViewDir(float3 worldPos )</td>
+<td style="text-align:center">输入参数worldPos是一个世界坐标系下的坐标，得到世界空间中从该点到摄像机的观察方向。（方向没单位化）</td>
 </tr>
 <tr>
-<td align="center">float3 WorldSpaceViewDir(float4 localPos )</td>
-<td align="center">输入一个模型顶点坐标，得到世界空间中从该点到摄像机的观察方向。（方向没单位化）</td>
+<td style="text-align:center">float3 WorldSpaceViewDir(float4 localPos )</td>
+<td style="text-align:center">输入一个模型顶点坐标，得到世界空间中从该点到摄像机的观察方向。（方向没单位化）</td>
 </tr>
 <tr>
-<td align="center">float3 ObjSpaceViewDir(float4 v )</td>
-<td align="center">输入一个模型顶点坐标，得到模型空间中从该点到摄像机的观察方向。（方向没单位化）</td>
+<td style="text-align:center">float3 ObjSpaceViewDir(float4 v )</td>
+<td style="text-align:center">输入一个模型顶点坐标，得到模型空间中从该点到摄像机的观察方向。（方向没单位化）</td>
 </tr>
 </tbody>
 </table>
@@ -871,18 +863,18 @@
 <table>
 <thead>
 <tr>
-<th align="center">函数名</th>
-<th align="center">描述</th>
+<th style="text-align:center">函数名</th>
+<th style="text-align:center">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">float4 ComputeScreenPos (float4 clipPos)</td>
-<td align="center">计算用于执行屏幕空间贴图纹理采样的纹理坐标。输入是裁剪空间位置。</td>
+<td style="text-align:center">float4 ComputeScreenPos (float4 clipPos)</td>
+<td style="text-align:center">计算用于执行屏幕空间贴图纹理采样的纹理坐标。输入是裁剪空间位置。</td>
 </tr>
 <tr>
-<td align="center">float4 ComputeGrabScreenPos (float4 clipPos)</td>
-<td align="center">计算用于 GrabPass 纹理采样的纹理坐标。输入是裁剪空间位置。</td>
+<td style="text-align:center">float4 ComputeGrabScreenPos (float4 clipPos)</td>
+<td style="text-align:center">计算用于 GrabPass 纹理采样的纹理坐标。输入是裁剪空间位置。</td>
 </tr>
 </tbody>
 </table>
@@ -890,46 +882,46 @@
 <table>
 <thead>
 <tr>
-<th align="center">变量名</th>
-<th align="center">描述</th>
+<th style="text-align:center">变量名</th>
+<th style="text-align:center">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">UNITY_MATRIX_MVP</td>
-<td align="center">当前的模型观察投影矩阵，用于将顶点/方向矢量从模型空间转换到裁剪空间</td>
+<td style="text-align:center">UNITY_MATRIX_MVP</td>
+<td style="text-align:center">当前的模型观察投影矩阵，用于将顶点/方向矢量从模型空间转换到裁剪空间</td>
 </tr>
 <tr>
-<td align="center">UNITY_MATRIX_MV</td>
-<td align="center">当前的模型*观察矩阵，用于将顶点/方向矢量从模型空间转换到观察空间</td>
+<td style="text-align:center">UNITY_MATRIX_MV</td>
+<td style="text-align:center">当前的模型*观察矩阵，用于将顶点/方向矢量从模型空间转换到观察空间</td>
 </tr>
 <tr>
-<td align="center">UNITY_MATRIX_V</td>
-<td align="center">当前的观察矩阵，用于将顶点/方向矢量从世界空间转换到观察空间</td>
+<td style="text-align:center">UNITY_MATRIX_V</td>
+<td style="text-align:center">当前的观察矩阵，用于将顶点/方向矢量从世界空间转换到观察空间</td>
 </tr>
 <tr>
-<td align="center">UNITY_MATRIX_I_V</td>
-<td align="center">当前的观察矩阵的逆矩阵，用于从观察空间转换到世界空间</td>
+<td style="text-align:center">UNITY_MATRIX_I_V</td>
+<td style="text-align:center">当前的观察矩阵的逆矩阵，用于从观察空间转换到世界空间</td>
 </tr>
 <tr>
-<td align="center">UNITY_MATRIX_P</td>
-<td align="center">当前的投影矩阵，用于将顶点/方向矢量从观察空间转换到裁剪空间</td>
+<td style="text-align:center">UNITY_MATRIX_P</td>
+<td style="text-align:center">当前的投影矩阵，用于将顶点/方向矢量从观察空间转换到裁剪空间</td>
 </tr>
 <tr>
-<td align="center">UNITY_MATRIX_VP</td>
-<td align="center">当前的观察*投影矩阵，用于将顶点/方向矢量从世界空间转换到裁剪空间</td>
+<td style="text-align:center">UNITY_MATRIX_VP</td>
+<td style="text-align:center">当前的观察*投影矩阵，用于将顶点/方向矢量从世界空间转换到裁剪空间</td>
 </tr>
 <tr>
-<td align="center">UNITY_MATRIX_T_MV</td>
-<td align="center">UNITY_MATRIX_MV的转置矩阵</td>
+<td style="text-align:center">UNITY_MATRIX_T_MV</td>
+<td style="text-align:center">UNITY_MATRIX_MV的转置矩阵</td>
 </tr>
 <tr>
-<td align="center">UNITY_MATRIX_IT_MV</td>
-<td align="center">UNITY_MATRIX_MV的逆转置矩阵，用于将发现从模型空间转换到观察空间，也可以用于得到UNITY_MATRIX_MV的逆矩阵</td>
+<td style="text-align:center">UNITY_MATRIX_IT_MV</td>
+<td style="text-align:center">UNITY_MATRIX_MV的逆转置矩阵，用于将发现从模型空间转换到观察空间，也可以用于得到UNITY_MATRIX_MV的逆矩阵</td>
 </tr>
 <tr>
-<td align="center">unity_MatrixInvV</td>
-<td align="center">UNITY_MATRIX_V的逆矩阵</td>
+<td style="text-align:center">unity_MatrixInvV</td>
+<td style="text-align:center">UNITY_MATRIX_V的逆矩阵</td>
 </tr>
 </tbody>
 </table>
@@ -938,42 +930,42 @@
 <table>
 <thead>
 <tr>
-<th align="center">参数名</th>
-<th align="center">描述</th>
+<th style="text-align:center">参数名</th>
+<th style="text-align:center">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">float3 _WorldSpaceCameraPos</td>
-<td align="center">该摄像机在世界空间中的位置</td>
+<td style="text-align:center">float3 _WorldSpaceCameraPos</td>
+<td style="text-align:center">该摄像机在世界空间中的位置</td>
 </tr>
 <tr>
-<td align="center">float4 _ProjectionParams</td>
-<td align="center">x=1.0(或-1.0，如果正在使用一个翻转的投影矩阵进行渲染)，y=Near,z=Far,w=1.0+1.0/Far,其中Near和Far分别是近裁剪平面和远裁剪平面到摄像机的距离</td>
+<td style="text-align:center">float4 _ProjectionParams</td>
+<td style="text-align:center">x=1.0(或-1.0，如果正在使用一个翻转的投影矩阵进行渲染)，y=Near,z=Far,w=1.0+1.0/Far,其中Near和Far分别是近裁剪平面和远裁剪平面到摄像机的距离</td>
 </tr>
 <tr>
-<td align="center">float4 _ScreenParams</td>
-<td align="center">x=width,y=height,z=1.0+1.0/width,w=1.0+1.0/height,其中width和height分别是该摄像机的渲染目标（render target）的像素宽度和高度</td>
+<td style="text-align:center">float4 _ScreenParams</td>
+<td style="text-align:center">x=width,y=height,z=1.0+1.0/width,w=1.0+1.0/height,其中width和height分别是该摄像机的渲染目标（render target）的像素宽度和高度</td>
 </tr>
 <tr>
-<td align="center">float4 _ZBufferParams</td>
-<td align="center">x=1-Far/Near,y=Far/Near,z=x/Far,w=y/Far,该变量用于线性化Z缓存中的深度值</td>
+<td style="text-align:center">float4 _ZBufferParams</td>
+<td style="text-align:center">x=1-Far/Near,y=Far/Near,z=x/Far,w=y/Far,该变量用于线性化Z缓存中的深度值</td>
 </tr>
 <tr>
-<td align="center">float4 unity_OrthoParams</td>
-<td align="center">x=width,y=height,z没有定义,w=1.0(该摄像机是正交摄像机)或w=0.0（该摄像机是透视摄像机），其中width和height是正交投影摄像机的宽度和高度</td>
+<td style="text-align:center">float4 unity_OrthoParams</td>
+<td style="text-align:center">x=width,y=height,z没有定义,w=1.0(该摄像机是正交摄像机)或w=0.0（该摄像机是透视摄像机），其中width和height是正交投影摄像机的宽度和高度</td>
 </tr>
 <tr>
-<td align="center">float4x4 unity_CameraProjection</td>
-<td align="center">该摄像机的投影矩阵</td>
+<td style="text-align:center">float4x4 unity_CameraProjection</td>
+<td style="text-align:center">该摄像机的投影矩阵</td>
 </tr>
 <tr>
-<td align="center">float4x4 unity_CameraInvProjection</td>
-<td align="center">该摄像机的投影矩阵的逆矩阵</td>
+<td style="text-align:center">float4x4 unity_CameraInvProjection</td>
+<td style="text-align:center">该摄像机的投影矩阵的逆矩阵</td>
 </tr>
 <tr>
-<td align="center">float4 unity_CameraWorldClipPlanes[6]</td>
-<td align="center">该摄像机的6个裁剪平面在世界空间下的等式，按左、右、下、上、近、远裁剪平面</td>
+<td style="text-align:center">float4 unity_CameraWorldClipPlanes[6]</td>
+<td style="text-align:center">该摄像机的6个裁剪平面在世界空间下的等式，按左、右、下、上、近、远裁剪平面</td>
 </tr>
 </tbody>
 </table>
@@ -982,31 +974,31 @@
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">类型</th>
-<th align="center">值</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">_Time</td>
-<td align="center">float4</td>
-<td align="center">自关卡加载以来的时间 (t/20, t, t<em>2, t</em>3)，用于将着色器中的内容动画化。</td>
+<td style="text-align:center">_Time</td>
+<td style="text-align:center">float4</td>
+<td style="text-align:center">自关卡加载以来的时间 (t/20, t, t<em>2, t</em>3)，用于将着色器中的内容动画化。</td>
 </tr>
 <tr>
-<td align="center">_SinTime</td>
-<td align="center">float4</td>
-<td align="center">时间正弦：(t/8, t/4, t/2, t)。</td>
+<td style="text-align:center">_SinTime</td>
+<td style="text-align:center">float4</td>
+<td style="text-align:center">时间正弦：(t/8, t/4, t/2, t)。</td>
 </tr>
 <tr>
-<td align="center">_CosTime</td>
-<td align="center">float4</td>
-<td align="center">时间余弦：(t/8, t/4, t/2, t)。</td>
+<td style="text-align:center">_CosTime</td>
+<td style="text-align:center">float4</td>
+<td style="text-align:center">时间余弦：(t/8, t/4, t/2, t)。</td>
 </tr>
 <tr>
-<td align="center">unity_DeltaTime</td>
-<td align="center">float4</td>
-<td align="center">增量时间：(dt, 1/dt, smoothDt, 1/smoothDt)。</td>
+<td style="text-align:center">unity_DeltaTime</td>
+<td style="text-align:center">float4</td>
+<td style="text-align:center">增量时间：(dt, 1/dt, smoothDt, 1/smoothDt)。</td>
 </tr>
 </tbody>
 </table>
@@ -1021,41 +1013,41 @@
 <table>
 <thead>
 <tr>
-<th align="center">名称</th>
-<th align="center">类型</th>
-<th align="center">值</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">unity_AmbientSky</td>
-<td align="center">fixed4</td>
-<td align="center">梯度环境光照情况下的天空环境光照颜色。</td>
+<td style="text-align:center">unity_AmbientSky</td>
+<td style="text-align:center">fixed4</td>
+<td style="text-align:center">梯度环境光照情况下的天空环境光照颜色。</td>
 </tr>
 <tr>
-<td align="center">unity_AmbientEquator</td>
-<td align="center">fixed4</td>
-<td align="center">梯度环境光照情况下的赤道环境光照颜色。</td>
+<td style="text-align:center">unity_AmbientEquator</td>
+<td style="text-align:center">fixed4</td>
+<td style="text-align:center">梯度环境光照情况下的赤道环境光照颜色。</td>
 </tr>
 <tr>
-<td align="center">unity_AmbientGround</td>
-<td align="center">fixed4</td>
-<td align="center">梯度环境光照情况下的地面环境光照颜色。</td>
+<td style="text-align:center">unity_AmbientGround</td>
+<td style="text-align:center">fixed4</td>
+<td style="text-align:center">梯度环境光照情况下的地面环境光照颜色。</td>
 </tr>
 <tr>
-<td align="center">UNITY_LIGHTMODEL_AMBIENT</td>
-<td align="center">fixed4</td>
-<td align="center">环境光照颜色（梯度环境情况下的天空颜色）。旧版变量。</td>
+<td style="text-align:center">UNITY_LIGHTMODEL_AMBIENT</td>
+<td style="text-align:center">fixed4</td>
+<td style="text-align:center">环境光照颜色（梯度环境情况下的天空颜色）。旧版变量。</td>
 </tr>
 <tr>
-<td align="center">unity_FogColor</td>
-<td align="center">fixed4</td>
-<td align="center">雾效颜色。</td>
+<td style="text-align:center">unity_FogColor</td>
+<td style="text-align:center">fixed4</td>
+<td style="text-align:center">雾效颜色。</td>
 </tr>
 <tr>
-<td align="center">unity_FogParams</td>
-<td align="center">float4</td>
-<td align="center">用于雾效计算的参数：<code>(density / sqrt(ln(2))、density / ln(2)、–1/(end-start) </code>和 <code>end/(end-start))</code>。x 对于 Exp2 雾模式很有用；<em>y</em> 对于 Exp 模式很有用，<em>z</em> 和 w 对于 Linear 模式很有用。</td>
+<td style="text-align:center">unity_FogParams</td>
+<td style="text-align:center">float4</td>
+<td style="text-align:center">用于雾效计算的参数：<code>(density / sqrt(ln(2))、density / ln(2)、–1/(end-start) </code>和 <code>end/(end-start))</code>。x 对于 Exp2 雾模式很有用；<em>y</em> 对于 Exp 模式很有用，<em>z</em> 和 w 对于 Linear 模式很有用。</td>
 </tr>
 </tbody>
 </table>
@@ -1085,7 +1077,7 @@
 <h3 id="3数学常数">3、数学常数</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1096,53 +1088,49 @@
 </span><span class="lnt"> 9
 </span><span class="lnt">10
 </span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-glsl" data-lang="glsl"><span class="cp">#ifndef UNITY_CG_INCLUDED</span>
-<span class="cp">#define UNITY_CG_INCLUDED</span>
- 
-<span class="cp">#define UNITY_PI            3.14159265359f       //圆周率</span>
-<span class="cp">#define UNITY_TWO_PI        6.28318530718f       //2倍圆周率</span>
-<span class="cp">#define UNITY_FOUR_PI       12.56637061436f      //4倍圆周率</span>
-<span class="cp">#define UNITY_INV_PI        0.31830988618f       //圆周率的倒数</span>
-<span class="cp">#define UNITY_INV_TWO_PI    0.15915494309f       //2倍圆周率的倒数</span>
-<span class="cp">#define UNITY_INV_FOUR_PI   0.07957747155f       //4倍圆周率的倒数</span>
-<span class="cp">#define UNITY_HALF_PI       1.57079632679f       //半圆周率</span>
-<span class="cp">#define UNITY_INV_HALF_PI   0.636619772367f      //半圆周率的倒数</span>
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-glsl" data-lang="glsl"><span class="line"><span class="cl"><span class="cp">#ifndef UNITY_CG_INCLUDED</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define UNITY_CG_INCLUDED</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="cp">#define UNITY_PI            3.14159265359f       //圆周率</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define UNITY_TWO_PI        6.28318530718f       //2倍圆周率</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define UNITY_FOUR_PI       12.56637061436f      //4倍圆周率</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define UNITY_INV_PI        0.31830988618f       //圆周率的倒数</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define UNITY_INV_TWO_PI    0.15915494309f       //2倍圆周率的倒数</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define UNITY_INV_FOUR_PI   0.07957747155f       //4倍圆周率的倒数</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define UNITY_HALF_PI       1.57079632679f       //半圆周率</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#define UNITY_INV_HALF_PI   0.636619772367f      //半圆周率的倒数</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="4与颜色空间相关">4、与颜色空间相关</h3>
 <table>
 <thead>
 <tr>
-<th align="center">函数名</th>
-<th align="center">描述</th>
+<th style="text-align:center">函数名</th>
+<th style="text-align:center">描述</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">bool IsGammaSpace()</td>
-<td align="center">根据宏UNITY_COLORSPACE_GAMMA是否被启用了，判断当前是否启用了伽马颜色空间。</td>
+<td style="text-align:center">bool IsGammaSpace()</td>
+<td style="text-align:center">根据宏UNITY_COLORSPACE_GAMMA是否被启用了，判断当前是否启用了伽马颜色空间。</td>
 </tr>
 <tr>
-<td align="center">float GammaToLinearSpaceExact (float value)</td>
-<td align="center">把一个颜色值精确地从伽马颜色空间(sRGB颜色空间)变化到线性空间(CIE-XYZ颜色空间)。</td>
+<td style="text-align:center">float GammaToLinearSpaceExact (float value)</td>
+<td style="text-align:center">把一个颜色值精确地从伽马颜色空间(sRGB颜色空间)变化到线性空间(CIE-XYZ颜色空间)。</td>
 </tr>
 <tr>
-<td align="center">half3 GammaToLinearSpace (half3 sRGB)</td>
-<td align="center">用一个近似模拟的函数把颜色值近似地从伽马空间变换到线性空间。</td>
+<td style="text-align:center">half3 GammaToLinearSpace (half3 sRGB)</td>
+<td style="text-align:center">用一个近似模拟的函数把颜色值近似地从伽马空间变换到线性空间。</td>
 </tr>
 <tr>
-<td align="center">float LinearToGammaSpaceExact (float value)</td>
-<td align="center">把一个颜色值精确地从线性空间变换到伽马颜色空间。</td>
+<td style="text-align:center">float LinearToGammaSpaceExact (float value)</td>
+<td style="text-align:center">把一个颜色值精确地从线性空间变换到伽马颜色空间。</td>
 </tr>
 <tr>
-<td align="center">half3 LinearToGammaSpace (half3 linRGB)</td>
-<td align="center">用一个近似模拟的函数把颜色值近似地从线性空间变换到伽马颜色空间。</td>
+<td style="text-align:center">half3 LinearToGammaSpace (half3 linRGB)</td>
+<td style="text-align:center">用一个近似模拟的函数把颜色值近似地从线性空间变换到伽马颜色空间。</td>
 </tr>
 </tbody>
 </table>
@@ -1179,7 +1167,7 @@ unity官方文档：<a href="https://docs.unity.cn/cn/current/Manual/SL-UnitySha
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

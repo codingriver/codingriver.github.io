@@ -8,10 +8,10 @@
         <title>Unity Assert断言工具 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Unity Assert断言工具" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity-assert%E6%96%AD%E8%A8%80%E5%B7%A5%E5%85%B7/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity-assert%E6%96%AD%E8%A8%80%E5%B7%A5%E5%85%B7/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-16T19:57:20+08:00" />
 <meta property="article:modified_time" content="2021-04-16T19:57:20+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity-assert%E6%96%AD%E8%A8%80%E5%B7%A5%E5%85%B7\/"
-        },"genre": "posts","wordcount":  596 ,
+        },"genre": "posts","wordcount":  595 ,
         "url": "https:\/\/codingriver.github.io\/unity-assert%E6%96%AD%E8%A8%80%E5%B7%A5%E5%85%B7\/","datePublished": "2021-04-16T19:57:20+08:00","dateModified": "2021-04-16T19:57:20+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Unity Assert断言工具</h1><h2 class="single-subtitle">Unity Assert断言工具</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-16 19:57:20">2021-04-16 19:57:20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 596 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-16 19:57:20">2021-04-16 19:57:20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 595 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/unity-assert%E6%96%AD%E8%A8%80%E5%B7%A5%E5%85%B7/" class="leancloud_visitors" data-flag-title="Unity Assert断言工具">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -132,7 +132,7 @@
 <p><code>Assert.cs</code></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -199,78 +199,76 @@
 </span><span class="lnt">65
 </span><span class="lnt">66
 </span><span class="lnt">67
-</span><span class="lnt">68
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">using System;
-using UnityEngine;
-using UnityEngine.Assertions;
-//using UnityEngine.Assertions.Must;
-//using UnityEngine.Assertions.Comparers;
-
-
-/// &lt;summary&gt;
-///  Unity 断言
-/// &lt;/summary&gt;
-public class Assert
-{
-    /// &lt;summary&gt;
-    ///  Whether Unity should throw an exception on a failure.
-    ///  是否抛出异常
-    /// &lt;/summary&gt;
-    public static bool raiseExceptions
-    {
-        get
-        {
-            return UnityEngine.Assertions.Assert.raiseExceptions;
-        }
-        set
-        {
-            UnityEngine.Assertions.Assert.raiseExceptions = value;
-        }
-    }
-
-    /// &lt;summary&gt;
-    /// 期待的值为True
-    ///  如果是condition是false 则抛出异常 msg
-    /// &lt;/summary&gt;
-    /// &lt;param name=&#34;condition&#34;&gt;false 则抛出异常 msg&lt;/param&gt;
-    /// &lt;param name=&#34;msg&#34;&gt;&lt;/param&gt;
-    public static void IsTrue(bool condition,string msg=null)
-    {
-        UnityEngine.Assertions.Assert.IsTrue(condition, msg);
-    }
-    public static void IsTrue(bool condition, String format, params object[] args)
-    {
-        UnityEngine.Assertions.Assert.IsTrue(condition, string.Format(format, args));
-    }
-    public static void IsFalse(bool condition, string msg = null)
-    {
-        UnityEngine.Assertions.Assert.IsFalse(condition, msg);
-    }
-    public static void IsFalse(bool condition, String format, params object[] args)
-    {
-        UnityEngine.Assertions.Assert.IsFalse(condition, string.Format(format, args));
-    }
-    public static void IsNull&lt;T&gt;(T value, string message=null) where T : class
-    {
-        UnityEngine.Assertions.Assert.IsNull&lt;T&gt;(value, message);
-    }
-    public static void IsNull(UnityEngine.Object value, string message = null)
-    {
-        UnityEngine.Assertions.Assert.IsNull(value, message);
-    }
-    public static void IsNotNull&lt;T&gt;(T value, string message = null) where T : class
-    {
-        UnityEngine.Assertions.Assert.IsNotNull&lt;T&gt;(value, message);
-    }
-    public static void IsNotNull(UnityEngine.Object value, string message = null)
-    {
-        UnityEngine.Assertions.Assert.IsNotNull(value, message);
-    }
-}
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">using System;
+</span></span><span class="line"><span class="cl">using UnityEngine;
+</span></span><span class="line"><span class="cl">using UnityEngine.Assertions;
+</span></span><span class="line"><span class="cl">//using UnityEngine.Assertions.Must;
+</span></span><span class="line"><span class="cl">//using UnityEngine.Assertions.Comparers;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">///  Unity 断言
+</span></span><span class="line"><span class="cl">/// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">public class Assert
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    ///  Whether Unity should throw an exception on a failure.
+</span></span><span class="line"><span class="cl">    ///  是否抛出异常
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    public static bool raiseExceptions
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        get
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            return UnityEngine.Assertions.Assert.raiseExceptions;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        set
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            UnityEngine.Assertions.Assert.raiseExceptions = value;
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /// &lt;summary&gt;
+</span></span><span class="line"><span class="cl">    /// 期待的值为True
+</span></span><span class="line"><span class="cl">    ///  如果是condition是false 则抛出异常 msg
+</span></span><span class="line"><span class="cl">    /// &lt;/summary&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;condition&#34;&gt;false 则抛出异常 msg&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    /// &lt;param name=&#34;msg&#34;&gt;&lt;/param&gt;
+</span></span><span class="line"><span class="cl">    public static void IsTrue(bool condition,string msg=null)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        UnityEngine.Assertions.Assert.IsTrue(condition, msg);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    public static void IsTrue(bool condition, String format, params object[] args)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        UnityEngine.Assertions.Assert.IsTrue(condition, string.Format(format, args));
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    public static void IsFalse(bool condition, string msg = null)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        UnityEngine.Assertions.Assert.IsFalse(condition, msg);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    public static void IsFalse(bool condition, String format, params object[] args)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        UnityEngine.Assertions.Assert.IsFalse(condition, string.Format(format, args));
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    public static void IsNull&lt;T&gt;(T value, string message=null) where T : class
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        UnityEngine.Assertions.Assert.IsNull&lt;T&gt;(value, message);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    public static void IsNull(UnityEngine.Object value, string message = null)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        UnityEngine.Assertions.Assert.IsNull(value, message);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    public static void IsNotNull&lt;T&gt;(T value, string message = null) where T : class
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        UnityEngine.Assertions.Assert.IsNotNull&lt;T&gt;(value, message);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    public static void IsNotNull(UnityEngine.Object value, string message = null)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        UnityEngine.Assertions.Assert.IsNotNull(value, message);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>参考文章：<a href="https://blog.csdn.net/u010019717/article/details/50375226" target="_blank" rel="noopener noreffer">https://blog.csdn.net/u010019717/article/details/50375226</a></p>
@@ -304,7 +302,7 @@ public class Assert
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

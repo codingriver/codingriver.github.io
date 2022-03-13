@@ -8,10 +8,10 @@
         <title>Unity URP笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Unity URP笔记" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity-urp%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-26T14:36:31+08:00" />
 <meta property="article:modified_time" content="2021-07-26T14:36:31+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -285,7 +285,7 @@ ref: <a href="https://blog.csdn.net/qq_33700123/article/details/114092028" targe
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -401,121 +401,121 @@ ref: <a href="https://blog.csdn.net/qq_33700123/article/details/114092028" targe
 </span><span class="lnt">114
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="n">Render</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">renderContext</span><span class="p">,</span> <span class="n">Camera</span><span class="p">[]</span> <span class="n">cameras</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">BeginFrameRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">cameras</span><span class="p">);</span>
-            <span class="n">GraphicsSettings</span><span class="p">.</span><span class="n">lightsUseLinearIntensity</span> <span class="p">=</span> <span class="p">(</span><span class="n">QualitySettings</span><span class="p">.</span><span class="n">activeColorSpace</span> <span class="p">==</span> <span class="n">ColorSpace</span><span class="p">.</span><span class="n">Linear</span><span class="p">);</span>
-            <span class="n">GraphicsSettings</span><span class="p">.</span><span class="n">useScriptableRenderPipelineBatching</span> <span class="p">=</span> <span class="n">asset</span><span class="p">.</span><span class="n">useSRPBatcher</span><span class="p">;</span>
-            <span class="n">SetupPerFrameShaderConstants</span><span class="p">();</span>
-            <span class="n">SortCameras</span><span class="p">(</span><span class="n">cameras</span><span class="p">);</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">cameras</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">){</span>
-                <span class="kt">var</span> <span class="n">camera</span> <span class="p">=</span> <span class="n">cameras</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">IsGameCamera</span><span class="p">(</span><span class="n">camera</span><span class="p">))</span>
-                <span class="p">{</span>
-                    <span class="n">RenderCameraStack</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
-                <span class="p">}</span>
-                <span class="k">else</span>
-                <span class="p">{</span>
-                    <span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
-                    <span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
-                    <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
-					<span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-            <span class="n">EndFrameRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">cameras</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">Camera</span> <span class="n">camera</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">UniversalAdditionalCameraData</span> <span class="n">additionalCameraData</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">IsGameCamera</span><span class="p">(</span><span class="n">camera</span><span class="p">))</span>
-                <span class="n">camera</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">additionalCameraData</span><span class="p">);</span>
-            <span class="n">InitializeCameraData</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">additionalCameraData</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">cameraData</span><span class="p">);</span>
-            <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">cameraData</span><span class="p">,</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">postProcessEnabled</span><span class="p">);</span>
-        <span class="p">}</span>	 
-        <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// Renders a single camera. This method will do culling, setup and execution of the renderer.
-</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;context&#34;&gt;Render context used to record commands during execution.&lt;/param&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;cameraData&#34;&gt;Camera rendering data. This might contain data inherited from a base camera.&lt;/param&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;anyPostProcessingEnabled&#34;&gt;True if at least one camera has post-processing enabled in the stack, false otherwise.&lt;/param&gt;
-</span><span class="c1"></span>        <span class="k">static</span> <span class="k">void</span> <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">CameraData</span> <span class="n">cameraData</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">anyPostProcessingEnabled</span><span class="p">)</span>
-		<span class="p">{</span>
-            <span class="n">Camera</span> <span class="n">camera</span> <span class="p">=</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">camera</span><span class="p">;</span>
-            <span class="kt">var</span> <span class="n">renderer</span> <span class="p">=</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">renderer</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(!</span><span class="n">TryGetCullingParameters</span><span class="p">(</span><span class="n">cameraData</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">cullingParameters</span><span class="p">))</span>
-                <span class="k">return</span><span class="p">;</span>
-            <span class="n">ScriptableRenderer</span><span class="p">.</span><span class="n">current</span> <span class="p">=</span> <span class="n">renderer</span><span class="p">;</span>
-            <span class="kt">bool</span> <span class="n">isSceneViewCamera</span> <span class="p">=</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">isSceneViewCamera</span><span class="p">;</span>
-            <span class="n">CommandBuffer</span> <span class="n">cmd</span> <span class="p">=</span> <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
-                <span class="n">renderer</span><span class="p">.</span><span class="n">Clear</span><span class="p">(</span><span class="n">cameraData</span><span class="p">.</span><span class="n">renderType</span><span class="p">);</span>
-                <span class="n">renderer</span><span class="p">.</span><span class="n">SetupCullingParameters</span><span class="p">(</span><span class="k">ref</span> <span class="n">cullingParameters</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cameraData</span><span class="p">);</span>
-                <span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span> <span class="c1">// Send all the commands enqueued so far in the CommandBuffer cmd, to the ScriptableRenderContext context
-</span><span class="c1"></span>                <span class="n">cmd</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
-                <span class="kt">var</span> <span class="n">cullResults</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">Cull</span><span class="p">(</span><span class="k">ref</span> <span class="n">cullingParameters</span><span class="p">);</span>
-                <span class="n">InitializeRenderingData</span><span class="p">(</span><span class="n">asset</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cameraData</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cullResults</span><span class="p">,</span> <span class="n">anyPostProcessingEnabled</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">renderingData</span><span class="p">);</span>
-                <span class="n">renderer</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span>
-                <span class="n">renderer</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span>
-            <span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span> <span class="c1">// Sends to ScriptableRenderContext all the commands enqueued since cmd.Clear, i.e the &#34;EndSample&#34; command
-</span><span class="c1"></span>            <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Release</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
-                <span class="n">context</span><span class="p">.</span><span class="n">Submit</span><span class="p">();</span> <span class="c1">// Actually execute the commands that we previously sent to the ScriptableRenderContext context
-</span><span class="c1"></span>        <span class="p">}</span>     
-
-        <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>        <span class="c1">// Renders a camera stack. This method calls RenderSingleCamera for each valid camera in the stack.
-</span><span class="c1"></span>        <span class="c1">// The last camera resolves the final target to screen.
-</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;context&#34;&gt;Render context used to record commands during execution.&lt;/param&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;camera&#34;&gt;Camera to render.&lt;/param&gt;
-</span><span class="c1"></span>        <span class="k">static</span> <span class="k">void</span> <span class="n">RenderCameraStack</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">Camera</span> <span class="n">baseCamera</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="n">baseCamera</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="p">&lt;</span><span class="n">UniversalAdditionalCameraData</span><span class="p">&gt;(</span><span class="k">out</span> <span class="kt">var</span> <span class="n">baseCameraAdditionalData</span><span class="p">);</span>
-            <span class="c1">// Overlay cameras will be rendered stacked while rendering base cameras
-</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">baseCameraAdditionalData</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">renderType</span> <span class="p">==</span> <span class="n">CameraRenderType</span><span class="p">.</span><span class="n">Overlay</span><span class="p">)</span>
-                <span class="k">return</span><span class="p">;</span>
-            <span class="c1">// renderer contains a stack if it has additional data and the renderer supports stacking
-</span><span class="c1"></span>            <span class="kt">var</span> <span class="n">renderer</span> <span class="p">=</span> <span class="n">baseCameraAdditionalData</span><span class="p">?.</span><span class="n">scriptableRenderer</span><span class="p">;</span>
-            <span class="kt">bool</span> <span class="n">supportsCameraStacking</span> <span class="p">=</span> <span class="n">renderer</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">renderer</span><span class="p">.</span><span class="n">supportedRenderingFeatures</span><span class="p">.</span><span class="n">cameraStacking</span><span class="p">;</span>
-            <span class="n">List</span><span class="p">&lt;</span><span class="n">Camera</span><span class="p">&gt;</span> <span class="n">cameraStack</span> <span class="p">=</span> <span class="p">(</span><span class="n">supportsCameraStacking</span><span class="p">)</span> <span class="p">?</span> <span class="n">baseCameraAdditionalData</span><span class="p">?.</span><span class="n">cameraStack</span> <span class="p">:</span> <span class="k">null</span><span class="p">;</span>
-            <span class="kt">bool</span> <span class="n">anyPostProcessingEnabled</span> <span class="p">=</span> <span class="n">baseCameraAdditionalData</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">renderPostProcessing</span><span class="p">;</span>
-            <span class="c1">// We need to know the last active camera in the stack to be able to resolve
-</span><span class="c1"></span>            <span class="c1">// rendering to screen when rendering it. The last camera in the stack is not
-</span><span class="c1"></span>            <span class="c1">// necessarily the last active one as it users might disable it.
-</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">lastActiveOverlayCameraIndex</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">cameraStack</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
-            <span class="p">{</span>
-                <span class="kt">var</span> <span class="n">baseCameraRendererType</span> <span class="p">=</span> <span class="n">baseCameraAdditionalData</span><span class="p">?.</span><span class="n">scriptableRenderer</span><span class="p">.</span><span class="n">GetType</span><span class="p">();</span>
-				<span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">UpdateCameraStack</span><span class="p">();</span>
-            <span class="p">}</span>
-            <span class="c1">// Post-processing not supported in GLES2.
-</span><span class="c1"></span>            <span class="n">anyPostProcessingEnabled</span> <span class="p">&amp;=</span> <span class="n">SystemInfo</span><span class="p">.</span><span class="n">graphicsDeviceType</span> <span class="p">!=</span> <span class="n">GraphicsDeviceType</span><span class="p">.</span><span class="n">OpenGLES2</span><span class="p">;</span>
-            <span class="kt">bool</span> <span class="n">isStackedRendering</span> <span class="p">=</span> <span class="n">lastActiveOverlayCameraIndex</span> <span class="p">!=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
-			<span class="c1">// Update volumeframework before initializing additional camera data
-</span><span class="c1"></span>			<span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">baseCamera</span><span class="p">,</span> <span class="n">baseCameraAdditionalData</span><span class="p">);</span>
-			<span class="n">InitializeCameraData</span><span class="p">(</span><span class="n">baseCamera</span><span class="p">,</span> <span class="n">baseCameraAdditionalData</span><span class="p">,</span> <span class="p">!</span><span class="n">isStackedRendering</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">baseCameraData</span><span class="p">);</span>
-			<span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">baseCamera</span><span class="p">);</span>
-			<span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">baseCameraData</span><span class="p">,</span> <span class="n">anyPostProcessingEnabled</span><span class="p">);</span>
-			<span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">baseCamera</span><span class="p">);</span>
-			<span class="k">if</span> <span class="p">(</span><span class="n">isStackedRendering</span><span class="p">)</span>
-			<span class="p">{</span>
-				<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">cameraStack</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">)</span>
-				<span class="p">{</span>
-					<span class="kt">var</span> <span class="n">currCamera</span> <span class="p">=</span> <span class="n">cameraStack</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-					<span class="k">if</span> <span class="p">(!</span><span class="n">currCamera</span><span class="p">.</span><span class="n">isActiveAndEnabled</span><span class="p">)</span>
-						<span class="k">continue</span><span class="p">;</span>
-					<span class="n">currCamera</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="p">&lt;</span><span class="n">UniversalAdditionalCameraData</span><span class="p">&gt;(</span><span class="k">out</span> <span class="kt">var</span> <span class="n">currCameraData</span><span class="p">);</span>
-					<span class="c1">// Camera is overlay and enabled
-</span><span class="c1"></span>					<span class="c1">// Copy base settings from base camera data and initialize initialize remaining specific settings for this camera type.
-</span><span class="c1"></span>					<span class="n">CameraData</span> <span class="n">overlayCameraData</span> <span class="p">=</span> <span class="n">baseCameraData</span><span class="p">;</span>
-					<span class="kt">bool</span> <span class="n">lastCamera</span> <span class="p">=</span> <span class="n">i</span> <span class="p">==</span> <span class="n">lastActiveOverlayCameraIndex</span><span class="p">;</span>
-					<span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">currCamera</span><span class="p">);</span>
-					<span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">currCamera</span><span class="p">,</span> <span class="n">currCameraData</span><span class="p">);</span>
-					<span class="n">InitializeAdditionalCameraData</span><span class="p">(</span><span class="n">currCamera</span><span class="p">,</span> <span class="n">currCameraData</span><span class="p">,</span> <span class="n">lastCamera</span><span class="p">,</span> <span class="k">ref</span> <span class="n">overlayCameraData</span><span class="p">);</span>
-					<span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">overlayCameraData</span><span class="p">,</span> <span class="n">anyPostProcessingEnabled</span><span class="p">);</span>
-					<span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">currCamera</span><span class="p">);</span>
-				<span class="p">}</span>
-			<span class="p">}</span>
-        <span class="p">}</span>                  
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">        <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="n">Render</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">renderContext</span><span class="p">,</span> <span class="n">Camera</span><span class="p">[]</span> <span class="n">cameras</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">BeginFrameRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">cameras</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">GraphicsSettings</span><span class="p">.</span><span class="n">lightsUseLinearIntensity</span> <span class="p">=</span> <span class="p">(</span><span class="n">QualitySettings</span><span class="p">.</span><span class="n">activeColorSpace</span> <span class="p">==</span> <span class="n">ColorSpace</span><span class="p">.</span><span class="n">Linear</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">GraphicsSettings</span><span class="p">.</span><span class="n">useScriptableRenderPipelineBatching</span> <span class="p">=</span> <span class="n">asset</span><span class="p">.</span><span class="n">useSRPBatcher</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SetupPerFrameShaderConstants</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SortCameras</span><span class="p">(</span><span class="n">cameras</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">cameras</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">camera</span> <span class="p">=</span> <span class="n">cameras</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">IsGameCamera</span><span class="p">(</span><span class="n">camera</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">RenderCameraStack</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">					<span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">camera</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">EndFrameRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span> <span class="n">cameras</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">Camera</span> <span class="n">camera</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">UniversalAdditionalCameraData</span> <span class="n">additionalCameraData</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">IsGameCamera</span><span class="p">(</span><span class="n">camera</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="n">camera</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="p">(</span><span class="k">out</span> <span class="n">additionalCameraData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">InitializeCameraData</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span> <span class="n">additionalCameraData</span><span class="p">,</span> <span class="k">true</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">cameraData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">cameraData</span><span class="p">,</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">postProcessEnabled</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>	 
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// Renders a single camera. This method will do culling, setup and execution of the renderer.</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;param name=&#34;context&#34;&gt;Render context used to record commands during execution.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;param name=&#34;cameraData&#34;&gt;Camera rendering data. This might contain data inherited from a base camera.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;param name=&#34;anyPostProcessingEnabled&#34;&gt;True if at least one camera has post-processing enabled in the stack, false otherwise.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">CameraData</span> <span class="n">cameraData</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">anyPostProcessingEnabled</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Camera</span> <span class="n">camera</span> <span class="p">=</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">camera</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">renderer</span> <span class="p">=</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">renderer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(!</span><span class="n">TryGetCullingParameters</span><span class="p">(</span><span class="n">cameraData</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">cullingParameters</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ScriptableRenderer</span><span class="p">.</span><span class="n">current</span> <span class="p">=</span> <span class="n">renderer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">bool</span> <span class="n">isSceneViewCamera</span> <span class="p">=</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">isSceneViewCamera</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">CommandBuffer</span> <span class="n">cmd</span> <span class="p">=</span> <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">renderer</span><span class="p">.</span><span class="n">Clear</span><span class="p">(</span><span class="n">cameraData</span><span class="p">.</span><span class="n">renderType</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">renderer</span><span class="p">.</span><span class="n">SetupCullingParameters</span><span class="p">(</span><span class="k">ref</span> <span class="n">cullingParameters</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cameraData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span> <span class="c1">// Send all the commands enqueued so far in the CommandBuffer cmd, to the ScriptableRenderContext context</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cmd</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">cullResults</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">Cull</span><span class="p">(</span><span class="k">ref</span> <span class="n">cullingParameters</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">InitializeRenderingData</span><span class="p">(</span><span class="n">asset</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cameraData</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cullResults</span><span class="p">,</span> <span class="n">anyPostProcessingEnabled</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">renderingData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">renderer</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">renderer</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span> <span class="c1">// Sends to ScriptableRenderContext all the commands enqueued since cmd.Clear, i.e the &#34;EndSample&#34; command</span>
+</span></span><span class="line"><span class="cl">            <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Release</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">context</span><span class="p">.</span><span class="n">Submit</span><span class="p">();</span> <span class="c1">// Actually execute the commands that we previously sent to the ScriptableRenderContext context</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>     
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Renders a camera stack. This method calls RenderSingleCamera for each valid camera in the stack.</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// The last camera resolves the final target to screen.</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;param name=&#34;context&#34;&gt;Render context used to record commands during execution.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;param name=&#34;camera&#34;&gt;Camera to render.&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">RenderCameraStack</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">Camera</span> <span class="n">baseCamera</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">baseCamera</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="p">&lt;</span><span class="n">UniversalAdditionalCameraData</span><span class="p">&gt;(</span><span class="k">out</span> <span class="kt">var</span> <span class="n">baseCameraAdditionalData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Overlay cameras will be rendered stacked while rendering base cameras</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">baseCameraAdditionalData</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">renderType</span> <span class="p">==</span> <span class="n">CameraRenderType</span><span class="p">.</span><span class="n">Overlay</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// renderer contains a stack if it has additional data and the renderer supports stacking</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">var</span> <span class="n">renderer</span> <span class="p">=</span> <span class="n">baseCameraAdditionalData</span><span class="p">?.</span><span class="n">scriptableRenderer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">bool</span> <span class="n">supportsCameraStacking</span> <span class="p">=</span> <span class="n">renderer</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">renderer</span><span class="p">.</span><span class="n">supportedRenderingFeatures</span><span class="p">.</span><span class="n">cameraStacking</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">List</span><span class="p">&lt;</span><span class="n">Camera</span><span class="p">&gt;</span> <span class="n">cameraStack</span> <span class="p">=</span> <span class="p">(</span><span class="n">supportsCameraStacking</span><span class="p">)</span> <span class="p">?</span> <span class="n">baseCameraAdditionalData</span><span class="p">?.</span><span class="n">cameraStack</span> <span class="p">:</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">bool</span> <span class="n">anyPostProcessingEnabled</span> <span class="p">=</span> <span class="n">baseCameraAdditionalData</span> <span class="p">!=</span> <span class="k">null</span> <span class="p">&amp;&amp;</span> <span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">renderPostProcessing</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// We need to know the last active camera in the stack to be able to resolve</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// rendering to screen when rendering it. The last camera in the stack is not</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// necessarily the last active one as it users might disable it.</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">lastActiveOverlayCameraIndex</span> <span class="p">=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">cameraStack</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">var</span> <span class="n">baseCameraRendererType</span> <span class="p">=</span> <span class="n">baseCameraAdditionalData</span><span class="p">?.</span><span class="n">scriptableRenderer</span><span class="p">.</span><span class="n">GetType</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">				<span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">UpdateCameraStack</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Post-processing not supported in GLES2.</span>
+</span></span><span class="line"><span class="cl">            <span class="n">anyPostProcessingEnabled</span> <span class="p">&amp;=</span> <span class="n">SystemInfo</span><span class="p">.</span><span class="n">graphicsDeviceType</span> <span class="p">!=</span> <span class="n">GraphicsDeviceType</span><span class="p">.</span><span class="n">OpenGLES2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">bool</span> <span class="n">isStackedRendering</span> <span class="p">=</span> <span class="n">lastActiveOverlayCameraIndex</span> <span class="p">!=</span> <span class="p">-</span><span class="m">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// Update volumeframework before initializing additional camera data</span>
+</span></span><span class="line"><span class="cl">			<span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">baseCamera</span><span class="p">,</span> <span class="n">baseCameraAdditionalData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">InitializeCameraData</span><span class="p">(</span><span class="n">baseCamera</span><span class="p">,</span> <span class="n">baseCameraAdditionalData</span><span class="p">,</span> <span class="p">!</span><span class="n">isStackedRendering</span><span class="p">,</span> <span class="k">out</span> <span class="kt">var</span> <span class="n">baseCameraData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">baseCamera</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">baseCameraData</span><span class="p">,</span> <span class="n">anyPostProcessingEnabled</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">baseCamera</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">isStackedRendering</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">cameraStack</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span> <span class="p">++</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">				<span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="kt">var</span> <span class="n">currCamera</span> <span class="p">=</span> <span class="n">cameraStack</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">					<span class="k">if</span> <span class="p">(!</span><span class="n">currCamera</span><span class="p">.</span><span class="n">isActiveAndEnabled</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">						<span class="k">continue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="n">currCamera</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="p">&lt;</span><span class="n">UniversalAdditionalCameraData</span><span class="p">&gt;(</span><span class="k">out</span> <span class="kt">var</span> <span class="n">currCameraData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">					<span class="c1">// Camera is overlay and enabled</span>
+</span></span><span class="line"><span class="cl">					<span class="c1">// Copy base settings from base camera data and initialize initialize remaining specific settings for this camera type.</span>
+</span></span><span class="line"><span class="cl">					<span class="n">CameraData</span> <span class="n">overlayCameraData</span> <span class="p">=</span> <span class="n">baseCameraData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="kt">bool</span> <span class="n">lastCamera</span> <span class="p">=</span> <span class="n">i</span> <span class="p">==</span> <span class="n">lastActiveOverlayCameraIndex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">					<span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">currCamera</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">					<span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">currCamera</span><span class="p">,</span> <span class="n">currCameraData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">					<span class="n">InitializeAdditionalCameraData</span><span class="p">(</span><span class="n">currCamera</span><span class="p">,</span> <span class="n">currCameraData</span><span class="p">,</span> <span class="n">lastCamera</span><span class="p">,</span> <span class="k">ref</span> <span class="n">overlayCameraData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">					<span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">overlayCameraData</span><span class="p">,</span> <span class="n">anyPostProcessingEnabled</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">					<span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">currCamera</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>                  
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>如果Unity版本高<code>UNITY_2021_1_OR_NEWER</code>宏生效则<code>BeginContextRendering(renderContext, cameras);</code>替换<code>BeginFrameRendering(renderContext, cameras);</code>，<code> EndContextRendering(renderContext, cameras);</code>替换<code>EndFrameRendering(renderContext, cameras);</code></p>
@@ -568,7 +568,7 @@ ref: <a href="https://blog.csdn.net/qq_33700123/article/details/114092028" targe
 <li>如果获取深度
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -577,14 +577,14 @@ ref: <a href="https://blog.csdn.net/qq_33700123/article/details/114092028" targe
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp"><span class="n">ConfigureCameraTarget</span><span class="p">(</span><span class="n">BuiltinRenderTextureType</span><span class="p">.</span><span class="n">CameraTarget</span><span class="p">,</span> <span class="n">BuiltinRenderTextureType</span><span class="p">.</span><span class="n">CameraTarget</span><span class="p">);</span>
-<span class="n">AddRenderPasses</span><span class="p">(</span><span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span>
-<span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_RenderOpaqueForwardPass</span><span class="p">);</span>
-
-<span class="c1">// TODO: Do we need to inject transparents and skybox when rendering depth only camera? They don&#39;t  write to depth.
-</span><span class="c1"></span><span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_DrawSkyboxPass</span><span class="p">);</span>    
-<span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_RenderTransparentForwardPass</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl"><span class="n">ConfigureCameraTarget</span><span class="p">(</span><span class="n">BuiltinRenderTextureType</span><span class="p">.</span><span class="n">CameraTarget</span><span class="p">,</span> <span class="n">BuiltinRenderTextureType</span><span class="p">.</span><span class="n">CameraTarget</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">AddRenderPasses</span><span class="p">(</span><span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_RenderOpaqueForwardPass</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// TODO: Do we need to inject transparents and skybox when rendering depth only camera? They don&#39;t  write to depth.</span>
+</span></span><span class="line"><span class="cl"><span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_DrawSkyboxPass</span><span class="p">);</span>    
+</span></span><span class="line"><span class="cl"><span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_RenderTransparentForwardPass</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li><code>ConfigureCameraColorTarget(activeColorRenderTargetId);</code></li>
@@ -642,7 +642,7 @@ ref: <a href="https://blog.csdn.net/qq_33700123/article/details/114092028" targe
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -662,25 +662,25 @@ ref: <a href="https://blog.csdn.net/qq_33700123/article/details/114092028" targe
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">    <span class="k">void</span> <span class="n">ExecuteBlock</span><span class="p">(</span><span class="kt">int</span> <span class="n">blockIndex</span><span class="p">,</span> <span class="k">in</span> <span class="n">RenderBlocks</span> <span class="n">renderBlocks</span><span class="p">,</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">RenderingData</span> <span class="n">renderingData</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">submit</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
-    <span class="p">{</span>   <span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">currIndex</span> <span class="k">in</span> <span class="n">renderBlocks</span><span class="p">.</span><span class="n">GetRange</span><span class="p">(</span><span class="n">blockIndex</span><span class="p">))</span> <span class="c1">//循环所有Pass
-</span><span class="c1"></span>        <span class="p">{</span><span class="kt">var</span> <span class="n">renderPass</span> <span class="p">=</span> <span class="n">m_ActiveRenderPassQueue</span><span class="p">[</span><span class="n">currIndex</span><span class="p">];</span>
-            <span class="n">ExecuteRenderPass</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">renderPass</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);}</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">submit</span><span class="p">)</span> <span class="n">context</span><span class="p">.</span><span class="n">Submit</span><span class="p">();}</span>      
-    <span class="k">void</span> <span class="n">ExecuteRenderPass</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">ScriptableRenderPass</span> <span class="n">renderPass</span><span class="p">,</span> <span class="k">ref</span>    <span class="n">RenderingData</span> <span class="n">renderingData</span><span class="p">){</span>
-        <span class="k">using</span> <span class="nn">var</span> <span class="n">profScope</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ProfilingScope</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">renderPass</span><span class="p">.</span><span class="n">profilingSampler</span><span class="p">);</span>
-        <span class="k">ref</span> <span class="n">CameraData</span> <span class="n">cameraData</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">.</span><span class="n">cameraData</span><span class="p">;</span>
-        <span class="n">CommandBuffer</span> <span class="n">cmd</span> <span class="p">=</span> <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
-        <span class="c1">// Track CPU only as GPU markers for this scope were &#34;too noisy&#34;.
-</span><span class="c1"></span>        <span class="k">using</span> <span class="p">(</span><span class="k">new</span> <span class="n">ProfilingScope</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">Profiling</span><span class="p">.</span><span class="n">RenderPass</span><span class="p">.</span><span class="n">configure</span><span class="p">))</span>
-        <span class="p">{</span>   <span class="n">renderPass</span><span class="p">.</span><span class="n">Configure</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">cameraTargetDescriptor</span><span class="p">);</span> <span class="c1">//配置Pass数据
-</span><span class="c1"></span>            <span class="n">SetRenderPassAttachments</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">renderPass</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cameraData</span><span class="p">);}</span>
-        <span class="c1">// Also, we execute the commands recorded at this point to ensure SetRenderTarget is called     before RenderPass.Execute
-</span><span class="c1"></span>        <span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
-        <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Release</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
-        <span class="n">renderPass</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span> <span class="c1">//执行对应Pass的Execute
-</span><span class="c1"></span>    <span class="p">}</span>                  
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">ExecuteBlock</span><span class="p">(</span><span class="kt">int</span> <span class="n">blockIndex</span><span class="p">,</span> <span class="k">in</span> <span class="n">RenderBlocks</span> <span class="n">renderBlocks</span><span class="p">,</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">RenderingData</span> <span class="n">renderingData</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">submit</span> <span class="p">=</span> <span class="k">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>   <span class="k">foreach</span> <span class="p">(</span><span class="kt">int</span> <span class="n">currIndex</span> <span class="k">in</span> <span class="n">renderBlocks</span><span class="p">.</span><span class="n">GetRange</span><span class="p">(</span><span class="n">blockIndex</span><span class="p">))</span> <span class="c1">//循环所有Pass</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="kt">var</span> <span class="n">renderPass</span> <span class="p">=</span> <span class="n">m_ActiveRenderPassQueue</span><span class="p">[</span><span class="n">currIndex</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ExecuteRenderPass</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">renderPass</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">submit</span><span class="p">)</span> <span class="n">context</span><span class="p">.</span><span class="n">Submit</span><span class="p">();}</span>      
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">ExecuteRenderPass</span><span class="p">(</span><span class="n">ScriptableRenderContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">ScriptableRenderPass</span> <span class="n">renderPass</span><span class="p">,</span> <span class="k">ref</span>    <span class="n">RenderingData</span> <span class="n">renderingData</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">using</span> <span class="nn">var</span> <span class="n">profScope</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ProfilingScope</span><span class="p">(</span><span class="k">null</span><span class="p">,</span> <span class="n">renderPass</span><span class="p">.</span><span class="n">profilingSampler</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">ref</span> <span class="n">CameraData</span> <span class="n">cameraData</span> <span class="p">=</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">.</span><span class="n">cameraData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CommandBuffer</span> <span class="n">cmd</span> <span class="p">=</span> <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Track CPU only as GPU markers for this scope were &#34;too noisy&#34;.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">using</span> <span class="p">(</span><span class="k">new</span> <span class="n">ProfilingScope</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">Profiling</span><span class="p">.</span><span class="n">RenderPass</span><span class="p">.</span><span class="n">configure</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>   <span class="n">renderPass</span><span class="p">.</span><span class="n">Configure</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">cameraData</span><span class="p">.</span><span class="n">cameraTargetDescriptor</span><span class="p">);</span> <span class="c1">//配置Pass数据</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SetRenderPassAttachments</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">renderPass</span><span class="p">,</span> <span class="k">ref</span> <span class="n">cameraData</span><span class="p">);}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Also, we execute the commands recorded at this point to ensure SetRenderTarget is called     before RenderPass.Execute</span>
+</span></span><span class="line"><span class="cl">        <span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Release</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">renderPass</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="k">ref</span> <span class="n">renderingData</span><span class="p">);</span> <span class="c1">//执行对应Pass的Execute</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>                  
+</span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 <li>
@@ -770,7 +770,7 @@ ref: <a href="https://blog.csdn.net/qq_33700123/article/details/114092028" targe
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

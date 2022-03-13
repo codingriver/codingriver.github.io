@@ -8,10 +8,10 @@
         <title>【数据结构】 伸展树详解（SplayTree）（可视化工具） - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="【数据结构】 伸展树详解（SplayTree）（可视化工具）" />
 <meta property="og:description" content="参考：邓俊辉 的数据结构，图片来自该资料 除了AVL树，本章将按照二叉搜索树的介绍，继续介绍平衡二叉搜索树家族中的另一个成员—Splay伸展树。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-03T21:09:12+08:00" />
 <meta property="article:modified_time" content="2020-09-03T21:09:12+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3\/"
-        },"genre": "posts","keywords": "数据结构","wordcount":  3760 ,
+        },"genre": "posts","keywords": "数据结构","wordcount":  3759 ,
         "url": "https:\/\/codingriver.github.io\/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3\/","datePublished": "2020-09-03T21:09:12+08:00","dateModified": "2020-09-03T21:09:12+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">【数据结构】 伸展树详解（SplayTree）（可视化工具）</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"><i class="far fa-folder fa-fw"></i>数据结构</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-03 21:09:12">2020-09-03 21:09:12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3760 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-03 21:09:12">2020-09-03 21:09:12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3759 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" class="leancloud_visitors" data-flag-title="【数据结构】 伸展树详解（SplayTree）（可视化工具）">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -257,7 +257,7 @@ v的父亲p即是树根r。</p>
         title="在这里插入图片描述" /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -374,122 +374,122 @@ v的父亲p即是树根r。</p>
 </span><span class="lnt">115
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// 伸展操作
-</span><span class="c1"></span>        <span class="c1">/// Zig:右旋转，顺时针旋转
-</span><span class="c1"></span>        <span class="c1">/// Zag:左旋转，逆时针旋转
-</span><span class="c1"></span>        <span class="c1">/// 
-</span><span class="c1"></span>        <span class="c1">///  - 单旋(单层伸展)                                                                                                                                                                                                                                                
-</span><span class="c1"></span>        <span class="c1">///              zig                              zag        
-</span><span class="c1"></span>        <span class="c1">///        （顺时针旋转g）                   （逆时针旋转g）                                                                                                                                                                                                               
-</span><span class="c1"></span>        <span class="c1">///               g                                g                                                                                                                                                                                                                                      
-</span><span class="c1"></span>        <span class="c1">///              / \                              / \                                                                                                                                                                                                                                     
-</span><span class="c1"></span>        <span class="c1">///             p   T3                           T0  p                                                                                                                                                                                                                                    
-</span><span class="c1"></span>        <span class="c1">///            / \                                  / \                                                                                                                                                                                                                                   
-</span><span class="c1"></span>        <span class="c1">///           v   T2                               T1  v                                                                                                                                                                                                                                  
-</span><span class="c1"></span>        <span class="c1">///          / \                                      / \                                                                                                                                                                                                                                 
-</span><span class="c1"></span>        <span class="c1">///         T0  T1                                   T2  T3     
-</span><span class="c1"></span>        <span class="c1">///
-</span><span class="c1"></span>        <span class="c1">///       zig单旋后：                          zag单旋后：                                                                                                                                                                                                      
-</span><span class="c1"></span>        <span class="c1">///              p                                  p                                                                                                                                                                                                              
-</span><span class="c1"></span>        <span class="c1">///           /     \                            /     \                                                                                                                                                                                                         
-</span><span class="c1"></span>        <span class="c1">///          v       g                          g       v                                                                                                                                                                                                        
-</span><span class="c1"></span>        <span class="c1">///         / \     / \                        / \     / \                                                                                                                                                                                                       
-</span><span class="c1"></span>        <span class="c1">///        T0  T1  T2  T3                     T0  T1  T2  T3       
-</span><span class="c1"></span>        <span class="c1">/// 
-</span><span class="c1"></span>        <span class="c1">///  - 双旋(双层伸展)
-</span><span class="c1"></span>        <span class="c1">///                    zig-zig                               zig-zag                               zag-zag                                zag-zig
-</span><span class="c1"></span>        <span class="c1">///       （先顺时针旋转g，后顺时针旋转p） （先顺时针旋转p(zig)，后逆时针旋转g(zag)）  （先逆时针旋转g，后逆时针旋转p）  （先逆时针旋转p(zag)，后顺时针旋转g(zig)）
-</span><span class="c1"></span>        <span class="c1">///                      g                                     g                                      g                                      g                                                                                                                                                                                                                                       
-</span><span class="c1"></span>        <span class="c1">///                     / \                                   / \                                    / \                                    / \                                                                                                                                                                                                          
-</span><span class="c1"></span>        <span class="c1">///                    p   T3                               T0   p                                  T0  p                                  p   T3                                                                                                                                                                                                       
-</span><span class="c1"></span>        <span class="c1">///                   / \                                       / \                                    / \                                / \                                                                                                                                                                             
-</span><span class="c1"></span>        <span class="c1">///                  v   T2                                    v   T3                                 T1  v                              T0  v                                                                                                                                                                                                             
-</span><span class="c1"></span>        <span class="c1">///                 / \                                       / \                                        / \                                / \                                                                                                                                                                                                          
-</span><span class="c1"></span>        <span class="c1">///                T0  T1                                    T1  T2                                     T2  T3                             T1  T2                                                                                                                                                                               
-</span><span class="c1"></span>        <span class="c1">///
-</span><span class="c1"></span>        <span class="c1">///       双旋后：  zig-zig 双旋后                        zig-zag双旋后                        zag-zag 双旋后                          zag-zig双旋后                                                                                                                                                                                                 
-</span><span class="c1"></span>        <span class="c1">///                      v                                      v                                     v                                       v                                                                                                                                                                             
-</span><span class="c1"></span>        <span class="c1">///                     / \                                 /     \                                 / \                                   /     \                                                                                                                                                        
-</span><span class="c1"></span>        <span class="c1">///                    T0   p                              g       p                               p   T3                                p       g                                                                                                                                                                                      
-</span><span class="c1"></span>        <span class="c1">///                        / \                            / \     / \                             / \                                   / \     / \                                                                                                                                                                                                                                                                            
-</span><span class="c1"></span>        <span class="c1">///                       T1  g                          T0  T1  T2  T3                          g   T2                                T0  T1  T2  T3                                                                                                                                                                                                                    
-</span><span class="c1"></span>        <span class="c1">///                          / \                                                                / \                                                                                                                                                                                                                          
-</span><span class="c1"></span>        <span class="c1">///                         T2  T3                                                             T0  T1                                                                                                                                                                                                                                                     
-</span><span class="c1"></span>        <span class="c1">///
-</span><span class="c1"></span>        <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;param name=&#34;v&#34;&gt;&lt;/param&gt;
-</span><span class="c1"></span>        <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>        <span class="k">public</span> <span class="n">Node</span> <span class="n">Splay</span><span class="p">(</span><span class="n">Node</span> <span class="n">v</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">==</span><span class="k">null</span><span class="p">)</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
-            <span class="n">Node</span> <span class="n">g</span><span class="p">=</span><span class="k">null</span><span class="p">,</span> <span class="n">p</span><span class="p">=</span><span class="k">null</span><span class="p">;</span>
-
-            <span class="k">while</span><span class="p">(!!(</span><span class="n">p</span><span class="p">=</span><span class="n">v</span><span class="p">.</span><span class="n">Parent</span><span class="p">)&amp;&amp;</span> <span class="p">!!(</span><span class="n">g</span><span class="p">=</span><span class="n">p</span><span class="p">.</span><span class="n">Parent</span><span class="p">))</span><span class="c1">//自下而上，反复对v做双层伸展
-</span><span class="c1"></span>            <span class="p">{</span>
-                <span class="n">Node</span> <span class="n">r</span> <span class="p">=</span> <span class="n">g</span><span class="p">.</span><span class="n">Parent</span><span class="p">;</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">IsLeft</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
-                <span class="p">{</span>
-                    <span class="k">if</span><span class="p">(</span><span class="n">IsLeft</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="c1">//zig-zig   先旋转v的祖父节点，然后再旋转v的父节点
-</span><span class="c1"></span>                    <span class="p">{</span>
-                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">R</span><span class="p">);</span><span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span>
-                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span><span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-                    <span class="p">}</span>
-                    <span class="k">else</span> <span class="c1">//zig-zag   先旋转v的父节点，后旋转v的祖父节点
-</span><span class="c1"></span>                    <span class="p">{</span>
-                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span> <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span>
-                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span> <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-                <span class="k">else</span>
-                <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">IsRight</span><span class="p">(</span><span class="n">p</span><span class="p">))</span><span class="c1">// zag-zag
-</span><span class="c1"></span>                    <span class="p">{</span>
-                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">L</span><span class="p">);</span> <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span>
-                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
-                        
-                    <span class="p">}</span>
-                    <span class="k">else</span>  <span class="c1">//zag-zig
-</span><span class="c1"></span>                    <span class="p">{</span>
-                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span>
-                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-
-                <span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span><span class="c1">//若原v的曾祖父r不存在，则v现在为树根Root
-</span><span class="c1"></span>                <span class="p">{</span>
-                    <span class="n">v</span><span class="p">.</span><span class="n">Parent</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-                <span class="p">}</span>
-                <span class="k">else</span>
-                <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="n">g</span> <span class="p">==</span> <span class="n">r</span><span class="p">.</span><span class="n">L</span><span class="p">)</span>
-                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
-                    <span class="k">else</span>
-                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
-                <span class="p">}</span>
-                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
-                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
-                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-
-            <span class="p">}</span><span class="c1">//双层伸展结束时，必有g=null，但p可能非空
-</span><span class="c1"></span>
-            <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">==</span><span class="n">v</span><span class="p">.</span><span class="n">Parent</span><span class="p">&amp;&amp;</span><span class="n">p</span><span class="p">!=</span><span class="k">null</span><span class="p">)</span> <span class="c1">//如果p为非空，则需要做一次单旋
-</span><span class="c1"></span>            <span class="p">{</span>
-                <span class="k">if</span><span class="p">(</span><span class="n">IsLeft</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="cm">/* zig */</span>
-                <span class="p">{</span>
-                    <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span><span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
-                <span class="p">}</span>
-                <span class="k">else</span> <span class="cm">/* zag */</span>
-                <span class="p">{</span>
-                    <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span> 
-                <span class="p">}</span>
-                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-            <span class="p">}</span>
-
-            <span class="n">v</span><span class="p">.</span><span class="n">Parent</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-            <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
-        <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">        <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// 伸展操作</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// Zig:右旋转，顺时针旋转</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// Zag:左旋转，逆时针旋转</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///  - 单旋(单层伸展)                                                                                                                                                                                                                                                </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///              zig                              zag        </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///        （顺时针旋转g）                   （逆时针旋转g）                                                                                                                                                                                                               </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///               g                                g                                                                                                                                                                                                                                      </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///              / \                              / \                                                                                                                                                                                                                                     </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///             p   T3                           T0  p                                                                                                                                                                                                                                    </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///            / \                                  / \                                                                                                                                                                                                                                   </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///           v   T2                               T1  v                                                                                                                                                                                                                                  </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///          / \                                      / \                                                                                                                                                                                                                                 </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///         T0  T1                                   T2  T3     </span>
+</span></span><span class="line"><span class="cl">        <span class="c1">///</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///       zig单旋后：                          zag单旋后：                                                                                                                                                                                                      </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///              p                                  p                                                                                                                                                                                                              </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///           /     \                            /     \                                                                                                                                                                                                         </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///          v       g                          g       v                                                                                                                                                                                                        </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///         / \     / \                        / \     / \                                                                                                                                                                                                       </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///        T0  T1  T2  T3                     T0  T1  T2  T3       </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///  - 双旋(双层伸展)</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                    zig-zig                               zig-zag                               zag-zag                                zag-zig</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///       （先顺时针旋转g，后顺时针旋转p） （先顺时针旋转p(zig)，后逆时针旋转g(zag)）  （先逆时针旋转g，后逆时针旋转p）  （先逆时针旋转p(zag)，后顺时针旋转g(zig)）</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                      g                                     g                                      g                                      g                                                                                                                                                                                                                                       </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                     / \                                   / \                                    / \                                    / \                                                                                                                                                                                                          </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                    p   T3                               T0   p                                  T0  p                                  p   T3                                                                                                                                                                                                       </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                   / \                                       / \                                    / \                                / \                                                                                                                                                                             </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                  v   T2                                    v   T3                                 T1  v                              T0  v                                                                                                                                                                                                             </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                 / \                                       / \                                        / \                                / \                                                                                                                                                                                                          </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                T0  T1                                    T1  T2                                     T2  T3                             T1  T2                                                                                                                                                                               </span>
+</span></span><span class="line"><span class="cl">        <span class="c1">///</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///       双旋后：  zig-zig 双旋后                        zig-zag双旋后                        zag-zag 双旋后                          zag-zig双旋后                                                                                                                                                                                                 </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                      v                                      v                                     v                                       v                                                                                                                                                                             </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                     / \                                 /     \                                 / \                                   /     \                                                                                                                                                        </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                    T0   p                              g       p                               p   T3                                p       g                                                                                                                                                                                      </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                        / \                            / \     / \                             / \                                   / \     / \                                                                                                                                                                                                                                                                            </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                       T1  g                          T0  T1  T2  T3                          g   T2                                T0  T1  T2  T3                                                                                                                                                                                                                    </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                          / \                                                                / \                                                                                                                                                                                                                          </span>
+</span></span><span class="line"><span class="cl">        <span class="cs">///                         T2  T3                                                             T0  T1                                                                                                                                                                                                                                                     </span>
+</span></span><span class="line"><span class="cl">        <span class="c1">///</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;param name=&#34;v&#34;&gt;&lt;/param&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">public</span> <span class="n">Node</span> <span class="n">Splay</span><span class="p">(</span><span class="n">Node</span> <span class="n">v</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="p">==</span><span class="k">null</span><span class="p">)</span> <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Node</span> <span class="n">g</span><span class="p">=</span><span class="k">null</span><span class="p">,</span> <span class="n">p</span><span class="p">=</span><span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">while</span><span class="p">(!!(</span><span class="n">p</span><span class="p">=</span><span class="n">v</span><span class="p">.</span><span class="n">Parent</span><span class="p">)&amp;&amp;</span> <span class="p">!!(</span><span class="n">g</span><span class="p">=</span><span class="n">p</span><span class="p">.</span><span class="n">Parent</span><span class="p">))</span><span class="c1">//自下而上，反复对v做双层伸展</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Node</span> <span class="n">r</span> <span class="p">=</span> <span class="n">g</span><span class="p">.</span><span class="n">Parent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">IsLeft</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span><span class="p">(</span><span class="n">IsLeft</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="c1">//zig-zig   先旋转v的祖父节点，然后再旋转v的父节点</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">R</span><span class="p">);</span><span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span><span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">else</span> <span class="c1">//zig-zag   先旋转v的父节点，后旋转v的祖父节点</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span> <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span> <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="n">IsRight</span><span class="p">(</span><span class="n">p</span><span class="p">))</span><span class="c1">// zag-zag</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">p</span><span class="p">.</span><span class="n">L</span><span class="p">);</span> <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">else</span>  <span class="c1">//zag-zig</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">r</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span><span class="c1">//若原v的曾祖父r不存在，则v现在为树根Root</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">v</span><span class="p">.</span><span class="n">Parent</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="n">g</span> <span class="p">==</span> <span class="n">r</span><span class="p">.</span><span class="n">L</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">g</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="p">}</span><span class="c1">//双层伸展结束时，必有g=null，但p可能非空</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">p</span><span class="p">==</span><span class="n">v</span><span class="p">.</span><span class="n">Parent</span><span class="p">&amp;&amp;</span><span class="n">p</span><span class="p">!=</span><span class="k">null</span><span class="p">)</span> <span class="c1">//如果p为非空，则需要做一次单旋</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">IsLeft</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="cm">/* zig */</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">);</span><span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="k">else</span> <span class="cm">/* zag */</span>
+</span></span><span class="line"><span class="cl">                <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">AttachAsRChild</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">);</span> <span class="n">AttachAsLChild</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">UpdateHeight</span><span class="p">(</span><span class="n">p</span><span class="p">);</span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">v</span><span class="p">.</span><span class="n">Parent</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="伸展树全部代码c">伸展树全部代码（C#）</h2>
 <p><a href="https://github.com/codingriver/DataStructure/blob/master/SplayTree.cs" target="_blank" rel="noopener noreffer">全部代码（C#）</a></p>
@@ -498,7 +498,7 @@ v的父亲p即是树根r。</p>
 <h4 id="测试代码">测试代码</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -539,51 +539,51 @@ v的父亲p即是树根r。</p>
 </span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-csharp" data-lang="csharp">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
-        <span class="p">{</span>
-            <span class="n">SplayTree</span> <span class="n">tree</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SplayTree</span><span class="p">();</span>
-            <span class="n">Node</span> <span class="n">n</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">;</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">7</span><span class="p">);</span>  
-            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">24</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">26</span><span class="p">);</span> 
-            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">12</span><span class="p">);</span> 
-            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">18</span><span class="p">);</span> 
-            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;   Preorder::&#34;</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Preorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;    Inorder::&#34;</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Inorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;  Postorder::&#34;</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Postorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34; Levelorder::&#34;</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Levelorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34; ZLevelorder:&#34;</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">ZLevelorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
-            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;\n\n&#34;</span><span class="p">);</span>
-
-            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">24</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">18</span><span class="p">);</span> 
-            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">7</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">26</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">16</span><span class="p">);</span>
-            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">12</span><span class="p">);</span>
-
-
-            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
-        <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">        <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">SplayTree</span> <span class="n">tree</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SplayTree</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Node</span> <span class="n">n</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">7</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">24</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">26</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">12</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="m">18</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;   Preorder::&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Preorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;    Inorder::&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Inorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34;  Postorder::&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Postorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34; Levelorder::&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Levelorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&#34; ZLevelorder:&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">ZLevelorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;\n\n&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">24</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">20</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">18</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">7</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">26</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">16</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="m">12</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="测试结果">测试结果</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -692,120 +692,118 @@ v的父亲p即是树根r。</p>
 </span><span class="lnt">107
 </span><span class="lnt">108
 </span><span class="lnt">109
-</span><span class="lnt">110
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Insert:20
-020
-
-Insert:10
-   010
-   / \
- N    020
-
-Insert:7
-         007
-         / \
-    N          010
-   / \         / \
- N     N     N    020
-
-Insert:24
-                     024
-                     / \
-         020                      N
-         / \                     / \
-   010          N           N           N
-   / \         / \         / \         / \
-007    N     N     N     N     N     N     N
-
-Insert:26
-                                             026                                                                        
-                                             / \                                                                        
-                     024                                              N
-                     / \                                             / \
-         020                      N                       N                       N
-         / \                     / \                     / \                     / \
-   010          N           N           N           N           N           N           N
-   / \         / \         / \         / \         / \         / \         / \         / \
-007    N     N     N     N     N     N     N     N     N     N     N     N     N     N     N
-
-Insert:12
-                     012
-                     / \
-         010                     026
-         / \                     / \
-   007          N          020          N
-   / \         / \         / \         / \
- N     N     N     N     N    024    N     N
-
-Insert:18
-                     018
-                     / \
-         012                     020
-         / \                     / \
-   010          N           N          026
-   / \         / \         / \         / \
-007    N     N     N     N     N    024    N
-
-   Preorder::18,12,10,7,20,26,24,
-    Inorder::7,10,12,18,20,24,26,
-  Postorder::7,10,12,24,26,20,18,
- Levelorder::18,12,20,10,26,7,24,
- ZLevelorder:18,20,12,10,26,24,7,
-
-
-Remove:24
-                                             026                                                                        
-                                             / \                                                                        
-                     018                                              N
-                     / \                                             / \
-         012                     020                      N                       N
-         / \                     / \                     / \                     / \
-   010          N           N           N           N           N           N           N
-   / \         / \         / \         / \         / \         / \         / \         / \
-007    N     N     N     N     N     N     N     N     N     N     N     N     N     N     N
-
-Remove:20
-                                             026                                                                        
-                                             / \                                                                        
-                     018                                              N
-                     / \                                             / \
-         012                      N                       N                       N
-         / \                     / \                     / \                     / \
-   010          N           N           N           N           N           N           N
-   / \         / \         / \         / \         / \         / \         / \         / \
-007    N     N     N     N     N     N     N     N     N     N     N     N     N     N     N
-
-Remove:10
-         012
-         / \
-   007         026
-   / \         / \
- N     N    018    N
-
-Remove:18
-         026
-         / \
-   012          N
-   / \         / \
-007    N     N     N
-
-Remove:7
-   012
-   / \
- N    026
-
-Remove:26
-012
-
-Remove:16
-012
-
-Remove:12
- N
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Insert:20
+</span></span><span class="line"><span class="cl">020
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Insert:10
+</span></span><span class="line"><span class="cl">   010
+</span></span><span class="line"><span class="cl">   / \
+</span></span><span class="line"><span class="cl"> N    020
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Insert:7
+</span></span><span class="line"><span class="cl">         007
+</span></span><span class="line"><span class="cl">         / \
+</span></span><span class="line"><span class="cl">    N          010
+</span></span><span class="line"><span class="cl">   / \         / \
+</span></span><span class="line"><span class="cl"> N     N     N    020
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Insert:24
+</span></span><span class="line"><span class="cl">                     024
+</span></span><span class="line"><span class="cl">                     / \
+</span></span><span class="line"><span class="cl">         020                      N
+</span></span><span class="line"><span class="cl">         / \                     / \
+</span></span><span class="line"><span class="cl">   010          N           N           N
+</span></span><span class="line"><span class="cl">   / \         / \         / \         / \
+</span></span><span class="line"><span class="cl">007    N     N     N     N     N     N     N
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Insert:26
+</span></span><span class="line"><span class="cl">                                             026                                                                        
+</span></span><span class="line"><span class="cl">                                             / \                                                                        
+</span></span><span class="line"><span class="cl">                     024                                              N
+</span></span><span class="line"><span class="cl">                     / \                                             / \
+</span></span><span class="line"><span class="cl">         020                      N                       N                       N
+</span></span><span class="line"><span class="cl">         / \                     / \                     / \                     / \
+</span></span><span class="line"><span class="cl">   010          N           N           N           N           N           N           N
+</span></span><span class="line"><span class="cl">   / \         / \         / \         / \         / \         / \         / \         / \
+</span></span><span class="line"><span class="cl">007    N     N     N     N     N     N     N     N     N     N     N     N     N     N     N
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Insert:12
+</span></span><span class="line"><span class="cl">                     012
+</span></span><span class="line"><span class="cl">                     / \
+</span></span><span class="line"><span class="cl">         010                     026
+</span></span><span class="line"><span class="cl">         / \                     / \
+</span></span><span class="line"><span class="cl">   007          N          020          N
+</span></span><span class="line"><span class="cl">   / \         / \         / \         / \
+</span></span><span class="line"><span class="cl"> N     N     N     N     N    024    N     N
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Insert:18
+</span></span><span class="line"><span class="cl">                     018
+</span></span><span class="line"><span class="cl">                     / \
+</span></span><span class="line"><span class="cl">         012                     020
+</span></span><span class="line"><span class="cl">         / \                     / \
+</span></span><span class="line"><span class="cl">   010          N           N          026
+</span></span><span class="line"><span class="cl">   / \         / \         / \         / \
+</span></span><span class="line"><span class="cl">007    N     N     N     N     N    024    N
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   Preorder::18,12,10,7,20,26,24,
+</span></span><span class="line"><span class="cl">    Inorder::7,10,12,18,20,24,26,
+</span></span><span class="line"><span class="cl">  Postorder::7,10,12,24,26,20,18,
+</span></span><span class="line"><span class="cl"> Levelorder::18,12,20,10,26,7,24,
+</span></span><span class="line"><span class="cl"> ZLevelorder:18,20,12,10,26,24,7,
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Remove:24
+</span></span><span class="line"><span class="cl">                                             026                                                                        
+</span></span><span class="line"><span class="cl">                                             / \                                                                        
+</span></span><span class="line"><span class="cl">                     018                                              N
+</span></span><span class="line"><span class="cl">                     / \                                             / \
+</span></span><span class="line"><span class="cl">         012                     020                      N                       N
+</span></span><span class="line"><span class="cl">         / \                     / \                     / \                     / \
+</span></span><span class="line"><span class="cl">   010          N           N           N           N           N           N           N
+</span></span><span class="line"><span class="cl">   / \         / \         / \         / \         / \         / \         / \         / \
+</span></span><span class="line"><span class="cl">007    N     N     N     N     N     N     N     N     N     N     N     N     N     N     N
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Remove:20
+</span></span><span class="line"><span class="cl">                                             026                                                                        
+</span></span><span class="line"><span class="cl">                                             / \                                                                        
+</span></span><span class="line"><span class="cl">                     018                                              N
+</span></span><span class="line"><span class="cl">                     / \                                             / \
+</span></span><span class="line"><span class="cl">         012                      N                       N                       N
+</span></span><span class="line"><span class="cl">         / \                     / \                     / \                     / \
+</span></span><span class="line"><span class="cl">   010          N           N           N           N           N           N           N
+</span></span><span class="line"><span class="cl">   / \         / \         / \         / \         / \         / \         / \         / \
+</span></span><span class="line"><span class="cl">007    N     N     N     N     N     N     N     N     N     N     N     N     N     N     N
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Remove:10
+</span></span><span class="line"><span class="cl">         012
+</span></span><span class="line"><span class="cl">         / \
+</span></span><span class="line"><span class="cl">   007         026
+</span></span><span class="line"><span class="cl">   / \         / \
+</span></span><span class="line"><span class="cl"> N     N    018    N
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Remove:18
+</span></span><span class="line"><span class="cl">         026
+</span></span><span class="line"><span class="cl">         / \
+</span></span><span class="line"><span class="cl">   012          N
+</span></span><span class="line"><span class="cl">   / \         / \
+</span></span><span class="line"><span class="cl">007    N     N     N
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Remove:7
+</span></span><span class="line"><span class="cl">   012
+</span></span><span class="line"><span class="cl">   / \
+</span></span><span class="line"><span class="cl"> N    026
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Remove:26
+</span></span><span class="line"><span class="cl">012
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Remove:16
+</span></span><span class="line"><span class="cl">012
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Remove:12
+</span></span><span class="line"><span class="cl"> N
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="可视化工具">可视化工具</h2>
 <p><a href="https://www.cs.usfca.edu/~galles/visualization/SplayTree.html" target="_blank" rel="noopener noreffer">可视化工具</a>（旧金山大学 (usfca)|数据结构可视化工具）</p>
@@ -839,7 +837,7 @@ Remove:12
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -8,10 +8,10 @@
         <title>URL编码与解码原理 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="URL编码与解码原理" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/url%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A7%A3%E7%A0%81%E5%8E%9F%E7%90%86/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/url%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A7%A3%E7%A0%81%E5%8E%9F%E7%90%86/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-09-17T18:18:42+08:00" />
 <meta property="article:modified_time" content="2020-09-17T18:18:42+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/url%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A7%A3%E7%A0%81%E5%8E%9F%E7%90%86\/"
-        },"genre": "posts","keywords": "Unicode编码, URL编码解码, encodeURI","wordcount":  3311 ,
+        },"genre": "posts","keywords": "Unicode编码, URL编码解码, encodeURI","wordcount":  3315 ,
         "url": "https:\/\/codingriver.github.io\/url%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A7%A3%E7%A0%81%E5%8E%9F%E7%90%86\/","datePublished": "2020-09-17T18:18:42+08:00","dateModified": "2020-09-17T18:18:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">URL编码与解码原理</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"><i class="far fa-folder fa-fw"></i>计算机基础</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-17 18:18:42">2020-09-17 18:18:42</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3311 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-17 18:18:42">2020-09-17 18:18:42</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3315 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/url%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A7%A3%E7%A0%81%E5%8E%9F%E7%90%86/" class="leancloud_visitors" data-flag-title="URL编码与解码原理">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -151,19 +151,19 @@ encodeURIComponent：（71个）：<code>!'()*-._~0-9a-zA-Z</code><br>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">escape</span><span class="p">(</span><span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#39;</span><span class="p">)</span>
-<span class="c1">// &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#34;
-</span><span class="c1"></span>
-<span class="nx">escape</span><span class="p">(</span><span class="s1">&#39;*@-_+./&#39;</span><span class="p">)</span>
-<span class="c1">// &#34;*@-_+./&#34;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">escape</span><span class="p">(</span><span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">escape</span><span class="p">(</span><span class="s1">&#39;*@-_+./&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;*@-_+./&#34;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>假设你已经了解encodeURI的编码：</p>
 <ul>
@@ -173,37 +173,37 @@ encodeURIComponent：（71个）：<code>!'()*-._~0-9a-zA-Z</code><br>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">encodeURI</span><span class="p">(</span><span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#39;</span><span class="p">)</span>
-<span class="c1">// &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#34;
-</span><span class="c1"></span>
-<span class="nb">encodeURI</span><span class="p">(</span><span class="s2">&#34;-_.!~*&#39;();/?:@&amp;=+$,#&#34;</span><span class="p">)</span>
-<span class="c1">// &#34;-_.!~*&#39;();/?:@&amp;=+$,#&#34;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">encodeURI</span><span class="p">(</span><span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">encodeURI</span><span class="p">(</span><span class="s2">&#34;-_.!~*&#39;();/?:@&amp;=+$,#&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;-_.!~*&#39;();/?:@&amp;=+$,#&#34;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>掐指一算，escape的不编码集（69个） 是 encodeURI的不编码集（82个） 的子集。</p>
 <p>当然，escape和encodeURI 是对 凹凸 进行编码的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">escape</span><span class="p">(</span><span class="s1">&#39;凹凸&#39;</span><span class="p">)</span>
-<span class="c1">//&#34;%u51F9%u51F8&#34;
-</span><span class="c1"></span>
-<span class="nb">encodeURI</span><span class="p">(</span><span class="s1">&#39;凹凸&#39;</span><span class="p">)</span>
-<span class="c1">// &#34;%E5%87%B9%E5%87%B8&#34;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">escape</span><span class="p">(</span><span class="s1">&#39;凹凸&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//&#34;%u51F9%u51F8&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">encodeURI</span><span class="p">(</span><span class="s1">&#39;凹凸&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;%E5%87%B9%E5%87%B8&#34;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>嗯，了解细节 看 下面 👇</p>
 <h2 id="2百分号编码">2、百分号编码</h2>
@@ -294,9 +294,9 @@ escape和encodeURI的百分号编码的根本区别在于，encodeURI是W3C的�
 <td><code>encodeURI('&lt;&gt;&quot;') // &quot;%3C%3E%22&quot;</code></td>
 </tr>
 <tr>
-<td><code>{}\|\^~[]'</code></td>
+<td><code>{}|\^~[]'</code></td>
 <td>某一些网关或者传输代理会篡改这些字符。你可能会感到奇怪，为什么使用一些不安全字符的时候并没有发生什么不好的事情，比如无需对~字符进行编码，前面也说了，对某些传输协议来说不是问题。</td>
-<td><code>encodeURI(&quot;{}|\^~[]'&quot;) // &quot;%7B%7D&amp;%7C%5E~%5B%5D'&quot;</code></td>
+<td>`encodeURI(&quot;{}</td>
 </tr>
 <tr>
 <td><code>0x00-0x1F, 0x7F</code></td>
@@ -319,7 +319,7 @@ escape和encodeURI的百分号编码的根本区别在于，encodeURI是W3C的�
             <div class="admonition-content"><p>encodeURI的 <strong>不编码集（82个）</strong> =</p>
 <p><em>66个未保留字符<code>-_.~A-Za-z0-9</code></em></p>
 <p>加上</p>
-<p>*18个保留字符:/?#[]@!$&amp;'()<em>+,;=</em></p>
+<p><em>18个保留字符:/?#[]@!$&amp;&rsquo;()</em>+,;=*</p>
 <p>减去</p>
 <p><em>2个不安全的保留字符[]</em></p>
 </div>
@@ -337,30 +337,30 @@ escape和encodeURI的百分号编码的根本区别在于，encodeURI是W3C的�
 <p>encodeURIComponent 假定参数是 URI 的一部分（比如协议、主机名、路径或查询字符串）。因此 encodeURIComponent() 函数将转义用于分隔 URI 各个部分的标点符号（<code>;/?:@&amp;=+$,#</code>），所以encodeURIComponent的不编码集只有71个，如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789,/?:@&amp;=+$#&#39;</span><span class="p">)</span>
-<span class="c1">// &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%2C%2F%3F%3A%40%26%3D%2B%24%23&#34;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="s1">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789,/?:@&amp;=+$#&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789%2C%2F%3F%3A%40%26%3D%2B%24%23&#34;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>再看个对比例子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="s1">&#39;https://aotu.io/&#39;</span><span class="p">)</span>
-<span class="c1">// &#34;https%3A%2F%2Faotu.io%2F&#34;
-</span><span class="c1"></span>
-<span class="nb">encodeURI</span><span class="p">(</span><span class="s1">&#39;https://aotu.io/&#39;</span><span class="p">)</span>
-<span class="c1">// &#34;https://aotu.io/&#34;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">encodeURIComponent</span><span class="p">(</span><span class="s1">&#39;https://aotu.io/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;https%3A%2F%2Faotu.io%2F&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nb">encodeURI</span><span class="p">(</span><span class="s1">&#39;https://aotu.io/&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;https://aotu.io/&#34;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="5字符编码">5、字符编码</h2>
 <p>有没有人好奇 汉字有多少个字 ？ 具体数字小编也说不上。。谁能告诉我。。</p>
@@ -386,29 +386,29 @@ UTF-8根据不同的符号而变化字节长度，编码规则如下：</p>
 <table>
 <thead>
 <tr>
-<th align="center">Unicode符号范围（十六进制）</th>
+<th style="text-align:center">Unicode符号范围（十六进制）</th>
 <th>UTF-8编码（二进制）</th>
 <th>解释</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">0000 0000~0000 007F</td>
+<td style="text-align:center">0000 0000~0000 007F</td>
 <td>0xxxxxxx</td>
 <td>字节的第一位设为0，代表是单字节字符。</td>
 </tr>
 <tr>
-<td align="center">0000 0080~0000 07FF</td>
+<td style="text-align:center">0000 0080~0000 07FF</td>
 <td>110xxxxx 10xxxxxx</td>
 <td>n=2个字节，第一个字节的前n位设为1，第n+1位设为0，其他字节的前2位为10。</td>
 </tr>
 <tr>
-<td align="center">0000 0800~0000 FFFF</td>
+<td style="text-align:center">0000 0800~0000 FFFF</td>
 <td>1110xxxx 10xxxxxx 10xxxxxx</td>
 <td>n=3个字节，第一个字节的前n位设为1，第n+1位设为0，其他字节的前2位为10。</td>
 </tr>
 <tr>
-<td align="center">0001 0000~0010 FFFF</td>
+<td style="text-align:center">0001 0000~0010 FFFF</td>
 <td>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx</td>
 <td>n=4个字节，第一个字节的前n位设为1，第n+1位设为0，其他字节的前2位为10。</td>
 </tr>
@@ -422,13 +422,13 @@ UTF-8根据不同的符号而变化字节长度，编码规则如下：</p>
 所以最后得到了<code>11100101 10000111 10111001</code>，转成十六进制就是<code>e587b9</code>，验证如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">encodeURI</span><span class="p">(</span><span class="s1">&#39;凹&#39;</span><span class="p">)</span>
-<span class="c1">// &#34;%E5%87%B9&#34;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">encodeURI</span><span class="p">(</span><span class="s1">&#39;凹&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// &#34;%E5%87%B9&#34;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>怎么解读<code>凹</code>的UTF-8编码二进制<code>11100101 10000111 10111001</code> ？</p>
 <ol>
@@ -438,8 +438,8 @@ UTF-8根据不同的符号而变化字节长度，编码规则如下：</p>
 </ol>
 <blockquote>
 <p>附：</p>
-<p>中文转Unicode在线工具：<a href="http://tool.chinaz.com/tools/unicode.aspx">http://tool.chinaz.com/tools/unicode.aspx</a></p>
-<p>二进制与十六进制在线转换工具：<a href="http://tool.oschina.net/hexconvert">http://tool.oschina.net/hexconvert</a></p>
+<p>中文转Unicode在线工具：<a href="http://tool.chinaz.com/tools/unicode.aspx" target="_blank" rel="noopener noreffer">http://tool.chinaz.com/tools/unicode.aspx</a></p>
+<p>二进制与十六进制在线转换工具：<a href="http://tool.oschina.net/hexconvert" target="_blank" rel="noopener noreffer">http://tool.oschina.net/hexconvert</a></p>
 <p><a href="https://codingriver.github.io/stringhelper%E7%BC%96%E7%A0%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/" rel="">StringHelper编码辅助工具</a></p>
 <p><a href="https://codingriver.github.io/asciiunicode%E5%92%8Cutf-8/" rel="">ASCII，Unicode，UTF-16 和 UTF-8编码等字符编码</a></p>
 <p>转自：</p>
@@ -474,7 +474,7 @@ UTF-8根据不同的符号而变化字节长度，编码规则如下：</p>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

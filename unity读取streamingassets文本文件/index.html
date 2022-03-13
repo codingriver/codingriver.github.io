@@ -8,10 +8,10 @@
         <title>unity读取StreamingAssets文本文件 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="unity读取StreamingAssets文本文件" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E8%AF%BB%E5%8F%96streamingassets%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity%E8%AF%BB%E5%8F%96streamingassets%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/unity%E8%AF%BB%E5%8F%96streamingassets%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6\/"
-        },"genre": "posts","keywords": "Unity","wordcount":  799 ,
+        },"genre": "posts","keywords": "Unity","wordcount":  798 ,
         "url": "https:\/\/codingriver.github.io\/unity%E8%AF%BB%E5%8F%96streamingassets%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">unity读取StreamingAssets文本文件</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 799 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 798 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/unity%E8%AF%BB%E5%8F%96streamingassets%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6/" class="leancloud_visitors" data-flag-title="unity读取StreamingAssets文本文件">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -120,7 +120,7 @@
 C#代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -173,69 +173,67 @@ C#代码</p>
 </span><span class="lnt">51
 </span><span class="lnt">52
 </span><span class="lnt">53
-</span><span class="lnt">54
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-cs" data-lang="cs"><span class="c1">//=====================================================
-</span><span class="c1">// - FileName:    	ProviderService 
-</span><span class="c1">// - Description:
-</span><span class="c1">// - Author:		wangguoqing
-</span><span class="c1">// - Email:			wangguoqing@hehemj.com
-</span><span class="c1">// - Created:		2017/12/13 17:12:17
-</span><span class="c1">// - CLR version: 	4.0.30319.42000
-</span><span class="c1">// - UserName:		Wang
-</span><span class="c1">// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.
-</span><span class="c1">// -  All Rights Reserved.
-</span><span class="c1">//======================================================
-</span><span class="c1"></span>
-<span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">System.Runtime.InteropServices</span><span class="p">;</span>
-<span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
-<span class="c1">/// &lt;summary&gt;
-</span><span class="c1">/// 和平台层交互必须通过unity主线程调用
-</span><span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span><span class="k">public</span> <span class="k">class</span> <span class="nc">ProviderService</span> <span class="p">:</span><span class="n">MonoBehaviour</span> <span class="p">{</span>
-    <span class="k">public</span> <span class="k">static</span> <span class="n">ProviderService</span> <span class="n">Instance</span><span class="p">;</span>
-
-<span class="cp">#if UNITY_ANDROID
-</span><span class="cp"></span>    <span class="k">private</span> <span class="n">AndroidJavaClass</span> <span class="n">jc</span><span class="p">;</span>
-    <span class="k">private</span> <span class="n">AndroidJavaObject</span> <span class="n">jo</span><span class="p">;</span>
-<span class="cp">#endif
-</span><span class="cp"></span>    <span class="k">void</span> <span class="n">Awake</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">Instance</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
-    <span class="p">}</span>
-	<span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
-    <span class="p">{</span>
-<span class="cp">#if UNITY_ANDROID &amp;&amp;!UNITY_EDITOR
-</span><span class="cp"></span>        <span class="n">jc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AndroidJavaClass</span><span class="p">(</span><span class="s">&#34;com.test.game.AppActivity&#34;</span><span class="p">);</span>
-        <span class="n">jo</span> <span class="p">=</span> <span class="n">jc</span><span class="p">.</span><span class="n">CallStatic</span><span class="p">&lt;</span><span class="n">AndroidJavaObject</span><span class="p">&gt;(</span><span class="s">&#34;GetActivity&#34;</span><span class="p">);</span>
-<span class="cp">#endif
-</span><span class="cp"></span>    <span class="p">}</span>
-
-
-    <span class="c1">/// &lt;summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// 读取StreamingAsset 下的文件
-</span><span class="c1"></span>    <span class="c1">/// 必须在unity主线程调用，否则JNI调用不过去
-</span><span class="c1"></span>    <span class="c1">/// &lt;/summary&gt;
-</span><span class="c1"></span>    <span class="c1">/// &lt;returns&gt;&lt;/returns&gt;
-</span><span class="c1"></span>    <span class="k">public</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">ReadBytes</span><span class="p">(</span><span class="kt">string</span> <span class="n">fileName</span><span class="p">)</span>
-    <span class="p">{</span>
-		<span class="kt">byte</span><span class="p">[]</span> <span class="n">data</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
-		<span class="cp">#if UNITY_ANDROID &amp;&amp;!UNITY_EDITOR
-</span><span class="cp"></span>        	<span class="n">data</span> <span class="p">=</span> <span class="n">jo</span><span class="p">.</span><span class="n">Call</span><span class="p">&lt;</span><span class="kt">byte</span><span class="p">[]&gt;(</span><span class="s">&#34;ReadBytes&#34;</span><span class="p">,</span> <span class="n">fileName</span><span class="p">);</span>
-		<span class="cp">#endif
-</span><span class="cp"></span>        	<span class="k">return</span> <span class="n">data</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="line"><span class="cl"><span class="c1">//=====================================================</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - FileName:    	ProviderService </span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Description:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Author:		wangguoqing</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Email:			wangguoqing@hehemj.com</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - Created:		2017/12/13 17:12:17</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - CLR version: 	4.0.30319.42000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// - UserName:		Wang</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// -  (C) Copyright 2008 - 2015, hehehuyu,Inc.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// -  All Rights Reserved.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//======================================================</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">System.Runtime.InteropServices</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">using</span> <span class="nn">UnityEngine</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// 和平台层交互必须通过unity主线程调用</span>
+</span></span><span class="line"><span class="cl"><span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">public</span> <span class="k">class</span> <span class="nc">ProviderService</span> <span class="p">:</span><span class="n">MonoBehaviour</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="k">static</span> <span class="n">ProviderService</span> <span class="n">Instance</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#if UNITY_ANDROID</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="n">AndroidJavaClass</span> <span class="n">jc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">private</span> <span class="n">AndroidJavaObject</span> <span class="n">jo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">Awake</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Instance</span> <span class="p">=</span> <span class="k">this</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">void</span> <span class="n">Start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="cp">#if UNITY_ANDROID &amp;&amp;!UNITY_EDITOR</span>
+</span></span><span class="line"><span class="cl">        <span class="n">jc</span> <span class="p">=</span> <span class="k">new</span> <span class="n">AndroidJavaClass</span><span class="p">(</span><span class="s">&#34;com.test.game.AppActivity&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">jo</span> <span class="p">=</span> <span class="n">jc</span><span class="p">.</span><span class="n">CallStatic</span><span class="p">&lt;</span><span class="n">AndroidJavaObject</span><span class="p">&gt;(</span><span class="s">&#34;GetActivity&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 读取StreamingAsset 下的文件</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// 必须在unity主线程调用，否则JNI调用不过去</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;/summary&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="cs">/// &lt;returns&gt;&lt;/returns&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">public</span> <span class="kt">byte</span><span class="p">[]</span> <span class="n">ReadBytes</span><span class="p">(</span><span class="kt">string</span> <span class="n">fileName</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">byte</span><span class="p">[]</span> <span class="n">data</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="cp">#if UNITY_ANDROID &amp;&amp;!UNITY_EDITOR</span>
+</span></span><span class="line"><span class="cl">        	<span class="n">data</span> <span class="p">=</span> <span class="n">jo</span><span class="p">.</span><span class="n">Call</span><span class="p">&lt;</span><span class="kt">byte</span><span class="p">[]&gt;(</span><span class="s">&#34;ReadBytes&#34;</span><span class="p">,</span> <span class="n">fileName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="err">#</span><span class="n">endif</span>
+</span></span><span class="line"><span class="cl">        	<span class="k">return</span> <span class="n">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Android代码</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -361,131 +359,131 @@ C#代码</p>
 </span><span class="lnt">124
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.test.game</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">com.unity3d.player.UnityPlayerActivity</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.io.ByteArrayOutputStream</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.unity3d.player.UnityPlayer</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">android.app.AlertDialog</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.content.BroadcastReceiver</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.content.ClipData</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.content.ClipboardManager</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.content.Context</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.content.Intent</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.content.IntentFilter</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.content.res.AssetManager</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.content.res.Resources</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.graphics.Bitmap</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.graphics.BitmapFactory</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.net.ConnectivityManager</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.net.NetworkInfo</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.net.Uri</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.net.wifi.WifiInfo</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.net.wifi.WifiManager</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.os.BatteryManager</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.os.Environment</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.telephony.TelephonyManager</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.widget.ImageView</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">android.widget.Toast</span><span class="o">;</span>
-
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppActivity</span> <span class="kd">extends</span> <span class="n">UnityPlayerActivity</span> <span class="o">{</span>
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">GameObjectName</span><span class="o">=</span><span class="s">&#34;Service&#34;</span><span class="o">;</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">ApplinkMethodName</span><span class="o">=</span><span class="s">&#34;BroadcastApplinkUrl&#34;</span><span class="o">;</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">BatteryChangedMethodName</span><span class="o">=</span><span class="s">&#34;BroadcastBatteryChanged&#34;</span><span class="o">;</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">AppPackName</span> <span class="o">=</span> <span class="s">&#34;com.hehegames.majiangone&#34;</span><span class="o">;</span>
-	
-	<span class="kd">public</span> <span class="kd">static</span> <span class="n">AppActivity</span> <span class="n">activity</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
-	<span class="n">TelephonyManager</span> <span class="n">phoneManager</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
-	<span class="n">WifiManager</span> <span class="n">wifiManager</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
-	<span class="n">WifiInfo</span> <span class="n">wifiInfo</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>       <span class="c1">//获得的Wifi信息 
-</span><span class="c1"></span>	<span class="nd">@Override</span>
-	  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span>
-	  <span class="o">{</span>
-		<span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">&#34;life&#34;</span><span class="o">,</span><span class="s">&#34;onCreate&#34;</span><span class="o">);</span>  
-		  <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-		  <span class="n">activity</span><span class="o">=</span><span class="k">this</span><span class="o">;</span>
-		  <span class="c1">//显示splash
-</span><span class="c1"></span>		  <span class="n">ShowSplash</span><span class="o">();</span>
-		  <span class="n">phoneManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">TelephonyManager</span><span class="o">)</span> <span class="k">this</span><span class="o">.</span><span class="na">getSystemService</span><span class="o">(</span><span class="n">TELEPHONY_SERVICE</span><span class="o">);</span>
-	       <span class="c1">// 获得WifiManager  
-</span><span class="c1"></span>	        <span class="n">wifiManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">WifiManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">WIFI_SERVICE</span><span class="o">);</span>
-	        <span class="n">assetManager</span> <span class="o">=</span> <span class="n">getAssets</span><span class="o">();</span>
-	       <span class="c1">//applink 
-</span><span class="c1"></span>		  <span class="n">Uri</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getData</span><span class="o">();</span>
-		  <span class="k">if</span><span class="o">(</span><span class="n">uri</span><span class="o">!=</span><span class="kc">null</span><span class="o">)</span>
-		  <span class="o">{</span>
-			  <span class="n">ApplinkUrl</span><span class="o">=</span><span class="n">uri</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-		  <span class="o">}</span>
-		  <span class="k">else</span>
-		  <span class="o">{</span>
-			  <span class="n">ApplinkUrl</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
-		  <span class="o">}</span>
-		  
-	  <span class="o">}</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="n">AppActivity</span> <span class="nf">GetActivity</span><span class="o">()</span>
-	<span class="o">{</span>
-		
-		<span class="k">return</span> <span class="n">activity</span><span class="o">;</span>
-	<span class="o">}</span>
-    
-    <span class="c1">//********************************read StreamingAsset file*************************************************
-</span><span class="c1"></span>    <span class="kd">protected</span> <span class="n">AssetManager</span> <span class="n">assetManager</span><span class="o">;</span>
-	<span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">ReadBytesByStream</span><span class="o">(</span><span class="n">InputStream</span> <span class="n">inputStream</span><span class="o">)</span> 
-	<span class="o">{</span>
- 
-	  <span class="n">ByteArrayOutputStream</span> <span class="n">outputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="o">();</span>
-<span class="c1">//长度这里暂时先写成1024
-</span><span class="c1"></span>	  <span class="kt">byte</span> <span class="n">buf</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span> <span class="o">[</span><span class="n">2048</span><span class="o">];</span>
- 
-	  <span class="kt">int</span> <span class="n">len</span><span class="o">;</span>
- 
-	  <span class="k">try</span> <span class="o">{</span>
- 
-	   <span class="k">while</span> <span class="o">((</span><span class="n">len</span> <span class="o">=</span> <span class="n">inputStream</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buf</span><span class="o">))</span> <span class="o">!=</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
- 
-	    <span class="n">outputStream</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buf</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
- 
-	   <span class="o">}</span>
- 
-	   <span class="n">outputStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
- 
-	   <span class="n">inputStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
- 
-	  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-		  <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-	  <span class="o">}</span>
-	  <span class="k">return</span> <span class="n">outputStream</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">();</span>
-	<span class="o">}</span>    
-
-	
-	<span class="c1">//load StreamingAsset file by byte array
-</span><span class="c1"></span>	<span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">ReadBytes</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">)</span>
-	<span class="o">{</span>
-	
-		 <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="kc">null</span> <span class="o">;</span>
-		 
-		  <span class="k">try</span> <span class="o">{</span>
- 
-			   <span class="n">inputStream</span> <span class="o">=</span> <span class="n">assetManager</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
- 
-			  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
- 
-			   <span class="n">Log</span><span class="o">.</span><span class="na">v</span> <span class="o">(</span><span class="s">&#34;unity&#34;</span><span class="o">,</span> <span class="s">&#34;ReadBytes:::&#34;</span><span class="o">+</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-			   <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-			  <span class="o">}</span>
- 
-		  <span class="k">return</span> <span class="n">ReadBytesByStream</span><span class="o">(</span><span class="n">inputStream</span><span class="o">);</span>
-	<span class="o">}</span>	 
-<span class="o">}</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.test.game</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.unity3d.player.UnityPlayerActivity</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.ByteArrayOutputStream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.unity3d.player.UnityPlayer</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.app.AlertDialog</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.content.BroadcastReceiver</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.content.ClipData</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.content.ClipboardManager</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.content.Context</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.content.Intent</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.content.IntentFilter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.content.res.AssetManager</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.content.res.Resources</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.graphics.Bitmap</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.graphics.BitmapFactory</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.net.ConnectivityManager</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.net.NetworkInfo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.net.Uri</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.net.wifi.WifiInfo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.net.wifi.WifiManager</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.os.BatteryManager</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.os.Environment</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.telephony.TelephonyManager</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.util.Log</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.widget.ImageView</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">android.widget.Toast</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppActivity</span> <span class="kd">extends</span> <span class="n">UnityPlayerActivity</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">GameObjectName</span><span class="o">=</span><span class="s">&#34;Service&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">ApplinkMethodName</span><span class="o">=</span><span class="s">&#34;BroadcastApplinkUrl&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">BatteryChangedMethodName</span><span class="o">=</span><span class="s">&#34;BroadcastBatteryChanged&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">AppPackName</span> <span class="o">=</span> <span class="s">&#34;com.hehegames.majiangone&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="n">AppActivity</span> <span class="n">activity</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">TelephonyManager</span> <span class="n">phoneManager</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">WifiManager</span> <span class="n">wifiManager</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">WifiInfo</span> <span class="n">wifiInfo</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>       <span class="c1">//获得的Wifi信息 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">	  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">	  <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">&#34;life&#34;</span><span class="o">,</span><span class="s">&#34;onCreate&#34;</span><span class="o">);</span>  
+</span></span><span class="line"><span class="cl">		  <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		  <span class="n">activity</span><span class="o">=</span><span class="k">this</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">		  <span class="c1">//显示splash
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		  <span class="n">ShowSplash</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		  <span class="n">phoneManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">TelephonyManager</span><span class="o">)</span> <span class="k">this</span><span class="o">.</span><span class="na">getSystemService</span><span class="o">(</span><span class="n">TELEPHONY_SERVICE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	       <span class="c1">// 获得WifiManager  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	        <span class="n">wifiManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">WifiManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">WIFI_SERVICE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	        <span class="n">assetManager</span> <span class="o">=</span> <span class="n">getAssets</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">	       <span class="c1">//applink 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		  <span class="n">Uri</span> <span class="n">uri</span> <span class="o">=</span> <span class="n">getIntent</span><span class="o">().</span><span class="na">getData</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		  <span class="k">if</span><span class="o">(</span><span class="n">uri</span><span class="o">!=</span><span class="kc">null</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">		  <span class="o">{</span>
+</span></span><span class="line"><span class="cl">			  <span class="n">ApplinkUrl</span><span class="o">=</span><span class="n">uri</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">		  <span class="k">else</span>
+</span></span><span class="line"><span class="cl">		  <span class="o">{</span>
+</span></span><span class="line"><span class="cl">			  <span class="n">ApplinkUrl</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">		  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">		  
+</span></span><span class="line"><span class="cl">	  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="n">AppActivity</span> <span class="nf">GetActivity</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">	<span class="o">{</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">activity</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//********************************read StreamingAsset file*************************************************
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">protected</span> <span class="n">AssetManager</span> <span class="n">assetManager</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">ReadBytesByStream</span><span class="o">(</span><span class="n">InputStream</span> <span class="n">inputStream</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl">	<span class="o">{</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">	  <span class="n">ByteArrayOutputStream</span> <span class="n">outputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayOutputStream</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//长度这里暂时先写成1024
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	  <span class="kt">byte</span> <span class="n">buf</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span> <span class="o">[</span><span class="n">2048</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">	  <span class="kt">int</span> <span class="n">len</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">	  <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">	   <span class="k">while</span> <span class="o">((</span><span class="n">len</span> <span class="o">=</span> <span class="n">inputStream</span><span class="o">.</span><span class="na">read</span><span class="o">(</span><span class="n">buf</span><span class="o">))</span> <span class="o">!=</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">	    <span class="n">outputStream</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">buf</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">len</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">	   <span class="o">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">	   <span class="n">outputStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">	   <span class="n">inputStream</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">	  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		  <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">	  <span class="k">return</span> <span class="n">outputStream</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1">//load StreamingAsset file by byte array
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="kd">public</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">ReadBytes</span><span class="o">(</span><span class="n">String</span> <span class="n">path</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">	<span class="o">{</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">		 <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="kc">null</span> <span class="o">;</span>
+</span></span><span class="line"><span class="cl">		 
+</span></span><span class="line"><span class="cl">		  <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">			   <span class="n">inputStream</span> <span class="o">=</span> <span class="n">assetManager</span><span class="o">.</span><span class="na">open</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">			  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">			   <span class="n">Log</span><span class="o">.</span><span class="na">v</span> <span class="o">(</span><span class="s">&#34;unity&#34;</span><span class="o">,</span> <span class="s">&#34;ReadBytes:::&#34;</span><span class="o">+</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">			   <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">			  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">		  <span class="k">return</span> <span class="n">ReadBytesByStream</span><span class="o">(</span><span class="n">inputStream</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>	 
+</span></span><span class="line"><span class="cl"><span class="o">}</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>这里注意下AppActivity 的方法ReadBytes必须在unity主线程调用，否则调用失败，unity没有日志，这里被坑了</strong></p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -517,7 +515,7 @@ C#代码</p>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

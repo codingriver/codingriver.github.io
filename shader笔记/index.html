@@ -8,10 +8,10 @@
         <title>Shader笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Shader笔记" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/shader%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-07T21:39:06+08:00" />
 <meta property="article:modified_time" content="2021-04-07T21:39:06+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/shader%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "shader, 笔记","wordcount":  6005 ,
+        },"genre": "posts","keywords": "shader, 笔记","wordcount":  6004 ,
         "url": "https:\/\/codingriver.github.io\/shader%E7%AC%94%E8%AE%B0\/","datePublished": "2021-04-07T21:39:06+08:00","dateModified": "2021-04-07T21:39:06+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shader笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/shader/"><i class="far fa-folder fa-fw"></i>shader</a>&nbsp;<a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-07 21:39:06">2021-04-07 21:39:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6005 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-04-07 21:39:06">2021-04-07 21:39:06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6004 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;<span id="/shader%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Shader笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -443,40 +443,40 @@ NDC归一化后进行背面剔剔除（Back Face Culling）根据三角形的索
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">//为了有效解决color的值域问题，我们可以使用色调映射（Tone Map）和曝光控制（Exposure Map），用它们将color的高动态范围（HDR）映射到LDR之后再做伽马校正：
-</span><span class="c1"></span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span> <span class="o">/</span> <span class="p">(</span><span class="n">color</span> <span class="o">+</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span> <span class="c1">// 色调映射（Tone Map）
-</span><span class="c1"></span><span class="n">color</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">2.2</span><span class="p">));</span> 	 <span class="c1">// 伽马校正
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//为了有效解决color的值域问题，我们可以使用色调映射（Tone Map）和曝光控制（Exposure Map），用它们将color的高动态范围（HDR）映射到LDR之后再做伽马校正：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span> <span class="o">/</span> <span class="p">(</span><span class="n">color</span> <span class="o">+</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="p">));</span> <span class="c1">// 色调映射（Tone Map）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">color</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">2.2</span><span class="p">));</span> 	 <span class="c1">// 伽马校正
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="srgb纹理">sRGB纹理</h3>
 <p>基于gamma0.45的颜色空间叫做sRGB颜色空间（Gamma 空间）。</p>
 <p>把sRGB纹理变回线性空间：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span><span class="p">;</span>
-<span class="n">vec3</span> <span class="n">linear_diffuseColor</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">texture</span><span class="p">(</span><span class="n">sRGB_diffuse</span><span class="p">,</span> <span class="n">texCoords</span><span class="p">).</span><span class="n">rgb</span><span class="p">,</span> <span class="n">vec3</span><span class="p">(</span><span class="n">gamma</span><span class="p">));</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">linear_diffuseColor</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">texture</span><span class="p">(</span><span class="n">sRGB_diffuse</span><span class="p">,</span> <span class="n">texCoords</span><span class="p">).</span><span class="n">rgb</span><span class="p">,</span> <span class="n">vec3</span><span class="p">(</span><span class="n">gamma</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>变回线性空间后可以进行光照计算等等一系列计算
 线性空间转到Gamma空间：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span><span class="p">;</span>
-<span class="n">vec3</span> <span class="n">gamma_diffuseColor</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">linear_color</span><span class="p">,</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">gamma</span><span class="p">));</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">gamma</span> <span class="o">=</span> <span class="mf">2.2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">gamma_diffuseColor</span> <span class="o">=</span> <span class="n">pow</span><span class="p">(</span><span class="n">linear_color</span><span class="p">,</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="o">/</span><span class="n">gamma</span><span class="p">));</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
 <p>Unity中sRGB(Color Texture)选项说明：<br>
@@ -500,19 +500,19 @@ sRGB (Color Texture)        启用此属性可指定将纹理存储在�
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    half3 normal_data=UnpackNormal(normalmap);
-    float3x3 TBN=float3x3(tangent_dir,binormal_dir,normal_dir);
-    normal_dir=normalize(mul(normal_data.xyz,TBN));
-    // 和上面矩阵相乘结果一样
-    //normal_dir=normalize(tangent_dir*normal_data.x+binormal_dir*normal_data.y+normal_dir*normal_data.z);
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    half3 normal_data=UnpackNormal(normalmap);
+</span></span><span class="line"><span class="cl">    float3x3 TBN=float3x3(tangent_dir,binormal_dir,normal_dir);
+</span></span><span class="line"><span class="cl">    normal_dir=normalize(mul(normal_data.xyz,TBN));
+</span></span><span class="line"><span class="cl">    // 和上面矩阵相乘结果一样
+</span></span><span class="line"><span class="cl">    //normal_dir=normalize(tangent_dir*normal_data.x+binormal_dir*normal_data.y+normal_dir*normal_data.z);
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="纹理">纹理</h3>
 <ol>
@@ -556,7 +556,7 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 <ul>
 <li>phong:<code>pow(max(dot(v,r),0),_Gloss)</code></li>
 <li>blinn-phong:<code>pow(max(dot(n,h),0),_Gloss) //性能比phong要好</code></li>
-<li>speccolor=lightcolor*_SpecIntensity*lambert*blinn-phong  ( or phong )</li>
+<li>speccolor=lightcolor*_SpecIntensity<em>lambert</em>blinn-phong  ( or phong )</li>
 </ul>
 </li>
 <li>间接光漫反射：可以用 <strong>光照探针（light Probe）</strong> ，使用 SH 球谐光照模拟</li>
@@ -635,7 +635,7 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -643,20 +643,20 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">			samplerCUBE _CubeMap;
-			float4 _CubeMap_HDR;  
-			    half3 view_dir = normalize(_WorldSpaceCameraPos.xyz - i.pos_world);
-				half3 reflect_dir = reflect(-view_dir, normal_dir);
-				half4 color_cubemap = texCUBE(_CubeMap, reflect_dir);
-				half3 env_color = DecodeHDR(color_cubemap, _CubeMap_HDR);//确保在移动端能拿到HDR信息
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">			samplerCUBE _CubeMap;
+</span></span><span class="line"><span class="cl">			float4 _CubeMap_HDR;  
+</span></span><span class="line"><span class="cl">			    half3 view_dir = normalize(_WorldSpaceCameraPos.xyz - i.pos_world);
+</span></span><span class="line"><span class="cl">				half3 reflect_dir = reflect(-view_dir, normal_dir);
+</span></span><span class="line"><span class="cl">				half4 color_cubemap = texCUBE(_CubeMap, reflect_dir);
+</span></span><span class="line"><span class="cl">				half3 env_color = DecodeHDR(color_cubemap, _CubeMap_HDR);//确保在移动端能拿到HDR信息
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>IBL_Specular</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -671,27 +671,27 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">samplerCUBE</span> <span class="n">_CubeMap</span><span class="p">;</span>
-<span class="n">float4</span> <span class="n">_CubeMap_HDR</span><span class="p">;</span>
-
-				<span class="n">half3</span> <span class="n">reflect_view_dir</span> <span class="o">=</span> <span class="n">reflect</span><span class="p">(</span><span class="o">-</span><span class="n">view_dir</span><span class="p">,</span> <span class="n">normal_dir</span><span class="p">);</span>
-
-				<span class="kt">float</span> <span class="n">roughness</span> <span class="o">=</span> <span class="n">tex2D</span><span class="p">(</span><span class="n">_RoughnessMap</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span><span class="p">);</span>
-				<span class="n">roughness</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">roughness</span><span class="p">,</span> <span class="n">_RoughnessContrast</span><span class="p">)</span> <span class="o">*</span> <span class="n">_RoughnessBrightness</span><span class="p">);</span>
-				<span class="n">roughness</span> <span class="o">=</span> <span class="n">lerp</span><span class="p">(</span><span class="n">_RoughnessMin</span><span class="p">,</span> <span class="n">_RoughnessMax</span><span class="p">,</span> <span class="n">roughness</span><span class="p">);</span>
-				<span class="n">roughness</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.7</span> <span class="o">-</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="n">roughness</span><span class="p">);</span>
-				<span class="kt">float</span> <span class="n">mip_level</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="mf">6.0</span><span class="p">;</span>
-
-				<span class="n">half4</span> <span class="n">color_cubemap</span> <span class="o">=</span> <span class="n">texCUBElod</span><span class="p">(</span><span class="n">_CubeMap</span><span class="p">,</span> <span class="n">float4</span><span class="p">(</span><span class="n">reflect_view_dir</span><span class="p">,</span> <span class="n">mip_level</span><span class="p">));</span>
-				<span class="n">half3</span> <span class="n">env_color</span> <span class="o">=</span> <span class="n">DecodeHDR</span><span class="p">(</span><span class="n">color_cubemap</span><span class="p">,</span> <span class="n">_CubeMap_HDR</span><span class="p">);</span><span class="c1">//确保在移动端能拿到HDR信息
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">samplerCUBE</span> <span class="n">_CubeMap</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">float4</span> <span class="n">_CubeMap_HDR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				<span class="n">half3</span> <span class="n">reflect_view_dir</span> <span class="o">=</span> <span class="n">reflect</span><span class="p">(</span><span class="o">-</span><span class="n">view_dir</span><span class="p">,</span> <span class="n">normal_dir</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				<span class="kt">float</span> <span class="n">roughness</span> <span class="o">=</span> <span class="n">tex2D</span><span class="p">(</span><span class="n">_RoughnessMap</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">roughness</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">roughness</span><span class="p">,</span> <span class="n">_RoughnessContrast</span><span class="p">)</span> <span class="o">*</span> <span class="n">_RoughnessBrightness</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">roughness</span> <span class="o">=</span> <span class="n">lerp</span><span class="p">(</span><span class="n">_RoughnessMin</span><span class="p">,</span> <span class="n">_RoughnessMax</span><span class="p">,</span> <span class="n">roughness</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">roughness</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.7</span> <span class="o">-</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="n">roughness</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="kt">float</span> <span class="n">mip_level</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="mf">6.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				<span class="n">half4</span> <span class="n">color_cubemap</span> <span class="o">=</span> <span class="n">texCUBElod</span><span class="p">(</span><span class="n">_CubeMap</span><span class="p">,</span> <span class="n">float4</span><span class="p">(</span><span class="n">reflect_view_dir</span><span class="p">,</span> <span class="n">mip_level</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">				<span class="n">half3</span> <span class="n">env_color</span> <span class="o">=</span> <span class="n">DecodeHDR</span><span class="p">(</span><span class="n">color_cubemap</span><span class="p">,</span> <span class="n">_CubeMap_HDR</span><span class="p">);</span><span class="c1">//确保在移动端能拿到HDR信息
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>IBL_Diffuse</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -705,26 +705,26 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">			<span class="n">samplerCUBE</span> <span class="n">_CubeMap</span><span class="p">;</span>
-			<span class="n">float4</span> <span class="n">_CubeMap_HDR</span><span class="p">;</span>
-
-    			<span class="kt">float</span> <span class="n">roughness</span> <span class="o">=</span> <span class="n">tex2D</span><span class="p">(</span><span class="n">_RoughnessMap</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span><span class="p">);</span>
-				<span class="n">roughness</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">roughness</span><span class="p">,</span> <span class="n">_RoughnessContrast</span><span class="p">)</span> <span class="o">*</span> <span class="n">_RoughnessBrightness</span><span class="p">);</span>
-				<span class="n">roughness</span> <span class="o">=</span> <span class="n">lerp</span><span class="p">(</span><span class="n">_RoughnessMin</span><span class="p">,</span> <span class="n">_RoughnessMax</span><span class="p">,</span> <span class="n">roughness</span><span class="p">);</span>
-				<span class="n">roughness</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.7</span> <span class="o">-</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="n">roughness</span><span class="p">);</span>
-				<span class="kt">float</span> <span class="n">mip_level</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="mf">6.0</span><span class="p">;</span>
-				<span class="n">float4</span> <span class="n">uv_ibl</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="n">normal_dir</span><span class="p">,</span> <span class="n">mip_level</span><span class="p">);</span>
-				<span class="n">half4</span> <span class="n">color_cubemap</span> <span class="o">=</span> <span class="n">texCUBElod</span><span class="p">(</span><span class="n">_CubeMap</span><span class="p">,</span> <span class="n">uv_ibl</span><span class="p">);</span>
-				<span class="n">half3</span> <span class="n">env_color</span> <span class="o">=</span> <span class="n">DecodeHDR</span><span class="p">(</span><span class="n">color_cubemap</span><span class="p">,</span> <span class="n">_CubeMap_HDR</span><span class="p">);</span><span class="c1">//确保在移动端能拿到HDR信息
-</span><span class="c1"></span>				<span class="n">half3</span> <span class="n">final_color</span> <span class="o">=</span> <span class="n">env_color</span> <span class="o">*</span> <span class="n">ao</span> <span class="o">*</span> <span class="n">_Tint</span><span class="p">.</span><span class="n">rgb</span> <span class="o">*</span> <span class="n">_Tint</span><span class="p">.</span><span class="n">rgb</span> <span class="o">*</span> <span class="n">_Expose</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">			<span class="n">samplerCUBE</span> <span class="n">_CubeMap</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">float4</span> <span class="n">_CubeMap_HDR</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    			<span class="kt">float</span> <span class="n">roughness</span> <span class="o">=</span> <span class="n">tex2D</span><span class="p">(</span><span class="n">_RoughnessMap</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">uv</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">roughness</span> <span class="o">=</span> <span class="n">saturate</span><span class="p">(</span><span class="n">pow</span><span class="p">(</span><span class="n">roughness</span><span class="p">,</span> <span class="n">_RoughnessContrast</span><span class="p">)</span> <span class="o">*</span> <span class="n">_RoughnessBrightness</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">roughness</span> <span class="o">=</span> <span class="n">lerp</span><span class="p">(</span><span class="n">_RoughnessMin</span><span class="p">,</span> <span class="n">_RoughnessMax</span><span class="p">,</span> <span class="n">roughness</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">roughness</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.7</span> <span class="o">-</span> <span class="mf">0.7</span> <span class="o">*</span> <span class="n">roughness</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="kt">float</span> <span class="n">mip_level</span> <span class="o">=</span> <span class="n">roughness</span> <span class="o">*</span> <span class="mf">6.0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">				<span class="n">float4</span> <span class="n">uv_ibl</span> <span class="o">=</span> <span class="n">float4</span><span class="p">(</span><span class="n">normal_dir</span><span class="p">,</span> <span class="n">mip_level</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">half4</span> <span class="n">color_cubemap</span> <span class="o">=</span> <span class="n">texCUBElod</span><span class="p">(</span><span class="n">_CubeMap</span><span class="p">,</span> <span class="n">uv_ibl</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">				<span class="n">half3</span> <span class="n">env_color</span> <span class="o">=</span> <span class="n">DecodeHDR</span><span class="p">(</span><span class="n">color_cubemap</span><span class="p">,</span> <span class="n">_CubeMap_HDR</span><span class="p">);</span><span class="c1">//确保在移动端能拿到HDR信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>				<span class="n">half3</span> <span class="n">final_color</span> <span class="o">=</span> <span class="n">env_color</span> <span class="o">*</span> <span class="n">ao</span> <span class="o">*</span> <span class="n">_Tint</span><span class="p">.</span><span class="n">rgb</span> <span class="o">*</span> <span class="n">_Tint</span><span class="p">.</span><span class="n">rgb</span> <span class="o">*</span> <span class="n">_Expose</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>IBL_Reflection-Probe(环境光镜面反射)（unity捕捉生成的,unity最多支持两个反射探针）</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -740,39 +740,39 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    			half3 view_dir = normalize(_WorldSpaceCameraPos.xyz - i.pos_world);
-				half3 reflect_view_dir = reflect(-view_dir, normal_dir);
-
-				reflect_view_dir = RotateAround(_Rotate, reflect_view_dir);
-				
-				float roughness = tex2D(_RoughnessMap, i.uv);
-				roughness = saturate(pow(roughness, _RoughnessContrast) * _RoughnessBrightness);
-				roughness = lerp(_RoughnessMin, _RoughnessMax, roughness);
-				roughness = roughness * (1.7 - 0.7 * roughness);
-				float mip_level = roughness * 6.0;
-
-				
-				half4 color_cubemap = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflect_view_dir, mip_level);
-				half3 env_color = DecodeHDR(color_cubemap, unity_SpecCube0_HDR);//确保在移动端能拿到HDR信息
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    			half3 view_dir = normalize(_WorldSpaceCameraPos.xyz - i.pos_world);
+</span></span><span class="line"><span class="cl">				half3 reflect_view_dir = reflect(-view_dir, normal_dir);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				reflect_view_dir = RotateAround(_Rotate, reflect_view_dir);
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				float roughness = tex2D(_RoughnessMap, i.uv);
+</span></span><span class="line"><span class="cl">				roughness = saturate(pow(roughness, _RoughnessContrast) * _RoughnessBrightness);
+</span></span><span class="line"><span class="cl">				roughness = lerp(_RoughnessMin, _RoughnessMax, roughness);
+</span></span><span class="line"><span class="cl">				roughness = roughness * (1.7 - 0.7 * roughness);
+</span></span><span class="line"><span class="cl">				float mip_level = roughness * 6.0;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				half4 color_cubemap = UNITY_SAMPLE_TEXCUBE_LOD(unity_SpecCube0, reflect_view_dir, mip_level);
+</span></span><span class="line"><span class="cl">				half3 env_color = DecodeHDR(color_cubemap, unity_SpecCube0_HDR);//确保在移动端能拿到HDR信息
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>IBL_Light-Probe（环境光漫反射，内部使用SH读取）</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    half3 env_color = ShadeSH9(float4(normal_dir,1.0)); //unity 内置函数
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    half3 env_color = ShadeSH9(float4(normal_dir,1.0)); //unity 内置函数
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>SH球谐光照（环境光漫反射可以使用SH）（可以替代IBL_Diffuse，节省性能，不用读取cube贴图）</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -794,27 +794,27 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    			float4 normalForSH = float4(normal_dir, 1.0);
-				//SHEvalLinearL0L1
-				half3 x;
-				x.r = dot(custom_SHAr, normalForSH);
-				x.g = dot(custom_SHAg, normalForSH);
-				x.b = dot(custom_SHAb, normalForSH);
-
-				//SHEvalLinearL2
-				half3 x1, x2;
-				// 4 of the quadratic (L2) polynomials
-				half4 vB = normalForSH.xyzz * normalForSH.yzzx;
-				x1.r = dot(custom_SHBr, vB);
-				x1.g = dot(custom_SHBg, vB);
-				x1.b = dot(custom_SHBb, vB);
-
-				// Final (5th) quadratic (L2) polynomial
-				half vC = normalForSH.x*normalForSH.x - normalForSH.y*normalForSH.y;
-				x2 = custom_SHC.rgb * vC;
-
-				float3 sh = max(float3(0.0, 0.0, 0.0), (x + x1 + x2));
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    			float4 normalForSH = float4(normal_dir, 1.0);
+</span></span><span class="line"><span class="cl">				//SHEvalLinearL0L1
+</span></span><span class="line"><span class="cl">				half3 x;
+</span></span><span class="line"><span class="cl">				x.r = dot(custom_SHAr, normalForSH);
+</span></span><span class="line"><span class="cl">				x.g = dot(custom_SHAg, normalForSH);
+</span></span><span class="line"><span class="cl">				x.b = dot(custom_SHAb, normalForSH);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				//SHEvalLinearL2
+</span></span><span class="line"><span class="cl">				half3 x1, x2;
+</span></span><span class="line"><span class="cl">				// 4 of the quadratic (L2) polynomials
+</span></span><span class="line"><span class="cl">				half4 vB = normalForSH.xyzz * normalForSH.yzzx;
+</span></span><span class="line"><span class="cl">				x1.r = dot(custom_SHBr, vB);
+</span></span><span class="line"><span class="cl">				x1.g = dot(custom_SHBg, vB);
+</span></span><span class="line"><span class="cl">				x1.b = dot(custom_SHBb, vB);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				// Final (5th) quadratic (L2) polynomial
+</span></span><span class="line"><span class="cl">				half vC = normalForSH.x*normalForSH.x - normalForSH.y*normalForSH.y;
+</span></span><span class="line"><span class="cl">				x2 = custom_SHC.rgb * vC;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				float3 sh = max(float3(0.0, 0.0, 0.0), (x + x1 + x2));
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img
         class="lazyload"
@@ -830,28 +830,26 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    # ifdef USING_DIRECTIONAL_LIGHT
-        fixed atten=1.0;
-    #else
-        float3 lightcoord = mul(unity_WorldToLight,float4(i.worldPosition,1)).xyz;
-        fixed atten=tex2D(_LightTexture0,dot(lightcoord,lightcoord).rr).r; //r equal UNITY_ATTEN_CHANNEL not cookie
-    #endif
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    # ifdef USING_DIRECTIONAL_LIGHT
+</span></span><span class="line"><span class="cl">        fixed atten=1.0;
+</span></span><span class="line"><span class="cl">    #else
+</span></span><span class="line"><span class="cl">        float3 lightcoord = mul(unity_WorldToLight,float4(i.worldPosition,1)).xyz;
+</span></span><span class="line"><span class="cl">        fixed atten=tex2D(_LightTexture0,dot(lightcoord,lightcoord).rr).r; //r equal UNITY_ATTEN_CHANNEL not cookie
+</span></span><span class="line"><span class="cl">    #endif
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>一种简单的做法 点光源</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -863,17 +861,17 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    # ifdef USING_DIRECTIONAL_LIGHT
-        //half3 light_dir=normalize(_WorldSpaceLightPos0.xyz);
-        fixed atten=1.0;
-    #else
-        //half3 light_dir=normalize(_WorldSpaceLightPos0.xyz-i.pos_world);
-        half distance=length(_WorldSpaceLightPos0.xyz-i.pos_world);
-        half range=1.0/untiy_WorldToLight[0][0]; //光源范围
-        fixed atten=saturate((range-distance)/range);
-    #endif
-    half3 light_dir=normalize( lerp(_WorldSpaceLightPos0.xyz,_WorldSpaceLightPos0.xyz-i.pos_world,_WorldSpaceLightPos0.w));
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    # ifdef USING_DIRECTIONAL_LIGHT
+</span></span><span class="line"><span class="cl">        //half3 light_dir=normalize(_WorldSpaceLightPos0.xyz);
+</span></span><span class="line"><span class="cl">        fixed atten=1.0;
+</span></span><span class="line"><span class="cl">    #else
+</span></span><span class="line"><span class="cl">        //half3 light_dir=normalize(_WorldSpaceLightPos0.xyz-i.pos_world);
+</span></span><span class="line"><span class="cl">        half distance=length(_WorldSpaceLightPos0.xyz-i.pos_world);
+</span></span><span class="line"><span class="cl">        half range=1.0/untiy_WorldToLight[0][0]; //光源范围
+</span></span><span class="line"><span class="cl">        fixed atten=saturate((range-distance)/range);
+</span></span><span class="line"><span class="cl">    #endif
+</span></span><span class="line"><span class="cl">    half3 light_dir=normalize( lerp(_WorldSpaceLightPos0.xyz,_WorldSpaceLightPos0.xyz-i.pos_world,_WorldSpaceLightPos0.w));
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="阴影shadow">阴影（Shadow）</h4>
 <blockquote>
@@ -984,47 +982,47 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    fixed luminance=0.2125*baseCol.r+0.7154*baseCol.g+0.0721*baseCol.b;
-    fixed3 luminanceCol=fixed(luminance,luminance,luminance);
-    finalCol = lerp(luminanceCol,finalCol,_Saturation); 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    fixed luminance=0.2125*baseCol.r+0.7154*baseCol.g+0.0721*baseCol.b;
+</span></span><span class="line"><span class="cl">    fixed3 luminanceCol=fixed(luminance,luminance,luminance);
+</span></span><span class="line"><span class="cl">    finalCol = lerp(luminanceCol,finalCol,_Saturation); 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>对比度</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    fixed3 avgColor=fixed3(0.5,0.5,0.5);
-    finalCol=lerp(avgColor,finalCol,_Constrast);
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    fixed3 avgColor=fixed3(0.5,0.5,0.5);
+</span></span><span class="line"><span class="cl">    finalCol=lerp(avgColor,finalCol,_Constrast);
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>晕影/暗角（Vignette）</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    //暗角/晕影
-    float2 d=abs(i.uv-half2(0.5,0.5))*_VignetteIntensity;
-    d=pow(saturate(d),_VignetteRoundness);
-    float dist=length(d);
-    float vfactor=pow(saturate(1.0-dist*dist),_VignetteSmoothness);
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    //暗角/晕影
+</span></span><span class="line"><span class="cl">    float2 d=abs(i.uv-half2(0.5,0.5))*_VignetteIntensity;
+</span></span><span class="line"><span class="cl">    d=pow(saturate(d),_VignetteRoundness);
+</span></span><span class="line"><span class="cl">    float dist=length(d);
+</span></span><span class="line"><span class="cl">    float vfactor=pow(saturate(1.0-dist*dist),_VignetteSmoothness);
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="边缘检测">边缘检测</h4>
 <h4 id="模糊blur">模糊（Blur）</h4>
@@ -1060,7 +1058,7 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 <strong>一般用于屏幕后处理</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1075,20 +1073,20 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    // Tone-Mapping 需要将x从Gamma空间转到Lear线性空间使用，结果再转到Gamma空间下
-    inline float3 ACESFilm(float3 x)
-    {
-        float a=2.51f;
-        float b= 0.03f;
-        float c=2.43f;
-        float d=0.59f;
-        float e=0.14f;
-        return saturate((x*(a*x+b))/(x*(c*x+d)+e))
-    }
-
-    // Gamma空间 转Lear空间 color_lear=pow(color_gamma,2.2);
-    // Lear空间转Gamma空间 color_gamma=pow(color_lear,1.0/2.2);
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    // Tone-Mapping 需要将x从Gamma空间转到Lear线性空间使用，结果再转到Gamma空间下
+</span></span><span class="line"><span class="cl">    inline float3 ACESFilm(float3 x)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        float a=2.51f;
+</span></span><span class="line"><span class="cl">        float b= 0.03f;
+</span></span><span class="line"><span class="cl">        float c=2.43f;
+</span></span><span class="line"><span class="cl">        float d=0.59f;
+</span></span><span class="line"><span class="cl">        float e=0.14f;
+</span></span><span class="line"><span class="cl">        return saturate((x*(a*x+b))/(x*(c*x+d)+e))
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // Gamma空间 转Lear空间 color_lear=pow(color_gamma,2.2);
+</span></span><span class="line"><span class="cl">    // Lear空间转Gamma空间 color_gamma=pow(color_lear,1.0/2.2);
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img
         class="lazyload"
@@ -1194,7 +1192,7 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
 </blockquote>
 <blockquote>
 <p>常用素材资料：<br>
-<a href="https://sketchfab.com/">https://sketchfab.com/</a></p>
+<a href="https://sketchfab.com/" target="_blank" rel="noopener noreffer">https://sketchfab.com/</a></p>
 </blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -1225,7 +1223,7 @@ height贴图会给模型本身根据实际需要增加凸起或者凹陷的几�
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

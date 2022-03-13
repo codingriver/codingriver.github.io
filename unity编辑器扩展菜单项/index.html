@@ -8,10 +8,10 @@
         <title>【Unity编辑器】 扩展菜单项及右键菜单 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="【Unity编辑器】 扩展菜单项及右键菜单" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95%E8%8F%9C%E5%8D%95%E9%A1%B9/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95%E8%8F%9C%E5%8D%95%E9%A1%B9/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -133,7 +133,7 @@
 <h3 id="api说明">API说明：</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -146,18 +146,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
-    [RequiredByNativeCode]
-    public sealed class MenuItem : Attribute
-    {
-        public string menuItem;
-        public bool validate;
-        public int priority;
-        public MenuItem(string itemName);
-        public MenuItem(string itemName, bool isValidateFunction);
-        public MenuItem(string itemName, bool isValidateFunction, int priority);
-    }
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
+</span></span><span class="line"><span class="cl">    [RequiredByNativeCode]
+</span></span><span class="line"><span class="cl">    public sealed class MenuItem : Attribute
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        public string menuItem;
+</span></span><span class="line"><span class="cl">        public bool validate;
+</span></span><span class="line"><span class="cl">        public int priority;
+</span></span><span class="line"><span class="cl">        public MenuItem(string itemName);
+</span></span><span class="line"><span class="cl">        public MenuItem(string itemName, bool isValidateFunction);
+</span></span><span class="line"><span class="cl">        public MenuItem(string itemName, bool isValidateFunction, int priority);
+</span></span><span class="line"><span class="cl">    }
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>可知MenuItem最多有三个参数：</p>
 <ul>
@@ -170,19 +170,19 @@
 需要UnityEditor命名空间</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">    <span class="p">[</span><span class="n">MenuItem</span><span class="p">(</span><span class="s">&#34;Tools/Test&#34;</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="mi">2200</span><span class="p">)]</span>
-    <span class="n">public</span> <span class="k">static</span> <span class="kt">void</span> <span class="n">Create</span><span class="p">(</span><span class="n">MenuCommand</span> <span class="n">menuCommand</span><span class="p">)</span>
-    <span class="p">{</span>
-	    <span class="n">GameObject</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">menuCommand</span><span class="p">.</span><span class="n">context</span> <span class="n">as</span> <span class="n">GameObject</span><span class="p">;</span>
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">    <span class="p">[</span><span class="n">MenuItem</span><span class="p">(</span><span class="s">&#34;Tools/Test&#34;</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="mi">2200</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="k">static</span> <span class="kt">void</span> <span class="n">Create</span><span class="p">(</span><span class="n">MenuCommand</span> <span class="n">menuCommand</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">GameObject</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">menuCommand</span><span class="p">.</span><span class="n">context</span> <span class="n">as</span> <span class="n">GameObject</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img
         class="lazyload"
@@ -196,17 +196,17 @@
 <p><strong>在project右键使用</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">    <span class="p">[</span><span class="n">MenuItem</span><span class="p">(</span><span class="s">&#34;Assets/Tes2&#34;</span><span class="p">,</span> <span class="nb">false</span><span class="p">)]</span>
-    <span class="n">public</span> <span class="k">static</span> <span class="kt">void</span> <span class="n">Create2</span><span class="p">()</span>
-    <span class="p">{</span>
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">    <span class="p">[</span><span class="n">MenuItem</span><span class="p">(</span><span class="s">&#34;Assets/Tes2&#34;</span><span class="p">,</span> <span class="nb">false</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="k">static</span> <span class="kt">void</span> <span class="n">Create2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img
         class="lazyload"
@@ -219,7 +219,7 @@
 <p><strong>在Hierarchy右键使用</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -229,15 +229,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">    <span class="cm">/*
-</span><span class="cm">     * 这里注意 priority参数，值要控制在-10到49之间
-</span><span class="cm">     */</span>
-    <span class="p">[</span><span class="n">MenuItem</span><span class="p">(</span><span class="s">&#34;GameObject/Tes1&#34;</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
-    <span class="n">public</span> <span class="k">static</span> <span class="kt">void</span> <span class="n">Create1</span><span class="p">()</span>
-    <span class="p">{</span>
-
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">    <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 这里注意 priority参数，值要控制在-10到49之间
+</span></span></span><span class="line"><span class="cl"><span class="cm">     */</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="n">MenuItem</span><span class="p">(</span><span class="s">&#34;GameObject/Tes1&#34;</span><span class="p">,</span> <span class="nb">false</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">public</span> <span class="k">static</span> <span class="kt">void</span> <span class="n">Create1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img
         class="lazyload"
@@ -250,7 +250,7 @@
 <p><strong>在Scene右键使用</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -274,29 +274,29 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c">    <span class="p">[</span><span class="n">InitializeOnLoadMethod</span><span class="p">]</span>
-    <span class="k">static</span> <span class="kt">void</span> <span class="n">Init</span><span class="p">()</span>
-    <span class="p">{</span>
-        <span class="n">SceneView</span><span class="p">.</span><span class="n">onSceneGUIDelegate</span> <span class="o">+=</span> <span class="n">OnSceneGUI</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">static</span> <span class="kt">void</span> <span class="n">OnSceneGUI</span><span class="p">(</span><span class="n">SceneView</span> <span class="n">sceneView</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">Event</span> <span class="n">e</span> <span class="o">=</span> <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="n">null</span> <span class="o">&amp;&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">button</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">EventType</span><span class="p">.</span><span class="n">MouseUp</span><span class="p">)</span>
-        <span class="p">{</span>
-            <span class="c1">//右键单击啦，在这里显示菜单
-</span><span class="c1"></span>            <span class="n">GenericMenu</span> <span class="n">menu</span> <span class="o">=</span> <span class="n">new</span> <span class="n">GenericMenu</span><span class="p">();</span>
-            <span class="n">menu</span><span class="p">.</span><span class="n">AddItem</span><span class="p">(</span><span class="n">new</span> <span class="n">GUIContent</span><span class="p">(</span><span class="s">&#34;菜单项1&#34;</span><span class="p">),</span> <span class="nb">false</span><span class="p">,</span> <span class="n">OnMenuClick</span><span class="p">,</span> <span class="s">&#34;menu_1&#34;</span><span class="p">);</span>
-            <span class="n">menu</span><span class="p">.</span><span class="n">AddItem</span><span class="p">(</span><span class="n">new</span> <span class="n">GUIContent</span><span class="p">(</span><span class="s">&#34;菜单项2&#34;</span><span class="p">),</span> <span class="nb">false</span><span class="p">,</span> <span class="n">OnMenuClick</span><span class="p">,</span> <span class="s">&#34;menu_2&#34;</span><span class="p">);</span>
-            <span class="n">menu</span><span class="p">.</span><span class="n">AddItem</span><span class="p">(</span><span class="n">new</span> <span class="n">GUIContent</span><span class="p">(</span><span class="s">&#34;菜单项3&#34;</span><span class="p">),</span> <span class="nb">false</span><span class="p">,</span> <span class="n">OnMenuClick</span><span class="p">,</span> <span class="s">&#34;menu_3&#34;</span><span class="p">);</span>
-            <span class="n">menu</span><span class="p">.</span><span class="n">ShowAsContext</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">static</span> <span class="kt">void</span> <span class="n">OnMenuClick</span><span class="p">(</span><span class="n">object</span> <span class="n">userData</span><span class="p">)</span>
-    <span class="p">{</span>
-        <span class="n">EditorUtility</span><span class="p">.</span><span class="n">DisplayDialog</span><span class="p">(</span><span class="s">&#34;Tip&#34;</span><span class="p">,</span> <span class="s">&#34;OnMenuClick&#34;</span> <span class="o">+</span> <span class="n">userData</span><span class="p">.</span><span class="n">ToString</span><span class="p">(),</span> <span class="s">&#34;Ok&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">    <span class="p">[</span><span class="n">InitializeOnLoadMethod</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="kt">void</span> <span class="n">Init</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SceneView</span><span class="p">.</span><span class="n">onSceneGUIDelegate</span> <span class="o">+=</span> <span class="n">OnSceneGUI</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="kt">void</span> <span class="n">OnSceneGUI</span><span class="p">(</span><span class="n">SceneView</span> <span class="n">sceneView</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Event</span> <span class="n">e</span> <span class="o">=</span> <span class="n">Event</span><span class="p">.</span><span class="n">current</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="n">null</span> <span class="o">&amp;&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">button</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">e</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">EventType</span><span class="p">.</span><span class="n">MouseUp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//右键单击啦，在这里显示菜单
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">GenericMenu</span> <span class="n">menu</span> <span class="o">=</span> <span class="n">new</span> <span class="n">GenericMenu</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">menu</span><span class="p">.</span><span class="n">AddItem</span><span class="p">(</span><span class="n">new</span> <span class="n">GUIContent</span><span class="p">(</span><span class="s">&#34;菜单项1&#34;</span><span class="p">),</span> <span class="nb">false</span><span class="p">,</span> <span class="n">OnMenuClick</span><span class="p">,</span> <span class="s">&#34;menu_1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">menu</span><span class="p">.</span><span class="n">AddItem</span><span class="p">(</span><span class="n">new</span> <span class="n">GUIContent</span><span class="p">(</span><span class="s">&#34;菜单项2&#34;</span><span class="p">),</span> <span class="nb">false</span><span class="p">,</span> <span class="n">OnMenuClick</span><span class="p">,</span> <span class="s">&#34;menu_2&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">menu</span><span class="p">.</span><span class="n">AddItem</span><span class="p">(</span><span class="n">new</span> <span class="n">GUIContent</span><span class="p">(</span><span class="s">&#34;菜单项3&#34;</span><span class="p">),</span> <span class="nb">false</span><span class="p">,</span> <span class="n">OnMenuClick</span><span class="p">,</span> <span class="s">&#34;menu_3&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">menu</span><span class="p">.</span><span class="n">ShowAsContext</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="kt">void</span> <span class="n">OnMenuClick</span><span class="p">(</span><span class="n">object</span> <span class="n">userData</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">EditorUtility</span><span class="p">.</span><span class="n">DisplayDialog</span><span class="p">(</span><span class="s">&#34;Tip&#34;</span><span class="p">,</span> <span class="s">&#34;OnMenuClick&#34;</span> <span class="o">+</span> <span class="n">userData</span><span class="p">.</span><span class="n">ToString</span><span class="p">(),</span> <span class="s">&#34;Ok&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><img
         class="lazyload"
@@ -309,9 +309,9 @@
 <blockquote>
 <p>参考文章：
 <a href="https://blog.csdn.net/yudianxia/article/details/79793978" target="_blank" rel="noopener noreffer">Unity编辑器扩展-在Scene视图添加右键菜单</a>
-<a href="https://blog.csdn.net/zw514159799/article/details/50775502">https://blog.csdn.net/zw514159799/article/details/50775502</a>
-<a href="http://m.manew.com/thread-90330-1-1.html">http://m.manew.com/thread-90330-1-1.html</a>
-<a href="https://blog.csdn.net/WPAPA/article/details/51066397">https://blog.csdn.net/WPAPA/article/details/51066397</a></p>
+<a href="https://blog.csdn.net/zw514159799/article/details/50775502" target="_blank" rel="noopener noreffer">https://blog.csdn.net/zw514159799/article/details/50775502</a>
+<a href="http://m.manew.com/thread-90330-1-1.html" target="_blank" rel="noopener noreffer">http://m.manew.com/thread-90330-1-1.html</a>
+<a href="https://blog.csdn.net/WPAPA/article/details/51066397" target="_blank" rel="noopener noreffer">https://blog.csdn.net/WPAPA/article/details/51066397</a></p>
 </blockquote></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -342,7 +342,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

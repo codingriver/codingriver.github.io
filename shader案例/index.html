@@ -8,10 +8,10 @@
         <title>Shader案例 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Shader案例" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/shader%E6%A1%88%E4%BE%8B/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/shader%E6%A1%88%E4%BE%8B/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-12-21T17:16:51+08:00" />
 <meta property="article:modified_time" content="2021-12-21T17:16:51+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/shader%E6%A1%88%E4%BE%8B\/"
-        },"genre": "posts","keywords": "shader","wordcount":  2336 ,
+        },"genre": "posts","keywords": "shader","wordcount":  2333 ,
         "url": "https:\/\/codingriver.github.io\/shader%E6%A1%88%E4%BE%8B\/","datePublished": "2021-12-21T17:16:51+08:00","dateModified": "2021-12-21T17:16:51+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shader案例</h1><h2 class="single-subtitle">Shader案例</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/shader/"><i class="far fa-folder fa-fw"></i>shader</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-21 17:16:51">2021-12-21 17:16:51</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2336 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-21 17:16:51">2021-12-21 17:16:51</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2333 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/shader%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Shader案例">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -170,7 +170,7 @@ ToneMaping ACES</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -431,274 +431,270 @@ ToneMaping ACES</li>
 </span><span class="lnt">259
 </span><span class="lnt">260
 </span><span class="lnt">261
-</span><span class="lnt">262
-</span><span class="lnt">263
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Shader &#34;Custom/Role_Standard&#34;
-{
-    Properties
-    {
-		_MainTex (&#34;Texture&#34;, 2D) = &#34;white&#34; {}
-		_CompMask(&#34;CompMask(R M)&#34;,2D) = &#34;white&#34;{}
-		_NormalMap(&#34;NormalMap&#34;,2D) = &#34;bump&#34;{}
-		_SpecShininess(&#34;Spec Shininess&#34;,Float)=10
-        _RoughnessAdjust(&#34;Roughness Adjust&#34;,Range(-1,1))=0
-        _MetalAdjust(&#34;Metal Adjust&#34;,Range(-1,1))=0
-        _SkinLUT(&#34;Skin LUT&#34;,2D)=&#34;white&#34;{}
-        _CurveOffset(&#34;Curve Offset&#34;,Range(0,1))=1
-        _LutOffset(&#34;LutOffset&#34;,Range(0,1))=0
-		[Header(IBL Specular)]
-		_Tint(&#34;Tint&#34;,Color)=(1,1,1,1)
-		_Expose(&#34;Expose&#34;,Float)=1.0		
-		_EnvMap(&#34;Env Cube&#34;,Cube)=&#34;white&#34;{}
-		_Rotate(&#34;Rotate&#34;,Range(0,360))=0
-		
-		[Toggle(_DIFFUSE_ON)]_DiffuseCheck(&#34;Diffuse Check&#34;,Float)=0
-		[Toggle(_SPECULAR_ON)]_Specular_Check(&#34;Specular Check&#34;,Float)=0
-		[Toggle(_SH_ON)]_SHCheck(&#34;SH Check&#34;,Float)=0
-		[Toggle(_IBL_ON)]_IBLCheck(&#34;IBL Check&#34;,Float)=0
-		[Toggle(_OILSKIN_ON)]_OilSkinCheck(&#34;Oil Skin Check&#34;,Float)=0
-		
-		[Space(20)]
-		[Header(SH)]
-		[HideInInspector]custom_SHAr(&#34;Custom SHAr&#34;, Vector) = (0, 0, 0, 0)
-		[HideInInspector]custom_SHAg(&#34;Custom SHAg&#34;, Vector) = (0, 0, 0, 0)
-		[HideInInspector]custom_SHAb(&#34;Custom SHAb&#34;, Vector) = (0, 0, 0, 0)
-		[HideInInspector]custom_SHBr(&#34;Custom SHBr&#34;, Vector) = (0, 0, 0, 0)
-		[HideInInspector]custom_SHBg(&#34;Custom SHBg&#34;, Vector) = (0, 0, 0, 0)
-		[HideInInspector]custom_SHBb(&#34;Custom SHBb&#34;, Vector) = (0, 0, 0, 0)
-		[HideInInspector]custom_SHC(&#34;Custom SHC&#34;, Vector) = (0, 0, 0, 1)			
-    }
-    SubShader
-    {
-        Tags { &#34;RenderType&#34;=&#34;Opaque&#34; }
-        LOD 100
-
-        Pass
-        {
-            Tags{&#34;LightMode&#34; = &#34;ForwardBase&#34;}
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            #pragma multi_compile_fwdbase
-            #pragma shader_feature _DIFFUSE_ON
-            #pragma shader_feature _SPECULAR_ON
-            #pragma shader_feature _SH_ON
-            #pragma shader_feature _IBL_ON
-            #pragma shader_feature _OILSKIN_ON
-            
-            #include &#34;UnityCG.cginc&#34;
-            #include&#34;AutoLight.cginc&#34;
-
-            struct appdata  // appdata_full
-            {
-                float4 vertex : POSITION; //模型空间顶点坐标
-                half2 texcoord : TEXCOORD0; //第一套UV（模型最多只能有4套UV）
-				half3 normal : NORMAL; //顶点法线
-				half4 tangent : TANGENT; //顶点切线(模型导入Unity后自动计算得到)
-            };
-
-            struct v2f
-            {
-                float4 pos : SV_POSITION; //输出裁剪空间下的顶点坐标数据，给光栅化使用，必须要写的数据
-                float2 uv : TEXCOORD0; //自定义数据体
-                half3 normal_dir : TEXCOORD1;
-                half3 tangent_dir : TEXCOORD2;
-                half3 binormal_dir : TEXCOORD3;
-                half3 pos_world : TEXCOORD4;
-                //最多可以写16个：TEXCOORD0 ~ TEXCOORD15。
-                LIGHTING_COORDS(5,6)   ///SHADOW 第一步
-            };
-
-			sampler2D _MainTex;
-			sampler2D _CompMask;
-			float4 _MainTex_ST;
-			float4 _LightColor0;
-			float _Shininess;
-			float4 _AmbientColor;
-			float _SpecIntensity;
-			sampler2D _AOMap;
-			sampler2D _SpecMask;
-			sampler2D _NormalMap;
-			float _NormalIntensity;
-			sampler2D _ParallaxMap;
-			float _Parallax;
-            float _SpecShininess;
-            float _RoughnessAdjust;
-            float _MetalAdjust;
-			float4 _Tint;
-			float _Expose;            
-            float _Rotate;
-            samplerCUBE _EnvMap;
-            float4 _EnvMap_HDR;
-            sampler2D _SkinLUT;
-            float _CurveOffset;
-            float _LutOffset;
-			half4 custom_SHAr;
-			half4 custom_SHAg;
-			half4 custom_SHAb;
-			half4 custom_SHBr;
-			half4 custom_SHBg;
-			half4 custom_SHBb;
-			half4 custom_SHC;	
-			
-            
-            float3 ShadeSH(float3 normal_dir)
-            {
-				float4 normalForSH = float4(normal_dir, 1.0);
-				//SHEvalLinearL0L1
-				half3 x;
-				x.r = dot(custom_SHAr, normalForSH);
-				x.g = dot(custom_SHAg, normalForSH);
-				x.b = dot(custom_SHAb, normalForSH);
-
-				//SHEvalLinearL2
-				half3 x1, x2;
-				// 4 of the quadratic (L2) polynomials
-				half4 vB = normalForSH.xyzz * normalForSH.yzzx;
-				x1.r = dot(custom_SHBr, vB);
-				x1.g = dot(custom_SHBg, vB);
-				x1.b = dot(custom_SHBb, vB);
-
-				// Final (5th) quadratic (L2) polynomial
-				half vC = normalForSH.x*normalForSH.x - normalForSH.y*normalForSH.y;
-				x2 = custom_SHC.rgb * vC;
-
-				float3 sh = max(float3(0.0, 0.0, 0.0), (x + x1 + x2));
-				sh = pow(sh, 1.0 / 2.2);  
-				return sh;
-            }
-            
-			float3 ACESFilm(float3 x)
-			{
-				float a = 2.51f;
-				float b = 0.03f;
-				float c = 2.43f;
-				float d = 0.59f;
-				float e = 0.14f;
-				return saturate((x*(a*x + b)) / (x*(c*x + d) + e));
-			};
-			
-            v2f vert (appdata v)
-            {
-                v2f o;
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv=TRANSFORM_TEX(v.texcoord,_MainTex);
-                o.pos_world=mul(unity_ObjectToWorld,v.vertex).xyz;
-                o.normal_dir=normalize(mul(v.normal,(float3x3)unity_WorldToObject));
-                o.tangent_dir=normalize(mul((float3x3)unity_ObjectToWorld,v.tangent.xyz));
-                o.binormal_dir=normalize(cross(o.normal_dir, o.tangent_dir))*v.tangent.w;
-                TRANSFER_VERTEX_TO_FRAGMENT(o); ///SHADOW 第二步
-                return o;
-            }
-
-            half4 frag (v2f i) : SV_Target
-            {
-                // Base Color
-                half4 base_color=tex2D(_MainTex,i.uv);
-                base_color=pow(base_color,2.2);// gamma转Liner空间
-                half3 comp_mask=tex2D(_CompMask,i.uv);         
-                half skin_area=1.0-comp_mask.b;
-                half roughness=saturate(comp_mask.r+_RoughnessAdjust);
-                half metal=saturate(comp_mask.g+ _MetalAdjust);
-                half3 spec_color=lerp(0.04,base_color.rgb,metal);
-                base_color=base_color*(1-metal);
-                
-                half3 pos_world=i.pos_world;
-                half3 normal_dir=normalize(i.normal_dir);
-                half3 tangent_dir=normalize(i.tangent_dir);
-                half3 binormal_dir=normalize(i.binormal_dir);
-                half3 view_dir=normalize(_WorldSpaceCameraPos.xyz-pos_world);
-                float3x3 TBN=float3x3(tangent_dir,binormal_dir,normal_dir);
-        
-                
-                // Noraml 法线
-                half4 normalmap=tex2D(_NormalMap,i.uv);
-                half3 normal_data=UnpackNormal(normalmap);
-                // normal_data.xy = normal_data.xy * _NormalIntensity;
-                normal_dir=normalize(mul(normal_data,TBN));
-                //normal_dir = normalize(tangent_dir * normal_data.x * _NormalIntensity + binormal_dir * normal_data.y * _NormalIntensity + normal_dir * normal_data.z);
-
-                // Light Info
-                half3 light_dir=normalize(_WorldSpaceLightPos0.xyz);
-                half4 light_color=_LightColor0.rgba;
-                half atten=LIGHT_ATTENUATION(i);
-                
-
-                
-                
-                
-                // Direct Diffuse 漫反射,Lambert
-                half NdotL=max(0.0,dot(normal_dir,light_dir));
-                half3 diffuse= base_color.rgb*NdotL*light_color.rgb*atten;
-                half2 uv_lut=half2(NdotL*atten+_LutOffset,_CurveOffset);
-                half3 lut_color_gamma=tex2D(_SkinLUT,uv_lut);
-                half3 lut_color=pow(lut_color_gamma,2.2);
-                half3 sss_diffuse=lut_color*base_color*_LightColor0.rgb;
-                #ifdef _DIFFUSE_ON
-                half3 direct_diffuse=lerp(diffuse,sss_diffuse,skin_area);
-                #else
-                half3 direct_diffuse=half3(0,0,0);
-                #endif
-                
-                // Direct Specular 镜面反射（高光） Blinn-Phong
-                half smoothness=1.0-roughness;
-                half3 half_dir=normalize(view_dir+light_dir);
-                half NdotH=max(0.0,dot(normal_dir,half_dir));
-                half shininess=lerp(1,_SpecShininess,smoothness);
-                half spec=pow(NdotH,shininess);
-                #ifdef _OILSKIN_ON
-                half3 spec_skin_color=lerp(spec_color,0.1,skin_area); //皮肤油光
-                #else
-                half3 spec_skin_color=spec_color;
-                #endif
-                
-                #ifdef _SPECULAR_ON
-                half3 direct_specular=spec*spec_skin_color*light_color.rgb*atten;
-                #else
-                half3 direct_specular=half3(0,0,0);
-                #endif
-                
-                //Indirect Diffuse 间接光的漫反射
-                float half_lambert=dot(normal_dir,light_dir)*0.5+0.5;
-                #ifdef _SH_ON
-                half3 env_diffuse= ShadeSH(normal_dir)*base_color*half_lambert;
-                #else
-                half3 env_diffuse=half3(0,0,0);
-                #endif                
-                
-                // Indirect Specular 间接光的镜面反射
-				half3 rViewDir=reflect(-view_dir,normal_dir);
-				float rad=_Rotate*UNITY_PI/180;
-				float2x2 Rotation=float2x2(cos(rad),sin(rad),-sin(rad),cos(rad));
-				rViewDir.xz=mul(Rotation,rViewDir.xz);
-				
-			    roughness=roughness*(1.7-0.7*roughness);
-				float mip_level=(roughness)*6.0;
-				half4 color_cube=texCUBElod(_EnvMap,float4(rViewDir,mip_level));
-				half3 env_specular=DecodeHDR(color_cube,_EnvMap_HDR)*_Expose*spec_color*half_lambert*(1-skin_area);
-                #ifdef _IBL_ON
-                #else
-                env_specular=half3(0,0,0);
-                #endif                
-                
-                
-				half3 final_color = (direct_diffuse + direct_specular + env_diffuse+env_specular);
-				half3 tone_color = ACESFilm(final_color);
-				tone_color = pow(tone_color, 1.0 / 2.2);                
-                return half4(tone_color,1.0);
-                // return half4(final_color,1.0);
-            }
-            ENDCG
-        }
-        
-    }
-    Fallback &#34;Diffuse&#34; ///SHADOW 第四步
-}
-
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Shader &#34;Custom/Role_Standard&#34;
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    Properties
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">		_MainTex (&#34;Texture&#34;, 2D) = &#34;white&#34; {}
+</span></span><span class="line"><span class="cl">		_CompMask(&#34;CompMask(R M)&#34;,2D) = &#34;white&#34;{}
+</span></span><span class="line"><span class="cl">		_NormalMap(&#34;NormalMap&#34;,2D) = &#34;bump&#34;{}
+</span></span><span class="line"><span class="cl">		_SpecShininess(&#34;Spec Shininess&#34;,Float)=10
+</span></span><span class="line"><span class="cl">        _RoughnessAdjust(&#34;Roughness Adjust&#34;,Range(-1,1))=0
+</span></span><span class="line"><span class="cl">        _MetalAdjust(&#34;Metal Adjust&#34;,Range(-1,1))=0
+</span></span><span class="line"><span class="cl">        _SkinLUT(&#34;Skin LUT&#34;,2D)=&#34;white&#34;{}
+</span></span><span class="line"><span class="cl">        _CurveOffset(&#34;Curve Offset&#34;,Range(0,1))=1
+</span></span><span class="line"><span class="cl">        _LutOffset(&#34;LutOffset&#34;,Range(0,1))=0
+</span></span><span class="line"><span class="cl">		[Header(IBL Specular)]
+</span></span><span class="line"><span class="cl">		_Tint(&#34;Tint&#34;,Color)=(1,1,1,1)
+</span></span><span class="line"><span class="cl">		_Expose(&#34;Expose&#34;,Float)=1.0		
+</span></span><span class="line"><span class="cl">		_EnvMap(&#34;Env Cube&#34;,Cube)=&#34;white&#34;{}
+</span></span><span class="line"><span class="cl">		_Rotate(&#34;Rotate&#34;,Range(0,360))=0
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		[Toggle(_DIFFUSE_ON)]_DiffuseCheck(&#34;Diffuse Check&#34;,Float)=0
+</span></span><span class="line"><span class="cl">		[Toggle(_SPECULAR_ON)]_Specular_Check(&#34;Specular Check&#34;,Float)=0
+</span></span><span class="line"><span class="cl">		[Toggle(_SH_ON)]_SHCheck(&#34;SH Check&#34;,Float)=0
+</span></span><span class="line"><span class="cl">		[Toggle(_IBL_ON)]_IBLCheck(&#34;IBL Check&#34;,Float)=0
+</span></span><span class="line"><span class="cl">		[Toggle(_OILSKIN_ON)]_OilSkinCheck(&#34;Oil Skin Check&#34;,Float)=0
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		[Space(20)]
+</span></span><span class="line"><span class="cl">		[Header(SH)]
+</span></span><span class="line"><span class="cl">		[HideInInspector]custom_SHAr(&#34;Custom SHAr&#34;, Vector) = (0, 0, 0, 0)
+</span></span><span class="line"><span class="cl">		[HideInInspector]custom_SHAg(&#34;Custom SHAg&#34;, Vector) = (0, 0, 0, 0)
+</span></span><span class="line"><span class="cl">		[HideInInspector]custom_SHAb(&#34;Custom SHAb&#34;, Vector) = (0, 0, 0, 0)
+</span></span><span class="line"><span class="cl">		[HideInInspector]custom_SHBr(&#34;Custom SHBr&#34;, Vector) = (0, 0, 0, 0)
+</span></span><span class="line"><span class="cl">		[HideInInspector]custom_SHBg(&#34;Custom SHBg&#34;, Vector) = (0, 0, 0, 0)
+</span></span><span class="line"><span class="cl">		[HideInInspector]custom_SHBb(&#34;Custom SHBb&#34;, Vector) = (0, 0, 0, 0)
+</span></span><span class="line"><span class="cl">		[HideInInspector]custom_SHC(&#34;Custom SHC&#34;, Vector) = (0, 0, 0, 1)			
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    SubShader
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Tags { &#34;RenderType&#34;=&#34;Opaque&#34; }
+</span></span><span class="line"><span class="cl">        LOD 100
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        Pass
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            Tags{&#34;LightMode&#34; = &#34;ForwardBase&#34;}
+</span></span><span class="line"><span class="cl">            CGPROGRAM
+</span></span><span class="line"><span class="cl">            #pragma vertex vert
+</span></span><span class="line"><span class="cl">            #pragma fragment frag
+</span></span><span class="line"><span class="cl">            #pragma multi_compile_fwdbase
+</span></span><span class="line"><span class="cl">            #pragma shader_feature _DIFFUSE_ON
+</span></span><span class="line"><span class="cl">            #pragma shader_feature _SPECULAR_ON
+</span></span><span class="line"><span class="cl">            #pragma shader_feature _SH_ON
+</span></span><span class="line"><span class="cl">            #pragma shader_feature _IBL_ON
+</span></span><span class="line"><span class="cl">            #pragma shader_feature _OILSKIN_ON
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            #include &#34;UnityCG.cginc&#34;
+</span></span><span class="line"><span class="cl">            #include&#34;AutoLight.cginc&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            struct appdata  // appdata_full
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                float4 vertex : POSITION; //模型空间顶点坐标
+</span></span><span class="line"><span class="cl">                half2 texcoord : TEXCOORD0; //第一套UV（模型最多只能有4套UV）
+</span></span><span class="line"><span class="cl">				half3 normal : NORMAL; //顶点法线
+</span></span><span class="line"><span class="cl">				half4 tangent : TANGENT; //顶点切线(模型导入Unity后自动计算得到)
+</span></span><span class="line"><span class="cl">            };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            struct v2f
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                float4 pos : SV_POSITION; //输出裁剪空间下的顶点坐标数据，给光栅化使用，必须要写的数据
+</span></span><span class="line"><span class="cl">                float2 uv : TEXCOORD0; //自定义数据体
+</span></span><span class="line"><span class="cl">                half3 normal_dir : TEXCOORD1;
+</span></span><span class="line"><span class="cl">                half3 tangent_dir : TEXCOORD2;
+</span></span><span class="line"><span class="cl">                half3 binormal_dir : TEXCOORD3;
+</span></span><span class="line"><span class="cl">                half3 pos_world : TEXCOORD4;
+</span></span><span class="line"><span class="cl">                //最多可以写16个：TEXCOORD0 ~ TEXCOORD15。
+</span></span><span class="line"><span class="cl">                LIGHTING_COORDS(5,6)   ///SHADOW 第一步
+</span></span><span class="line"><span class="cl">            };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			sampler2D _MainTex;
+</span></span><span class="line"><span class="cl">			sampler2D _CompMask;
+</span></span><span class="line"><span class="cl">			float4 _MainTex_ST;
+</span></span><span class="line"><span class="cl">			float4 _LightColor0;
+</span></span><span class="line"><span class="cl">			float _Shininess;
+</span></span><span class="line"><span class="cl">			float4 _AmbientColor;
+</span></span><span class="line"><span class="cl">			float _SpecIntensity;
+</span></span><span class="line"><span class="cl">			sampler2D _AOMap;
+</span></span><span class="line"><span class="cl">			sampler2D _SpecMask;
+</span></span><span class="line"><span class="cl">			sampler2D _NormalMap;
+</span></span><span class="line"><span class="cl">			float _NormalIntensity;
+</span></span><span class="line"><span class="cl">			sampler2D _ParallaxMap;
+</span></span><span class="line"><span class="cl">			float _Parallax;
+</span></span><span class="line"><span class="cl">            float _SpecShininess;
+</span></span><span class="line"><span class="cl">            float _RoughnessAdjust;
+</span></span><span class="line"><span class="cl">            float _MetalAdjust;
+</span></span><span class="line"><span class="cl">			float4 _Tint;
+</span></span><span class="line"><span class="cl">			float _Expose;            
+</span></span><span class="line"><span class="cl">            float _Rotate;
+</span></span><span class="line"><span class="cl">            samplerCUBE _EnvMap;
+</span></span><span class="line"><span class="cl">            float4 _EnvMap_HDR;
+</span></span><span class="line"><span class="cl">            sampler2D _SkinLUT;
+</span></span><span class="line"><span class="cl">            float _CurveOffset;
+</span></span><span class="line"><span class="cl">            float _LutOffset;
+</span></span><span class="line"><span class="cl">			half4 custom_SHAr;
+</span></span><span class="line"><span class="cl">			half4 custom_SHAg;
+</span></span><span class="line"><span class="cl">			half4 custom_SHAb;
+</span></span><span class="line"><span class="cl">			half4 custom_SHBr;
+</span></span><span class="line"><span class="cl">			half4 custom_SHBg;
+</span></span><span class="line"><span class="cl">			half4 custom_SHBb;
+</span></span><span class="line"><span class="cl">			half4 custom_SHC;	
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            float3 ShadeSH(float3 normal_dir)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">				float4 normalForSH = float4(normal_dir, 1.0);
+</span></span><span class="line"><span class="cl">				//SHEvalLinearL0L1
+</span></span><span class="line"><span class="cl">				half3 x;
+</span></span><span class="line"><span class="cl">				x.r = dot(custom_SHAr, normalForSH);
+</span></span><span class="line"><span class="cl">				x.g = dot(custom_SHAg, normalForSH);
+</span></span><span class="line"><span class="cl">				x.b = dot(custom_SHAb, normalForSH);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				//SHEvalLinearL2
+</span></span><span class="line"><span class="cl">				half3 x1, x2;
+</span></span><span class="line"><span class="cl">				// 4 of the quadratic (L2) polynomials
+</span></span><span class="line"><span class="cl">				half4 vB = normalForSH.xyzz * normalForSH.yzzx;
+</span></span><span class="line"><span class="cl">				x1.r = dot(custom_SHBr, vB);
+</span></span><span class="line"><span class="cl">				x1.g = dot(custom_SHBg, vB);
+</span></span><span class="line"><span class="cl">				x1.b = dot(custom_SHBb, vB);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				// Final (5th) quadratic (L2) polynomial
+</span></span><span class="line"><span class="cl">				half vC = normalForSH.x*normalForSH.x - normalForSH.y*normalForSH.y;
+</span></span><span class="line"><span class="cl">				x2 = custom_SHC.rgb * vC;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				float3 sh = max(float3(0.0, 0.0, 0.0), (x + x1 + x2));
+</span></span><span class="line"><span class="cl">				sh = pow(sh, 1.0 / 2.2);  
+</span></span><span class="line"><span class="cl">				return sh;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">			float3 ACESFilm(float3 x)
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				float a = 2.51f;
+</span></span><span class="line"><span class="cl">				float b = 0.03f;
+</span></span><span class="line"><span class="cl">				float c = 2.43f;
+</span></span><span class="line"><span class="cl">				float d = 0.59f;
+</span></span><span class="line"><span class="cl">				float e = 0.14f;
+</span></span><span class="line"><span class="cl">				return saturate((x*(a*x + b)) / (x*(c*x + d) + e));
+</span></span><span class="line"><span class="cl">			};
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">            v2f vert (appdata v)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                v2f o;
+</span></span><span class="line"><span class="cl">                o.pos = UnityObjectToClipPos(v.vertex);
+</span></span><span class="line"><span class="cl">                o.uv=TRANSFORM_TEX(v.texcoord,_MainTex);
+</span></span><span class="line"><span class="cl">                o.pos_world=mul(unity_ObjectToWorld,v.vertex).xyz;
+</span></span><span class="line"><span class="cl">                o.normal_dir=normalize(mul(v.normal,(float3x3)unity_WorldToObject));
+</span></span><span class="line"><span class="cl">                o.tangent_dir=normalize(mul((float3x3)unity_ObjectToWorld,v.tangent.xyz));
+</span></span><span class="line"><span class="cl">                o.binormal_dir=normalize(cross(o.normal_dir, o.tangent_dir))*v.tangent.w;
+</span></span><span class="line"><span class="cl">                TRANSFER_VERTEX_TO_FRAGMENT(o); ///SHADOW 第二步
+</span></span><span class="line"><span class="cl">                return o;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            half4 frag (v2f i) : SV_Target
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                // Base Color
+</span></span><span class="line"><span class="cl">                half4 base_color=tex2D(_MainTex,i.uv);
+</span></span><span class="line"><span class="cl">                base_color=pow(base_color,2.2);// gamma转Liner空间
+</span></span><span class="line"><span class="cl">                half3 comp_mask=tex2D(_CompMask,i.uv);         
+</span></span><span class="line"><span class="cl">                half skin_area=1.0-comp_mask.b;
+</span></span><span class="line"><span class="cl">                half roughness=saturate(comp_mask.r+_RoughnessAdjust);
+</span></span><span class="line"><span class="cl">                half metal=saturate(comp_mask.g+ _MetalAdjust);
+</span></span><span class="line"><span class="cl">                half3 spec_color=lerp(0.04,base_color.rgb,metal);
+</span></span><span class="line"><span class="cl">                base_color=base_color*(1-metal);
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                half3 pos_world=i.pos_world;
+</span></span><span class="line"><span class="cl">                half3 normal_dir=normalize(i.normal_dir);
+</span></span><span class="line"><span class="cl">                half3 tangent_dir=normalize(i.tangent_dir);
+</span></span><span class="line"><span class="cl">                half3 binormal_dir=normalize(i.binormal_dir);
+</span></span><span class="line"><span class="cl">                half3 view_dir=normalize(_WorldSpaceCameraPos.xyz-pos_world);
+</span></span><span class="line"><span class="cl">                float3x3 TBN=float3x3(tangent_dir,binormal_dir,normal_dir);
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // Noraml 法线
+</span></span><span class="line"><span class="cl">                half4 normalmap=tex2D(_NormalMap,i.uv);
+</span></span><span class="line"><span class="cl">                half3 normal_data=UnpackNormal(normalmap);
+</span></span><span class="line"><span class="cl">                // normal_data.xy = normal_data.xy * _NormalIntensity;
+</span></span><span class="line"><span class="cl">                normal_dir=normalize(mul(normal_data,TBN));
+</span></span><span class="line"><span class="cl">                //normal_dir = normalize(tangent_dir * normal_data.x * _NormalIntensity + binormal_dir * normal_data.y * _NormalIntensity + normal_dir * normal_data.z);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                // Light Info
+</span></span><span class="line"><span class="cl">                half3 light_dir=normalize(_WorldSpaceLightPos0.xyz);
+</span></span><span class="line"><span class="cl">                half4 light_color=_LightColor0.rgba;
+</span></span><span class="line"><span class="cl">                half atten=LIGHT_ATTENUATION(i);
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // Direct Diffuse 漫反射,Lambert
+</span></span><span class="line"><span class="cl">                half NdotL=max(0.0,dot(normal_dir,light_dir));
+</span></span><span class="line"><span class="cl">                half3 diffuse= base_color.rgb*NdotL*light_color.rgb*atten;
+</span></span><span class="line"><span class="cl">                half2 uv_lut=half2(NdotL*atten+_LutOffset,_CurveOffset);
+</span></span><span class="line"><span class="cl">                half3 lut_color_gamma=tex2D(_SkinLUT,uv_lut);
+</span></span><span class="line"><span class="cl">                half3 lut_color=pow(lut_color_gamma,2.2);
+</span></span><span class="line"><span class="cl">                half3 sss_diffuse=lut_color*base_color*_LightColor0.rgb;
+</span></span><span class="line"><span class="cl">                #ifdef _DIFFUSE_ON
+</span></span><span class="line"><span class="cl">                half3 direct_diffuse=lerp(diffuse,sss_diffuse,skin_area);
+</span></span><span class="line"><span class="cl">                #else
+</span></span><span class="line"><span class="cl">                half3 direct_diffuse=half3(0,0,0);
+</span></span><span class="line"><span class="cl">                #endif
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // Direct Specular 镜面反射（高光） Blinn-Phong
+</span></span><span class="line"><span class="cl">                half smoothness=1.0-roughness;
+</span></span><span class="line"><span class="cl">                half3 half_dir=normalize(view_dir+light_dir);
+</span></span><span class="line"><span class="cl">                half NdotH=max(0.0,dot(normal_dir,half_dir));
+</span></span><span class="line"><span class="cl">                half shininess=lerp(1,_SpecShininess,smoothness);
+</span></span><span class="line"><span class="cl">                half spec=pow(NdotH,shininess);
+</span></span><span class="line"><span class="cl">                #ifdef _OILSKIN_ON
+</span></span><span class="line"><span class="cl">                half3 spec_skin_color=lerp(spec_color,0.1,skin_area); //皮肤油光
+</span></span><span class="line"><span class="cl">                #else
+</span></span><span class="line"><span class="cl">                half3 spec_skin_color=spec_color;
+</span></span><span class="line"><span class="cl">                #endif
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                #ifdef _SPECULAR_ON
+</span></span><span class="line"><span class="cl">                half3 direct_specular=spec*spec_skin_color*light_color.rgb*atten;
+</span></span><span class="line"><span class="cl">                #else
+</span></span><span class="line"><span class="cl">                half3 direct_specular=half3(0,0,0);
+</span></span><span class="line"><span class="cl">                #endif
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                //Indirect Diffuse 间接光的漫反射
+</span></span><span class="line"><span class="cl">                float half_lambert=dot(normal_dir,light_dir)*0.5+0.5;
+</span></span><span class="line"><span class="cl">                #ifdef _SH_ON
+</span></span><span class="line"><span class="cl">                half3 env_diffuse= ShadeSH(normal_dir)*base_color*half_lambert;
+</span></span><span class="line"><span class="cl">                #else
+</span></span><span class="line"><span class="cl">                half3 env_diffuse=half3(0,0,0);
+</span></span><span class="line"><span class="cl">                #endif                
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // Indirect Specular 间接光的镜面反射
+</span></span><span class="line"><span class="cl">				half3 rViewDir=reflect(-view_dir,normal_dir);
+</span></span><span class="line"><span class="cl">				float rad=_Rotate*UNITY_PI/180;
+</span></span><span class="line"><span class="cl">				float2x2 Rotation=float2x2(cos(rad),sin(rad),-sin(rad),cos(rad));
+</span></span><span class="line"><span class="cl">				rViewDir.xz=mul(Rotation,rViewDir.xz);
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">			    roughness=roughness*(1.7-0.7*roughness);
+</span></span><span class="line"><span class="cl">				float mip_level=(roughness)*6.0;
+</span></span><span class="line"><span class="cl">				half4 color_cube=texCUBElod(_EnvMap,float4(rViewDir,mip_level));
+</span></span><span class="line"><span class="cl">				half3 env_specular=DecodeHDR(color_cube,_EnvMap_HDR)*_Expose*spec_color*half_lambert*(1-skin_area);
+</span></span><span class="line"><span class="cl">                #ifdef _IBL_ON
+</span></span><span class="line"><span class="cl">                #else
+</span></span><span class="line"><span class="cl">                env_specular=half3(0,0,0);
+</span></span><span class="line"><span class="cl">                #endif                
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">				half3 final_color = (direct_diffuse + direct_specular + env_diffuse+env_specular);
+</span></span><span class="line"><span class="cl">				half3 tone_color = ACESFilm(final_color);
+</span></span><span class="line"><span class="cl">				tone_color = pow(tone_color, 1.0 / 2.2);                
+</span></span><span class="line"><span class="cl">                return half4(tone_color,1.0);
+</span></span><span class="line"><span class="cl">                // return half4(final_color,1.0);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            ENDCG
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    Fallback &#34;Diffuse&#34; ///SHADOW 第四步
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="头发部分">头发部分</h4>
 <blockquote>
@@ -715,7 +711,7 @@ CubeMap （Specular）</li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -958,254 +954,252 @@ CubeMap （Specular）</li>
 </span><span class="lnt">241
 </span><span class="lnt">242
 </span><span class="lnt">243
-</span><span class="lnt">244
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">Shader &#34;Custom/Role_Hair&#34;
-{
-    Properties
-    {
-		_MainTex (&#34;Texture&#34;, 2D) = &#34;white&#34; {}
-		_BaseColor(&#34;Base Color&#34;,Color)=(1,1,1,1)
-		_NormalMap(&#34;NormalMap&#34;,2D) = &#34;bump&#34;{}
-		_RoughnessAdjust(&#34;Roughness Adjust&#34;,Range(0,1))=0
-		
-		[Header(Specular)]
-		_AnisoMap(&#34;Aniso Map&#34;,2D)=&#34;gray&#34;{}
-		_SpecColor1(&#34;Spec Color 1&#34;,Color)=(1,1,1,1)
-		_SpecShininess1(&#34;Spec Shininess 1&#34;,Range(0,1))=0.1
-		_SpecNoise1(&#34;Spec Noise 1&#34;,float)=1
-		_SpecOffset1(&#34;Spec Offset 1&#34;,float)=0
-		_SpecColor2(&#34;Spec Color 2&#34;,Color)=(1,1,1,1)
-		_SpecShininess2(&#34;Spec Shininess 2&#34;,Range(0,1))=0.1
-		_SpecNoise2(&#34;Spec Noise 2&#34;,float)=1
-		_SpecOffset2(&#34;Spec Offset 2&#34;,float)=0		
-		
-		[Header(IBL Specular)]
-		_Tint(&#34;Tint&#34;,Color)=(1,1,1,1)
-		_Expose(&#34;Expose&#34;,Float)=1.0		
-		_EnvMap(&#34;Env Cube&#34;,Cube)=&#34;white&#34;{}
-		_Rotate(&#34;Rotate&#34;,Range(0,360))=0
-		
-		[Toggle(_DIFFUSE_ON)]_DiffuseCheck(&#34;Diffuse Check&#34;,Float)=0
-		[Toggle(_SPECULAR_ON)]_Specular_Check(&#34;Specular Check&#34;,Float)=0
-		// [Toggle(_SH_ON)]_SHCheck(&#34;SH Check&#34;,Float)=0
-		[Toggle(_IBL_ON)]_IBLCheck(&#34;IBL Check&#34;,Float)=0		
-    }
-    SubShader
-    {
-        Tags { &#34;RenderType&#34;=&#34;Opaque&#34; }
-        LOD 100
-
-        Pass
-        {
-            Tags{&#34;LightMode&#34; = &#34;ForwardBase&#34;}
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            #pragma multi_compile_fwdbase
-            #pragma shader_feature _DIFFUSE_ON
-            #pragma shader_feature _SPECULAR_ON
-            #pragma shader_feature _SH_ON
-            #pragma shader_feature _IBL_ON
-            #pragma shader_feature _OILSKIN_ON
-            
-            #include &#34;UnityCG.cginc&#34;
-            #include&#34;AutoLight.cginc&#34;
-
-            struct appdata  // appdata_full
-            {
-                float4 vertex : POSITION; //模型空间顶点坐标
-                half2 texcoord : TEXCOORD0; //第一套UV（模型最多只能有4套UV）
-				half3 normal : NORMAL; //顶点法线
-				half4 tangent : TANGENT; //顶点切线(模型导入Unity后自动计算得到)
-            };
-
-            struct v2f
-            {
-                float4 pos : SV_POSITION; //输出裁剪空间下的顶点坐标数据，给光栅化使用，必须要写的数据
-                float2 uv : TEXCOORD0; //自定义数据体
-                half3 normal_dir : TEXCOORD1;
-                half3 tangent_dir : TEXCOORD2;
-                half3 binormal_dir : TEXCOORD3;
-                half3 pos_world : TEXCOORD4;
-                //最多可以写16个：TEXCOORD0 ~ TEXCOORD15。
-                LIGHTING_COORDS(5,6)   ///SHADOW 第一步
-            };
-
-			sampler2D _MainTex;
-			sampler2D _CompMask;
-			float4 _MainTex_ST;
-			float4 _LightColor0;
-			float _Shininess;
-			float4 _AmbientColor;
-			float _SpecIntensity;
-			sampler2D _AOMap;
-			sampler2D _SpecMask;
-			sampler2D _NormalMap;
-			float _NormalIntensity;
-			sampler2D _ParallaxMap;
-			float _Parallax;
-            float _SpecShininess;
-            float _RoughnessAdjust;
-            float _MetalAdjust;
-			float4 _Tint;
-			float _Expose;            
-            float _Rotate;
-            samplerCUBE _EnvMap;
-            float4 _EnvMap_HDR;
-            sampler2D _SkinLUT;
-            float _CurveOffset;
-            float _LutOffset;
-			half4 custom_SHAr;
-			half4 custom_SHAg;
-			half4 custom_SHAb;
-			half4 custom_SHBr;
-			half4 custom_SHBg;
-			half4 custom_SHBb;
-			half4 custom_SHC;	
-			float _BaseColor;
-			sampler2D _AnisoMap;
-			float4 _AnisoMap_ST;
-			
-			
-		float4 _SpecColor1;
-		float _SpecShininess1;
-		float _SpecNoise1;
-		float _SpecOffset1;
-		float4 _SpecColor2;
-		float _SpecShininess2;
-		float _SpecNoise2;
-		float _SpecOffset2;
-            
-			float3 ACESFilm(float3 x)
-			{
-				float a = 2.51f;
-				float b = 0.03f;
-				float c = 2.43f;
-				float d = 0.59f;
-				float e = 0.14f;
-				return saturate((x*(a*x + b)) / (x*(c*x + d) + e));
-			};
-			
-            v2f vert (appdata v)
-            {
-                v2f o;
-                o.pos = UnityObjectToClipPos(v.vertex);
-                o.uv=TRANSFORM_TEX(v.texcoord,_MainTex);
-                o.pos_world=mul(unity_ObjectToWorld,v.vertex).xyz;
-                o.normal_dir=normalize(mul(v.normal,(float3x3)unity_WorldToObject));
-                o.tangent_dir=normalize(mul((float3x3)unity_ObjectToWorld,v.tangent.xyz));
-                o.binormal_dir=normalize(cross(o.normal_dir, o.tangent_dir))*v.tangent.w;
-                TRANSFER_VERTEX_TO_FRAGMENT(o); ///SHADOW 第二步
-                return o;
-            }
-
-            half4 frag (v2f i) : SV_Target
-            {
-                // Base Color
-                half4 base_color=tex2D(_MainTex,i.uv);
-                base_color=pow(base_color,2.2);// gamma转Liner空间
-                half4 spec_color=base_color;
-                
-                half roughness=saturate(_RoughnessAdjust);
-                
-                half3 pos_world=i.pos_world;
-                half3 normal_dir=normalize(i.normal_dir);
-                half3 tangent_dir=normalize(i.tangent_dir);
-                half3 binormal_dir=normalize(i.binormal_dir);
-                half3 view_dir=normalize(_WorldSpaceCameraPos.xyz-pos_world);
-                float3x3 TBN=float3x3(tangent_dir,binormal_dir,normal_dir);
-        
-                
-                // Noraml 法线
-                half4 normalmap=tex2D(_NormalMap,i.uv);
-                half3 normal_data=UnpackNormal(normalmap);
-                // normal_data.xy = normal_data.xy * _NormalIntensity;
-                normal_dir=normalize(mul(normal_data,TBN));
-                //normal_dir = normalize(tangent_dir * normal_data.x * _NormalIntensity + binormal_dir * normal_data.y * _NormalIntensity + normal_dir * normal_data.z);
-
-                // Light Info
-                half3 light_dir=normalize(_WorldSpaceLightPos0.xyz);
-                half4 light_color=_LightColor0.rgba;
-                half atten=LIGHT_ATTENUATION(i);
-                
-
-                
-                
-                
-                // Direct Diffuse 漫反射,Lambert
-                
-                half NdotL=max(0.0,dot(normal_dir,light_dir));
-                half half_lambert=NdotL*0.5+0.5;
-                half3 direct_diffuse=base_color;
-                
-                // Direct Specular 镜面反射（高光） Blinn-Phong
-                float aniso_noise=tex2D(_AnisoMap,i.uv*_AnisoMap_ST.xy+_AnisoMap_ST.zw).r-0.5;
-                
-                half3 half_dir=normalize(view_dir+light_dir);
-                half NdotH=dot(normal_dir,half_dir);
-                half TdotH=dot(tangent_dir,half_dir);
-                
-                half NdotV=max(0.0,dot(normal_dir,view_dir));
-                float aniso_atten=saturate(sqrt(max(0.0,half_lambert/NdotV)))*atten;
-                
-                // spec1
-                float3 spec_color1=_SpecColor1.rgb+base_color;
-                half3 b_offset1=normal_dir*(_SpecOffset1+_SpecNoise1*aniso_noise);
-                half3 binormal_dir1=normalize(binormal_dir+b_offset1);
-                half BdotH1=dot(binormal_dir1,half_dir)/_SpecShininess1;
-                float3 spec_term1=exp(-(TdotH*TdotH+BdotH1*BdotH1)/(1.0+NdotH));
-                float3 final_spec1=spec_term1*aniso_atten*spec_color1*light_color.rgb;
-                
-                //spec2 
-                float3 spec_color2=_SpecColor2.rgb+base_color;
-                half3 b_offset2=normal_dir*(_SpecOffset2+_SpecNoise2*aniso_noise);
-                half3 binormal_dir2=normalize(binormal_dir+b_offset2);
-                half BdotH2=dot(binormal_dir2,half_dir)/_SpecShininess2;
-                float3 spec_term2=exp(-(TdotH*TdotH+BdotH2*BdotH2)/(1.0+NdotH));
-                float3 final_spec2=spec_term2*aniso_atten*spec_color2*light_color.rgb;                
-
-                // Indirect Specular 间接光的镜面反射
-				half3 rViewDir=reflect(-view_dir,normal_dir);
-				float rad=_Rotate*UNITY_PI/180;
-				float2x2 Rotation=float2x2(cos(rad),sin(rad),-sin(rad),cos(rad));
-				rViewDir.xz=mul(Rotation,rViewDir.xz);
-				
-			    roughness=roughness*(1.7-0.7*roughness);
-				float mip_level=(roughness)*6.0;
-				half4 color_cube=texCUBElod(_EnvMap,float4(rViewDir,mip_level));
-				float3 color_ibl=DecodeHDR(color_cube,_EnvMap_HDR);
-				half3 env_specular=color_ibl*_Expose*half_lambert*aniso_noise;
-                #ifdef _IBL_ON
-                #else
-                env_specular=half3(0,0,0);
-                #endif                
-                #ifdef _DIFFUSE_ON
-                #else
-                direct_diffuse=half3(0,0,0);
-                #endif   
-                #ifdef _SPECULAR_ON
-                #else
-                final_spec1=half3(0,0,0);
-                final_spec2=half3(0,0,0);
-                #endif                                   
-                
-				half3 final_color = (final_spec1 + final_spec2+direct_diffuse+env_specular);
-				// half3 final_color = (direct_diffuse + direct_specular+env_specular);
-				half3 tone_color = ACESFilm(final_color);
-				tone_color = pow(tone_color, 1.0 / 2.2);                
-                return half4(tone_color,1.0);
-                // return half4(final_color,1.0);
-            }
-            ENDCG
-        }
-        
-    }
-    Fallback &#34;Diffuse&#34; ///SHADOW 第四步
-}
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Shader &#34;Custom/Role_Hair&#34;
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    Properties
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">		_MainTex (&#34;Texture&#34;, 2D) = &#34;white&#34; {}
+</span></span><span class="line"><span class="cl">		_BaseColor(&#34;Base Color&#34;,Color)=(1,1,1,1)
+</span></span><span class="line"><span class="cl">		_NormalMap(&#34;NormalMap&#34;,2D) = &#34;bump&#34;{}
+</span></span><span class="line"><span class="cl">		_RoughnessAdjust(&#34;Roughness Adjust&#34;,Range(0,1))=0
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		[Header(Specular)]
+</span></span><span class="line"><span class="cl">		_AnisoMap(&#34;Aniso Map&#34;,2D)=&#34;gray&#34;{}
+</span></span><span class="line"><span class="cl">		_SpecColor1(&#34;Spec Color 1&#34;,Color)=(1,1,1,1)
+</span></span><span class="line"><span class="cl">		_SpecShininess1(&#34;Spec Shininess 1&#34;,Range(0,1))=0.1
+</span></span><span class="line"><span class="cl">		_SpecNoise1(&#34;Spec Noise 1&#34;,float)=1
+</span></span><span class="line"><span class="cl">		_SpecOffset1(&#34;Spec Offset 1&#34;,float)=0
+</span></span><span class="line"><span class="cl">		_SpecColor2(&#34;Spec Color 2&#34;,Color)=(1,1,1,1)
+</span></span><span class="line"><span class="cl">		_SpecShininess2(&#34;Spec Shininess 2&#34;,Range(0,1))=0.1
+</span></span><span class="line"><span class="cl">		_SpecNoise2(&#34;Spec Noise 2&#34;,float)=1
+</span></span><span class="line"><span class="cl">		_SpecOffset2(&#34;Spec Offset 2&#34;,float)=0		
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		[Header(IBL Specular)]
+</span></span><span class="line"><span class="cl">		_Tint(&#34;Tint&#34;,Color)=(1,1,1,1)
+</span></span><span class="line"><span class="cl">		_Expose(&#34;Expose&#34;,Float)=1.0		
+</span></span><span class="line"><span class="cl">		_EnvMap(&#34;Env Cube&#34;,Cube)=&#34;white&#34;{}
+</span></span><span class="line"><span class="cl">		_Rotate(&#34;Rotate&#34;,Range(0,360))=0
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		[Toggle(_DIFFUSE_ON)]_DiffuseCheck(&#34;Diffuse Check&#34;,Float)=0
+</span></span><span class="line"><span class="cl">		[Toggle(_SPECULAR_ON)]_Specular_Check(&#34;Specular Check&#34;,Float)=0
+</span></span><span class="line"><span class="cl">		// [Toggle(_SH_ON)]_SHCheck(&#34;SH Check&#34;,Float)=0
+</span></span><span class="line"><span class="cl">		[Toggle(_IBL_ON)]_IBLCheck(&#34;IBL Check&#34;,Float)=0		
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    SubShader
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Tags { &#34;RenderType&#34;=&#34;Opaque&#34; }
+</span></span><span class="line"><span class="cl">        LOD 100
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        Pass
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            Tags{&#34;LightMode&#34; = &#34;ForwardBase&#34;}
+</span></span><span class="line"><span class="cl">            CGPROGRAM
+</span></span><span class="line"><span class="cl">            #pragma vertex vert
+</span></span><span class="line"><span class="cl">            #pragma fragment frag
+</span></span><span class="line"><span class="cl">            #pragma multi_compile_fwdbase
+</span></span><span class="line"><span class="cl">            #pragma shader_feature _DIFFUSE_ON
+</span></span><span class="line"><span class="cl">            #pragma shader_feature _SPECULAR_ON
+</span></span><span class="line"><span class="cl">            #pragma shader_feature _SH_ON
+</span></span><span class="line"><span class="cl">            #pragma shader_feature _IBL_ON
+</span></span><span class="line"><span class="cl">            #pragma shader_feature _OILSKIN_ON
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            #include &#34;UnityCG.cginc&#34;
+</span></span><span class="line"><span class="cl">            #include&#34;AutoLight.cginc&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            struct appdata  // appdata_full
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                float4 vertex : POSITION; //模型空间顶点坐标
+</span></span><span class="line"><span class="cl">                half2 texcoord : TEXCOORD0; //第一套UV（模型最多只能有4套UV）
+</span></span><span class="line"><span class="cl">				half3 normal : NORMAL; //顶点法线
+</span></span><span class="line"><span class="cl">				half4 tangent : TANGENT; //顶点切线(模型导入Unity后自动计算得到)
+</span></span><span class="line"><span class="cl">            };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            struct v2f
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                float4 pos : SV_POSITION; //输出裁剪空间下的顶点坐标数据，给光栅化使用，必须要写的数据
+</span></span><span class="line"><span class="cl">                float2 uv : TEXCOORD0; //自定义数据体
+</span></span><span class="line"><span class="cl">                half3 normal_dir : TEXCOORD1;
+</span></span><span class="line"><span class="cl">                half3 tangent_dir : TEXCOORD2;
+</span></span><span class="line"><span class="cl">                half3 binormal_dir : TEXCOORD3;
+</span></span><span class="line"><span class="cl">                half3 pos_world : TEXCOORD4;
+</span></span><span class="line"><span class="cl">                //最多可以写16个：TEXCOORD0 ~ TEXCOORD15。
+</span></span><span class="line"><span class="cl">                LIGHTING_COORDS(5,6)   ///SHADOW 第一步
+</span></span><span class="line"><span class="cl">            };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			sampler2D _MainTex;
+</span></span><span class="line"><span class="cl">			sampler2D _CompMask;
+</span></span><span class="line"><span class="cl">			float4 _MainTex_ST;
+</span></span><span class="line"><span class="cl">			float4 _LightColor0;
+</span></span><span class="line"><span class="cl">			float _Shininess;
+</span></span><span class="line"><span class="cl">			float4 _AmbientColor;
+</span></span><span class="line"><span class="cl">			float _SpecIntensity;
+</span></span><span class="line"><span class="cl">			sampler2D _AOMap;
+</span></span><span class="line"><span class="cl">			sampler2D _SpecMask;
+</span></span><span class="line"><span class="cl">			sampler2D _NormalMap;
+</span></span><span class="line"><span class="cl">			float _NormalIntensity;
+</span></span><span class="line"><span class="cl">			sampler2D _ParallaxMap;
+</span></span><span class="line"><span class="cl">			float _Parallax;
+</span></span><span class="line"><span class="cl">            float _SpecShininess;
+</span></span><span class="line"><span class="cl">            float _RoughnessAdjust;
+</span></span><span class="line"><span class="cl">            float _MetalAdjust;
+</span></span><span class="line"><span class="cl">			float4 _Tint;
+</span></span><span class="line"><span class="cl">			float _Expose;            
+</span></span><span class="line"><span class="cl">            float _Rotate;
+</span></span><span class="line"><span class="cl">            samplerCUBE _EnvMap;
+</span></span><span class="line"><span class="cl">            float4 _EnvMap_HDR;
+</span></span><span class="line"><span class="cl">            sampler2D _SkinLUT;
+</span></span><span class="line"><span class="cl">            float _CurveOffset;
+</span></span><span class="line"><span class="cl">            float _LutOffset;
+</span></span><span class="line"><span class="cl">			half4 custom_SHAr;
+</span></span><span class="line"><span class="cl">			half4 custom_SHAg;
+</span></span><span class="line"><span class="cl">			half4 custom_SHAb;
+</span></span><span class="line"><span class="cl">			half4 custom_SHBr;
+</span></span><span class="line"><span class="cl">			half4 custom_SHBg;
+</span></span><span class="line"><span class="cl">			half4 custom_SHBb;
+</span></span><span class="line"><span class="cl">			half4 custom_SHC;	
+</span></span><span class="line"><span class="cl">			float _BaseColor;
+</span></span><span class="line"><span class="cl">			sampler2D _AnisoMap;
+</span></span><span class="line"><span class="cl">			float4 _AnisoMap_ST;
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">		float4 _SpecColor1;
+</span></span><span class="line"><span class="cl">		float _SpecShininess1;
+</span></span><span class="line"><span class="cl">		float _SpecNoise1;
+</span></span><span class="line"><span class="cl">		float _SpecOffset1;
+</span></span><span class="line"><span class="cl">		float4 _SpecColor2;
+</span></span><span class="line"><span class="cl">		float _SpecShininess2;
+</span></span><span class="line"><span class="cl">		float _SpecNoise2;
+</span></span><span class="line"><span class="cl">		float _SpecOffset2;
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">			float3 ACESFilm(float3 x)
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				float a = 2.51f;
+</span></span><span class="line"><span class="cl">				float b = 0.03f;
+</span></span><span class="line"><span class="cl">				float c = 2.43f;
+</span></span><span class="line"><span class="cl">				float d = 0.59f;
+</span></span><span class="line"><span class="cl">				float e = 0.14f;
+</span></span><span class="line"><span class="cl">				return saturate((x*(a*x + b)) / (x*(c*x + d) + e));
+</span></span><span class="line"><span class="cl">			};
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">            v2f vert (appdata v)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                v2f o;
+</span></span><span class="line"><span class="cl">                o.pos = UnityObjectToClipPos(v.vertex);
+</span></span><span class="line"><span class="cl">                o.uv=TRANSFORM_TEX(v.texcoord,_MainTex);
+</span></span><span class="line"><span class="cl">                o.pos_world=mul(unity_ObjectToWorld,v.vertex).xyz;
+</span></span><span class="line"><span class="cl">                o.normal_dir=normalize(mul(v.normal,(float3x3)unity_WorldToObject));
+</span></span><span class="line"><span class="cl">                o.tangent_dir=normalize(mul((float3x3)unity_ObjectToWorld,v.tangent.xyz));
+</span></span><span class="line"><span class="cl">                o.binormal_dir=normalize(cross(o.normal_dir, o.tangent_dir))*v.tangent.w;
+</span></span><span class="line"><span class="cl">                TRANSFER_VERTEX_TO_FRAGMENT(o); ///SHADOW 第二步
+</span></span><span class="line"><span class="cl">                return o;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            half4 frag (v2f i) : SV_Target
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                // Base Color
+</span></span><span class="line"><span class="cl">                half4 base_color=tex2D(_MainTex,i.uv);
+</span></span><span class="line"><span class="cl">                base_color=pow(base_color,2.2);// gamma转Liner空间
+</span></span><span class="line"><span class="cl">                half4 spec_color=base_color;
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                half roughness=saturate(_RoughnessAdjust);
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                half3 pos_world=i.pos_world;
+</span></span><span class="line"><span class="cl">                half3 normal_dir=normalize(i.normal_dir);
+</span></span><span class="line"><span class="cl">                half3 tangent_dir=normalize(i.tangent_dir);
+</span></span><span class="line"><span class="cl">                half3 binormal_dir=normalize(i.binormal_dir);
+</span></span><span class="line"><span class="cl">                half3 view_dir=normalize(_WorldSpaceCameraPos.xyz-pos_world);
+</span></span><span class="line"><span class="cl">                float3x3 TBN=float3x3(tangent_dir,binormal_dir,normal_dir);
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // Noraml 法线
+</span></span><span class="line"><span class="cl">                half4 normalmap=tex2D(_NormalMap,i.uv);
+</span></span><span class="line"><span class="cl">                half3 normal_data=UnpackNormal(normalmap);
+</span></span><span class="line"><span class="cl">                // normal_data.xy = normal_data.xy * _NormalIntensity;
+</span></span><span class="line"><span class="cl">                normal_dir=normalize(mul(normal_data,TBN));
+</span></span><span class="line"><span class="cl">                //normal_dir = normalize(tangent_dir * normal_data.x * _NormalIntensity + binormal_dir * normal_data.y * _NormalIntensity + normal_dir * normal_data.z);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                // Light Info
+</span></span><span class="line"><span class="cl">                half3 light_dir=normalize(_WorldSpaceLightPos0.xyz);
+</span></span><span class="line"><span class="cl">                half4 light_color=_LightColor0.rgba;
+</span></span><span class="line"><span class="cl">                half atten=LIGHT_ATTENUATION(i);
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // Direct Diffuse 漫反射,Lambert
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                half NdotL=max(0.0,dot(normal_dir,light_dir));
+</span></span><span class="line"><span class="cl">                half half_lambert=NdotL*0.5+0.5;
+</span></span><span class="line"><span class="cl">                half3 direct_diffuse=base_color;
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // Direct Specular 镜面反射（高光） Blinn-Phong
+</span></span><span class="line"><span class="cl">                float aniso_noise=tex2D(_AnisoMap,i.uv*_AnisoMap_ST.xy+_AnisoMap_ST.zw).r-0.5;
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                half3 half_dir=normalize(view_dir+light_dir);
+</span></span><span class="line"><span class="cl">                half NdotH=dot(normal_dir,half_dir);
+</span></span><span class="line"><span class="cl">                half TdotH=dot(tangent_dir,half_dir);
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                half NdotV=max(0.0,dot(normal_dir,view_dir));
+</span></span><span class="line"><span class="cl">                float aniso_atten=saturate(sqrt(max(0.0,half_lambert/NdotV)))*atten;
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // spec1
+</span></span><span class="line"><span class="cl">                float3 spec_color1=_SpecColor1.rgb+base_color;
+</span></span><span class="line"><span class="cl">                half3 b_offset1=normal_dir*(_SpecOffset1+_SpecNoise1*aniso_noise);
+</span></span><span class="line"><span class="cl">                half3 binormal_dir1=normalize(binormal_dir+b_offset1);
+</span></span><span class="line"><span class="cl">                half BdotH1=dot(binormal_dir1,half_dir)/_SpecShininess1;
+</span></span><span class="line"><span class="cl">                float3 spec_term1=exp(-(TdotH*TdotH+BdotH1*BdotH1)/(1.0+NdotH));
+</span></span><span class="line"><span class="cl">                float3 final_spec1=spec_term1*aniso_atten*spec_color1*light_color.rgb;
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                //spec2 
+</span></span><span class="line"><span class="cl">                float3 spec_color2=_SpecColor2.rgb+base_color;
+</span></span><span class="line"><span class="cl">                half3 b_offset2=normal_dir*(_SpecOffset2+_SpecNoise2*aniso_noise);
+</span></span><span class="line"><span class="cl">                half3 binormal_dir2=normalize(binormal_dir+b_offset2);
+</span></span><span class="line"><span class="cl">                half BdotH2=dot(binormal_dir2,half_dir)/_SpecShininess2;
+</span></span><span class="line"><span class="cl">                float3 spec_term2=exp(-(TdotH*TdotH+BdotH2*BdotH2)/(1.0+NdotH));
+</span></span><span class="line"><span class="cl">                float3 final_spec2=spec_term2*aniso_atten*spec_color2*light_color.rgb;                
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                // Indirect Specular 间接光的镜面反射
+</span></span><span class="line"><span class="cl">				half3 rViewDir=reflect(-view_dir,normal_dir);
+</span></span><span class="line"><span class="cl">				float rad=_Rotate*UNITY_PI/180;
+</span></span><span class="line"><span class="cl">				float2x2 Rotation=float2x2(cos(rad),sin(rad),-sin(rad),cos(rad));
+</span></span><span class="line"><span class="cl">				rViewDir.xz=mul(Rotation,rViewDir.xz);
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">			    roughness=roughness*(1.7-0.7*roughness);
+</span></span><span class="line"><span class="cl">				float mip_level=(roughness)*6.0;
+</span></span><span class="line"><span class="cl">				half4 color_cube=texCUBElod(_EnvMap,float4(rViewDir,mip_level));
+</span></span><span class="line"><span class="cl">				float3 color_ibl=DecodeHDR(color_cube,_EnvMap_HDR);
+</span></span><span class="line"><span class="cl">				half3 env_specular=color_ibl*_Expose*half_lambert*aniso_noise;
+</span></span><span class="line"><span class="cl">                #ifdef _IBL_ON
+</span></span><span class="line"><span class="cl">                #else
+</span></span><span class="line"><span class="cl">                env_specular=half3(0,0,0);
+</span></span><span class="line"><span class="cl">                #endif                
+</span></span><span class="line"><span class="cl">                #ifdef _DIFFUSE_ON
+</span></span><span class="line"><span class="cl">                #else
+</span></span><span class="line"><span class="cl">                direct_diffuse=half3(0,0,0);
+</span></span><span class="line"><span class="cl">                #endif   
+</span></span><span class="line"><span class="cl">                #ifdef _SPECULAR_ON
+</span></span><span class="line"><span class="cl">                #else
+</span></span><span class="line"><span class="cl">                final_spec1=half3(0,0,0);
+</span></span><span class="line"><span class="cl">                final_spec2=half3(0,0,0);
+</span></span><span class="line"><span class="cl">                #endif                                   
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">				half3 final_color = (final_spec1 + final_spec2+direct_diffuse+env_specular);
+</span></span><span class="line"><span class="cl">				// half3 final_color = (direct_diffuse + direct_specular+env_specular);
+</span></span><span class="line"><span class="cl">				half3 tone_color = ACESFilm(final_color);
+</span></span><span class="line"><span class="cl">				tone_color = pow(tone_color, 1.0 / 2.2);                
+</span></span><span class="line"><span class="cl">                return half4(tone_color,1.0);
+</span></span><span class="line"><span class="cl">                // return half4(final_color,1.0);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            ENDCG
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    Fallback &#34;Diffuse&#34; ///SHADOW 第四步
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -1237,7 +1231,7 @@ CubeMap （Specular）</li>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

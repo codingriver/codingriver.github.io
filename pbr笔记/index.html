@@ -8,10 +8,10 @@
         <title>PBR笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="PBR笔记" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/pbr%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-12-07T13:39:26+08:00" />
 <meta property="article:modified_time" content="2021-12-07T13:39:26+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/pbr%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "shader, 笔记","wordcount":  19324 ,
+        },"genre": "posts","keywords": "shader, 笔记","wordcount":  19325 ,
         "url": "https:\/\/codingriver.github.io\/pbr%E7%AC%94%E8%AE%B0\/","datePublished": "2021-12-07T13:39:26+08:00","dateModified": "2021-12-07T13:39:26+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">PBR笔记</h1><h2 class="single-subtitle">PBR笔记</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/shader/"><i class="far fa-folder fa-fw"></i>shader</a>&nbsp;<a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-07 13:39:26">2021-12-07 13:39:26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 19324 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-07 13:39:26">2021-12-07 13:39:26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 19325 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 39 分钟&nbsp;<span id="/pbr%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="PBR笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -453,13 +453,13 @@ PBR，或者用更通俗一些的称呼是指<code>基于物理的渲染(Physica
 <p>根据上面的能量守恒关系，可以先计算镜面反射部分，此部分等于入射光线被反射的能量所占的百分比。而折射部分可以由镜面反射部分计算得出。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">kS</span> <span class="o">=</span> <span class="n">calculateSpecularComponent</span><span class="p">(...);</span> <span class="c1">// 反射/镜面 部分
-</span><span class="c1"></span><span class="kt">float</span> <span class="n">kD</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">ks</span><span class="p">;</span>                        <span class="c1">// 折射/漫反射 部分
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">kS</span> <span class="o">=</span> <span class="n">calculateSpecularComponent</span><span class="p">(...);</span> <span class="c1">// 反射/镜面 部分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">float</span> <span class="n">kD</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">ks</span><span class="p">;</span>                        <span class="c1">// 折射/漫反射 部分
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>通过以上代码可以看出，镜面反射部分与漫反射部分的和肯定不会超过1.0，从而近似达到能量守恒的目的。</p>
 <h3 id="反射方程reflectance-equation--渲染方程-">反射方程（Reflectance Equation） ( 渲染方程 )</h3>
@@ -553,11 +553,11 @@ PBR，或者用更通俗一些的称呼是指<code>基于物理的渲染(Physica
 <p><strong>辐射率</strong>：是辐射度量学上表示一个区域平面上光线总量的物理量，它受到<code>入射</code>(Incident)（或者来射）光线与平面法线间的夹角θ的余弦值cosθ的影响：当直接辐射到平面上的程度越低时，光线就越弱，而当光线完全垂直于平面时强度最高。cosθ就直接对应于光线的方向向量和平面法向量的点积：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">cosTheta</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">lightDir</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>  
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">cosTheta</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">lightDir</span><span class="p">,</span> <span class="n">N</span><span class="p">);</span>  
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>辐射率方程很有用，因为它把大部分我们感兴趣的物理量都包含了进去。如果我们把立体角ω和面积A看作是无穷小的，那么我们就能用辐射率来表示单束光线穿过空间中的一个点的通量。这就使我们可以计算得出作用于单个（片段）点上的单束光线的辐射率，我们实际上把立体角ω转变为方向向量ω然后把面A转换为点p。这样我们就能直接在我们的着色器中使用辐射率来计算单束光线对每个片段的作用了。</p>
 <p>事实上，当涉及到辐射率时，我们通常关心的是所有投射到点p上的光线的总和，而这个和就称为<strong>辐射照度</strong>或者<strong>辐照度(Irradiance)</strong>。在理解了辐射率和辐照度的概念之后，让我们再回过头来看看反射率方程：<br>
@@ -661,7 +661,7 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 <p>Trowbridge-Reitz GGX的NDF实现代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -673,23 +673,21 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
-</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="nf">DistributionGGX</span><span class="p">(</span><span class="n">vec3</span> <span class="n">N</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">H</span><span class="p">,</span> <span class="kt">float</span> <span class="n">a</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">float</span> <span class="n">a2</span>     <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">;</span>
-    <span class="kt">float</span> <span class="n">NdotH</span>  <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
-    <span class="kt">float</span> <span class="n">NdotH2</span> <span class="o">=</span> <span class="n">NdotH</span><span class="o">*</span><span class="n">NdotH</span><span class="p">;</span>
-	
-    <span class="kt">float</span> <span class="n">nom</span>    <span class="o">=</span> <span class="n">a2</span><span class="p">;</span>
-    <span class="kt">float</span> <span class="n">denom</span>  <span class="o">=</span> <span class="p">(</span><span class="n">NdotH2</span> <span class="o">*</span> <span class="p">(</span><span class="n">a2</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">);</span>
-    <span class="n">denom</span>        <span class="o">=</span> <span class="n">PI</span> <span class="o">*</span> <span class="n">denom</span> <span class="o">*</span> <span class="n">denom</span><span class="p">;</span>
-	
-    <span class="k">return</span> <span class="n">nom</span> <span class="o">/</span> <span class="n">denom</span><span class="p">;</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">DistributionGGX</span><span class="p">(</span><span class="n">vec3</span> <span class="n">N</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">H</span><span class="p">,</span> <span class="kt">float</span> <span class="n">a</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">a2</span>     <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">NdotH</span>  <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">H</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">NdotH2</span> <span class="o">=</span> <span class="n">NdotH</span><span class="o">*</span><span class="n">NdotH</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">nom</span>    <span class="o">=</span> <span class="n">a2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">denom</span>  <span class="o">=</span> <span class="p">(</span><span class="n">NdotH2</span> <span class="o">*</span> <span class="p">(</span><span class="n">a2</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">denom</span>        <span class="o">=</span> <span class="n">PI</span> <span class="o">*</span> <span class="n">denom</span> <span class="o">*</span> <span class="n">denom</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nom</span> <span class="o">/</span> <span class="n">denom</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="𝐹-fresnel-equation">𝐹 (Fresnel equation)</h4>
 <p>菲涅尔方程定义的是在不同观察方向上，表面上被反射的光除以被折射的光的比例。在一束光击中了表面的一瞬间，菲涅尔根据表面与观察方向之间的夹角，计算得到光被反射的百分比。根据这个比例和能量守恒定律我们可以直接知道剩余的能量就是会被折射的能量。</p>
@@ -703,7 +701,7 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
         data-sizes="auto"
         alt="../../imgs/2021-12-07-18-32-18.png"
         title="../../imgs/2021-12-07-18-32-18.png" /><br>
-<strong>𝐹<sub>0</sub></strong>表示的是表面基础反射率，这个我们可以使用一种叫做<strong>Indices of refraction(IOR)<strong>的方法计算得到。运用在球面上的效果就是你看到的那样，观察方向越是接近</strong>掠射角</strong>（grazing angle，又叫切线角，与正视角相差90度），菲涅尔现象导致的反射就越强：<br>
+<strong>𝐹<sub>0</sub><strong>表示的是表面基础反射率，这个我们可以使用一种叫做</strong>Indices of refraction(IOR)<strong>的方法计算得到。运用在球面上的效果就是你看到的那样，观察方向越是接近</strong>掠射角</strong>（grazing angle，又叫切线角，与正视角相差90度），菲涅尔现象导致的反射就越强：<br>
 <img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -729,31 +727,29 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 <p>通过预先计算电介质与导体的值，我们可以对两种类型的表面使用相同的Fresnel-Schlick近似，但是如果是金属表面的话就需要对基础反射率添加色彩。我们一般是按下面这个样子来实现的：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="n">F0</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">0.04</span><span class="p">);</span>
-<span class="n">F0</span>      <span class="o">=</span> <span class="n">mix</span><span class="p">(</span><span class="n">F0</span><span class="p">,</span> <span class="n">surfaceColor</span><span class="p">.</span><span class="n">rgb</span><span class="p">,</span> <span class="n">metalness</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">F0</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">0.04</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">F0</span>      <span class="o">=</span> <span class="n">mix</span><span class="p">(</span><span class="n">F0</span><span class="p">,</span> <span class="n">surfaceColor</span><span class="p">.</span><span class="n">rgb</span><span class="p">,</span> <span class="n">metalness</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>我们为大多数电介质表面定义了一个近似的基础反射率。<strong>𝐹<sub>0</sub></strong>取最常见的电解质表面的平均值，这又是一个近似值。不过对于大多数电介质表面而言使用0.04作为基础反射率已经足够好了，而且可以在不需要输入额外表面参数的情况下得到物理可信的结果。然后，基于金属表面特性，我们要么使用电介质的基础反射率要么就使用𝐹0作来为表面颜色。因为金属表面会吸收所有折射光线而没有漫反射，所以我们可以直接使用表面颜色纹理来作为它们的基础反射率。</p>
+</div><p>我们为大多数电介质表面定义了一个近似的基础反射率。**𝐹<sub>0</sub>**取最常见的电解质表面的平均值，这又是一个近似值。不过对于大多数电介质表面而言使用0.04作为基础反射率已经足够好了，而且可以在不需要输入额外表面参数的情况下得到物理可信的结果。然后，基于金属表面特性，我们要么使用电介质的基础反射率要么就使用𝐹0作来为表面颜色。因为金属表面会吸收所有折射光线而没有漫反射，所以我们可以直接使用表面颜色纹理来作为它们的基础反射率。</p>
 <p>Fresnel Schlick近似可以用GLSL代码实现：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">fresnelSchlick</span><span class="p">(</span><span class="kt">float</span> <span class="n">cosTheta</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">F0</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">F0</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">F0</span><span class="p">)</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">dot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="mf">5.0</span><span class="p">);</span>
-<span class="p">}</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">vec3</span> <span class="nf">fresnelSchlick</span><span class="p">(</span><span class="kt">float</span> <span class="n">cosTheta</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">F0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">F0</span> <span class="o">+</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">F0</span><span class="p">)</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">dot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="mf">5.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="𝐺-geometry-function">𝐺 (Geometry function)</h4>
 <p>几何函数模拟微平面相互遮挡导致光线的能量减少或丢失的现象。<br>
@@ -806,7 +802,7 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 <p>使用GLSL编写的几何函数代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -825,24 +821,24 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="nf">GeometrySchlickGGX</span><span class="p">(</span><span class="kt">float</span> <span class="n">NdotV</span><span class="p">,</span> <span class="kt">float</span> <span class="n">k</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">float</span> <span class="n">nom</span>   <span class="o">=</span> <span class="n">NdotV</span><span class="p">;</span>
-    <span class="kt">float</span> <span class="n">denom</span> <span class="o">=</span> <span class="n">NdotV</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">;</span>
-	
-    <span class="k">return</span> <span class="n">nom</span> <span class="o">/</span> <span class="n">denom</span><span class="p">;</span>
-<span class="p">}</span>
-  
-<span class="kt">float</span> <span class="nf">GeometrySmith</span><span class="p">(</span><span class="n">vec3</span> <span class="n">N</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">V</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">L</span><span class="p">,</span> <span class="kt">float</span> <span class="n">k</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="kt">float</span> <span class="n">NdotV</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
-    <span class="kt">float</span> <span class="n">NdotL</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">L</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
-    <span class="kt">float</span> <span class="n">ggx1</span> <span class="o">=</span> <span class="n">GeometrySchlickGGX</span><span class="p">(</span><span class="n">NdotV</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span> <span class="c1">// 视线方向的几何遮挡
-</span><span class="c1"></span>    <span class="kt">float</span> <span class="n">ggx2</span> <span class="o">=</span> <span class="n">GeometrySchlickGGX</span><span class="p">(</span><span class="n">NdotL</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span> <span class="c1">// 光线方向的几何阴影
-</span><span class="c1"></span>	
-    <span class="k">return</span> <span class="n">ggx1</span> <span class="o">*</span> <span class="n">ggx2</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">GeometrySchlickGGX</span><span class="p">(</span><span class="kt">float</span> <span class="n">NdotV</span><span class="p">,</span> <span class="kt">float</span> <span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">nom</span>   <span class="o">=</span> <span class="n">NdotV</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">denom</span> <span class="o">=</span> <span class="n">NdotV</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">nom</span> <span class="o">/</span> <span class="n">denom</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="nf">GeometrySmith</span><span class="p">(</span><span class="n">vec3</span> <span class="n">N</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">V</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">L</span><span class="p">,</span> <span class="kt">float</span> <span class="n">k</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">NdotV</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">NdotL</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">L</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">ggx1</span> <span class="o">=</span> <span class="n">GeometrySchlickGGX</span><span class="p">(</span><span class="n">NdotV</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span> <span class="c1">// 视线方向的几何遮挡
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">ggx2</span> <span class="o">=</span> <span class="n">GeometrySchlickGGX</span><span class="p">(</span><span class="n">NdotL</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span> <span class="c1">// 光线方向的几何阴影
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ggx1</span> <span class="o">*</span> <span class="n">ggx2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="cook-torrance反射方程cook-torrance-reflectance-equation">Cook-Torrance反射方程(Cook-Torrance reflectance equation)</h4>
 <p>Cook-Torrance反射方程中的每一个部分我们我们都用基于物理的BRDF替换，可以得到最终的反射方程：<br>
@@ -900,7 +896,7 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 <p>用更精炼的话来描述：在点光源直接光照的情况里，辐射率函数𝐿计算的是灯光颜色，经过到𝑝点距离的衰减之后，再经过𝑛⋅𝜔<sub>i</sub>缩放。能击中点𝑝的光线方向𝜔<sub>i</sub>就是从𝑝点看向光源的方向。把这些写成代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -909,14 +905,14 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span>  <span class="n">lightColor</span>  <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">23.47</span><span class="p">,</span> <span class="mf">21.31</span><span class="p">,</span> <span class="mf">20.79</span><span class="p">);</span>
-<span class="n">vec3</span>  <span class="n">wi</span>          <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">lightPos</span> <span class="o">-</span> <span class="n">fragPos</span><span class="p">);</span>
-<span class="kt">float</span> <span class="n">cosTheta</span>    <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Wi</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
-<span class="c1">// 计算光源在点fragPos的衰减系数
-</span><span class="c1"></span><span class="kt">float</span> <span class="n">attenuation</span> <span class="o">=</span> <span class="n">calculateAttenuation</span><span class="p">(</span><span class="n">fragPos</span><span class="p">,</span> <span class="n">lightPos</span><span class="p">);</span> 
-<span class="c1">// 英文原版的radiance类型有误，将它改成了vec3
-</span><span class="c1"></span><span class="n">vec3</span> <span class="n">radiance</span>  <span class="o">=</span> <span class="n">lightColor</span> <span class="o">*</span> <span class="p">(</span><span class="n">attenuation</span> <span class="o">*</span> <span class="n">cosTheta</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">vec3</span>  <span class="n">lightColor</span>  <span class="o">=</span> <span class="n">vec3</span><span class="p">(</span><span class="mf">23.47</span><span class="p">,</span> <span class="mf">21.31</span><span class="p">,</span> <span class="mf">20.79</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span>  <span class="n">wi</span>          <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">lightPos</span> <span class="o">-</span> <span class="n">fragPos</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">cosTheta</span>    <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">Wi</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 计算光源在点fragPos的衰减系数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">float</span> <span class="n">attenuation</span> <span class="o">=</span> <span class="n">calculateAttenuation</span><span class="p">(</span><span class="n">fragPos</span><span class="p">,</span> <span class="n">lightPos</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">// 英文原版的radiance类型有误，将它改成了vec3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">vec3</span> <span class="n">radiance</span>  <span class="o">=</span> <span class="n">lightColor</span> <span class="o">*</span> <span class="p">(</span><span class="n">attenuation</span> <span class="o">*</span> <span class="n">cosTheta</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>你应该非常非常熟悉这段代码：这就是以前我们计算漫反射光的算法！在只有单光源直接光照的情况下，辐射率的计算方法跟我们以前的光照算法是类似的。</p>
 <blockquote>
@@ -1010,19 +1006,19 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 <p>在之前所述的反射方程中，非直接光依旧包含了漫反射和镜面反射两个部分，所以我们需要加个权重给漫反射。依旧使用菲涅尔方程来计算漫反射因子：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="n">kS</span> <span class="o">=</span> <span class="n">fresnelSchlick</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">F0</span><span class="p">);</span>
-<span class="n">vec3</span> <span class="n">kD</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">kS</span><span class="p">;</span>
-<span class="n">vec3</span> <span class="n">irradiance</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">ambientCubeMap</span><span class="p">,</span> <span class="n">N</span><span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
-<span class="n">vec3</span> <span class="n">diffuse</span>    <span class="o">=</span> <span class="n">irradiance</span> <span class="o">*</span> <span class="n">albedo</span><span class="p">;</span>
-<span class="n">vec3</span> <span class="n">ambient</span>    <span class="o">=</span> <span class="p">(</span><span class="n">kD</span> <span class="o">*</span> <span class="n">diffuse</span><span class="p">)</span> <span class="o">*</span> <span class="n">ao</span><span class="p">;</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">kS</span> <span class="o">=</span> <span class="n">fresnelSchlick</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">F0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">kD</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">kS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">irradiance</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">ambientCubeMap</span><span class="p">,</span> <span class="n">N</span><span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">diffuse</span>    <span class="o">=</span> <span class="n">irradiance</span> <span class="o">*</span> <span class="n">albedo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">ambient</span>    <span class="o">=</span> <span class="p">(</span><span class="n">kD</span> <span class="o">*</span> <span class="n">diffuse</span><span class="p">)</span> <span class="o">*</span> <span class="n">ao</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>由于环境光来自在半球内所有围绕着法线N的方向，没有单一的半向量去决定菲涅尔因子。为了仍然能模拟菲涅尔，这里采用了法线和视线的夹角。之前的算法采用了受表面粗糙度影响的微平面半向量，作为菲涅尔方程的输入。这里，我们并不考虑粗糙度，表面的反射因子被视作相当大。</p>
 <p>非直接光照将沿用直接光照的相同的属性，所以，期望越粗糙的表面镜面反射越少。由于不考虑表面粗糙度，非直接光照的菲涅尔方程强度被视作粗糙的非金属表面（下图）。<br>
@@ -1037,34 +1033,34 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 <p>为了缓解这个问题，可在<code>Fresnel-Schlick方程</code>注入粗糙度项（该方程的<a href="https://seblagarde.wordpress.com/2011/08/17/hello-world/" target="_blank" rel="noopener noreffer">来源</a>）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="nf">fresnelSchlickRoughness</span><span class="p">(</span><span class="kt">float</span> <span class="n">cosTheta</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">F0</span><span class="p">,</span> <span class="kt">float</span> <span class="n">roughness</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">F0</span> <span class="o">+</span> <span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">roughness</span><span class="p">),</span> <span class="n">F0</span><span class="p">)</span> <span class="o">-</span> <span class="n">F0</span><span class="p">)</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">cosTheta</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">);</span>
-<span class="p">}</span>   
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">vec3</span> <span class="nf">fresnelSchlickRoughness</span><span class="p">(</span><span class="kt">float</span> <span class="n">cosTheta</span><span class="p">,</span> <span class="n">vec3</span> <span class="n">F0</span><span class="p">,</span> <span class="kt">float</span> <span class="n">roughness</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">F0</span> <span class="o">+</span> <span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">vec3</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">roughness</span><span class="p">),</span> <span class="n">F0</span><span class="p">)</span> <span class="o">-</span> <span class="n">F0</span><span class="p">)</span> <span class="o">*</span> <span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">cosTheta</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>   
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>考虑了表面粗糙度后，菲涅尔相关计算最终如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="n">kS</span> <span class="o">=</span> <span class="n">fresnelSchlickRoughness</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">F0</span><span class="p">,</span> <span class="n">roughness</span><span class="p">);</span> 
-<span class="n">vec3</span> <span class="n">kD</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">kS</span><span class="p">;</span>
-<span class="n">vec3</span> <span class="n">irradiance</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">ambientCubeMap</span><span class="p">,</span> <span class="n">N</span><span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
-<span class="n">vec3</span> <span class="n">diffuse</span>    <span class="o">=</span> <span class="n">irradiance</span> <span class="o">*</span> <span class="n">albedo</span><span class="p">;</span>
-<span class="n">vec3</span> <span class="n">ambient</span>    <span class="o">=</span> <span class="p">(</span><span class="n">kD</span> <span class="o">*</span> <span class="n">diffuse</span><span class="p">)</span> <span class="o">*</span> <span class="n">ao</span><span class="p">;</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">kS</span> <span class="o">=</span> <span class="n">fresnelSchlickRoughness</span><span class="p">(</span><span class="n">max</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">V</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">F0</span><span class="p">,</span> <span class="n">roughness</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">kD</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">kS</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">irradiance</span> <span class="o">=</span> <span class="n">texture</span><span class="p">(</span><span class="n">ambientCubeMap</span><span class="p">,</span> <span class="n">N</span><span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">diffuse</span>    <span class="o">=</span> <span class="n">irradiance</span> <span class="o">*</span> <span class="n">albedo</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">ambient</span>    <span class="o">=</span> <span class="p">(</span><span class="n">kD</span> <span class="o">*</span> <span class="n">diffuse</span><span class="p">)</span> <span class="o">*</span> <span class="n">ao</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>如上所述，实际上，基于图片的光照计算非常简单，只需要单一的cubemap纹理采样。大多数的工作在于预计算或卷积环境图到辐射度图。</p>
 <p>加入了IBL的渲染效果如下（竖向是金属度增加，水平是粗糙度增加）：</p>
@@ -1135,17 +1131,15 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 <p>生成采样向量和它们的散射强度，需要用到Cook-Torrance BRDF的法线分布图（NDF），而其带了两个输入：法线和视线向量。当卷积环境图时并不知道视线向量，Epic Games用了更近一步的模拟法：假设视线向量（亦即镜面反射向量）总是等于输出采样向量𝜔<sub>𝑜</sub>。所以代码变成如下所示：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">vec3</span> <span class="n">N</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">w_o</span><span class="p">);</span>
-<span class="n">vec3</span> <span class="n">R</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span>
-<span class="n">vec3</span> <span class="n">V</span> <span class="o">=</span> <span class="n">R</span><span class="p">;</span>
-
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">N</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">w_o</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">R</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">V</span> <span class="o">=</span> <span class="n">R</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这种方式预过滤环境图卷积不需要关心视线方向。这就意味着当从某个角度看向下面这张图的镜面表面反射时，无法获得很好的掠射镜面反射（grazing specular reflections）。然而通常这被认为是一个较好的妥协：</p>
 <p><img
@@ -1177,17 +1171,17 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
 <p>有了预过滤环境图和BRDF积分图，可以在shader中将它们结合起来：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">float</span> <span class="n">lod</span>             <span class="o">=</span> <span class="n">getMipLevelFromRoughness</span><span class="p">(</span><span class="n">roughness</span><span class="p">);</span>
-<span class="n">vec3</span> <span class="n">prefilteredColor</span> <span class="o">=</span> <span class="n">textureCubeLod</span><span class="p">(</span><span class="n">PrefilteredEnvMap</span><span class="p">,</span> <span class="n">refVec</span><span class="p">,</span> <span class="n">lod</span><span class="p">);</span>
-<span class="n">vec2</span> <span class="n">envBRDF</span>          <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">BRDFIntegrationMap</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">NdotV</span><span class="p">,</span> <span class="n">roughness</span><span class="p">)).</span><span class="n">xy</span><span class="p">;</span>
-<span class="n">vec3</span> <span class="n">indirectSpecular</span> <span class="o">=</span> <span class="n">prefilteredColor</span> <span class="o">*</span> <span class="p">(</span><span class="n">F</span> <span class="o">*</span> <span class="n">envBRDF</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">envBRDF</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">lod</span>             <span class="o">=</span> <span class="n">getMipLevelFromRoughness</span><span class="p">(</span><span class="n">roughness</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">prefilteredColor</span> <span class="o">=</span> <span class="n">textureCubeLod</span><span class="p">(</span><span class="n">PrefilteredEnvMap</span><span class="p">,</span> <span class="n">refVec</span><span class="p">,</span> <span class="n">lod</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec2</span> <span class="n">envBRDF</span>          <span class="o">=</span> <span class="n">texture2D</span><span class="p">(</span><span class="n">BRDFIntegrationMap</span><span class="p">,</span> <span class="n">vec2</span><span class="p">(</span><span class="n">NdotV</span><span class="p">,</span> <span class="n">roughness</span><span class="p">)).</span><span class="n">xy</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">vec3</span> <span class="n">indirectSpecular</span> <span class="o">=</span> <span class="n">prefilteredColor</span> <span class="o">*</span> <span class="p">(</span><span class="n">F</span> <span class="o">*</span> <span class="n">envBRDF</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">envBRDF</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="间接光完整的ibl">间接光完整的IBL</h4>
 <blockquote>
@@ -1288,7 +1282,7 @@ Cook-Torrance镜面反射BRDF由3个函数（𝐷，𝐹，𝐺）和一个标�
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -8,10 +8,10 @@
         <title>【Shader】 消融特效 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="【Shader】 消融特效" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/shader%E6%B6%88%E8%9E%8D%E7%89%B9%E6%95%88/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/shader%E6%B6%88%E8%9E%8D%E7%89%B9%E6%95%88/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -123,7 +123,7 @@
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -243,125 +243,125 @@
 </span><span class="lnt">118
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">// Upgrade NOTE: replaced &#39;mul(UNITY_MATRIX_MVP,*)&#39; with &#39;UnityObjectToClipPos(*)&#39;
-
-Shader &#34;Book/15.Dissolve&#34; {
-    Properties {
-        _BurnAmount(&#34;Burn Amount&#34;,Range(0.0,1.0)) = 0.0
-		_LineWidth(&#34;Burn Line Width&#34;,Range(0.0,0.2))=0.1
-        _MainTex (&#34;Albedo (RGB)&#34;, 2D) = &#34;white&#34; {}
-		_BumpMap(&#34;Bump Map&#34;,2D)= &#34;white&#34; {}
-		_BurnFirstColor(&#34;Burn First Color&#34;,Color)= (1,0,0,1)
-		_BurnSecondColor(&#34;Burn Second Color&#34;,Color)= (1,0,0,1)
-		_BurnMap(&#34;Burn Map&#34;,2D)= &#34;white&#34; {}
-    }
-    SubShader {
-        Tags {&#34;RenderType&#34;=&#34;Opaque&#34; &#34;Queue&#34;=&#34;Geometry&#34;}
-        
-
-	Pass {
-		Tags {&#34;LightMode&#34;=&#34;ForwardBase&#34; }
-		Cull Off
-
-
-        CGPROGRAM
-        #include &#34;UnityCG.cginc&#34;
-		#include &#34;Lighting.cginc&#34;
-		#include &#34;AutoLight.cginc&#34;
-
-		#pragma multi_compile_fwdbase
-        #pragma vertex vert
-        #pragma fragment frag
-
-
-
-			sampler2D _MainTex;
-            sampler2D _BurnMap;
-            sampler2D _BumpMap;
-            float4 _BurnFirstColor;
-            float4 _BurnSecondColor;
-            float4 _MainTex_ST;
-            float4 _BumpMap_ST;
-            float4 _BurnMap_ST;
-            float _BurnAmount,_LineWidth;
-
-            struct a2v {
-                float4 vertex : POSITION;
-                float3 normal : NORMAL;
-                float4 tangent : TANGENT;
-                float4 texcoord : TEXCOORD0;
-            };
-
-            struct v2f {
-                float4 pos : SV_POSITION;
-                float2 uvMainTex : TEXCOORD0;
-                float2 uvBumpMap : TEXCOORD1;
-                float2 uvBurnMap : TEXCOORD2;
-                float3 lightDir  : TEXCOORD3;
-                float3 worldPos  : TEXCOORD4;
-                SHADOW_COORDS(5)
-			};
-
-            v2f vert( a2v v ) {
-				v2f o;
-				o.pos = UnityObjectToClipPos(v.vertex);
-				//o.uvMainTex = v.texcoord*_MainTex_ST.xy + _MainTex_ST.zw;
-				o.uvMainTex = TRANSFORM_TEX( v.texcoord,_MainTex);
-				 o.uvBumpMap = TRANSFORM_TEX( v.texcoord,_BumpMap);
-				 o.uvBurnMap = TRANSFORM_TEX( v.texcoord,_BurnMap);
-				 //副切线
-				float3 binormal = cross(v.normal,v.tangent.xyz)*v.tangent.w;
-				//从模型空间到切线空间的转换矩阵
-				float3x3 rotation = float3x3(v.tangent.xyz,binormal,v.normal);
-				//将光源位置减去顶点位置，这样就得到光照方向了 — 但是我们应该首先将顶点位置乘上光源的w分量，如果是平行光，w分量为0，得到的结果为0，说明顶点位置全变为(0.0, 0.0, 0.0)了，这样光照方向就是源   本的位置   （return objSpaceLightPos.xyz）。对于点光源，w为1，所以乘上顶点位置后，顶点位置无变化，这样计算的光照方向就是（return objSpaceLightPos.xyz – v.xyz）。
-				float3 lightDir = mul(unity_WorldToObject,_WorldSpaceLightPos0).xyz - v.vertex*_WorldSpaceLightPos0.w;
-				o.lightDir = mul(rotation,lightDir);
-				o.worldPos = mul(unity_ObjectToWorld,v.vertex).xyz;
-				//o.worldNormal = normalize( mul(v.normal,(float3x3)unity_WorldToObject));
-				TRANSFER_SHADOW(o);
-                return o;
-            }
- 
-        /*
-        将上面的函数拷贝进来
-        */
-
-        half4 frag(v2f i) : SV_Target {
-                fixed3 burn = tex2D(_BurnMap,i.uvBurnMap).rgb;
-                clip(burn.r - _BurnAmount);
-                float3 tangentLightDir = normalize(i.lightDir);
-                //uppack  normal
-				fixed3 tangentNormal;
-                fixed4 packedNormal  = tex2D(_BumpMap,i.uvBumpMap);
-                #if defined(UNITY_NO_DXT5nm)
-				tangentNormal.xyz = packedNormal.xyz*2 -1;
-                #else
-				// --rgba  -- xyzw 
-				//DXTnm 格式中a通道（即w分量）对应发现x分量,g通道（即y分量）对应发现y分量,
-				//tangentNormal.xy = packedNormal.ag*2 -1;
-				tangentNormal.xy = packedNormal.wy*2 -1;
-                //tangentNormal=tangentNormal* _BumpScale;
-				tangentNormal.z = sqrt(1.0-max(0,dot(tangentNormal.xy,tangentNormal.xy)));
-                #endif
-
-				fixed3 albedo = tex2D(_MainTex,i.uvMainTex).rgb;
-                fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz*albedo;
-                fixed3 diffuse = _LightColor0.rgb*albedo*max(0,dot(tangentNormal,tangentLightDir));
-                fixed t  = 1 - smoothstep(0.0,_LineWidth,burn.r - _BurnAmount);
-                fixed3 burnColor = lerp(_BurnFirstColor,_BurnSecondColor,t);
-                burnColor = pow(burnColor,5);
-                UNITY_LIGHT_ATTENUATION(atten,i,i.worldPos);
-                fixed3 finalColor = lerp(ambient+diffuse*atten,burnColor, t* step(0.0001,_BurnAmount));
-                return fixed4(finalColor,1);
-            }
-
-
-        ENDCG
-        }
-    }
-    FallBack &#34;Diffuse&#34;
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// Upgrade NOTE: replaced &#39;mul(UNITY_MATRIX_MVP,*)&#39; with &#39;UnityObjectToClipPos(*)&#39;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Shader &#34;Book/15.Dissolve&#34; {
+</span></span><span class="line"><span class="cl">    Properties {
+</span></span><span class="line"><span class="cl">        _BurnAmount(&#34;Burn Amount&#34;,Range(0.0,1.0)) = 0.0
+</span></span><span class="line"><span class="cl">		_LineWidth(&#34;Burn Line Width&#34;,Range(0.0,0.2))=0.1
+</span></span><span class="line"><span class="cl">        _MainTex (&#34;Albedo (RGB)&#34;, 2D) = &#34;white&#34; {}
+</span></span><span class="line"><span class="cl">		_BumpMap(&#34;Bump Map&#34;,2D)= &#34;white&#34; {}
+</span></span><span class="line"><span class="cl">		_BurnFirstColor(&#34;Burn First Color&#34;,Color)= (1,0,0,1)
+</span></span><span class="line"><span class="cl">		_BurnSecondColor(&#34;Burn Second Color&#34;,Color)= (1,0,0,1)
+</span></span><span class="line"><span class="cl">		_BurnMap(&#34;Burn Map&#34;,2D)= &#34;white&#34; {}
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    SubShader {
+</span></span><span class="line"><span class="cl">        Tags {&#34;RenderType&#34;=&#34;Opaque&#34; &#34;Queue&#34;=&#34;Geometry&#34;}
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	Pass {
+</span></span><span class="line"><span class="cl">		Tags {&#34;LightMode&#34;=&#34;ForwardBase&#34; }
+</span></span><span class="line"><span class="cl">		Cull Off
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        CGPROGRAM
+</span></span><span class="line"><span class="cl">        #include &#34;UnityCG.cginc&#34;
+</span></span><span class="line"><span class="cl">		#include &#34;Lighting.cginc&#34;
+</span></span><span class="line"><span class="cl">		#include &#34;AutoLight.cginc&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		#pragma multi_compile_fwdbase
+</span></span><span class="line"><span class="cl">        #pragma vertex vert
+</span></span><span class="line"><span class="cl">        #pragma fragment frag
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			sampler2D _MainTex;
+</span></span><span class="line"><span class="cl">            sampler2D _BurnMap;
+</span></span><span class="line"><span class="cl">            sampler2D _BumpMap;
+</span></span><span class="line"><span class="cl">            float4 _BurnFirstColor;
+</span></span><span class="line"><span class="cl">            float4 _BurnSecondColor;
+</span></span><span class="line"><span class="cl">            float4 _MainTex_ST;
+</span></span><span class="line"><span class="cl">            float4 _BumpMap_ST;
+</span></span><span class="line"><span class="cl">            float4 _BurnMap_ST;
+</span></span><span class="line"><span class="cl">            float _BurnAmount,_LineWidth;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            struct a2v {
+</span></span><span class="line"><span class="cl">                float4 vertex : POSITION;
+</span></span><span class="line"><span class="cl">                float3 normal : NORMAL;
+</span></span><span class="line"><span class="cl">                float4 tangent : TANGENT;
+</span></span><span class="line"><span class="cl">                float4 texcoord : TEXCOORD0;
+</span></span><span class="line"><span class="cl">            };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            struct v2f {
+</span></span><span class="line"><span class="cl">                float4 pos : SV_POSITION;
+</span></span><span class="line"><span class="cl">                float2 uvMainTex : TEXCOORD0;
+</span></span><span class="line"><span class="cl">                float2 uvBumpMap : TEXCOORD1;
+</span></span><span class="line"><span class="cl">                float2 uvBurnMap : TEXCOORD2;
+</span></span><span class="line"><span class="cl">                float3 lightDir  : TEXCOORD3;
+</span></span><span class="line"><span class="cl">                float3 worldPos  : TEXCOORD4;
+</span></span><span class="line"><span class="cl">                SHADOW_COORDS(5)
+</span></span><span class="line"><span class="cl">			};
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            v2f vert( a2v v ) {
+</span></span><span class="line"><span class="cl">				v2f o;
+</span></span><span class="line"><span class="cl">				o.pos = UnityObjectToClipPos(v.vertex);
+</span></span><span class="line"><span class="cl">				//o.uvMainTex = v.texcoord*_MainTex_ST.xy + _MainTex_ST.zw;
+</span></span><span class="line"><span class="cl">				o.uvMainTex = TRANSFORM_TEX( v.texcoord,_MainTex);
+</span></span><span class="line"><span class="cl">				 o.uvBumpMap = TRANSFORM_TEX( v.texcoord,_BumpMap);
+</span></span><span class="line"><span class="cl">				 o.uvBurnMap = TRANSFORM_TEX( v.texcoord,_BurnMap);
+</span></span><span class="line"><span class="cl">				 //副切线
+</span></span><span class="line"><span class="cl">				float3 binormal = cross(v.normal,v.tangent.xyz)*v.tangent.w;
+</span></span><span class="line"><span class="cl">				//从模型空间到切线空间的转换矩阵
+</span></span><span class="line"><span class="cl">				float3x3 rotation = float3x3(v.tangent.xyz,binormal,v.normal);
+</span></span><span class="line"><span class="cl">				//将光源位置减去顶点位置，这样就得到光照方向了 — 但是我们应该首先将顶点位置乘上光源的w分量，如果是平行光，w分量为0，得到的结果为0，说明顶点位置全变为(0.0, 0.0, 0.0)了，这样光照方向就是源   本的位置   （return objSpaceLightPos.xyz）。对于点光源，w为1，所以乘上顶点位置后，顶点位置无变化，这样计算的光照方向就是（return objSpaceLightPos.xyz – v.xyz）。
+</span></span><span class="line"><span class="cl">				float3 lightDir = mul(unity_WorldToObject,_WorldSpaceLightPos0).xyz - v.vertex*_WorldSpaceLightPos0.w;
+</span></span><span class="line"><span class="cl">				o.lightDir = mul(rotation,lightDir);
+</span></span><span class="line"><span class="cl">				o.worldPos = mul(unity_ObjectToWorld,v.vertex).xyz;
+</span></span><span class="line"><span class="cl">				//o.worldNormal = normalize( mul(v.normal,(float3x3)unity_WorldToObject));
+</span></span><span class="line"><span class="cl">				TRANSFER_SHADOW(o);
+</span></span><span class="line"><span class="cl">                return o;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">        /*
+</span></span><span class="line"><span class="cl">        将上面的函数拷贝进来
+</span></span><span class="line"><span class="cl">        */
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        half4 frag(v2f i) : SV_Target {
+</span></span><span class="line"><span class="cl">                fixed3 burn = tex2D(_BurnMap,i.uvBurnMap).rgb;
+</span></span><span class="line"><span class="cl">                clip(burn.r - _BurnAmount);
+</span></span><span class="line"><span class="cl">                float3 tangentLightDir = normalize(i.lightDir);
+</span></span><span class="line"><span class="cl">                //uppack  normal
+</span></span><span class="line"><span class="cl">				fixed3 tangentNormal;
+</span></span><span class="line"><span class="cl">                fixed4 packedNormal  = tex2D(_BumpMap,i.uvBumpMap);
+</span></span><span class="line"><span class="cl">                #if defined(UNITY_NO_DXT5nm)
+</span></span><span class="line"><span class="cl">				tangentNormal.xyz = packedNormal.xyz*2 -1;
+</span></span><span class="line"><span class="cl">                #else
+</span></span><span class="line"><span class="cl">				// --rgba  -- xyzw 
+</span></span><span class="line"><span class="cl">				//DXTnm 格式中a通道（即w分量）对应发现x分量,g通道（即y分量）对应发现y分量,
+</span></span><span class="line"><span class="cl">				//tangentNormal.xy = packedNormal.ag*2 -1;
+</span></span><span class="line"><span class="cl">				tangentNormal.xy = packedNormal.wy*2 -1;
+</span></span><span class="line"><span class="cl">                //tangentNormal=tangentNormal* _BumpScale;
+</span></span><span class="line"><span class="cl">				tangentNormal.z = sqrt(1.0-max(0,dot(tangentNormal.xy,tangentNormal.xy)));
+</span></span><span class="line"><span class="cl">                #endif
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				fixed3 albedo = tex2D(_MainTex,i.uvMainTex).rgb;
+</span></span><span class="line"><span class="cl">                fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz*albedo;
+</span></span><span class="line"><span class="cl">                fixed3 diffuse = _LightColor0.rgb*albedo*max(0,dot(tangentNormal,tangentLightDir));
+</span></span><span class="line"><span class="cl">                fixed t  = 1 - smoothstep(0.0,_LineWidth,burn.r - _BurnAmount);
+</span></span><span class="line"><span class="cl">                fixed3 burnColor = lerp(_BurnFirstColor,_BurnSecondColor,t);
+</span></span><span class="line"><span class="cl">                burnColor = pow(burnColor,5);
+</span></span><span class="line"><span class="cl">                UNITY_LIGHT_ATTENUATION(atten,i,i.worldPos);
+</span></span><span class="line"><span class="cl">                fixed3 finalColor = lerp(ambient+diffuse*atten,burnColor, t* step(0.0001,_BurnAmount));
+</span></span><span class="line"><span class="cl">                return fixed4(finalColor,1);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        ENDCG
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    FallBack &#34;Diffuse&#34;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>效果图：</p>
 <p><img
@@ -409,7 +409,7 @@ Shader &#34;Book/15.Dissolve&#34; {
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

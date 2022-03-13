@@ -8,10 +8,10 @@
         <title>Xcode查看真机app沙盒内容，查看app缓存（Cache）文件 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Xcode查看真机app沙盒内容，查看app缓存（Cache）文件" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/xcode%E6%9F%A5%E7%9C%8B%E7%9C%9F%E6%9C%BAapp%E6%B2%99%E7%9B%92%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8Bapp%E7%BC%93%E5%AD%98cache%E6%96%87%E4%BB%B6/" />
-<meta property="og:image" content="https://codingriver.github.io/logo.png"/>
+<meta property="og:url" content="https://codingriver.github.io/xcode%E6%9F%A5%E7%9C%8B%E7%9C%9F%E6%9C%BAapp%E6%B2%99%E7%9B%92%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8Bapp%E7%BC%93%E5%AD%98cache%E6%96%87%E4%BB%B6/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
+
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
@@ -20,7 +20,7 @@
 <meta name="application-name" content="codingriver">
 <meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/xcode%E6%9F%A5%E7%9C%8B%E7%9C%9F%E6%9C%BAapp%E6%B2%99%E7%9B%92%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8Bapp%E7%BC%93%E5%AD%98cache%E6%96%87%E4%BB%B6/" /><link rel="prev" href="https://codingriver.github.io/xcode%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83app-store%E5%95%86%E5%93%81%E5%AE%A1%E6%A0%B8/" /><link rel="next" href="https://codingriver.github.io/xcode%E6%8E%A5sdk%E6%97%B6%E6%8A%A5%E9%94%99undefined-symbols-for-architecture-arm64/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/xcode%E6%9F%A5%E7%9C%8B%E7%9C%9F%E6%9C%BAapp%E6%B2%99%E7%9B%92%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8Bapp%E7%BC%93%E5%AD%98cache%E6%96%87%E4%BB%B6/" /><link rel="prev" href="https://codingriver.github.io/xcode%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83app-store%E5%95%86%E5%93%81%E5%AE%A1%E6%A0%B8/" /><link rel="next" href="https://codingriver.github.io/xcode%E6%8E%A5sdk%E6%97%B6%E6%8A%A5%E9%94%99undefined-symbols-for-architecture-arm64-/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -158,13 +158,13 @@
     </div>
 
     <div class="post-nav"><a href="/xcode%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83app-store%E5%95%86%E5%93%81%E5%AE%A1%E6%A0%B8/" class="prev" rel="prev" title="Xcode项目发布App-Store商品审核"><i class="fas fa-angle-left fa-fw"></i>Xcode项目发布App-Store商品审核</a>
-            <a href="/xcode%E6%8E%A5sdk%E6%97%B6%E6%8A%A5%E9%94%99undefined-symbols-for-architecture-arm64/" class="next" rel="next" title="xcode接sdk时报错（环信SDK接入ios报错）">xcode接sdk时报错（环信SDK接入ios报错）<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/xcode%E6%8E%A5sdk%E6%97%B6%E6%8A%A5%E9%94%99undefined-symbols-for-architecture-arm64-/" class="next" rel="next" title="xcode接sdk时报错（环信SDK接入ios报错）">xcode接sdk时报错（环信SDK接入ios报错）<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
