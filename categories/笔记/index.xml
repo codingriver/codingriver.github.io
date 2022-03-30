@@ -59,6 +59,6 @@
     <pubDate>Sat, 30 Nov 2019 14:18:54 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[git clone命令 git clone -b ${branch} --depth=1 可以拉对应分支 git clone --depth=1后只有一个分支的解决办法 git clone --depth=1克隆项目后，使用git branch -r查看]]></description>
+    <description><![CDATA[Git LFS的使用 https://git-lfs.github.com/ https://www.jianshu.com/p/493b81544f80 https://zzz.buzz/zh/2016/04/19/the-guide-to-git-lfs/ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 # 查看安装的git lfs 环境信息 git lfs env git lfs env | head -2 # 查看当前使用 Git LFS 管理的]]></description>
 </item></channel>
 </rss>

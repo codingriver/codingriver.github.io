@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/shader%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","wordcount":  431 ,
+        },"genre": "posts","wordcount":  761 ,
         "url": "https:\/\/codingriver.github.io\/shader%E8%AE%B0%E5%BD%95\/","datePublished": "2020-09-14T14:10:25+08:00","dateModified": "2020-09-14T14:10:25+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shader记录</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E4%B8%AA%E4%BA%BA%E8%AE%B0%E5%BD%95/"><i class="far fa-folder fa-fw"></i>个人记录</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-14 14:10:25">2020-09-14 14:10:25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 431 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/shader%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="Shader记录">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-14 14:10:25">2020-09-14 14:10:25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 761 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/shader%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="Shader记录">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -120,6 +120,7 @@
     <li>
       <ul>
         <li><a href="#学习课程中的问题">学习课程中的问题</a></li>
+        <li><a href="#水体渲染">水体渲染</a></li>
       </ul>
     </li>
   </ul>
@@ -166,7 +167,41 @@
 <li>
 <p><i class="far fa-square fa-fw"></i> 宝石自发光，光晕效果（第八章）</p>
 </li>
-</ul></div><div class="post-footer" id="post-footer">
+</ul>
+<h3 id="水体渲染">水体渲染</h3>
+<ol>
+<li>水体颜色
+<ul>
+<li>根据水底的深度计算（获取深度图）区分浅水区和深水区得到颜色</li>
+</ul>
+</li>
+<li>反射
+<ul>
+<li>根据PlanarReflection获取 _ReflectionTex纹理，然后使用屏幕空间作为UV进行采样（使用水的法线贴图进行扰动uv），得到反射颜色；增加菲涅尔效果</li>
+</ul>
+</li>
+<li>折射/水底
+<ul>
+<li>使用grabPass获取屏幕颜色，然后使用屏幕空间作为UV进行采样（使用水的法线贴图进行扰动UV），得到折射的颜色</li>
+</ul>
+</li>
+<li>焦散
+<ul>
+<li>使用深度还原的世界坐标作为UV采样焦散纹理，采样两次取两次的最小值 （应该可以使用默认UV进行采样）</li>
+</ul>
+</li>
+<li>岸边泡沫
+<ul>
+<li>使用根据time使用sin波向岸边推送波浪模拟的泡沫，使用一个noise进行扰动，需要处理遮罩 保证只在岸边有泡沫</li>
+</ul>
+</li>
+<li>波浪（Wave）（顶点动画）
+<ul>
+<li>正弦/余弦</li>
+<li>格斯特纳波（Gerstner）</li>
+</ul>
+</li>
+</ol></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -196,7 +231,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.96.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

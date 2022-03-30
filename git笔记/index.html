@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Git笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="Git笔记" />
-<meta property="og:description" content="git clone命令 git clone -b ${branch} --depth=1 可以拉对应分支 git clone --depth=1后只有一个分支的解决办法 git clone --depth=1克隆项目后，使用git branch -r查看" />
+<meta property="og:description" content="Git LFS的使用 https://git-lfs.github.com/ https://www.jianshu.com/p/493b81544f80 https://zzz.buzz/zh/2016/04/19/the-guide-to-git-lfs/ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 # 查看安装的git lfs 环境信息 git lfs env git lfs env | head -2 # 查看当前使用 Git LFS 管理的" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://codingriver.github.io/git%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-11-30T14:18:54+08:00" />
@@ -16,7 +16,7 @@
 <meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
 
 <meta name="twitter:title" content="Git笔记"/>
-<meta name="twitter:description" content="git clone命令 git clone -b ${branch} --depth=1 可以拉对应分支 git clone --depth=1后只有一个分支的解决办法 git clone --depth=1克隆项目后，使用git branch -r查看"/>
+<meta name="twitter:description" content="Git LFS的使用 https://git-lfs.github.com/ https://www.jianshu.com/p/493b81544f80 https://zzz.buzz/zh/2016/04/19/the-guide-to-git-lfs/ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 # 查看安装的git lfs 环境信息 git lfs env git lfs env | head -2 # 查看当前使用 Git LFS 管理的"/>
 <meta name="application-name" content="codingriver">
 <meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "git","wordcount":  2989 ,
+        },"genre": "posts","keywords": "git","wordcount":  4033 ,
         "url": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/","datePublished": "2019-11-30T14:18:54+08:00","dateModified": "2019-11-30T14:18:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Git笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2989 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/git%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Git笔记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4033 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/git%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Git笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -117,6 +117,11 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
+    <li><a href="#git-lfs的使用">Git LFS的使用</a>
+      <ul>
+        <li><a href="#迁移已有的-git-仓库使用-git-lfs-管理">迁移已有的 git 仓库使用 git lfs 管理</a></li>
+      </ul>
+    </li>
     <li><a href="#git-clone命令"><code>git clone</code>命令</a></li>
     <li><a href="#git-clone---depth1后只有一个分支的解决办法"><code>git clone --depth=1</code>后只有一个分支的解决办法</a>
       <ul>
@@ -146,7 +151,126 @@
     <li><a href="#git处理换行符问题">Git处理换行符问题</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="git-clone命令"><code>git clone</code>命令</h2>
+            </div><div class="content" id="content"><h2 id="git-lfs的使用">Git LFS的使用</h2>
+<blockquote>
+<p><a href="https://git-lfs.github.com/" target="_blank" rel="noopener noreffer">https://git-lfs.github.com/</a><br>
+<a href="https://www.jianshu.com/p/493b81544f80" target="_blank" rel="noopener noreffer">https://www.jianshu.com/p/493b81544f80</a><br>
+<a href="https://zzz.buzz/zh/2016/04/19/the-guide-to-git-lfs/" target="_blank" rel="noopener noreffer">https://zzz.buzz/zh/2016/04/19/the-guide-to-git-lfs/</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 查看安装的git lfs 环境信息</span>
+</span></span><span class="line"><span class="cl">git lfs env 
+</span></span><span class="line"><span class="cl">git lfs env <span class="p">|</span> head -2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看当前使用 Git LFS 管理的匹配列表</span>
+</span></span><span class="line"><span class="cl">git lfs track
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 Git LFS 管理指定的文件</span>
+</span></span><span class="line"><span class="cl">git lfs track <span class="s2">&#34;*.psd&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 不再使用 Git LFS 管理指定的文件</span>
+</span></span><span class="line"><span class="cl">git lfs untrack <span class="s2">&#34;*.psd&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 类似 `git status`，查看当前 Git LFS 对象的状态</span>
+</span></span><span class="line"><span class="cl">git lfs status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 枚举目前所有被 Git LFS 管理的具体文件</span>
+</span></span><span class="line"><span class="cl">git lfs ls-files
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查当前所用 Git LFS 的版本</span>
+</span></span><span class="line"><span class="cl">git lfs version
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 针对使用了 LFS 的仓库进行了特别优化的 clone 命令，显著提升获取</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># LFS 对象的速度，接受和 `git clone` 一样的参数。 [1] [2]</span>
+</span></span><span class="line"><span class="cl">git lfs clone https://github.com/user/repo.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>
+<p><code>git lfs install</code>开启lfs功能</p>
+</li>
+<li>
+<p><code>git lfs track &quot;*.png&quot;</code> 添加大文件追踪，所有的png文件</p>
+<ul>
+<li>指定文件后缀名 <code>git lfs track &quot;*.filetype&quot;</code></li>
+<li>指定某个目录下的所有文件 <code>git lfs track &quot;directory/*&quot;</code></li>
+<li>具体指定某个文件 <code>git lfs track &quot;path/to/file&quot;</code></li>
+</ul>
+</li>
+<li>
+<p><code>git lfs track </code> 查看所有的lfs文件追踪模式</p>
+</li>
+<li>
+<p><code>git lfs ls-files</code> 可以显示当前跟踪的文件列表</p>
+</li>
+</ol>
+<h3 id="迁移已有的-git-仓库使用-git-lfs-管理">迁移已有的 git 仓库使用 git lfs 管理</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 重写 master 分支，将历史提交中的 *.zip 都用 git lfs 进行管理</span>
+</span></span><span class="line"><span class="cl">git lfs migrate import --include-ref<span class="o">=</span>master --include<span class="o">=</span><span class="s2">&#34;*.png&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重写所有分支及标签，将历史提交中的 *.rar,*.zip 都用 git lfs 进行管理</span>
+</span></span><span class="line"><span class="cl">git lfs migrate import --everything --include<span class="o">=</span><span class="s2">&#34;*.bin,*.lib,*.so,*.dll,*.a,*.param,*.zip,*.gz,*.png,*.jpg,*.unitypackage,*.hdr,*.HDR&#34;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注意：</strong> 重写历史后的提交需执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git push --force --all
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>注意： 如有迁移至 git lfs 前的仓库的多份拷贝，其他拷贝可能需要执行 git reset &ndash;hard origin/master 来重置其本地的分支，注意执行 git reset &ndash;hard 命令将会丢失本地的改动。</em></p>
+<p>如果需要对本地仓库进行清理(非安全的)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git reflog expire --expire-unreachable<span class="o">=</span>now --all
+</span></span><span class="line"><span class="cl">git gc --prune<span class="o">=</span>now
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="git-clone命令"><code>git clone</code>命令</h2>
 <p><code>git clone -b ${branch} --depth=1</code> 可以拉对应分支</p>
 <h2 id="git-clone---depth1后只有一个分支的解决办法"><code>git clone --depth=1</code>后只有一个分支的解决办法</h2>
 <blockquote>
@@ -264,13 +388,139 @@
 <p><a href="https://www.jianshu.com/p/0b05ef199749" target="_blank" rel="noopener noreffer">https://www.jianshu.com/p/0b05ef199749</a></p>
 </blockquote>
 <h2 id="git-config">Git Config</h2>
+<p>用git config命令查看配置文件：</p>
+<ul>
+<li>查看仓库级的config，即<code>.git/.config</code>，命令：<code>git config –local -l</code></li>
+<li>查看全局级的config，即<code>~\.gitconfig</code>，命令：<code>git config –global -l</code></li>
+<li>查看系统级的config，即<code>C:\Program Files\Git\etc\gitconfig</code>，命令：<code>git config –system -l</code><br>
+<em>查看当前生效的配置，命令：<code>git config -l</code>，这个时候会显示最终三个配置文件计算后的配置信息</em></li>
+</ul>
+<p>查看当前生效的配置，命令：git config -l，这个时候会显示最终三个配置文件计算后的配置信息，如下图：</p>
+<p>git有几个配置文件呢？ 是的，聪明的你，稍微查查资料就知道咯，git里面一共有3个配置文件</p>
+<ul>
+<li>仓库级配置文件：<code>.git/config</code> (该文件位于当前仓库下)</li>
+</ul>
 <div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>core<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">repositoryformatversion</span> <span class="o">=</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">filemode</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">bare</span> <span class="o">=</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">logallrefupdates</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">ignorecase</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">precomposeunicode</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>remote <span class="s2">&#34;origin&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">url</span> <span class="o">=</span> git@github.com:codingriver/codingriver.github.io.git
+</span></span><span class="line"><span class="cl">	<span class="nv">fetch</span> <span class="o">=</span> +refs/heads/*:refs/remotes/origin/*
+</span></span><span class="line"><span class="cl"><span class="o">[</span>branch <span class="s2">&#34;master&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">remote</span> <span class="o">=</span> origin
+</span></span><span class="line"><span class="cl">	<span class="nv">merge</span> <span class="o">=</span> refs/heads/master
+</span></span><span class="line"><span class="cl"><span class="o">[</span>lfs<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">repositoryformatversion</span> <span class="o">=</span> <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>全局配置文件 <code>~/.gitconfig</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>user<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">name</span> <span class="o">=</span> codingriver
+</span></span><span class="line"><span class="cl">	<span class="nv">email</span> <span class="o">=</span> codingriver@163.com
+</span></span><span class="line"><span class="cl"><span class="o">[</span>filter <span class="s2">&#34;lfs&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">clean</span> <span class="o">=</span> git-lfs clean -- %f
+</span></span><span class="line"><span class="cl">	<span class="nv">smudge</span> <span class="o">=</span> git-lfs smudge -- %f
+</span></span><span class="line"><span class="cl">	<span class="nv">process</span> <span class="o">=</span> git-lfs filter-process
+</span></span><span class="line"><span class="cl">	<span class="nv">required</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>系统级配置文件 <code>C:\Program Files\Git\etc\gitconfig</code> (git安装目录)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>diff <span class="s2">&#34;astextplain&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">textconv</span> <span class="o">=</span> astextplain
+</span></span><span class="line"><span class="cl"><span class="o">[</span>filter <span class="s2">&#34;lfs&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">clean</span> <span class="o">=</span> git-lfs clean -- %f
+</span></span><span class="line"><span class="cl">	<span class="nv">smudge</span> <span class="o">=</span> git-lfs smudge -- %f
+</span></span><span class="line"><span class="cl">	<span class="nv">process</span> <span class="o">=</span> git-lfs filter-process
+</span></span><span class="line"><span class="cl">	<span class="nv">required</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>http<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">sslBackend</span> <span class="o">=</span> openssl
+</span></span><span class="line"><span class="cl">	<span class="nv">sslCAInfo</span> <span class="o">=</span> C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+</span></span><span class="line"><span class="cl"><span class="o">[</span>core<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">autocrlf</span> <span class="o">=</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">fscache</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">symlinks</span> <span class="o">=</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>pull<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">rebase</span> <span class="o">=</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>credential<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">helper</span> <span class="o">=</span> manager-core
+</span></span><span class="line"><span class="cl"><span class="o">[</span>credential <span class="s2">&#34;https://dev.azure.com&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">useHttpPath</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>init<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">defaultBranch</span> <span class="o">=</span> master
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global user.name “yourname”
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git config --global user.name “yourname”
 </span></span><span class="line"><span class="cl">git config --global user.email “email@email.com ”
 </span></span></code></pre></td></tr></table>
 </div>
@@ -281,8 +531,8 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">git config --global user.name “codingriver”
-</span></span><span class="line"><span class="cl">git config --global user.email &#34;codingriver@163.com&#34;
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git config --global user.name <span class="s2">&#34;codingriver&#34;</span>
+</span></span><span class="line"><span class="cl">git config --global user.email <span class="s2">&#34;codingriver@163.com&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="git-提交空文件夹">Git 提交空文件夹</h2>
@@ -743,7 +993,7 @@
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.96.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

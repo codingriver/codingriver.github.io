@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/shader%E6%A1%88%E4%BE%8B\/"
-        },"genre": "posts","keywords": "shader","wordcount":  2333 ,
+        },"genre": "posts","keywords": "shader","wordcount":  4581 ,
         "url": "https:\/\/codingriver.github.io\/shader%E6%A1%88%E4%BE%8B\/","datePublished": "2021-12-21T17:16:51+08:00","dateModified": "2021-12-21T17:16:51+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shader案例</h1><h2 class="single-subtitle">Shader案例</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/shader/"><i class="far fa-folder fa-fw"></i>shader</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-21 17:16:51">2021-12-21 17:16:51</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2333 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/shader%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Shader案例">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-21 17:16:51">2021-12-21 17:16:51</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4581 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/shader%E6%A1%88%E4%BE%8B/" class="leancloud_visitors" data-flag-title="Shader案例">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -125,6 +125,8 @@
             <li><a href="#头发部分">头发部分</a></li>
           </ul>
         </li>
+        <li><a href="#玉龙">玉龙</a></li>
+        <li><a href="#钻石">钻石</a></li>
       </ul>
     </li>
   </ul>
@@ -1201,6 +1203,1130 @@ CubeMap （Specular）</li>
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h3 id="玉龙">玉龙</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/CleanShot2022-03-17.gif"
+        data-srcset="../../imgs/CleanShot2022-03-17.gif, ../../imgs/CleanShot2022-03-17.gif 1.5x, ../../imgs/CleanShot2022-03-17.gif 2x"
+        data-sizes="auto"
+        alt="../../imgs/CleanShot2022-03-17.gif"
+        title="../../imgs/CleanShot2022-03-17.gif" />
+<em>漫反射，透射光（高光），环境光</em></p>
+<p>透射光实现：根据光反方向（增加法线的扭曲，表示玉龙表面的粗糙情况影响光线的方向）和视线方向夹角来判定透射光的强度（假设从玉龙后面有个手电筒和人眼的夹角，越小表示人眼看到的光线越多，光越强），然后通过厚度图来模拟玉龙的通透性</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Shader &#34;CS03/Dragon&#34;
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    Properties
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">		_DiffuseColor (&#34;Diffuse Color&#34;, Color) = (1,1,1,1)
+</span></span><span class="line"><span class="cl">		_Opacity(&#34;Opacity&#34;,Float)=1
+</span></span><span class="line"><span class="cl">		_AddColor (&#34;Add Color&#34;, Color) = (1,1,1,1)
+</span></span><span class="line"><span class="cl">		_Distort(&#34;Distort&#34;,Range(0,1))=0
+</span></span><span class="line"><span class="cl">		_Power(&#34;Power&#34;,Float)=2
+</span></span><span class="line"><span class="cl">		_Scale(&#34;Scale&#34;,Float)=1
+</span></span><span class="line"><span class="cl">		_ThicknessMap (&#34;Thickness Map&#34;, 2D) = &#34;black&#34; {}
+</span></span><span class="line"><span class="cl">		_CubeMap (&#34;Cube Map&#34;, CUBE) = &#34;white&#34; {}
+</span></span><span class="line"><span class="cl">		_EnvRotate(&#34;Env Rotate&#34;,Range(0,360))=0
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    SubShader
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        Tags { &#34;RenderType&#34;=&#34;Opaque&#34; }
+</span></span><span class="line"><span class="cl">        LOD 100
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        Pass
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            Tags{&#34;LightMode&#34; = &#34;ForwardBase&#34;}
+</span></span><span class="line"><span class="cl">            CGPROGRAM
+</span></span><span class="line"><span class="cl">            #pragma vertex vert
+</span></span><span class="line"><span class="cl">            #pragma fragment frag
+</span></span><span class="line"><span class="cl">            #pragma multi_compile_fwdbase
+</span></span><span class="line"><span class="cl">            #include &#34;UnityCG.cginc&#34;
+</span></span><span class="line"><span class="cl">            #include&#34;AutoLight.cginc&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            struct appdata  // appdata_full
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                float4 vertex : POSITION; //模型空间顶点坐标
+</span></span><span class="line"><span class="cl">                half2 texcoord : TEXCOORD0; //第一套UV（模型最多只能有4套UV）
+</span></span><span class="line"><span class="cl">				half2 texcoord1 : TEXCOORD1; //第二套UV
+</span></span><span class="line"><span class="cl">				half2 texcoord2 : TEXCOORD2; //第三套UV
+</span></span><span class="line"><span class="cl">				half2 texcoord3 : TEXCOORD3;  //第四套UV，模型最多只能有4套UV
+</span></span><span class="line"><span class="cl">				half4 color : COLOR; //顶点颜色
+</span></span><span class="line"><span class="cl">				half3 normal : NORMAL; //顶点法线
+</span></span><span class="line"><span class="cl">				half4 tangent : TANGENT; //顶点切线(模型导入Unity后自动计算得到)
+</span></span><span class="line"><span class="cl">            };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            struct v2f
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                float4 pos : SV_POSITION; //输出裁剪空间下的顶点坐标数据，给光栅化使用，必须要写的数据
+</span></span><span class="line"><span class="cl">                float2 uv : TEXCOORD0; //自定义数据体
+</span></span><span class="line"><span class="cl">                half3 normal_dir : TEXCOORD1;
+</span></span><span class="line"><span class="cl">                half3 tangent_dir : TEXCOORD2;
+</span></span><span class="line"><span class="cl">                half3 binormal_dir : TEXCOORD3;
+</span></span><span class="line"><span class="cl">                half3 pos_world : TEXCOORD4;
+</span></span><span class="line"><span class="cl">                //最多可以写16个：TEXCOORD0 ~ TEXCOORD15。
+</span></span><span class="line"><span class="cl">            };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			sampler2D _MainTex;
+</span></span><span class="line"><span class="cl">			float4 _MainTex_ST;
+</span></span><span class="line"><span class="cl">			float4 _LightColor0;
+</span></span><span class="line"><span class="cl">			sampler2D _NormalMap;
+</span></span><span class="line"><span class="cl">			float _Distort;
+</span></span><span class="line"><span class="cl">			float _Power;
+</span></span><span class="line"><span class="cl">			float _Scale;
+</span></span><span class="line"><span class="cl">			sampler2D _ThicknessMap;
+</span></span><span class="line"><span class="cl">            samplerCUBE _CubeMap;
+</span></span><span class="line"><span class="cl">            float4 _CubeMap_HDR;
+</span></span><span class="line"><span class="cl">            float _EnvRotate;
+</span></span><span class="line"><span class="cl">            float4 _DiffuseColor;
+</span></span><span class="line"><span class="cl">            float4 _AddColor;
+</span></span><span class="line"><span class="cl">            float _Opacity;
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">            v2f vert (appdata v)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                v2f o;
+</span></span><span class="line"><span class="cl">                o.pos = UnityObjectToClipPos(v.vertex);
+</span></span><span class="line"><span class="cl">                o.uv=TRANSFORM_TEX(v.texcoord,_MainTex);
+</span></span><span class="line"><span class="cl">                o.pos_world=mul(unity_ObjectToWorld,v.vertex).xyz;
+</span></span><span class="line"><span class="cl">                o.normal_dir=normalize(mul(v.normal,(float3x3)unity_WorldToObject));
+</span></span><span class="line"><span class="cl">                o.tangent_dir=normalize(mul((float3x3)unity_ObjectToWorld,v.tangent.xyz));
+</span></span><span class="line"><span class="cl">                o.binormal_dir=normalize(cross(o.normal_dir, o.tangent_dir))*v.tangent.w;
+</span></span><span class="line"><span class="cl">                return o;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            half4 frag (v2f i) : SV_Target
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                half3 pos_world=i.pos_world;
+</span></span><span class="line"><span class="cl">                half3 normal_dir=normalize(i.normal_dir);
+</span></span><span class="line"><span class="cl">                half3 tangent_dir=normalize(i.tangent_dir);
+</span></span><span class="line"><span class="cl">                half3 binormal_dir=normalize(i.binormal_dir);
+</span></span><span class="line"><span class="cl">                half3 view_dir=normalize(_WorldSpaceCameraPos.xyz-pos_world);
+</span></span><span class="line"><span class="cl">                float3x3 TBN=float3x3(tangent_dir,binormal_dir,normal_dir);
+</span></span><span class="line"><span class="cl">                // Light
+</span></span><span class="line"><span class="cl">                half3 light_dir=normalize(_WorldSpaceLightPos0.xyz);
+</span></span><span class="line"><span class="cl">                half4 light_color=_LightColor0.rgba;
+</span></span><span class="line"><span class="cl">                half atten=1.0;
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                //漫反射
+</span></span><span class="line"><span class="cl">                float NdotL=max(0.0,dot(normal_dir,light_dir));
+</span></span><span class="line"><span class="cl">                float3 color_diffuse=NdotL*_DiffuseColor.rgb*light_color.rgb;
+</span></span><span class="line"><span class="cl">                float sky_light=(dot(normal_dir,float3(0,1,0))+1.0)*0.5;
+</span></span><span class="line"><span class="cl">                float3 color_sky=sky_light*_DiffuseColor.rgb;
+</span></span><span class="line"><span class="cl">                float3 final_diffuse=color_diffuse+_AddColor.rgb+color_sky*_Opacity;
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // 透射光
+</span></span><span class="line"><span class="cl">                float3 back_dir=-normalize(light_dir+normal_dir*_Distort);
+</span></span><span class="line"><span class="cl">                float VdotB=max(0.0,dot(view_dir,back_dir));
+</span></span><span class="line"><span class="cl">                float backlight_term=max(0.0,pow(VdotB,_Power))*_Scale;
+</span></span><span class="line"><span class="cl">                float thickness=1.0-tex2D(_ThicknessMap,i.uv).r;
+</span></span><span class="line"><span class="cl">                half3 back_color=backlight_term*light_color*thickness;           
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                // 光泽反射
+</span></span><span class="line"><span class="cl">                float3 rView_dir=reflect(-view_dir,normal_dir);
+</span></span><span class="line"><span class="cl">                float drag=_EnvRotate*UNITY_PI/180.0;
+</span></span><span class="line"><span class="cl">                float2x2 Roration=float2x2(cos(drag),sin(drag),-sin(drag),cos(drag));
+</span></span><span class="line"><span class="cl">                rView_dir.xz=mul(Roration,rView_dir.xz);
+</span></span><span class="line"><span class="cl">                half4 color_cube=texCUBE(_CubeMap,rView_dir);
+</span></span><span class="line"><span class="cl">                float3 color_env=DecodeHDR(color_cube,_CubeMap_HDR);
+</span></span><span class="line"><span class="cl">                half fresnel=1.0-max(0.0,dot(normal_dir,view_dir));
+</span></span><span class="line"><span class="cl">                float3 final_env=color_env*fresnel;
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                float3 color_final=final_diffuse+final_env+ back_color;
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // return half4(thickness.xxx,1.0);
+</span></span><span class="line"><span class="cl">                return half4(color_final,1.0);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            ENDCG
+</span></span><span class="line"><span class="cl">        }     
+</span></span><span class="line"><span class="cl">        Pass
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            Tags{&#34;LightMode&#34; = &#34;ForwardAdd&#34;}
+</span></span><span class="line"><span class="cl">            Blend One One
+</span></span><span class="line"><span class="cl">            CGPROGRAM
+</span></span><span class="line"><span class="cl">            #pragma vertex vert
+</span></span><span class="line"><span class="cl">            #pragma fragment frag
+</span></span><span class="line"><span class="cl">            #pragma multi_compile_fwdadd
+</span></span><span class="line"><span class="cl">            #include &#34;UnityCG.cginc&#34;
+</span></span><span class="line"><span class="cl">            #include&#34;AutoLight.cginc&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            struct appdata  // appdata_full
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                float4 vertex : POSITION; //模型空间顶点坐标
+</span></span><span class="line"><span class="cl">                half2 texcoord : TEXCOORD0; //第一套UV（模型最多只能有4套UV）
+</span></span><span class="line"><span class="cl">				half2 texcoord1 : TEXCOORD1; //第二套UV
+</span></span><span class="line"><span class="cl">				half2 texcoord2 : TEXCOORD2; //第三套UV
+</span></span><span class="line"><span class="cl">				half2 texcoord3 : TEXCOORD3;  //第四套UV，模型最多只能有4套UV
+</span></span><span class="line"><span class="cl">				half4 color : COLOR; //顶点颜色
+</span></span><span class="line"><span class="cl">				half3 normal : NORMAL; //顶点法线
+</span></span><span class="line"><span class="cl">				half4 tangent : TANGENT; //顶点切线(模型导入Unity后自动计算得到)
+</span></span><span class="line"><span class="cl">            };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            struct v2f
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                float4 pos : SV_POSITION; //输出裁剪空间下的顶点坐标数据，给光栅化使用，必须要写的数据
+</span></span><span class="line"><span class="cl">                float2 uv : TEXCOORD0; //自定义数据体
+</span></span><span class="line"><span class="cl">                half3 normal_dir : TEXCOORD1;
+</span></span><span class="line"><span class="cl">                half3 tangent_dir : TEXCOORD2;
+</span></span><span class="line"><span class="cl">                half3 binormal_dir : TEXCOORD3;
+</span></span><span class="line"><span class="cl">                half3 pos_world : TEXCOORD4;
+</span></span><span class="line"><span class="cl">                //最多可以写16个：TEXCOORD0 ~ TEXCOORD15。
+</span></span><span class="line"><span class="cl">                LIGHTING_COORDS(5,6)
+</span></span><span class="line"><span class="cl">            };
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			sampler2D _MainTex;
+</span></span><span class="line"><span class="cl">			float4 _MainTex_ST;
+</span></span><span class="line"><span class="cl">			float4 _LightColor0;
+</span></span><span class="line"><span class="cl">			sampler2D _NormalMap;
+</span></span><span class="line"><span class="cl">			float _Distort;
+</span></span><span class="line"><span class="cl">			float _Power;
+</span></span><span class="line"><span class="cl">			float _Scale;
+</span></span><span class="line"><span class="cl">			sampler2D _ThicknessMap;
+</span></span><span class="line"><span class="cl">            samplerCUBE _CubeMap;
+</span></span><span class="line"><span class="cl">            float4 _CubeMap_HDR;
+</span></span><span class="line"><span class="cl">            float _EnvRotate;
+</span></span><span class="line"><span class="cl">            float4 _DiffuseColor;
+</span></span><span class="line"><span class="cl">            float4 _AddColor;
+</span></span><span class="line"><span class="cl">            float _Opacity;
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">            v2f vert (appdata v)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                v2f o;
+</span></span><span class="line"><span class="cl">                o.pos = UnityObjectToClipPos(v.vertex);
+</span></span><span class="line"><span class="cl">                o.uv=TRANSFORM_TEX(v.texcoord,_MainTex);
+</span></span><span class="line"><span class="cl">                o.pos_world=mul(unity_ObjectToWorld,v.vertex).xyz;
+</span></span><span class="line"><span class="cl">                o.normal_dir=normalize(mul(v.normal,(float3x3)unity_WorldToObject));
+</span></span><span class="line"><span class="cl">                o.tangent_dir=normalize(mul((float3x3)unity_ObjectToWorld,v.tangent.xyz));
+</span></span><span class="line"><span class="cl">                o.binormal_dir=normalize(cross(o.normal_dir, o.tangent_dir))*v.tangent.w;
+</span></span><span class="line"><span class="cl">                TRANSFER_VERTEX_TO_FRAGMENT(o);
+</span></span><span class="line"><span class="cl">                return o;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            half4 frag (v2f i) : SV_Target
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                half shadow = SHADOW_ATTENUATION(i); ///SHADOW 第三步
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">                half3 pos_world=i.pos_world;
+</span></span><span class="line"><span class="cl">                half3 normal_dir=normalize(i.normal_dir);
+</span></span><span class="line"><span class="cl">                half3 tangent_dir=normalize(i.tangent_dir);
+</span></span><span class="line"><span class="cl">                half3 binormal_dir=normalize(i.binormal_dir);
+</span></span><span class="line"><span class="cl">                half3 view_dir=normalize(_WorldSpaceCameraPos.xyz-pos_world);
+</span></span><span class="line"><span class="cl">                float3x3 TBN=float3x3(tangent_dir,binormal_dir,normal_dir);
+</span></span><span class="line"><span class="cl">                // Light
+</span></span><span class="line"><span class="cl">                half3 light_dir=normalize(_WorldSpaceLightPos0.xyz);
+</span></span><span class="line"><span class="cl">                half4 light_color=_LightColor0.rgba;
+</span></span><span class="line"><span class="cl">                half atten=LIGHT_ATTENUATION(i);
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                // 透射光
+</span></span><span class="line"><span class="cl">                float3 back_dir=-normalize(light_dir+normal_dir*_Distort);
+</span></span><span class="line"><span class="cl">                float VdotB=max(0.0,dot(view_dir,back_dir));
+</span></span><span class="line"><span class="cl">                float backlight_term=max(0.0,pow(VdotB,_Power))*_Scale;
+</span></span><span class="line"><span class="cl">                float thickness=1.0-tex2D(_ThicknessMap,i.uv).r;
+</span></span><span class="line"><span class="cl">                half3 back_color=backlight_term*light_color*thickness;           
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                float3 color_final=back_color;
+</span></span><span class="line"><span class="cl">                return half4(color_final,1.0);
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            ENDCG
+</span></span><span class="line"><span class="cl">        }             
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    Fallback &#34;Diffuse&#34; ///SHADOW 第四步
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="钻石">钻石</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/CleanShot2022-03-17_12.27.gif"
+        data-srcset="../../imgs/CleanShot2022-03-17_12.27.gif, ../../imgs/CleanShot2022-03-17_12.27.gif 1.5x, ../../imgs/CleanShot2022-03-17_12.27.gif 2x"
+        data-sizes="auto"
+        alt="../../imgs/CleanShot2022-03-17_12.27.gif"
+        title="../../imgs/CleanShot2022-03-17_12.27.gif" /></p>
+<p><em>双Pass渲染，一个背面渲染（cubemap的反射和折射），一个前面渲染（折射和菲涅尔）</em></p>
+<p><em>ASE</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// Made with Amplify Shader Editor
+</span></span><span class="line"><span class="cl">// Available at the Unity Asset Store - http://u3d.as/y3X 
+</span></span><span class="line"><span class="cl">Shader &#34;CS07/Diamond&#34;
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">	Properties
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		_ColorA(&#34;Color A&#34;, Color) = (0.02491992,0.09269338,0.754717,0)
+</span></span><span class="line"><span class="cl">		_RefractTex(&#34;RefractTex&#34;, CUBE) = &#34;white&#34; {}
+</span></span><span class="line"><span class="cl">		_ReflectTex(&#34;ReflectTex&#34;, CUBE) = &#34;white&#34; {}
+</span></span><span class="line"><span class="cl">		_ReflectIntensity(&#34;ReflectIntensity&#34;, Float) = 1
+</span></span><span class="line"><span class="cl">		_RefractIntensity(&#34;RefractIntensity&#34;, Float) = 1
+</span></span><span class="line"><span class="cl">		_RimPower(&#34;RimPower&#34;, Float) = 5
+</span></span><span class="line"><span class="cl">		_RimBias(&#34;RimBias&#34;, Float) = 0
+</span></span><span class="line"><span class="cl">		_RimScale(&#34;RimScale&#34;, Float) = 0
+</span></span><span class="line"><span class="cl">		_RimColor(&#34;RimColor&#34;, Color) = (0,0,0,0)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	SubShader
+</span></span><span class="line"><span class="cl">	{
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		Tags { &#34;RenderType&#34;=&#34;Opaque&#34; &#34;Queue&#34;=&#34;Geometry&#34; }
+</span></span><span class="line"><span class="cl">	LOD 100
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		Pass
+</span></span><span class="line"><span class="cl">		{
+</span></span><span class="line"><span class="cl">			Name &#34;Unlit&#34;
+</span></span><span class="line"><span class="cl">			Tags { &#34;LightMode&#34;=&#34;ForwardBase&#34; }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		CGINCLUDE
+</span></span><span class="line"><span class="cl">		#pragma target 3.0
+</span></span><span class="line"><span class="cl">		ENDCG
+</span></span><span class="line"><span class="cl">		Blend Off
+</span></span><span class="line"><span class="cl">		AlphaToMask Off
+</span></span><span class="line"><span class="cl">		Cull Front
+</span></span><span class="line"><span class="cl">		ColorMask RGBA
+</span></span><span class="line"><span class="cl">		ZWrite On
+</span></span><span class="line"><span class="cl">		ZTest LEqual
+</span></span><span class="line"><span class="cl">		Offset 0 , 0
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			CGPROGRAM
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			#ifndef UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX
+</span></span><span class="line"><span class="cl">			//only defining to not throw compilation error over Unity 5.5
+</span></span><span class="line"><span class="cl">			#define UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input)
+</span></span><span class="line"><span class="cl">			#endif
+</span></span><span class="line"><span class="cl">			#pragma vertex vert
+</span></span><span class="line"><span class="cl">			#pragma fragment frag
+</span></span><span class="line"><span class="cl">			#pragma multi_compile_instancing
+</span></span><span class="line"><span class="cl">			#include &#34;UnityCG.cginc&#34;
+</span></span><span class="line"><span class="cl">			#define ASE_NEEDS_FRAG_WORLD_POSITION
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			struct appdata
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				float4 vertex : POSITION;
+</span></span><span class="line"><span class="cl">				float4 color : COLOR;
+</span></span><span class="line"><span class="cl">				float3 ase_normal : NORMAL;
+</span></span><span class="line"><span class="cl">				UNITY_VERTEX_INPUT_INSTANCE_ID
+</span></span><span class="line"><span class="cl">			};
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			struct v2f
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				float4 vertex : SV_POSITION;
+</span></span><span class="line"><span class="cl">				#ifdef ASE_NEEDS_FRAG_WORLD_POSITION
+</span></span><span class="line"><span class="cl">				float3 worldPos : TEXCOORD0;
+</span></span><span class="line"><span class="cl">				#endif
+</span></span><span class="line"><span class="cl">				float4 ase_texcoord1 : TEXCOORD1;
+</span></span><span class="line"><span class="cl">				UNITY_VERTEX_INPUT_INSTANCE_ID
+</span></span><span class="line"><span class="cl">				UNITY_VERTEX_OUTPUT_STEREO
+</span></span><span class="line"><span class="cl">			};
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			uniform float4 _ColorA;
+</span></span><span class="line"><span class="cl">			uniform samplerCUBE _RefractTex;
+</span></span><span class="line"><span class="cl">			uniform samplerCUBE _ReflectTex;
+</span></span><span class="line"><span class="cl">			uniform float _RefractIntensity;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			v2f vert ( appdata v )
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				v2f o;
+</span></span><span class="line"><span class="cl">				UNITY_SETUP_INSTANCE_ID(v);
+</span></span><span class="line"><span class="cl">				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+</span></span><span class="line"><span class="cl">				UNITY_TRANSFER_INSTANCE_ID(v, o);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				float3 ase_worldNormal = UnityObjectToWorldNormal(v.ase_normal);
+</span></span><span class="line"><span class="cl">				o.ase_texcoord1.xyz = ase_worldNormal;
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				//setting value to unused interpolator channels and avoid initialization warnings
+</span></span><span class="line"><span class="cl">				o.ase_texcoord1.w = 0;
+</span></span><span class="line"><span class="cl">				float3 vertexValue = float3(0, 0, 0);
+</span></span><span class="line"><span class="cl">				#if ASE_ABSOLUTE_VERTEX_POS
+</span></span><span class="line"><span class="cl">				vertexValue = v.vertex.xyz;
+</span></span><span class="line"><span class="cl">				#endif
+</span></span><span class="line"><span class="cl">				vertexValue = vertexValue;
+</span></span><span class="line"><span class="cl">				#if ASE_ABSOLUTE_VERTEX_POS
+</span></span><span class="line"><span class="cl">				v.vertex.xyz = vertexValue;
+</span></span><span class="line"><span class="cl">				#else
+</span></span><span class="line"><span class="cl">				v.vertex.xyz += vertexValue;
+</span></span><span class="line"><span class="cl">				#endif
+</span></span><span class="line"><span class="cl">				o.vertex = UnityObjectToClipPos(v.vertex);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				#ifdef ASE_NEEDS_FRAG_WORLD_POSITION
+</span></span><span class="line"><span class="cl">				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+</span></span><span class="line"><span class="cl">				#endif
+</span></span><span class="line"><span class="cl">				return o;
+</span></span><span class="line"><span class="cl">			}
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			fixed4 frag (v2f i ) : SV_Target
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				UNITY_SETUP_INSTANCE_ID(i);
+</span></span><span class="line"><span class="cl">				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+</span></span><span class="line"><span class="cl">				fixed4 finalColor;
+</span></span><span class="line"><span class="cl">				#ifdef ASE_NEEDS_FRAG_WORLD_POSITION
+</span></span><span class="line"><span class="cl">				float3 WorldPosition = i.worldPos;
+</span></span><span class="line"><span class="cl">				#endif
+</span></span><span class="line"><span class="cl">				float3 ase_worldNormal = i.ase_texcoord1.xyz;
+</span></span><span class="line"><span class="cl">				float3 ase_worldViewDir = UnityWorldSpaceViewDir(WorldPosition);
+</span></span><span class="line"><span class="cl">				ase_worldViewDir = normalize(ase_worldViewDir);
+</span></span><span class="line"><span class="cl">				float3 ase_worldReflection = reflect(-ase_worldViewDir, ase_worldNormal);
+</span></span><span class="line"><span class="cl">				float4 texCUBENode7 = texCUBE( _ReflectTex, ase_worldReflection );
+</span></span><span class="line"><span class="cl">				float4 temp_output_12_0 = ( _ColorA * texCUBE( _RefractTex, ase_worldReflection ) * texCUBENode7 * _RefractIntensity );
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				finalColor = temp_output_12_0;
+</span></span><span class="line"><span class="cl">				return finalColor;
+</span></span><span class="line"><span class="cl">			}
+</span></span><span class="line"><span class="cl">			ENDCG
+</span></span><span class="line"><span class="cl">		}
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">		Pass
+</span></span><span class="line"><span class="cl">		{
+</span></span><span class="line"><span class="cl">			Name &#34;Second&#34;
+</span></span><span class="line"><span class="cl">			Tags { &#34;LightMode&#34;=&#34;ForwardBase&#34; }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		CGINCLUDE
+</span></span><span class="line"><span class="cl">		#pragma target 3.0
+</span></span><span class="line"><span class="cl">		ENDCG
+</span></span><span class="line"><span class="cl">		Blend One One
+</span></span><span class="line"><span class="cl">		AlphaToMask Off
+</span></span><span class="line"><span class="cl">		Cull Back
+</span></span><span class="line"><span class="cl">		ColorMask RGBA
+</span></span><span class="line"><span class="cl">		ZWrite On
+</span></span><span class="line"><span class="cl">		ZTest LEqual
+</span></span><span class="line"><span class="cl">		Offset 0 , 0
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			CGPROGRAM
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			#ifndef UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX
+</span></span><span class="line"><span class="cl">			//only defining to not throw compilation error over Unity 5.5
+</span></span><span class="line"><span class="cl">			#define UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input)
+</span></span><span class="line"><span class="cl">			#endif
+</span></span><span class="line"><span class="cl">			#pragma vertex vert
+</span></span><span class="line"><span class="cl">			#pragma fragment frag
+</span></span><span class="line"><span class="cl">			#pragma multi_compile_instancing
+</span></span><span class="line"><span class="cl">			#include &#34;UnityCG.cginc&#34;
+</span></span><span class="line"><span class="cl">			#define ASE_NEEDS_FRAG_WORLD_POSITION
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			struct appdata
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				float4 vertex : POSITION;
+</span></span><span class="line"><span class="cl">				float4 color : COLOR;
+</span></span><span class="line"><span class="cl">				float3 ase_normal : NORMAL;
+</span></span><span class="line"><span class="cl">				UNITY_VERTEX_INPUT_INSTANCE_ID
+</span></span><span class="line"><span class="cl">			};
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			struct v2f
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				float4 vertex : SV_POSITION;
+</span></span><span class="line"><span class="cl">				#ifdef ASE_NEEDS_FRAG_WORLD_POSITION
+</span></span><span class="line"><span class="cl">				float3 worldPos : TEXCOORD0;
+</span></span><span class="line"><span class="cl">				#endif
+</span></span><span class="line"><span class="cl">				float4 ase_texcoord1 : TEXCOORD1;
+</span></span><span class="line"><span class="cl">				UNITY_VERTEX_INPUT_INSTANCE_ID
+</span></span><span class="line"><span class="cl">				UNITY_VERTEX_OUTPUT_STEREO
+</span></span><span class="line"><span class="cl">			};
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			uniform float4 _ColorA;
+</span></span><span class="line"><span class="cl">			uniform samplerCUBE _RefractTex;
+</span></span><span class="line"><span class="cl">			uniform samplerCUBE _ReflectTex;
+</span></span><span class="line"><span class="cl">			uniform float _RefractIntensity;
+</span></span><span class="line"><span class="cl">			uniform float _ReflectIntensity;
+</span></span><span class="line"><span class="cl">			uniform float _RimPower;
+</span></span><span class="line"><span class="cl">			uniform float _RimScale;
+</span></span><span class="line"><span class="cl">			uniform float _RimBias;
+</span></span><span class="line"><span class="cl">			uniform float4 _RimColor;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			v2f vert ( appdata v )
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				v2f o;
+</span></span><span class="line"><span class="cl">				UNITY_SETUP_INSTANCE_ID(v);
+</span></span><span class="line"><span class="cl">				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+</span></span><span class="line"><span class="cl">				UNITY_TRANSFER_INSTANCE_ID(v, o);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				float3 ase_worldNormal = UnityObjectToWorldNormal(v.ase_normal);
+</span></span><span class="line"><span class="cl">				o.ase_texcoord1.xyz = ase_worldNormal;
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				//setting value to unused interpolator channels and avoid initialization warnings
+</span></span><span class="line"><span class="cl">				o.ase_texcoord1.w = 0;
+</span></span><span class="line"><span class="cl">				float3 vertexValue = float3(0, 0, 0);
+</span></span><span class="line"><span class="cl">				#if ASE_ABSOLUTE_VERTEX_POS
+</span></span><span class="line"><span class="cl">				vertexValue = v.vertex.xyz;
+</span></span><span class="line"><span class="cl">				#endif
+</span></span><span class="line"><span class="cl">				vertexValue = vertexValue;
+</span></span><span class="line"><span class="cl">				#if ASE_ABSOLUTE_VERTEX_POS
+</span></span><span class="line"><span class="cl">				v.vertex.xyz = vertexValue;
+</span></span><span class="line"><span class="cl">				#else
+</span></span><span class="line"><span class="cl">				v.vertex.xyz += vertexValue;
+</span></span><span class="line"><span class="cl">				#endif
+</span></span><span class="line"><span class="cl">				o.vertex = UnityObjectToClipPos(v.vertex);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">				#ifdef ASE_NEEDS_FRAG_WORLD_POSITION
+</span></span><span class="line"><span class="cl">				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+</span></span><span class="line"><span class="cl">				#endif
+</span></span><span class="line"><span class="cl">				return o;
+</span></span><span class="line"><span class="cl">			}
+</span></span><span class="line"><span class="cl">			
+</span></span><span class="line"><span class="cl">			fixed4 frag (v2f i ) : SV_Target
+</span></span><span class="line"><span class="cl">			{
+</span></span><span class="line"><span class="cl">				UNITY_SETUP_INSTANCE_ID(i);
+</span></span><span class="line"><span class="cl">				UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
+</span></span><span class="line"><span class="cl">				fixed4 finalColor;
+</span></span><span class="line"><span class="cl">				#ifdef ASE_NEEDS_FRAG_WORLD_POSITION
+</span></span><span class="line"><span class="cl">				float3 WorldPosition = i.worldPos;
+</span></span><span class="line"><span class="cl">				#endif
+</span></span><span class="line"><span class="cl">				float3 ase_worldNormal = i.ase_texcoord1.xyz;
+</span></span><span class="line"><span class="cl">				float3 ase_worldViewDir = UnityWorldSpaceViewDir(WorldPosition);
+</span></span><span class="line"><span class="cl">				ase_worldViewDir = normalize(ase_worldViewDir);
+</span></span><span class="line"><span class="cl">				float3 ase_worldReflection = reflect(-ase_worldViewDir, ase_worldNormal);
+</span></span><span class="line"><span class="cl">				float4 texCUBENode7 = texCUBE( _ReflectTex, ase_worldReflection );
+</span></span><span class="line"><span class="cl">				float4 temp_output_12_0 = ( _ColorA * texCUBE( _RefractTex, ase_worldReflection ) * texCUBENode7 * _RefractIntensity );
+</span></span><span class="line"><span class="cl">				float dotResult21 = dot( ase_worldNormal , ase_worldViewDir );
+</span></span><span class="line"><span class="cl">				float clampResult23 = clamp( dotResult21 , 0.0 , 1.0 );
+</span></span><span class="line"><span class="cl">				float temp_output_24_0 = ( 1.0 - clampResult23 );
+</span></span><span class="line"><span class="cl">				float4 temp_output_16_0 = ( temp_output_12_0 + ( texCUBENode7 * _ReflectIntensity * temp_output_24_0 ) );
+</span></span><span class="line"><span class="cl">				float saferPower25 = max( temp_output_24_0 , 0.0001 );
+</span></span><span class="line"><span class="cl">				float temp_output_30_0 = ( ( max( pow( saferPower25 , _RimPower ) , 0.0 ) * _RimScale ) + _RimBias );
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				
+</span></span><span class="line"><span class="cl">				finalColor = ( temp_output_16_0 + ( temp_output_16_0 * temp_output_30_0 * ( temp_output_30_0 * _RimColor ) ) );
+</span></span><span class="line"><span class="cl">				return finalColor;
+</span></span><span class="line"><span class="cl">			}
+</span></span><span class="line"><span class="cl">			ENDCG
+</span></span><span class="line"><span class="cl">		}
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">	}
+</span></span><span class="line"><span class="cl">	CustomEditor &#34;ASEMaterialInspector&#34;
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">/*ASEBEGIN
+</span></span><span class="line"><span class="cl">Version=18500
+</span></span><span class="line"><span class="cl">2500;488;1639;969;571.4478;525.8101;1.694416;True;False
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.CommentaryNode;40;-1788.975,781.5402;Inherit;False;2012.625;729.3613;Fresnel;13;22;19;21;23;26;24;25;27;29;28;31;30;32;;1,1,1,1;0;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.WorldNormalVector;19;-1738.975,831.5402;Inherit;False;False;1;0;FLOAT3;0,0,1;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.ViewDirInputsCoordNode;22;-1716.198,1112.462;Inherit;False;World;False;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.DotProductOpNode;21;-1330.5,1006.167;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.ClampOpNode;23;-1181.688,992.5009;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.OneMinusNode;24;-1000.987,1000.093;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.RangedFloatNode;26;-1107.281,1180.793;Inherit;False;Property;_RimPower;RimPower;5;0;Create;True;0;0;False;0;False;5;10;0;0;0;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.PowerNode;25;-809.6565,994.0192;Inherit;False;True;2;0;FLOAT;0;False;1;FLOAT;1;False;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.WorldReflectionVector;13;-1153.126,32.63672;Inherit;False;False;1;0;FLOAT3;0,0,0;False;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.RangedFloatNode;29;-647.2493,1140.901;Inherit;False;Property;_RimScale;RimScale;7;0;Create;True;0;0;False;0;False;0;5;0;0;0;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SimpleMaxOpNode;27;-617.2493,995.9019;Inherit;False;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SamplerNode;7;-562.063,172.0891;Inherit;True;Property;_ReflectTex;ReflectTex;2;0;Create;True;0;0;False;0;False;-1;None;7ecb52b18a453124283cee921dc388cf;True;0;False;white;LockedToCube;False;Object;-1;Auto;Cube;8;0;SAMPLERCUBE;;False;1;FLOAT3;0,0,0;False;2;FLOAT;0;False;3;FLOAT3;0,0,0;False;4;FLOAT3;0,0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.ColorNode;2;-506.5,-301.5;Inherit;False;Property;_ColorA;Color A;0;0;Create;True;0;0;False;0;False;0.02491992,0.09269338,0.754717,0;0.5754717,0.5754717,0.5754717,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.RangedFloatNode;17;-514.6671,98.24844;Inherit;False;Property;_RefractIntensity;RefractIntensity;4;0;Create;True;0;0;False;0;False;1;5;0;0;0;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SamplerNode;6;-570.063,-90.91089;Inherit;True;Property;_RefractTex;RefractTex;1;0;Create;True;0;0;False;0;False;-1;None;e9efb1d234a58c04cbb0a0c9eb87d214;True;0;False;white;LockedToCube;False;Object;-1;Auto;Cube;8;0;SAMPLERCUBE;;False;1;FLOAT3;0,0,0;False;2;FLOAT;0;False;3;FLOAT3;0,0,0;False;4;FLOAT3;0,0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SimpleMultiplyOpNode;28;-399.2493,1052.902;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.RangedFloatNode;31;-469.4467,1211.618;Inherit;False;Property;_RimBias;RimBias;6;0;Create;True;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.RangedFloatNode;15;-466.0444,392.8555;Inherit;False;Property;_ReflectIntensity;ReflectIntensity;3;0;Create;True;0;0;False;0;False;1;1;0;0;0;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SimpleAddOpNode;30;-172.2493,1094.901;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.ColorNode;36;255.3527,989.3035;Inherit;False;Property;_RimColor;RimColor;8;0;Create;True;0;0;False;0;False;0,0,0,0;0.8970588,0.8623443,0.4551255,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SimpleMultiplyOpNode;18;-131.6671,296.2484;Inherit;False;3;3;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;COLOR;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SimpleMultiplyOpNode;12;-81.06299,-120.9109;Inherit;False;4;4;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;COLOR;0,0,0,0;False;3;FLOAT;0;False;1;COLOR;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SimpleAddOpNode;16;119.3329,185.2484;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SimpleMultiplyOpNode;35;460.0375,793.4158;Inherit;False;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SimpleMultiplyOpNode;33;309.5573,294.3183;Inherit;False;3;3;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.SimpleAddOpNode;34;540.5623,209.1047;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.FresnelNode;32;-708.2494,1308.901;Inherit;False;Standard;WorldNormal;ViewDir;False;False;5;0;FLOAT3;0,0,1;False;4;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;1;False;3;FLOAT;5;False;1;FLOAT;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;39;977.4616,398.2424;Float;False;False;-1;2;ASEMaterialInspector;100;9;New Amplify Shader;0a6bbb37052a2458b860677ab2960714;True;Second;0;1;Second;2;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;False;0;True;4;1;False;-1;1;False;-1;0;1;False;-1;0;False;-1;True;0;False;-1;0;False;-1;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;0;False;-1;True;0;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=ForwardBase;True;2;0;;0;0;Standard;0;False;0
+</span></span><span class="line"><span class="cl">Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;38;987.6282,-86.66805;Float;False;True;-1;2;ASEMaterialInspector;100;9;CS07/Diamond;0a6bbb37052a2458b860677ab2960714;True;Unlit;0;0;Unlit;2;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;False;0;True;0;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;True;0;False;-1;0;False;-1;False;False;False;False;False;False;True;0;False;-1;True;1;False;-1;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;0;False;-1;True;0;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=ForwardBase;True;2;0;;0;0;Standard;1;Vertex Position,InvertActionOnDeselection;1;0;2;True;True;False;;False;0
+</span></span><span class="line"><span class="cl">WireConnection;21;0;19;0
+</span></span><span class="line"><span class="cl">WireConnection;21;1;22;0
+</span></span><span class="line"><span class="cl">WireConnection;23;0;21;0
+</span></span><span class="line"><span class="cl">WireConnection;24;0;23;0
+</span></span><span class="line"><span class="cl">WireConnection;25;0;24;0
+</span></span><span class="line"><span class="cl">WireConnection;25;1;26;0
+</span></span><span class="line"><span class="cl">WireConnection;27;0;25;0
+</span></span><span class="line"><span class="cl">WireConnection;7;1;13;0
+</span></span><span class="line"><span class="cl">WireConnection;6;1;13;0
+</span></span><span class="line"><span class="cl">WireConnection;28;0;27;0
+</span></span><span class="line"><span class="cl">WireConnection;28;1;29;0
+</span></span><span class="line"><span class="cl">WireConnection;30;0;28;0
+</span></span><span class="line"><span class="cl">WireConnection;30;1;31;0
+</span></span><span class="line"><span class="cl">WireConnection;18;0;7;0
+</span></span><span class="line"><span class="cl">WireConnection;18;1;15;0
+</span></span><span class="line"><span class="cl">WireConnection;18;2;24;0
+</span></span><span class="line"><span class="cl">WireConnection;12;0;2;0
+</span></span><span class="line"><span class="cl">WireConnection;12;1;6;0
+</span></span><span class="line"><span class="cl">WireConnection;12;2;7;0
+</span></span><span class="line"><span class="cl">WireConnection;12;3;17;0
+</span></span><span class="line"><span class="cl">WireConnection;16;0;12;0
+</span></span><span class="line"><span class="cl">WireConnection;16;1;18;0
+</span></span><span class="line"><span class="cl">WireConnection;35;0;30;0
+</span></span><span class="line"><span class="cl">WireConnection;35;1;36;0
+</span></span><span class="line"><span class="cl">WireConnection;33;0;16;0
+</span></span><span class="line"><span class="cl">WireConnection;33;1;30;0
+</span></span><span class="line"><span class="cl">WireConnection;33;2;35;0
+</span></span><span class="line"><span class="cl">WireConnection;34;0;16;0
+</span></span><span class="line"><span class="cl">WireConnection;34;1;33;0
+</span></span><span class="line"><span class="cl">WireConnection;39;0;34;0
+</span></span><span class="line"><span class="cl">WireConnection;38;0;12;0
+</span></span><span class="line"><span class="cl">ASEEND*/
+</span></span><span class="line"><span class="cl">//CHKSM=D24C8BF7840C56CD057B1AAEC0FA1C82BDCD7B7D
+</span></span></code></pre></td></tr></table>
+</div>
 </div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -1231,7 +2357,7 @@ CubeMap （Specular）</li>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.96.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

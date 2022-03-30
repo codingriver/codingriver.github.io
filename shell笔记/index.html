@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/shell%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "笔记, shell","wordcount":  3668 ,
+        },"genre": "posts","keywords": "笔记, shell","wordcount":  3702 ,
         "url": "https:\/\/codingriver.github.io\/shell%E7%AC%94%E8%AE%B0\/","datePublished": "2022-02-02T22:17:18+08:00","dateModified": "2022-02-02T22:17:18+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Shell笔记</h1><h2 class="single-subtitle">Shell笔记</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-02 22:17:18">2022-02-02 22:17:18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3668 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-02 22:17:18">2022-02-02 22:17:18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3702 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/shell%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Shell笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -139,6 +139,7 @@
     <li><a href="#md5sum-使用">md5sum 使用</a></li>
     <li><a href="#find-命令">find 命令</a></li>
     <li><a href="#tail-命令">tail 命令</a></li>
+    <li><a href="#curl-命令">curl 命令</a></li>
     <li><a href="#读取文件每一行">读取文件每一行</a></li>
   </ul>
 </nav></div>
@@ -152,11 +153,19 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$?</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># mac or linux</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="nv">$PATH</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># windows</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> %PATH%
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="显示shell变量">显示shell变量</h2>
@@ -482,6 +491,12 @@
 <p>Rsync（remote sync ; remote synchronous）是UNIX 及类UNIX 平台下一款神奇的数据镜像备份软件，它不像FTP 或其他文件传输服务那样需要进行全备份，<strong>Rsync 可以根据数据的变化进行差异备份，从而减少数据流量</strong>，提高工作效率。你可以使用它进行本地数据或远程数据的复制，Rsync 可以使用SSH 安全隧道进行加密数据传输。Rsync 服务器端定义源数据，Rsync 客户端仅在源数据发生改变后才会从服务器上实际复制数据至本地，如果源数据在服务器端被删除，则客户端数据也会被删除，以确保主机之间的数据是同步的。<strong>Rsync 使用TCP <code>873</code> 端口</strong>。
 <strong>使用rsync需要远程用户密码；如果配置远程ssh的私钥则不用密码，自动使用私钥登陆</strong>
 配置文件：<code>/etc/rsyncd.conf</code>。</p>
+</blockquote>
+<blockquote>
+<p>windows安装 rsync
+<a href="https://www.itefix.net/cwrsync" target="_blank" rel="noopener noreffer">https://www.itefix.net/cwrsync</a><br>
+<a href="https://www.cnblogs.com/zhangweiyi/p/10571273.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/zhangweiyi/p/10571273.html</a><br>
+&lt;&gt;</p>
 </blockquote>
 <p>常用参数：</p>
 <div class="highlight"><div class="chroma">
@@ -853,6 +868,12 @@ Mac没有自带<code>md5sum</code>， 需要安装<code>md5sum</code>。<br>
 </div><blockquote>
 <p>参考：<a href="https://blog.csdn.net/mo_247/article/details/103567545" target="_blank" rel="noopener noreffer">https://blog.csdn.net/mo_247/article/details/103567545</a></p>
 </blockquote>
+<h2 id="curl-命令">curl 命令</h2>
+<blockquote>
+<p><a href="https://www.cnblogs.com/duhuo/p/5695256.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/duhuo/p/5695256.html</a><br>
+<a href="https://www.ruanyifeng.com/blog/2019/09/curl-reference.html" target="_blank" rel="noopener noreffer">https://www.ruanyifeng.com/blog/2019/09/curl-reference.html</a></p>
+</blockquote>
+<p>常用命令</p>
 <h2 id="读取文件每一行">读取文件每一行</h2>
 <ol>
 <li>使用for循环</li>
@@ -953,7 +974,7 @@ Mac没有自带<code>md5sum</code>， 需要安装<code>md5sum</code>。<br>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.94.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.96.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
