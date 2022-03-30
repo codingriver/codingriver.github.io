@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","keywords": "git","wordcount":  4033 ,
+        },"genre": "posts","keywords": "git","wordcount":  4116 ,
         "url": "https:\/\/codingriver.github.io\/git%E7%AC%94%E8%AE%B0\/","datePublished": "2019-11-30T14:18:54+08:00","dateModified": "2019-11-30T14:18:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,7 +106,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Git笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4033 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-11-30 14:18:54">2019-11-30 14:18:54</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4116 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/git%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="Git笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -148,6 +148,7 @@
     <li><a href="#shell-判断-git-branch-分支是否存在">shell 判断 git branch 分支是否存在</a></li>
     <li><a href="#shell-判断-git本地工作文件夹是否干净clean">shell 判断 git本地工作文件夹是否干净(clean)</a></li>
     <li><a href="#git文件内容没变但status显示不同的解决方案">git文件内容没变但status显示不同的解决方案</a></li>
+    <li><a href="#the-file-will-have-its-original-line-endings-in-your-working-directory">The file will have its original line endings in your working directory</a></li>
     <li><a href="#git处理换行符问题">Git处理换行符问题</a></li>
   </ul>
 </nav></div>
@@ -689,7 +690,38 @@
 </div><blockquote>
 <p>参考: <a href="https://blog.csdn.net/u012109105/article/details/51252242" target="_blank" rel="noopener noreffer">https://blog.csdn.net/u012109105/article/details/51252242</a></p>
 </blockquote>
-<h2 id="git处理换行符问题">Git处理换行符问题</h2>
+<h2 id="the-file-will-have-its-original-line-endings-in-your-working-directory">The file will have its original line endings in your working directory</h2>
+<p>git 报错：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">warning: LF will be replaced by CRLF in basic-markdown-syntax/index.html.
+</span></span><span class="line"><span class="cl">The file will have its original line endings in your working directory
+</span></span><span class="line"><span class="cl">warning: LF will be replaced by CRLF in hugo-loveit-problems/index.html.
+</span></span><span class="line"><span class="cl">The file will have its original line endings in your working directory
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解决方案：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    git rm -r --cached .
+</span></span><span class="line"><span class="cl">    git config core.autocrlf <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    git add .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="git处理换行符问题">Git处理换行符问题</h2>
 <p>对仓库使用 <code>.gitattributes</code>文件进行配置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
