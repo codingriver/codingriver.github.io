@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>c&#43;&#43; - 标签 - codingriver blog</title>
-        <link>https://codingriver.github.io/tags/c&#43;&#43;/</link>
+        <link>https://www.wgqing.com/tags/c&#43;&#43;/</link>
         <description>c&#43;&#43; - 标签 - codingriver blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
-            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/tags/c&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://www.wgqing.com/tags/c&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
     <title>C&#43;&#43; struct union数据对齐</title>
-    <link>https://codingriver.github.io/c-_structunion%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90/</link>
+    <link>https://www.wgqing.com/c-_structunion%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/c-_structunion%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90/</guid>
+    <guid>https://www.wgqing.com/c-_structunion%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

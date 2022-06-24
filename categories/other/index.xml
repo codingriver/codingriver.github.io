@@ -1,36 +1,36 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>other - 分类 - codingriver blog</title>
-        <link>https://codingriver.github.io/categories/other/</link>
+        <link>https://www.wgqing.com/categories/other/</link>
         <description>other - 分类 - codingriver blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
-            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/categories/other/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://www.wgqing.com/categories/other/" rel="self" type="application/rss+xml" /><item>
     <title>unity接入声网sdk视频bug</title>
-    <link>https://codingriver.github.io/unity%E6%8E%A5%E5%85%A5%E5%A3%B0%E7%BD%91sdk%E8%A7%86%E9%A2%91bug/</link>
+    <link>https://www.wgqing.com/unity%E6%8E%A5%E5%85%A5%E5%A3%B0%E7%BD%91sdk%E8%A7%86%E9%A2%91bug/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/unity%E6%8E%A5%E5%85%A5%E5%A3%B0%E7%BD%91sdk%E8%A7%86%E9%A2%91bug/</guid>
+    <guid>https://www.wgqing.com/unity%E6%8E%A5%E5%85%A5%E5%A3%B0%E7%BD%91sdk%E8%A7%86%E9%A2%91bug/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>VS2013&#43;LUA代码高亮配置教程</title>
-    <link>https://codingriver.github.io/vs2013-lua%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</link>
+    <link>https://www.wgqing.com/vs2013-lua%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/vs2013-lua%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</guid>
+    <guid>https://www.wgqing.com/vs2013-lua%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>VS2013创建新脚本自动添加版权声明，文件名，作者，创建时间等</title>
-    <link>https://codingriver.github.io/vs2013%E5%88%9B%E5%BB%BA%E6%96%B0%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6%E5%90%8D%E4%BD%9C%E8%80%85%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4%E7%AD%89/</link>
+    <link>https://www.wgqing.com/vs2013%E5%88%9B%E5%BB%BA%E6%96%B0%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6%E5%90%8D%E4%BD%9C%E8%80%85%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4%E7%AD%89/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/vs2013%E5%88%9B%E5%BB%BA%E6%96%B0%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6%E5%90%8D%E4%BD%9C%E8%80%85%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4%E7%AD%89/</guid>
+    <guid>https://www.wgqing.com/vs2013%E5%88%9B%E5%BB%BA%E6%96%B0%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E%E6%96%87%E4%BB%B6%E5%90%8D%E4%BD%9C%E8%80%85%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4%E7%AD%89/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Xlua-线程问题</title>
-    <link>https://codingriver.github.io/xlua-%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/</link>
+    <link>https://www.wgqing.com/xlua-%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/xlua-%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/</guid>
+    <guid>https://www.wgqing.com/xlua-%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

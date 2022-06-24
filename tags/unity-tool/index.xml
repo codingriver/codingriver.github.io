@@ -1,64 +1,64 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Unity Tool - 标签 - codingriver blog</title>
-        <link>https://codingriver.github.io/tags/unity-tool/</link>
+        <link>https://www.wgqing.com/tags/unity-tool/</link>
         <description>Unity Tool - 标签 - codingriver blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
-            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 19 Sep 2020 18:45:30 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/tags/unity-tool/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 19 Sep 2020 18:45:30 &#43;0800</lastBuildDate><atom:link href="https://www.wgqing.com/tags/unity-tool/" rel="self" type="application/rss+xml" /><item>
     <title>MD5计算工具</title>
-    <link>https://codingriver.github.io/md5%E8%AE%A1%E7%AE%97%E5%B7%A5%E5%85%B7/</link>
+    <link>https://www.wgqing.com/md5%E8%AE%A1%E7%AE%97%E5%B7%A5%E5%85%B7/</link>
     <pubDate>Sat, 19 Sep 2020 18:45:30 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/md5%E8%AE%A1%E7%AE%97%E5%B7%A5%E5%85%B7/</guid>
+    <guid>https://www.wgqing.com/md5%E8%AE%A1%E7%AE%97%E5%B7%A5%E5%85%B7/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>ZipHelper压缩工具</title>
-    <link>https://codingriver.github.io/ziphelper%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7/</link>
+    <link>https://www.wgqing.com/ziphelper%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7/</link>
     <pubDate>Sat, 19 Sep 2020 18:44:48 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/ziphelper%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7/</guid>
+    <guid>https://www.wgqing.com/ziphelper%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>生成分布式唯一ID</title>
-    <link>https://codingriver.github.io/%E7%94%9F%E6%88%90%E5%88%86%E5%B8%83%E5%BC%8F%E5%94%AF%E4%B8%80id/</link>
+    <link>https://www.wgqing.com/%E7%94%9F%E6%88%90%E5%88%86%E5%B8%83%E5%BC%8F%E5%94%AF%E4%B8%80id/</link>
     <pubDate>Fri, 18 Sep 2020 18:08:02 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/%E7%94%9F%E6%88%90%E5%88%86%E5%B8%83%E5%BC%8F%E5%94%AF%E4%B8%80id/</guid>
+    <guid>https://www.wgqing.com/%E7%94%9F%E6%88%90%E5%88%86%E5%B8%83%E5%BC%8F%E5%94%AF%E4%B8%80id/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>URLHelper URL编码解码工具</title>
-    <link>https://codingriver.github.io/urlhelper-url%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81%E5%B7%A5%E5%85%B7/</link>
+    <link>https://www.wgqing.com/urlhelper-url%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81%E5%B7%A5%E5%85%B7/</link>
     <pubDate>Thu, 17 Sep 2020 20:47:11 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/urlhelper-url%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81%E5%B7%A5%E5%85%B7/</guid>
+    <guid>https://www.wgqing.com/urlhelper-url%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81%E5%B7%A5%E5%85%B7/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>StringHelper编码辅助工具</title>
-    <link>https://codingriver.github.io/stringhelper%E7%BC%96%E7%A0%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/</link>
+    <link>https://www.wgqing.com/stringhelper%E7%BC%96%E7%A0%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/</link>
     <pubDate>Wed, 16 Sep 2020 21:38:31 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/stringhelper%E7%BC%96%E7%A0%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/</guid>
+    <guid>https://www.wgqing.com/stringhelper%E7%BC%96%E7%A0%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>JsonHelper工具</title>
-    <link>https://codingriver.github.io/jsonhelper%E5%B7%A5%E5%85%B7/</link>
+    <link>https://www.wgqing.com/jsonhelper%E5%B7%A5%E5%85%B7/</link>
     <pubDate>Wed, 16 Sep 2020 17:31:14 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/jsonhelper%E5%B7%A5%E5%85%B7/</guid>
+    <guid>https://www.wgqing.com/jsonhelper%E5%B7%A5%E5%85%B7/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>【Unity Tool】 ByteHelper字节数组辅助工具</title>
-    <link>https://codingriver.github.io/bytehelper%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/</link>
+    <link>https://www.wgqing.com/bytehelper%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/</link>
     <pubDate>Tue, 15 Sep 2020 18:21:07 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/bytehelper%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/</guid>
+    <guid>https://www.wgqing.com/bytehelper%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>【Unity Tool】 Dumper遍历打印对象的所有变量和属性</title>
-    <link>https://codingriver.github.io/%E9%81%8D%E5%8E%86%E6%89%93%E5%8D%B0%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%80%E6%9C%89%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%9E%E6%80%A7/</link>
+    <link>https://www.wgqing.com/%E9%81%8D%E5%8E%86%E6%89%93%E5%8D%B0%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%80%E6%9C%89%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%9E%E6%80%A7/</link>
     <pubDate>Mon, 14 Sep 2020 21:19:48 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/%E9%81%8D%E5%8E%86%E6%89%93%E5%8D%B0%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%80%E6%9C%89%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%9E%E6%80%A7/</guid>
+    <guid>https://www.wgqing.com/%E9%81%8D%E5%8E%86%E6%89%93%E5%8D%B0%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%80%E6%9C%89%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%9E%E6%80%A7/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

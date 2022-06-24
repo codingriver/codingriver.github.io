@@ -1,76 +1,76 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>hugo - 标签 - codingriver blog</title>
-        <link>https://codingriver.github.io/tags/hugo/</link>
+        <link>https://www.wgqing.com/tags/hugo/</link>
         <description>hugo - 标签 - codingriver blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
-            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 01 Sep 2020 21:08:09 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/tags/hugo/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 01 Sep 2020 21:08:09 &#43;0800</lastBuildDate><atom:link href="https://www.wgqing.com/tags/hugo/" rel="self" type="application/rss+xml" /><item>
     <title>主题文档 - 基本概念</title>
-    <link>https://codingriver.github.io/theme-documentation-basics/</link>
+    <link>https://www.wgqing.com/theme-documentation-basics/</link>
     <pubDate>Fri, 06 Mar 2020 21:40:32 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/theme-documentation-basics/</guid>
+    <guid>https://www.wgqing.com/theme-documentation-basics/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/theme-documentation-basics/featured-image.jpg" referrerpolicy="no-referrer">
             </div><p>探索 Hugo - <strong>LoveIt</strong> 主题的全部内容和背后的核心概念.</p>]]></description>
 </item><item>
     <title>主题文档 - 内容</title>
-    <link>https://codingriver.github.io/theme-documentation-content/</link>
+    <link>https://www.wgqing.com/theme-documentation-content/</link>
     <pubDate>Thu, 05 Mar 2020 16:30:05 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/theme-documentation-content/</guid>
+    <guid>https://www.wgqing.com/theme-documentation-content/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/theme-documentation-content/featured-image.jpg" referrerpolicy="no-referrer">
             </div><p>了解如何在 <strong>LoveIt</strong> 主题中快速, 直观地创建和组织内容.</p>]]></description>
 </item><item>
     <title>主题文档 - 内置 Shortcodes</title>
-    <link>https://codingriver.github.io/theme-documentation-built-in-shortcodes/</link>
+    <link>https://www.wgqing.com/theme-documentation-built-in-shortcodes/</link>
     <pubDate>Wed, 04 Mar 2020 16:29:59 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/theme-documentation-built-in-shortcodes/</guid>
+    <guid>https://www.wgqing.com/theme-documentation-built-in-shortcodes/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/theme-documentation-built-in-shortcodes/featured-image.png" referrerpolicy="no-referrer">
             </div><p><strong>Hugo</strong> 提供了多个内置的 Shortcodes, 以方便作者保持 Markdown 内容的整洁.</p>]]></description>
 </item><item>
     <title>主题文档 - 扩展 Shortcodes</title>
-    <link>https://codingriver.github.io/theme-documentation-extended-shortcodes/</link>
+    <link>https://www.wgqing.com/theme-documentation-extended-shortcodes/</link>
     <pubDate>Tue, 03 Mar 2020 16:29:59 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/theme-documentation-extended-shortcodes/</guid>
+    <guid>https://www.wgqing.com/theme-documentation-extended-shortcodes/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/theme-documentation-extended-shortcodes/featured-image.jpg" referrerpolicy="no-referrer">
             </div><p><strong>LoveIt</strong> 主题在 Hugo 内置的 shortcode 的基础上提供多个扩展的 shortcode.</p>]]></description>
 </item><item>
     <title>Markdown 基本语法</title>
-    <link>https://codingriver.github.io/basic-markdown-syntax/</link>
+    <link>https://www.wgqing.com/basic-markdown-syntax/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/basic-markdown-syntax/</guid>
+    <guid>https://www.wgqing.com/basic-markdown-syntax/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/basic-markdown-syntax/featured-image.png" referrerpolicy="no-referrer">
             </div><p>这篇文章提供了可以在 Hugo 的文章中使用的基本 Markdown 语法示例.</p>]]></description>
 </item><item>
     <title>主题文档 - Emoji 支持</title>
-    <link>https://codingriver.github.io/theme-emoji-support/</link>
+    <link>https://www.wgqing.com/theme-emoji-support/</link>
     <pubDate>Tue, 01 Oct 2019 17:55:28 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/theme-emoji-support/</guid>
+    <guid>https://www.wgqing.com/theme-emoji-support/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/emoji-support/featured-image.jpg" referrerpolicy="no-referrer">
             </div><p>Emoji 可以通过多种方式在 Hugo 项目中启用.</p>]]></description>
 </item><item>
     <title>hugo / go 模版中的日期格式</title>
-    <link>https://codingriver.github.io/hugo%E6%A8%A1%E7%89%88%E4%B8%AD%E7%9A%84%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F/</link>
+    <link>https://www.wgqing.com/hugo%E6%A8%A1%E7%89%88%E4%B8%AD%E7%9A%84%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F/</link>
     <pubDate>Tue, 01 Sep 2020 21:08:09 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/hugo%E6%A8%A1%E7%89%88%E4%B8%AD%E7%9A%84%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F/</guid>
+    <guid>https://www.wgqing.com/hugo%E6%A8%A1%E7%89%88%E4%B8%AD%E7%9A%84%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Loveit 使用中的问题</title>
-    <link>https://codingriver.github.io/hugo-loveit-problems/</link>
+    <link>https://www.wgqing.com/hugo-loveit-problems/</link>
     <pubDate>Sat, 29 Aug 2020 15:58:08 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/hugo-loveit-problems/</guid>
+    <guid>https://www.wgqing.com/hugo-loveit-problems/</guid>
     <description><![CDATA[不支持tweet和instagram 的shortcode 网络访问不了，执行hugo直接失败，执行hugo serve也会失败，必须删除。 提交g]]></description>
 </item></channel>
 </rss>

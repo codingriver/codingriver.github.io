@@ -1,78 +1,78 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>随笔 - 分类 - codingriver blog</title>
-        <link>https://codingriver.github.io/categories/%E9%9A%8F%E7%AC%94/</link>
+        <link>https://www.wgqing.com/categories/%E9%9A%8F%E7%AC%94/</link>
         <description>随笔 - 分类 - codingriver blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
-            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://codingriver.github.io/categories/%E9%9A%8F%E7%AC%94/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://www.wgqing.com/categories/%E9%9A%8F%E7%AC%94/" rel="self" type="application/rss+xml" /><item>
     <title>3500个常用汉字(字体裁剪用)</title>
-    <link>https://codingriver.github.io/3500%E4%B8%AA%E5%B8%B8%E7%94%A8%E6%B1%89%E5%AD%97%E5%AD%97%E4%BD%93%E8%A3%81%E5%89%AA%E7%94%A8/</link>
+    <link>https://www.wgqing.com/3500%E4%B8%AA%E5%B8%B8%E7%94%A8%E6%B1%89%E5%AD%97%E5%AD%97%E4%BD%93%E8%A3%81%E5%89%AA%E7%94%A8/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/3500%E4%B8%AA%E5%B8%B8%E7%94%A8%E6%B1%89%E5%AD%97%E5%AD%97%E4%BD%93%E8%A3%81%E5%89%AA%E7%94%A8/</guid>
+    <guid>https://www.wgqing.com/3500%E4%B8%AA%E5%B8%B8%E7%94%A8%E6%B1%89%E5%AD%97%E5%AD%97%E4%BD%93%E8%A3%81%E5%89%AA%E7%94%A8/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>github&#43;hexo建立个人博客2017</title>
-    <link>https://codingriver.github.io/github-hexo%E5%BB%BA%E7%AB%8B%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22017/</link>
+    <link>https://www.wgqing.com/github-hexo%E5%BB%BA%E7%AB%8B%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22017/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/github-hexo%E5%BB%BA%E7%AB%8B%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22017/</guid>
+    <guid>https://www.wgqing.com/github-hexo%E5%BB%BA%E7%AB%8B%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22017/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>GitHub-ssh失败Permission-denied-(publickey)</title>
-    <link>https://codingriver.github.io/github-ssh%E5%A4%B1%E8%B4%A5permission-denied-publickey/</link>
+    <link>https://www.wgqing.com/github-ssh%E5%A4%B1%E8%B4%A5permission-denied-publickey/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/github-ssh%E5%A4%B1%E8%B4%A5permission-denied-publickey/</guid>
+    <guid>https://www.wgqing.com/github-ssh%E5%A4%B1%E8%B4%A5permission-denied-publickey/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Hugo 入门 安装（Windows）</title>
-    <link>https://codingriver.github.io/hugo-%E5%85%A5%E9%97%A8-%E5%AE%89%E8%A3%85windows/</link>
+    <link>https://www.wgqing.com/hugo-%E5%85%A5%E9%97%A8-%E5%AE%89%E8%A3%85windows/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/hugo-%E5%85%A5%E9%97%A8-%E5%AE%89%E8%A3%85windows/</guid>
+    <guid>https://www.wgqing.com/hugo-%E5%85%A5%E9%97%A8-%E5%AE%89%E8%A3%85windows/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Json的float单精度浮点数类型支持Can&#39;t assign value &#39;11.88&#39; (type System.Double) to type System.Single</title>
-    <link>https://codingriver.github.io/json%E7%9A%84float%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81/</link>
+    <link>https://www.wgqing.com/json%E7%9A%84float%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/json%E7%9A%84float%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81/</guid>
+    <guid>https://www.wgqing.com/json%E7%9A%84float%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>linux gcc版本如何升级到gcc4.8.2</title>
-    <link>https://codingriver.github.io/linux-gcc%E7%89%88%E6%9C%AC%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%88%B0gcc4.8.2/</link>
+    <link>https://www.wgqing.com/linux-gcc%E7%89%88%E6%9C%AC%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%88%B0gcc4.8.2/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/linux-gcc%E7%89%88%E6%9C%AC%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%88%B0gcc4.8.2/</guid>
+    <guid>https://www.wgqing.com/linux-gcc%E7%89%88%E6%9C%AC%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%88%B0gcc4.8.2/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>LuaForWindows-安装报错</title>
-    <link>https://codingriver.github.io/luaforwindows-%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/</link>
+    <link>https://www.wgqing.com/luaforwindows-%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/luaforwindows-%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/</guid>
+    <guid>https://www.wgqing.com/luaforwindows-%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>mac 设置 ~/Library 显示</title>
-    <link>https://codingriver.github.io/mac%E8%AE%BE%E7%BD%AElibrary-%E6%98%BE%E7%A4%BA/</link>
+    <link>https://www.wgqing.com/mac%E8%AE%BE%E7%BD%AElibrary-%E6%98%BE%E7%A4%BA/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/mac%E8%AE%BE%E7%BD%AElibrary-%E6%98%BE%E7%A4%BA/</guid>
+    <guid>https://www.wgqing.com/mac%E8%AE%BE%E7%BD%AElibrary-%E6%98%BE%E7%A4%BA/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>MAC-创建-IPv6-WIFI热点，不用以太网接口</title>
-    <link>https://codingriver.github.io/mac-%E5%88%9B%E5%BB%BA-ipv6-wifi%E7%83%AD%E7%82%B9%E4%B8%8D%E7%94%A8%E4%BB%A5%E5%A4%AA%E7%BD%91%E6%8E%A5%E5%8F%A3/</link>
+    <link>https://www.wgqing.com/mac-%E5%88%9B%E5%BB%BA-ipv6-wifi%E7%83%AD%E7%82%B9%E4%B8%8D%E7%94%A8%E4%BB%A5%E5%A4%AA%E7%BD%91%E6%8E%A5%E5%8F%A3/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/mac-%E5%88%9B%E5%BB%BA-ipv6-wifi%E7%83%AD%E7%82%B9%E4%B8%8D%E7%94%A8%E4%BB%A5%E5%A4%AA%E7%BD%91%E6%8E%A5%E5%8F%A3/</guid>
+    <guid>https://www.wgqing.com/mac-%E5%88%9B%E5%BB%BA-ipv6-wifi%E7%83%AD%E7%82%B9%E4%B8%8D%E7%94%A8%E4%BB%A5%E5%A4%AA%E7%BD%91%E6%8E%A5%E5%8F%A3/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Sourcetree Mac安装跳过注册登陆和选择服务器</title>
-    <link>https://codingriver.github.io/sourcetree-mac%E5%AE%89%E8%A3%85%E8%B7%B3%E8%BF%87%E6%B3%A8%E5%86%8C%E7%99%BB%E9%99%86%E5%92%8C%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <link>https://www.wgqing.com/sourcetree-mac%E5%AE%89%E8%A3%85%E8%B7%B3%E8%BF%87%E6%B3%A8%E5%86%8C%E7%99%BB%E9%99%86%E5%92%8C%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
     <author>作者</author>
-    <guid>https://codingriver.github.io/sourcetree-mac%E5%AE%89%E8%A3%85%E8%B7%B3%E8%BF%87%E6%B3%A8%E5%86%8C%E7%99%BB%E9%99%86%E5%92%8C%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+    <guid>https://www.wgqing.com/sourcetree-mac%E5%AE%89%E8%A3%85%E8%B7%B3%E8%BF%87%E6%B3%A8%E5%86%8C%E7%99%BB%E9%99%86%E5%92%8C%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

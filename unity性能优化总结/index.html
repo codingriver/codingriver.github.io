@@ -8,19 +8,19 @@
         <title>unity性能优化笔记 - codingriver blog</title><meta name="Description" content="codingriver blog"><meta property="og:title" content="unity性能优化笔记" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" /><meta property="og:image" content="https://codingriver.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://www.wgqing.com/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" /><meta property="og:image" content="https://www.wgqing.com/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-12-01T21:57:40+08:00" />
 <meta property="article:modified_time" content="2019-12-01T21:57:40+08:00" />
 
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://codingriver.github.io/logo.png"/>
+<meta name="twitter:image" content="https://www.wgqing.com/logo.png"/>
 
 <meta name="twitter:title" content="unity性能优化笔记"/>
 <meta name="twitter:description" content=""/>
 <meta name="application-name" content="codingriver">
 <meta name="apple-mobile-web-app-title" content="codingriver"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" /><link rel="prev" href="https://codingriver.github.io/unity%E6%88%AA%E5%B1%8F/" /><link rel="next" href="https://codingriver.github.io/unity%E5%92%8Cios%E4%BA%A4%E4%BA%92char-%E4%BD%9C%E4%B8%BA%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E5%80%BC%E5%88%B0csharp%E4%B8%ADbug/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.wgqing.com/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" /><link rel="prev" href="https://www.wgqing.com/unity%E6%88%AA%E5%B1%8F/" /><link rel="next" href="https://www.wgqing.com/unity%E5%92%8Cios%E4%BA%A4%E4%BA%92char-%E4%BD%9C%E4%B8%BA%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E5%80%BC%E5%88%B0csharp%E4%B8%ADbug/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -28,9 +28,9 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/codingriver.github.io\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/"
-        },"genre": "posts","keywords": "Unity","wordcount":  9273 ,
-        "url": "https:\/\/codingriver.github.io\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/www.wgqing.com\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/"
+        },"genre": "posts","keywords": "Unity","wordcount":  9900 ,
+        "url": "https:\/\/www.wgqing.com\/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93\/","datePublished": "2019-12-01T21:57:40+08:00","dateModified": "2019-12-01T21:57:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
                 "@type": "Person",
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">unity性能优化笔记</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/unity/"><i class="far fa-folder fa-fw"></i>Unity</a>&nbsp;<a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9273 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 19 分钟&nbsp;<span id="/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="unity性能优化笔记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-12-01 21:57:40">2019-12-01 21:57:40</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9900 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 20 分钟&nbsp;<span id="/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" class="leancloud_visitors" data-flag-title="unity性能优化笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -150,9 +150,21 @@
         <li><a href="#unity优化工具">Unity优化工具</a></li>
       </ul>
     </li>
+    <li><a href="#具体性能优化">具体性能优化</a>
+      <ul>
+        <li><a href="#默认新建对象操作的unity-api">默认新建对象操作的<code>Unity API</code></a></li>
+        <li><a href="#enum枚举作为dictionary的键时产生装箱">enum枚举作为Dictionary的键时，产生装箱</a></li>
+        <li><a href="#闭包和匿名方法">闭包和匿名方法</a></li>
+        <li><a href="#集合和数组重用">集合和数组重用</a></li>
+        <li><a href="#方便可变参数params">方便可变参数（params）</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="基本优化">基本优化</h3>
+            </div><div class="content" id="content"><ul>
+<li><i class="far fa-square fa-fw"></i> 接口interface 继承测试，使用struct或者class继承interface，struct是否会出现装箱问题</li>
+</ul>
+<h3 id="基本优化">基本优化</h3>
 <ul>
 <li>控制帧率，在非操作和没有特效播放时可以降低帧率（有效控制部分发热）</li>
 <li>降低分辨率</li>
@@ -509,10 +521,28 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 <li>官方开源Memory Profiler （使用IL2CPP，构建时开启Development Build）</li>
 <li>UWA</li>
 <li>WeTest PerfDog 性能狗</li>
-<li>Snapdragon Profiler 或者 RenderDoc</li>
+<li>RenderDoc</li>
+<li>Snapdragon Profiler  骁龙分析工具</li>
+</ul>
+<blockquote>
+<p><a href="https://blog.csdn.net/weixin_38498942/article/details/89333185" target="_blank" rel="noopener noreffer">Snapdragon Profiler工具简介</a><br>
+<a href="https://developer.qualcomm.com/software/snapdragon-profiler" target="_blank" rel="noopener noreffer">Download Snapdragon Profiler</a><br>
+<a href="https://zhuanlan.zhihu.com/p/452220699" target="_blank" rel="noopener noreffer">snapdragon和renderdoc</a></p>
+</blockquote>
+<ul>
 <li>Intel GPA</li>
+</ul>
+<blockquote>
+<p><a href="https://www.intel.cn/content/www/cn/zh/developer/tools/graphics-performance-analyzers/overview.html" target="_blank" rel="noopener noreffer">Download Intel GPA</a><br>
+<a href="https://zhuanlan.zhihu.com/p/68741433" target="_blank" rel="noopener noreffer">使用Intel GPA在PC上分析Android游戏的渲染流程</a></p>
+</blockquote>
+<ul>
 <li>Miku-LuaProfiler</li>
 </ul>
+<blockquote>
+<p>端游游戏，考虑使用的工具有NSight，Intel GPA，RenderDoc</p>
+<p>手机真机分析可以根据不同厂商的GPU SDK选择对应的软件。比如高通骁龙手机可以选用SnapDragon Debugger，Mali手机可以选用Mali.Graphic Debugger，NVIDA Tegra的手机可以选用Tegra Debugger等等。如果都没有，那么RenderDoc.</p>
+</blockquote>
 <blockquote>
 <ul>
 <li>加载类型(Load Type)： 运行时Unity加载音频的方法。
@@ -538,7 +568,90 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
 <a href="https://zhuanlan.zhihu.com/p/157877557" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/157877557</a><br>
 <a href="https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html" target="_blank" rel="noopener noreffer">https://docs.unity3d.com/Manual/OptimizingGraphicsPerformance.html</a><br>
 <a href="https://docs.unity3d.com/353/Documentation/Manual/iphone-Optimizing-Scripts.html" target="_blank" rel="noopener noreffer">https://docs.unity3d.com/353/Documentation/Manual/iphone-Optimizing-Scripts.html</a></p>
-</blockquote></div><div class="post-footer" id="post-footer">
+</blockquote>
+<h2 id="具体性能优化">具体性能优化</h2>
+<p><a href="https://docs.unity3d.com/cn/2021.1/Manual/BestPracticeUnderstandingPerformanceInUnity.html" target="_blank" rel="noopener noreffer">https://docs.unity3d.com/cn/2021.1/Manual/BestPracticeUnderstandingPerformanceInUnity.html</a></p>
+<p><em>Unity版本：Unity2021.2.16f1c1</em></p>
+<h3 id="默认新建对象操作的unity-api">默认新建对象操作的<code>Unity API</code></h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-04-20-15-30-59.png"
+        data-srcset="../../imgs/2022-04-20-15-30-59.png, ../../imgs/2022-04-20-15-30-59.png 1.5x, ../../imgs/2022-04-20-15-30-59.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-04-20-15-30-59.png"
+        title="../../imgs/2022-04-20-15-30-59.png" />
+使用<code>public static Touch GetTouch(int index)</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-04-20-15-53-22.png"
+        data-srcset="../../imgs/2022-04-20-15-53-22.png, ../../imgs/2022-04-20-15-53-22.png 1.5x, ../../imgs/2022-04-20-15-53-22.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-04-20-15-53-22.png"
+        title="../../imgs/2022-04-20-15-53-22.png" /></p>
+<p><strong>这些属性在get的时候 Unity API会返回一个新的对象，每次调用都会返回新的对象，造成GC</strong></p>
+<h3 id="enum枚举作为dictionary的键时产生装箱">enum枚举作为Dictionary的键时，产生装箱</h3>
+<p><a href="https://docs.unity3d.com/cn/2021.1/Manual/BestPracticeUnderstandingPerformanceInUnity4-1.html" target="_blank" rel="noopener noreffer">https://docs.unity3d.com/cn/2021.1/Manual/BestPracticeUnderstandingPerformanceInUnity4-1.html</a></p>
+<h3 id="闭包和匿名方法">闭包和匿名方法</h3>
+<h3 id="集合和数组重用">集合和数组重用</h3>
+<p>使用 C# 的集合类或数组时，尽可能考虑重用或汇集已分配的集合或数组。集合类开放了一个 Clear 方法，该方法会消除集合内的值，但不会释放分配给集合的内存。</p>
+<h3 id="方便可变参数params">方便可变参数（params）</h3>
+<p><strong>可变参数的数组会有GC开销</strong>
+测试代码
+<code>GCTest.cs</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-csharp" data-lang="csharp"><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">string</span> <span class="n">str1</span> <span class="p">=</span> <span class="s">&#34;anyvalue=1&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">string</span> <span class="n">str2</span> <span class="p">=</span> <span class="s">&#34;anyvalue=2&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="kt">string</span> <span class="n">str3</span> <span class="p">=</span> <span class="s">&#34;anyvalue=3&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Update is called once per frame</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">Update</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Profiling</span><span class="p">.</span><span class="n">Profiler</span><span class="p">.</span><span class="n">BeginSample</span><span class="p">(</span><span class="n">str1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">anyValue</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Profiling</span><span class="p">.</span><span class="n">Profiler</span><span class="p">.</span><span class="n">EndSample</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Profiling</span><span class="p">.</span><span class="n">Profiler</span><span class="p">.</span><span class="n">BeginSample</span><span class="p">(</span><span class="n">str2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">anyValue</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Profiling</span><span class="p">.</span><span class="n">Profiler</span><span class="p">.</span><span class="n">EndSample</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Profiling</span><span class="p">.</span><span class="n">Profiler</span><span class="p">.</span><span class="n">BeginSample</span><span class="p">(</span><span class="n">str3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">anyValue1</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">UnityEngine</span><span class="p">.</span><span class="n">Profiling</span><span class="p">.</span><span class="n">Profiler</span><span class="p">.</span><span class="n">EndSample</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">anyValue</span><span class="p">(</span><span class="k">params</span> <span class="kt">int</span><span class="p">[]</span> <span class="n">arr</span><span class="p">){}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">void</span> <span class="n">anyValue1</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">,</span><span class="kt">int</span> <span class="n">c</span><span class="p">,</span><span class="kt">int</span> <span class="n">d</span><span class="p">,</span><span class="kt">int</span> <span class="n">e</span><span class="p">,</span><span class="kt">int</span> <span class="n">f</span><span class="p">){}</span>    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-04-26-16-58-28.png"
+        data-srcset="../../imgs/2022-04-26-16-58-28.png, ../../imgs/2022-04-26-16-58-28.png 1.5x, ../../imgs/2022-04-26-16-58-28.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-04-26-16-58-28.png"
+        title="../../imgs/2022-04-26-16-58-28.png" /></p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -549,7 +662,7 @@ Drawcall是啥？其实就是对底层图形程序（比如：OpenGL ES)接口�
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-hashtag="Unity"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://codingriver.github.io/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://www.wgqing.com/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-hashtag="Unity"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://www.wgqing.com/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://www.wgqing.com/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://www.wgqing.com/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-ralateuid="xxxx"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://www.wgqing.com/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://www.wgqing.com/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://www.wgqing.com/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" data-title="unity性能优化笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
