@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/www.wgqing.com\/csharp%E7%AC%94%E8%AE%B0\/"
-        },"genre": "posts","wordcount":  783 ,
+        },"genre": "posts","wordcount":  4709 ,
         "url": "https:\/\/www.wgqing.com\/csharp%E7%AC%94%E8%AE%B0\/","datePublished": "2021-07-23T14:06:35+08:00","dateModified": "2021-07-23T14:06:35+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "xxxx"},"author": {
@@ -106,8 +106,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">CSharp笔记</h1><h2 class="single-subtitle">CSharp笔记</h2><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-23 14:06:35">2021-07-23 14:06:35</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 783 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/csharp%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="CSharp笔记">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-23 14:06:35">2021-07-23 14:06:35</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4709 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/csharp%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="CSharp笔记">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -122,6 +122,24 @@
         <li><a href="#vs中设置il--ildasmexe-">vs中设置IL ( ildasm.exe )</a></li>
         <li><a href="#int强转-enum过程">int强转 enum过程</a></li>
         <li><a href="#int强转成enum且越界">int强转成enum且越界</a></li>
+        <li><a href="#在类和结构之间进行选择choosing-between-class-and-struct">在类和结构之间进行选择（Choosing Between Class and Struct）</a></li>
+        <li><a href="#windbg">WinDbg</a></li>
+      </ul>
+    </li>
+    <li><a href="#windbg安装">WinDbg安装</a>
+      <ul>
+        <li><a href="#安装方式建议使用该方法1">安装方式（建议使用该方法）1</a></li>
+        <li><a href="#安装方式2">安装方式2：</a></li>
+        <li><a href="#配置符号表环境变量">配置符号表环境变量</a></li>
+        <li><a href="#windbg中加载sos和clr-安装sos工具">WinDBG中加载SOS和CLR （安装sos工具）</a></li>
+      </ul>
+    </li>
+    <li><a href="#生成转储文件">生成转储文件</a></li>
+    <li><a href="#配置windbg为vs外部工具">配置windbg为vs外部工具</a></li>
+    <li><a href="#windbg-基础">windbg 基础</a></li>
+    <li><a href="#windbg调试c程序">windbg调试C#程序</a>
+      <ul>
+        <li><a href="#load和loadby-命令将新的扩展dll加载到调试器中"><code>.load</code>和<code>.loadby</code> 命令将新的扩展DLL加载到调试器中。</a></li>
       </ul>
     </li>
   </ul>
@@ -134,7 +152,7 @@
 <blockquote>
 <p>IL学习：<br>
 <a href="https://www.cnblogs.com/runningsmallguo/p/8440734.html" target="_blank" rel="noopener noreffer">C#基础拾遗系列之一：先看懂IL代码</a><br>
-<a href="https://www.cnblogs.com/zery/p/3366175.html" target="_blank" rel="noopener noreffer">读懂IL代码就这么简单 (一)</a>
+<a href="https://www.cnblogs.com/zery/p/3366175.html" target="_blank" rel="noopener noreffer">读懂IL代码就这么简单 (一)</a> 
 <a href="https://www.cnblogs.com/justinli/p/4041538.html" target="_blank" rel="noopener noreffer">c# IL 指令集</a><br>
 <a href="https://www.cnblogs.com/idefav2010/p/ILCode.html" target="_blank" rel="noopener noreffer">c#的逆向工程-IL指令集</a><br>
 <a href="https://cloud.tencent.com/developer/article/1200327" target="_blank" rel="noopener noreffer">IL指令详细表</a></p>
@@ -409,6 +427,524 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">A
 </span></span><span class="line"><span class="cl">100
 </span></span><span class="line"><span class="cl">65522
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="在类和结构之间进行选择choosing-between-class-and-struct">在类和结构之间进行选择（Choosing Between Class and Struct）</h3>
+<blockquote>
+<p><a href="https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/choosing-between-class-and-struct" target="_blank" rel="noopener noreffer">https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/choosing-between-class-and-struct</a></p>
+</blockquote>
+<p><strong>结论：</strong></p>
+<p>✔️ 如果类型的实例很小且通常短暂存在或通常嵌入在其他对象中，请考虑定义结构而不是类。</p>
+<p>❌ 避免定义结构，除非该类型具有以下所有特征：</p>
+<ul>
+<li>它在逻辑上表示单个值，类似于原始类型（int、double等）。</li>
+<li>它的实例大小小于 16 个字节。</li>
+<li>它是不可变的。</li>
+<li>它不必经常装箱。</li>
+</ul>
+<blockquote>
+<p>可以这么理解：值类型的数组是真正的线性结构；而引用类型数组类似树结构。因此相率上存在天然差距！</p>
+<p>引用类型的对象数组，物理上一般是分配指针来指向引用的实例，此时数组的内存块不能涵盖所有要访问的数据。而struct数组在这种情况下所有会用到的数据都在数组的物理内存之中包含，可以直接访问到，无需通过GC堆内存的对象引用来反复的间接查找。同时，如果实例数量非常多时，使用struct数组还能避免大量分散在GC堆中的对象实例，从而减轻GC压力。这里理想化的认为struct的定义中所有字段都是值类型的，不包含string等引用类型。</p>
+</blockquote>
+<p><strong>对比：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">+--------------------------------------------------+------+----------------------------------------------+
+</span></span><span class="line"><span class="cl">|                      Struct                      |      |                      Class                    |
+</span></span><span class="line"><span class="cl">+--------------------------------------------------+------+----------------------------------------------+
+</span></span><span class="line"><span class="cl">| - 1 per Thread.                                  |      | - 1 per application.                         |
+</span></span><span class="line"><span class="cl">|                                                  |      |                                              |
+</span></span><span class="line"><span class="cl">| - Holds value types.                             |      | - Holds reference types.                     |
+</span></span><span class="line"><span class="cl">|                                                  |      |                                              |
+</span></span><span class="line"><span class="cl">| - Types in the stack are positioned              |      | - No type ordering (data is fragmented).     |
+</span></span><span class="line"><span class="cl">|   using the LIFO principle.                      |      |                                              |
+</span></span><span class="line"><span class="cl">|                                                  |      |                                              |
+</span></span><span class="line"><span class="cl">| - Can&#39;t have a default constructor and/or        |      | - Can have a default constructor             |
+</span></span><span class="line"><span class="cl">|   finalizer(destructor).                         |      |   and/or finalizer.                          |
+</span></span><span class="line"><span class="cl">|                                                  |      |                                              |
+</span></span><span class="line"><span class="cl">| - Can be created with or without a new operator. |      | - Can be created only with a new operator.   |
+</span></span><span class="line"><span class="cl">|                                                  |      |                                              |
+</span></span><span class="line"><span class="cl">| - Can&#39;t derive from the class or struct          |  VS  | - Can have only one base class and/or        |
+</span></span><span class="line"><span class="cl">|   but can derive from the multiple interfaces.   |      |   derive from multiple interfaces.           |
+</span></span><span class="line"><span class="cl">|                                                  |      |                                              |
+</span></span><span class="line"><span class="cl">| - The data members can&#39;t be protected.           |      | - Data members can be protected.             |
+</span></span><span class="line"><span class="cl">|                                                  |      |                                              |
+</span></span><span class="line"><span class="cl">| - Function members can&#39;t be                      |      | - Function members can be                    |
+</span></span><span class="line"><span class="cl">|   virtual or abstract.                           |      |   virtual or abstract.                       |
+</span></span><span class="line"><span class="cl">|                                                  |      |                                              |
+</span></span><span class="line"><span class="cl">| - Can&#39;t have a null value.                       |      | - Can have a null value.                     |
+</span></span><span class="line"><span class="cl">|                                                  |      |                                              |
+</span></span><span class="line"><span class="cl">| - During an assignment, the contents are         |      | - Assignment is happening                    |
+</span></span><span class="line"><span class="cl">|   copied from one variable to another.           |      |   by reference.                              |
+</span></span><span class="line"><span class="cl">+--------------------------------------------------+------+----------------------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="windbg">WinDbg</h3>
+<blockquote>
+<p><a href="http://yiiyee.cn/blog/2013/08/23/windbg/" target="_blank" rel="noopener noreffer">Windbg调试命令详解</a>
+<a href="https://docs.microsoft.com/zh-cn/windows-hardware/drivers/debugger/debugger-download-tools" target="_blank" rel="noopener noreffer">https://docs.microsoft.com/zh-cn/windows-hardware/drivers/debugger/debugger-download-tools</a> 
+<a href="https://docs.microsoft.com/zh-cn/sysinternals/downloads/procdump" target="_blank" rel="noopener noreffer">https://docs.microsoft.com/zh-cn/sysinternals/downloads/procdump</a> 
+<a href="https://www.cnblogs.com/harrychinese/p/winbug.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/harrychinese/p/winbug.html</a> 
+<a href="https://cloud.tencent.com/developer/article/1045085" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/developer/article/1045085</a> 
+<a href="http://fresky.github.io/2015/06/21/how-to-attack-the-memory-leak-issue/" target="_blank" rel="noopener noreffer">http://fresky.github.io/2015/06/21/how-to-attack-the-memory-leak-issue/</a> 
+<a href="https://blog.csdn.net/hezheqiang/article/details/121930036" target="_blank" rel="noopener noreffer">生产环境诊断利器 WinDbg 帮你快速分析异常情况 Dump 文件</a> 
+<a href="https://www.cnblogs.com/kekec/archive/2012/12/02/2798020.html" target="_blank" rel="noopener noreffer">windbg调试命令</a></p>
+</blockquote>
+<h2 id="windbg安装">WinDbg安装</h2>
+<h3 id="安装方式建议使用该方法1">安装方式（建议使用该方法）1</h3>
+<p>使用windows store 搜索 WinDbg preview 然后下载
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-06-30-18-02-50.png"
+        data-srcset="../../imgs/2022-06-30-18-02-50.png, ../../imgs/2022-06-30-18-02-50.png 1.5x, ../../imgs/2022-06-30-18-02-50.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-06-30-18-02-50.png"
+        title="../../imgs/2022-06-30-18-02-50.png" /></p>
+<h3 id="安装方式2">安装方式2：</h3>
+<p>下载windows SDK，并且勾选WinDbg；</p>
+<p>如果已经安装windows SDK 使用修复 ：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-06-28-16-40-28.png"
+        data-srcset="../../imgs/2022-06-28-16-40-28.png, ../../imgs/2022-06-28-16-40-28.png 1.5x, ../../imgs/2022-06-28-16-40-28.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-06-28-16-40-28.png"
+        title="../../imgs/2022-06-28-16-40-28.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-06-30-18-01-02.png"
+        data-srcset="../../imgs/2022-06-30-18-01-02.png, ../../imgs/2022-06-30-18-01-02.png 1.5x, ../../imgs/2022-06-30-18-01-02.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-06-30-18-01-02.png"
+        title="../../imgs/2022-06-30-18-01-02.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-06-30-18-01-37.png"
+        data-srcset="../../imgs/2022-06-30-18-01-37.png, ../../imgs/2022-06-30-18-01-37.png 1.5x, ../../imgs/2022-06-30-18-01-37.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-06-30-18-01-37.png"
+        title="../../imgs/2022-06-30-18-01-37.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-06-30-18-02-10.png"
+        data-srcset="../../imgs/2022-06-30-18-02-10.png, ../../imgs/2022-06-30-18-02-10.png 1.5x, ../../imgs/2022-06-30-18-02-10.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-06-30-18-02-10.png"
+        title="../../imgs/2022-06-30-18-02-10.png" /></p>
+<h3 id="配置符号表环境变量">配置符号表环境变量</h3>
+<p>添加环境变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">_NT_SYMBOL_PATH=C:\Symbols;srv*C:\Symbols*http://msdl.microsoft.com/download/symbols;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">_NT_ALT_SYMBOL_PATH=cache*C:\Symbols
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-06-30-18-09-05.png"
+        data-srcset="../../imgs/2022-06-30-18-09-05.png, ../../imgs/2022-06-30-18-09-05.png 1.5x, ../../imgs/2022-06-30-18-09-05.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-06-30-18-09-05.png"
+        title="../../imgs/2022-06-30-18-09-05.png" /></p>
+<h3 id="windbg中加载sos和clr-安装sos工具">WinDBG中加载SOS和CLR （安装sos工具）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1">#step1</span>
+</span></span><span class="line"><span class="cl">dotnet tool install -g dotnet-sos
+</span></span><span class="line"><span class="cl"><span class="c1">#step2 </span>
+</span></span><span class="line"><span class="cl">dotnet-sos install
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#安装成功后有SOS install succeeded的提示，并且返回有安装路径。</span>
+</span></span><span class="line"><span class="cl">PS E:<span class="se">\P</span>roject&gt; dotnet-sos install
+</span></span><span class="line"><span class="cl">Installing SOS to C:<span class="se">\U</span>sers<span class="se">\c</span>oding<span class="se">\.</span>dotnet<span class="se">\s</span>os
+</span></span><span class="line"><span class="cl">Installing over existing installation...
+</span></span><span class="line"><span class="cl">Creating installation directory...
+</span></span><span class="line"><span class="cl">Copying files from C:<span class="se">\U</span>sers<span class="se">\c</span>oding<span class="se">\.</span>dotnet<span class="se">\t</span>ools<span class="se">\.</span>store<span class="se">\d</span>otnet-sos<span class="se">\6</span>.0.328102<span class="se">\d</span>otnet-sos<span class="se">\6</span>.0.328102<span class="se">\t</span>ools<span class="se">\n</span>etcoreapp3.1<span class="se">\a</span>ny<span class="se">\w</span>in-x64
+</span></span><span class="line"><span class="cl">Copying files from C:<span class="se">\U</span>sers<span class="se">\c</span>oding<span class="se">\.</span>dotnet<span class="se">\t</span>ools<span class="se">\.</span>store<span class="se">\d</span>otnet-sos<span class="se">\6</span>.0.328102<span class="se">\d</span>otnet-sos<span class="se">\6</span>.0.328102<span class="se">\t</span>ools<span class="se">\n</span>etcoreapp3.1<span class="se">\a</span>ny<span class="se">\l</span>ib
+</span></span><span class="line"><span class="cl">Execute <span class="s1">&#39;.load C:\Users\coding\.dotnet\sos\sos.dll&#39;</span> to load SOS in your Windows debugger.
+</span></span><span class="line"><span class="cl">Cleaning up...
+</span></span><span class="line"><span class="cl">SOS install succeeded
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>命令 <code>!DumpHeap -stat</code>不可用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">.loadby sos clr 
+</span></span><span class="line"><span class="cl">如果失败需要 （sos.dll和clr.dll一般情况下在同一个目录）
+</span></span><span class="line"><span class="cl">.load 绝对路径的sos.dll
+</span></span><span class="line"><span class="cl">.load 绝对路径的clr.dll
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><a href="https://www.cnblogs.com/Leo_wl/p/3329437.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/Leo_wl/p/3329437.html</a> 
+<a href="https://blog.csdn.net/ghhong1988/article/details/104674837" target="_blank" rel="noopener noreffer">https://blog.csdn.net/ghhong1988/article/details/104674837</a> 
+想要一次性成功搭建测试环境，那得靠人品。看来我近来人品积累的不够，不断的有小问题出现。比如加载SOS和CLR，就让我不胜其烦。必须得记下来，分享出来，以节省大家的时间。</p>
+<p>　　问题一：WinDBG分X86和X64两个版本</p>
+<p>　　如果你用的是32位的WinDBG，那直接打开就行；你如果用的是64位的版本，那么如果调试64位代码也直接打开，如果调试x86的代码，要使用Wow64下的WinDBG.exe。</p>
+<p>　　问题二：确定SOS和CLR的位置和版本</p>
+<p>　　如果安装了Visual Studio的机器，可以打开VS的命令行，输入where sos.dll命令，可以找到sos.dll的全路径（需要说明的是，找到的不一定是全部的文件）。它的一般位置在C:\Windows\Microsoft.NET\Framework?\version?\SOS.dll。其中Framework?包括Framework和Framework64两个版本；version?包括v2.0.50727，v3.0，v3.5和v4.0.30319等版本。文件确切路径的选择依据要调试程序的版本而定，一般为C:\Windows\Microsoft.NET\Framework\v4.0.30319\SOS.dll，CLR为同一目录下的CLR.dll文件。</p>
+<p>　　问题三：加载SOS和CLR</p>
+<p>　　运气好的话，使用命令.load C:\Windows\Microsoft.NET\Framework\v4.0.30319\SOS.dll可以加载成功。如果失败，特别是出现The call to LoadLibrary(C:\Windows\Microsoft.NET\Framework\v4.0.30319\sos.dll) failed, Win32 error 0n193这样的错误，请确认加载sos.dll的版本是否正确。</p>
+</blockquote>
+<blockquote>
+<p>　　此外，加载不出错，并不见得可以直接使用。可以尝试命令<code>.loadby sos clr</code>。如果命令成功，那么测试环境好了。如果出现了“Unable to find module &lsquo;clr&rsquo;”这样的错误。请键入g让调试程序运行一会儿，停下来的时候再尝试命令.loadby sos clr，这时一般都会成功。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-06-30-17-57-07.png"
+        data-srcset="../../imgs/2022-06-30-17-57-07.png, ../../imgs/2022-06-30-17-57-07.png 1.5x, ../../imgs/2022-06-30-17-57-07.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-06-30-17-57-07.png"
+        title="../../imgs/2022-06-30-17-57-07.png" /></p>
+</blockquote>
+<blockquote>
+<p><a href="https://cxymm.net/article/yusakul/109246669" target="_blank" rel="noopener noreffer">Windbg+sos调试.net笔记</a></p>
+<p>要加载扩展，有2个命令。一个是.loadby，另一个是.load。对于.loadby，请使用相对路径；对于.load，请使用完整路径。</p>
+<p>对于.loadby，有5个选项：</p>
+<ul>
+<li>loadby sos mscorsvr</li>
+<li>loadby sos mscorwks</li>
+<li>loadby sos clr</li>
+<li>loadby sos coreclr</li>
+<li>loadby sos</li>
+</ul>
+<p>其中mscorsvr确实很旧（.NET CLR 1，服务器版本），mscorwks确实很旧（.NET CLR 1和2，但仍然存在），clr是在当今很常见（.NET CLR 4），coreclr可能正在增加（UWP和Silverlight）</p>
+</blockquote>
+<p>当尚未加载.NET运行时时，您正在尝试加载SOS。等待直到加载.NET，然后该命令将起作用。在初始断点处肯定是不可能的。 <code>sxe ld clr</code> 表示让应用程序运行到.NET可用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    sxe ld clr
+</span></span><span class="line"><span class="cl">    sxe ld mscorwks
+</span></span><span class="line"><span class="cl">    sxe ld coreclr
+</span></span><span class="line"><span class="cl">    g
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="生成转储文件">生成转储文件</h2>
+<p><strong>方式1</strong></p>
+<p>任务管理器，进程 -&gt; 创建转储文件 ;得到当前进程的dump文件</p>
+<p><strong>方式2</strong></p>
+<p>使用ProcDump 工具</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># mydotNetApp.exe是进程名字</span>
+</span></span><span class="line"><span class="cl">procdump -ma mydotNetApp.exe d:<span class="se">\m</span>yapp.dmp
+</span></span><span class="line"><span class="cl"><span class="c1"># TestCase.exe是进程名字</span>
+</span></span><span class="line"><span class="cl">.<span class="se">\p</span>rocdump.exe -ma TestCase.exe e:<span class="se">\t</span>est.dmp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>方式3</strong>
+使用vs调试，断点后，点击 调试菜单-&gt; 将转储另存为
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-06-30-21-04-42.png"
+        data-srcset="../../imgs/2022-06-30-21-04-42.png, ../../imgs/2022-06-30-21-04-42.png 1.5x, ../../imgs/2022-06-30-21-04-42.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-06-30-21-04-42.png"
+        title="../../imgs/2022-06-30-21-04-42.png" /></p>
+<h2 id="配置windbg为vs外部工具">配置windbg为vs外部工具</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Windbg(x86)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">C:\Users\coding\AppData\Local\Microsoft\WindowsApps\WinDbgX.exe
+</span></span><span class="line"><span class="cl">C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\windbg.exe
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> -srcpath $(ProjectDir) $(TargetPath)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> $(TargetDir)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-06-30-21-13-09.png"
+        data-srcset="../../imgs/2022-06-30-21-13-09.png, ../../imgs/2022-06-30-21-13-09.png 1.5x, ../../imgs/2022-06-30-21-13-09.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-06-30-21-13-09.png"
+        title="../../imgs/2022-06-30-21-13-09.png" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">C:\Symbols
+</span></span><span class="line"><span class="cl">srv*C:\Symbols*http://msdl.microsoft.com/download/symbols
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cache*C:\Symbols
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> !DumpHeap -stat
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">0:000&gt; !clrstack
+</span></span><span class="line"><span class="cl">No export clrstack found
+</span></span><span class="line"><span class="cl">0:000&gt; !dumpstackobjects
+</span></span><span class="line"><span class="cl">No export dumpstackobjects found
+</span></span><span class="line"><span class="cl">0:000&gt; sxe ld clr
+</span></span><span class="line"><span class="cl">0:000&gt; sxe ld mscorwks
+</span></span><span class="line"><span class="cl">0:000&gt; sxe ld coreclr
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="windbg-基础">windbg 基础</h2>
+<p>windbg命令分标准命令、元命令和扩展命令。</p>
+<p>标准命令提供基本功能，不区分大小写。比如dt、lm、g、bl、bc、p等。</p>
+<p>提供标准命令没有提供的功能，也内建在调试引擎中，以.开头。如.sympath  .reload等。</p>
+<p>扩展命令用于扩展某一方面的调试功能，实现在动态加载的扩展模块中，以!开头。如!analyze等。</p>
+<p>使用;作为分隔符，可以在同一行输入多条命令。</p>
+<p>一次可以执行多条命令，命令间用分号;分隔 【如：bp main;bp <code>view.cpp:120</code>】，一次打2个断点。</p>
+<h2 id="windbg调试c程序">windbg调试C#程序</h2>
+<blockquote>
+<p><a href="https://www.cnblogs.com/mashuping/archive/2009/03/28/1424168.html" target="_blank" rel="noopener noreffer">使用WinDBG + SOS调试.Net程序的一般步骤</a></p>
+<p><a href="https://www.cnblogs.com/AlexanderYao/p/4843711.html" target="_blank" rel="noopener noreffer">windbg调试C#代码</a></p>
+<p>用windbg调试C#代码是比较麻烦的，因为windbg是针对OS层级的，而C#被CLR隔了一层，很多原生的命令如查看局部变量dv、查看变量类型dt等在CLR的环境中都不能用了。必须使用针对CLR的扩展命令，比如sos、psscor2中的命令。</p>
+<p><a href="https://docs.microsoft.com/en-us/dotnet/framework/tools/sos-dll-sos-debugging-extension" target="_blank" rel="noopener noreffer">sos官网文档</a>
+<a href="https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugging-managed-code" target="_blank" rel="noopener noreffer">使用 Windows 调试器调试托管代码</a></p>
+</blockquote>
+<blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-07-04-21-50-43.png"
+        data-srcset="../../imgs/2022-07-04-21-50-43.png, ../../imgs/2022-07-04-21-50-43.png 1.5x, ../../imgs/2022-07-04-21-50-43.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-07-04-21-50-43.png"
+        title="../../imgs/2022-07-04-21-50-43.png" /></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">    sxe ld clr <span class="c1"># 添加中断 （加载指定名称的dll时，调试器中断） </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># sxe ld mscorwks  # 添加中断 （加载指定名称的dll时，调试器中断） </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># sxe ld coreclr  # 添加中断 （加载指定名称的dll时，调试器中断） </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># sxe ld clrjit  # 添加中断 （加载指定名称的dll时，调试器中断） </span>
+</span></span><span class="line"><span class="cl">    g <span class="c1"># 运行，当遇到中断或者断点时 中断</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 让应用程序运行到.NET可用（clr等核心初始化后，这时候.net环境初始化完成）</span>
+</span></span><span class="line"><span class="cl">    .loadby sos clr  <span class="c1">## 加载sos模块 (宿主程序必须加载clr后执行，否则会找不到clr)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    !bpmd DotnetTest DotnetTest.Program.Main  <span class="c1">## Main函數添加断点</span>
+</span></span><span class="line"><span class="cl">    !bpmd -md 005e4d90 <span class="c1">#在指定的MethodDesc地址处添加断点</span>
+</span></span><span class="line"><span class="cl">    g <span class="c1"># 运行，当遇到中断或者断点时 中断</span>
+</span></span><span class="line"><span class="cl">    !name2ee DotnetTest DotnetTest.Program.Main
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">.cordll -ve -u -l
+</span></span><span class="line"><span class="cl">lmv mclr <span class="c1">#（适用于 CLR 4.0 版）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">lmv mscorwks  <span class="c1">#（适用于 CLR 的 1.0 或 2.0 版）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">!sos.help
+</span></span><span class="line"><span class="cl">!sos.Threads
+</span></span><span class="line"><span class="cl">!sos.DumpDomain
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">k
+</span></span><span class="line"><span class="cl">kv
+</span></span><span class="line"><span class="cl">kb
+</span></span><span class="line"><span class="cl">x *! 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="load和loadby-命令将新的扩展dll加载到调试器中"><code>.load</code>和<code>.loadby</code> 命令将新的扩展DLL加载到调试器中。</h3>
+<p>使用形式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">.load DLLName
+</span></span><span class="line"><span class="cl">!DLLName.load
+</span></span><span class="line"><span class="cl">.loadby DLLName ModuleName
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">参数
+</span></span><span class="line"><span class="cl">DLLName
+</span></span><span class="line"><span class="cl">指定要加载的调试器扩展DLL。如果使用.load命令，DLLName应包含完整路径。如果使用.loadby命令，DLLName应仅包含文件名。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ModuleName
+</span></span><span class="line"><span class="cl">指定与DLLName指定的扩展DLL位于同一目录中的模块的模块名。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>sxe ld </code></p>
+<p>有些场景需要使用windbg调试某个dll模块，而这个模块加载时机不是很确定。</p>
+<p>通常需要使用sxe ld &lt;dll名称&gt; 来设置一个模块加载异常。当被调试进程加载指定名称的dll时，调试器就会中断，后续就可以对该模块的设置一些符号断点了。</p>
+<p><code>lm</code> 和 <code>.chain</code></p>
+<p>查看已经加载模块的列表</p>
+<p><code>Name2EE &lt;module name&gt; &lt;type or method name&gt;</code></p>
+<blockquote>
+<p><code>Name2EE &lt;module name&gt;!&lt;type or method name&gt;</code></p>
+</blockquote>
+<p>显示指定模块中指定类型或方法的MethodTable结构和结构。指定的模块必须在进程中加载​​。要获得正确的类型名称，请使用Ildasm.exe (IL Disassembler)浏览模块。您还可以作为模块名称参数传递以搜索所有加载的托管模块。模块名称参数也可以是模块的调试器名称，例如或。此命令支持 &lt; &gt; &lt; &gt; 的 Windows 调试器语法。类型必须是完全限定的。EEClass</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">0:000&gt; !name2ee DotnetTest DotnetTest.Program.Main
+</span></span><span class="line"><span class="cl">Module:      00c44044
+</span></span><span class="line"><span class="cl">Assembly:    DotnetTest.exe
+</span></span><span class="line"><span class="cl">Token:       <span class="m">06000009</span>
+</span></span><span class="line"><span class="cl">MethodDesc:  00c44d90
+</span></span><span class="line"><span class="cl">Name:        DotnetTest.Program.Main<span class="o">(</span>System.String<span class="o">[])</span>
+</span></span><span class="line"><span class="cl">Not JITTED yet. Use !bpmd -md 00c44d90 to <span class="nb">break</span> on run.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>BPMD [-nofuturemodule] [&lt;module name&gt; &lt;method name&gt;] [-md &lt;MethodDesc&gt;] -list -clear &lt;pending breakpoint number&gt; -clearall</code></p>
+<p>在指定模块中的指定方法处创建断点。</p>
+<p>如果指定的模块和方法尚未加载，则此命令在创建断点之前等待模块已加载和即时 (JIT) 编译的通知。</p>
+<p>您可以使用-list、-clear和-clearall选项管理挂起断点的列表：</p>
+<p>-list选项生成所有挂起断点的列表。如果挂起的断点具有非零模块 ID，则该断点特定于该特定加载模块中的函数。如果挂起的断点的模块 ID 为零，则该断点适用于尚未加载的模块。</p>
+<p>使用-clear或-clearall选项从列表中删除挂起的断点。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 添加断点</span>
+</span></span><span class="line"><span class="cl">!bpmd DotnetTest DotnetTest.Program.Main  <span class="c1">#[&lt;module name&gt; &lt;method name&gt;]</span>
+</span></span><span class="line"><span class="cl">!bpmd DotnetTest DotnetTest.HeapStack.New
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
