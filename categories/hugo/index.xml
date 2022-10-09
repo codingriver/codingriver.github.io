@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>hugo - 分类 - codingriver blog</title>
+        <title>hugo - 分类 - 王国庆的博客</title>
         <link>https://www.wgqing.com/categories/hugo/</link>
-        <description>hugo - 分类 - codingriver blog</description>
+        <description>hugo - 分类 - 王国庆的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
             <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 01 Sep 2020 21:08:09 &#43;0800</lastBuildDate><atom:link href="https://www.wgqing.com/categories/hugo/" rel="self" type="application/rss+xml" /><item>
     <title>主题文档 - 基本概念</title>

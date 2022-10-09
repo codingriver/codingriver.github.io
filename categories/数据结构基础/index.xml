@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>数据结构基础 - 分类 - codingriver blog</title>
+        <title>数据结构基础 - 分类 - 王国庆的博客</title>
         <link>https://www.wgqing.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/</link>
-        <description>数据结构基础 - 分类 - codingriver blog</description>
+        <description>数据结构基础 - 分类 - 王国庆的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
             <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://www.wgqing.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/" rel="self" type="application/rss+xml" /><item>
     <title>【数据结构基础】 浮点数的内存存储和运算</title>

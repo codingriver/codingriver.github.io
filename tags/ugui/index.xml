@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>UGUI - 标签 - codingriver blog</title>
+        <title>UGUI - 标签 - 王国庆的博客</title>
         <link>https://www.wgqing.com/tags/ugui/</link>
-        <description>UGUI - 标签 - codingriver blog</description>
+        <description>UGUI - 标签 - 王国庆的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
             <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 17 Feb 2022 15:49:27 &#43;0800</lastBuildDate><atom:link href="https://www.wgqing.com/tags/ugui/" rel="self" type="application/rss+xml" /><item>
     <title>ParticleEffectForUGUI使用教程</title>

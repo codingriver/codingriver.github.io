@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>深入理解计算机系统 - 标签 - codingriver blog</title>
+        <title>深入理解计算机系统 - 标签 - 王国庆的博客</title>
         <link>https://www.wgqing.com/tags/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/</link>
-        <description>深入理解计算机系统 - 标签 - codingriver blog</description>
+        <description>深入理解计算机系统 - 标签 - 王国庆的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
             <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</lastBuildDate><atom:link href="https://www.wgqing.com/tags/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
     <title>为什么用补码，为什么有符号单字节最小是-128</title>

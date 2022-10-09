@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>codingriver blog</title>
+        <title>王国庆的博客</title>
         <link>https://www.wgqing.com/</link>
-        <description>codingriver blog</description>
+        <description>王国庆的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>codingriver@163.com (codingriver)</managingEditor>
             <webMaster>codingriver@163.com (codingriver)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Aug 2022 20:16:47 &#43;0800</lastBuildDate>
             <atom:link href="https://www.wgqing.com/index.xml" rel="self" type="application/rss+xml" />
@@ -66,7 +66,12 @@
     <pubDate>Tue, 23 Aug 2022 20:16:47 &#43;0800</pubDate>
     <author>作者</author>
     <guid>https://www.wgqing.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[]]></description>
+    <description><![CDATA[<blockquote>
+<p>设计模式分为三种类型，共23类。</p>
+<p>（1）创建型模式：单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式。</p>
+<p>（2）结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。</p>
+<p>（3）行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、职责链模式、访问者模式</p>
+</blockquote>]]></description>
 </item><item>
     <title>IL指令集</title>
     <link>https://www.wgqing.com/il%E6%8C%87%E4%BB%A4%E9%9B%86/</link>
