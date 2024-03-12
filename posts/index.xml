@@ -8,67 +8,61 @@
     <title>主题文档 - 基本概念</title>
     <link>https://www.wgqing.com/theme-documentation-basics/</link>
     <pubDate>Fri, 06 Mar 2020 21:40:32 &#43;0800</pubDate>
-    <author>Dillon</author>
+    <author>作者</author>
     <guid>https://www.wgqing.com/theme-documentation-basics/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/theme-documentation-basics/featured-image.jpg" referrerpolicy="no-referrer">
             </div><p>探索 Hugo - <strong>LoveIt</strong> 主题的全部内容和背后的核心概念.</p>]]></description>
-</item>
-<item>
+</item><item>
     <title>主题文档 - 内容</title>
     <link>https://www.wgqing.com/theme-documentation-content/</link>
     <pubDate>Thu, 05 Mar 2020 16:30:05 &#43;0800</pubDate>
-    <author>Dillon</author>
+    <author>作者</author>
     <guid>https://www.wgqing.com/theme-documentation-content/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/theme-documentation-content/featured-image.jpg" referrerpolicy="no-referrer">
             </div><p>了解如何在 <strong>LoveIt</strong> 主题中快速, 直观地创建和组织内容.</p>]]></description>
-</item>
-<item>
+</item><item>
     <title>主题文档 - 内置 Shortcodes</title>
     <link>https://www.wgqing.com/theme-documentation-built-in-shortcodes/</link>
     <pubDate>Wed, 04 Mar 2020 16:29:59 &#43;0800</pubDate>
-    <author>Dillon</author>
+    <author>作者</author>
     <guid>https://www.wgqing.com/theme-documentation-built-in-shortcodes/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/theme-documentation-built-in-shortcodes/featured-image.png" referrerpolicy="no-referrer">
             </div><p><strong>Hugo</strong> 提供了多个内置的 Shortcodes, 以方便作者保持 Markdown 内容的整洁.</p>]]></description>
-</item>
-<item>
+</item><item>
     <title>主题文档 - 扩展 Shortcodes</title>
     <link>https://www.wgqing.com/theme-documentation-extended-shortcodes/</link>
     <pubDate>Tue, 03 Mar 2020 16:29:59 &#43;0800</pubDate>
-    <author>Dillon</author>
+    <author>作者</author>
     <guid>https://www.wgqing.com/theme-documentation-extended-shortcodes/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/theme-documentation-extended-shortcodes/featured-image.jpg" referrerpolicy="no-referrer">
             </div><p><strong>LoveIt</strong> 主题在 Hugo 内置的 shortcode 的基础上提供多个扩展的 shortcode.</p>]]></description>
-</item>
-<item>
+</item><item>
     <title>Markdown 基本语法</title>
     <link>https://www.wgqing.com/basic-markdown-syntax/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>Dillon</author>
+    <author>作者</author>
     <guid>https://www.wgqing.com/basic-markdown-syntax/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/basic-markdown-syntax/featured-image.png" referrerpolicy="no-referrer">
             </div><p>这篇文章提供了可以在 Hugo 的文章中使用的基本 Markdown 语法示例.</p>]]></description>
-</item>
-<item>
+</item><item>
     <title>主题文档 - Emoji 支持</title>
     <link>https://www.wgqing.com/theme-emoji-support/</link>
     <pubDate>Tue, 01 Oct 2019 17:55:28 &#43;0800</pubDate>
-    <author>Dillon</author>
+    <author>作者</author>
     <guid>https://www.wgqing.com/theme-emoji-support/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/images/emoji-support/featured-image.jpg" referrerpolicy="no-referrer">
             </div><p>Emoji 可以通过多种方式在 Hugo 项目中启用.</p>]]></description>
-</item>
-<item>
+</item><item>
     <title>设计模式笔记</title>
     <link>https://www.wgqing.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/</link>
     <pubDate>Tue, 23 Aug 2022 20:16:47 &#43;0800</pubDate>
-    <author>codingriver</author>
+    <author>作者</author>
     <guid>https://www.wgqing.com/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/</guid>
     <description><![CDATA[<blockquote>
 <p>设计模式分为三种类型，共23类。</p>
@@ -76,30 +70,26 @@
 <p>（2）结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式。</p>
 <p>（3）行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式、状态模式、策略模式、职责链模式、访问者模式</p>
 </blockquote>]]></description>
-</item>
-<item>
+</item><item>
     <title>IL指令集</title>
     <link>https://www.wgqing.com/il%E6%8C%87%E4%BB%A4%E9%9B%86/</link>
     <pubDate>Wed, 29 Jun 2022 20:13:47 &#43;0800</pubDate>
-    <author>codingriver</author>
+    <author>作者</author>
     <guid>https://www.wgqing.com/il%E6%8C%87%E4%BB%A4%E9%9B%86/</guid>
     <description><![CDATA[]]></description>
-</item>
-<item>
+</item><item>
     <title>EOC项目分析笔记</title>
     <link>https://www.wgqing.com/eoc%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/</link>
     <pubDate>Tue, 29 Mar 2022 11:08:00 &#43;0800</pubDate>
-    <author>codingriver</author>
+    <author>作者</author>
     <guid>https://www.wgqing.com/eoc%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/</guid>
     <description><![CDATA[]]></description>
-</item>
-<item>
+</item><item>
     <title>Gamma和Linear及sRGB说明</title>
     <link>https://www.wgqing.com/gamma%E5%92%8Clinear%E5%8F%8Asrgb%E8%AF%B4%E6%98%8E/</link>
     <pubDate>Wed, 09 Mar 2022 10:44:08 &#43;0800</pubDate>
-    <author>codingriver</author>
+    <author>作者</author>
     <guid>https://www.wgqing.com/gamma%E5%92%8Clinear%E5%8F%8Asrgb%E8%AF%B4%E6%98%8E/</guid>
     <description><![CDATA[]]></description>
-</item>
-</channel>
+</item></channel>
 </rss>
