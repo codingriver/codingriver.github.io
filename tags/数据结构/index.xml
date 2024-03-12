@@ -8,36 +8,41 @@
     <title>【数据结构】 十大经典排序算法及比较与分析 ( 动画演示 ) ( 可视化工具 )</title>
     <link>https://www.wgqing.com/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%8F%8A%E6%AF%94%E8%BE%83%E4%B8%8E%E5%88%86%E6%9E%90/</link>
     <pubDate>Thu, 03 Sep 2020 21:57:56 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%8F%8A%E6%AF%94%E8%BE%83%E4%B8%8E%E5%88%86%E6%9E%90/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>【数据结构】 AVL树详解（可视化工具）</title>
     <link>https://www.wgqing.com/avl%E6%A0%91%E8%AF%A6%E8%A7%A3/</link>
     <pubDate>Thu, 03 Sep 2020 21:09:12 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/avl%E6%A0%91%E8%AF%A6%E8%A7%A3/</guid>
     <description><![CDATA[转自：AVL树(一)之 图文解析 和 C语言的实现（本文图片及文字描述部分转自该文） 参考：邓俊辉 的数据结构，部分图片来自该资料 代码是C#写的 AVL]]></description>
-</item><item>
+</item>
+<item>
     <title>【数据结构】 二叉查找树(二叉排序树、二叉搜索树)详解（可视化工具）</title>
     <link>https://www.wgqing.com/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/</link>
     <pubDate>Thu, 03 Sep 2020 21:09:12 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/</guid>
     <description><![CDATA[二叉查找树又叫 二叉排序树、二叉搜索树 文章中树的概念和二叉树的定义转自二叉查找树(一)之 图文解析 和 C语言的实现 前驱节点和后继节点 参考：二叉搜索]]></description>
-</item><item>
+</item>
+<item>
     <title>【数据结构】 伸展树详解（SplayTree）（可视化工具）</title>
     <link>https://www.wgqing.com/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/</link>
     <pubDate>Thu, 03 Sep 2020 21:09:12 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/</guid>
     <description><![CDATA[参考：邓俊辉 的数据结构，图片来自该资料 除了AVL树，本章将按照二叉搜索树的介绍，继续介绍平衡二叉搜索树家族中的另一个成员—Splay伸展树。]]></description>
-</item><item>
+</item>
+<item>
     <title>【数据结构】树和二叉树基本讲解</title>
     <link>https://www.wgqing.com/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E6%9C%AC%E8%AE%B2%E8%A7%A3/</link>
     <pubDate>Thu, 03 Sep 2020 21:09:12 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E6%9C%AC%E8%AE%B2%E8%A7%A3/</guid>
     <description><![CDATA[文章中树的概念和二叉树的定义转自二叉查找树(一)之 图文解析 和 C语言的实现 0X01 树的概念 1. 树的定义 树是一种数据结构，它是由n（n&gt;=1）个有]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>

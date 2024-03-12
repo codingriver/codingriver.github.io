@@ -8,57 +8,65 @@
     <title>iOS-11-升级后无法真机调试（could-not-locate-device-support-files）</title>
     <link>https://www.wgqing.com/ios-11-%E5%8D%87%E7%BA%A7%E5%90%8E%E6%97%A0%E6%B3%95%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95could-not-locate-device-support-files/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/ios-11-%E5%8D%87%E7%BA%A7%E5%90%8E%E6%97%A0%E6%B3%95%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95could-not-locate-device-support-files/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>ios-配置ItunesConnect添加应用</title>
     <link>https://www.wgqing.com/ios-%E9%85%8D%E7%BD%AEitunesconnect%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/ios-%E9%85%8D%E7%BD%AEitunesconnect%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>IOS中Xcode-framework无法识别headers目录问题，头文件读不出来</title>
     <link>https://www.wgqing.com/ios%E4%B8%ADxcode-framework%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%ABheaders%E7%9B%AE%E5%BD%95%E9%97%AE%E9%A2%98%E5%A4%B4%E6%96%87%E4%BB%B6%E8%AF%BB%E4%B8%8D%E5%87%BA%E6%9D%A5/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/ios%E4%B8%ADxcode-framework%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%ABheaders%E7%9B%AE%E5%BD%95%E9%97%AE%E9%A2%98%E5%A4%B4%E6%96%87%E4%BB%B6%E8%AF%BB%E4%B8%8D%E5%87%BA%E6%9D%A5/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>UnityEditor-iOS-Xcode报错</title>
     <link>https://www.wgqing.com/unityeditor-ios-xcode%E6%8A%A5%E9%94%99/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/unityeditor-ios-xcode%E6%8A%A5%E9%94%99/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>Xcode工程配置</title>
     <link>https://www.wgqing.com/xcode%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/xcode%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>xcode接sdk时报错（环信SDK接入ios报错）</title>
     <link>https://www.wgqing.com/xcode%E6%8E%A5sdk%E6%97%B6%E6%8A%A5%E9%94%99undefined-symbols-for-architecture-arm64-/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/xcode%E6%8E%A5sdk%E6%97%B6%E6%8A%A5%E9%94%99undefined-symbols-for-architecture-arm64-/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>Xcode查看真机app沙盒内容，查看app缓存（Cache）文件</title>
     <link>https://www.wgqing.com/xcode%E6%9F%A5%E7%9C%8B%E7%9C%9F%E6%9C%BAapp%E6%B2%99%E7%9B%92%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8Bapp%E7%BC%93%E5%AD%98cache%E6%96%87%E4%BB%B6/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/xcode%E6%9F%A5%E7%9C%8B%E7%9C%9F%E6%9C%BAapp%E6%B2%99%E7%9B%92%E5%86%85%E5%AE%B9%E6%9F%A5%E7%9C%8Bapp%E7%BC%93%E5%AD%98cache%E6%96%87%E4%BB%B6/</guid>
     <description><![CDATA[]]></description>
-</item><item>
+</item>
+<item>
     <title>Xcode项目发布App-Store商品审核</title>
     <link>https://www.wgqing.com/xcode%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83app-store%E5%95%86%E5%93%81%E5%AE%A1%E6%A0%B8/</link>
     <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>作者</author>
+    <author>codingriver</author>
     <guid>https://www.wgqing.com/xcode%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83app-store%E5%95%86%E5%93%81%E5%AE%A1%E6%A0%B8/</guid>
     <description><![CDATA[]]></description>
-</item></channel>
+</item>
+</channel>
 </rss>
