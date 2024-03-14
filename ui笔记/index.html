@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>UI笔记 - 王国庆的博客</title><meta name="Description" content="王国庆的博客"><meta property="og:title" content="UI笔记" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.wgqing.com/ui%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://www.wgqing.com/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-06-30T11:38:36+08:00" />
+<meta property="article:modified_time" content="2021-06-30T11:38:36+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.wgqing.com/logo.png"/>
+
+<meta name="twitter:title" content="UI笔记"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="王国庆的博客">
+<meta name="apple-mobile-web-app-title" content="王国庆的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.wgqing.com/ui%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://www.wgqing.com/renderdoc-%E8%B0%83%E8%AF%95/" /><link rel="next" href="https://www.wgqing.com/csharp%E7%AC%94%E8%AE%B0/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.c472332508b1dbc91d99a4ebfa1c0b12.css" integrity="md5-xHIzJQix28kdmaTr&#43;hwLEg=="><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "UI笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.wgqing.com\/ui%E7%AC%94%E8%AE%B0\/"
+        },"genre": "posts","keywords": "笔记","wordcount":  4239 ,
+        "url": "https:\/\/www.wgqing.com\/ui%E7%AC%94%E8%AE%B0\/","datePublished": "2021-06-30T11:38:36+08:00","dateModified": "2021-06-30T11:38:36+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx"},"author": {
+                "@type": "Person",
+                "name": "codingriver"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="王国庆的博客"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="王国庆的博客"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>codingriver</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/codingriver" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">UI笔记</h1><h2 class="single-subtitle">UGUI性能优化笔记</h2><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://codingriver.github.io" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>codingriver</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-30 11:38:36">2021-06-30 11:38:36</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4239 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/ui%E7%AC%94%E8%AE%B0/" class="leancloud_visitors" data-flag-title="UI笔记">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#problem">Problem</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#ugui适配">UGUI适配</a></li>
+    <li><a href="#ui特效适配及层级关系控制">UI特效适配及层级关系控制</a></li>
+    <li><a href="#ugui合批">UGUI合批</a>
+      <ul>
+        <li><a href="#测试">测试</a></li>
+        <li><a href="#depth计算算法">Depth计算算法：</a></li>
+        <li><a href="#drawcall合批batch">DrawCall合批(Batch)：</a></li>
+        <li><a href="#ugui合批策略">UGUI合批策略</a></li>
+        <li><a href="#ugui优化指南">UGUI优化指南</a></li>
+      </ul>
+    </li>
+    <li><a href="#ui问题分析">UI问题分析</a>
+      <ul>
+        <li><a href="#ugui-优化记录">UGUI 优化记录</a>
+          <ul>
+            <li><a href="#主界面优化">主界面优化</a>
+              <ul>
+                <li><a href="#优化后的结果">优化后的结果：</a></li>
+              </ul>
+            </li>
+            <li><a href="#全屏透明图片优化">全屏透明图片优化</a></li>
+            <li><a href="#uiparticle性能对比">UIParticle性能对比</a></li>
+            <li><a href="#ui冗余相机">ui冗余相机</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="problem">Problem</h2>
+<ul>
+<li><i class="far fa-square fa-fw"></i> RootScale来源，怎么计算的</li>
+</ul>
+<h1 id="ui适配">UI适配</h1>
+<h2 id="ugui适配">UGUI适配</h2>
+<h2 id="ui特效适配及层级关系控制">UI特效适配及层级关系控制</h2>
+<h2 id="ugui合批">UGUI合批</h2>
+<blockquote>
+<p>合批过程是指Canvas合并UI元素的网格，并且生成发送给Unity渲染管线的命令。Canvas使用的网格都是从绑定在Canvas上的CanvasRenderer获得，但是不包含子Canvas的网格。UGUI的层叠顺序是按照Hierarchy中的顺序从上往下进行的，也就是越靠上的组件，就会被绘制在越底部。所有相邻层的可合批的UI元素（具有相同材质和纹理），就会在一个DrawCall中完成。</p>
+</blockquote>
+<h3 id="测试">测试</h3>
+<blockquote>
+<p>Win10,<code>Unity 2019.4.17f1c1</code></p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-03-20-11-53-13.png"
+        data-srcset="../../imgs/2023-03-20-11-53-13.png, ../../imgs/2023-03-20-11-53-13.png 1.5x, ../../imgs/2023-03-20-11-53-13.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-03-20-11-53-13.png"
+        title="../../imgs/2023-03-20-11-53-13.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-03-20-11-55-36.png"
+        data-srcset="../../imgs/2023-03-20-11-55-36.png, ../../imgs/2023-03-20-11-55-36.png 1.5x, ../../imgs/2023-03-20-11-55-36.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-03-20-11-55-36.png"
+        title="../../imgs/2023-03-20-11-55-36.png" /><br>
+<em>8个drawcall，左右的白色图片合批了，其他都没有合批;再次打开场景显示7个drawcall，左右白色图片、绿色图片合批了，其他都没有合批。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-03-20-14-27-51.png"
+        data-srcset="../../imgs/2023-03-20-14-27-51.png, ../../imgs/2023-03-20-14-27-51.png 1.5x, ../../imgs/2023-03-20-14-27-51.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-03-20-14-27-51.png"
+        title="../../imgs/2023-03-20-14-27-51.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-03-20-14-30-38.png"
+        data-srcset="../../imgs/2023-03-20-14-30-38.png, ../../imgs/2023-03-20-14-30-38.png 1.5x, ../../imgs/2023-03-20-14-30-38.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-03-20-14-30-38.png"
+        title="../../imgs/2023-03-20-14-30-38.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-03-20-14-31-49.png"
+        data-srcset="../../imgs/2023-03-20-14-31-49.png, ../../imgs/2023-03-20-14-31-49.png 1.5x, ../../imgs/2023-03-20-14-31-49.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-03-20-14-31-49.png"
+        title="../../imgs/2023-03-20-14-31-49.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-03-20-14-46-30.png"
+        data-srcset="../../imgs/2023-03-20-14-46-30.png, ../../imgs/2023-03-20-14-46-30.png 1.5x, ../../imgs/2023-03-20-14-46-30.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-03-20-14-46-30.png"
+        title="../../imgs/2023-03-20-14-46-30.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-03-20-15-19-36.png"
+        data-srcset="../../imgs/2023-03-20-15-19-36.png, ../../imgs/2023-03-20-15-19-36.png 1.5x, ../../imgs/2023-03-20-15-19-36.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-03-20-15-19-36.png"
+        title="../../imgs/2023-03-20-15-19-36.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-03-20-15-47-03.png"
+        data-srcset="../../imgs/2023-03-20-15-47-03.png, ../../imgs/2023-03-20-15-47-03.png 1.5x, ../../imgs/2023-03-20-15-47-03.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-03-20-15-47-03.png"
+        title="../../imgs/2023-03-20-15-47-03.png" />
+<em>白色图片不能合批，一共占用3个drawcall。</em></p>
+<blockquote>
+<p>根据上图占用3个drawcall，推断出，Hierachy内的上下关系不能保证临近位置合批，受到前后遮挡关系影响。
+这里有个问题是 第1个drawcall先绘制的左侧的白图，根据Hierachy的顺序，应该先绘制蓝色图片才对?</p>
+</blockquote>
+<ul>
+<li>设置Image的alpha=0，坐标移到画布视野外，还是会继续占用drawcall，<strong>设置localScale=0则不会占用drawcall</strong>。</li>
+</ul>
+<h3 id="depth计算算法">Depth计算算法：</h3>
+<ul>
+<li>遍历所有UI元素（已深度优先排序），对当前每一个UI元素CurrentUI，如果不渲染，CurrentUI.depth = -1，如果渲染该UI且底下没有其他UI元素与其相交（rect Intersects），其CurrentUI.depth = 0;</li>
+<li>如果CurrentUI下面只有一个的需要渲染的UI元素LowerUI与其相交，且可以Batch（material instance id 和 texture instance id 相同，即与CurrentUI具有相同的Material和Texture），CurrentUI.depth = LowerUI.depth；否则，CurrentUI.depth= LowerUI.depth + 1;</li>
+<li>如果CurrentUI下面叠了多个元素，这些元素的最大层是MaxLowerDepth，如果有多个元素的层都是MaxLowerDepth，那么CurrentUI和下面的元素是无法合批的；如果只有一个元素的层是MaxLowerDepth，并且这个元素和CurrentUI的材质、纹理相同，那么它们就能合批。</li>
+</ul>
+<h3 id="drawcall合批batch">DrawCall合批(Batch)：</h3>
+<ul>
+<li>Depth计算完后，依次根据Depth、material ID、texture ID、RendererOrder（即UI层级队列顺序，HierarchyOrder）排序（条件的优先级依次递减），剔除depth == -1的UI元素，得到Batch前的UI元素队列VisiableList。</li>
+<li>对VisiableList中相邻且可以Batch（相同material和texture）的UI元素合并批次，然后再生成相应mesh数据进行绘制。</li>
+</ul>
+<h3 id="ugui合批策略">UGUI合批策略</h3>
+<ul>
+<li>设置窗口父节点Z 值为 0，否则下面的元素都无法合批了。子UI元素Z值不为0时，会被视为3D UI，不参与合批。如果有Z改变了，尽量通过Group来规整在一起</li>
+<li>设置Canvas.overrideSorting为true</li>
+<li>设置Canvas.sortingOrder为窗口在Hierarchy下的排列顺序，即每当打开一个新的窗口，都会+1，根据数值由小到大依次渲染。</li>
+<li>设置Canvas.sortingLayerID为0，表示默认为Default</li>
+<li>设置Canvas.sortingLayerName为SortingLayer.IDToName(0)</li>
+<li>根据功能适用性，合理使用Atlas图集。</li>
+<li>Mask和RectMask2D组件,
+<blockquote>
+<ol>
+<li>不同mask之间是可以合批的</li>
+<li>被mask的物体只是不被绘制，依旧会影响合批计算</li>
+<li>RectMask2D之间无法进行合批</li>
+<li>被RectMask2D隐藏的物体不会参与合批计算</li>
+<li>RectMask2D组件上挂载的Image可以参与外部的合批</li>
+</ol>
+</blockquote>
+</li>
+<li>不要使用Unity内置的素材，不能合批</li>
+<li>GameObject.activeSelf  获取本地激活状态，需要注意的是当父对象是没有激活的时候，也会返回True</li>
+<li>GameObject.activeInHierarchy  获取游戏对象在场景中的激活状态，当父对象是没有激活的时候，就会返回False</li>
+</ul>
+<blockquote>
+<p>参考：
+<a href="https://zhuanlan.zhihu.com/p/339387759" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/339387759</a><br>
+<a href="https://www.cnblogs.com/moran-amos/p/13878493.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/moran-amos/p/13878493.html</a>
+<a href="https://www.cnblogs.com/moran-amos/p/13883818.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/moran-amos/p/13883818.html</a></p>
+</blockquote>
+<h3 id="ugui优化指南">UGUI优化指南</h3>
+<ol>
+<li>优化填充率，裁减掉无用的区域，镂空等，镂空可以勾掉<code>FillCenter</code>。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-03-20-20-57-53.png"
+        data-srcset="../../imgs/2023-03-20-20-57-53.png, ../../imgs/2023-03-20-20-57-53.png 1.5x, ../../imgs/2023-03-20-20-57-53.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-03-20-20-57-53.png"
+        title="../../imgs/2023-03-20-20-57-53.png" /></li>
+<li>Mask和RectMask2D的优劣，根据具体需求取舍。</li>
+<li>少用unity自带的outline和shadow。
+<blockquote>
+<p>会大量增加顶点和面数，比如outline，他实现原理是复制了四份文本然后做不同角度的便宜，模拟描边，要不就用自己实现的（挖坑待填）；</p>
+</blockquote>
+</li>
+<li>全屏UI界面打开时建议将场景3D相机移走或者关闭。</li>
+<li>如果非特殊需求没必要使用CanvasPixedPerfect，因为比如在scrollView时，滑动视图时一直会导致不断重绘产生性能损耗；</li>
+<li>不需要接受点击时间的物件将RayCastTarget关掉减少事件响应，从底层看是因为UGUI的RayCastTarget的响应是从数组中遍历检测是否和用户的点击区域响应，所以能够缩减数组大小自然能够缩减遍历次数；</li>
+<li>UI动静分离</li>
+<li>对于UI上常用的改变颜色的操作，不要使用Image组件上的Color属性改变颜色，这样会导致整个Canvas的重建，可以新建个材质，设置材质给Image的Material通过修改材质的颜色来达到同样效果</li>
+<li>对于界面上常用的组件隐藏，别使用SetActive来控制显隐，有两种方式，一种是通过设置物体上<code>CanvasRenderer</code>的<code>CullTransparentMesh</code>并且控制物体透明度进行剔除，这个一般用于单个ui，如果是多个UI要不显示的话通过设置<code>CanvasGroups</code>的<code>Alpha</code>控制显隐。</li>
+<li>Text的组件的BestFit非必要别开，因为这样开启这个会不断生成各种尺寸的字号字体图集，增加不必要开销。</li>
+<li>生成图集</li>
+<li>Image组件不要选择None，也会使用一个默认图片且无法与图集合批，选用一张图片来统一使用并打入到图集中。</li>
+<li>不要使用透明为0的图片当作按钮，改用NoOverdrawImage来代替</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//不渲染但可以相应点击
+</span></span><span class="line"><span class="cl">public class NoOverdrawImage : Graphic{    public override void Rebuild(CanvasUpdate update){}   }   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">public class Empty4Raycast : MaskableGraphic    {
+</span></span><span class="line"><span class="cl">        protected Empty4Raycast(){useLegacyMeshGeneration = false;}
+</span></span><span class="line"><span class="cl">        protected override void OnPopulateMesh(VertexHelper toFill){ toFill.Clear();        }    }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>UI相机看不到的物体也会被渲染，占用DC，可以先禁用它们</li>
+</ol>
+<blockquote>
+<p>参考:
+<a href="https://www.jianshu.com/p/4aa2b8641875" target="_blank" rel="noopener noreffer">https://www.jianshu.com/p/4aa2b8641875</a></p>
+</blockquote>
+<h2 id="ui问题分析">UI问题分析</h2>
+<blockquote>
+<p>ui常见的问题:</p>
+<ol>
+<li>GPU 片段着色器使用过多（即填充率过度使用）</li>
+<li>重建 Canvas 批处理所花费的 CPU 时间过多</li>
+<li>Canvas 批次的重建数量过多（过度污染）</li>
+<li>用于生成顶点的 CPU 时间过多（通常来自文本）</li>
+</ol>
+</blockquote>
+<p>sprite 被意外引用，造成多加载一个图集
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-24-11-51-22.png"
+        data-srcset="../../imgs/2022-10-24-11-51-22.png, ../../imgs/2022-10-24-11-51-22.png 1.5x, ../../imgs/2022-10-24-11-51-22.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-24-11-51-22.png"
+        title="../../imgs/2022-10-24-11-51-22.png" /></p>
+<h3 id="ugui-优化记录">UGUI 优化记录</h3>
+<h4 id="主界面优化">主界面优化</h4>
+<p>优化前批次 84</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-11-53-38.png"
+        data-srcset="../../imgs/2022-10-25-11-53-38.png, ../../imgs/2022-10-25-11-53-38.png 1.5x, ../../imgs/2022-10-25-11-53-38.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-11-53-38.png"
+        title="../../imgs/2022-10-25-11-53-38.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-11-22-47.png"
+        data-srcset="../../imgs/2022-10-25-11-22-47.png, ../../imgs/2022-10-25-11-22-47.png 1.5x, ../../imgs/2022-10-25-11-22-47.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-11-22-47.png"
+        title="../../imgs/2022-10-25-11-22-47.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-11-21-43.png"
+        data-srcset="../../imgs/2022-10-25-11-21-43.png, ../../imgs/2022-10-25-11-21-43.png 1.5x, ../../imgs/2022-10-25-11-21-43.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-11-21-43.png"
+        title="../../imgs/2022-10-25-11-21-43.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-11-46-37.png"
+        data-srcset="../../imgs/2022-10-25-11-46-37.png, ../../imgs/2022-10-25-11-46-37.png 1.5x, ../../imgs/2022-10-25-11-46-37.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-11-46-37.png"
+        title="../../imgs/2022-10-25-11-46-37.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-16-32-29.png"
+        data-srcset="../../imgs/2022-10-25-16-32-29.png, ../../imgs/2022-10-25-16-32-29.png 1.5x, ../../imgs/2022-10-25-16-32-29.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-16-32-29.png"
+        title="../../imgs/2022-10-25-16-32-29.png" /></p>
+<blockquote>
+<p>红点图标的图集和主面板的icon图集不是一个，所以所有红点图标不能合批</p>
+</blockquote>
+<ul>
+<li>位置1</li>
+</ul>
+<blockquote>
+<p>所有按钮使用的图集 <code>uileitubiao_1</code></p>
+</blockquote>
+<p>mask使用 用来处理动画
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-11-25-46.png"
+        data-srcset="../../imgs/2022-10-25-11-25-46.png, ../../imgs/2022-10-25-11-25-46.png 1.5x, ../../imgs/2022-10-25-11-25-46.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-11-25-46.png"
+        title="../../imgs/2022-10-25-11-25-46.png" /></p>
+<p>mask（没用的），没用用的节点动画
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-11-26-26.png"
+        data-srcset="../../imgs/2022-10-25-11-26-26.png, ../../imgs/2022-10-25-11-26-26.png 1.5x, ../../imgs/2022-10-25-11-26-26.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-11-26-26.png"
+        title="../../imgs/2022-10-25-11-26-26.png" /></p>
+<p>底图
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-11-26-57.png"
+        data-srcset="../../imgs/2022-10-25-11-26-57.png, ../../imgs/2022-10-25-11-26-57.png 1.5x, ../../imgs/2022-10-25-11-26-57.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-11-26-57.png"
+        title="../../imgs/2022-10-25-11-26-57.png" />
+这个底图独自占一个批次，没有使用sprite，不能合批</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-11-27-42.png"
+        data-srcset="../../imgs/2022-10-25-11-27-42.png, ../../imgs/2022-10-25-11-27-42.png 1.5x, ../../imgs/2022-10-25-11-27-42.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-11-27-42.png"
+        title="../../imgs/2022-10-25-11-27-42.png" /></p>
+<p><strong>指定一个上层sprite所在图集的一个背景纹理即可减少一个批次，背景图会和上层的icon按钮合批。</strong><br>
+<em>内层mask没有影响合批，后面再测试</em></p>
+<ul>
+<li>位置2
+邮件图标和位置1的图标时同一个图集</li>
+</ul>
+<p><strong>位置1 的内层mask和外层mask都移除后，会和邮件按钮进行合批</strong></p>
+<ul>
+<li>位置3
+活动图标的图集和位置1位置2的图集不同</li>
+</ul>
+<p><strong>活动图标的图集改为位置1用的图集</strong></p>
+<ul>
+<li>位置4，5，10</li>
+</ul>
+<p>位置4 的icon使用的图集 <code>common_banzi</code>,<code>feitongyong_01</code>,<code>uileitubiao_1</code>
+位置5 的icon使用的图集 <code>common_banzi</code> 和 <code>uileitubiao_1</code>
+位置10 的icon使用的图集 <code>common_banzi</code>,<code>uileitubiao_3</code>,<code>feitongyong_03</code></p>
+<ul>
+<li>位置6</li>
+</ul>
+<blockquote>
+<p>单独测试占用12批次</p>
+</blockquote>
+<p>icon使用的图集 <code>common_banzi</code> 和 <code>uileitubiao_4</code>
+特效节点 <code>effect_task_huang</code><br>
+特效没有合批
+有粒子特效（<code>Particle System</code>），需要使用替代方案</p>
+<p>红点有canvas，造成红点底图还有红点文字合批失败，这个canvas要控制红点在特效前面
+红点文字的字体和其他文字字体不一致，打断合批</p>
+<p>无用的空Image节点占用一个批次，且打断合批 (这里Image透明度为0)
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-14-58-37.png"
+        data-srcset="../../imgs/2022-10-25-14-58-37.png, ../../imgs/2022-10-25-14-58-37.png 1.5x, ../../imgs/2022-10-25-14-58-37.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-14-58-37.png"
+        title="../../imgs/2022-10-25-14-58-37.png" /></p>
+<blockquote>
+<p>优化后独立测试占用5批次，特效应该还有优化空间</p>
+</blockquote>
+<ul>
+<li>位置7</li>
+</ul>
+<blockquote>
+<p>批次 6</p>
+</blockquote>
+<p>icon使用的图集 <code>uileitubiao_1</code>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-15-37-17.png"
+        data-srcset="../../imgs/2022-10-25-15-37-17.png, ../../imgs/2022-10-25-15-37-17.png 1.5x, ../../imgs/2022-10-25-15-37-17.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-15-37-17.png"
+        title="../../imgs/2022-10-25-15-37-17.png" />
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-10-25-15-40-49.png"
+        data-srcset="../../imgs/2022-10-25-15-40-49.png, ../../imgs/2022-10-25-15-40-49.png 1.5x, ../../imgs/2022-10-25-15-40-49.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-10-25-15-40-49.png"
+        title="../../imgs/2022-10-25-15-40-49.png" />
+不能合批是因为左侧红点的mesh比较大（红点图标透明区域很大），被右侧图标遮挡了，就会插入到左侧图标和右侧图标中间</p>
+<blockquote>
+<p>优化后3</p>
+</blockquote>
+<ul>
+<li>
+<p>位置8
+icon使用的图集 <code>uileitubiao_1</code></p>
+</li>
+<li>
+<p>位置9
+icon使用的图集 <code>uileitubiao_1</code></p>
+</li>
+<li>
+<p>位置20
+icon使用的图集 <code>common_banzi</code> 和 <code>uileitubiao_4</code>
+还有空Image 但是alpha不是0，不能合批</p>
+</li>
+<li>
+<p>位置11</p>
+</li>
+</ul>
+<blockquote>
+<p>批次 6</p>
+</blockquote>
+<p>icon使用的图集 <code>common_banzi</code> 和 <code>daojutubiao_1</code></p>
+<ul>
+<li>
+<p>位置19
+icon使用的图集 <code>common_banzi</code></p>
+</li>
+<li>
+<p>位置 14，15，16，17，18 （活动集合）
+icon使用的图集 <code>uileitubiao_1</code> ,<code>uileitubiao_4</code>,<code>feitongyong_11</code>,<br>
+有粒子特效（<code>Particle System</code>），需要使用替代方案
+还有其他特效</p>
+</li>
+</ul>
+<p>这里特效有两部分，一部分在ui底下，一部分在ui上面，美术同学做特效时给所在的prefab所有ui节点挂载<code>Canvas</code>组件,直接导致合批失败 且形成大量的drawcall</p>
+<ul>
+<li>位置12</li>
+</ul>
+<p>icon使用的图集 <code>common_banzi</code><br>
+有循环动画</p>
+<ul>
+<li>
+<p>位置13
+icon使用的图集 <code>feitongyong_12</code></p>
+</li>
+<li>
+<p>位置23,24</p>
+</li>
+</ul>
+<p>icon使用的图集 <code>uileitubiao_3</code>,<code>uileitubiao_4</code>,<code>uileitubiao_6</code>
+有循环动画</p>
+<ul>
+<li>
+<p>位置21
+icon使用的图集 <code>uileitubiao_1</code></p>
+</li>
+<li>
+<p>位置22
+icon使用的图集 <code>feitongyong_04</code>,<code>feitongyong_03</code></p>
+</li>
+<li>
+<p>位置 搜索坐标， 收藏按钮
+icon使用的图集 <code>feitongyong_05</code>,<code>feitongyong_01</code>，<code>feitongyong_03</code></p>
+</li>
+</ul>
+<h5 id="优化后的结果">优化后的结果：</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2022-11-01-15-26-11.png"
+        data-srcset="../../imgs/2022-11-01-15-26-11.png, ../../imgs/2022-11-01-15-26-11.png 1.5x, ../../imgs/2022-11-01-15-26-11.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2022-11-01-15-26-11.png"
+        title="../../imgs/2022-11-01-15-26-11.png" />
+<strong>不显示特效的情况下是11个drawcall。</strong>
+4号位置占用3个drawcall，头像和框分别是独立的图集，体力条需要压在框的上面，有的框是特效做的，头像是允许玩家上传自定义头像的，所以不能合批也不能做到一个图集里，动态图集可以考虑但是不能处理特效框的情况。
+6号位置的红点有canvas，需要控制红点在特效前面
+12号位置占用2个drawcall，这里是animation做的动画，这里的底图和文字是不能合批的，否则每帧都构建合批的大mesh<br>
+22号位置的头像和状态图标是在一个图集里，这里需要一个drawcall。<br>
+剩下的主界面图片合批成1个drawcall，剩下的文字占用2个drawcall，因为是两种字体。</p>
+<p><strong>显示特效的情况下是31个drawcall</strong>
+除去9个drawcall，都是特效占用的
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-12-06-20-00-09.png"
+        data-srcset="../../imgs/2023-12-06-20-00-09.png, ../../imgs/2023-12-06-20-00-09.png 1.5x, ../../imgs/2023-12-06-20-00-09.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-12-06-20-00-09.png"
+        title="../../imgs/2023-12-06-20-00-09.png" /></p>
+<h4 id="全屏透明图片优化">全屏透明图片优化</h4>
+<p>原始的Overdraw
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-01-05-16-19-12.png"
+        data-srcset="../../imgs/2023-01-05-16-19-12.png, ../../imgs/2023-01-05-16-19-12.png 1.5x, ../../imgs/2023-01-05-16-19-12.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-01-05-16-19-12.png"
+        title="../../imgs/2023-01-05-16-19-12.png" /></p>
+<p>优化后的Overdraw
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2023-01-05-16-20-31.png"
+        data-srcset="../../imgs/2023-01-05-16-20-31.png, ../../imgs/2023-01-05-16-20-31.png 1.5x, ../../imgs/2023-01-05-16-20-31.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2023-01-05-16-20-31.png"
+        title="../../imgs/2023-01-05-16-20-31.png" /></p>
+<h4 id="uiparticle性能对比">UIParticle性能对比</h4>
+<ul>
+<li>优化前总耗时40毫秒：</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2024-03-13-14-40-51.png"
+        data-srcset="../../imgs/2024-03-13-14-40-51.png, ../../imgs/2024-03-13-14-40-51.png 1.5x, ../../imgs/2024-03-13-14-40-51.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2024-03-13-14-40-51.png"
+        title="../../imgs/2024-03-13-14-40-51.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2024-03-13-14-41-58.png"
+        data-srcset="../../imgs/2024-03-13-14-41-58.png, ../../imgs/2024-03-13-14-41-58.png 1.5x, ../../imgs/2024-03-13-14-41-58.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2024-03-13-14-41-58.png"
+        title="../../imgs/2024-03-13-14-41-58.png" /></p>
+<ul>
+<li>将<code>UIParticle</code>去掉后的耗时35毫秒（将particle继续显示通过3d的方式）：</li>
+</ul>
+<p><em>节省耗时5毫秒，一共移除<code>UIParticle</code>组件66个，共33个prefab。</em></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2024-03-13-14-49-07.png"
+        data-srcset="../../imgs/2024-03-13-14-49-07.png, ../../imgs/2024-03-13-14-49-07.png 1.5x, ../../imgs/2024-03-13-14-49-07.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2024-03-13-14-49-07.png"
+        title="../../imgs/2024-03-13-14-49-07.png" /></p>
+<ul>
+<li>
+<p>游戏中实际情况优化前：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2024-03-13-15-02-46.png"
+        data-srcset="../../imgs/2024-03-13-15-02-46.png, ../../imgs/2024-03-13-15-02-46.png 1.5x, ../../imgs/2024-03-13-15-02-46.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2024-03-13-15-02-46.png"
+        title="../../imgs/2024-03-13-15-02-46.png" /></p>
+</li>
+<li>
+<p>游戏中实际情况禁用<code>UIParticle</code>后：
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2024-03-13-15-04-54.png"
+        data-srcset="../../imgs/2024-03-13-15-04-54.png, ../../imgs/2024-03-13-15-04-54.png 1.5x, ../../imgs/2024-03-13-15-04-54.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2024-03-13-15-04-54.png"
+        title="../../imgs/2024-03-13-15-04-54.png" /></p>
+</li>
+</ul>
+<p><strong>这里不能参考总耗时，因为游戏业务逻辑在运行，场景有业务在运行，只能参考单项，相对来说也不算准确</strong></p>
+<h4 id="ui冗余相机">ui冗余相机</h4>
+<p>增加额外的2个drawcall
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="../../imgs/2024-03-13-15-58-27.png"
+        data-srcset="../../imgs/2024-03-13-15-58-27.png, ../../imgs/2024-03-13-15-58-27.png 1.5x, ../../imgs/2024-03-13-15-58-27.png 2x"
+        data-sizes="auto"
+        alt="../../imgs/2024-03-13-15-58-27.png"
+        title="../../imgs/2024-03-13-15-58-27.png" /></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-06-30 11:38:36</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://www.wgqing.com/ui%E7%AC%94%E8%AE%B0/" data-hashtag="笔记"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://www.wgqing.com/ui%E7%AC%94%E8%AE%B0/" data-title="UI笔记" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://www.wgqing.com/ui%E7%AC%94%E8%AE%B0/" data-title="UI笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://www.wgqing.com/ui%E7%AC%94%E8%AE%B0/" data-title="UI笔记"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://www.wgqing.com/ui%E7%AC%94%E8%AE%B0/" data-title="UI笔记" data-description=""><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/myspace.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://www.wgqing.com/ui%E7%AC%94%E8%AE%B0/" data-title="UI笔记" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://www.wgqing.com/ui%E7%AC%94%E8%AE%B0/" data-title="UI笔记"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/renderdoc-%E8%B0%83%E8%AF%95/" class="prev" rel="prev" title="RenderDoc 调试"><i class="fas fa-angle-left fa-fw"></i>RenderDoc 调试</a>
+            <a href="/csharp%E7%AC%94%E8%AE%B0/" class="next" rel="next" title="CSharp笔记">CSharp笔记<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">hello</div><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.96.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">codingriver</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn/" target="_blank">京ICP备2022004057号-1</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@13.0.0/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"TU9HHvqYbHWiqJGgbDQXTTHy-gzGzoHsz","appKey":"dN7hDY1PObmpH2SGFBNkIv88","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"説点啥吧...","recordIP":true,"serverURLs":"https://tu9hhvqy.lc-cn-n1-shared.com","visitor":true}},"search":{"algoliaAppID":"KLY81C70FD","algoliaIndex":"index","algoliaSearchKey":"f07750bedf42546c5e3339e308d17b97","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.7bc7989e979c4a19d97db3ab311a80fe.js" integrity="md5-e8eYnpecShnZfbOrMRqA/g=="></script></body>
+</html>
