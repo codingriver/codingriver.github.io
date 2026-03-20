@@ -1,0 +1,50 @@
+# cursorignore - MkDocs blog: focus on docs/ md and images
+
+# Ignore theme directory (Hugo legacy)
+themes/
+content/
+
+# Ignore MkDocs and Hugo build output
+site/
+public/
+resources/
+.hugo_build.lock
+
+# Ignore deploy scripts
+deploy.sh
+sync.cmd
+.travis.yml
+
+# Ignore package manager
+node_modules/
+package-lock.json
+
+# Ignore non-content files
+*.zip
+*.env
+*.sh
+*.cmd
+*.xml
+*.webmanifest
+.babelrc
+LICENSE
+CNAME
+.gitattributes
+.gitconfig
+.gitmodules
+.gitignore
+.git.config
+
+# Ignore static non-image assets
+static/_redirects
+static/music/
+
+# Ignore Hugo assets, layouts, data, archetypes
+assets/css/
+assets/js/
+layouts/
+data/
+archetypes/
+
+# Visible: docs/**/*.md  docs/images/**  docs/*/image/**
+# Visible: mkdocs.yml  .github/  .travis/  *.toml  *.yml  package.json
