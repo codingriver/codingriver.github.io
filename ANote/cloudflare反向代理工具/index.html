@@ -1,0 +1,926 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="codingriver personal tech blog - Unity / Shader / CSharp / Math">
+      
+      
+        <meta name="author" content="codingriver">
+      
+      
+        <link rel="canonical" href="https://blog.wgqing.com/ANote/cloudflare%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Cloudflare反向代理工具 - codingriver</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#workerschatgpt" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="codingriver" class="md-header__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            codingriver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cloudflare反向代理工具
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="codingriver" class="md-nav__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    codingriver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#workerschatgpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 通过Workers脚本部署设置，手把手带您实现免费高速科学上网，无障碍访问奈菲，ChatGPT
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 通过Workers脚本部署设置，手把手带您实现免费高速科学上网，无障碍访问奈菲，ChatGPT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        脚本部署工具连接
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="脚本部署工具连接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1v2rayn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、v2rayN下载
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2cloudflare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、登陆Cloudflare：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3workers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3、部署workers脚本：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4tlsv2rayntls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4、套Tls设置v2rayN（建议套上Tls）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workers脚本设置步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workers脚本设置步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1workers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、创建workers应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2workers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、添加workers脚本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3useridproxyip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3、修改UserID和proxyIP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4、生成应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        获取未加密的Vless订阅连接
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="获取未加密的Vless订阅连接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、 打开连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2userid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、添加UserID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3vless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3、生成Vless订阅连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tlsvless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        获取Tls加密的Vless订阅连接
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="获取Tls加密的Vless订阅连接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、添加自定义域
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、 打开连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3vless_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3、生成Vless订阅连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#v2rayn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v2rayN客户端设置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v2rayN客户端设置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1tlsvless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、添加未套Tls的vless连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2tlsvless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、添加已套Tls的vless连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudflareip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CloudFlare在线优选IP网站:
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloudflare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cloudflare 优选域名
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/codingriver/codingriver.github.io/edit/master/docs/ANote/cloudflare反向代理工具.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+  <h1>Cloudflare反向代理工具</h1>
+
+<!--more-->
+
+<p>😀</p>
+<p>当我们建立Cloudflare团队账户后，就打通了外网访问路径，实现了免费科学上网，但您是不是发现仍然不能正常访问ChatGPT，一会能访问一会又不能了，而且网速还很慢。今天通过对workers脚本的部署，手把手带您创建一个能无障碍访问油管、奈菲，chatgpt的科学上网环境。如果您还缺一个免费科学上网的备选方案，并且想了解worker脚本的部署方法，一定不要错过。</p>
+<p><img alt="Video preview" src="https://i.ytimg.com/vi/1Jvo9I37yAU/hqdefault.jpg" /></p>
+<h2 id="workerschatgpt"><a href="#a30b795a9f0d4f318b7033fbc82d9ef2" title="📝 通过Workers脚本部署设置，手把手带您实现免费高速科学上网，无障碍访问奈菲，ChatGPT"></a>📝 通过Workers脚本部署设置，手把手带您实现免费高速科学上网，无障碍访问奈菲，ChatGPT<a class="headerlink" href="#workerschatgpt" title="Permanent link">&para;</a></h2>
+<h3 id="_1"><a href="#85c01ce2c9ad44a59c17c9a32e2dc65c" title="脚本部署工具连接"></a>脚本部署工具连接<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>v2rayN客户端及workers代码都托管在GitHub上，访问时需要科学上网。</p>
+<h4 id="1v2rayn"><a href="#2a10e6fbf45d426c8ea70cce61c9007e" title="1、v2rayN下载"></a>1、v2rayN下载<a class="headerlink" href="#1v2rayn" title="Permanent link">&para;</a></h4>
+<h4 id="2cloudflare"><a href="#8212537df98145c4bb6ee6addc942776" title="2、登陆Cloudflare："></a>2、登陆Cloudflare：<a class="headerlink" href="#2cloudflare" title="Permanent link">&para;</a></h4>
+<p>Cloudflare账户注册小布出过一期Zero Trust团队账户设置视频，其中演示了怎么注册Cloudflare账户，不会注册的朋友可以参考那期视频。</p>
+<h4 id="3workers"><a href="#35b8c6320b884eed8a52689b7bdcb1fe" title="3、部署workers脚本："></a>3、部署workers脚本：<a class="headerlink" href="#3workers" title="Permanent link">&para;</a></h4>
+<p>Wordkers脚本：</p>
+<p>部署中修改两个地方：替换UUID，CF反代IP，反代IP可以使用下面大佬提供的，也可以自己去筛选。如果使用的是[ 3K大佬的 ]worker脚本，替换下伪装域名。</p>
+<p><strong>http</strong> \= [80, 8080, 8880, 2052, 2086, 2095, 2082] <strong>https</strong> \= [443, 8443, 2053, 2096, 2087, 2083]</p>
+<p><strong>大佬提供的CF反代IP：</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>
+</code></pre></div>
+<p><strong>优选域名：</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>
+</code></pre></div>
+<h4 id="4tlsv2rayntls"><a href="#a3975ab394ba4019b8d2b5d87a496a70" title="4、套Tls设置v2rayN（建议套上Tls）"></a>4、<strong>套Tls</strong>设置v2rayN（建议套上Tls）<a class="headerlink" href="#4tlsv2rayntls" title="Permanent link">&para;</a></h4>
+<p>套Tls需要将域名托管到Cloudflare，所以配置之前要想将域名托管设置好</p>
+<p>4.1、添加自定义域</p>
+<p>4.2、获取vless订阅地址</p>
+<p>4.3、v2rayN中添加vless订阅地址</p>
+<p>4.4、修改端口为443，传输层安全（Tls）开启</p>
+<h2 id="workers"><a href="#42698158e969418bb25a40710586ef43" title="Workers脚本设置步骤"></a>Workers脚本设置步骤<a class="headerlink" href="#workers" title="Permanent link">&para;</a></h2>
+<h4 id="1workers"><a href="#800f49eccb0843e1b44c839184b90062" title="1、创建workers应用"></a>1、创建workers应用<a class="headerlink" href="#1workers" title="Permanent link">&para;</a></h4>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F53074612-390f-4252-a146-71de27292848%2FUntitled.webp?table=block&amp;id=6348310b-22f0-4936-ae5b-3635d6e6166b&amp;t=6348310b-22f0-4936-ae5b-3635d6e6166b&amp;width=1879&amp;cache=v2" /></p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F18e69067-7f52-449b-9d84-1c49c4260b8c%2FUntitled.webp?table=block&amp;id=b8d9000a-e7b5-408d-bef3-58d7ccd3fb79&amp;t=b8d9000a-e7b5-408d-bef3-58d7ccd3fb79&amp;width=1877&amp;cache=v2" /></p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2Ff38eca09-a25a-41a6-bae5-ecb8ca91cd5b%2FUntitled.webp?table=block&amp;id=dde5a4c6-cb36-4416-8e14-827724ac9a0c&amp;t=dde5a4c6-cb36-4416-8e14-827724ac9a0c&amp;width=1877&amp;cache=v2" /></p>
+<h4 id="2workers"><a href="#48a357babd9b419fb910c9ffa6dba497" title="2、添加workers脚本"></a>2、添加workers脚本<a class="headerlink" href="#2workers" title="Permanent link">&para;</a></h4>
+<p>2.1、复制github上的workers脚本</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F01cd8894-8287-4d68-b204-42763882ed90%2FUntitled.webp?table=block&amp;id=c98cefc4-0f06-48e3-a883-b3cc1e27b26c&amp;t=c98cefc4-0f06-48e3-a883-b3cc1e27b26c&amp;width=1881&amp;cache=v2" /></p>
+<p>2.2、删除默认脚本并粘贴workers脚本</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F3fa613d4-00b3-4141-8a71-427ce366b6d9%2FUntitled.webp?table=block&amp;id=9777808d-683f-4017-b4c2-5cc4e7026037&amp;t=9777808d-683f-4017-b4c2-5cc4e7026037&amp;width=1878&amp;cache=v2" /></p>
+<h4 id="3useridproxyip"><a href="#3c5405be2b1f4442aeecd296797b34e5" title="3、修改UserID和proxyIP"></a>3、修改UserID和proxyIP<a class="headerlink" href="#3useridproxyip" title="Permanent link">&para;</a></h4>
+<p>UserID可以通过在线生成UUID得到，也可通过v2rayN创建Vless连接中的生成用户ID得到。</p>
+<p>proxyIP可以复制上面大佬提供的反代域名，也可以自己筛选得到</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2Fa0f02faa-6f08-487d-8905-95faa945184a%2FUntitled.webp?table=block&amp;id=8771cf5f-1962-442f-8615-e9e688c05031&amp;t=8771cf5f-1962-442f-8615-e9e688c05031&amp;width=1873&amp;cache=v2" /></p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F777971a4-4c2d-470d-9a12-0ccacd2d77a4%2FUntitled.webp?table=block&amp;id=58a59feb-9805-469e-91ae-a74e3ecae558&amp;t=58a59feb-9805-469e-91ae-a74e3ecae558&amp;width=1880&amp;cache=v2" /></p>
+<h4 id="4"><a href="#ed85679615f947f99c30af519ce387e3" title="4、生成应用"></a>4、生成应用<a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
+<p>4.1、保存并部署部署</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2Fe99c7a9a-c626-4cc1-9dba-d69a545666d0%2FUntitled.webp?table=block&amp;id=2763218d-2ae6-4c3d-873d-59376bf30c74&amp;t=2763218d-2ae6-4c3d-873d-59376bf30c74&amp;width=1883&amp;cache=v2" /></p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F57adbf49-d732-4864-a990-56e57777c7e4%2FUntitled.webp?table=block&amp;id=bf751c31-2c3a-4894-bedf-add3f40fb9ec&amp;t=bf751c31-2c3a-4894-bedf-add3f40fb9ec&amp;width=1876&amp;cache=v2" /></p>
+<h3 id="vless"><a href="#466bebf927f94155ac89cfc0141026b0" title="获取未加密的Vless订阅连接"></a>获取未加密的Vless订阅连接<a class="headerlink" href="#vless" title="Permanent link">&para;</a></h3>
+<h4 id="1"><a href="#40df7bc4160c43998f349259a12fc506" title="1、 打开连接"></a>1、 打开连接<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p>1.1、点workers.dev (点击此链接前需要科学上网)</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F5392b333-e998-431c-a589-78b803d488dc%2FUntitled.webp?table=block&amp;id=441c54a9-8fa2-4c77-9bb5-6263e3a03d4d&amp;t=441c54a9-8fa2-4c77-9bb5-6263e3a03d4d&amp;width=1907&amp;cache=v2" /></p>
+<p>1.2、如果看到下面的代码说明部署成功</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F07345770-0546-4eda-9bbe-d6ac0fce56b3%2FUntitled.webp?table=block&amp;id=ef8deedb-08cc-4d57-8825-67bdecefff05&amp;t=ef8deedb-08cc-4d57-8825-67bdecefff05&amp;width=1876&amp;cache=v2" /></p>
+<h4 id="2userid"><a href="#1336cf8de45c4d78b39408390e23746d" title="2、添加UserID"></a>2、添加UserID<a class="headerlink" href="#2userid" title="Permanent link">&para;</a></h4>
+<p>在连接后面添加UserID（就是workers代码中UserID），注意添加反斜线 “ <strong>/</strong> ”，然后回车</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2Fbdb28598-03ee-4546-bd72-0eb5953f8dae%2FUntitled.webp?table=block&amp;id=6598d48d-7b73-402b-8147-42807f4d844f&amp;t=6598d48d-7b73-402b-8147-42807f4d844f&amp;width=1050&amp;cache=v2" /></p>
+<h4 id="3vless"><a href="#696f3b7474cf4c3c9efc3df19e146e2e" title="3、生成Vless订阅连接"></a>3、生成Vless订阅连接<a class="headerlink" href="#3vless" title="Permanent link">&para;</a></h4>
+<p>得到未套Tls的Vless订阅连接</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F59de94ff-aa30-443f-909c-58a0295a9b27%2FUntitled.webp?table=block&amp;id=5d8846a8-4278-457c-89c7-19949560653b&amp;t=5d8846a8-4278-457c-89c7-19949560653b&amp;width=1876&amp;cache=v2" /></p>
+<h3 id="tlsvless"><a href="#48e98b2f248b41c7aed11958fd3af134" title="获取Tls加密的Vless订阅连接"></a>获取Tls加密的Vless订阅连接<a class="headerlink" href="#tlsvless" title="Permanent link">&para;</a></h3>
+<p>操作前需确定域名已经成功托管到Cloudflare上</p>
+<h4 id="1_1"><a href="#a5728adf34ac466e957946f75393ad9b" title="1、添加自定义域"></a>1、添加自定义域<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<p>1.1、点击刚刚添加的edge应用</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F282ed8be-ed9d-4701-9e4a-42e9133ea48c%2FUntitled.webp?table=block&amp;id=e7454faf-3005-4f94-adb0-f5d1ed1e04f2&amp;t=e7454faf-3005-4f94-adb0-f5d1ed1e04f2&amp;width=1882&amp;cache=v2" /></p>
+<p>1.2、点击【查看】，或者点击【触发器】</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2Fd356e56e-84b0-4195-b91b-d0602302f3e8%2FUntitled.webp?table=block&amp;id=4998ea65-dd9b-4c8d-9314-584c72151ecf&amp;t=4998ea65-dd9b-4c8d-9314-584c72151ecf&amp;width=1874&amp;cache=v2" /></p>
+<p>1.3、点击【添加自定义域】</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F43472afd-7373-4c49-b6b0-b95e59f32b4c%2FUntitled.webp?table=block&amp;id=014e07f6-257e-4f1b-9a52-493a09aaa7c4&amp;t=014e07f6-257e-4f1b-9a52-493a09aaa7c4&amp;width=1872&amp;cache=v2" /></p>
+<p>1.4、输入一个二级域名，名称随便起。二级域名要填写完整（<strong>二级域名</strong>.temptemps.top）</p>
+<p>然后点击下面的添加自定义域按钮</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F0c79e97a-63a7-4682-ad40-f9e71936328d%2FUntitled.webp?table=block&amp;id=c7a37bc4-ef32-4a41-80d5-dbb1112dcff9&amp;t=c7a37bc4-ef32-4a41-80d5-dbb1112dcff9&amp;width=1867&amp;cache=v2" /></p>
+<p>1.5、添加自定义域后续等待证书申请完成</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2Fc7e10238-884b-484b-a4fa-dad5d99658c9%2FUntitled.webp?table=block&amp;id=001bf4e0-c8d5-49d4-8b7d-55e85c88a2bd&amp;t=001bf4e0-c8d5-49d4-8b7d-55e85c88a2bd&amp;width=1876&amp;cache=v2" /></p>
+<p>看到有效即证书申请完成</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2Ff4d21491-8d3a-4b73-a94e-05fceb2aac96%2FUntitled.webp?table=block&amp;id=7fa8ec6c-882b-4e5a-9b76-10e83c32625b&amp;t=7fa8ec6c-882b-4e5a-9b76-10e83c32625b&amp;width=1862&amp;cache=v2" /></p>
+<h4 id="2"><a href="#ce0838cad1964358bdcd1cec456c7fea" title="2、 打开连接"></a>2、 打开连接<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<p>2.1、点击刚刚生成的二级域名</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F5c114970-5f5d-4ac7-89a7-c9bb25c7dfa3%2FUntitled.webp?table=block&amp;id=4899ff62-4b72-438e-b4ac-f542f68782bc&amp;t=4899ff62-4b72-438e-b4ac-f542f68782bc&amp;width=1898&amp;cache=v2" /></p>
+<p>2.2、看到下面代码说明部署成功</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F226af9b9-1976-4212-ad3e-6aeab5fb6c9e%2FUntitled.webp?table=block&amp;id=6dc44bfb-0026-4064-9ddb-dd5121863dc8&amp;t=6dc44bfb-0026-4064-9ddb-dd5121863dc8&amp;width=1914&amp;cache=v2" /></p>
+<h4 id="3vless_1"><a href="#398af6a8fd0a483ca4f0daa6ba67e760" title="3、生成Vless订阅连接"></a>3、生成Vless订阅连接<a class="headerlink" href="#3vless_1" title="Permanent link">&para;</a></h4>
+<p>3.1、在域名后添加UserID回车，得到以套Tls的vless订阅连接</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F8b2d8fae-74c5-4f27-a0ae-6bbd17c0a858%2FUntitled.webp?table=block&amp;id=4ba8c042-ca62-4312-a4fb-a3475b10c1c2&amp;t=4ba8c042-ca62-4312-a4fb-a3475b10c1c2&amp;width=1686&amp;cache=v2" /></p>
+<h3 id="v2rayn"><a href="#d054b753d06d4404959c9afb7a4f0865" title="v2rayN客户端设置"></a>v2rayN客户端设置<a class="headerlink" href="#v2rayn" title="Permanent link">&para;</a></h3>
+<h4 id="1tlsvless"><a href="#4bab6cbad83e4f8ab9fef70a53d4cb03" title="1、添加未套Tls的vless连接"></a>1、添加未套Tls的vless连接<a class="headerlink" href="#1tlsvless" title="Permanent link">&para;</a></h4>
+<p>1.1、复制未加密vless订阅连接，粘贴到v2rayN客户端</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F59de94ff-aa30-443f-909c-58a0295a9b27%2FUntitled.webp?table=block&amp;id=5f91ef69-b62c-42ed-bf45-cf519c99b8f3&amp;t=5f91ef69-b62c-42ed-bf45-cf519c99b8f3&amp;width=1876&amp;cache=v2" /></p>
+<p>1.2、打开v3rayN客户端，从剪贴板导入批量URL或者直接按Ctrl+V</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F991fbdcb-11e7-4d75-bed3-9da4564b6cd2%2FUntitled.webp?table=block&amp;id=c66e2d74-fb9c-4e2c-a503-c15a4c3cb570&amp;t=c66e2d74-fb9c-4e2c-a503-c15a4c3cb570&amp;width=840&amp;cache=v2" /></p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F545b9af0-cd34-4c10-949f-0b064bddfb1f%2FUntitled.webp?table=block&amp;id=45f6e54e-d757-45ef-9018-cfa99cb6b2fd&amp;t=45f6e54e-d757-45ef-9018-cfa99cb6b2fd&amp;width=1218&amp;cache=v2" /></p>
+<p>1.3、双击连接打开配置页面,因为是为加密的vless订阅，不能使用443端口，将443端口改为80,传输层安全（Tls）：设置为空</p>
+<p>总共有7个端口可选，可以任选其中一个： [80, 8080, 8880, 2052, 2086, 2095, 2082]</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F368a5508-f56a-40e6-8faf-cccf9e93c5eb%2FUntitled.webp?table=block&amp;id=ffb17f3f-bd26-48cb-822b-af69dbd1969c&amp;t=ffb17f3f-bd26-48cb-822b-af69dbd1969c&amp;width=1233&amp;cache=v2" /></p>
+<h4 id="2tlsvless"><a href="#3869043cc7f8465bac71931e2a5d4eb3" title="2、添加已套Tls的vless连接"></a>2、添加已套Tls的vless连接<a class="headerlink" href="#2tlsvless" title="Permanent link">&para;</a></h4>
+<p>2.1、复制生成的Vless订阅连接</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F8b2d8fae-74c5-4f27-a0ae-6bbd17c0a858%2FUntitled.webp?table=block&amp;id=98b81228-ed74-4bcb-a596-a58d4260a3a3&amp;t=98b81228-ed74-4bcb-a596-a58d4260a3a3&amp;width=1686&amp;cache=v2" /></p>
+<p>2.2、粘贴到v2rayN中</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2F86e7dc5a-4ef1-4a7f-b580-8bb749058504%2FUntitled.webp?table=block&amp;id=fd4e8aaa-38ed-45e2-854f-073e06da2669&amp;t=fd4e8aaa-38ed-45e2-854f-073e06da2669&amp;width=1282&amp;cache=v2" /></p>
+<p>Vless添加后不用修改设置，如果出现不能访问的情况，可将地址修改为优选ip或优选域名</p>
+<p>Tls端口总共有6个端口可选，可以任选其中一个： [443, 8443, 2053, 2096, 2087, 2083]</p>
+<p><img alt="notion image" src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fee629410-c1e7-477c-acf8-9cf2619b7702%2Fda1b6b38-08f6-44de-b963-bc2c9f1e3c5a%2FUntitled.webp?table=block&amp;id=bdd08b80-161b-4135-ba3d-8ad0c52084f4&amp;t=bdd08b80-161b-4135-ba3d-8ad0c52084f4&amp;width=1796&amp;cache=v2" /></p>
+<h2 id="cloudflareip">CloudFlare在线优选IP网站:<a class="headerlink" href="#cloudflareip" title="Permanent link">&para;</a></h2>
+<p>本地IP优选网址: <a href="http://ip.flares.cloud/">http://ip.flares.cloud/</a><br />
+在线IP优选网址： <a href="https://stock.hostmonit.com/CloudFlareYes">https://stock.hostmonit.com/CloudFlareYes</a><br />
+在线IP优选网址： <a href="https://monitor.gacjie.cn/page/cloudflare/ipv4.html">https://monitor.gacjie.cn/page/cloudflare/ipv4.html</a><br />
+在线IP优选网址： <a href="https://monitor.gacjie.cn/page/cloudflare/cname.html">https://monitor.gacjie.cn/page/cloudflare/cname.html</a><br />
+在线IP优选网址： <a href="https://api.uouin.com/cloudflare.html">https://api.uouin.com/cloudflare.html</a>  </p>
+<h2 id="cloudflare">cloudflare 优选域名<a class="headerlink" href="#cloudflare" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>*.cloudflare.182682.xyz
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>115155.xyz
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>cdn.2020111.xyz
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>cf.0sm.com
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cf.090227.xyz
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>f3058171cad.002404.xyz
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>cf.zhetengsha.eu.org
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>8.889288.xyz
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>cf.zerone-cdn.pp.ua
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>cf.cdn.bingbook.cn
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>achk.cloudflarest.link
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>cfip.1323123.xyz
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>cf.877771.xyz
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>cnamefuckxxs.yuchen.icu
+</code></pre></div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

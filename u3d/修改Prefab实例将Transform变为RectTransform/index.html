@@ -1,0 +1,731 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="codingriver personal tech blog - Unity / Shader / CSharp / Math">
+      
+      
+        <meta name="author" content="codingriver">
+      
+      
+        <link rel="canonical" href="https://blog.wgqing.com/u3d/%E4%BF%AE%E6%94%B9Prefab%E5%AE%9E%E4%BE%8B%E5%B0%86Transform%E5%8F%98%E4%B8%BARectTransform/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Unity 修改Prefab实例将Transform变为RectTransform - codingriver</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#prefabmodeltransformrecttransform" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="codingriver" class="md-header__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            codingriver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Unity 修改Prefab实例将Transform变为RectTransform
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="codingriver" class="md-nav__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    codingriver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prefabmodeltransformrecttransform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        将Prefab应用的Model对象的Transform修改为RectTransform
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefabgameobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefab和GameObject的正向和逆向查找引用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unity20184prefab-variantprefab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unity2018.4的Prefab Variant(Prefab变种)功能
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">Unity</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">Unity编辑器</span>
+      
+    
+  </nav>
+
+
+  
+    <a href="https://github.com/codingriver/codingriver.github.io/edit/master/docs/u3d/修改Prefab实例将Transform变为RectTransform.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+  <h1>Unity 修改Prefab实例将Transform变为RectTransform</h1>
+
+<!--more-->
+
+<blockquote>
+<p>引用：<a href="https://stackoverflow.com/questions/55525960/is-there-a-way-to-destroy-replace-a-gameobject-that-is-inside-or-part-of-a-prefa">Is there a way to destroy/replace a GameObject that is inside or part of a Prefab instance?</a>
+<em>Changing Transform on a Prefab instance (jiantou) is not allowed.</em>
+这里用到的需求是做ui特效时将3Dmesh 渲染到ui层，用的ugui，ugui依赖于RectTransform，所以就有这个问题</p>
+</blockquote>
+<h2 id="prefabmodeltransformrecttransform">将Prefab应用的Model对象的Transform修改为RectTransform<a class="headerlink" href="#prefabmodeltransformrecttransform" title="Permanent link">&para;</a></h2>
+<p>默认Model对象导入Transform组件，但是在ui中有些组件需要RectTransform组件，所以就需要强制将Transform变为RectTransform，这里通过调整Hierarchy面板内的prefab实例并且应用到prefab中，来完成修改，当然还有一个简单方法就是直接修改prefab</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">        </span><span class="c1">/// 把Prefab中的Transform替换为RectTransform</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="c1">/// 有个不足的地方是prefab的继承关系会丢失（Variant关系丢失）</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="c1">/// 如果一个prefab中引用另一个prefab，这种关系也会丢失</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="c1">/// &lt;typeparam name=&quot;T&quot;&gt;RectTransform&lt;/typeparam&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;obj&quot;&gt;&lt;/param&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="k">private</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="n">AddComponentFromPrefab</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GameObject</span><span class="w"> </span><span class="n">obj</span><span class="p">)</span><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="p">:</span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Component</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="n">PrefabAssetType</span><span class="w"> </span><span class="n">prefabType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrefabUtility</span><span class="p">.</span><span class="n">GetPrefabAssetType</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">            </span><span class="c1">//Debug.Log($&quot;AddComponentFromPrefab,name:{obj.name},PrefabAssetType:{prefabType}&quot;);</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">            </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">prefabType</span><span class="p">)</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="n">PrefabAssetType</span><span class="p">.</span><span class="n">Regular</span><span class="p">:</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="n">PrefabAssetType</span><span class="p">.</span><span class="n">Variant</span><span class="p">:</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">                    </span><span class="c1">//获取prefab实例的根节点</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">                    </span><span class="n">GameObject</span><span class="w"> </span><span class="n">prefabRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrefabUtility</span><span class="p">.</span><span class="n">GetOutermostPrefabInstanceRoot</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">                    </span><span class="c1">//获取prefab资源，在project中的</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">                    </span><span class="n">GameObject</span><span class="w"> </span><span class="n">prefabAsset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrefabUtility</span><span class="p">.</span><span class="n">GetCorrespondingObjectFromSource</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">                    </span><span class="c1">//Object prefabAsset = PrefabUtility.GetCorrespondingObjectFromOriginalSource(obj);</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">                    </span><span class="c1">//获取资源的路径名字</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">                    </span><span class="kt">string</span><span class="w"> </span><span class="n">assetPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AssetDatabase</span><span class="p">.</span><span class="n">GetAssetPath</span><span class="p">(</span><span class="n">prefabAsset</span><span class="p">);</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">                    </span><span class="c1">//Debug.Log(assetPath);</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">                    </span><span class="c1">//断开Model的联系，如果是Model是禁止修改RectTransform的</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">                    </span><span class="n">PrefabUtility</span><span class="p">.</span><span class="n">UnpackPrefabInstance</span><span class="p">(</span><span class="n">prefabRoot</span><span class="p">,</span><span class="w"> </span><span class="n">PrefabUnpackMode</span><span class="p">.</span><span class="n">Completely</span><span class="p">,</span><span class="w"> </span><span class="n">InteractionMode</span><span class="p">.</span><span class="n">AutomatedAction</span><span class="p">);</span><span class="w"> </span><span class="c1">//有个不足的地方是prefab的继承关系会丢失,这里是完全断开连接，非完全的方式没有测试</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">                    </span><span class="n">PrefabUtility</span><span class="p">.</span><span class="n">SaveAsPrefabAssetAndConnect</span><span class="p">(</span><span class="n">prefabRoot</span><span class="p">,</span><span class="w"> </span><span class="n">assetPath</span><span class="p">,</span><span class="w"> </span><span class="n">InteractionMode</span><span class="p">.</span><span class="n">AutomatedAction</span><span class="p">);</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">                    </span><span class="c1">//修改prefab的RectTransform，如果修改实例的RectTransfom是失败的（Model虽然断开连接，但是还是禁止直接修改prefab实例的RectTransfom）</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">                    </span><span class="n">GameObject</span><span class="w"> </span><span class="n">pobj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrefabUtility</span><span class="p">.</span><span class="n">LoadPrefabContents</span><span class="p">(</span><span class="n">assetPath</span><span class="p">);</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">                    </span><span class="kt">var</span><span class="w"> </span><span class="n">ts</span><span class="o">=</span><span class="n">pobj</span><span class="p">.</span><span class="n">GetComponentsInChildren</span><span class="o">&lt;</span><span class="n">Transform</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">                    </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">ts</span><span class="p">)</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">                        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">t</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">RectTransform</span><span class="p">))</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">                            </span><span class="n">t</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">AddComponent</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">                    </span><span class="n">PrefabUtility</span><span class="p">.</span><span class="n">SaveAsPrefabAsset</span><span class="p">(</span><span class="n">pobj</span><span class="p">,</span><span class="w"> </span><span class="n">assetPath</span><span class="p">);</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">                    </span><span class="n">PrefabUtility</span><span class="p">.</span><span class="n">UnloadPrefabContents</span><span class="p">(</span><span class="n">pobj</span><span class="p">);</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">                </span><span class="k">case</span><span class="w"> </span><span class="n">PrefabAssetType</span><span class="p">.</span><span class="n">Model</span><span class="p">:</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">                    </span><span class="n">PrefabUtility</span><span class="p">.</span><span class="n">UnpackPrefabInstanceAndReturnNewOutermostRoots</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">PrefabUnpackMode</span><span class="p">.</span><span class="n">Completely</span><span class="p">);</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">transform</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">T</span><span class="p">))</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">                        </span><span class="n">obj</span><span class="p">.</span><span class="n">AddComponent</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">                </span><span class="k">default</span><span class="p">:</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+<p>测试
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">AddComponentFromPrefab</span><span class="o">&lt;</span><span class="n">RectTransform</span><span class="o">&gt;</span><span class="p">(</span><span class="n">gameObject</span><span class="p">);</span>
+</code></pre></div>
+将测试代码写到Start方法中，且脚本设置<code>[ExecuteInEditMode]</code>标签，挂载prefab跟节点，
+测试结果：</p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200729203806952.png" />  </p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200729204241328.png" />  </p>
+<p>结果：</p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200729203912335.png" />  </p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200729204139969.png" />  </p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200729204118121.png" />  </p>
+<p><strong>执行代码后Model引用变为prefab内的普通物体，切换修改成功RectTransform，并且prefab也已经修改成功</strong></p>
+<h2 id="prefabgameobject">Prefab和GameObject的正向和逆向查找引用<a class="headerlink" href="#prefabgameobject" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>转自 <a href="http://www.xuanyusong.com/archives/2576">Unity研究院之Prefab和GameObject的正向和逆向查找引用</a>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="na">[MenuItem(&quot;Assets/Check Prefab Use ?&quot;)]</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">OnSearchForReferences</span><span class="p">()</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="c1">//确保鼠标右键选择的是一个Prefab</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">Selection</span><span class="p">.</span><span class="n">gameObjects</span><span class="p">.</span><span class="n">Length</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">            </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="c1">//遍历所有游戏场景</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="k">foreach</span><span class="p">(</span><span class="n">EditorBuildSettingsScene</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">EditorBuildSettings</span><span class="p">.</span><span class="n">scenes</span><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">scene</span><span class="p">.</span><span class="n">enabled</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">              </span><span class="c1">//打开场景</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">                </span><span class="n">EditorApplication</span><span class="p">.</span><span class="n">OpenScene</span><span class="p">(</span><span class="n">scene</span><span class="p">.</span><span class="n">path</span><span class="p">);</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">                </span><span class="c1">//获取场景中的所有游戏对象</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">                </span><span class="n">GameObject</span><span class="w"> </span><span class="p">[]</span><span class="n">gos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">GameObject</span><span class="p">[])</span><span class="n">FindObjectsOfType</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">GameObject</span><span class="p">));</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">                </span><span class="k">foreach</span><span class="p">(</span><span class="n">GameObject</span><span class="w"> </span><span class="n">go</span><span class="w">  </span><span class="k">in</span><span class="w"> </span><span class="n">gos</span><span class="p">)</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">                  </span><span class="c1">//判断GameObject是否为一个Prefab的引用</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="n">PrefabUtility</span><span class="p">.</span><span class="n">GetPrefabType</span><span class="p">(</span><span class="n">go</span><span class="p">)</span><span class="w">  </span><span class="o">==</span><span class="w"> </span><span class="n">PrefabType</span><span class="p">.</span><span class="n">PrefabInstance</span><span class="p">)</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">                    </span><span class="p">{</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">                        </span><span class="n">UnityEngine</span><span class="p">.</span><span class="n">Object</span><span class="w"> </span><span class="n">parentObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EditorUtility</span><span class="p">.</span><span class="n">GetPrefabParent</span><span class="p">(</span><span class="n">go</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">                        </span><span class="kt">string</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AssetDatabase</span><span class="p">.</span><span class="n">GetAssetPath</span><span class="p">(</span><span class="n">parentObject</span><span class="p">);</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">                        </span><span class="c1">//判断GameObject的Prefab是否和右键选择的Prefab是同一路径。</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">                        </span><span class="k">if</span><span class="p">(</span><span class="n">path</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">AssetDatabase</span><span class="p">.</span><span class="n">GetAssetPath</span><span class="p">(</span><span class="n">Selection</span><span class="p">.</span><span class="n">activeGameObject</span><span class="p">))</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">                        </span><span class="p">{</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">                            </span><span class="c1">//输出场景名，以及Prefab引用的路径</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">                            </span><span class="n">Debug</span><span class="p">.</span><span class="n">Log</span><span class="p">(</span><span class="n">scene</span><span class="p">.</span><span class="n">path</span><span class="w">  </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">GetGameObjectPath</span><span class="p">(</span><span class="n">go</span><span class="p">));</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">                        </span><span class="p">}</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nf">GetGameObjectPath</span><span class="p">(</span><span class="n">GameObject</span><span class="w"> </span><span class="n">obj</span><span class="p">)</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">        </span><span class="kt">string</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">            </span><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">transform</span><span class="p">.</span><span class="n">parent</span><span class="p">.</span><span class="n">gameObject</span><span class="p">;</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">            </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">path</span><span class="p">;</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">path</span><span class="p">;</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="w">    </span><span class="p">}</span>
+</code></pre></div></p>
+</blockquote>
+<h2 id="unity20184prefab-variantprefab">Unity2018.4的Prefab Variant(Prefab变种)功能<a class="headerlink" href="#unity20184prefab-variantprefab" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>转自<a href="http://blog.coolcoding.cn/?p=205">[Unity]Unity2018.4的Prefab Variant(Prefab变种)功能</a></p>
+<p>Unity 2018.4中送了一个新的功能: Prefab Variant</p>
+</blockquote>
+<p>思路是, Prefab Variant 继承于一个父Prefab, 父Prefab属性修改后:</p>
+<ul>
+<li>
+<p>(1)如果子Prefab的某些属性不动, 则父Prefab的属性影响子Prefab的属性, 此为 [属性继承]</p>
+</li>
+<li>
+<p>(2)如果对子Prefab的某些属性进行修改/覆盖, 则父Prefab的属性无法影响, 此为 [属性定制]</p>
+</li>
+</ul>
+<p>创建Prefab Variant的方法为: 把Prefab从Hierarchy再次拉到Project中,选择 Prefab Variant</p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200729205632565.png" />  </p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200729210005580.png" />  </p>
+<p>用处举例:</p>
+<p>比如做一个UGUI窗体模板, 上面有标题文字和关闭按钮</p>
+<p>邮件窗体继承于此窗体模板,制作成为一个PrefabVariant, 但是标题文字定制修改为”邮件”</p>
+<p>这时,可以通过修改窗体模板中的关闭按钮,对所有派生的窗体按钮进行修改</p>
+<p>附:以下为官方对PrefabAssetType的解释:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>    public enum PrefabAssetType
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    {
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>        //
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        // 摘要:
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        //     The object being queried is not part of a Prefab at all.
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        NotAPrefab = 0, // 不是Prefab
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        //
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        // 摘要:
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        //     The object being queried is part of a regular Prefab.
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        Regular = 1, // 常规的Prefab
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        //
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        // 摘要:
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        //     The object being queried is part of a Model Prefab.
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        Model = 2, // 模型(例如:FBX)
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        //
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>        // 摘要:
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>        // The object being queried is part of a Prefab Variant.
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>        // A Variant Prefab is a Prefab that is derived from another Prefab, 
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>        // that be could be a Regular, Model or even Variant Prefab.
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>        Variant = 3, // Prefab变种
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>        //
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>        // 摘要:
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>        //     The object being queried is part of a Prefab instance, but because the asset
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>        //     it missing the actual type of Prefab can’t be determined.
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        MissingAsset = 4 // Prefab实例化出来的对象,但是Prefab被删了(红色)
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>    }
+</code></pre></div></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

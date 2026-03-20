@@ -1,0 +1,876 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="codingriver personal tech blog - Unity / Shader / CSharp / Math">
+      
+      
+        <meta name="author" content="codingriver">
+      
+      
+        <link rel="canonical" href="https://blog.wgqing.com/ANote/SSH%E7%AC%94%E8%AE%B0/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>SSH笔记 - codingriver</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ssh-keygen" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="codingriver" class="md-header__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            codingriver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SSH笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="codingriver" class="md-nav__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    codingriver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-keygen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ssh-keygen 基本用法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验证ssh
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置ssh密钥登录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ssh登录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ecdsa-key-fingerprint-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关于ECDSA key fingerprint is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh-permission-denied-publickey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ssh 出现Permission denied (publickey)问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH用私钥登录远程服务器时提示私钥不安全
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ssh认证代理连接失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#githubsshtortoisegitssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        github使用ssh及小乌龟tortoisegit配置ssh的正确姿势
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">git</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">ssh</span>
+      
+    
+      
+      
+      
+      
+        <span class="md-tag">笔记</span>
+      
+    
+  </nav>
+
+
+  
+    <a href="https://github.com/codingriver/codingriver.github.io/edit/master/docs/ANote/SSH笔记.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+  <h1>SSH笔记</h1>
+
+<!--more-->
+
+<h2 id="ssh-keygen">ssh-keygen 基本用法<a class="headerlink" href="#ssh-keygen" title="Permanent link">&para;</a></h2>
+<p>ssh-keygen命令用于为“ssh”生成、管理和转换认证密钥，它支持RSA和DSA两种认证密钥.</p>
+<p>ssh-keygen(选项)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">-</span><span class="n">b</span><span class="err">：</span><span class="n">指定密钥长度</span><span class="err">；</span><span class="w"> </span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">-</span><span class="n">e</span><span class="err">：</span><span class="n">读取openssh的私钥或者公钥文件</span><span class="err">；</span><span class="w"> </span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">-</span><span class="n">C</span><span class="err">：</span><span class="n">添加注释</span><span class="err">；</span><span class="w"> </span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="o">-</span><span class="n">f</span><span class="err">：</span><span class="n">指定用来保存密钥的文件名</span><span class="err">；</span><span class="w"> </span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="o">-</span><span class="n">i</span><span class="err">：</span><span class="n">读取未加密的ssh</span><span class="o">-</span><span class="n">v2兼容的私钥</span><span class="o">/</span><span class="n">公钥文件</span><span class="err">，</span><span class="n">然后在标准输出设备上显示openssh兼容的私钥</span><span class="o">/</span><span class="n">公钥</span><span class="err">；</span><span class="w"> </span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="o">-</span><span class="n">l</span><span class="err">：</span><span class="n">显示公钥文件的指纹数据</span><span class="err">；</span><span class="w"> </span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="o">-</span><span class="n">N</span><span class="err">：</span><span class="n">提供一个新密语</span><span class="err">；</span><span class="w"> </span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="o">-</span><span class="n">P</span><span class="err">：</span><span class="n">提供</span><span class="err">（</span><span class="n">旧</span><span class="err">）</span><span class="n">密语</span><span class="err">；</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="o">-</span><span class="n">q</span><span class="err">：</span><span class="n">静默模式</span><span class="err">；</span><span class="w"> </span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="o">-</span><span class="n">t</span><span class="err">：</span><span class="n">指定要创建的密钥类型</span><span class="err">。</span>
+</code></pre></div>
+<blockquote>
+<p>特别注意 <code>-C</code> 参数：
+<code>-C</code>：添加注释 <br />
+<strong>如果在github中配置ssh 则这个参数的值必须是github的邮件名称</strong>，不能是其他的</p>
+</blockquote>
+<p>案例：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-f<span class="w"> </span>id_rsa_github<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;codingriver@163.com&quot;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># -t 指定要创建的密钥类型</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># -f 指定创建的密钥文件名字</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># -C 注释 注意如果是github配置ssh，这里必须是github的邮箱名称</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;codingriver@163.com&quot;</span>
+</code></pre></div></p>
+<h2 id="ssh">验证ssh<a class="headerlink" href="#ssh" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 验证github ssh配置是否成功</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ssh<span class="w"> </span>-vT<span class="w"> </span>git@github.com
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># or</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 验证github ssh配置是否成功</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>ssh<span class="w"> </span>-vT<span class="w"> </span>git@github.com
+</code></pre></div>
+<h2 id="ssh_1">配置ssh密钥登录<a class="headerlink" href="#ssh_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>在本地电脑上生成密钥
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ssh-keygen -t rsa
+</code></pre></div>
+   生成密钥和公钥，将公钥复制到远程服务器的.ssh目录下</li>
+<li>远程ssh配置
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">cd</span><span class="w"> </span><span class="o">~/</span><span class="p">.</span><span class="n">ssh</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">ls</span><span class="w">                 </span><span class="c1">//ls你可以看到这个文件</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">touch</span><span class="w"> </span><span class="n">authorized_keys</span><span class="w">  </span><span class="c1">//生成认证文件，其实已经有了</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">cat</span><span class="w"> </span><span class="n">id_rsa</span><span class="p">.</span><span class="n">pub</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">authorized_keys</span><span class="w"> </span><span class="c1">// 将上面生成公钥复制到.ssh后然后复制到authorized_keys文件</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">chmod</span><span class="w"> </span><span class="mi">600</span><span class="w"> </span><span class="n">authorized_keys</span><span class="w">    </span><span class="c1">//设置文件权限</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">chmod</span><span class="w"> </span><span class="mi">700</span><span class="w"> </span><span class="o">-</span><span class="n">R</span><span class="w"> </span><span class="p">.</span><span class="n">ssh</span><span class="w">              </span><span class="c1">//是指文件夹权限</span>
+</code></pre></div></li>
+<li>远程sshd_config文件配置
+   文件位置： <code>/etc/ssh/sshd_config</code>,需要使用管理员权限打开
+   几步处理：
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">//使用密钥登录</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">RSAAuthentication</span><span class="w"> </span><span class="n">yes</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">PubkeyAuthentication</span><span class="w"> </span><span class="n">yes</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">//禁止空密码和Root密码登录：</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">PermitEmptyPasswords</span><span class="w"> </span><span class="n">no</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="n">PasswordAuthentication</span><span class="w"> </span><span class="n">no</span>
+</code></pre></div></li>
+<li>ssh登录测试
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>ssh<span class="w"> </span>-i<span class="w"> </span>.ssh/remote_rsa<span class="w"> </span>root@101.43.160.247
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>//<span class="w"> </span>-<span class="w"> </span>i<span class="w"> </span>指定密钥的文件路径
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>//<span class="w"> </span>root<span class="w"> </span>登录的用户名
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>//<span class="w"> </span>最后是ip
+</code></pre></div><blockquote>
+<p>参考 <a href="https://blog.csdn.net/ouzuosong/article/details/52225087">https://blog.csdn.net/ouzuosong/article/details/52225087</a><br />
+安装ssh <a href="https://www.cnblogs.com/wangboyu/articles/11611925.html">https://www.cnblogs.com/wangboyu/articles/11611925.html</a></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="ssh_2">ssh登录<a class="headerlink" href="#ssh_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>第一种 在命令行中指定私钥文件
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># -i 指定私钥地址（私钥和公钥的文件名是一样的，只不过公钥文件有一个 .pub 后缀名。换句话说，如果把本地公钥给删了，只剩下私钥是无法登录的，因为在登录时要将公钥id发送给服务端，这样服务端才知道要选择哪个公钥加密）</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>$<span class="w"> </span>ssh<span class="w"> </span>-p<span class="w"> </span><span class="m">22</span><span class="w"> </span>root@192.168.56.102<span class="w"> </span>-i<span class="w"> </span>~/.ssh/id_rsa_server
+</code></pre></div></li>
+<li>
+<p>第二种 使用 ssh-agent 代理
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 先添加私钥</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>$<span class="w"> </span>ssh-add<span class="w"> </span>~/.ssh/id_rsa_server
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># 查看添加的私钥</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>$<span class="w"> </span>ssh-add<span class="w"> </span>-l
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># 使用 ssh-agent 代理，ssh-agent 会在 ssh-add 列表中寻找到合适的私钥</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>$<span class="w"> </span>ssh<span class="w"> </span>root@192.168.56.102
+</code></pre></div></p>
+</li>
+<li>
+<p>第三种 在 SSH 配置中指定私钥文件
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>vim<span class="w"> </span>~/.ssh/config
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>Host<span class="w"> </span>gateway<span class="w"> </span><span class="c1"># 主机别名，使用 ssh gateway 命令可以直接登录该主机</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Protocol<span class="w"> </span><span class="m">2</span><span class="w">  </span><span class="c1"># SSH 协议版本</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>HostName<span class="w"> </span>example.com<span class="w"> </span><span class="c1"># 主机地址，支持IP或域名</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>Port<span class="w"> </span><span class="m">22</span><span class="w">  </span><span class="c1"># SSH 服务端口号</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>User<span class="w"> </span>ubuntu<span class="w"> </span><span class="c1"># 登录用户名，会被 ssh root@gateway 覆盖，除非使用 ssh gateway</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>IdentityFile<span class="w"> </span>~/.ssh/id_rsa<span class="w"> </span><span class="c1"># 使用的私钥文件</span>
+</code></pre></div>
+例子：<code>~/.ssh/config</code>
+权限： 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 为.ssh目录设置权限</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>chmod<span class="w"> </span><span class="m">600</span><span class="w"> </span>~/.ssh/config
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Host server
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>  HostName 101.43.160.247
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>  IdentityFile ~/.ssh/remote_rsa
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>  User root
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>  Port 22
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>  ServerAliveInterval 60
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>  ServerAliveCountMax 14400
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>Host remote
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>  HostName wgqing.com
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>  IdentityFile ~/.ssh/remote_rsa
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>  User root
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>  Port 22
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>  ServerAliveInterval 60
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>  ServerAliveCountMax 14400  
+</code></pre></div></p>
+</li>
+</ul>
+<blockquote>
+<p>参考： <br />
+<a href="https://zhuanlan.zhihu.com/p/257430478">https://zhuanlan.zhihu.com/p/257430478</a>  <br />
+<a href="https://blog.csdn.net/baalhuo/article/details/78067621">https://blog.csdn.net/baalhuo/article/details/78067621</a></p>
+</blockquote>
+<h2 id="_1">问题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h4 id="ecdsa-key-fingerprint-is">关于ECDSA key fingerprint is<a class="headerlink" href="#ecdsa-key-fingerprint-is" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mrwang@CodingdeMBP .ssh % ssh -T git@github.com
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>The authenticity of host &#39;github.com (20.205.243.166)&#39; can&#39;t be established.
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>Warning: Permanently added &#39;github.com,20.205.243.166&#39; (ECDSA) to the list of known hosts.
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>git@github.com: Permission denied (publickey).
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>mrwang@CodingdeMBP .ssh % ssh-add ~/.ssh/github
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>Identity added: /Users/mrwang/.ssh/github (my mac for github codingriver@163.com)
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>mrwang@CodingdeMBP .ssh % ssh -T git@github.com
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>Hi codingriver! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div>
+新建ssh，将公钥添加至github后，使用<code>ssh -T git@github.com</code>验证报ECDSA key fingerprint is xxx 错误。
+是因为<strong>新建SSH后没有开启代理</strong></p>
+<p><strong>为SSH key 启用SSH代理</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>$ ssh-add ~/.ssh/id_rsa
+</code></pre></div></p>
+<h4 id="ssh-permission-denied-publickey">ssh 出现Permission denied (publickey)问题<a class="headerlink" href="#ssh-permission-denied-publickey" title="Permanent link">&para;</a></h4>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>% git push
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>git@github.com: Permission denied (publickey).
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>fatal: Could not read from remote repository.
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>Please make sure you have the correct access rights
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>and the repository exists.
+</code></pre></div>
+修改配置文件 <code>/etc/ssh/ssh_config</code> (windows系统 <code>C:\Program Files\Git\etc\ssh\ssh_config</code>)，添加如下一行
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>   IdentityFile ~/.ssh/github_rsa  # github_rsa是密钥文件的名字
+</code></pre></div>
+就可以了</p>
+<blockquote>
+<p>这里可能是因为我修改密钥文件名字造成的，通配符匹配不到</p>
+</blockquote>
+<p><img alt="" src="../images/2021-12-21-17-31-54.png" /></p>
+<h4 id="ssh_3">SSH用私钥登录远程服务器时提示私钥不安全<a class="headerlink" href="#ssh_3" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>使用 <code>chmod 600 id_ed25519</code>就好了，私钥文件权限问题</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>@<span class="w">         </span>WARNING:<span class="w"> </span>UNPROTECTED<span class="w"> </span>PRIVATE<span class="w"> </span>KEY<span class="w"> </span>FILE!<span class="w">          </span>@
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>Permissions<span class="w"> </span><span class="m">0644</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">&#39;/Users/mrwang/.ssh/***&#39;</span><span class="w"> </span>are<span class="w"> </span>too<span class="w"> </span>open.
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>It<span class="w"> </span>is<span class="w"> </span>required<span class="w"> </span>that<span class="w"> </span>your<span class="w"> </span>private<span class="w"> </span>key<span class="w"> </span>files<span class="w"> </span>are<span class="w"> </span>NOT<span class="w"> </span>accessible<span class="w"> </span>by<span class="w"> </span>others.
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>This<span class="w"> </span>private<span class="w"> </span>key<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>ignored.
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>Load<span class="w"> </span>key<span class="w"> </span><span class="s2">&quot;/Users/mrwang/.ssh/***&quot;</span>:<span class="w"> </span>bad<span class="w"> </span>permissions
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>git@codeup.aliyun.com:<span class="w"> </span>Permission<span class="w"> </span>denied<span class="w"> </span><span class="o">(</span>publickey<span class="o">)</span>.
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>fatal:<span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span><span class="nb">read</span><span class="w"> </span>from<span class="w"> </span>remote<span class="w"> </span>repository.
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>Please<span class="w"> </span>make<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>have<span class="w"> </span>the<span class="w"> </span>correct<span class="w"> </span>access<span class="w"> </span>rights
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>and<span class="w"> </span>the<span class="w"> </span>repository<span class="w"> </span>exists.
+</code></pre></div>
+<h4 id="ssh_4">ssh认证代理连接失败<a class="headerlink" href="#ssh_4" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>需要执行下<code>ssh-agent bash</code>启动代理</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$ ssh -vT git@github.com
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>OpenSSH_9.1p1, OpenSSL 1.1.1s  1 Nov 2022
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>debug1: Reading configuration data /etc/ssh/ssh_config
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>debug1: Connecting to github.com [::1] port 22.
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>debug1: Connection established.
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>debug1: identity file /c/Users/coding/.ssh/id_rsa type -1
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>debug1: identity file /c/Users/coding/.ssh/id_rsa-cert type -1
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>debug1: identity file /c/Users/coding/.ssh/id_ecdsa type -1
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>debug1: identity file /c/Users/coding/.ssh/id_ecdsa-cert type -1
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>debug1: identity file /c/Users/coding/.ssh/id_ecdsa_sk type -1
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>debug1: identity file /c/Users/coding/.ssh/id_ecdsa_sk-cert type -1
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>debug1: identity file /c/Users/coding/.ssh/id_ed25519 type -1
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>debug1: identity file /c/Users/coding/.ssh/id_ed25519-cert type -1
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>debug1: identity file /c/Users/coding/.ssh/id_ed25519_sk type -1
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>debug1: identity file /c/Users/coding/.ssh/id_ed25519_sk-cert type -1
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>debug1: identity file /c/Users/coding/.ssh/id_xmss type -1
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>debug1: identity file /c/Users/coding/.ssh/id_xmss-cert type -1
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>debug1: identity file /c/Users/coding/.ssh/id_dsa type -1
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>debug1: identity file /c/Users/coding/.ssh/id_dsa-cert type -1
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>debug1: Local version string SSH-2.0-OpenSSH_9.1
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>kex_exchange_identification: Connection closed by remote host
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>Connection closed by ::1 port 22
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>$ ssh-add id_rsa_github
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>Could not open a connection to your authentication agent.
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>
+<a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>
+<a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>$ ssh-add -l
+<a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>Could not open a connection to your authentication agent.
+</code></pre></div>
+<p>私钥的权限</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>-rw-r--r--@<span class="w">  </span><span class="m">1</span><span class="w"> </span>mrwang<span class="w">  </span>staff<span class="w">   </span><span class="m">432</span><span class="w">  </span><span class="m">3</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">13</span>:18<span class="w"> </span>id_ed25519
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>-rw-r--r--@<span class="w">  </span><span class="m">1</span><span class="w"> </span>mrwang<span class="w">  </span>staff<span class="w">   </span><span class="m">113</span><span class="w">  </span><span class="m">3</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">13</span>:18<span class="w"> </span>id_ed25519.pub
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>-rw-------<span class="w">   </span><span class="m">1</span><span class="w"> </span>mrwang<span class="w">  </span>staff<span class="w">  </span><span class="m">2602</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">22</span>:37<span class="w"> </span>id_rsa
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>-rw-r--r--@<span class="w">  </span><span class="m">1</span><span class="w"> </span>mrwang<span class="w">  </span>staff<span class="w">   </span><span class="m">573</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">22</span>:37<span class="w"> </span>id_rsa.pub
+</code></pre></div>
+使用 <code>chmod 600 id_ed25519</code>就好了，私钥文件权限问题
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>-rw-r--r--@<span class="w"> </span><span class="m">1</span><span class="w"> </span>mrwang<span class="w">  </span>staff<span class="w">   </span><span class="m">627</span><span class="w">  </span><span class="m">2</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">18</span>:52<span class="w"> </span>config
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>-rw-------@<span class="w"> </span><span class="m">1</span><span class="w"> </span>mrwang<span class="w">  </span>staff<span class="w">   </span><span class="m">432</span><span class="w">  </span><span class="m">3</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">13</span>:18<span class="w"> </span>id_ed25519
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>-rw-r--r--@<span class="w"> </span><span class="m">1</span><span class="w"> </span>mrwang<span class="w">  </span>staff<span class="w">   </span><span class="m">113</span><span class="w">  </span><span class="m">3</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">13</span>:18<span class="w"> </span>id_ed25519.pub
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>-rw-------<span class="w">  </span><span class="m">1</span><span class="w"> </span>mrwang<span class="w">  </span>staff<span class="w">  </span><span class="m">2602</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">22</span>:37<span class="w"> </span>id_rsa
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>-rw-r--r--@<span class="w"> </span><span class="m">1</span><span class="w"> </span>mrwang<span class="w">  </span>staff<span class="w">   </span><span class="m">573</span><span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">19</span><span class="w"> </span><span class="m">22</span>:37<span class="w"> </span>id_rsa.pub
+</code></pre></div></p>
+<blockquote>
+<p>参考：<a href="https://my.oschina.net/philosopher/blog/314134">https://my.oschina.net/philosopher/blog/314134</a></p>
+</blockquote>
+<h4 id="githubsshtortoisegitssh">github使用ssh及小乌龟tortoisegit配置ssh的正确姿势<a class="headerlink" href="#githubsshtortoisegitssh" title="Permanent link">&para;</a></h4>
+<p>如果你也在使用小乌龟客户端，你可能会遇到使用SSH协议的仓库不能成功push的问题，这时你需要确保tortoisegit设置的SSH客户端是Git提供的才对。</p>
+<p><img alt="" src="../images/2024-03-12-20-52-37.png" /></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

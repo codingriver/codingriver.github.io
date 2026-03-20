@@ -1,0 +1,1375 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="codingriver personal tech blog - Unity / Shader / CSharp / Math">
+      
+      
+        <meta name="author" content="codingriver">
+      
+      
+        <link rel="canonical" href="https://blog.wgqing.com/datastruct/AVL%E6%A0%91%E8%AF%A6%E8%A7%A3/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>【数据结构】 AVL树详解（可视化工具） - codingriver</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#0x01" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="codingriver" class="md-header__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            codingriver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              【数据结构】 AVL树详解（可视化工具）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="codingriver" class="md-nav__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    codingriver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0x01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0X01 节点和树的定义
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0X01 节点和树的定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 节点的定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 树的定义
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 树的定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.树的高度
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0X02 单旋和双旋
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0X02 单旋和双旋">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-zag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 zag单旋（左旋）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-zig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 zig单旋（右旋）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-zagzig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 zagzig双旋
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-zigzag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 zigzag双旋
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0X03 查找
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0X04 插入
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0X05 删除
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x07-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0X07 打印二叉树代码（C#）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x07-c_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0X07 完整代码（C#）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x08-avl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0X08 AVL树测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0x09-avl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0X09 AVL树可视化工具
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">数据结构</span>
+      
+    
+  </nav>
+
+
+  
+    <a href="https://github.com/codingriver/codingriver.github.io/edit/master/docs/datastruct/AVL树详解.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+  <h1>【数据结构】 AVL树详解（可视化工具）</h1>
+
+<blockquote>
+<p>转自：<a href="https://www.cnblogs.com/skywang12345/p/3576969.html">AVL树(一)之 图文解析 和 C语言的实现</a>（本文图片及文字描述部分转自该文）
+参考：<a href="https://dsa.cs.tsinghua.edu.cn/~deng/ds/dsacpp/index.htm">邓俊辉 的数据结构</a>，部分图片来自该资料</p>
+<p>代码是C#写的</p>
+<p>AVL树是根据它的发明者G.M. Adelson-Velsky和E.M. Landis命名的。
+它是最先发明的自平衡二叉查找树，也被称为高度平衡树。相比于"二叉查找树"，它的特点是：AVL树中任何节点的两个子树的高度最大差别为1。(树的高度：树中结点的最大层次)</p>
+</blockquote>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200727160557787.png" />  </p>
+<p>上面的两张图片，左边的是AVL树，它的任何节点的两个子树的高度差别都&lt;=1；而右边的不是AVL树，因为7的两颗子树的高度相差为2(以2为根节点的树的高度是3，而节点8的高度是1)。</p>
+<p><strong>AVL树的查找、插入和删除在平均和最坏情况下都是O(logn)。</strong>
+如果在AVL树中插入或删除节点后，使得高度之差大于1。此时，AVL树的平衡状态就被破坏，它就不再是一棵二叉树；为了让它重新维持在一个平衡状态，就需要对其进行旋转处理。学AVL树，重点的地方也就是它的旋转算法</p>
+<p>首先要明确的是，== 平衡二叉树是一棵二叉排序树，它的出现是为了解决普通二叉排序树（普通二叉排序树）不平衡的问题。如图，在插入结点之前首先要查找插入位置，假如要在5结点后插入，普通二叉排序树需要比较五次，而平衡二叉树只需要比较三次。假如结点规模进一步加大，效率提升也会更明显。
+<em>(图片来自<code>https://blog.csdn.net/m0_38036210/article/details/100517125</code>)</em></p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200801201633833.png" />  </p>
+<h2 id="0x01">0X01 节点和树的定义<a class="headerlink" href="#0x01" title="Permanent link">&para;</a></h2>
+<h4 id="1">1. 节点的定义<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Node</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Key</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">Parent</span><span class="p">;</span><span class="c1">//parent</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">L</span><span class="p">;</span><span class="w"> </span><span class="c1">//left</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">R</span><span class="p">;</span><span class="w"> </span><span class="c1">//right</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">H</span><span class="p">;</span><span class="w"> </span><span class="c1">//height;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="nf">Node</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">parent</span><span class="o">=</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">left</span><span class="o">=</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">right</span><span class="o">=</span><span class="k">null</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">h</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">            </span><span class="n">Key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">key</span><span class="p">;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">            </span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="p">;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">            </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">            </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">            </span><span class="n">H</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="p">;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h4 id="2">2. 树的定义<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span><span class="k">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">AVLTree</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="c1">//树的根节点</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">Root</span><span class="p">;</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h5 id="3">3.树的高度<a class="headerlink" href="#3" title="Permanent link">&para;</a></h5>
+<p><strong>空的二叉树的高度是0，非空树只有一个节点根节点高度为1等等</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">        </span><span class="c1">/// 树的高度</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="c1">/// 树的高度为最大层次。即空的二叉树的高度是0，非空树的高度等于它的最大层次(根的层次为1，根的子节点为第2层，依次类推)，这里空树的高度取0，有的教材资料是-1</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;a&quot;&gt;&lt;/param&gt;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="c1">/// &lt;returns&gt;&lt;/returns&gt;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">Height</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">H</span><span class="p">;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">MaxHeight</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">H</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">H</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">H</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">H</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">H</span><span class="p">);</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">UpdateHeight</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">            </span><span class="n">a</span><span class="p">.</span><span class="n">H</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MaxHeight</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">R</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">H</span><span class="p">;</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">        </span><span class="p">}</span><span class="w">      </span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">        </span><span class="c1">/// 是否平衡</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;tree&quot;&gt;&lt;/param&gt;</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">        </span><span class="c1">/// &lt;returns&gt;&lt;/returns&gt;</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">IsBalanced</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">)</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">Height</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">L</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Height</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">R</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">Height</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">L</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Height</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">R</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">        </span><span class="p">}</span><span class="w">   </span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">        </span><span class="c1">/// 在左、右孩子中取更高者</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;tree&quot;&gt;&lt;/param&gt;</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="w">        </span><span class="c1">/// &lt;returns&gt;&lt;/returns&gt;</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">TallerChild</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">)</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tree</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Height</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">L</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">Height</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">R</span><span class="p">))</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">tree</span><span class="p">.</span><span class="n">L</span><span class="p">;</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">tree</span><span class="p">.</span><span class="n">R</span><span class="p">;</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="w">        </span><span class="p">}</span><span class="w">             </span>
+</code></pre></div></p>
+<h2 id="0x02">0X02 单旋和双旋<a class="headerlink" href="#0x02" title="Permanent link">&para;</a></h2>
+<p>前面说过，如果在AVL树中进行插入或删除节点后，可能导致AVL树失去平衡。</p>
+<h3 id="21-zag">2.1 zag单旋（左旋）<a class="headerlink" href="#21-zag" title="Permanent link">&para;</a></h3>
+<p>如果说节点g失去平衡，g的右孩子p高度比左孩子高，且右孩子p的右孩子v高度比右孩子p的左孩子高度高，那么进行逆时针旋转进行调整高度</p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200801193845436.png" />  </p>
+<p>假设在子树v中插入某个节点x（虚线连接部分，其中一个节点对应x，另一个为空节点），这时候v节点是平衡的，p节点也是平衡，但是g节点不平衡，g的右孩子高度减去g的做孩子高度等于2，需要对g节点进行调整，这时候以g为轴进行逆时针旋转（左旋），调整后从a子树变为b子树；从而达到子树的平衡， 而且高度未变化，所以该子树平衡后，父节点及除子树的其他树的部分都是平衡的。</p>
+<p>旋转代码
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">         </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">        </span><span class="c1">/// zag 左旋转，逆时针旋转,单旋       </span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="c1">///   （逆时针旋转g）  </span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="c1">///         g          </span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="c1">///        / \         </span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="c1">///       T0  p        </span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="c1">///          / \       </span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="c1">///         T1  v      </span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="c1">///            / \     </span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="c1">///           T2  T3   </span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="c1">/// </span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">        </span><span class="c1">///     zag单旋后：    </span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="c1">///         p(b)         </span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="c1">///       /     \      </span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">        </span><span class="c1">///      g(a)    v(c)     </span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">        </span><span class="c1">///     / \     / \    </span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">        </span><span class="c1">///    T0  T1  T2  T3  </span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">        </span><span class="c1">/// </span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;tree&quot;&gt;非空孙辈节点&lt;/param&gt;</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">        </span><span class="c1">/// &lt;returns&gt;该树新的的根节点&lt;/returns&gt;</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">Zag</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">)</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">Parent</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">Parent</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">Parent</span><span class="p">;</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">;</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">T0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">T1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">T2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">T3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">;</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">            </span><span class="n">a</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T0</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T0</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T0</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">            </span><span class="n">a</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T1</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T1</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">            </span><span class="n">c</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T2</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T2</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">            </span><span class="n">c</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T3</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T3</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">            </span><span class="n">b</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">            </span><span class="n">b</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">            </span><span class="n">Connect</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">//根节点和父节点联接</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="c1">//该树新的的根节点</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">        </span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="22-zig">2.2 zig单旋（右旋）<a class="headerlink" href="#22-zig" title="Permanent link">&para;</a></h3>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200801195232158.png" />  </p>
+<p>假设在子树v中插入某个节点x（虚线连接部分，其中一个节点对应x，另一个为空节点），这时候v节点是平衡的，p节点也是平衡，但是g节点不平衡，g的右孩子高度减去g的做孩子高度等于-2，需要对g节点进行调整，这时候以g为轴进行顺时针旋转（右旋），调整后从a子树变为b子树；从而达到子树的平衡， 而且高度未变化，所以该子树平衡后，父节点及除子树的其他树的部分都是平衡的。</p>
+<p>旋转代码
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">        </span><span class="c1">/// Zig右旋，顺时针旋转,单旋</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="c1">///    （顺时针旋转g）</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="c1">///           g       </span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="c1">///          / \      </span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="c1">///         p   T3    </span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="c1">///        / \        </span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">        </span><span class="c1">///       v   T2      </span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">        </span><span class="c1">///      / \          </span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">        </span><span class="c1">///     T0  T1        </span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">        </span><span class="c1">/// </span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">        </span><span class="c1">///   zig单旋后：     </span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="c1">///         p(b)        </span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="c1">///       /     \     </span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="c1">///      v(a)    g(c)    </span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">        </span><span class="c1">///     / \     / \   </span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">        </span><span class="c1">///    T0  T1  T2  T3 </span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">        </span><span class="c1">/// </span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;tree&quot;&gt;非空孙辈节点&lt;/param&gt;</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">        </span><span class="c1">/// &lt;returns&gt;该树新的的根节点&lt;/returns&gt;</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">Zig</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">)</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">Parent</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">Parent</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">Parent</span><span class="p">;</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">T0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">T1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">T2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">T3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">R</span><span class="p">;</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">            </span><span class="n">a</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T0</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T0</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T0</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">            </span><span class="n">a</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T1</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T1</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">            </span><span class="n">c</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T2</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T2</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">            </span><span class="n">c</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T3</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T3</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">            </span><span class="n">b</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="w">            </span><span class="n">b</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="w">            </span><span class="n">Connect</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">//根节点和父节点联接</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="c1">//该树新的的根节点</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="w">        </span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="23-zagzig">2.3 zagzig双旋<a class="headerlink" href="#23-zagzig" title="Permanent link">&para;</a></h3>
+<p>（先逆时针旋转p(zag)，后顺时针旋转g(zig)）</p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200801195157375.png" />  </p>
+<p>旋转代码
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">        </span><span class="c1">/// ZagZig 双旋(先左旋p后右旋g)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="c1">///  </span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="c1">///  （先逆时针旋转p(zag)，后顺时针旋转g(zig)）</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="c1">///                      g                     </span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="c1">///                     / \                    </span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">        </span><span class="c1">///                    p   T3                  </span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="c1">///                   / \                      </span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="c1">///                  T0  v                     </span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">        </span><span class="c1">///                     / \                    </span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">        </span><span class="c1">///                    T1  T2                  </span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="c1">/// </span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span><span class="c1">///                zag-zig双旋后               </span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">        </span><span class="c1">///                     v(b)                    </span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="c1">///                   /     \                  </span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">        </span><span class="c1">///                  p(a)    g(c)                 </span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">        </span><span class="c1">///                 / \     / \                </span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">        </span><span class="c1">///                T0  T1  T2  T3              </span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">        </span><span class="c1">///                </span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;tree&quot;&gt;非空孙辈节点&lt;/param&gt;</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">        </span><span class="c1">/// &lt;returns&gt;该树新的的根节点&lt;/returns&gt;</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">ZagZig</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">)</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">Parent</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">Parent</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">Parent</span><span class="p">;</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">;</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">T0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">T1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">T2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">T3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">R</span><span class="p">;</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">            </span><span class="n">a</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T0</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T0</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T0</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="w">            </span><span class="n">a</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T1</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T1</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">            </span><span class="n">c</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T2</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T2</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="w">            </span><span class="n">c</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T3</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T3</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">            </span><span class="n">b</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">            </span><span class="n">b</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">            </span><span class="n">Connect</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">//根节点和父节点联接</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="c1">//该树新的的根节点</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="w">        </span><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="24-zigzag">2.4 zigzag双旋<a class="headerlink" href="#24-zigzag" title="Permanent link">&para;</a></h3>
+<p>先顺时针旋转p(zig)，后逆时针旋转g(zag)</p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200801195041528.png" />  </p>
+<p>旋转代码
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">        </span><span class="c1">/// ZigZag 双旋（先右旋p后左旋g）</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">        </span><span class="c1">///（先顺时针旋转p(zig)，后逆时针旋转g(zag)）</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">        </span><span class="c1">///                    g       </span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="c1">///                   / \      </span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="c1">///                 T0   p     </span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">        </span><span class="c1">///                     / \    </span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">        </span><span class="c1">///                    v   T3  </span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">        </span><span class="c1">///                   / \      </span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="c1">///                  T1  T2    </span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">        </span><span class="c1">///        </span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">        </span><span class="c1">///               zig-zag双旋后</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">        </span><span class="c1">///                   v(b)      </span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">        </span><span class="c1">///                 /     \    </span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">        </span><span class="c1">///                g(a)    p(c)   </span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">        </span><span class="c1">///               / \     / \  </span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="w">        </span><span class="c1">///              T0  T1  T2  T3</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="w">        </span><span class="c1">///                     </span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;tree&quot;&gt;非空孙辈节点&lt;/param&gt;</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">        </span><span class="c1">/// &lt;returns&gt;该树新的的根节点&lt;/returns&gt;</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">ZigZag</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">)</span>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">Parent</span><span class="p">,</span><span class="w"> </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">Parent</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">Parent</span><span class="p">;</span>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">T0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">T1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">T2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">T3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">R</span><span class="p">;</span>
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="w">            </span><span class="n">a</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T0</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T0</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T0</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="w">            </span><span class="n">a</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T1</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T1</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="w">            </span><span class="n">c</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T2</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T2</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="w">            </span><span class="n">c</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T3</span><span class="p">;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">T3</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="n">T3</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="w">            </span><span class="n">b</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="w">            </span><span class="n">b</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"> </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="w">            </span><span class="n">Connect</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span><span class="w"> </span><span class="c1">//根节点和父节点联接</span>
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="c1">//该树新的的根节点</span>
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="w">        </span><span class="p">}</span>
+</code></pre></div></p>
+<h2 id="0x03">0X03 查找<a class="headerlink" href="#0x03" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">        </span><span class="c1">/// 查找</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;tree&quot;&gt;&lt;/param&gt;</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;key&quot;&gt;&lt;/param&gt;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="c1">/// &lt;returns&gt;&lt;/returns&gt;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">Search</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nf">SearchIn</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">_</span><span class="p">);</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">        </span><span class="c1">/// 查找键值key的节点并且返回（key对应节点为命中节点）</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;tree&quot;&gt;子树&lt;/param&gt;</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;key&quot;&gt;查找键值&lt;/param&gt;</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;hot&quot;&gt;返回命中节点的父节点，如果不存在命中节点则返回预判命中节点的父节点；（当命中节点为tree时，hot为NULL）&lt;/param&gt;</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">        </span><span class="c1">/// &lt;returns&gt;命中节点&lt;/returns&gt;</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">SearchIn</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">hot</span><span class="p">)</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">            </span><span class="c1">// hot :如果没有命中节点，则hot命中后做多只有一个节点，且key是对应另外一个孩子空节点位置</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tree</span><span class="p">;</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tree</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="c1">//在子树根节点tree处命中</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">                </span><span class="n">hot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">tree</span><span class="p">;</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="p">)</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="w">                </span><span class="n">hot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="w">                </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">R</span><span class="p">;</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">key</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="c1">//返回命中节点，hot指向父节点，hot必然命中（在key不存在时,n==null）</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="0x04">0X04 插入<a class="headerlink" href="#0x04" title="Permanent link">&para;</a></h2>
+<p>插入节点的代码
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">Insert</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Insert:{key}&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">//打印日志</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Insert</span><span class="p">(</span><span class="n">Root</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">            </span><span class="n">PrintTree</span><span class="p">(</span><span class="n">Root</span><span class="p">);</span><span class="c1">//打印日志 打印树</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="nf">Insert</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">Root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateNode</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">hot</span><span class="p">;</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SearchIn</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">hot</span><span class="p">);</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">            </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">hot</span><span class="p">);</span><span class="w"> </span><span class="c1">//hot最多只有一个节点</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hot</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">Parent</span><span class="p">)</span><span class="w"> </span><span class="c1">// //从x之父出发向上，逐层检查各代祖先g</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">IsBalanced</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="c1">//一旦发现g失衡，则（采用“3 + 4”算法）使之复衡，并将子树</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">                    </span><span class="n">RotateAt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="c1">//g复衡后，局部子树高度必然复原；其祖先亦必如此，故调整随即结束</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">                </span><span class="k">else</span><span class="w">  </span><span class="c1">//否则（g依然平衡），只需简单地</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">                    </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="c1">//更新其高度（注意：即便g未失衡，高度亦可能增加）</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="c1">// 至多只需一次调整；若果真做过调整，则全树高度必然复原</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">//返回新节点位置</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">        </span><span class="p">}</span>
+</code></pre></div></p>
+<h2 id="0x05">0X05 删除<a class="headerlink" href="#0x05" title="Permanent link">&para;</a></h2>
+<p>删除节点的代码
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">        </span><span class="c1">/// 删除节点</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;key&quot;&gt;&lt;/param&gt;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="c1">/// &lt;returns&gt;&lt;/returns&gt;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="nf">Remove</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">$&quot;Remove:{key}&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">//打印日志</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Remove</span><span class="p">(</span><span class="n">Root</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">);</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">            </span><span class="n">PrintTree</span><span class="p">(</span><span class="n">Root</span><span class="p">);</span><span class="c1">//打印日志 打印树</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="nf">Remove</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="kt">int</span><span class="w"> </span><span class="n">key</span><span class="p">)</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">hot</span><span class="p">;</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SearchIn</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">hot</span><span class="p">);</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">            </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RemoveAt</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">hot</span><span class="p">);</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hot</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">Parent</span><span class="p">)</span><span class="w"> </span><span class="c1">// //从x之父出发向上，逐层检查各代祖先g</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">IsBalanced</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="c1">//一旦发现g失衡，则（采用“3 + 4”算法）使之复衡，并将子树</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">                    </span><span class="n">RotateAt</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="c1">//g复衡后，局部子树高度必然复原；其祖先亦必如此，故调整随即结束</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">                </span><span class="k">else</span><span class="w">  </span><span class="c1">//否则（g依然平衡），只需简单地</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">                    </span><span class="n">UpdateHeight</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="c1">//更新其高度（注意：即便g未失衡，高度亦可能增加）</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="c1">// 至多只需一次调整；若果真做过调整，则全树高度必然复原</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="w">        </span><span class="n">Node</span><span class="w"> </span><span class="nf">RemoveAt</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="k">out</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="n">hot</span><span class="p">)</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">                </span><span class="n">hot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">succ</span><span class="o">=</span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="w">            </span><span class="n">Node</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">Parent</span><span class="p">;</span>
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">HasLeft</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a><span class="w">                </span><span class="n">succ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">R</span><span class="p">;</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="nf">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">HasRight</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a><span class="w">                </span><span class="n">succ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">L</span><span class="p">;</span>
+<a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a><span class="w">            </span><span class="k">else</span>
+<a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a><span class="w">                </span><span class="n">succ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Successor</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+<a id="__codelineno-9-50" name="__codelineno-9-50" href="#__codelineno-9-50"></a><span class="w">                </span><span class="n">SwapData</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">succ</span><span class="p">);</span>
+<a id="__codelineno-9-51" name="__codelineno-9-51" href="#__codelineno-9-51"></a><span class="w">                </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">succ</span><span class="p">;</span>
+<a id="__codelineno-9-52" name="__codelineno-9-52" href="#__codelineno-9-52"></a><span class="w">                </span><span class="n">succ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">R</span><span class="p">;</span><span class="w"> </span><span class="c1">//succ = Successor(x) 这行执行前，succ是x的后继，而且succ是x右子树中的一个节点，所以succ是没有左孩子的，可能有右孩子，那么succ的后继只能是succ.Parent，继succ=x.Parent</span>
+<a id="__codelineno-9-53" name="__codelineno-9-53" href="#__codelineno-9-53"></a><span class="w">                </span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">Parent</span><span class="p">;</span><span class="w">                </span>
+<a id="__codelineno-9-54" name="__codelineno-9-54" href="#__codelineno-9-54"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-9-55" name="__codelineno-9-55" href="#__codelineno-9-55"></a>
+<a id="__codelineno-9-56" name="__codelineno-9-56" href="#__codelineno-9-56"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsLeft</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">Parent</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"> </span><span class="c1">//断开父节点的连接</span>
+<a id="__codelineno-9-57" name="__codelineno-9-57" href="#__codelineno-9-57"></a><span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="nf">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsRight</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">Parent</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"> </span><span class="c1">//断开父节点的连接            </span>
+<a id="__codelineno-9-58" name="__codelineno-9-58" href="#__codelineno-9-58"></a><span class="w">            </span><span class="n">Connect</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span><span class="w"> </span><span class="n">succ</span><span class="p">);</span>
+<a id="__codelineno-9-59" name="__codelineno-9-59" href="#__codelineno-9-59"></a><span class="w">            </span><span class="n">hot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="p">;</span>
+<a id="__codelineno-9-60" name="__codelineno-9-60" href="#__codelineno-9-60"></a><span class="w">            </span><span class="n">x</span><span class="p">.</span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">Parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="p">;</span><span class="w"> </span><span class="c1">//clean</span>
+<a id="__codelineno-9-61" name="__codelineno-9-61" href="#__codelineno-9-61"></a>
+<a id="__codelineno-9-62" name="__codelineno-9-62" href="#__codelineno-9-62"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+<a id="__codelineno-9-63" name="__codelineno-9-63" href="#__codelineno-9-63"></a><span class="w">        </span><span class="p">}</span>
+</code></pre></div></p>
+<h2 id="0x07-c">0X07 打印二叉树代码（C#）<a class="headerlink" href="#0x07-c" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Print</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">node</span><span class="p">)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">$&quot;{node.Key},&quot;</span><span class="p">);</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">        </span><span class="c1">/// 打印二叉树 打印数值最大3位数</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;tree&quot;&gt;树的根节点&lt;/param&gt;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">PrintTree</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">)</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">builder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">StringBuilder</span><span class="p">();</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">            </span><span class="n">PrintTree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span><span class="w"> </span><span class="n">builder</span><span class="p">);</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">            </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">PrintTree</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="n">tree</span><span class="p">,</span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">builder</span><span class="p">)</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">            </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;&gt;</span><span class="p">();</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">            </span><span class="n">Queue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Queue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">            </span><span class="n">Queue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">queue1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">            </span><span class="n">queue</span><span class="p">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">tree</span><span class="p">);</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">            </span><span class="k">while</span><span class="p">(</span><span class="n">queue</span><span class="p">.</span><span class="n">Count</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="w">                </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">                </span><span class="n">queue1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Queue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="p">();</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">nullCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">queue</span><span class="p">.</span><span class="n">Count</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="w">                    </span><span class="n">Node</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queue</span><span class="p">.</span><span class="n">Dequeue</span><span class="p">();</span>
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="w">                    </span><span class="n">Node</span><span class="w"> </span><span class="n">l</span><span class="o">=</span><span class="n">n</span><span class="o">!=</span><span class="k">null</span><span class="o">?</span><span class="n">n</span><span class="p">.</span><span class="n">L</span><span class="p">:</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">n</span><span class="p">.</span><span class="n">R</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a>
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="w">                    </span><span class="n">levels</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a><span class="w">                    </span><span class="n">queue1</span><span class="p">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">l</span><span class="p">);</span>
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="w">                    </span><span class="n">queue1</span><span class="p">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">r</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a><span class="w">                    </span><span class="n">nullCount</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a><span class="w">                    </span><span class="n">nullCount</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a><span class="w">                </span><span class="n">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queue1</span><span class="p">;</span>
+<a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a><span class="w">                </span><span class="n">list</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">levels</span><span class="p">);</span>
+<a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a><span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">queue</span><span class="p">.</span><span class="n">Count</span><span class="o">==</span><span class="n">nullCount</span><span class="p">)</span>
+<a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a><span class="w">                    </span><span class="k">break</span><span class="p">;</span>
+<a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a>
+<a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a>
+<a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span>
+<a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">maxLevelNodeCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetMaxNodeCountByDepth</span><span class="p">(</span><span class="n">level</span><span class="p">);</span>
+<a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">space</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a>
+<a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">level</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span>
+<a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">StringBuilder</span><span class="p">();</span>
+<a id="__codelineno-10-54" name="__codelineno-10-54" href="#__codelineno-10-54"></a><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">top</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">StringBuilder</span><span class="p">();</span>
+<a id="__codelineno-10-55" name="__codelineno-10-55" href="#__codelineno-10-55"></a><span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">space1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">space</span><span class="p">;</span>
+<a id="__codelineno-10-56" name="__codelineno-10-56" href="#__codelineno-10-56"></a><span class="w">                </span><span class="n">space</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">space</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-10-57" name="__codelineno-10-57" href="#__codelineno-10-57"></a><span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">space1</span><span class="p">;</span><span class="w"> </span><span class="n">s</span><span class="o">++</span><span class="p">)</span>
+<a id="__codelineno-10-58" name="__codelineno-10-58" href="#__codelineno-10-58"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-10-59" name="__codelineno-10-59" href="#__codelineno-10-59"></a><span class="w">                    </span><span class="n">sb</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&quot;   &quot;</span><span class="p">);</span>
+<a id="__codelineno-10-60" name="__codelineno-10-60" href="#__codelineno-10-60"></a><span class="w">                    </span><span class="n">top</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&quot;   &quot;</span><span class="p">);</span>
+<a id="__codelineno-10-61" name="__codelineno-10-61" href="#__codelineno-10-61"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-10-62" name="__codelineno-10-62" href="#__codelineno-10-62"></a><span class="w">                </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<a id="__codelineno-10-63" name="__codelineno-10-63" href="#__codelineno-10-63"></a><span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ls</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span><span class="w"> </span><span class="n">k</span><span class="o">++</span><span class="p">)</span>
+<a id="__codelineno-10-64" name="__codelineno-10-64" href="#__codelineno-10-64"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-10-65" name="__codelineno-10-65" href="#__codelineno-10-65"></a><span class="w">                    </span><span class="kt">string</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ls</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot; N &quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">ls</span><span class="p">[</span><span class="n">k</span><span class="p">].</span><span class="n">Key</span><span class="p">.</span><span class="n">ToString</span><span class="p">(</span><span class="s">&quot;D3&quot;</span><span class="p">);</span>
+<a id="__codelineno-10-66" name="__codelineno-10-66" href="#__codelineno-10-66"></a><span class="w">                    </span><span class="n">sb</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">$&quot;{v}&quot;</span><span class="p">);</span>
+<a id="__codelineno-10-67" name="__codelineno-10-67" href="#__codelineno-10-67"></a><span class="w">                    </span><span class="n">top</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&quot;/ \\&quot;</span><span class="p">);</span>
+<a id="__codelineno-10-68" name="__codelineno-10-68" href="#__codelineno-10-68"></a><span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">space</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<a id="__codelineno-10-69" name="__codelineno-10-69" href="#__codelineno-10-69"></a><span class="w">                    </span><span class="p">{</span>
+<a id="__codelineno-10-70" name="__codelineno-10-70" href="#__codelineno-10-70"></a><span class="w">                        </span><span class="n">sb</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">$&quot;   &quot;</span><span class="p">);</span>
+<a id="__codelineno-10-71" name="__codelineno-10-71" href="#__codelineno-10-71"></a><span class="w">                        </span><span class="n">top</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">$&quot;   &quot;</span><span class="p">);</span>
+<a id="__codelineno-10-72" name="__codelineno-10-72" href="#__codelineno-10-72"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-10-73" name="__codelineno-10-73" href="#__codelineno-10-73"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-10-74" name="__codelineno-10-74" href="#__codelineno-10-74"></a>
+<a id="__codelineno-10-75" name="__codelineno-10-75" href="#__codelineno-10-75"></a><span class="w">                </span><span class="n">top</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">);</span>
+<a id="__codelineno-10-76" name="__codelineno-10-76" href="#__codelineno-10-76"></a><span class="w">                </span><span class="n">sb</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">);</span>
+<a id="__codelineno-10-77" name="__codelineno-10-77" href="#__codelineno-10-77"></a>
+<a id="__codelineno-10-78" name="__codelineno-10-78" href="#__codelineno-10-78"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">!=</span><span class="n">level</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-10-79" name="__codelineno-10-79" href="#__codelineno-10-79"></a><span class="w">                    </span><span class="n">builder</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">top</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+<a id="__codelineno-10-80" name="__codelineno-10-80" href="#__codelineno-10-80"></a><span class="w">                </span><span class="n">builder</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">sb</span><span class="p">.</span><span class="n">ToString</span><span class="p">());</span>
+<a id="__codelineno-10-81" name="__codelineno-10-81" href="#__codelineno-10-81"></a>
+<a id="__codelineno-10-82" name="__codelineno-10-82" href="#__codelineno-10-82"></a>
+<a id="__codelineno-10-83" name="__codelineno-10-83" href="#__codelineno-10-83"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-10-84" name="__codelineno-10-84" href="#__codelineno-10-84"></a><span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+<p>打印结果：
+<em>打印数值最大3位数</em></p>
+<p><img alt="在这里插入图片描述" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/20200801200743711.png" />  </p>
+<h2 id="0x07-c_1">0X07 完整代码（C#）<a class="headerlink" href="#0x07-c_1" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/codingriver/DataStructure/blob/master/AVLTree.cs">完整代码(github)</a></p>
+<h2 id="0x08-avl">0X08 AVL树测试<a class="headerlink" href="#0x08-avl" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/codingriver/DataStructure/blob/master/AVLTree.cs">测试完整代码(github)</a>和完整代码一样
+<strong>测试插入和删除。测试中对zig、zag、zigzag、zagzig操作在插入时都执行了；删除操作执行了部分操作，剩余可以自己完善测试案例，</strong>
+ 测试代码
+ <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="w">       </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Main1</span><span class="p">()</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">       </span><span class="p">{</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">           </span><span class="n">AVLTree</span><span class="w"> </span><span class="n">tree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AVLTree</span><span class="p">();</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">           </span><span class="n">Node</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="n">n1</span><span class="p">,</span><span class="n">n2</span><span class="p">;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span><span class="w">  </span><span class="cm">/* 执行zig （插入节点后右旋20）*/</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">24</span><span class="p">);</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">26</span><span class="p">);</span><span class="w"> </span><span class="cm">/* 执行zag （插入节点后左旋20）*/</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span><span class="w"> </span><span class="cm">/* 执行zig-zag （插入节点后先右旋24后左旋10）*/</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span><span class="w"> </span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span><span class="w"> </span><span class="cm">/* 执行zag （插入节点后左旋12）*/</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">13</span><span class="p">);</span><span class="w"> </span><span class="cm">/* 执行zig-zag （插入节点后先右旋14后左旋10）*/</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">17</span><span class="p">);</span><span class="w"> </span><span class="cm">/* 执行zag-zig （插入节点后先左旋12后右旋20）*/</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Insert</span><span class="p">(</span><span class="mi">18</span><span class="p">);</span><span class="w">  </span><span class="cm">/* 执行zag （插入节点后左旋16）*/</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;   Preorder::&quot;</span><span class="p">);</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Preorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;    Inorder::&quot;</span><span class="p">);</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Inorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;  Postorder::&quot;</span><span class="p">);</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Postorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot; Levelorder::&quot;</span><span class="p">);</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Levelorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">();</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot; ZLevelorder:&quot;</span><span class="p">);</span>
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">ZLevelorder</span><span class="p">(</span><span class="n">tree</span><span class="p">.</span><span class="n">Root</span><span class="p">);</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;\n\n&quot;</span><span class="p">);</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a>
+<a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span>
+<a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span><span class="cm">/* 执行zig （删除节点后右旋13）*/</span>
+<a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span><span class="w"> </span><span class="cm">/* 执行zag （删除节点后左旋16）*/</span>
+<a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="mi">26</span><span class="p">);</span><span class="cm">/* 执行zag-zig （删除节点后先左旋16后右旋20）*/</span>
+<a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="mi">17</span><span class="p">);</span>
+<a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a><span class="w">           </span><span class="n">tree</span><span class="p">.</span><span class="n">Remove</span><span class="p">(</span><span class="mi">18</span><span class="p">);</span>
+<a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a>
+<a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="w">           </span><span class="n">Console</span><span class="p">.</span><span class="n">ReadKey</span><span class="p">();</span>
+<a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span class="w">       </span><span class="p">}</span>
+</code></pre></div>
+测试结果
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Insert:20
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>020
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>Insert:10
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>   020
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>   / \
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>010    N
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>Insert:7
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>   010
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>   / \
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>007   020
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>Insert:24
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>         010
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>         / \
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>   007         020
+<a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>   / \         / \
+<a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a> N     N     N    024
+<a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>
+<a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>Insert:26
+<a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>         010
+<a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>         / \
+<a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>   007         024
+<a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>   / \         / \
+<a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a> N     N    020   026
+<a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>
+<a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>Insert:12
+<a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>         020
+<a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>         / \
+<a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>   010         024
+<a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a>   / \         / \
+<a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>007   012    N    026
+<a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a>
+<a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a>Insert:14
+<a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a>                     020
+<a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a>                     / \
+<a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a>         010                     024
+<a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a>         / \                     / \
+<a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a>   007         012          N          026
+<a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a>   / \         / \         / \         / \
+<a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a> N     N     N    014    N     N     N     N
+<a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a>
+<a id="__codelineno-12-44" name="__codelineno-12-44" href="#__codelineno-12-44"></a>Insert:16
+<a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a>                     020
+<a id="__codelineno-12-46" name="__codelineno-12-46" href="#__codelineno-12-46"></a>                     / \
+<a id="__codelineno-12-47" name="__codelineno-12-47" href="#__codelineno-12-47"></a>         010                     024
+<a id="__codelineno-12-48" name="__codelineno-12-48" href="#__codelineno-12-48"></a>         / \                     / \
+<a id="__codelineno-12-49" name="__codelineno-12-49" href="#__codelineno-12-49"></a>   007         014          N          026
+<a id="__codelineno-12-50" name="__codelineno-12-50" href="#__codelineno-12-50"></a>   / \         / \         / \         / \
+<a id="__codelineno-12-51" name="__codelineno-12-51" href="#__codelineno-12-51"></a> N     N    012   016    N     N     N     N
+<a id="__codelineno-12-52" name="__codelineno-12-52" href="#__codelineno-12-52"></a>
+<a id="__codelineno-12-53" name="__codelineno-12-53" href="#__codelineno-12-53"></a>Insert:13
+<a id="__codelineno-12-54" name="__codelineno-12-54" href="#__codelineno-12-54"></a>                     020
+<a id="__codelineno-12-55" name="__codelineno-12-55" href="#__codelineno-12-55"></a>                     / \
+<a id="__codelineno-12-56" name="__codelineno-12-56" href="#__codelineno-12-56"></a>         012                     024
+<a id="__codelineno-12-57" name="__codelineno-12-57" href="#__codelineno-12-57"></a>         / \                     / \
+<a id="__codelineno-12-58" name="__codelineno-12-58" href="#__codelineno-12-58"></a>   010         014          N          026
+<a id="__codelineno-12-59" name="__codelineno-12-59" href="#__codelineno-12-59"></a>   / \         / \         / \         / \
+<a id="__codelineno-12-60" name="__codelineno-12-60" href="#__codelineno-12-60"></a>007    N    013   016    N     N     N     N
+<a id="__codelineno-12-61" name="__codelineno-12-61" href="#__codelineno-12-61"></a>
+<a id="__codelineno-12-62" name="__codelineno-12-62" href="#__codelineno-12-62"></a>Insert:17
+<a id="__codelineno-12-63" name="__codelineno-12-63" href="#__codelineno-12-63"></a>                     014
+<a id="__codelineno-12-64" name="__codelineno-12-64" href="#__codelineno-12-64"></a>                     / \
+<a id="__codelineno-12-65" name="__codelineno-12-65" href="#__codelineno-12-65"></a>         012                     020
+<a id="__codelineno-12-66" name="__codelineno-12-66" href="#__codelineno-12-66"></a>         / \                     / \
+<a id="__codelineno-12-67" name="__codelineno-12-67" href="#__codelineno-12-67"></a>   010         013         016         024
+<a id="__codelineno-12-68" name="__codelineno-12-68" href="#__codelineno-12-68"></a>   / \         / \         / \         / \
+<a id="__codelineno-12-69" name="__codelineno-12-69" href="#__codelineno-12-69"></a>007    N     N     N     N    017    N    026
+<a id="__codelineno-12-70" name="__codelineno-12-70" href="#__codelineno-12-70"></a>
+<a id="__codelineno-12-71" name="__codelineno-12-71" href="#__codelineno-12-71"></a>Insert:18
+<a id="__codelineno-12-72" name="__codelineno-12-72" href="#__codelineno-12-72"></a>                     014
+<a id="__codelineno-12-73" name="__codelineno-12-73" href="#__codelineno-12-73"></a>                     / \
+<a id="__codelineno-12-74" name="__codelineno-12-74" href="#__codelineno-12-74"></a>         012                     020
+<a id="__codelineno-12-75" name="__codelineno-12-75" href="#__codelineno-12-75"></a>         / \                     / \
+<a id="__codelineno-12-76" name="__codelineno-12-76" href="#__codelineno-12-76"></a>   010         013         017         024
+<a id="__codelineno-12-77" name="__codelineno-12-77" href="#__codelineno-12-77"></a>   / \         / \         / \         / \
+<a id="__codelineno-12-78" name="__codelineno-12-78" href="#__codelineno-12-78"></a>007    N     N     N    016   018    N    026
+<a id="__codelineno-12-79" name="__codelineno-12-79" href="#__codelineno-12-79"></a>
+<a id="__codelineno-12-80" name="__codelineno-12-80" href="#__codelineno-12-80"></a>   Preorder::14,12,10,7,13,20,17,16,18,24,26,
+<a id="__codelineno-12-81" name="__codelineno-12-81" href="#__codelineno-12-81"></a>    Inorder::7,10,12,13,14,16,17,18,20,24,26,
+<a id="__codelineno-12-82" name="__codelineno-12-82" href="#__codelineno-12-82"></a>  Postorder::7,10,13,12,16,18,17,26,24,20,14,
+<a id="__codelineno-12-83" name="__codelineno-12-83" href="#__codelineno-12-83"></a> Levelorder::14,12,20,10,13,17,24,7,16,18,26,
+<a id="__codelineno-12-84" name="__codelineno-12-84" href="#__codelineno-12-84"></a> ZLevelorder:14,20,12,10,13,17,24,26,18,16,7,
+<a id="__codelineno-12-85" name="__codelineno-12-85" href="#__codelineno-12-85"></a>
+<a id="__codelineno-12-86" name="__codelineno-12-86" href="#__codelineno-12-86"></a>
+<a id="__codelineno-12-87" name="__codelineno-12-87" href="#__codelineno-12-87"></a>Remove:14
+<a id="__codelineno-12-88" name="__codelineno-12-88" href="#__codelineno-12-88"></a>                     016
+<a id="__codelineno-12-89" name="__codelineno-12-89" href="#__codelineno-12-89"></a>                     / \
+<a id="__codelineno-12-90" name="__codelineno-12-90" href="#__codelineno-12-90"></a>         012                     020
+<a id="__codelineno-12-91" name="__codelineno-12-91" href="#__codelineno-12-91"></a>         / \                     / \
+<a id="__codelineno-12-92" name="__codelineno-12-92" href="#__codelineno-12-92"></a>   010         013         017         024
+<a id="__codelineno-12-93" name="__codelineno-12-93" href="#__codelineno-12-93"></a>   / \         / \         / \         / \
+<a id="__codelineno-12-94" name="__codelineno-12-94" href="#__codelineno-12-94"></a>007    N     N     N     N    018    N    026
+<a id="__codelineno-12-95" name="__codelineno-12-95" href="#__codelineno-12-95"></a>
+<a id="__codelineno-12-96" name="__codelineno-12-96" href="#__codelineno-12-96"></a>Remove:12
+<a id="__codelineno-12-97" name="__codelineno-12-97" href="#__codelineno-12-97"></a>                     016
+<a id="__codelineno-12-98" name="__codelineno-12-98" href="#__codelineno-12-98"></a>                     / \
+<a id="__codelineno-12-99" name="__codelineno-12-99" href="#__codelineno-12-99"></a>         010                     020
+<a id="__codelineno-12-100" name="__codelineno-12-100" href="#__codelineno-12-100"></a>         / \                     / \
+<a id="__codelineno-12-101" name="__codelineno-12-101" href="#__codelineno-12-101"></a>   007         013         017         024
+<a id="__codelineno-12-102" name="__codelineno-12-102" href="#__codelineno-12-102"></a>   / \         / \         / \         / \
+<a id="__codelineno-12-103" name="__codelineno-12-103" href="#__codelineno-12-103"></a> N     N     N     N     N    018    N    026
+<a id="__codelineno-12-104" name="__codelineno-12-104" href="#__codelineno-12-104"></a>
+<a id="__codelineno-12-105" name="__codelineno-12-105" href="#__codelineno-12-105"></a>Remove:10
+<a id="__codelineno-12-106" name="__codelineno-12-106" href="#__codelineno-12-106"></a>                     016
+<a id="__codelineno-12-107" name="__codelineno-12-107" href="#__codelineno-12-107"></a>                     / \
+<a id="__codelineno-12-108" name="__codelineno-12-108" href="#__codelineno-12-108"></a>         013                     020
+<a id="__codelineno-12-109" name="__codelineno-12-109" href="#__codelineno-12-109"></a>         / \                     / \
+<a id="__codelineno-12-110" name="__codelineno-12-110" href="#__codelineno-12-110"></a>   007          N          017         024
+<a id="__codelineno-12-111" name="__codelineno-12-111" href="#__codelineno-12-111"></a>   / \         / \         / \         / \
+<a id="__codelineno-12-112" name="__codelineno-12-112" href="#__codelineno-12-112"></a> N     N     N     N     N    018    N    026
+<a id="__codelineno-12-113" name="__codelineno-12-113" href="#__codelineno-12-113"></a>
+<a id="__codelineno-12-114" name="__codelineno-12-114" href="#__codelineno-12-114"></a>Remove:7
+<a id="__codelineno-12-115" name="__codelineno-12-115" href="#__codelineno-12-115"></a>                     020
+<a id="__codelineno-12-116" name="__codelineno-12-116" href="#__codelineno-12-116"></a>                     / \
+<a id="__codelineno-12-117" name="__codelineno-12-117" href="#__codelineno-12-117"></a>         016                     024
+<a id="__codelineno-12-118" name="__codelineno-12-118" href="#__codelineno-12-118"></a>         / \                     / \
+<a id="__codelineno-12-119" name="__codelineno-12-119" href="#__codelineno-12-119"></a>   013         017          N          026
+<a id="__codelineno-12-120" name="__codelineno-12-120" href="#__codelineno-12-120"></a>   / \         / \         / \         / \
+<a id="__codelineno-12-121" name="__codelineno-12-121" href="#__codelineno-12-121"></a> N     N     N    018    N     N     N     N
+<a id="__codelineno-12-122" name="__codelineno-12-122" href="#__codelineno-12-122"></a>
+<a id="__codelineno-12-123" name="__codelineno-12-123" href="#__codelineno-12-123"></a>Remove:26
+<a id="__codelineno-12-124" name="__codelineno-12-124" href="#__codelineno-12-124"></a>         017
+<a id="__codelineno-12-125" name="__codelineno-12-125" href="#__codelineno-12-125"></a>         / \
+<a id="__codelineno-12-126" name="__codelineno-12-126" href="#__codelineno-12-126"></a>   016         020
+<a id="__codelineno-12-127" name="__codelineno-12-127" href="#__codelineno-12-127"></a>   / \         / \
+<a id="__codelineno-12-128" name="__codelineno-12-128" href="#__codelineno-12-128"></a>013    N    018   024
+<a id="__codelineno-12-129" name="__codelineno-12-129" href="#__codelineno-12-129"></a>
+<a id="__codelineno-12-130" name="__codelineno-12-130" href="#__codelineno-12-130"></a>Remove:17
+<a id="__codelineno-12-131" name="__codelineno-12-131" href="#__codelineno-12-131"></a>         018
+<a id="__codelineno-12-132" name="__codelineno-12-132" href="#__codelineno-12-132"></a>         / \
+<a id="__codelineno-12-133" name="__codelineno-12-133" href="#__codelineno-12-133"></a>   016         020
+<a id="__codelineno-12-134" name="__codelineno-12-134" href="#__codelineno-12-134"></a>   / \         / \
+<a id="__codelineno-12-135" name="__codelineno-12-135" href="#__codelineno-12-135"></a>013    N     N    024
+</code></pre></div></p>
+<h2 id="0x09-avl">0X09 AVL树可视化工具<a class="headerlink" href="#0x09-avl" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.cs.usfca.edu/~galles/visualization/AVLtree.html">AVL树可视化工具</a>（旧金山大学 (usfca)|数据结构可视化工具）</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

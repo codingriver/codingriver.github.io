@@ -1,0 +1,1188 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="codingriver personal tech blog - Unity / Shader / CSharp / Math">
+      
+      
+        <meta name="author" content="codingriver">
+      
+      
+        <link rel="canonical" href="https://blog.wgqing.com/ANote/Git%E7%AC%94%E8%AE%B0/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Git笔记 - codingriver</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#git-lfs" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="codingriver" class="md-header__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            codingriver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="codingriver" class="md-nav__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    codingriver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#git-lfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git LFS的使用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git LFS的使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-git-lfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迁移已有的 git 仓库使用 git lfs 管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git clone命令
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-clone-depth1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git clone --depth=1后只有一个分支的解决办法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="git clone --depth=1后只有一个分支的解决办法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        checkout 一个新的分支
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        获取全部分支
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git更新远程分支列表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git 强制推送
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-pull" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Pull
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git Pull">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-pull-origin-mastermm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git pull origin master:mm
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Push
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git Push">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#git-push-origin-mastermaster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git push origin master:master
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git Clean
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shellgit-remote" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shell判断git remote是否存在
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell-git-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shell 判断 git branch 分支是否存在
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shell-gitclean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        shell 判断 git本地工作文件夹是否干净(clean)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        git文件内容没变但status显示不同的解决方案
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-file-will-have-its-original-line-endings-in-your-working-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The file will have its original line endings in your working directory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git处理换行符问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">git</span>
+      
+    
+  </nav>
+
+
+  
+    <a href="https://github.com/codingriver/codingriver.github.io/edit/master/docs/ANote/Git笔记.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+  <h1>Git笔记</h1>
+
+<h2 id="git-lfs">Git LFS的使用<a class="headerlink" href="#git-lfs" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><a href="https://git-lfs.github.com/">https://git-lfs.github.com/</a><br />
+<a href="https://www.jianshu.com/p/493b81544f80">https://www.jianshu.com/p/493b81544f80</a><br />
+<a href="https://zzz.buzz/zh/2016/04/19/the-guide-to-git-lfs/">https://zzz.buzz/zh/2016/04/19/the-guide-to-git-lfs/</a>  </p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 查看安装的git lfs 环境信息</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>lfs<span class="w"> </span>env<span class="w"> </span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>git<span class="w"> </span>lfs<span class="w"> </span>env<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-2
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 查看当前使用 Git LFS 管理的匹配列表</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>git<span class="w"> </span>lfs<span class="w"> </span>track
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># 使用 Git LFS 管理指定的文件</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>git<span class="w"> </span>lfs<span class="w"> </span>track<span class="w"> </span><span class="s2">&quot;*.psd&quot;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># 不再使用 Git LFS 管理指定的文件</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>git<span class="w"> </span>lfs<span class="w"> </span>untrack<span class="w"> </span><span class="s2">&quot;*.psd&quot;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># 类似 `git status`，查看当前 Git LFS 对象的状态</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>git<span class="w"> </span>lfs<span class="w"> </span>status
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="c1"># 枚举目前所有被 Git LFS 管理的具体文件</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>git<span class="w"> </span>lfs<span class="w"> </span>ls-files
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="c1"># 检查当前所用 Git LFS 的版本</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>git<span class="w"> </span>lfs<span class="w"> </span>version
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="c1"># 针对使用了 LFS 的仓库进行了特别优化的 clone 命令，显著提升获取</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="c1"># LFS 对象的速度，接受和 `git clone` 一样的参数。 [1] [2]</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>git<span class="w"> </span>lfs<span class="w"> </span>clone<span class="w"> </span>https://github.com/user/repo.git
+</code></pre></div>
+<ol>
+<li><code>git lfs install</code>开启lfs功能</li>
+<li>
+<p><code>git lfs track "*.png"</code> 添加大文件追踪，所有的png文件</p>
+<ul>
+<li>指定文件后缀名 <code>git lfs track "*.filetype"</code></li>
+<li>指定某个目录下的所有文件 <code>git lfs track "directory/*"</code></li>
+<li>具体指定某个文件 <code>git lfs track "path/to/file"</code></li>
+</ul>
+</li>
+<li>
+<p><code>git lfs track</code> 查看所有的lfs文件追踪模式</p>
+</li>
+<li><code>git lfs ls-files</code> 可以显示当前跟踪的文件列表</li>
+</ol>
+<h3 id="git-git-lfs">迁移已有的 git 仓库使用 git lfs 管理<a class="headerlink" href="#git-git-lfs" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 重写 master 分支，将历史提交中的 *.zip 都用 git lfs 进行管理</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git<span class="w"> </span>lfs<span class="w"> </span>migrate<span class="w"> </span>import<span class="w"> </span>--include-ref<span class="o">=</span>master<span class="w"> </span>--include<span class="o">=</span><span class="s2">&quot;*.png&quot;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 重写所有分支及标签，将历史提交中的 *.rar,*.zip 都用 git lfs 进行管理</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>git<span class="w"> </span>lfs<span class="w"> </span>migrate<span class="w"> </span>import<span class="w"> </span>--everything<span class="w"> </span>--include<span class="o">=</span><span class="s2">&quot;*.bin,*.lib,*.so,*.dll,*.a,*.param,*.zip,*.gz,*.png,*.jpg,*.unitypackage,*.hdr,*.HDR&quot;</span><span class="w"> </span>
+</code></pre></div>
+<strong>注意：</strong> 重写历史后的提交需执行： <br />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>push<span class="w"> </span>--force<span class="w"> </span>--all
+</code></pre></div>
+<em>注意： 如有迁移至 git lfs 前的仓库的多份拷贝，其他拷贝可能需要执行 git reset --hard origin/master 来重置其本地的分支，注意执行 git reset --hard 命令将会丢失本地的改动。</em>  </p>
+<p>如果需要对本地仓库进行清理(非安全的)<br />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>reflog<span class="w"> </span>expire<span class="w"> </span>--expire-unreachable<span class="o">=</span>now<span class="w"> </span>--all
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git<span class="w"> </span>gc<span class="w"> </span>--prune<span class="o">=</span>now
+</code></pre></div></p>
+<h2 id="git-clone"><code>git clone</code>命令<a class="headerlink" href="#git-clone" title="Permanent link">&para;</a></h2>
+<p><code>git clone -b ${branch} --depth=1</code> 可以拉对应分支</p>
+<h2 id="git-clone-depth1"><code>git clone --depth=1</code>后只有一个分支的解决办法<a class="headerlink" href="#git-clone-depth1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><code>git clone --depth=1</code>克隆项目后，使用<code>git branch -r</code>查看远程仓库只显示一个分支，实际远程仓库有多个分支。</p>
+<p>这种方法克隆的项目只包含最近的一次commit的一个分支，体积很小，即可解决文章开头提到的项目过大导致Timeout的问题，但会产生另外一个问题，他只会把默认分支clone下来，其他远程分支并不在本地，也看不到其他远程分支。</p>
+</blockquote>
+<h3 id="checkout"><code>checkout</code> 一个新的分支<a class="headerlink" href="#checkout" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">$</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="o">--</span><span class="n">depth</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">https</span><span class="o">:</span><span class="c1">//github.com/dogescript/xxxxxxx.git</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">$</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">remote</span><span class="w"> </span><span class="n">set</span><span class="o">-</span><span class="n">branches</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="err">&#39;</span><span class="n">remote_branch_name</span><span class="err">&#39;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">$</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">fetch</span><span class="w"> </span><span class="o">--</span><span class="n">depth</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="n">remote_branch_name</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">$</span><span class="w"> </span><span class="n">git</span><span class="w"> </span><span class="n">checkout</span><span class="w"> </span><span class="n">remote_branch_name</span>
+</code></pre></div>
+<blockquote>
+<p>参考：<a href="https://blog.csdn.net/qq_29094161/article/details/120649473">https://blog.csdn.net/qq_29094161/article/details/120649473</a></p>
+</blockquote>
+<h3 id="_1">获取全部分支<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>修改.git/config文件中的<br />
+<code>fetch = +refs/heads/master:refs/remotes/origin/master</code><br />
+为
+<code>fetch = +refs/heads/*:refs/remotes/origin/*</code><br />
+然后执行</p>
+<p><code>git fetch --all</code></p>
+<blockquote>
+<p>参考<a href="https://blog.csdn.net/a924068818/article/details/115725982">https://blog.csdn.net/a924068818/article/details/115725982</a></p>
+</blockquote>
+<h2 id="git">Git更新远程分支列表<a class="headerlink" href="#git" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git remote update origin --prune
+</code></pre></div>
+<blockquote>
+<p>这个命令没有测试</p>
+</blockquote>
+<h2 id="git_1">Git 强制推送<a class="headerlink" href="#git_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>git push -f origin master
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git push --force origin master:master
+</code></pre></div>
+<h2 id="git-pull">Git Pull<a class="headerlink" href="#git-pull" title="Permanent link">&para;</a></h2>
+<h3 id="git-pull-origin-mastermm">git pull origin master:mm<a class="headerlink" href="#git-pull-origin-mastermm" title="Permanent link">&para;</a></h3>
+<p>在repository中找到名字为master的branch，使用它去更新local repository中找到名字为mm的branch，，如果local repository下不存在名字是mm的branch，那么新建一个。(如果mm不是当前激活的分支，git pull执行完也不是)</p>
+<h2 id="git-push">Git Push<a class="headerlink" href="#git-push" title="Permanent link">&para;</a></h2>
+<h3 id="git-push-origin-mastermaster">git push origin master:master<a class="headerlink" href="#git-push-origin-mastermaster" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git push origin master:master
+</code></pre></div>
+ 在local repository中找到名字为master的branch，使用它去更新remote repository下名字为master的branch，如果remote repository下不存在名字是master的branch，那么新建一个</p>
+<h2 id="git-clean">Git Clean<a class="headerlink" href="#git-clean" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>git clean命令用来从你的工作目录中删除所有没有tracked过的文件</p>
+<p><strong>git clean经常和<code>git reset --hard</code>一起结合使用</strong>. 记住reset只影响被track过的文件, 所以需要clean来删除没有track过的文件. 结合使用这两个命令能让你的工作目录完全回到一个指定的<commit>的状态</p>
+</blockquote>
+<ul>
+<li>
+<p><code>git clean -n</code>
+    是一次clean的演习, 告诉你哪些文件会被删除. 记住他不会真正的删除文件, 只是一个提醒</p>
+</li>
+<li>
+<p><code>git clean -f</code>
+    删除当前目录下所有没有track过的文件. 他不会删除.gitignore文件里面指定的文件夹和文件, 不管这些文件有没有被track过</p>
+</li>
+<li>
+<p><code>git clean -f &lt;path&gt;</code>
+    删除指定路径下的没有被track过的文件</p>
+</li>
+<li>
+<p><code>git clean -df</code>
+    删除当前目录下没有被track过的文件和文件夹</p>
+</li>
+<li>
+<p><code>git clean -xf</code>
+    删除当前目录下所有没有track过的文件. 不管他是否是.gitignore文件里面指定的文件夹和文件</p>
+</li>
+</ul>
+<p>下面的例子要删除所有工作目录下面的修改, 包括新添加的文件. 假设你已经提交了一些快照了, 而且做了一些新的开发
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>reset<span class="w"> </span>--hard
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>git<span class="w"> </span>clean<span class="w"> </span>-df
+</code></pre></div></p>
+<p>运行后, 工作目录和缓存区回到最近一次commit时候一摸一样的状态.<br />
+<code>git status</code>会告诉你这是一个干净的工作目录, 又是一个新的开始了！</p>
+<blockquote>
+<p><a href="https://www.jianshu.com/p/0b05ef199749">https://www.jianshu.com/p/0b05ef199749</a>
+ ## Git Config</p>
+</blockquote>
+<p>用git config命令查看配置文件：<br />
+- 查看仓库级的config，即<code>.git/.config</code>，命令：<code>git config –local -l</code><br />
+- 查看全局级的config，即<code>~\.gitconfig</code>，命令：<code>git config –global -l</code><br />
+- 查看系统级的config，即<code>C:\Program Files\Git\etc\gitconfig</code>，命令：<code>git config –system -l</code><br />
+<em>查看当前生效的配置，命令：<code>git config -l</code>，这个时候会显示最终三个配置文件计算后的配置信息</em></p>
+<p>查看当前生效的配置，命令：git config -l，这个时候会显示最终三个配置文件计算后的配置信息，如下图：</p>
+<p>git有几个配置文件呢？ 是的，聪明的你，稍微查查资料就知道咯，git里面一共有3个配置文件
+- 仓库级配置文件：<code>.git/config</code> (该文件位于当前仓库下)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">[</span>core<span class="o">]</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nv">repositoryformatversion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nv">filemode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nv">bare</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="nv">logallrefupdates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="nv">ignorecase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="nv">precomposeunicode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="o">[</span>remote<span class="w"> </span><span class="s2">&quot;origin&quot;</span><span class="o">]</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="nv">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>git@github.com:codingriver/codingriver.github.io.git
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="nv">fetch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>+refs/heads/*:refs/remotes/origin/*
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="o">[</span>branch<span class="w"> </span><span class="s2">&quot;master&quot;</span><span class="o">]</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="nv">remote</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>origin
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">    </span><span class="nv">merge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>refs/heads/master
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="o">[</span>lfs<span class="o">]</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="nv">repositoryformatversion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+<ul>
+<li>全局配置文件 <code>~/.gitconfig</code></li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>user<span class="o">]</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>codingriver
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nv">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>codingriver@163.com
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="o">[</span>filter<span class="w"> </span><span class="s2">&quot;lfs&quot;</span><span class="o">]</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nv">clean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>git-lfs<span class="w"> </span>clean<span class="w"> </span>--<span class="w"> </span>%f
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="nv">smudge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>git-lfs<span class="w"> </span>smudge<span class="w"> </span>--<span class="w"> </span>%f
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="nv">process</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>git-lfs<span class="w"> </span>filter-process
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="nv">required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+</code></pre></div>
+- 系统级配置文件 <code>C:\Program Files\Git\etc\gitconfig</code> (git安装目录)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>diff<span class="w"> </span><span class="s2">&quot;astextplain&quot;</span><span class="o">]</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="nv">textconv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>astextplain
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="o">[</span>filter<span class="w"> </span><span class="s2">&quot;lfs&quot;</span><span class="o">]</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="nv">clean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>git-lfs<span class="w"> </span>clean<span class="w"> </span>--<span class="w"> </span>%f
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="nv">smudge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>git-lfs<span class="w"> </span>smudge<span class="w"> </span>--<span class="w"> </span>%f
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="nv">process</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>git-lfs<span class="w"> </span>filter-process
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="nv">required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="o">[</span>http<span class="o">]</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">    </span><span class="nv">sslBackend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>openssl
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="nv">sslCAInfo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>C:/Program<span class="w"> </span>Files/Git/mingw64/ssl/certs/ca-bundle.crt
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="o">[</span>core<span class="o">]</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">    </span><span class="nv">autocrlf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">    </span><span class="nv">fscache</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">    </span><span class="nv">symlinks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="o">[</span>pull<span class="o">]</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">    </span><span class="nv">rebase</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="o">[</span>credential<span class="o">]</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">    </span><span class="nv">helper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>manager-core
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="o">[</span>credential<span class="w"> </span><span class="s2">&quot;https://dev.azure.com&quot;</span><span class="o">]</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">    </span><span class="nv">useHttpPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="o">[</span>init<span class="o">]</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">    </span><span class="nv">defaultBranch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>master
+</code></pre></div></p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span>“yourname”
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span>“email@email.com<span class="w"> </span>”
+</code></pre></div>
+ 案例:
+ <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;codingriver&quot;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;codingriver@163.com&quot;</span>
+</code></pre></div></p>
+<p>## Git 提交空文件夹</p>
+<p>git设计时是不支持空文件夹提交的，这里是在文件夹里面新建.gitignore文件或者.gitkeep空文件来处理的</p>
+<blockquote>
+<p>unity也支持忽略以.开头的文件的</p>
+</blockquote>
+<p><strong>新建.gitignore文件</strong>
+在空文件夹下新建.gitignore文件，文件内容：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="cp">## Ignore everything in this directory</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">*</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="cp">## Except this file</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="o">!</span><span class="p">.</span><span class="n">gitignore</span>
+</code></pre></div>
+这样就能提交git仓库了
+<em>我这是在windows上操作的，不能直接创建以.开头的文件，参考这篇文章<a href="https://blog.csdn.net/codingriver/article/details/83414019">Windows创建.开头的文件或者.开头的文件夹</a></em></p>
+<p><strong>新建.gitkeep文件</strong>
+在空文件夹下新建.gitkeep文件，是空文件，这样就能提交git仓库了</p>
+<h2 id="shellgit-remote">shell判断git remote是否存在<a class="headerlink" href="#shellgit-remote" title="Permanent link">&para;</a></h2>
+<p>假如，要判断的 remote 的名字为 faraway。
+- 第一种方案
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">if</span><span class="w"> </span>git<span class="w"> </span>config<span class="w"> </span>remote.faraway.url<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w"> </span>…
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">fi</span>
+</code></pre></div>
+- 第二种方案
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">if</span><span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>faraway<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w"> </span>…
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">fi</span>
+</code></pre></div></p>
+<p>判断 remote 是否已存在，如果已存在，直接进行 git fetch faraway 等操作，如果不存在，git add remote faraway http://xxxxx 后，再进行操作。</p>
+<blockquote>
+<p>参考： <br />
+<a href="https://www.jianshu.com/p/e4b9c6c6bab7">https://www.jianshu.com/p/e4b9c6c6bab7</a><br />
+<a href="https://www.cnblogs.com/ibingshan/p/11126345.html">https://www.cnblogs.com/ibingshan/p/11126345.html</a><br />
+<a href="https://blog.csdn.net/longerzone/article/details/12948925">https://blog.csdn.net/longerzone/article/details/12948925</a>  </p>
+</blockquote>
+<h2 id="shell-git-branch">shell 判断 git branch 分支是否存在<a class="headerlink" href="#shell-git-branch" title="Permanent link">&para;</a></h2>
+<p>举例：判断当前分支是否为master，本地分支master是否存在，远端分支master是否存在
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">if</span><span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>--list<span class="w"> </span>master<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;*&quot;</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="c1">## 分支名字完全匹配，不是模糊匹配！只能匹配master，不能匹配mastertest等</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;当前分支是master&quot;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span>git<span class="w"> </span>reset<span class="w"> </span>--hard
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span>git<span class="w"> </span>clean<span class="w"> </span>-df<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w">    </span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="k">elif</span><span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>--list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-w<span class="w"> </span>master<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="c1">## 分支名字完全匹配，不是模糊匹配！只能匹配master，不能匹配mastertest等</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;master不是当前分支，但本地分支master存在&quot;</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span>git<span class="w"> </span>reset<span class="w"> </span>--hard
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span>git<span class="w"> </span>clean<span class="w"> </span>-df<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span>git<span class="w"> </span>checkout<span class="w">  </span>master
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="k">elif</span><span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>-r<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-w<span class="w"> </span>master<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">    </span><span class="c1">## 分支名字完全匹配，不是模糊匹配，只能匹配origin/master,不能匹配origin/mastertest等</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;本地分支master不存在,远端master分支存在&quot;</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">    </span>git<span class="w"> </span>reset<span class="w"> </span>--hard
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">    </span>git<span class="w"> </span>clean<span class="w"> </span>-df<span class="w"> </span>&gt;<span class="w"> </span>/dev/null
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">    </span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w">  </span>master<span class="w"> </span>origin/master
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="k">else</span>
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;本地分支master不存在,远端master分支也不存在&quot;</span>
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="k">fi</span>
+</code></pre></div></p>
+<h2 id="shell-gitclean">shell 判断 git本地工作文件夹是否干净(clean)<a class="headerlink" href="#shell-gitclean" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span>-z<span class="w"> </span><span class="k">$(</span>git<span class="w"> </span>status<span class="w"> </span>-s<span class="k">)</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="c1">## 没有修改的文件和未纳入版本控制的文件(untracked)的文件</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;没有可提交内容&quot;</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">  </span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="k">fi</span>
+</code></pre></div>
+<blockquote>
+<p><a href="https://blog.csdn.net/10km/article/details/100689481">https://blog.csdn.net/10km/article/details/100689481</a></p>
+</blockquote>
+<h2 id="gitstatus">git文件内容没变但status显示不同的解决方案<a class="headerlink" href="#gitstatus" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../images/2022-01-17-21-47-17.png" /></p>
+<p>这里提示的不同，是文件的权限改变了。</p>
+<p>SO，解决方案奏是：不让git检测文件权限的区别</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>git<span class="w"> </span>config<span class="w"> </span>core.filemode<span class="w"> </span><span class="nb">false</span>
+</code></pre></div>
+<blockquote>
+<p>参考: <a href="https://blog.csdn.net/u012109105/article/details/51252242">https://blog.csdn.net/u012109105/article/details/51252242</a></p>
+</blockquote>
+<h2 id="the-file-will-have-its-original-line-endings-in-your-working-directory">The file will have its original line endings in your working directory<a class="headerlink" href="#the-file-will-have-its-original-line-endings-in-your-working-directory" title="Permanent link">&para;</a></h2>
+<p>git 报错：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>warning: LF will be replaced by CRLF in basic-markdown-syntax/index.html.
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>The file will have its original line endings in your working directory
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>warning: LF will be replaced by CRLF in hugo-loveit-problems/index.html.
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>The file will have its original line endings in your working directory
+</code></pre></div></p>
+<p>解决方案：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="w">    </span>git<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>--cached<span class="w"> </span>.
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span>git<span class="w"> </span>config<span class="w"> </span>core.autocrlf<span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">    </span>git<span class="w"> </span>add<span class="w"> </span>.
+</code></pre></div></p>
+<blockquote>
+<p><a href="https://blog.csdn.net/namechenfl/article/details/81257973">https://blog.csdn.net/namechenfl/article/details/81257973</a></p>
+</blockquote>
+<h2 id="git_2">Git处理换行符问题<a class="headerlink" href="#git_2" title="Permanent link">&para;</a></h2>
+<p>对仓库使用 <code>.gitattributes</code>文件进行配置</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># Set the default behavior, in case people don&#39;t have core.autocrlf set.</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>*<span class="w"> </span><span class="nv">text</span><span class="o">=</span>auto<span class="w"> </span><span class="c1">#让git自行处理左边匹配的文件使用何种换行符格式，这是默认选项。</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="c1"># text eol=lf</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="c1"># Explicitly declare text files you want to always be normalized and converted</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="c1"># to native line endings on checkout.</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>*.c<span class="w"> </span>text
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>*.h<span class="w"> </span>text
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="c1"># Declare files that will always have CRLF line endings on checkout.</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>*.sln<span class="w"> </span>text<span class="w"> </span><span class="nv">eol</span><span class="o">=</span>crlf
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="c1"># Denote all files that are truly binary and should not be modified.</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>*.png<span class="w"> </span>binary
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a>*.jpg<span class="w"> </span>binary
+</code></pre></div>
+<blockquote>
+<p>参考: <a href="https://blog.csdn.net/github_30605157/article/details/56680990">https://blog.csdn.net/github_30605157/article/details/56680990</a></p>
+</blockquote>
+<p>项目在用的<code>.gitattributes</code>文件
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>*<span class="w"> </span><span class="nv">text</span><span class="o">=</span>auto
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>*.cs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>csharp<span class="w"> </span>text
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>*.cginc<span class="w"> </span>text
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>*.shader<span class="w"> </span>text
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>*.spriteatlas<span class="w"> </span>text<span class="w"> </span><span class="nv">eol</span><span class="o">=</span>lf
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="c1"># Unity YAML</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>*.anim<span class="w"> </span>-text<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>unityyamlmerge<span class="w"> </span>diff
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>*.asset<span class="w"> </span>-text<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>unityyamlmerge<span class="w"> </span>diff
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>*.controller<span class="w"> </span>-text<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>unityyamlmerge<span class="w"> </span>diff
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>*.mat<span class="w"> </span>-text<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>unityyamlmerge<span class="w"> </span>diff
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>*.meta<span class="w"> </span>-text<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>unityyamlmerge<span class="w"> </span>diff
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>*.physicMaterial<span class="w"> </span>-text<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>unityyamlmerge<span class="w"> </span>diff
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>*.physicsMaterial2D<span class="w"> </span>-text<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>unityyamlmerge<span class="w"> </span>diff
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>*.prefab<span class="w"> </span>-text<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>unityyamlmerge<span class="w"> </span>diff
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a>*.unity<span class="w"> </span>-text<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>unityyamlmerge<span class="w"> </span>diff
+<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>
+<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="c1"># Unity LFS</span>
+<a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a>*.cubemap<span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a>*.unitypackage<span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a>
+<a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="c1"># 2D formats</span>
+<a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a>*.<span class="o">[</span>aA<span class="o">][</span>iI<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a>*.<span class="o">[</span>bB<span class="o">][</span>mM<span class="o">][</span>pP<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a>*.<span class="o">[</span>dD<span class="o">][</span>dD<span class="o">][</span>sS<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a>*.<span class="o">[</span>eE<span class="o">][</span>xX<span class="o">][</span>rR<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a>*.<span class="o">[</span>gG<span class="o">][</span>iI<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a>*.<span class="o">[</span>hH<span class="o">][</span>dD<span class="o">][</span>rR<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a>*.<span class="o">[</span>iI<span class="o">][</span>fF<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a>*.<span class="o">[</span>jJ<span class="o">][</span>pP<span class="o">][</span>eE<span class="o">][</span>gG<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a>*.<span class="o">[</span>jJ<span class="o">][</span>pP<span class="o">][</span>gG<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a>*.<span class="o">[</span>pP<span class="o">][</span>iI<span class="o">][</span>cC<span class="o">][</span>tT<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-33" name="__codelineno-23-33" href="#__codelineno-23-33"></a>*.<span class="o">[</span>pP<span class="o">][</span>nN<span class="o">][</span>gG<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a>*.<span class="o">[</span>pP<span class="o">][</span>sS<span class="o">][</span>dD<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a>*.<span class="o">[</span>tT<span class="o">][</span>gG<span class="o">][</span>aA<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-36" name="__codelineno-23-36" href="#__codelineno-23-36"></a>*.<span class="o">[</span>tT<span class="o">][</span>iI<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-37" name="__codelineno-23-37" href="#__codelineno-23-37"></a>*.<span class="o">[</span>tT<span class="o">][</span>iI<span class="o">][</span>fF<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-38" name="__codelineno-23-38" href="#__codelineno-23-38"></a>
+<a id="__codelineno-23-39" name="__codelineno-23-39" href="#__codelineno-23-39"></a><span class="c1"># 3D formats</span>
+<a id="__codelineno-23-40" name="__codelineno-23-40" href="#__codelineno-23-40"></a>*.3<span class="o">[</span>dD<span class="o">][</span>mM<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-41" name="__codelineno-23-41" href="#__codelineno-23-41"></a>*.3<span class="o">[</span>dD<span class="o">][</span>sS<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-42" name="__codelineno-23-42" href="#__codelineno-23-42"></a>*.<span class="o">[</span>aA<span class="o">][</span>bB<span class="o">][</span>cC<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-43" name="__codelineno-23-43" href="#__codelineno-23-43"></a>*.<span class="o">[</span>bB<span class="o">][</span>lL<span class="o">][</span>eE<span class="o">][</span>nN<span class="o">][</span>dD<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-44" name="__codelineno-23-44" href="#__codelineno-23-44"></a>*.<span class="o">[</span>cC<span class="o">]</span><span class="m">4</span><span class="o">[</span>dD<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-45" name="__codelineno-23-45" href="#__codelineno-23-45"></a>*.<span class="o">[</span>cC<span class="o">][</span>oO<span class="o">][</span>lL<span class="o">][</span>lL<span class="o">][</span>aA<span class="o">][</span>dD<span class="o">][</span>aA<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-46" name="__codelineno-23-46" href="#__codelineno-23-46"></a>*.<span class="o">[</span>dD<span class="o">][</span>aA<span class="o">][</span>eE<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-47" name="__codelineno-23-47" href="#__codelineno-23-47"></a>*.<span class="o">[</span>dD<span class="o">][</span>xX<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-48" name="__codelineno-23-48" href="#__codelineno-23-48"></a>*.<span class="o">[</span>fF<span class="o">][</span>bB<span class="o">][</span>xX<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-49" name="__codelineno-23-49" href="#__codelineno-23-49"></a>*.<span class="o">[</span>jJ<span class="o">][</span>aA<span class="o">][</span>sS<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-50" name="__codelineno-23-50" href="#__codelineno-23-50"></a>*.<span class="o">[</span>lL<span class="o">][</span>wW<span class="o">][</span>oO<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-51" name="__codelineno-23-51" href="#__codelineno-23-51"></a>*.<span class="o">[</span>lL<span class="o">][</span>wW<span class="o">][</span>oO<span class="o">]</span><span class="m">2</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-52" name="__codelineno-23-52" href="#__codelineno-23-52"></a>*.<span class="o">[</span>lL<span class="o">][</span>wW<span class="o">][</span>sS<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-53" name="__codelineno-23-53" href="#__codelineno-23-53"></a>*.<span class="o">[</span>lL<span class="o">][</span>xX<span class="o">][</span>oO<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-54" name="__codelineno-23-54" href="#__codelineno-23-54"></a>*.<span class="o">[</span>mM<span class="o">][</span>aA<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-55" name="__codelineno-23-55" href="#__codelineno-23-55"></a>*.<span class="o">[</span>mM<span class="o">][</span>aA<span class="o">][</span>xX<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-56" name="__codelineno-23-56" href="#__codelineno-23-56"></a>*.<span class="o">[</span>mM<span class="o">][</span>bB<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-57" name="__codelineno-23-57" href="#__codelineno-23-57"></a>*.<span class="o">[</span>oO<span class="o">][</span>bB<span class="o">][</span>jJ<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-58" name="__codelineno-23-58" href="#__codelineno-23-58"></a>*.<span class="o">[</span>pP<span class="o">][</span>lL<span class="o">][</span>yY<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-59" name="__codelineno-23-59" href="#__codelineno-23-59"></a>*.<span class="o">[</span>sS<span class="o">][</span>kK<span class="o">][</span>pP<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-60" name="__codelineno-23-60" href="#__codelineno-23-60"></a>*.<span class="o">[</span>sS<span class="o">][</span>tT<span class="o">][</span>lL<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-61" name="__codelineno-23-61" href="#__codelineno-23-61"></a>*.<span class="o">[</span>zZ<span class="o">][</span>tT<span class="o">][</span>lL<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-62" name="__codelineno-23-62" href="#__codelineno-23-62"></a>
+<a id="__codelineno-23-63" name="__codelineno-23-63" href="#__codelineno-23-63"></a><span class="c1"># Audio formats</span>
+<a id="__codelineno-23-64" name="__codelineno-23-64" href="#__codelineno-23-64"></a>*.<span class="o">[</span>aA<span class="o">][</span>iI<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-65" name="__codelineno-23-65" href="#__codelineno-23-65"></a>*.<span class="o">[</span>aA<span class="o">][</span>iI<span class="o">][</span>fF<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-66" name="__codelineno-23-66" href="#__codelineno-23-66"></a>*.<span class="o">[</span>bB<span class="o">][</span>aA<span class="o">][</span>nN<span class="o">][</span>kK<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-67" name="__codelineno-23-67" href="#__codelineno-23-67"></a>*.<span class="o">[</span>iI<span class="o">][</span>tT<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-68" name="__codelineno-23-68" href="#__codelineno-23-68"></a>*.<span class="o">[</span>mM<span class="o">][</span>oO<span class="o">][</span>dD<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-69" name="__codelineno-23-69" href="#__codelineno-23-69"></a>*.<span class="o">[</span>mM<span class="o">][</span>pP<span class="o">]</span><span class="m">3</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-70" name="__codelineno-23-70" href="#__codelineno-23-70"></a>*.<span class="o">[</span>oO<span class="o">][</span>gG<span class="o">][</span>gG<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-71" name="__codelineno-23-71" href="#__codelineno-23-71"></a>*.<span class="o">[</span>sS<span class="o">]</span><span class="m">3</span><span class="o">[</span>mM<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-72" name="__codelineno-23-72" href="#__codelineno-23-72"></a>*.<span class="o">[</span>wW<span class="o">][</span>aA<span class="o">][</span>vV<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-73" name="__codelineno-23-73" href="#__codelineno-23-73"></a>*.<span class="o">[</span>xX<span class="o">][</span>mM<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-74" name="__codelineno-23-74" href="#__codelineno-23-74"></a>
+<a id="__codelineno-23-75" name="__codelineno-23-75" href="#__codelineno-23-75"></a><span class="c1"># Video formats</span>
+<a id="__codelineno-23-76" name="__codelineno-23-76" href="#__codelineno-23-76"></a>*.<span class="o">[</span>aA<span class="o">][</span>sS<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-77" name="__codelineno-23-77" href="#__codelineno-23-77"></a>*.<span class="o">[</span>aA<span class="o">][</span>vV<span class="o">][</span>iI<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-78" name="__codelineno-23-78" href="#__codelineno-23-78"></a>*.<span class="o">[</span>fF<span class="o">][</span>lL<span class="o">][</span>vV<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-79" name="__codelineno-23-79" href="#__codelineno-23-79"></a>*.<span class="o">[</span>mM<span class="o">][</span>oO<span class="o">][</span>vV<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-80" name="__codelineno-23-80" href="#__codelineno-23-80"></a>*.<span class="o">[</span>mM<span class="o">][</span>pP<span class="o">]</span><span class="m">4</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-81" name="__codelineno-23-81" href="#__codelineno-23-81"></a>*.<span class="o">[</span>mM<span class="o">][</span>pP<span class="o">][</span>eE<span class="o">][</span>gG<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-82" name="__codelineno-23-82" href="#__codelineno-23-82"></a>*.<span class="o">[</span>mM<span class="o">][</span>pP<span class="o">][</span>gG<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-83" name="__codelineno-23-83" href="#__codelineno-23-83"></a>*.<span class="o">[</span>oO<span class="o">][</span>gG<span class="o">][</span>vV<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-84" name="__codelineno-23-84" href="#__codelineno-23-84"></a>*.<span class="o">[</span>wW<span class="o">][</span>mM<span class="o">][</span>vV<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-85" name="__codelineno-23-85" href="#__codelineno-23-85"></a>
+<a id="__codelineno-23-86" name="__codelineno-23-86" href="#__codelineno-23-86"></a><span class="c1"># Build</span>
+<a id="__codelineno-23-87" name="__codelineno-23-87" href="#__codelineno-23-87"></a>*.<span class="o">[</span>dD<span class="o">][</span>lL<span class="o">][</span>lL<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-88" name="__codelineno-23-88" href="#__codelineno-23-88"></a>*.<span class="o">[</span>mM<span class="o">][</span>dD<span class="o">][</span>bB<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-89" name="__codelineno-23-89" href="#__codelineno-23-89"></a>*.<span class="o">[</span>pP<span class="o">][</span>dD<span class="o">][</span>bB<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-90" name="__codelineno-23-90" href="#__codelineno-23-90"></a>*.<span class="o">[</span>sS<span class="o">][</span>oO<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-91" name="__codelineno-23-91" href="#__codelineno-23-91"></a>
+<a id="__codelineno-23-92" name="__codelineno-23-92" href="#__codelineno-23-92"></a><span class="c1"># Packaging</span>
+<a id="__codelineno-23-93" name="__codelineno-23-93" href="#__codelineno-23-93"></a>*.7<span class="o">[</span>zZ<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-94" name="__codelineno-23-94" href="#__codelineno-23-94"></a>*.<span class="o">[</span>bB<span class="o">][</span>zZ<span class="o">]</span><span class="m">2</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-95" name="__codelineno-23-95" href="#__codelineno-23-95"></a>*.<span class="o">[</span>gG<span class="o">][</span>zZ<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-96" name="__codelineno-23-96" href="#__codelineno-23-96"></a>*.<span class="o">[</span>rR<span class="o">][</span>aA<span class="o">][</span>rR<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-97" name="__codelineno-23-97" href="#__codelineno-23-97"></a>*.<span class="o">[</span>tT<span class="o">][</span>aA<span class="o">][</span>rR<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-98" name="__codelineno-23-98" href="#__codelineno-23-98"></a>*.<span class="o">[</span>tT<span class="o">][</span>aA<span class="o">][</span>rR<span class="o">]</span>.<span class="o">[</span>gG<span class="o">][</span>zZ<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-99" name="__codelineno-23-99" href="#__codelineno-23-99"></a>*.<span class="o">[</span>zZ<span class="o">][</span>iI<span class="o">][</span>pP<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-100" name="__codelineno-23-100" href="#__codelineno-23-100"></a>
+<a id="__codelineno-23-101" name="__codelineno-23-101" href="#__codelineno-23-101"></a><span class="c1"># Fonts</span>
+<a id="__codelineno-23-102" name="__codelineno-23-102" href="#__codelineno-23-102"></a>*.<span class="o">[</span>oO<span class="o">][</span>tT<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-103" name="__codelineno-23-103" href="#__codelineno-23-103"></a>*.<span class="o">[</span>tT<span class="o">][</span>tT<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-104" name="__codelineno-23-104" href="#__codelineno-23-104"></a>
+<a id="__codelineno-23-105" name="__codelineno-23-105" href="#__codelineno-23-105"></a><span class="c1"># Documents</span>
+<a id="__codelineno-23-106" name="__codelineno-23-106" href="#__codelineno-23-106"></a>*.<span class="o">[</span>pP<span class="o">][</span>dD<span class="o">][</span>fF<span class="o">]</span><span class="w"> </span><span class="nv">filter</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">diff</span><span class="o">=</span>lfs<span class="w"> </span><span class="nv">merge</span><span class="o">=</span>lfs<span class="w"> </span>-text
+<a id="__codelineno-23-107" name="__codelineno-23-107" href="#__codelineno-23-107"></a>
+<a id="__codelineno-23-108" name="__codelineno-23-108" href="#__codelineno-23-108"></a><span class="c1"># Collapse Unity-generated files on GitHub</span>
+<a id="__codelineno-23-109" name="__codelineno-23-109" href="#__codelineno-23-109"></a>*.asset<span class="w">             </span>linguist-generated
+<a id="__codelineno-23-110" name="__codelineno-23-110" href="#__codelineno-23-110"></a>*.mat<span class="w">               </span>linguist-generated
+<a id="__codelineno-23-111" name="__codelineno-23-111" href="#__codelineno-23-111"></a>*.meta<span class="w">              </span>linguist-generated
+<a id="__codelineno-23-112" name="__codelineno-23-112" href="#__codelineno-23-112"></a>*.prefab<span class="w">            </span>linguist-generated
+<a id="__codelineno-23-113" name="__codelineno-23-113" href="#__codelineno-23-113"></a>*.unity<span class="w">             </span>linguist-generated
+</code></pre></div></p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

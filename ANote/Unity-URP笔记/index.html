@@ -1,0 +1,1009 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="codingriver personal tech blog - Unity / Shader / CSharp / Math">
+      
+      
+        <meta name="author" content="codingriver">
+      
+      
+        <link rel="canonical" href="https://blog.wgqing.com/ANote/Unity-URP%E7%AC%94%E8%AE%B0/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Unity URP笔记 - codingriver</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#srpurphdrp" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="codingriver" class="md-header__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            codingriver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Unity URP笔记
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="codingriver" class="md-nav__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    codingriver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#srpurphdrp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SRP/URP/HDRP之间的关系
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#srp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SRP是什么？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#urp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URP是什么？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hdrp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HDRP是什么？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#srp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么诞生SRP？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#srpbatcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SRPBatcher
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#urp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URP 面板详解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#universalrenderpipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        UniversalRenderPipeline 源码分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="UniversalRenderPipeline 源码分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#render" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Render分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rendersinglecamera" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RenderSingleCamera 分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#urp_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URP笔记
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="URP笔记">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#urp-lightmodetags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URP LightModeTags 说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+      
+        <span class="md-tag">shader</span>
+      
+    
+  </nav>
+
+
+  
+    <a href="https://github.com/codingriver/codingriver.github.io/edit/master/docs/ANote/Unity-URP笔记.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+  <h1>Unity URP笔记</h1>
+
+<!--more-->
+
+<h2 id="srpurphdrp">SRP/URP/HDRP之间的关系<a class="headerlink" href="#srpurphdrp" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="../images/HcRCKSxZ2brWFNs.png" />  </p>
+<h2 id="srp">SRP是什么？<a class="headerlink" href="#srp" title="Permanent link">&para;</a></h2>
+<p>SRP全称为Scriptable Render Pipeline（可编程渲染管线/脚本化渲染管线），是Unity提供的新渲染系统，可以在Unity通过C#脚本调用一系列API配置和执行渲染命令的方式来实现渲染流程，SRP将这些命令传递给Unity底层图形体系结构，然后再将指令发送给图形API。</p>
+<p>说白了就是我们可以用SRP的API来创建自定义的渲染管线，可用来调整渲染流程或修改或增加功能。</p>
+<p>它主要把渲染管线拆分成二层：</p>
+<ul>
+<li>
+<p>一层是比较底层的渲染API层，像OpenGL，D3D等相关的都封装起来。</p>
+</li>
+<li>
+<p>另一层是渲染管线上层，上层代码使用C#来编写。在C#这层不需要关注底层在不同平台上渲染API的差别，也不需要关注具体如何做一个Draw Call</p>
+</li>
+</ul>
+<h2 id="urp">URP是什么？<a class="headerlink" href="#urp" title="Permanent link">&para;</a></h2>
+<p>它的全称为Universal Render Pipeline(通用渲染管线)，简称 <code>Universal RP</code>, 它是Unity官方基于SRP提供的模板，它的前身是 <code>LWRP</code>(<code>Lightweight RP</code> 即轻量级渲染管线), 在2019.3开始改名为URP，它涵盖了范围广泛的不同平台，是针对跨平台开发而构建的，性能比内置管线要好，另外可以进行自定义，实现不同风格的渲染，通用渲染管线未来将成为在Unity中进行渲染的基础 。</p>
+<p><strong>平台范围：</strong>可以在Unity当前支持的任何平台上使用</p>
+<p><img alt="" src="../images/xTS4cWCkB5mGjq3.png" />  </p>
+<h2 id="hdrp">HDRP是什么？<a class="headerlink" href="#hdrp" title="Permanent link">&para;</a></h2>
+<p>它的全称为High Definition Render Pipeline（高清晰度渲染管线），它也是Unity官方基于SRP提供的模板，它更多是针对高端设备，如游戏主机和高端台式机，它更关注于真实感图形和渲染，该管线仅于以下平台兼容：</p>
+<ul>
+<li>Windows和Windows Store，带有DirectX 11或DirectX 12和Shader Model 5.0</li>
+<li>现代游戏机（Sony PS4和Microsoft Xbox One）</li>
+<li>使用金属图形的MacOS（最低版本10.13）</li>
+<li>具有Vulkan的Linux和Windows平台
+<em>在此文章对HDRP不过多描述。</em></li>
+</ul>
+<p><img alt="" src="../images/gxXTIEYSa1s6GcA.png" />  </p>
+<h2 id="srp_1">为什么诞生SRP？<a class="headerlink" href="#srp_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>内置渲染管线的缺陷</strong></p>
+<ul>
+<li><strong>定制性差</strong>：过去，Unity有一套内置渲染管线，渲染管线全部写在引擎的源码里。大家基本上不能改动，除非是买了Unity源码客户，当然大部分开发者是不会去改源码，所以过去的管线对开发者来说，很难进行定制。</li>
+<li><strong>代码脓肿，效果效率无法做到最佳</strong>：内置渲染管线在一个渲染管线里面支持所有的二十多个平台，包括非常高端的PC平台，也包括非常低端的平台，很老的手机也要支持，所以代码越来越浓肿，很难做到使效率和效果做到最佳。</li>
+<li>
+<p><strong>目的</strong></p>
+</li>
+<li>
+<p>为了解决仅有一个默认渲染管线，造成的可配置型、可发现性、灵活性等问题。决定在C++端保留一个非常小的渲染内核，让C#端可以通过API暴露出更多的选择性，也就是说，Unity会提供一系列的C# API以及内置渲染管线的C#实现；这样一来，一方面可以保证C++端的代码都能严格通过各种白盒测试，另一方面C#端代码就可以在实际项目中调整。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="../images/QvCf5GZmbrxEcjW.png" />  </p>
+<p><img alt="" src="../images/d3ACNrGKf984cqp.png" />  </p>
+<blockquote>
+<p>渲染流水线图：
+<img alt="20210726144830" src="../images/eJD95mkRaKYfXCI.png" /></p>
+<p>ref: <a href="https://blog.csdn.net/qq_30259857/article/details/108318528">https://blog.csdn.net/qq_30259857/article/details/108318528</a><br />
+ref: <a href="https://blog.csdn.net/qq_33700123/article/details/114092028">https://blog.csdn.net/qq_33700123/article/details/114092028</a></p>
+</blockquote>
+<h2 id="srpbatcher">SRPBatcher<a class="headerlink" href="#srpbatcher" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>详解参考官方文档: <a href="https://docs.unity3d.com/cn/2019.4/Manual/SRPBatcher.html">可编程渲染管线 SRP Batcher</a></p>
+</blockquote>
+<h2 id="urp_1">URP 面板详解<a class="headerlink" href="#urp_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>面板详解: <a href="https://blog.csdn.net/LKR0325/article/details/108402518">通用渲染管线(URP)_学习笔记</a><br />
+<img alt="20210726180522" src="../images/2ZhH9TmRF4YnbvM.png" /><br />
+<img alt="20210726180600" src="../images/zSdjiUr5RY8DhxW.png" /></p>
+</blockquote>
+<h2 id="universalrenderpipeline">UniversalRenderPipeline 源码分析<a class="headerlink" href="#universalrenderpipeline" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p><code>UnityEngine.Rendering.Universal.UniversalRenderPipeline</code>
+<code>public sealed partial class UniversalRenderPipeline : RenderPipeline</code>
+不包括XR，SceneView,Camera Preview，只是前向渲染的分析；不包括<code>RenderingMode.Deferred</code>的分析</p>
+</blockquote>
+<h3 id="render"><code>Render</code>分析<a class="headerlink" href="#render" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>protected override void Render(ScriptableRenderContext renderContext, Camera[] cameras)</code>的执行流程</p>
+</blockquote>
+<ul>
+<li><code>BeginFrameRendering(renderContext, cameras);</code></li>
+<li>配置<code>GraphicsSettings</code></li>
+<li>设置Shader全局变量 <code>SetupPerFrameShaderConstants();</code></li>
+<li><code>SortCameras(cameras); // 根据camera.depth排序</code></li>
+<li><code>RenderCameraStack(renderContext, camera);</code><ul>
+<li><code>UpdateVolumeFramework(baseCamera, baseCameraAdditionalData);</code></li>
+<li><code>BeginCameraRendering(renderContext, camera);</code></li>
+<li><code>UpdateVolumeFramework(camera, null);</code></li>
+<li><code>RenderSingleCamera(renderContext, camera);</code></li>
+<li><code>EndCameraRendering(renderContext, camera);</code></li>
+<li><code>EndFrameRendering(renderContext, cameras);</code>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">        </span><span class="k">protected</span><span class="w"> </span><span class="k">override</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Render</span><span class="p">(</span><span class="n">ScriptableRenderContext</span><span class="w"> </span><span class="n">renderContext</span><span class="p">,</span><span class="w"> </span><span class="n">Camera</span><span class="p">[]</span><span class="w"> </span><span class="n">cameras</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">            </span><span class="n">BeginFrameRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span><span class="w"> </span><span class="n">cameras</span><span class="p">);</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">            </span><span class="n">GraphicsSettings</span><span class="p">.</span><span class="n">lightsUseLinearIntensity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">QualitySettings</span><span class="p">.</span><span class="n">activeColorSpace</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ColorSpace</span><span class="p">.</span><span class="n">Linear</span><span class="p">);</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">            </span><span class="n">GraphicsSettings</span><span class="p">.</span><span class="n">useScriptableRenderPipelineBatching</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">asset</span><span class="p">.</span><span class="n">useSRPBatcher</span><span class="p">;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">            </span><span class="n">SetupPerFrameShaderConstants</span><span class="p">();</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="n">SortCameras</span><span class="p">(</span><span class="n">cameras</span><span class="p">);</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cameras</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">                </span><span class="kt">var</span><span class="w"> </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cameras</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsGameCamera</span><span class="p">(</span><span class="n">camera</span><span class="p">))</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">                    </span><span class="n">RenderCameraStack</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span><span class="w"> </span><span class="n">camera</span><span class="p">);</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">                </span><span class="k">else</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">                    </span><span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span><span class="w"> </span><span class="n">camera</span><span class="p">);</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">                    </span><span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span><span class="w"> </span><span class="k">null</span><span class="p">);</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">                    </span><span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span><span class="w"> </span><span class="n">camera</span><span class="p">);</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">                    </span><span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span><span class="w"> </span><span class="n">camera</span><span class="p">);</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">            </span><span class="n">EndFrameRendering</span><span class="p">(</span><span class="n">renderContext</span><span class="p">,</span><span class="w"> </span><span class="n">cameras</span><span class="p">);</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">RenderSingleCamera</span><span class="p">(</span><span class="n">ScriptableRenderContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">Camera</span><span class="w"> </span><span class="n">camera</span><span class="p">)</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">            </span><span class="n">UniversalAdditionalCameraData</span><span class="w"> </span><span class="n">additionalCameraData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">IsGameCamera</span><span class="p">(</span><span class="n">camera</span><span class="p">))</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">                </span><span class="n">camera</span><span class="p">.</span><span class="n">gameObject</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="p">(</span><span class="k">out</span><span class="w"> </span><span class="n">additionalCameraData</span><span class="p">);</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">            </span><span class="n">InitializeCameraData</span><span class="p">(</span><span class="n">camera</span><span class="p">,</span><span class="w"> </span><span class="n">additionalCameraData</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">cameraData</span><span class="p">);</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">            </span><span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">cameraData</span><span class="p">,</span><span class="w"> </span><span class="n">cameraData</span><span class="p">.</span><span class="n">postProcessEnabled</span><span class="p">);</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">        </span><span class="p">}</span><span class="w">    </span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">        </span><span class="c1">/// Renders a single camera. This method will do culling, setup and execution of the renderer.</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;context&quot;&gt;Render context used to record commands during execution.&lt;/param&gt;</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;cameraData&quot;&gt;Camera rendering data. This might contain data inherited from a base camera.&lt;/param&gt;</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;anyPostProcessingEnabled&quot;&gt;True if at least one camera has post-processing enabled in the stack, false otherwise.&lt;/param&gt;</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">RenderSingleCamera</span><span class="p">(</span><span class="n">ScriptableRenderContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">CameraData</span><span class="w"> </span><span class="n">cameraData</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">anyPostProcessingEnabled</span><span class="p">)</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">            </span><span class="n">Camera</span><span class="w"> </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cameraData</span><span class="p">.</span><span class="n">camera</span><span class="p">;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">renderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cameraData</span><span class="p">.</span><span class="n">renderer</span><span class="p">;</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">TryGetCullingParameters</span><span class="p">(</span><span class="n">cameraData</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">cullingParameters</span><span class="p">))</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">                </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">            </span><span class="n">ScriptableRenderer</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">renderer</span><span class="p">;</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">isSceneViewCamera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cameraData</span><span class="p">.</span><span class="n">isSceneViewCamera</span><span class="p">;</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">            </span><span class="n">CommandBuffer</span><span class="w"> </span><span class="n">cmd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">                </span><span class="n">renderer</span><span class="p">.</span><span class="n">Clear</span><span class="p">(</span><span class="n">cameraData</span><span class="p">.</span><span class="n">renderType</span><span class="p">);</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">                </span><span class="n">renderer</span><span class="p">.</span><span class="n">SetupCullingParameters</span><span class="p">(</span><span class="k">ref</span><span class="w"> </span><span class="n">cullingParameters</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">cameraData</span><span class="p">);</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">                </span><span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span><span class="w"> </span><span class="c1">// Send all the commands enqueued so far in the CommandBuffer cmd, to the ScriptableRenderContext context</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">                </span><span class="n">cmd</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="w">                </span><span class="kt">var</span><span class="w"> </span><span class="n">cullResults</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">Cull</span><span class="p">(</span><span class="k">ref</span><span class="w"> </span><span class="n">cullingParameters</span><span class="p">);</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="w">                </span><span class="n">InitializeRenderingData</span><span class="p">(</span><span class="n">asset</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">cameraData</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">cullResults</span><span class="p">,</span><span class="w"> </span><span class="n">anyPostProcessingEnabled</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">renderingData</span><span class="p">);</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="w">                </span><span class="n">renderer</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">renderingData</span><span class="p">);</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="w">                </span><span class="n">renderer</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">renderingData</span><span class="p">);</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="w">            </span><span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sends to ScriptableRenderContext all the commands enqueued since cmd.Clear, i.e the &quot;EndSample&quot; command</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="w">            </span><span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Release</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="w">                </span><span class="n">context</span><span class="p">.</span><span class="n">Submit</span><span class="p">();</span><span class="w"> </span><span class="c1">// Actually execute the commands that we previously sent to the ScriptableRenderContext context</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="w">        </span><span class="p">}</span><span class="w">     </span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="w">        </span><span class="c1">// Renders a camera stack. This method calls RenderSingleCamera for each valid camera in the stack.</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="w">        </span><span class="c1">// The last camera resolves the final target to screen.</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;context&quot;&gt;Render context used to record commands during execution.&lt;/param&gt;</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="w">        </span><span class="c1">/// &lt;param name=&quot;camera&quot;&gt;Camera to render.&lt;/param&gt;</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="w">        </span><span class="k">static</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">RenderCameraStack</span><span class="p">(</span><span class="n">ScriptableRenderContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">Camera</span><span class="w"> </span><span class="n">baseCamera</span><span class="p">)</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="w">        </span><span class="p">{</span>
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="w">            </span><span class="n">baseCamera</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="o">&lt;</span><span class="n">UniversalAdditionalCameraData</span><span class="o">&gt;</span><span class="p">(</span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">baseCameraAdditionalData</span><span class="p">);</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="w">            </span><span class="c1">// Overlay cameras will be rendered stacked while rendering base cameras</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">baseCameraAdditionalData</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">renderType</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">CameraRenderType</span><span class="p">.</span><span class="n">Overlay</span><span class="p">)</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a><span class="w">                </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a><span class="w">            </span><span class="c1">// renderer contains a stack if it has additional data and the renderer supports stacking</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">renderer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseCameraAdditionalData</span><span class="o">?.</span><span class="n">scriptableRenderer</span><span class="p">;</span>
+<a id="__codelineno-0-74" name="__codelineno-0-74" href="#__codelineno-0-74"></a><span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">supportsCameraStacking</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">renderer</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">renderer</span><span class="p">.</span><span class="n">supportedRenderingFeatures</span><span class="p">.</span><span class="n">cameraStacking</span><span class="p">;</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75" href="#__codelineno-0-75"></a><span class="w">            </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Camera</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cameraStack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">supportsCameraStacking</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">baseCameraAdditionalData</span><span class="o">?.</span><span class="n">cameraStack</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">anyPostProcessingEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseCameraAdditionalData</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">renderPostProcessing</span><span class="p">;</span>
+<a id="__codelineno-0-77" name="__codelineno-0-77" href="#__codelineno-0-77"></a><span class="w">            </span><span class="c1">// We need to know the last active camera in the stack to be able to resolve</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78" href="#__codelineno-0-78"></a><span class="w">            </span><span class="c1">// rendering to screen when rendering it. The last camera in the stack is not</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79" href="#__codelineno-0-79"></a><span class="w">            </span><span class="c1">// necessarily the last active one as it users might disable it.</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80" href="#__codelineno-0-80"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">lastActiveOverlayCameraIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-0-81" name="__codelineno-0-81" href="#__codelineno-0-81"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cameraStack</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82" href="#__codelineno-0-82"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83" href="#__codelineno-0-83"></a><span class="w">                </span><span class="kt">var</span><span class="w"> </span><span class="n">baseCameraRendererType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseCameraAdditionalData</span><span class="o">?.</span><span class="n">scriptableRenderer</span><span class="p">.</span><span class="n">GetType</span><span class="p">();</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84" href="#__codelineno-0-84"></a><span class="w">                </span><span class="n">baseCameraAdditionalData</span><span class="p">.</span><span class="n">UpdateCameraStack</span><span class="p">();</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85" href="#__codelineno-0-85"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86" href="#__codelineno-0-86"></a><span class="w">            </span><span class="c1">// Post-processing not supported in GLES2.</span>
+<a id="__codelineno-0-87" name="__codelineno-0-87" href="#__codelineno-0-87"></a><span class="w">            </span><span class="n">anyPostProcessingEnabled</span><span class="w"> </span><span class="o">&amp;=</span><span class="w"> </span><span class="n">SystemInfo</span><span class="p">.</span><span class="n">graphicsDeviceType</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">GraphicsDeviceType</span><span class="p">.</span><span class="n">OpenGLES2</span><span class="p">;</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88" href="#__codelineno-0-88"></a><span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">isStackedRendering</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lastActiveOverlayCameraIndex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89" href="#__codelineno-0-89"></a><span class="w">            </span><span class="c1">// Update volumeframework before initializing additional camera data</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90" href="#__codelineno-0-90"></a><span class="w">            </span><span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">baseCamera</span><span class="p">,</span><span class="w"> </span><span class="n">baseCameraAdditionalData</span><span class="p">);</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91" href="#__codelineno-0-91"></a><span class="w">            </span><span class="n">InitializeCameraData</span><span class="p">(</span><span class="n">baseCamera</span><span class="p">,</span><span class="w"> </span><span class="n">baseCameraAdditionalData</span><span class="p">,</span><span class="w"> </span><span class="o">!</span><span class="n">isStackedRendering</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">baseCameraData</span><span class="p">);</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92" href="#__codelineno-0-92"></a><span class="w">            </span><span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">baseCamera</span><span class="p">);</span>
+<a id="__codelineno-0-93" name="__codelineno-0-93" href="#__codelineno-0-93"></a><span class="w">            </span><span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">baseCameraData</span><span class="p">,</span><span class="w"> </span><span class="n">anyPostProcessingEnabled</span><span class="p">);</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94" href="#__codelineno-0-94"></a><span class="w">            </span><span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">baseCamera</span><span class="p">);</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95" href="#__codelineno-0-95"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isStackedRendering</span><span class="p">)</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96" href="#__codelineno-0-96"></a><span class="w">            </span><span class="p">{</span>
+<a id="__codelineno-0-97" name="__codelineno-0-97" href="#__codelineno-0-97"></a><span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">cameraStack</span><span class="p">.</span><span class="n">Count</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98" href="#__codelineno-0-98"></a><span class="w">                </span><span class="p">{</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99" href="#__codelineno-0-99"></a><span class="w">                    </span><span class="kt">var</span><span class="w"> </span><span class="n">currCamera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cameraStack</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100" href="#__codelineno-0-100"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">currCamera</span><span class="p">.</span><span class="n">isActiveAndEnabled</span><span class="p">)</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101" href="#__codelineno-0-101"></a><span class="w">                        </span><span class="k">continue</span><span class="p">;</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102" href="#__codelineno-0-102"></a><span class="w">                    </span><span class="n">currCamera</span><span class="p">.</span><span class="n">TryGetComponent</span><span class="o">&lt;</span><span class="n">UniversalAdditionalCameraData</span><span class="o">&gt;</span><span class="p">(</span><span class="k">out</span><span class="w"> </span><span class="kt">var</span><span class="w"> </span><span class="n">currCameraData</span><span class="p">);</span>
+<a id="__codelineno-0-103" name="__codelineno-0-103" href="#__codelineno-0-103"></a><span class="w">                    </span><span class="c1">// Camera is overlay and enabled</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104" href="#__codelineno-0-104"></a><span class="w">                    </span><span class="c1">// Copy base settings from base camera data and initialize initialize remaining specific settings for this camera type.</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105" href="#__codelineno-0-105"></a><span class="w">                    </span><span class="n">CameraData</span><span class="w"> </span><span class="n">overlayCameraData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseCameraData</span><span class="p">;</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106" href="#__codelineno-0-106"></a><span class="w">                    </span><span class="kt">bool</span><span class="w"> </span><span class="n">lastCamera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">lastActiveOverlayCameraIndex</span><span class="p">;</span>
+<a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a><span class="w">                    </span><span class="n">BeginCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">currCamera</span><span class="p">);</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a><span class="w">                    </span><span class="n">UpdateVolumeFramework</span><span class="p">(</span><span class="n">currCamera</span><span class="p">,</span><span class="w"> </span><span class="n">currCameraData</span><span class="p">);</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109" href="#__codelineno-0-109"></a><span class="w">                    </span><span class="n">InitializeAdditionalCameraData</span><span class="p">(</span><span class="n">currCamera</span><span class="p">,</span><span class="w"> </span><span class="n">currCameraData</span><span class="p">,</span><span class="w"> </span><span class="n">lastCamera</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">overlayCameraData</span><span class="p">);</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110" href="#__codelineno-0-110"></a><span class="w">                    </span><span class="n">RenderSingleCamera</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">overlayCameraData</span><span class="p">,</span><span class="w"> </span><span class="n">anyPostProcessingEnabled</span><span class="p">);</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111" href="#__codelineno-0-111"></a><span class="w">                    </span><span class="n">EndCameraRendering</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">currCamera</span><span class="p">);</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112" href="#__codelineno-0-112"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113" href="#__codelineno-0-113"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-0-114" name="__codelineno-0-114" href="#__codelineno-0-114"></a><span class="w">        </span><span class="p">}</span><span class="w">                  </span>
+</code></pre></div><blockquote>
+<p>如果Unity版本高<code>UNITY_2021_1_OR_NEWER</code>宏生效则<code>BeginContextRendering(renderContext, cameras);</code>替换<code>BeginFrameRendering(renderContext, cameras);</code>，<code>EndContextRendering(renderContext, cameras);</code>替换<code>EndFrameRendering(renderContext, cameras);</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="rendersinglecamera"><code>RenderSingleCamera</code> 分析<a class="headerlink" href="#rendersinglecamera" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><code>static void RenderSingleCamera(ScriptableRenderContext context, CameraData cameraData, bool anyPostProcessingEnabled)</code>的执行流程  <br />
+<code>ScriptableRender renderer= cameraData.renderer;</code></p>
+</blockquote>
+<ul>
+<li>
+<p>剔除操作，返回一个剔除参数（被摄象机渲染的游戏物体和光照的列表 ）<code>TryGetCullingParameters(cameraData, out var cullingParameters)</code>
+    &gt; <code>static bool TryGetCullingParameters(CameraData cameraData, out ScriptableCullingParameters cullingParams)</code>   </p>
+<ul>
+<li>cameraData.camera.TryGetCullingParameters(false, out cullingParams)</li>
+<li>修改剔除参数（是否投射阴影，最大灯光数量，阴影距离shadowDistance，）<code>renderer.SetupCullingParameters(ref cullingParameters, ref cameraData);</code><blockquote>
+<p><code>public virtual void SetupCullingParameters(ref ScriptableCullingParameters cullingParameters,
+        ref CameraData cameraData)</code></p>
+</blockquote>
+</li>
+<li><code>context.ExecuteCommandBuffer(cmd);</code><blockquote>
+<p><code>public void ExecuteCommandBuffer(CommandBuffer commandBuffer);</code></p>
+</blockquote>
+</li>
+<li>根据剔除参数执行剔除，获得剔除结果 <code>var cullResults = context.Cull(ref cullingParameters);</code><blockquote>
+<p><code>public CullingResults Cull(ref ScriptableCullingParameters parameters)</code></p>
+</blockquote>
+</li>
+<li>初始化渲染数据<code>RenderingData</code>（灯光数据，阴影数据，后处理数据,是否动态批处理，是否启用后处理，相机数据，剔除结果数据）<code>InitializeRenderingData(asset, ref cameraData, ref cullResults, anyPostProcessingEnabled, out var renderingData);</code><blockquote>
+<p><code>static void InitializeRenderingData(UniversalRenderPipelineAsset settings, ref CameraData cameraData, ref CullingResults cullResults,
+        bool anyPostProcessingEnabled, out RenderingData renderingData)</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><code>renderer.Setup(context, ref renderingData)</code>
+    &gt; <code>public abstract void Setup(ScriptableRenderContext context, ref RenderingData renderingData);</code>  </p>
+<ul>
+<li>如果获取深度
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">ConfigureCameraTarget</span><span class="p">(</span><span class="n">BuiltinRenderTextureType</span><span class="p">.</span><span class="n">CameraTarget</span><span class="p">,</span><span class="w"> </span><span class="n">BuiltinRenderTextureType</span><span class="p">.</span><span class="n">CameraTarget</span><span class="p">);</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">AddRenderPasses</span><span class="p">(</span><span class="k">ref</span><span class="w"> </span><span class="n">renderingData</span><span class="p">);</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_RenderOpaqueForwardPass</span><span class="p">);</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1">// TODO: Do we need to inject transparents and skybox when rendering depth only camera? They don&#39;t  write to depth.</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_DrawSkyboxPass</span><span class="p">);</span><span class="w">    </span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">EnqueuePass</span><span class="p">(</span><span class="n">m_RenderTransparentForwardPass</span><span class="p">);</span>
+</code></pre></div></li>
+<li><code>ConfigureCameraColorTarget(activeColorRenderTargetId);</code></li>
+<li><code>AddRenderPasses(ref renderingData); // rendererFeatures AddRenderPasses</code></li>
+<li><code>CreateCameraRenderTarget(context, ref cameraTargetDescriptor, createColorTexture, createDepthTexture);  // CameraRenderType.Base</code></li>
+<li><code>EnqueuePass(m_MainLightShadowCasterPass);</code></li>
+<li><code>EnqueuePass(m_AdditionalLightsShadowCasterPass);</code></li>
+<li><code>EnqueuePass(m_DepthNormalPrepass);</code>或者 <code>EnqueuePass(m_DepthPrepass);</code></li>
+<li><code>EnqueuePass(m_ColorGradingLutPass);</code></li>
+<li><code>EnqueuePass(m_RenderOpaqueForwardPass);</code></li>
+<li><code>EnqueuePass(m_DrawSkyboxPass);</code></li>
+<li><code>EnqueuePass(m_CopyDepthPass);</code></li>
+<li><code>EnqueuePass(m_CopyColorPass);</code></li>
+<li><code>EnqueuePass(m_TransparentSettingsPass);</code></li>
+<li><code>EnqueuePass(m_RenderTransparentForwardPass);</code></li>
+<li><code>EnqueuePass(m_OnRenderObjectCallbackPass);</code></li>
+<li><code>EnqueuePass(m_PostProcessPass);</code></li>
+<li><code>EnqueuePass(m_FinalPostProcessPass);</code></li>
+<li><code>EnqueuePass(m_CapturePass);</code></li>
+<li><code>EnqueuePass(m_FinalBlitPass);</code></li>
+<li><code>EnqueuePass(m_PostProcessPass);</code></li>
+</ul>
+</li>
+<li>
+<p><code>renderer.Execute(context, ref renderingData);</code>
+    &gt; <code>public void Execute(ScriptableRenderContext context, ref RenderingData renderingData)</code>
+    &gt; <code>ref CameraData cameraData = ref renderingData.cameraData;</code></p>
+<ul>
+<li><code>InternalStartRendering(context, ref renderingData);</code></li>
+<li><code>SetPerCameraShaderVariables(cmd, ref cameraData);</code></li>
+<li><code>SetShaderTimeValues(cmd, time, deltaTime, smoothDeltaTime);</code></li>
+<li><code>context.ExecuteCommandBuffer(cmd);</code></li>
+<li><code>SortStable(m_ActiveRenderPassQueue);                   // Sort the render pass queue</code></li>
+<li><code>SetupLights(context, ref renderingData);</code></li>
+<li>
+<p>执行所有Pass的Execute方法 <code>ExecuteBlock(RenderPassBlock.BeforeRendering, in renderBlocks, context, ref renderingData);</code>
+    &gt;// Before Render Block. This render blocks always execute in mono rendering.<br />
+    &gt;// Camera is not setup. Lights are not setup.<br />
+    &gt;// Used to render input textures like shadowmaps. 
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">ExecuteBlock</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">blockIndex</span><span class="p">,</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">RenderBlocks</span><span class="w"> </span><span class="n">renderBlocks</span><span class="p">,</span><span class="n">ScriptableRenderContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">RenderingData</span><span class="w"> </span><span class="n">renderingData</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">submit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">)</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="p">{</span><span class="w">   </span><span class="k">foreach</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">currIndex</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">renderBlocks</span><span class="p">.</span><span class="n">GetRange</span><span class="p">(</span><span class="n">blockIndex</span><span class="p">))</span><span class="w"> </span><span class="c1">//循环所有Pass</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="p">{</span><span class="kt">var</span><span class="w"> </span><span class="n">renderPass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m_ActiveRenderPassQueue</span><span class="p">[</span><span class="n">currIndex</span><span class="p">];</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">            </span><span class="n">ExecuteRenderPass</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">renderPass</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">renderingData</span><span class="p">);}</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">submit</span><span class="p">)</span><span class="w"> </span><span class="n">context</span><span class="p">.</span><span class="n">Submit</span><span class="p">();}</span><span class="w">      </span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">void</span><span class="w"> </span><span class="nf">ExecuteRenderPass</span><span class="p">(</span><span class="n">ScriptableRenderContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">ScriptableRenderPass</span><span class="w"> </span><span class="n">renderPass</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w">    </span><span class="n">RenderingData</span><span class="w"> </span><span class="n">renderingData</span><span class="p">){</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="k">using</span><span class="w"> </span><span class="nn">var</span><span class="w"> </span><span class="n">profScope</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ProfilingScope</span><span class="p">(</span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">renderPass</span><span class="p">.</span><span class="n">profilingSampler</span><span class="p">);</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="k">ref</span><span class="w"> </span><span class="n">CameraData</span><span class="w"> </span><span class="n">cameraData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">renderingData</span><span class="p">.</span><span class="n">cameraData</span><span class="p">;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="n">CommandBuffer</span><span class="w"> </span><span class="n">cmd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Get</span><span class="p">();</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="c1">// Track CPU only as GPU markers for this scope were &quot;too noisy&quot;.</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="k">using</span><span class="w"> </span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ProfilingScope</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span><span class="w"> </span><span class="n">Profiling</span><span class="p">.</span><span class="n">RenderPass</span><span class="p">.</span><span class="n">configure</span><span class="p">))</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">        </span><span class="p">{</span><span class="w">   </span><span class="n">renderPass</span><span class="p">.</span><span class="n">Configure</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span><span class="w"> </span><span class="n">cameraData</span><span class="p">.</span><span class="n">cameraTargetDescriptor</span><span class="p">);</span><span class="w"> </span><span class="c1">//配置Pass数据</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">            </span><span class="n">SetRenderPassAttachments</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span><span class="w"> </span><span class="n">renderPass</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">cameraData</span><span class="p">);}</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="c1">// Also, we execute the commands recorded at this point to ensure SetRenderTarget is called     before RenderPass.Execute</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="n">context</span><span class="p">.</span><span class="n">ExecuteCommandBuffer</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">        </span><span class="n">CommandBufferPool</span><span class="p">.</span><span class="n">Release</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="n">renderPass</span><span class="p">.</span><span class="n">Execute</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">renderingData</span><span class="p">);</span><span class="w"> </span><span class="c1">//执行对应Pass的Execute</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="p">}</span><span class="w">                  </span>
+</code></pre></div></p>
+</li>
+<li>
+<p><code>context.SetupCameraProperties(camera);</code>
+    &gt;// This is still required because of the following reasons:
+    &gt;// - Camera billboard properties.
+    &gt;// - Camera frustum planes: unity_CameraWorldClipPlanes[6]
+    &gt;// - _ProjectionParams.x logic is deep inside GfxDevice
+    &gt;// NOTE: The only reason we have to call this here and not at the beginning (before shadows)
+    &gt;// is because this need to be called for each eye in multi pass VR.
+    &gt;// The side effect is that this will override some shader properties we already setup and we will have to
+    &gt;// reset them.</p>
+</li>
+<li>
+<p><code>SetCameraMatrices(cmd, ref cameraData, true);</code></p>
+</li>
+<li><code>context.ExecuteCommandBuffer(cmd);</code></li>
+<li><code>context.DrawWireOverlay(camera);</code></li>
+<li><code>InternalFinishRendering(context, cameraData.resolveFinalTarget);</code>
+    &gt; <code>context.ExecuteCommandBuffer(cmd);</code></li>
+<li><code>context.ExecuteCommandBuffer(cmd);</code></li>
+<li><code>context.ExecuteCommandBuffer(cmd);</code></li>
+<li><code>context.Submit();</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="urp_2">URP笔记<a class="headerlink" href="#urp_2" title="Permanent link">&para;</a></h2>
+<h3 id="urp-lightmodetags">URP <code>LightMode</code>Tags 说明<a class="headerlink" href="#urp-lightmodetags" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Tags{“LightMode” = “XXX”}</p>
+</blockquote>
+<ul>
+<li><code>UniversalForward</code>：前向渲染物件之用，<code>SRPDefaultUnlit</code>也用该pass渲染</li>
+<li><code>ShadowCaster</code>： 投射阴影之用</li>
+<li><code>DepthOnly</code>：只用来产生深度图</li>
+<li><code>Mata</code>：来用烘焙光照图之用</li>
+<li><code>Universal2D</code> ：做2D游戏用的，用来替代前向渲染</li>
+<li><code>UniversalGBuffer</code> ： 貌似与延迟渲染相关（开发中）, Does GI + emission. All additional lights are done deferred as well as fog</li>
+<li><code>UniversalForwardOnly</code>:</li>
+<li><code>NormalsRendering</code>:</li>
+<li><code>SceneSelectionPass</code>:Scene view outline pass.</li>
+<li><code>Picking</code>:Scene picking buffer pass</li>
+<li><code>DepthNormals</code>: 只是用俩产生法线贴图<code>_CameraNormalsTexture</code> </li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

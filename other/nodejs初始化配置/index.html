@@ -1,0 +1,1387 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="codingriver personal tech blog - Unity / Shader / CSharp / Math">
+      
+      
+        <meta name="author" content="codingriver">
+      
+      
+        <link rel="canonical" href="https://blog.wgqing.com/other/nodejs%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Nodejs初始化配置 - codingriver</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#windowsnpmvue" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="codingriver" class="md-header__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            codingriver
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Nodejs初始化配置
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  About
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="codingriver" class="md-nav__button md-logo" aria-label="codingriver" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    codingriver
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    codingriver/codingriver.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、使用之前，我们先来掌握3个东西是用来干什么的。
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#npm-nodejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm: Nodejs下的包管理器。
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webpack-commonjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        webpack: 它主要的用途是通过CommonJS的语法把所有浏览器端需要发布的静态资源做相应的准备，比如资源的合并和打包。
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vue-cli-vuevuevue-npm-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        vue-cli: 用户生成Vue工程模板。（帮你快速开始一个vue的项目，也就是给你一套vue的结构，包含基础的依赖库，只需要 npm install就可以安装）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开始：
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开始：">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#893-lts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如图，下载8.9.3 LTS （推荐给绝大部分用户使用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        双击安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnodejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可以使用默认路径，本例子中自行修改为d:\nodejs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一路点Next
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        点Finish完成
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        打开CMD，检查是否正常
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2npmcnpm-cache2dnodejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        再看看另外2个目录，npm的本地仓库跑在系统盘c盘的用户目录了(没见到npm-cache是因为没有用过，一使用缓存目录就生成了)，我们试图把这2个目录移动回到D:\nodejs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        先如下图建立2个目录
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        然后运行以下2条命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-config-set-prefix-dnodejsnode_global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm config set prefix "D:\nodejs\node_global"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-config-set-cache-dnodejsnode_cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm config set cache "D:\nodejs\node_cache"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npmnpm-list-global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如上图，我们再来关注一下npm的本地仓库，输入命令npm list -global
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-config-set-registryhttpregistrynpmtaobaoorg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入命令npm config set registry=http://registry.npm.taobao.org 配置镜像站
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-config-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入命令npm config list 显示所有配置信息，我们关注一个配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cusersadministratornpmrc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C:\Users\Administrator\.npmrc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用文本编辑器编辑它，可以看到刚才的配置信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        检查一下镜像站行不行命令1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-config-get-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm config get registry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        检查一下镜像站行不行命令2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-info-vue-vue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Npm info vue 看看能否获得vue的信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnodejsnode_modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注意，此时，默认的模块D:\nodejs\node_modules 目录
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dnodejsnode_globalnode_modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        将会改变为D:\nodejs\node_global\node_modules 目录，
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果直接运行npm install等命令会报错的。
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        我们需要做1件事情：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1node_path-dnodejsnode_globalnode_modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、增加环境变量NODE_PATH 内容是：D:\nodejs\node_global\node_modules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （注意，一下操作需要重新打开CMD让上面的环境变量生效）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npmvuejs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、测试NPM安装vue.js
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-install-vue-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        命令：npm install vue -g
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-gglobal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        这里的-g是指安装到global全局目录去
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npmvue-router" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、测试NPM安装vue-router
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-install-vue-router-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        命令：npm install vue-router -g
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-install-vue-cli-gvue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行npm install vue-cli -g安装vue脚手架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编辑环境编辑path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pathdnodejsnode_global" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        对path环境变量添加D:\nodejs\node_global
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#win10path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        win10以下版本的，横向显示PATH的，注意添加到最后时，不要有分号【;】
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmdvue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重新打开CMD，并且测试vue是否使用正常
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vue-cli-webpack-webpack-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注意，vue-cli工具是内置了模板包括 webpack 和 webpack-simple,前者是比较复杂专业的项目，
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webpackconfigjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        他的配置并不全放在根目录下的 webpack.config.js 中。
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        初始化，安装依赖
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-install_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行npm install安装依赖
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-run-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm run dev
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#httplocalhost8080" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        成功界面，提示打开地址http://localhost:8080
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#httplocalhost8080_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自动打开浏览器http://localhost:8080/#/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npm-run-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        npm run build
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distindexhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成静态文件，打开dist文件夹下新生成的index.html文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmpvue01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        nmp下新建出来的vue01的目录描述：
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/codingriver/codingriver.github.io/edit/master/docs/other/nodejs初始化配置.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<!--more-->
+<blockquote>
+<p>转载：<a href="https://www.cnblogs.com/liluxiang/p/9592003.html">windows安装npm教程</a></p>
+</blockquote>
+<h1 id="windowsnpmvue"><a href="https://www.cnblogs.com/liluxiang/p/9592003.html">windows下npm安装vue</a><a class="headerlink" href="#windowsnpmvue" title="Permanent link">&para;</a></h1>
+<h2 id="3">一、使用之前，我们先来掌握3个东西是用来干什么的。<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h2 id="npm-nodejs">npm: Nodejs下的包管理器。<a class="headerlink" href="#npm-nodejs" title="Permanent link">&para;</a></h2>
+<h2 id="webpack-commonjs">webpack: 它主要的用途是通过CommonJS的语法把所有浏览器端需要发布的静态资源做相应的准备，比如资源的合并和打包。<a class="headerlink" href="#webpack-commonjs" title="Permanent link">&para;</a></h2>
+<h2 id="vue-cli-vuevuevue-npm-install">vue-cli: 用户生成Vue工程模板。（帮你快速开始一个vue的项目，也就是给你一套vue的结构，包含基础的依赖库，只需要 npm install就可以安装）<a class="headerlink" href="#vue-cli-vuevuevue-npm-install" title="Permanent link">&para;</a></h2>
+<h2 id="_1">开始：<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145017816-1078102167.png" /></p>
+<h3 id="893-lts">如图，下载8.9.3 LTS （推荐给绝大部分用户使用）<a class="headerlink" href="#893-lts" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145228394-1659342805.png" /></p>
+<h3 id="_2">双击安装<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145307316-1352109111.png" /></p>
+<h3 id="dnodejs">可以使用默认路径，本例子中自行修改为d:\nodejs<a class="headerlink" href="#dnodejs" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145332816-1106051339.png" /></p>
+<h3 id="next">一路点Next<a class="headerlink" href="#next" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145443082-1633079415.png" /></p>
+<h3 id="finish">点Finish完成<a class="headerlink" href="#finish" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145526363-1294346495.png" /></p>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145534144-1685678132.png" /></p>
+<h3 id="cmd">打开CMD，检查是否正常<a class="headerlink" href="#cmd" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145657082-1826714804.png" /></p>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145723801-1548672252.png" /></p>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145740222-1613793922.png" /></p>
+<h3 id="2npmcnpm-cache2dnodejs">再看看另外2个目录，npm的本地仓库跑在系统盘c盘的用户目录了(没见到npm-cache是因为没有用过，一使用缓存目录就生成了)，我们试图把这2个目录移动回到D:\nodejs<a class="headerlink" href="#2npmcnpm-cache2dnodejs" title="Permanent link">&para;</a></h3>
+<h3 id="2">先如下图建立2个目录<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<h3 id="_3"><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145811019-407092018.png" /><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h3 id="2_1">然后运行以下2条命令<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<h3 id="npm-config-set-prefix-dnodejsnode_global">npm config set prefix "D:\nodejs\node_global"<a class="headerlink" href="#npm-config-set-prefix-dnodejsnode_global" title="Permanent link">&para;</a></h3>
+<h3 id="npm-config-set-cache-dnodejsnode_cache">npm config set cache "D:\nodejs\node_cache"<a class="headerlink" href="#npm-config-set-cache-dnodejsnode_cache" title="Permanent link">&para;</a></h3>
+<h3 id="_4"><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145854347-808420142.png" /><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h3 id="npmnpm-list-global">如上图，我们再来关注一下npm的本地仓库，输入命令npm list -global<a class="headerlink" href="#npmnpm-list-global" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145924051-372279137.png" /></p>
+<h3 id="npm-config-set-registryhttpregistrynpmtaobaoorg">输入命令npm config set registry=http://registry.npm.taobao.org 配置镜像站<a class="headerlink" href="#npm-config-set-registryhttpregistrynpmtaobaoorg" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212145956347-1443850138.png" /></p>
+<h3 id="npm-config-list">输入命令npm config list 显示所有配置信息，我们关注一个配置文件<a class="headerlink" href="#npm-config-list" title="Permanent link">&para;</a></h3>
+<h3 id="cusersadministratornpmrc">C:\Users\Administrator\.npmrc<a class="headerlink" href="#cusersadministratornpmrc" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150036551-2051372473.png" /></p>
+<h3 id="_5">使用文本编辑器编辑它，可以看到刚才的配置信息<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150059472-912062155.png" /></p>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150115488-275634578.png" /></p>
+<h3 id="1">检查一下镜像站行不行命令1<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<h3 id="npm-config-get-registry">npm config get registry<a class="headerlink" href="#npm-config-get-registry" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150211879-638610714.png" /></p>
+<h3 id="2_2">检查一下镜像站行不行命令2<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h3>
+<h3 id="npm-info-vue-vue">Npm info vue 看看能否获得vue的信息<a class="headerlink" href="#npm-info-vue-vue" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150233535-577937828.png" /></p>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150246691-739368557.png" /></p>
+<h3 id="dnodejsnode_modules">注意，此时，默认的模块D:\nodejs\node_modules 目录<a class="headerlink" href="#dnodejsnode_modules" title="Permanent link">&para;</a></h3>
+<h3 id="dnodejsnode_globalnode_modules">将会改变为D:\nodejs\node_global\node_modules 目录，<a class="headerlink" href="#dnodejsnode_globalnode_modules" title="Permanent link">&para;</a></h3>
+<h3 id="npm-install">如果直接运行npm install等命令会报错的。<a class="headerlink" href="#npm-install" title="Permanent link">&para;</a></h3>
+<h3 id="1_1">我们需要做1件事情：<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<h3 id="1node_path-dnodejsnode_globalnode_modules">1、增加环境变量NODE_PATH 内容是：D:\nodejs\node_global\node_modules<a class="headerlink" href="#1node_path-dnodejsnode_globalnode_modules" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150402894-2086448836.png" /></p>
+<h3 id="cmd_1">（注意，一下操作需要重新打开CMD让上面的环境变量生效）<a class="headerlink" href="#cmd_1" title="Permanent link">&para;</a></h3>
+<h3 id="npmvuejs">一、测试NPM安装vue.js<a class="headerlink" href="#npmvuejs" title="Permanent link">&para;</a></h3>
+<h3 id="npm-install-vue-g">命令：npm install vue -g<a class="headerlink" href="#npm-install-vue-g" title="Permanent link">&para;</a></h3>
+<h3 id="-gglobal">这里的-g是指安装到global全局目录去<a class="headerlink" href="#-gglobal" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150420488-1331978539.png" /></p>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150458519-2132301252.png" /></p>
+<h3 id="npmvue-router">二、测试NPM安装vue-router<a class="headerlink" href="#npmvue-router" title="Permanent link">&para;</a></h3>
+<h3 id="npm-install-vue-router-g">命令：npm install vue-router -g<a class="headerlink" href="#npm-install-vue-router-g" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150538707-640998672.png" /></p>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150544879-938347487.png" /></p>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150744051-1058132537.png" /></p>
+<h3 id="npm-install-vue-cli-gvue">运行npm install vue-cli -g安装vue脚手架<a class="headerlink" href="#npm-install-vue-cli-gvue" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150805238-349743368.png" /></p>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150836707-1925918113.png" /></p>
+<h3 id="path">编辑环境编辑path<a class="headerlink" href="#path" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150853863-1117215657.png" /></p>
+<h3 id="pathdnodejsnode_global">对path环境变量添加D:\nodejs\node_global<a class="headerlink" href="#pathdnodejsnode_global" title="Permanent link">&para;</a></h3>
+<h3 id="win10path">win10以下版本的，横向显示PATH的，注意添加到最后时，不要有分号【;】<a class="headerlink" href="#win10path" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150928332-1178968243.png" /></p>
+<h3 id="cmdvue">重新打开CMD，并且测试vue是否使用正常<a class="headerlink" href="#cmdvue" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212150949097-1600189468.png" /></p>
+<h3 id="vue-cli-webpack-webpack-simple">注意，vue-cli工具是内置了模板包括 webpack 和 webpack-simple,前者是比较复杂专业的项目，<a class="headerlink" href="#vue-cli-webpack-webpack-simple" title="Permanent link">&para;</a></h3>
+<h3 id="webpackconfigjs">他的配置并不全放在根目录下的 webpack.config.js 中。<a class="headerlink" href="#webpackconfigjs" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212151033847-2077318030.png" /></p>
+<h3 id="_6">初始化，安装依赖<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212151121910-1710109810.png" /></p>
+<h3 id="npm-install_1">运行npm install安装依赖<a class="headerlink" href="#npm-install_1" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212151139176-1075396617.png" /></p>
+<h3 id="npm-run-dev">npm run dev<a class="headerlink" href="#npm-run-dev" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212151206519-436420011.png" /></p>
+<h3 id="httplocalhost8080">成功界面，提示打开地址http://localhost:8080<a class="headerlink" href="#httplocalhost8080" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212151256129-333658407.png" /></p>
+<h3 id="httplocalhost8080_1">自动打开浏览器http://localhost:8080/#/<a class="headerlink" href="#httplocalhost8080_1" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212151314504-1422396943.png" /></p>
+<h3 id="npm-run-build">npm run build<a class="headerlink" href="#npm-run-build" title="Permanent link">&para;</a></h3>
+<h3 id="distindexhtml">生成静态文件，打开dist文件夹下新生成的index.html文件<a class="headerlink" href="#distindexhtml" title="Permanent link">&para;</a></h3>
+<h3 id="nmpvue01">nmp下新建出来的vue01的目录描述：<a class="headerlink" href="#nmpvue01" title="Permanent link">&para;</a></h3>
+<p><img alt="" src="https://images2017.cnblogs.com/blog/1287619/201712/1287619-20171212151528301-530076803.png" /></p>
+<p>懂的越多，不会的也就越多，知识之路是不断进取的</p>
+<hr />
+<!---
+>转载：[windows安装npm教程](https://blog.csdn.net/zhouyan8603/article/details/109039732)
+
+
+#### 在使用之前，先类掌握3个东西，明白它们是用来干什么的：
+
+**npm:  nodejs 下的包管理器。**
+
+**webpack: 它主要用途是通过CommonJS 的语法把所有浏览器端需要发布的静态资源作相应的准备，比如资源的合并和打包。**
+
+**vue-cli: 用户生成Vue工程模板。（帮你快速开始一个vue的项目，也就是给你一套vue的结构，包含基础的依赖库，只需要npm install 就可以安装。**
+
+#### 2、nodejs下载网址：[https://nodejs.org/en/](https://nodejs.org/en/)     【如果嫌下载的慢，可以下载其他网站上的，别人有现成的，下载的比较快】
+
+![](https://img-blog.csdnimg.cn/img_convert/2122db339ad4c282c01e0a4c9b842b84.png)
+
+####  3、下载好后，双击安装：
+
+![](https://img-blog.csdnimg.cn/img_convert/787070181d4eb6354442b627b349d00a.png)
+
+####  4、默认，下一步：
+
+![](https://img-blog.csdnimg.cn/img_convert/b40ce42d6a962b73376ade7d717ea3d0.png)
+
+####  5、接受协议：
+
+![](https://img-blog.csdnimg.cn/img_convert/12461a83230969a4b8664295fa610716.png)
+
+####  6、选择安装路径：
+
+![](https://img-blog.csdnimg.cn/img_convert/180628a64010aee2bc96647596a79d83.png)
+
+####  7、会默认自己添加环境变量：
+
+![](https://img-blog.csdnimg.cn/img_convert/3ee3761f8088d44e72a9d8f6c46ae143.png)
+
+####  8、接下去一路“next”，最后点击finish
+
+![](https://img-blog.csdnimg.cn/img_convert/48ab1caa2f04c9ac15eaf8ffb33b1b38.png)
+
+####  9、安装好后，对应的各个文件的作用：
+
+![](https://img-blog.csdnimg.cn/img_convert/775ce05db690c99c6b8b213227b0cd89.png)
+
+####  10、cmd打开终端：
+
+![](https://img-blog.csdnimg.cn/img_convert/b0ea3721f682845f92536af72810213e.png)
+
+####  11、检查是否正常
+
+![](https://img-blog.csdnimg.cn/img_convert/23a6f91b01a20c3626bff643920570ce.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/afdbfef7b39d19c767eb66f5dbcf95db.png)
+
+####  12、再看看另外2个目录，npm的本地仓库跑在系统盘c盘的用户目录了(没见到npm-cache是因为没有用过，
+
+#### 一使用缓存目录就生成了)，我们试图把这2个目录移动回到D:\\nodejs
+
+![](https://img-blog.csdnimg.cn/img_convert/9dc6663392f9d03b969bff2175468600.png)
+
+#### 先如下图建立2个目录：
+
+![](https://img-blog.csdnimg.cn/img_convert/bea0426031debd0f385132b017526465.png)
+
+####  13、然后运行以下2条命令
+
+#### npm config set prefix "D:\\nodejs\\node\_global"
+
+#### npm config set cache "D:\\nodejs\\node\_cache"
+
+ ![](https://img-blog.csdnimg.cn/img_convert/c8e9d031ccdb2314e8adc3b0098bfad5.png)
+
+如上图，我们再来关注一下npm的本地仓库，输入命令npm list -global
+
+#### 14、配置一个镜像站，为了提升速度，
+
+#### 输入命令npm config set registry=http://registry.npm.taobao.org 配置镜像站
+
+![](https://img-blog.csdnimg.cn/img_convert/2e6d19ebf5be093e10ebd45a436aa901.png)
+
+**输入命令npm config list 显示所有配置信息，我们关注一个配置文件**
+
+**C:\\Users\\Administrator\\.npmrc**
+
+ ![](https://img-blog.csdnimg.cn/img_convert/6fb55bc990e0eb811ce9303640921486.png)
+
+ ![](https://img-blog.csdnimg.cn/img_convert/ab8a6434f4515c16775435472a873221.png)
+
+#### 使用文本编辑器编辑它，可以看到刚才的配置信息
+
+![](https://img-blog.csdnimg.cn/img_convert/ccc3a17aeb5823553d75e6081cd5c63c.png)
+
+ ![](https://img-blog.csdnimg.cn/img_convert/3df9daea6c48dade192158131df21074.png)
+
+ **检查一下镜像站行不行命令1**
+
+**npm config get registry**
+
+![](https://img-blog.csdnimg.cn/img_convert/087562dead6f199f218f8032263d2067.png)
+
+ ![](https://img-blog.csdnimg.cn/img_convert/1277205d6cca776b88f7fb23ec113750.png)
+
+ **检查一下镜像站行不行命令2**
+
+**Npm info vue 看看能否获得vue的信息**
+
+![](https://img-blog.csdnimg.cn/img_convert/224014342e122552603196676f5f8e4c.png)
+
+ ![](https://img-blog.csdnimg.cn/img_convert/580f43b3443c751115604db3b12a8c49.png)
+
+#### 注意，此时，默认的模块D:\\nodejs\\node\_modules 目录
+
+#### 将会改变为D:\\nodejs\\node\_global\\node\_modules 目录，
+
+#### 如果直接运行npm install等命令会报错的。
+
+#### 我们需要做1件事情：
+
+#### 1、增加环境变量NODE\_PATH 内容是：D:\\nodejs\\node\_global\\node\_modules
+
+![](https://img-blog.csdnimg.cn/img_convert/3f79255792c728601fd0fb7195684d33.png)
+
+#### （注意，一下操作需要重新打开CMD让上面的环境变量生效）
+
+#### 一、测试NPM安装vue.js
+
+#### 命令：npm install vue -g
+
+#### 这里的-g是指安装到global全局目录去
+
+![](https://img-blog.csdnimg.cn/img_convert/5889d49f18335ce543450ebbf85fd8dd.png)
+
+ ![](https://img-blog.csdnimg.cn/img_convert/ffe5c8d602ad058d4dbfdad556a1c9ed.png)
+
+#### 二、测试NPM安装vue-router
+
+#### 命令：npm install vue-router -g
+
+![](https://img-blog.csdnimg.cn/img_convert/4024d8446e874a004be0151c8bca4bb8.png)
+
+ ![](https://img-blog.csdnimg.cn/img_convert/38b6522c3e39ad77733d8f3f3ee8c0ba.png)
+
+#### 运行npm install vue-cli -g安装vue脚手架
+
+![](https://img-blog.csdnimg.cn/img_convert/2d23ea4ad2f33b3d571c3b1a7b28e11d.png)
+
+![](https://img-blog.csdnimg.cn/img_convert/3e88d7433a401baf57c2498ced109591.png)
+
+#### 编辑环境编辑path
+
+![](https://img-blog.csdnimg.cn/img_convert/0f5351a8141de34b61fa5e1f4d4863dd.png)
+
+#### 对path环境变量添加D:\\nodejs\\node\_global
+
+#### win10以下版本的，横向显示PATH的，注意添加到最后时，不要有分号【;】
+
+![](https://img-blog.csdnimg.cn/img_convert/48d5e84d132ba017e2dbf5915c62ca05.png)
+
+#### 重新打开CMD，并且测试vue是否使用正常
+
+![](https://img-blog.csdnimg.cn/img_convert/3c91448efcf967bc63f972324c26ecf9.png)
+
+#### 注意，vue-cli工具是内置了模板包括 webpack 和 webpack-simple,前者是比较复杂专业的项目，
+
+#### 他的配置并不全放在根目录下的 webpack.config.js 中
+
+![](https://img-blog.csdnimg.cn/img_convert/f11c8646992878549289624c0ccd0330.png)
+
+#### 初始化，安装依赖
+
+![](https://img-blog.csdnimg.cn/img_convert/7de5fa3a2449afcad87128c61c107301.png)
+
+#### 运行npm install安装依赖
+
+![](https://img-blog.csdnimg.cn/img_convert/e3dfc9979ed19fba2a568a46fa373474.png)
+
+ ![](https://img-blog.csdnimg.cn/img_convert/cabc86eb7771b4b01e659fa8885d4148.png)
+
+#### 成功界面，提示打开地址http://localhost:8080
+
+![](https://img-blog.csdnimg.cn/img_convert/f2d3b88e533e6f346f01c7c291a8b405.png)
+
+#### 自动打开浏览器http://localhost:8080/#/
+
+#### npm run build
+
+#### 生成静态文件，打开dist文件夹下新生成的index.html文件
+
+#### nmp下新建出来的vue01的目录描述：
+
+![](https://img-blog.csdnimg.cn/img_convert/0afcef4fe0a45f12be2651652dbd3949.png)
+
+大部分借鉴的下面这个大神的：
+
+[https://www.cnblogs.com/liluxiang/p/9592003.html](https://www.cnblogs.com/liluxiang/p/9592003.html)
+
+按着大神的步骤操作了一遍，没什么大问题。在此表示感谢，同时声明下，该篇文章只用来自己学习用。
+-->
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="创建日期">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
