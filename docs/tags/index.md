@@ -1,5 +1,5 @@
 ---
-title: "index"
+title: "标签索引"
 date: "2026-03-21"
 tags:
   - 标签
@@ -21,7 +21,16 @@ comments: false
 推荐文章头部写法：
 
 ```markdown
-
+---
+title: 示例文章
+date: 2024-03-01
+tags:
+  - Unity
+  - Shader
+categories:
+  - u3d
+comments: true
+---
 ```
 
 ## 当前标签支持情况

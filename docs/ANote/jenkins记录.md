@@ -36,6 +36,8 @@ mac 安装目录：`/usr/local/Cellar/jenkins-lts/2.235.5/bin`
 <li>Walls can be added at runtime by left clicking while holding the shift key down.</li>
    </ul>
 </details>
-![Lab Rat](image/jenkins记录/LabRat.gif)
+![Lab Rat](https://placehold.co/960x540?text=LabRat+GIF+Missing)
+
+> 说明：原文引用的本地资源 `image/jenkins记录/LabRat.gif` 当前不在仓库中，暂以占位图保留阅读结构，后续如找回原 GIF 可直接替换。
 
 ---

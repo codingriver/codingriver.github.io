@@ -1,10 +1,9 @@
 ---
-title: "math"
+title: "Math"
 date: "2026-03-21"
 tags:
   - 数学
   - 图形学
-  - Shader
 categories:
   - math
 comments: false

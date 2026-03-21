@@ -22,9 +22,9 @@ comments: false
 
 - [Bloom实现](Bloom实现.md)
 - [Gamma和Linear及sRGB说明](Gamma和Linear及sRGB说明.md)
-- [ShaderLearn-(一)漫反射](ShaderLearn-(一)漫反射.md)
-- [ShaderLearn-(三)RampTex](ShaderLearn-(三)RampTex.md)
-- [ShaderLearn-(二)镜面反射](ShaderLearn-(二)镜面反射.md)
+- [ShaderLearn-(一)漫反射](<ShaderLearn-(一)漫反射.md>)
+- [ShaderLearn-(三)RampTex](<ShaderLearn-(三)RampTex.md>)
+- [ShaderLearn-(二)镜面反射](<ShaderLearn-(二)镜面反射.md>)
 - [Shader光照模型-漫反射](Shader光照模型-漫反射.md)
 - [Shader光照模型-高光反射](Shader光照模型-高光反射.md)
 - [Shader学习-1.1基础概要](Shader学习-1.1基础概要.md)

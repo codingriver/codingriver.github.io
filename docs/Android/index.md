@@ -3,8 +3,6 @@ title: "Android"
 date: "2026-03-21"
 tags:
   - Android
-  - 网络
-  - iOS
 categories:
   - Android
 comments: false

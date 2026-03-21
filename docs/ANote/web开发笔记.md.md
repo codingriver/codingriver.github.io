@@ -1,5 +1,5 @@
 ---
-title: "web开发笔记.md"
+title: "web开发笔记"
 date: "2026-03-21"
 tags:
   - 随笔
