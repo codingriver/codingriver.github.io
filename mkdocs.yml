@@ -1,13 +1,25 @@
 site_name: 王国庆的博客
 site_description: 从 Hugo 迁移到 MkDocs 的知识库
 site_url: https://www.wgqing.com/
+repo_url: https://github.com/codingriver/codingriver.github.io
+edit_uri: edit/master/docs/
 theme:
   name: material
   language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  custom_dir: overrides
 nav:
 - 首页: index.md
 - 关于: about.md
 - MkDocs 博客方案: MkDocs博客方案.md
+- 标签: tags/index.md
 - Android:
   - 栏目首页: Android/index.md
   - Android-App内打开自带浏览器: Android/Android-App内打开自带浏览器.md
@@ -100,17 +112,6 @@ nav:
 - Graphics:
   - 栏目首页: Graphics/index.md
   - DirectX环境搭建: Graphics/DirectX环境搭建.md
-- hugo:
-  - 栏目首页: hugo/index.md
-  - basic-markdown-syntax: hugo/basic-markdown-syntax.md
-  - Hugo 入门 安装（Windows）: hugo/Hugo 入门 安装（Windows）.md
-  - hugo-loveit-problems: hugo/hugo-loveit-problems.md
-  - hugo模版中的日期时间格式: hugo/hugo模版中的日期时间格式.md
-  - theme-documentation-basics: hugo/theme-documentation-basics.md
-  - theme-documentation-built-in-shortcodes: hugo/theme-documentation-built-in-shortcodes.md
-  - theme-documentation-content: hugo/theme-documentation-content.md
-  - theme-documentation-extended-shortcodes: hugo/theme-documentation-extended-shortcodes.md
-  - theme-emoji-support: hugo/theme-emoji-support.md
 - IOS:
   - 栏目首页: IOS/index.md
   - CSharp基础笔记: IOS/CSharp基础笔记.md
@@ -269,6 +270,15 @@ nav:
   - SerializedObject获取所有属性: unity编辑器/SerializedObject获取所有属性.md
   - unity编辑器-自定义Inspector面板: unity编辑器/unity编辑器-自定义Inspector面板.md
   - Unity编辑器扩展菜单项: unity编辑器/Unity编辑器扩展菜单项.md
+plugins:
+- search
+- git-revision-date-localized:
+    enable_creation_date: true
+    type: datetime
+    timezone: Asia/Shanghai
+    locale: zh
+- git-authors
+
 markdown_extensions:
 - admonition
 - tables

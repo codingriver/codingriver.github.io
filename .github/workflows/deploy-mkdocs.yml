@@ -22,7 +22,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install mkdocs-material mkdocs-git-revision-date-localized-plugin gitpython jieba
+          pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin gitpython jieba
 
       - name: Deploy
         run: mkdocs gh-deploy --force --clean

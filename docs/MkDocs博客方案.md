@@ -537,26 +537,44 @@ site/
 
 ## 9. 博客增强能力方案
 
-### 9.1 搜索
+### 9.1 搜索（保留 `jieba` 依赖）
 
-Material 主题天然支持搜索，推荐在 `mkdocs.yml` 中显式配置插件：
+当前站点继续使用 Material 主题自带搜索能力，推荐在 `mkdocs.yml` 中显式保留：
 
 ```yaml
 plugins:
   - search
 ```
 
-如果中文内容较多，建议保留 `jieba` 依赖。
+如果中文内容较多，建议继续保留 `jieba` 依赖，用于增强中文分词搜索效果。
 
-### 9.2 显示 Git 更新时间
+安装示例：
 
-推荐插件：
+```bash
+pip install jieba
+```
+
+如果使用 GitHub Actions 自动部署，也应在工作流安装依赖时保留 `jieba`：
+
+```bash
+pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin gitpython jieba
+```
+
+推荐结论：
+
+- 搜索功能保留
+- `jieba` 依赖保留
+- 继续使用 Material 内置搜索，不额外引入第三方搜索服务
+
+### 9.2 显示 Git 最后更新时间
+
+推荐使用插件：
 
 ```bash
 pip install mkdocs-git-revision-date-localized-plugin
 ```
 
-配置示例：
+推荐配置：
 
 ```yaml
 plugins:
@@ -568,28 +586,150 @@ plugins:
       locale: zh
 ```
 
-这个插件可以显示：
+这个插件可以提供：
 
 - 页面最后更新时间
 - 页面创建时间（首次提交时间）
 
+适合技术博客和知识库，因为读者可以快速判断文档是否过时。
+
 ### 9.3 显示 Git 作者信息
 
-可选插件：
+推荐使用插件：
 
 ```bash
 pip install mkdocs-git-authors-plugin
 ```
 
-配置示例：
+推荐配置：
 
 ```yaml
 plugins:
   - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: datetime
+      timezone: Asia/Shanghai
+      locale: zh
   - git-authors
 ```
 
-### 9.4 显示 Git 提交更新日志
+作用：
+
+- 显示页面作者信息
+- 多人协作时可追踪主要维护者
+
+对于单人博客，它的价值主要体现在：
+
+- 为后续多人协作留好扩展位
+- 与 Git 更新时间一起构成完整的文档元信息
+
+### 9.4 支持评论系统：采用 Giscus 方案
+
+评论系统建议统一采用：
+
+## Giscus
+
+原因：
+
+- 基于 GitHub Discussions
+- 不需要自建评论后端
+- 与 GitHub Pages 兼容性好
+- 适合技术博客
+- 评论数据跟随仓库生态，不依赖额外数据库
+
+接入步骤：
+
+1. 在 GitHub 仓库中开启 `Discussions`
+2. 访问 `https://giscus.app/zh-CN`
+3. 选择仓库、Discussion 分类、映射方式
+4. 生成脚本配置
+5. 通过 Material 自定义模板或额外 HTML 注入到文章页
+
+建议映射方式：
+
+- 使用页面路径或页面标题作为 discussions 映射键
+
+推荐结论：
+
+- 评论系统统一使用 Giscus
+- 不再推荐新增 Disqus 之类的重型第三方方案
+- `Utterances` 作为备选，但优先级低于 Giscus
+
+### 9.5 支持标签系统
+
+当前项目已经建议在文章 front matter 中保留标签字段，例如：
+
+```markdown
+---
+title: Shader 学习记录
+tags:
+  - Shader
+  - Unity
+  - 图形学
+categories:
+  - shader
+---
+```
+
+推荐的标签系统落地分两步：
+
+#### 第一步：先统一写标签元数据
+
+所有新文章都尽量补充 `tags` 字段，先把标签数据沉淀下来。
+
+优点：
+
+- 成本低
+- 不影响当前文档结构
+- 为后续自动化标签页做准备
+
+#### 第二步：再决定标签展示方式
+
+推荐两种可选方案：
+
+##### 方案 A：手工维护标签索引页
+
+例如建立：
+
+```text
+docs/tags/index.md
+```
+
+再按标签整理文章入口。
+
+优点：
+
+- 最稳定
+- 不依赖额外插件
+- 易于控制展示质量
+
+缺点：
+
+- 需要人工维护
+
+##### 方案 B：后续接入博客/标签插件
+
+适合未来更博客化的展示需求，例如：
+
+- 自动生成标签归档页
+- 标签聚合浏览
+- 更像博客站点而非纯文档站
+
+优点：
+
+- 自动化程度高
+
+缺点：
+
+- 配置复杂度更高
+- 需要额外适配当前目录结构
+
+当前项目推荐结论：
+
+## 先统一写 `tags` 元数据，展示层先采用手工标签页，后续再评估是否插件化
+
+### 9.6 显示 Git 提交更新日志
 
 MkDocs 默认不直接展示每篇文章的完整 Git 提交历史。
 
@@ -598,6 +738,7 @@ MkDocs 默认不直接展示每篇文章的完整 Git 提交历史。
 #### 最低成本方案
 
 - 显示最后更新时间
+- 显示作者信息
 - 增加“编辑此页”入口
 - 通过 GitHub 页面查看历史提交
 
@@ -628,39 +769,6 @@ docs/changelog/index.md
 
 ## 最低成本方案
 
-### 9.5 支持评论
-
-推荐优先使用：
-
-## Giscus
-
-原因：
-
-- 基于 GitHub Discussions
-- 无需自建后端
-- 适合技术博客
-- 与 GitHub Pages 体系天然兼容
-
-接入流程：
-
-1. 打开仓库 Discussions
-2. 到 `https://giscus.app/zh-CN` 生成配置
-3. 将生成的脚本注入主题自定义模板中
-
-备选方案：
-
-- Utterances
-- Disqus
-
-其中：
-
-- `Utterances` 也适合 GitHub 仓库博客
-- `Disqus` 功能丰富，但第三方依赖更重
-
-当前推荐：
-
-## 首选 Giscus，备选 Utterances
-
 ---
 
 ## 10. 推荐的后续配置增强
@@ -687,6 +795,7 @@ plugins:
       type: datetime
       timezone: Asia/Shanghai
       locale: zh
+  - git-authors
 ```
 
 如果要支持“编辑此页”：
