@@ -6,15 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="codingriver personal tech blog - Unity / Shader / CSharp / Math">
+        <meta name="description" content="从 Hugo 迁移到 MkDocs 的知识库">
       
       
-        <meta name="author" content="codingriver">
+      
+        <link rel="canonical" href="https://www.wgqing.com/shader/UnityShader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
       
       
-        <link rel="canonical" href="https://blog.wgqing.com/shader/UnityShader%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0/">
+        <link rel="prev" href="../Shader%E7%BA%B9%E7%90%86%E5%8A%A8%E7%94%BB/">
       
       
+        <link rel="next" href="../%E6%A8%A1%E7%B3%8A%E5%AE%9E%E7%8E%B0/">
       
       
         
@@ -25,14 +27,11 @@
     
     
       
-        <title>【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量 - codingriver</title>
+        <title>UnityShader常用函数 - 王国庆的博客</title>
       
     
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -60,14 +59,7 @@
   </head>
   
   
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -76,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cgglsl" class="md-skip">
+        <a href="#shaderunityshadercg-glsl" class="md-skip">
           跳转至
         </a>
       
@@ -88,9 +80,11 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="codingriver" class="md-header__button md-logo" aria-label="codingriver" data-md-component="logo">
+    <a href="../.." title="王国庆的博客" class="md-header__button md-logo" aria-label="王国庆的博客" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -104,44 +98,18 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            codingriver
+            王国庆的博客
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量
+              UnityShader常用函数
             
           </span>
         </div>
       </div>
     </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
-    
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
-    
-    
-    
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
-    
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
-      </label>
-    
-  
-</form>
-      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -173,8 +141,6 @@
         </button>
       </nav>
       
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
-      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
@@ -191,18 +157,6 @@
       
     
     
-      <div class="md-header__source">
-        <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
-  </div>
-  <div class="md-source__repository">
-    codingriver/codingriver.github.io
-  </div>
-</a>
-      </div>
-    
   </nav>
   
 </header>
@@ -211,53 +165,6 @@
       
       
         
-          
-            
-<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        
-  
-  
-    
-  
-  Home
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../about/" class="md-tabs__link">
-        
-  
-  
-    
-  
-  About
-
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
           
         
       
@@ -272,31 +179,17 @@
                     
 
 
-  
 
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="codingriver" class="md-nav__button md-logo" aria-label="codingriver" data-md-component="logo">
+    <a href="../.." title="王国庆的博客" class="md-nav__button md-logo" aria-label="王国庆的博客" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    codingriver
+    王国庆的博客
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/codingriver/codingriver.github.io" title="前往仓库" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
-  </div>
-  <div class="md-source__repository">
-    codingriver/codingriver.github.io
-  </div>
-</a>
-    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -314,7 +207,7 @@
   <span class="md-ellipsis">
     
   
-    Home
+    首页
   
 
     
@@ -341,7 +234,7 @@
   <span class="md-ellipsis">
     
   
-    About
+    关于
   
 
     
@@ -354,22 +247,5464 @@
   
 
     
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MkDocs%E5%8D%9A%E5%AE%A2%E6%96%B9%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs 博客方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Android
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Android/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Android/Android-App%E5%86%85%E6%89%93%E5%BC%80%E8%87%AA%E5%B8%A6%E6%B5%8F%E8%A7%88%E5%99%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android-App内打开自带浏览器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Android/Android%E3%80%80%E5%88%86%E4%BA%ABApp-Icon%E9%80%8F%E6%98%8E%E5%9B%BE%E7%89%87%E5%88%B0%E5%BE%AE%E4%BF%A1%E5%8F%98%E9%BB%91%E7%9A%84%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android　分享App-Icon透明图片到微信变黑的问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Android/Android%EF%BC%8CiOS-%E9%80%9A%E8%BF%87%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%93%E5%BC%80app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Android，iOS-通过浏览器打开app
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ANote
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ANote
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/00-Test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    00-Test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/2018-09-26/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2018-09-26
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/caddy%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    caddy笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/cloudflare%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cloudflare反向代理工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/CSharp%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSharp笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/CSharp%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSharp记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/DOTS%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DOTS笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/DrawCall%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E6%BC%94%E8%AE%B2%E7%A8%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DrawCall优化实战演讲稿
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/EOC%E9%A1%B9%E7%9B%AE%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EOC项目分析笔记1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/EOC%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EOC项目笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/Git%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/golang%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    golang笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/IGG%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IGG开发笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/IGG%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IGG性能分析笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/jenkins%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    jenkins记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/Linux%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/NAS%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NAS笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/ParticleEffectForUGUI%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ParticleEffectForUGUI使用教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/PBR%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PBR笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/Shader%E6%A1%88%E4%BE%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/Shader%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/Shader%E7%AC%94%E8%AE%B02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader笔记2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/shader%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shader记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/Shell%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shell笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/socket%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    socket测试结果
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/SRPBatcher%E5%92%8CGPUInstance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SRPBatcher和GPUInstance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/SSH%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SSH笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/UI%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/Unity-URP%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity-URP笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/unity%E7%BC%96%E8%BE%91%E5%99%A8%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity编辑器笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/Unity%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/web%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0.md/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    web开发笔记.md
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E5%85%B6%E4%BB%96%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E5%8C%85%E4%BD%93%E5%A4%A7%E5%B0%8F%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    包体大小优化笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    操作系统笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    日常使用命令
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E6%97%A5%E5%B8%B8%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    日常笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E6%A2%B3%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    梳理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E7%9F%A9%E9%98%B5%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    矩阵笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    视频处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E8%AE%B0%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    记录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计模式笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ANote/%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basesystem
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    basesystem
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basesystem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basesystem/ASCII%EF%BC%8CUnicode%E5%92%8CUTF-8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASCII，Unicode和UTF-8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basesystem/URL%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A7%A3%E7%A0%81%E5%8E%9F%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    URL编码与解码原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basesystem/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8%E8%A1%A5%E7%A0%81%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%89%E7%AC%A6%E5%8F%B7%E5%8D%95%E5%AD%97%E8%8A%82%E6%9C%80%E5%B0%8F%E6%98%AF-128/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么用补码，为什么有符号单字节最小是-128
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basesystem/%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    位操作符介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basesystem/%E4%BD%8D%E8%BF%90%E7%AE%97%E5%AE%9E%E7%8E%B0%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    位运算实现加减乘除
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basesystem/%E5%8D%81%E8%BF%9B%E5%88%B6%E5%92%8C%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    十进制和二进制互相转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basesystem/%E5%8E%9F%E7%A0%81%E3%80%81%E5%8F%8D%E7%A0%81%E3%80%81%E8%A1%A5%E7%A0%81%E5%92%8C%E7%A7%BB%E7%A0%81%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原码、反码、补码和移码详解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basesystem/%E5%A4%9A%E5%AD%97%E8%8A%82%E5%A4%A7%E5%B0%8F%E7%AB%AF%E8%AF%B4%E6%98%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    多字节大小端说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basesystem/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AC%AC%E4%BA%8C%E7%AB%A0%E9%83%A8%E5%88%86%E7%BB%83%E4%B9%A0%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深入理解计算机系统第二章部分练习题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    csharp
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    csharp
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/async%E4%B8%8Eawait%E7%9A%84%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    async与await的使用说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/CSharp-Unicode%E7%BC%96%E7%A0%81%E5%92%8C%E4%B8%AD%E6%96%87%E4%BA%92%E8%BD%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSharp-Unicode编码和中文互转
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/CSharp%E4%B8%ADStruct%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSharp中Struct内存大小
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/CSharp%E7%94%A8Process%E7%B1%BB%E8%B0%83%E7%94%A8cmd%E6%89%A7%E8%A1%8C%E5%8F%8A%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%A6%96%E5%AD%97%E6%AF%8D%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSharp用Process类调用cmd执行及命令行首字母乱码问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/CSharp%E7%9A%84%E7%89%B9%E6%80%A7%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSharp的特性详解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/CSharp%E8%AF%AD%E8%A8%806-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8F%92%E5%80%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSharp语言6-字符串插值
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/Enum_Int_String%E7%9A%84%E4%BA%92%E7%9B%B8%E8%BD%AC%E6%8D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enum_Int_String的互相转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/IL%E6%8C%87%E4%BB%A4%E9%9B%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IL指令集
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/new%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E5%87%A0%E7%A7%8D%E7%94%A8%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    new关键字的几种用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/SynchronizationContext%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SynchronizationContext线程上下文简单说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/%E4%B8%AD%E6%96%87%E5%92%8Cunicode%E4%BA%92%E8%BD%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    中文和unicode互转
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/%E4%BF%A9%E9%97%AE%E5%8F%B7%E5%92%8C%E5%80%BC%E7%B1%BB%E5%9E%8B%E5%8A%A0%E9%97%AE%E5%8F%B7%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    俩问号和值类型加问号分别是什么意思
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83%E6%95%88%E7%8E%87%E6%B5%8B%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串比较效率测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91CSharp%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客户端开发CSharp命名规范手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../csharp/%E9%97%AD%E5%8C%85Closure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    闭包Closure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    datastruct
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    datastruct
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datastruct/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datastruct/AVL%E6%A0%91%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVL树详解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datastruct/A%E6%98%9F%E7%AE%97%E6%B3%95%E7%90%86%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A星算法理解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datastruct/%E4%BA%8C%E5%8F%89%E6%9F%A5%E6%89%BE%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二叉查找树
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datastruct/%E4%BC%B8%E5%B1%95%E6%A0%91%E8%AF%A6%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    伸展树详解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datastruct/%E5%8D%81%E5%A4%A7%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%8F%8A%E6%AF%94%E8%BE%83%E4%B8%8E%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    十大经典排序算法及比较与分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datastruct/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91%E5%9F%BA%E6%9C%AC%E8%AE%B2%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    树和二叉树基本讲解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    datastructbase
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    datastructbase
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datastructbase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datastructbase/%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%92%8C%E8%BF%90%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    浮点数的内存存储和运算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Graphics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Graphics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Graphics/DirectX%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DirectX环境搭建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    hugo
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    hugo
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hugo/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hugo/basic-markdown-syntax.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basic-markdown-syntax
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hugo/Hugo 入门 安装（Windows）.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hugo 入门 安装（Windows）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hugo/hugo-loveit-problems.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    hugo-loveit-problems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hugo/hugo模版中的日期时间格式.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    hugo模版中的日期时间格式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hugo/theme-documentation-basics.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    theme-documentation-basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hugo/theme-documentation-built-in-shortcodes.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    theme-documentation-built-in-shortcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hugo/theme-documentation-content.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    theme-documentation-content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hugo/theme-documentation-extended-shortcodes.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    theme-documentation-extended-shortcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hugo/theme-emoji-support.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    theme-emoji-support
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IOS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/CSharp%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSharp基础笔记
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/iOS-11-%E5%8D%87%E7%BA%A7%E5%90%8E%E6%97%A0%E6%B3%95%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95%EF%BC%88could-not-locate-device-support-files%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iOS-11-升级后无法真机调试（could-not-locate-device-support-files）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/ios-object-c-UIImage%E5%9B%BE%E7%89%87%E7%BC%A9%E6%94%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ios-object-c-UIImage图片缩放
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/ios-object-c-%E8%8E%B7%E5%8F%96App%E5%9B%BE%E6%A0%87%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9B%BE%E7%89%87%E5%90%8D%E5%AD%97AppIcon/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ios-object-c-获取App图标使用的图片名字AppIcon
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/ios-%E9%85%8D%E7%BD%AEItunesConnect%E6%B7%BB%E5%8A%A0%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ios-配置ItunesConnect添加应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/IOS%E4%B8%ADXcode-framework%E6%97%A0%E6%B3%95%E8%AF%86%E5%88%ABheaders%E7%9B%AE%E5%BD%95%E9%97%AE%E9%A2%98%EF%BC%8C%E5%A4%B4%E6%96%87%E4%BB%B6%E8%AF%BB%E4%B8%8D%E5%87%BA%E6%9D%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IOS中Xcode-framework无法识别headers目录问题，头文件读不出来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/ios%E9%85%8D%E7%BD%AE%E5%BC%80%E5%8F%91%E8%80%85%E8%AF%81%E4%B9%A6%E5%8F%8A%E6%B7%BB%E5%8A%A0AppID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ios配置开发者证书及添加AppID
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/Xcode%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Xcode工程配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/xcode%E6%8E%A5sdk%E6%97%B6%E6%8A%A5%E9%94%99Undefined-symbols-for-architecture-arm64-/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    xcode接sdk时报错Undefined-symbols-for-architecture-arm64-
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/Xcode%E6%9F%A5%E7%9C%8B%E7%9C%9F%E6%9C%BAapp%E6%B2%99%E7%9B%92%E5%86%85%E5%AE%B9%EF%BC%8C%E6%9F%A5%E7%9C%8Bapp%E7%BC%93%E5%AD%98%EF%BC%88Cache%EF%BC%89%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Xcode查看真机app沙盒内容，查看app缓存（Cache）文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../IOS/Xcode%E9%A1%B9%E7%9B%AE%E5%8F%91%E5%B8%83App-Store%E5%95%86%E5%93%81%E5%AE%A1%E6%A0%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Xcode项目发布App-Store商品审核
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    lua
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    lua
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/lua%E4%B8%AD%E7%B1%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    lua中类的实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../lua/lua%E9%97%AD%E5%8C%85%E5%92%8Cand-or%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%8F%8A%E5%85%B6%E5%AE%83%E7%9A%84%E8%AF%B4%E6%98%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    lua闭包和and-or操作符及其它的说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    math
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    math
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/LinearEyeDepth%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LinearEyeDepth推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E5%92%8C%E5%B7%AE%E5%85%AC%E5%BC%8F%E7%9A%84%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三角函数和差公式的推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E4%B8%A4%E4%B8%AA%E5%B9%B3%E9%9D%A2%E7%9F%A9%E5%BD%A2%E7%9B%B8%E4%BA%A4%EF%BC%88%E4%B8%8D%E6%97%8B%E8%BD%AC%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    两个平面矩形相交（不旋转）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E5%9F%BA%E6%9C%AC%E6%B1%82%E5%AF%BC%E6%B3%95%E5%88%99%E4%B8%8E%E5%AF%BC%E6%95%B0%E5%85%AC%E5%BC%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本求导法则与导数公式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E5%8F%98%E6%8D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    屏幕空间变换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E5%BE%AE%E5%88%86%E5%92%8C%E7%A7%AF%E5%88%86%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E5%A4%A7%E5%85%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    微分和积分数学公式大全
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E6%B3%95%E7%BA%BF%E5%8F%98%E6%8D%A2%E7%9F%A9%E9%98%B5%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    法线变换矩阵推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E7%82%B9%E4%B9%98%E5%92%8C%E5%8F%89%E4%B9%98%E7%9A%84%E8%AE%A1%E7%AE%97%E5%92%8C%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    点乘和叉乘的计算和应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线性代数的本质
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E9%80%8F%E8%A7%86%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    透视投影变换推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E9%80%8F%E8%A7%86%E6%A0%A1%E6%AD%A3%E5%B7%AE%E5%80%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    透视校正差值
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/%E9%BD%90%E6%AC%A1%E5%9D%90%E6%A0%87%E7%9A%84%E6%84%8F%E4%B9%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    齐次坐标的意义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    other
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    other
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/3500%E4%B8%AA%E5%B8%B8%E7%94%A8%E6%B1%89%E5%AD%97%28%E5%AD%97%E4%BD%93%E8%A3%81%E5%89%AA%E7%94%A8%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3500个常用汉字(字体裁剪用)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/github%2Bhexo%E5%BB%BA%E7%AB%8B%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A22017/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    github+hexo建立个人博客2017
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/GitHub-ssh%E5%A4%B1%E8%B4%A5Permission-denied-%28publickey%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub-ssh失败Permission-denied-(publickey)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/Json%E7%9A%84float%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B1%BB%E5%9E%8B%E6%94%AF%E6%8C%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Json的float单精度浮点数类型支持
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/linux%20gcc%E7%89%88%E6%9C%AC%E5%A6%82%E4%BD%95%E5%8D%87%E7%BA%A7%E5%88%B0gcc4.8.2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    linux gcc版本如何升级到gcc4.8.2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/LuaForWindows-%E5%AE%89%E8%A3%85%E6%8A%A5%E9%94%99/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LuaForWindows-安装报错
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/MAC-%E5%88%9B%E5%BB%BA-IPv6-WIFI%E7%83%AD%E7%82%B9%EF%BC%8C%E4%B8%8D%E7%94%A8%E4%BB%A5%E5%A4%AA%E7%BD%91%E6%8E%A5%E5%8F%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MAC-创建-IPv6-WIFI热点，不用以太网接口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/mac%E8%AE%BE%E7%BD%AELibrary%20%E6%98%BE%E7%A4%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mac设置Library 显示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/nodejs%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nodejs初始化配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/Sourcetree-Mac%E5%AE%89%E8%A3%85%E8%B7%B3%E8%BF%87%E6%B3%A8%E5%86%8C%E7%99%BB%E9%99%86%E5%92%8C%E9%80%89%E6%8B%A9%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sourcetree-Mac安装跳过注册登陆和选择服务器
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/Sourcetree%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sourcetree基本使用教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/Sourcetree%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88windows%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sourcetree安装教程（windows）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/SVN-trunk%28%E4%B8%BB%E7%BA%BF%29-branch%28%E5%88%86%E6%94%AF%29-%E5%88%9B%E5%BB%BA%E5%92%8C%E5%90%88%E5%B9%B6%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SVN-trunk(主线)-branch(分支)-创建和合并教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/SVN%E6%97%A0%E6%B3%95%E6%8F%90%E4%BA%A4--a%E5%92%8C--so%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SVN无法提交--a和--so文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/svn%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    svn管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/tar%28child%29-lbzip2-Cannotexec%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    tar(child)-lbzip2-Cannotexec解决方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/VS2013%2BLUA%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS2013+LUA代码高亮配置教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/VS2013%E5%88%9B%E5%BB%BA%E6%96%B0%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E%EF%BC%8C%E6%96%87%E4%BB%B6%E5%90%8D%EF%BC%8C%E4%BD%9C%E8%80%85%EF%BC%8C%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4%E7%AD%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VS2013创建新脚本自动添加版权声明，文件名，作者，创建时间等
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/win10-iis-http%E5%BB%BA%E7%AB%99/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    win10-iis-http建站
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/win7%E5%AE%89%E8%A3%85Vs2015%E5%A4%B1%E8%B4%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%28%E5%AE%89%E8%A3%85vs%E5%A4%9A%E4%B8%AA%E7%89%88%E6%9C%AC%E7%9A%84%E9%97%AE%E9%A2%98%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    win7安装Vs2015失败的解决方案(安装vs多个版本的问题)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/Windows%E5%88%9B%E5%BB%BA%E7%82%B9%E5%BC%80%E5%A4%B4%E7%9A%84%E6%96%87%E4%BB%B6%E6%88%96%E8%80%85%E7%82%B9%E5%BC%80%E5%A4%B4%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows创建点开头的文件或者点开头的文件夹
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/Xlua-%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Xlua-线程问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%92%8C%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三次握手和四次挥手
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/%E5%85%AD%E7%A7%8D%E5%B8%B8%E7%94%A8%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    六种常用设计模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%BB%9C%E4%BD%8D%E7%BD%AE%EF%BC%88%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    添加网络位置（共享目录）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/%E7%94%A8astash%20%E7%94%BBUML%E7%B1%BB%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    用astash 画UML类图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/%E7%94%B3%E8%AF%B7TexturePacker%E5%85%8D%E8%B4%B9%E6%B3%A8%E5%86%8C%E7%A0%81%282018%E5%B9%B411%E6%9C%88%E4%BB%BD%E7%94%B3%E8%AF%B7%E7%9A%84%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    申请TexturePacker免费注册码(2018年11月份申请的)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    shader
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    shader
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Bloom%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bloom实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Gamma%E5%92%8CLinear%E5%8F%8AsRGB%E8%AF%B4%E6%98%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gamma和Linear及sRGB说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ShaderLearn-%28%E4%B8%80%29%E6%BC%AB%E5%8F%8D%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ShaderLearn-(一)漫反射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ShaderLearn-%28%E4%B8%89%29RampTex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ShaderLearn-(三)RampTex
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ShaderLearn-%28%E4%BA%8C%29%E9%95%9C%E9%9D%A2%E5%8F%8D%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ShaderLearn-(二)镜面反射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shader%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B-%E6%BC%AB%E5%8F%8D%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader光照模型-漫反射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shader%E5%85%89%E7%85%A7%E6%A8%A1%E5%9E%8B-%E9%AB%98%E5%85%89%E5%8F%8D%E5%B0%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader光照模型-高光反射
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shader%E5%AD%A6%E4%B9%A0-1.1%E5%9F%BA%E7%A1%80%E6%A6%82%E8%A6%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader学习-1.1基础概要
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shader%E5%AD%A6%E4%B9%A0-%E5%89%8D%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader学习-前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shader%E6%B0%B4%E6%B3%A2%E7%BA%B9%E6%95%88%E6%9E%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader水波纹效果
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shader%E6%B3%95%E7%BA%BF%E7%BA%B9%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader法线纹理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shader%E6%B3%95%E7%BA%BF%E8%B4%B4%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader法线贴图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shader%E6%B3%95%E7%BA%BF%E8%B4%B4%E5%9B%BE%EF%BC%88%E4%B8%96%E7%95%8C%E7%A9%BA%E9%97%B4%EF%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader法线贴图（世界空间）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shader%E6%B6%88%E8%9E%8D%E7%89%B9%E6%95%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader消融特效
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shader%E7%BA%B9%E7%90%86%E5%8A%A8%E7%94%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shader纹理动画
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UnityShader常用函数
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UnityShader常用函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
 
 <nav class="md-nav md-nav--secondary" aria-label="目录">
   
   
+  
+    
   
   
     <label class="md-nav__title" for="__toc">
@@ -379,22 +5714,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#cgglsl" class="md-nav__link">
+  <a href="#cg-glsl" class="md-nav__link">
     <span class="md-ellipsis">
       
-        一、CG和GLSL常用函数
+        一、CG 和 GLSL 常用函数
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="一、CG和GLSL常用函数">
+    <nav class="md-nav" aria-label="一、CG 和 GLSL 常用函数">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#cg" class="md-nav__link">
     <span class="md-ellipsis">
       
-        CG语言中的变量修饰符
+        CG 语言中的变量修饰符
       
     </span>
   </a>
@@ -406,6 +5741,17 @@
     <span class="md-ellipsis">
       
         1、数学函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smoothstep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        smoothstep 示例
       
     </span>
   </a>
@@ -454,31 +5800,31 @@
   <a href="#unity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        二、Unity常用的内置函数，变量
+        二、Unity 常用内置函数、变量
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="二、Unity常用的内置函数，变量">
+    <nav class="md-nav" aria-label="二、Unity 常用内置函数、变量">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#1unity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1、Unity常用的结构体
+        1、Unity 常用结构体
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1、Unity常用的结构体">
+    <nav class="md-nav" aria-label="1、Unity 常用结构体">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1、顶点着色器输入
+        顶点着色器输入
       
     </span>
   </a>
@@ -486,10 +5832,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2、顶点着色器输出
+        顶点着色器输出
       
     </span>
   </a>
@@ -510,14 +5856,2401 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="2、空间变换函数及内置变量">
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迁移说明
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%A8%A1%E7%B3%8A%E5%AE%9E%E7%8E%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模糊实现
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%BE%B9%E7%BC%98%E5%85%89%E5%92%8C%E6%B5%81%E5%85%89%E7%89%B9%E6%95%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    边缘光和流光特效
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%BE%B9%E7%BC%98%E5%85%89%E7%89%B9%E6%95%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    边缘光特效
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <label class="md-nav__link" for="__nav_17" id="__nav_17_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    u3d
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    u3d
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/c%2B%2B_structunion%E6%95%B0%E6%8D%AE%E5%AF%B9%E9%BD%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    c++_structunion数据对齐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/CSharp%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83%E6%89%8B%E5%86%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSharp命名规范手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/DrawCall%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DrawCall优化实战
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/RenderDoc-%E8%B0%83%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RenderDoc-调试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/UGUI-Image%E5%9B%BE%E7%89%87%E7%BD%AE%E7%81%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UGUI-Image图片置灰
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/UGUI-Text%E6%8D%A2%E8%A1%8C%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UGUI-Text换行问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/UGUI%E4%B8%ADCustomFont%EF%BC%88BMFont%EF%BC%89%E5%AD%97%E4%BD%93%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%88%B6%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UGUI中CustomFont（BMFont）字体使用与制作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/UGUI%E4%BA%8B%E4%BB%B6%E4%BB%8B%E7%BB%8D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UGUI事件介绍
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/UGUI%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UGUI事件系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/UGUI%E4%BC%98%E5%8C%96-%E4%BD%BF%E7%94%A8%E9%95%9C%E5%83%8F%E5%9B%BE%E7%89%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UGUI优化-使用镜像图片
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/UGUI%E4%BD%BF%E7%94%A8%E5%AF%8C%E6%96%87%E6%9C%ACRichText/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UGUI使用富文本RichText
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/UGUI%E8%BF%90%E7%94%A8%E7%BE%8E%E6%9C%AF%E5%AD%97%E4%BD%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UGUI运用美术字体
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%20Editor%E5%92%8CPlayer%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%9A%84%E5%AD%98%E6%94%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity Editor和Player日志文件的存放
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity--android%E8%8E%B7%E5%8F%96%E7%94%B5%E9%87%8F%E5%92%8Cwifi%E4%BF%A1%E5%8F%B7%E5%BC%BA%E5%BA%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity--android获取电量和wifi信号强度
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity-3DCamera%E6%A0%B9%E6%8D%AE%E5%AE%BD%E5%BA%A6%E9%80%82%E9%85%8D%283D%E7%9B%B8%E6%9C%BA%E9%80%82%E9%85%8D%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity-3DCamera根据宽度适配(3D相机适配)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity-Font-Test%E6%B5%8B%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity-Font-Test测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity-GameObject-%E9%94%80%E6%AF%81%EF%BC%88Destroy%EF%BC%89%E5%90%8E%E7%9A%84%E5%87%A0%E7%A7%8D%E7%8A%B6%E6%80%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity-GameObject-销毁（Destroy）后的几种状态
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity-ios%E5%AE%A1%E6%A0%B8ipv6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity-ios审核ipv6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity-Texture2D%E7%9A%84SetPiexl%E4%B8%A5%E9%87%8D%E8%80%97%E6%97%B6%E7%9A%84%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity-Texture2D的SetPiexl严重耗时的优化方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity-%E4%BD%BF%E7%94%A8Android-Splash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity-使用Android-Splash
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity-%E5%93%8D%E5%BA%94Android%E8%BF%94%E5%9B%9E%E9%94%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity-响应Android返回键
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%28%E8%BD%AC%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity-性能优化相关知识(转)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity-%E6%89%93%E5%8C%85Android%E6%8A%A5%E9%94%99CommandInvokationFailure--Unable-to-convert-classes-i/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity-打包Android报错CommandInvokationFailure--Unable-to-convert-classes-i
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity-%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%9A%84%E5%AD%98%E6%94%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity-日志文件的存放
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity-%E6%A8%A1%E5%9E%8B%E6%98%BE%E7%A4%BA%E9%94%AF%E9%BD%BF%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity-模型显示锯齿问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity-%E8%84%9A%E6%9C%AC%E8%AE%BE%E7%BD%AEAssetBundleName%E5%92%8CVariant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity-脚本设置AssetBundleName和Variant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity3d%E4%B8%AD%E7%9A%84LayerMask%E7%94%A8%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity3d中的LayerMask用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/UnityEditor-iOS-Xcode%E6%8A%A5%E9%94%99/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UnityEditor-iOS-Xcode报错
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/UnityProfiler%E4%BD%BF%E7%94%A8Android%E7%9C%9F%E6%9C%BA%E8%BF%9E%E6%8E%A5%E6%B5%8B%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UnityProfiler使用Android真机连接测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%E4%B8%AD%E8%8E%B7%E5%8F%96%E4%BE%9D%E8%B5%96%E4%BF%A1%E6%81%AF%E5%87%BA%E7%8E%B0%E5%85%B6%E4%BB%96%E6%9C%AA%E5%BC%95%E7%94%A8%E5%AD%97%E4%BD%93%E9%97%AE%E9%A2%98/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity中获取依赖信息出现其他未引用字体问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E4%BC%98%E5%8C%96-%E7%9B%B8%E5%90%8C%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%A4%9A%E4%B8%AA%E5%AE%9E%E4%BE%8B%E8%AE%BE%E7%BD%AE%E5%90%84%E8%87%AA%E7%9A%84%E9%A2%9C%E8%89%B2%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity优化-相同模型的多个实例设置各自的颜色优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%E5%88%87%E5%85%A5%E5%90%8E%E5%8F%B0%EF%BC%8C%E5%88%87%E5%85%A5%E5%89%8D%E5%8F%B0%EF%BC%8C%E8%8E%B7%E5%8F%96%E7%84%A6%E7%82%B9%EF%BC%8C%E5%A4%B1%E5%8E%BB%E7%84%A6%E7%82%B9%E7%AD%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity切入后台，切入前台，获取焦点，失去焦点等
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E5%88%9B%E5%BB%BA%E6%96%B0%E8%84%9A%E6%9C%AC%E8%87%AA%E5%8A%A8%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9D%83%E5%A3%B0%E6%98%8E%EF%BC%8C%E6%96%87%E4%BB%B6%E5%90%8D%EF%BC%8C%E4%BD%9C%E8%80%85%EF%BC%8C%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4%E7%AD%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity创建新脚本自动添加版权声明，文件名，作者，创建时间等
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%E5%88%A4%E6%96%AD%E6%9C%BA%E5%9E%8B%E6%98%AF%E5%90%A6%E4%B8%BAiPhoneX%E7%AD%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity判断机型是否为iPhoneX等
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%E5%8A%A0%E8%BD%BD%E5%9C%BA%E6%99%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity加载场景
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E5%8F%91%E5%B8%83android%E7%89%88%E6%9C%AC-so%E9%9D%99%E6%80%81%E5%BA%93%E6%89%93%E4%B8%8D%E8%BF%9B%E5%8E%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity发布android版本-so静态库打不进去
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E5%92%8Candroid%E4%BA%A4%E4%BA%92bug/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity和android交互bug
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%E5%92%8CIOS%E4%BA%A4%E4%BA%92char-%E4%BD%9C%E4%B8%BA%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E5%80%BC%E5%88%B0CSharp%E4%B8%ADbug/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity和IOS交互char-作为方法返回值到CSharp中bug
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%E5%B9%B3%E5%8F%B0%E5%AE%8F%E5%AE%9A%E4%B9%89%E5%B8%B8%E7%94%A8%E8%AF%B4%E6%98%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity平台宏定义常用说明
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity性能优化总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%E6%88%AA%E5%B1%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity截屏
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E6%8E%A5%E5%85%A5%E5%A3%B0%E7%BD%91sdk%E8%A7%86%E9%A2%91bug/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity接入声网sdk视频bug
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%E6%B8%B2%E6%9F%93%E9%A1%BA%E5%BA%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity渲染顺序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E7%9F%A9%E9%98%B5%E5%8F%98%E6%8D%A2%E4%BB%8E%E6%A8%A1%E5%9E%8B%E7%A9%BA%E9%97%B4%E5%88%B0%E5%B1%8F%E5%B9%95%E7%A9%BA%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity矩阵变换从模型空间到屏幕空间的转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E7%A6%81%E6%AD%A2%E5%B1%8F%E5%B9%95%E4%BC%91%E7%9C%A0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity禁止屏幕休眠
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%E7%B2%92%E5%AD%90%E7%89%B9%E6%95%88%E7%BC%A9%E6%94%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity粒子特效缩放
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E8%84%9A%E6%9C%ACMonoBehaviour%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E6%B5%8B%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity脚本MonoBehaviour默认方法执行顺序测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/Unity%E8%84%9A%E6%9C%AC%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity脚本执行顺序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E8%AE%BE%E7%BD%AE%E5%B1%8F%E5%B9%95%E5%88%86%E8%BE%A8%E7%8E%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity设置屏幕分辨率
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/unity%E8%AF%BB%E5%8F%96StreamingAssets%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity读取StreamingAssets文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/untiy-ios%E9%80%8F%E6%98%8Eui-%E7%9A%84%E9%80%8F%E6%98%8E%E5%8C%BA%E5%9F%9F%E6%B8%B2%E6%9F%93%E9%94%99%E8%AF%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    untiy-ios透明ui-的透明区域渲染错误
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/xLua-%E7%AC%AC%E4%B8%89%E6%96%B9%E6%89%A9%E5%B1%95%E7%9A%84%E6%B7%BB%E5%8A%A0%E5%92%8C%E7%BC%96%E8%AF%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    xLua-第三方扩展的添加和编译
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/xlua%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    xlua性能测试
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/%E4%B8%96%E7%95%8C%E9%83%A8%E9%98%9FDrawCall%E5%88%86%E6%9E%90%E5%92%8C%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    世界部队DrawCall分析和优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/%E4%BD%BF%E7%94%A8TexturePacker%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用TexturePacker命令行的一个坑
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/%E4%BF%AE%E6%94%B9Prefab%E5%AE%9E%E4%BE%8B%E5%B0%86Transform%E5%8F%98%E4%B8%BARectTransform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    修改Prefab实例将Transform变为RectTransform
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../u3d/%E8%8B%B9%E6%9E%9C%E5%86%85%E8%B4%AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    苹果内购
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_18" >
+        
+          
+          <label class="md-nav__link" for="__nav_18" id="__nav_18_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unityTool
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_18_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_18">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    unityTool
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/ByteHelper%E5%AD%97%E8%8A%82%E6%95%B0%E7%BB%84%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ByteHelper字节数组辅助工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/JsonHelper%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    JsonHelper工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/Md5%E8%AE%A1%E7%AE%97%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Md5计算工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/ProfilerHelper%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ProfilerHelper辅助工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/StringHelper%E7%BC%96%E7%A0%81%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    StringHelper编码辅助工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/Unity-Assert%E6%96%AD%E8%A8%80%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity-Assert断言工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/URLHelper-URL%E7%BC%96%E7%A0%81%E8%A7%A3%E7%A0%81%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    URLHelper-URL编码解码工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/ZipHelper%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ZipHelper压缩工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/%E7%94%9F%E6%88%90%E5%88%86%E5%B8%83%E5%BC%8F%E5%94%AF%E4%B8%80ID/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生成分布式唯一ID
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unityTool/%E9%81%8D%E5%8E%86%E6%89%93%E5%8D%B0%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%80%E6%9C%89%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%9E%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    遍历打印对象的所有变量和属性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_19" >
+        
+          
+          <label class="md-nav__link" for="__nav_19" id="__nav_19_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity编辑器
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_19_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_19">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    unity编辑器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unity%E7%BC%96%E8%BE%91%E5%99%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栏目首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unity%E7%BC%96%E8%BE%91%E5%99%A8/MeshRenderer%E5%9C%A8Inspector%E8%AE%BE%E7%BD%AESorttingLayerName%E5%92%8CSorttingOrder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unity%E7%BC%96%E8%BE%91%E5%99%A8/SerializedObject%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E5%B1%9E%E6%80%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SerializedObject获取所有属性
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unity%E7%BC%96%E8%BE%91%E5%99%A8/unity%E7%BC%96%E8%BE%91%E5%99%A8-%E8%87%AA%E5%AE%9A%E4%B9%89Inspector%E9%9D%A2%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    unity编辑器-自定义Inspector面板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../unity%E7%BC%96%E8%BE%91%E5%99%A8/Unity%E7%BC%96%E8%BE%91%E5%99%A8%E6%89%A9%E5%B1%95%E8%8F%9C%E5%8D%95%E9%A1%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unity编辑器扩展菜单项
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cg-glsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、CG 和 GLSL 常用函数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、CG 和 GLSL 常用函数">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#a" class="md-nav__link">
+  <a href="#cg" class="md-nav__link">
     <span class="md-ellipsis">
       
-        A、空间变换函数
+        CG 语言中的变量修饰符
       
     </span>
   </a>
@@ -525,10 +8258,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#b" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        B、屏幕空间相关函数
+        1、数学函数
       
     </span>
   </a>
@@ -536,10 +8269,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#c" class="md-nav__link">
+  <a href="#smoothstep" class="md-nav__link">
     <span class="md-ellipsis">
       
-        C、内置变量矩阵
+        smoothstep 示例
       
     </span>
   </a>
@@ -547,10 +8280,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#d" class="md-nav__link">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        D、摄像机和屏幕参数
+        2、几何函数
       
     </span>
   </a>
@@ -558,10 +8291,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#e" class="md-nav__link">
+  <a href="#3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        E、时间变量
+        3、纹理映射函数
       
     </span>
   </a>
@@ -569,10 +8302,50 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#f" class="md-nav__link">
+  <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        F、光照变量
+        4、偏导函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、Unity 常用内置函数、变量
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、Unity 常用内置函数、变量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1unity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、Unity 常用结构体
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1、Unity 常用结构体">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        顶点着色器输入
       
     </span>
   </a>
@@ -580,21 +8353,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#g" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        G、雾效和环境光
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#h" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        H、其他
+        顶点着色器输出
       
     </span>
   </a>
@@ -607,21 +8369,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
+  <a href="#2_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3、数学常数
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4、与颜色空间相关
+        2、空间变换函数及内置变量
       
     </span>
   </a>
@@ -630,6 +8381,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迁移说明
+      
+    </span>
+  </a>
   
 </li>
       
@@ -648,33 +8410,11 @@
                 
                   
 
-  <nav class="md-tags" >
-    
-      
-      
-      
-      
-        <span class="md-tag">shader</span>
-      
-    
-  </nav>
 
 
-  
-    <a href="https://github.com/codingriver/codingriver.github.io/edit/master/docs/shader/UnityShader常用函数.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
-    </a>
-  
-  
-
-
-  <h1>【Shader】 常用函数（UnityShader内置函数、CG和GLSL内置函数等）和内置变量</h1>
-
-<!--more-->
-
-<h2 id="cgglsl">一、CG和GLSL常用函数<a class="headerlink" href="#cgglsl" title="Permanent link">&para;</a></h2>
-<h3 id="cg">CG语言中的变量修饰符<a class="headerlink" href="#cg" title="Permanent link">&para;</a></h3>
+<h1 id="shaderunityshadercg-glsl">【Shader】常用函数（UnityShader内置函数、CG 和 GLSL 内置函数等）和内置变量<a class="headerlink" href="#shaderunityshadercg-glsl" title="Permanent link">&para;</a></h1>
+<h2 id="cg-glsl">一、CG 和 GLSL 常用函数<a class="headerlink" href="#cg-glsl" title="Permanent link">&para;</a></h2>
+<h3 id="cg">CG 语言中的变量修饰符<a class="headerlink" href="#cg" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -685,859 +8425,116 @@
 <tbody>
 <tr>
 <td style="text-align: center;">const</td>
-<td style="text-align: center;">变量被定义成常量的话，在程序中，就不能再对该变量赋值，除非const和uniform，varying一起使用。const修饰的变量，需要在声明时给予一个初始值</td>
+<td style="text-align: center;">变量定义为常量后，程序中不能再对其赋值</td>
 </tr>
 <tr>
 <td style="text-align: center;">extern</td>
-<td style="text-align: center;">extern表明声明仅仅是声明，而非定义。在程序中一定有一个地方存在一个非extern的对应的声明</td>
+<td style="text-align: center;">表明声明仅仅是声明，而非定义</td>
 </tr>
 <tr>
 <td style="text-align: center;">in</td>
-<td style="text-align: center;">只在声明参数，或是使用varying修饰符时使用。将参数，或是varying作为函数或是程序的输入值。函数参数如果没有in，out，或者inout的话，隐式的默认为in</td>
+<td style="text-align: center;">作为函数或程序的输入值</td>
 </tr>
 <tr>
 <td style="text-align: center;">inline</td>
-<td style="text-align: center;">只在函数定义时有用，告诉编译器始终对该函数采取内联调用</td>
+<td style="text-align: center;">告诉编译器对该函数采取内联调用</td>
 </tr>
 <tr>
 <td style="text-align: center;">inout</td>
-<td style="text-align: center;">只在声明为参数和varying时使用，将参数或是varying声明为函数或是程序的输入输出值</td>
+<td style="text-align: center;">作为函数或程序的输入输出值</td>
 </tr>
 <tr>
 <td style="text-align: center;">static</td>
-<td style="text-align: center;">只在声明全局变量时使用，static将使变量对程序而言成为私有的，外部不可见，不能和uniform，varying一起使用</td>
+<td style="text-align: center;">只在声明全局变量时使用</td>
 </tr>
 <tr>
 <td style="text-align: center;">out</td>
-<td style="text-align: center;">只在声明参数和varying时使用，将变量或varying定义为函数或是程序的输出值</td>
+<td style="text-align: center;">作为函数或程序的输出值</td>
 </tr>
 <tr>
 <td style="text-align: center;">uniform</td>
-<td style="text-align: center;">用于全局变量和程序的入口函数的参数，用来定义constant buffers(常量缓存)。如果用于一个非入口函数的参数，它将被忽略。这样做的目的是为了使一个函数既能作为入口函数，又能作为非入口函数。uniform的变量可以像非uniform的变量那样读写。uniform修饰符通过向外部语言提供一个机制，来提供变量的初始值是如何指定和保存的信息。</td>
+<td style="text-align: center;">定义 constant buffers（常量缓存）</td>
 </tr>
 </tbody>
 </table>
 <h3 id="1">1、数学函数<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">CG语言</th>
-<th style="text-align: center;">GLSL语言</th>
-<th style="text-align: center;">功能描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">ceil(x)</td>
-<td style="text-align: center;">ceil(x)</td>
-<td style="text-align: center;">对输入参数向上取整。例如： ceil(float(1.3)) ，其返回值为2.0</td>
-</tr>
-<tr>
-<td style="text-align: center;">floor(x)</td>
-<td style="text-align: center;">floor(x)</td>
-<td style="text-align: center;">对输入参数向下取整。例如floor(float(1.3))返回的值为1.0；但是floor(float(-1.3))返回的值为-2.0。该函数与ceil(x)函数相对应。</td>
-</tr>
-<tr>
-<td style="text-align: center;">fmod(x,y)</td>
-<td style="text-align: center;">mod(x, y)</td>
-<td style="text-align: center;">返回x/y的余数。如果y为0，结果不可预料。</td>
-</tr>
-<tr>
-<td style="text-align: center;">frac(x)</td>
-<td style="text-align: center;">fract(x)</td>
-<td style="text-align: center;">返回标量或矢量的小数</td>
-</tr>
-<tr>
-<td style="text-align: center;">frexp(x, out i)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">将浮点数 x 分解为尾数和指数，即 x = m* 2^exp，返回 m，并将指数存入 exp 中；如果 x 为 0，则尾数和指数都返回 0</td>
-</tr>
-<tr>
-<td style="text-align: center;">modf(x, out ip)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">把x分解成整数和分数两部分，每部分都和x有着相同的符号，整数部分被保存在ip中，分数部分由函数返回</td>
-</tr>
-<tr>
-<td style="text-align: center;">round(x)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">返回四舍五入值。</td>
-</tr>
-<tr>
-<td style="text-align: center;">exp(x)</td>
-<td style="text-align: center;">exp(x)</td>
-<td style="text-align: center;">计算e <sup>x</sup>  的值，e=2.71828182845904523536</td>
-</tr>
-<tr>
-<td style="text-align: center;">exp2(x)</td>
-<td style="text-align: center;">exp2(x)</td>
-<td style="text-align: center;">计 算 2 <sup>x</sup> 的 值</td>
-</tr>
-<tr>
-<td style="text-align: center;">log(x)</td>
-<td style="text-align: center;">log(x)</td>
-<td style="text-align: center;">计 算 ln ⁡ ( x ) 的 值 ， x 必 须 大 于 0</td>
-</tr>
-<tr>
-<td style="text-align: center;">log2(x)</td>
-<td style="text-align: center;">log2(x)</td>
-<td style="text-align: center;">计 算 log ⁡ 2 ( x ) 的 值 ， x 必 须 大 于 0</td>
-</tr>
-<tr>
-<td style="text-align: center;">log10(x)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">计 算 lg ⁡ ( x ) 的 值 ， x 必 须 大 于 0</td>
-</tr>
-<tr>
-<td style="text-align: center;">max(a, b)</td>
-<td style="text-align: center;">max(a, b)</td>
-<td style="text-align: center;">比较两个标量或等长向量元素，返回最大值。</td>
-</tr>
-<tr>
-<td style="text-align: center;">min(a,b)</td>
-<td style="text-align: center;">min(a,b)</td>
-<td style="text-align: center;">比较两个标量或等长向量元素，返回最小值。</td>
-</tr>
-<tr>
-<td style="text-align: center;">pow(x, y)</td>
-<td style="text-align: center;">pow(x, y)</td>
-<td style="text-align: center;">计 算 x <sup>y</sup> 的 值</td>
-</tr>
-<tr>
-<td style="text-align: center;">sqrt(x)</td>
-<td style="text-align: center;">sqrt(x)</td>
-<td style="text-align: center;">求x的平方根，，x必须大于0</td>
-</tr>
-<tr>
-<td style="text-align: center;">rsqrt(x)</td>
-<td style="text-align: center;">inversesqrt(x)</td>
-<td style="text-align: center;">x的平方根的倒数，x必须大于0</td>
-</tr>
-<tr>
-<td style="text-align: center;">abs(x)</td>
-<td style="text-align: center;">abs(x)</td>
-<td style="text-align: center;">返回输入参数的绝对值</td>
-</tr>
-<tr>
-<td style="text-align: center;">ldexp(x, n)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">计 算 x ∗ 2 <sup>n</sup> 的 值</td>
-</tr>
-<tr>
-<td style="text-align: center;">mul(M, N)</td>
-<td style="text-align: center;">M*N</td>
-<td style="text-align: center;">矩阵M和矩阵N的积</td>
-</tr>
-<tr>
-<td style="text-align: center;">mul(M, v)</td>
-<td style="text-align: center;">M*v</td>
-<td style="text-align: center;">矩阵M和列向量v的积</td>
-</tr>
-<tr>
-<td style="text-align: center;">mul(v, M)</td>
-<td style="text-align: center;">v* M</td>
-<td style="text-align: center;">行向量v和矩阵M的积</td>
-</tr>
-<tr>
-<td style="text-align: center;">determinant(m)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">计算矩阵的行列式因子。</td>
-</tr>
-<tr>
-<td style="text-align: center;">transpose(M)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">矩阵M的转置矩阵 如果M是一个AxB矩阵，M的转置是一个BxA矩阵，它第一列是M的第一行，第二列是M的第二行，第三列是M的第三行，等等</td>
-</tr>
-<tr>
-<td style="text-align: center;">asin(x)</td>
-<td style="text-align: center;">asin(x)</td>
-<td style="text-align: center;">反正弦函数,输入参数取值区间为，返回角度值范围为[−π/2,π/2]</td>
-</tr>
-<tr>
-<td style="text-align: center;">acos(x)</td>
-<td style="text-align: center;">acos(x)</td>
-<td style="text-align: center;">反余切函数，输入参数范围为[-1,1]， 返回[0,π]区间的角度值</td>
-</tr>
-<tr>
-<td style="text-align: center;">atan(x)</td>
-<td style="text-align: center;">atan(x)</td>
-<td style="text-align: center;">反正切函数，返回角度值范围为[−π/2,π/2]</td>
-</tr>
-<tr>
-<td style="text-align: center;">atan2(y,x)</td>
-<td style="text-align: center;">atan2(y,x)</td>
-<td style="text-align: center;">计算y/x的反正切值。实际上和atan(x)函数功能完全一样，至少输入参数不同。atan(x) = atan2(x, float(1))。</td>
-</tr>
-<tr>
-<td style="text-align: center;">sin(x)</td>
-<td style="text-align: center;">sin(x)</td>
-<td style="text-align: center;">输入参数为弧度，计算正弦值，返回值范围 为[-1,1]</td>
-</tr>
-<tr>
-<td style="text-align: center;">cos(x)</td>
-<td style="text-align: center;">cos(x)</td>
-<td style="text-align: center;">返回弧度x的余弦值。返回值范围为</td>
-</tr>
-<tr>
-<td style="text-align: center;">tan(x)</td>
-<td style="text-align: center;">tan(x)</td>
-<td style="text-align: center;">计算x正切值</td>
-</tr>
-<tr>
-<td style="text-align: center;">sincos(float x, out s, out c)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">该函数是同时计算x的sin值和cos值，其中s=sin(x)，c=cos(x)。该函数用于“同时需要计算sin值和cos值的情况”，比分别运算要快很多!</td>
-</tr>
-<tr>
-<td style="text-align: center;">sinh(x)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">计算x的双曲正弦</td>
-</tr>
-<tr>
-<td style="text-align: center;">cosh(x)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">双曲余弦（hyperbolic cosine）函数，计算x的双曲余弦值。</td>
-</tr>
-<tr>
-<td style="text-align: center;">tanh(x)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">计算x的双曲线切线</td>
-</tr>
-<tr>
-<td style="text-align: center;">radians(x)</td>
-<td style="text-align: center;">radians(x)</td>
-<td style="text-align: center;">函数将角度值转换为弧度值</td>
-</tr>
-<tr>
-<td style="text-align: center;">degrees(x)</td>
-<td style="text-align: center;">degrees(x)</td>
-<td style="text-align: center;">输入参数为弧度值(radians)，函数将其转换为角度值(degrees)</td>
-</tr>
-<tr>
-<td style="text-align: center;">cross(A,B)</td>
-<td style="text-align: center;">cross(A,B)</td>
-<td style="text-align: center;">返回两个三元向量的叉积(cross product)。注意，输入参数必须是三元向量！</td>
-</tr>
-<tr>
-<td style="text-align: center;">lit(NdotL, NdotH, m)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">函数计算环境光、散射光、镜面光的贡献，返回的4元向量。<br>N表示法向量；<br>L表示入射光向量；<br>H表示半角向量；<br>m表示高光系数。<br>X位表示环境光的贡献，总是1.0;<br>Y位代表散射光的贡献，如果 N∙L&lt;0，则为0；否则为N∙L<br>Z位代表镜面光的贡献，如果N∙L&lt;0 或者N∙H \&lt; 0，则位0；否则为(N∙L)m; <br>W位始终位1.0</td>
-</tr>
-<tr>
-<td style="text-align: center;">all(x)</td>
-<td style="text-align: center;">all(x)</td>
-<td style="text-align: center;">如果输入参数均不为0，则返回ture； 否则返回flase。&amp;&amp;运算</td>
-</tr>
-<tr>
-<td style="text-align: center;">any(x)</td>
-<td style="text-align: center;">any(x)</td>
-<td style="text-align: center;">输入参数只要有其中一个不为0，则返回true。</td>
-</tr>
-<tr>
-<td style="text-align: center;">isfinite(x)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">判断标量或者向量中的每个数据是否是有限数，如果是返回true；否则返回false;</td>
-</tr>
-<tr>
-<td style="text-align: center;">isinf(x)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">判断标量或者向量中的每个数据是否是无限，如果是返回true；否则返回false;</td>
-</tr>
-<tr>
-<td style="text-align: center;">isnan(x)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">判断标量或者向量中的每个数据是否是非数据(not-a-number NaN)，如果是返回true；否则返回false;</td>
-</tr>
-<tr>
-<td style="text-align: center;">step(a, x)</td>
-<td style="text-align: center;">step(a, x)</td>
-<td style="text-align: center;">如果x&lt;a, 返回0；否则返回1</td>
-</tr>
-<tr>
-<td style="text-align: center;">sign(x)</td>
-<td style="text-align: center;">sign(x)</td>
-<td style="text-align: center;">如果x&gt;0则返回1；如果x=0返回0；如果x&lt;0则返回-1</td>
-</tr>
-<tr>
-<td style="text-align: center;">dot(A,B)</td>
-<td style="text-align: center;">dot(A,B)</td>
-<td style="text-align: center;">返回A和B的点积(dot product)。参数A和B可以是标量，也可以是向量（输入参数方面，点积和叉积函数有很大不同）。</td>
-</tr>
-<tr>
-<td style="text-align: center;">noise(x)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">根据它的参数类型，这个函数可以是一元、二元或三元噪音函数。返回的值在0和1之间，并且通常与给定的输入值一样</td>
-</tr>
-<tr>
-<td style="text-align: center;">clamp(x,a,b)</td>
-<td style="text-align: center;">clamp(x,a,b)</td>
-<td style="text-align: center;">如果x值小于a，则返回a； <br>如果x值大于b，返回b；<br>否则，返回x。</td>
-</tr>
-<tr>
-<td style="text-align: center;">lerp(a, b, f)</td>
-<td style="text-align: center;">mix(a, b, f)</td>
-<td style="text-align: center;">计算或者的值。即在下限a和上限b之间进行插值，f表示权值。注意，如果a和b是向量，则权值f必须是标量或者等长的向量。</td>
-</tr>
-<tr>
-<td style="text-align: center;">saturate(x)</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">把x限制到[0,1]之间</td>
-</tr>
-<tr>
-<td style="text-align: center;">smoothstep(min, max, x)</td>
-<td style="text-align: center;">smoothstep(min, max, x)</td>
-<td style="text-align: center;">值x位于min、max区间中。 <br>如果x=min，返回0；如果x=max，返回1；<br>如果x在两者之间，按照下列公式返回数据：<br><strong>– 2 ∗ ( ( x – m i n ) / ( m a x – m i n ) ) <sup>3</sup> + 3 ∗ ( ( x – m i n ) / ( m a x – m i n ) ) <sup>2</sup></strong></td>
-</tr>
-</tbody>
-</table>
-<p>smoothstep(min, max, x)对于参数全是float的重载</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">float</span><span class="w"> </span><span class="n">smoothstep</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">saturate</span><span class="p">((</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a</span><span class="p">));</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="p">(</span><span class="mf">3.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">t</span><span class="p">));</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
-</code></pre></div>
+<p>原文整理了大量 CG / GLSL 数学函数对照，包括：</p>
+<ul>
+<li><code>ceil</code> / <code>floor</code></li>
+<li><code>frac</code> / <code>fract</code></li>
+<li><code>exp</code> / <code>log</code> / <code>pow</code></li>
+<li><code>sqrt</code> / <code>rsqrt</code></li>
+<li><code>sin</code> / <code>cos</code> / <code>tan</code></li>
+<li><code>dot</code> / <code>cross</code></li>
+<li><code>clamp</code> / <code>lerp</code> / <code>smoothstep</code></li>
+</ul>
+<h3 id="smoothstep">smoothstep 示例<a class="headerlink" href="#smoothstep" title="Permanent link">&para;</a></h3>
+<pre><code class="language-glsl">float smoothstep(float a, float b, float x)
+{
+    float t = saturate((x - a) / (b - a));
+    return t * t * (3.0 - (2.0 * t));
+}
+</code></pre>
 <h3 id="2">2、几何函数<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">CG语言</th>
-<th style="text-align: center;">GLSL语言</th>
-<th style="text-align: center;">功能描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">distance(pt1, pt2)</td>
-<td style="text-align: center;">distance(pt1, pt2)</td>
-<td style="text-align: center;">两点之间的欧几里德距离（Euclidean distance）</td>
-</tr>
-<tr>
-<td style="text-align: center;">faceforward(N,I,Ng)</td>
-<td style="text-align: center;">faceforward(N,I,Ng)</td>
-<td style="text-align: center;">根据 矢量 N 与Nref 调整法向量,如果Ng•I &lt; 0 ，返回 N；否则返回-N。</td>
-</tr>
-<tr>
-<td style="text-align: center;">length(v)</td>
-<td style="text-align: center;">length(v)</td>
-<td style="text-align: center;">返回一个向量的模，即sqrt(dot(v,v))</td>
-</tr>
-<tr>
-<td style="text-align: center;">normalize(v)</td>
-<td style="text-align: center;">normalize(v)</td>
-<td style="text-align: center;">返回v向量的单位向量</td>
-</tr>
-<tr>
-<td style="text-align: center;">reflect(I, N)</td>
-<td style="text-align: center;">reflect(I, N)</td>
-<td style="text-align: center;">根据入射光方向向量 I，和顶点法向量 N，计算反射光方向向量。 <br>其中 I 和 N 必须被归一化，需要非常注意的是，这个 I 是指向顶点的；<br>函数只对三元向量有效</td>
-</tr>
-<tr>
-<td style="text-align: center;">refract(I,N,eta)</td>
-<td style="text-align: center;">refract(I,N,eta)</td>
-<td style="text-align: center;">计算折射向量，I 为入射光线，N 为法向量，eta 为折射系数； <br>其中 I 和 N 必须被归一化，如果 I 和 N 之间的夹角太大，则返回（0，0，0），也就是没有折射光线；I 是指向顶点的；函数只对三元向量有效</td>
-</tr>
-</tbody>
-</table>
+<p>常见函数包括：</p>
+<ul>
+<li><code>distance</code></li>
+<li><code>faceforward</code></li>
+<li><code>length</code></li>
+<li><code>normalize</code></li>
+<li><code>reflect</code></li>
+<li><code>refract</code></li>
+</ul>
 <h3 id="3">3、纹理映射函数<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">CG语言</th>
-<th style="text-align: center;">功能描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">tex1D(sampler1D tex, float s)</td>
-<td style="text-align: center;">一维纹理查询</td>
-</tr>
-<tr>
-<td style="text-align: center;">tex1D(sampler1D tex, float s, float dsdx, float dsdy)</td>
-<td style="text-align: center;">使用导数值（derivatives）查询一维纹理</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex1D(sampler1D tex, float2 sz)</td>
-<td style="text-align: center;">一维纹理查询，并进行深度值比较</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex1D(sampler1D tex, float2 sz, float dsdx,float dsdy)</td>
-<td style="text-align: center;">使用导数值（derivatives）查询一维纹理， 并进行深度值比较</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex1Dproj(sampler1D tex, float2 sq)</td>
-<td style="text-align: center;">一维投影纹理查询</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex1Dproj(sampler1D tex, float3 szq)</td>
-<td style="text-align: center;">一维投影纹理查询，并比较深度值</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex2D(sampler2D tex, float2 s)</td>
-<td style="text-align: center;">二维纹理查询</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex2D(sampler2D tex, float2 s, float2 dsdx, float2 dsdy)</td>
-<td style="text-align: center;">使用导数值（derivatives）查询二维纹理</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex2D(sampler2D tex, float3 sz)</td>
-<td style="text-align: center;">二维纹理查询，并进行深度值比较</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex2D(sampler2D tex, float3 sz, float2 dsdx,float2 dsdy)</td>
-<td style="text-align: center;">使用导数值（derivatives）查询二维纹理，并进行深度值比较</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex2Dproj(sampler2D tex, float3 sq)</td>
-<td style="text-align: center;">二维投影纹理查询</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex2Dproj(sampler2D tex, float4 szq)</td>
-<td style="text-align: center;">二维投影纹理查询，并进行深度值比较</td>
-</tr>
-<tr>
-<td style="text-align: center;">texRECT(samplerRECT tex, float2 s)</td>
-<td style="text-align: center;">二维非投影矩形纹理查询（OpenGL独有）</td>
-</tr>
-<tr>
-<td style="text-align: center;">texRECT (samplerRECT tex, float3 sz, float2 dsdx,float2 dsdy)</td>
-<td style="text-align: center;">二维非投影使用导数的矩形纹理查询（OpenGL独有）</td>
-</tr>
-<tr>
-<td style="text-align: center;">texRECT (samplerRECT tex, float3 sz)</td>
-<td style="text-align: center;">二维非投影深度比较矩形纹理查询（OpenGL独有）</td>
-</tr>
-<tr>
-<td style="text-align: center;">texRECT (samplerRECT tex, float3 sz, float2 dsdx,float2 dsdy)</td>
-<td style="text-align: center;">二维非投影深度比较并使用导数的矩形纹理查询（OpenGL独有）</td>
-</tr>
-<tr>
-<td style="text-align: center;">texRECT proj(samplerRECT tex, float3 sq)</td>
-<td style="text-align: center;">二维投影矩形纹理查询（OpenGL独有）</td>
-</tr>
-<tr>
-<td style="text-align: center;">texRECT proj(samplerRECT tex, float3 szq)</td>
-<td style="text-align: center;">二维投影矩形纹理深度比较查询（OpenGL独有）</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex3D(sampler3D tex, float s)</td>
-<td style="text-align: center;">三维纹理查询</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex3D(sampler3D tex, float3 s, float3 dsdx, float3 dsdy)</td>
-<td style="text-align: center;">结合导数值（derivatives）查询三维纹理</td>
-</tr>
-<tr>
-<td style="text-align: center;">Tex3Dproj(sampler3D tex, float4 szq)</td>
-<td style="text-align: center;">查询三维投影纹理，并进行深度值比较</td>
-</tr>
-<tr>
-<td style="text-align: center;">texCUBE(samplerCUBE tex, float3 s)</td>
-<td style="text-align: center;">查询立方体纹理</td>
-</tr>
-<tr>
-<td style="text-align: center;">texCUBE (samplerCUBE tex, float3 s, float3 dsdx, float3 dsdy)</td>
-<td style="text-align: center;">结合导数值（derivatives）查询立方体纹理</td>
-</tr>
-<tr>
-<td style="text-align: center;">texCUBEproj (samplerCUBE tex, float4 sq)</td>
-<td style="text-align: center;">查询投影立方体纹理</td>
-</tr>
-</tbody>
-</table>
+<p>原文整理了常见：</p>
+<ul>
+<li><code>tex1D</code></li>
+<li><code>tex2D</code></li>
+<li><code>tex3D</code></li>
+<li><code>texCUBE</code></li>
+<li>各类 <code>proj</code>、深度比较、导数版本</li>
+</ul>
 <h3 id="4">4、偏导函数<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">函数</th>
-<th style="text-align: center;">功能描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">ddx(a)</td>
-<td style="text-align: center;">近似a关于屏幕空间x轴的偏导数</td>
-</tr>
-<tr>
-<td style="text-align: center;">ddy(a)</td>
-<td style="text-align: center;">近似a关于屏幕空间y轴的偏导数</td>
-</tr>
-</tbody>
-</table>
-<h2 id="unity">二、Unity常用的内置函数，变量<a class="headerlink" href="#unity" title="Permanent link">&para;</a></h2>
-<h3 id="1unity">1、Unity常用的结构体<a class="headerlink" href="#1unity" title="Permanent link">&para;</a></h3>
-<h4 id="11">1.1、顶点着色器输入<a class="headerlink" href="#11" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">名称</th>
-<th style="text-align: center;">描述</th>
-<th style="text-align: center;">包含的变量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">appdata_base</td>
-<td style="text-align: center;">用于顶点着色器输入</td>
-<td style="text-align: center;">顶点位置、顶点法线、第一组纹理坐标</td>
-</tr>
-<tr>
-<td style="text-align: center;">appdata_tan</td>
-<td style="text-align: center;">用于顶点着色器输入</td>
-<td style="text-align: center;">顶点位置、顶点切线、顶点法线、第一组纹理坐标</td>
-</tr>
-<tr>
-<td style="text-align: center;">appdata_full</td>
-<td style="text-align: center;">用于顶点着色器输入</td>
-<td style="text-align: center;">顶点位置、顶点切线、顶点法线、四组（或更多）纹理坐标</td>
-</tr>
-<tr>
-<td style="text-align: center;">appdata_img</td>
-<td style="text-align: center;">用于顶点着色器输入</td>
-<td style="text-align: center;">顶点位置、第一组纹理坐标</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">struct</span><span class="w"> </span><span class="n">appdata_base</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">POSITION</span><span class="p">;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">float3</span><span class="w"> </span><span class="n">normal</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">NORMAL</span><span class="p">;</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">texcoord</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">TEXCOORD0</span><span class="p">;</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">};</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">struct</span><span class="w"> </span><span class="n">appdata_tan</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">POSITION</span><span class="p">;</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">tangent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">TANGENT</span><span class="p">;</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="n">float3</span><span class="w"> </span><span class="n">normal</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">NORMAL</span><span class="p">;</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">texcoord</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">TEXCOORD0</span><span class="p">;</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">};</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="k">struct</span><span class="w"> </span><span class="n">appdata_full</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">POSITION</span><span class="p">;</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">tangent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">TANGENT</span><span class="p">;</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="n">float3</span><span class="w"> </span><span class="n">normal</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">NORMAL</span><span class="p">;</span>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">texcoord</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">TEXCOORD0</span><span class="p">;</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">texcoord1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">TEXCOORD1</span><span class="p">;</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">texcoord2</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">TEXCOORD2</span><span class="p">;</span>
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">texcoord3</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">TEXCOORD3</span><span class="p">;</span>
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="n">fixed4</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">COLOR</span><span class="p">;</span>
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="p">};</span>
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="k">struct</span><span class="w"> </span><span class="n">appdata_img</span>
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="p">{</span>
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">vertex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">POSITION</span><span class="p">;</span>
-<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">    </span><span class="n">half2</span><span class="w"> </span><span class="n">texcoord</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">TEXCOORD0</span><span class="p">;</span>
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">    </span><span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="p">};</span>
-</code></pre></div>
-<h4 id="12">1.2、顶点着色器输出<a class="headerlink" href="#12" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">名称</th>
-<th style="text-align: center;">描述</th>
-<th style="text-align: center;">包含的变量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">v2f_img</td>
-<td style="text-align: center;">用于顶点着色器输出</td>
-<td style="text-align: center;">裁剪空间中的位置、纹理坐标</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">struct</span><span class="w"> </span><span class="n">v2f_img</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">float4</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">SV_POSITION</span><span class="p">;</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">half2</span><span class="w"> </span><span class="n">uv</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">TEXCOORD0</span><span class="p">;</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="n">UNITY_VERTEX_INPUT_INSTANCE_ID</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="n">UNITY_VERTEX_OUTPUT_STEREO</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">};</span>
-</code></pre></div>
+<ul>
+<li><code>ddx(a)</code>：近似 <code>a</code> 关于屏幕空间 x 轴的偏导数</li>
+<li><code>ddy(a)</code>：近似 <code>a</code> 关于屏幕空间 y 轴的偏导数</li>
+</ul>
+<h2 id="unity">二、Unity 常用内置函数、变量<a class="headerlink" href="#unity" title="Permanent link">&para;</a></h2>
+<h3 id="1unity">1、Unity 常用结构体<a class="headerlink" href="#1unity" title="Permanent link">&para;</a></h3>
+<h4 id="_1">顶点着色器输入<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>appdata_base</code></li>
+<li><code>appdata_tan</code></li>
+<li><code>appdata_full</code></li>
+<li><code>appdata_img</code></li>
+</ul>
+<h4 id="_2">顶点着色器输出<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>v2f_img</code></li>
+</ul>
+<pre><code class="language-glsl">struct v2f_img
+{
+    float4 pos : SV_POSITION;
+    half2 uv : TEXCOORD0;
+    UNITY_VERTEX_INPUT_INSTANCE_ID
+    UNITY_VERTEX_OUTPUT_STEREO
+};
+</code></pre>
 <h3 id="2_1">2、空间变换函数及内置变量<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
-<h4 id="a">A、空间变换函数<a class="headerlink" href="#a" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">函数名</th>
-<th style="text-align: center;">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">float4 UnityWorldToClipPos(float3 pos )</td>
-<td style="text-align: center;">把世界坐标空间中某一点pos变换到齐次裁剪空间</td>
-</tr>
-<tr>
-<td style="text-align: center;">float4 UnityViewToClipPos(float3 pos )</td>
-<td style="text-align: center;">把观察坐标空间中某一点pos变换到齐次裁剪空间</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 UnityObjectToViewPos(float3 pos或float4 pos)</td>
-<td style="text-align: center;">模型局部空间坐标系中某一个点pos变换到观察空间坐标系</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 UnityWorldToViewPos(float3 pos )</td>
-<td style="text-align: center;">把世界坐标系下的一个点pos变换到观察空间坐标系</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 UnityObjectToWorldDir(float3 dir )</td>
-<td style="text-align: center;">把方向矢量从模型空间转换到世界空间（方向已单位化）</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 UnityWorldToObjectDir(float3 dir )</td>
-<td style="text-align: center;">把方向矢量从世界空间转换到模型空间（方向已单位化）</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 UnityObjectToWorldNormal(float3 norm )</td>
-<td style="text-align: center;">将法线从模型空间转换到世界空间（方向已单位化）</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 UnityWorldSpaceLightDir(float3 worldPos )</td>
-<td style="text-align: center;">输入参数worldPos是一个世界坐标系下的坐标，得到世界空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 WorldSpaceLightDir(float4 localPos )</td>
-<td style="text-align: center;">输入一个模型顶点坐标，得到世界空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 ObjSpaceLightDir(float4 v )</td>
-<td style="text-align: center;">输入一个模型顶点坐标，得到模型空间中从该点到光源（_WorldSpaceLightPos0）的光照方向。（方向没单位化）</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 UnityWorldSpaceViewDir(float3 worldPos )</td>
-<td style="text-align: center;">输入参数worldPos是一个世界坐标系下的坐标，得到世界空间中从该点到摄像机的观察方向。（方向没单位化）</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 WorldSpaceViewDir(float4 localPos )</td>
-<td style="text-align: center;">输入一个模型顶点坐标，得到世界空间中从该点到摄像机的观察方向。（方向没单位化）</td>
-</tr>
-<tr>
-<td style="text-align: center;">float3 ObjSpaceViewDir(float4 v )</td>
-<td style="text-align: center;">输入一个模型顶点坐标，得到模型空间中从该点到摄像机的观察方向。（方向没单位化）</td>
-</tr>
-</tbody>
-</table>
-<h4 id="b">B、屏幕空间相关函数<a class="headerlink" href="#b" title="Permanent link">&para;</a></h4>
-<p>以下函数可计算用于采样屏幕空间纹理的坐标。它们返回 float4，其中用于纹理采样的最终坐标可以通过透视除法（例如 xy/w）计算得出。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">函数名</th>
-<th style="text-align: center;">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">float4 ComputeScreenPos (float4 clipPos)</td>
-<td style="text-align: center;">计算用于执行屏幕空间贴图纹理采样的纹理坐标。输入是裁剪空间位置。</td>
-</tr>
-<tr>
-<td style="text-align: center;">float4 ComputeGrabScreenPos (float4 clipPos)</td>
-<td style="text-align: center;">计算用于 GrabPass 纹理采样的纹理坐标。输入是裁剪空间位置。</td>
-</tr>
-</tbody>
-</table>
-<h4 id="c">C、内置变量矩阵<a class="headerlink" href="#c" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">变量名</th>
-<th style="text-align: center;">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">UNITY_MATRIX_MVP</td>
-<td style="text-align: center;">当前的模型观察投影矩阵，用于将顶点/方向矢量从模型空间转换到裁剪空间</td>
-</tr>
-<tr>
-<td style="text-align: center;">UNITY_MATRIX_MV</td>
-<td style="text-align: center;">当前的模型*观察矩阵，用于将顶点/方向矢量从模型空间转换到观察空间</td>
-</tr>
-<tr>
-<td style="text-align: center;">UNITY_MATRIX_V</td>
-<td style="text-align: center;">当前的观察矩阵，用于将顶点/方向矢量从世界空间转换到观察空间</td>
-</tr>
-<tr>
-<td style="text-align: center;">UNITY_MATRIX_I_V</td>
-<td style="text-align: center;">当前的观察矩阵的逆矩阵，用于从观察空间转换到世界空间</td>
-</tr>
-<tr>
-<td style="text-align: center;">UNITY_MATRIX_P</td>
-<td style="text-align: center;">当前的投影矩阵，用于将顶点/方向矢量从观察空间转换到裁剪空间</td>
-</tr>
-<tr>
-<td style="text-align: center;">UNITY_MATRIX_VP</td>
-<td style="text-align: center;">当前的观察*投影矩阵，用于将顶点/方向矢量从世界空间转换到裁剪空间</td>
-</tr>
-<tr>
-<td style="text-align: center;">UNITY_MATRIX_T_MV</td>
-<td style="text-align: center;">UNITY_MATRIX_MV的转置矩阵</td>
-</tr>
-<tr>
-<td style="text-align: center;">UNITY_MATRIX_IT_MV</td>
-<td style="text-align: center;">UNITY_MATRIX_MV的逆转置矩阵，用于将发现从模型空间转换到观察空间，也可以用于得到UNITY_MATRIX_MV的逆矩阵</td>
-</tr>
-<tr>
-<td style="text-align: center;">unity_MatrixInvV</td>
-<td style="text-align: center;">UNITY_MATRIX_V的逆矩阵</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h4 id="d">D、摄像机和屏幕参数<a class="headerlink" href="#d" title="Permanent link">&para;</a></h4>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">参数名</th>
-<th style="text-align: center;">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">float3 _WorldSpaceCameraPos</td>
-<td style="text-align: center;">该摄像机在世界空间中的位置</td>
-</tr>
-<tr>
-<td style="text-align: center;">float4 _ProjectionParams</td>
-<td style="text-align: center;">x=1.0(或-1.0，如果正在使用一个翻转的投影矩阵进行渲染)，y=Near,z=Far,w=1.0+1.0/Far,其中Near和Far分别是近裁剪平面和远裁剪平面到摄像机的距离</td>
-</tr>
-<tr>
-<td style="text-align: center;">float4 _ScreenParams</td>
-<td style="text-align: center;">x=width,y=height,z=1.0+1.0/width,w=1.0+1.0/height,其中width和height分别是该摄像机的渲染目标（render target）的像素宽度和高度</td>
-</tr>
-<tr>
-<td style="text-align: center;">float4 _ZBufferParams</td>
-<td style="text-align: center;">x=1-Far/Near,y=Far/Near,z=x/Far,w=y/Far,该变量用于线性化Z缓存中的深度值</td>
-</tr>
-<tr>
-<td style="text-align: center;">float4 unity_OrthoParams</td>
-<td style="text-align: center;">x=width,y=height,z没有定义,w=1.0(该摄像机是正交摄像机)或w=0.0（该摄像机是透视摄像机），其中width和height是正交投影摄像机的宽度和高度</td>
-</tr>
-<tr>
-<td style="text-align: center;">float4x4 unity_CameraProjection</td>
-<td style="text-align: center;">该摄像机的投影矩阵</td>
-</tr>
-<tr>
-<td style="text-align: center;">float4x4 unity_CameraInvProjection</td>
-<td style="text-align: center;">该摄像机的投影矩阵的逆矩阵</td>
-</tr>
-<tr>
-<td style="text-align: center;">float4 unity_CameraWorldClipPlanes[6]</td>
-<td style="text-align: center;">该摄像机的6个裁剪平面在世界空间下的等式，按左、右、下、上、近、远裁剪平面</td>
-</tr>
-</tbody>
-</table>
-<h4 id="e">E、时间变量<a class="headerlink" href="#e" title="Permanent link">&para;</a></h4>
-<hr />
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">名称</th>
-<th style="text-align: center;">类型</th>
-<th style="text-align: center;">值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">_Time</td>
-<td style="text-align: center;">float4</td>
-<td style="text-align: center;">自关卡加载以来的时间 (t/20, t, t<em>2, t</em>3)，用于将着色器中的内容动画化。</td>
-</tr>
-<tr>
-<td style="text-align: center;">_SinTime</td>
-<td style="text-align: center;">float4</td>
-<td style="text-align: center;">时间正弦：(t/8, t/4, t/2, t)。</td>
-</tr>
-<tr>
-<td style="text-align: center;">_CosTime</td>
-<td style="text-align: center;">float4</td>
-<td style="text-align: center;">时间余弦：(t/8, t/4, t/2, t)。</td>
-</tr>
-<tr>
-<td style="text-align: center;">unity_DeltaTime</td>
-<td style="text-align: center;">float4</td>
-<td style="text-align: center;">增量时间：(dt, 1/dt, smoothDt, 1/smoothDt)。</td>
-</tr>
-<tr>
-<td style="text-align: center;">---</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<h4 id="f">F、光照变量<a class="headerlink" href="#f" title="Permanent link">&para;</a></h4>
-<hr />
-<blockquote>
-<p>参考unity官方文档：<a href="https://docs.unity.cn/cn/current/Manual/SL-UnityShaderVariables.html">内置着色器变量</a></p>
-</blockquote>
-<h4 id="g">G、雾效和环境光<a class="headerlink" href="#g" title="Permanent link">&para;</a></h4>
-<hr />
-<p>名称| 类型| 值
-|:-:|:-:|:-:|
-unity_AmbientSky|   fixed4| 梯度环境光照情况下的天空环境光照颜色。
-unity_AmbientEquator|   fixed4  |梯度环境光照情况下的赤道环境光照颜色。
-unity_AmbientGround |fixed4 |梯度环境光照情况下的地面环境光照颜色。
-UNITY_LIGHTMODEL_AMBIENT|   fixed4| 环境光照颜色（梯度环境情况下的天空颜色）。旧版变量。
-unity_FogColor| fixed4| 雾效颜色。
-unity_FogParams |float4 |用于雾效计算的参数：<code>(density / sqrt(ln(2))、density / ln(2)、–1/(end-start)</code>和 <code>end/(end-start))</code>。x 对于 Exp2 雾模式很有用；<em>y</em> 对于 Exp 模式很有用，<em>z</em> 和 w 对于 Linear 模式很有用。</p>
-<h4 id="h">H、其他<a class="headerlink" href="#h" title="Permanent link">&para;</a></h4>
-<hr />
-<p>名称| 类型| 值
-|-|-|-|
-unity_LODFade|  float4| 使用 LODGroup 时的细节级别淡入淡出。x 为淡入淡出（0 到 1），<em>y</em> 为量化为 16 级的淡入淡出，<em>z</em> 和 w 未使用。
-_TextureSampleAdd|  float4  |根据所使用的纹理是 Alpha8 格式（值设置为 (1,1,1,0)）还是不是该格式（值设置为 (0,0,0,0)）由 Unity 仅针对 UI 自动设置。</p>
-<h3 id="3_1">3、数学常数<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#ifndef UNITY_CG_INCLUDED</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="cp">#define UNITY_CG_INCLUDED</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="cp">#define UNITY_PI            3.14159265359f       //圆周率</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="cp">#define UNITY_TWO_PI        6.28318530718f       //2倍圆周率</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="cp">#define UNITY_FOUR_PI       12.56637061436f      //4倍圆周率</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="cp">#define UNITY_INV_PI        0.31830988618f       //圆周率的倒数</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="cp">#define UNITY_INV_TWO_PI    0.15915494309f       //2倍圆周率的倒数</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="cp">#define UNITY_INV_FOUR_PI   0.07957747155f       //4倍圆周率的倒数</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="cp">#define UNITY_HALF_PI       1.57079632679f       //半圆周率</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="cp">#define UNITY_INV_HALF_PI   0.636619772367f      //半圆周率的倒数</span>
-</code></pre></div>
-<h3 id="4_1">4、与颜色空间相关<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;">函数名</th>
-<th style="text-align: center;">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">bool IsGammaSpace()</td>
-<td style="text-align: center;">根据宏UNITY_COLORSPACE_GAMMA是否被启用了，判断当前是否启用了伽马颜色空间。</td>
-</tr>
-<tr>
-<td style="text-align: center;">float GammaToLinearSpaceExact (float value)</td>
-<td style="text-align: center;">把一个颜色值精确地从伽马颜色空间(sRGB颜色空间)变化到线性空间(CIE-XYZ颜色空间)。</td>
-</tr>
-<tr>
-<td style="text-align: center;">half3 GammaToLinearSpace (half3 sRGB)</td>
-<td style="text-align: center;">用一个近似模拟的函数把颜色值近似地从伽马空间变换到线性空间。</td>
-</tr>
-<tr>
-<td style="text-align: center;">float LinearToGammaSpaceExact (float value)</td>
-<td style="text-align: center;">把一个颜色值精确地从线性空间变换到伽马颜色空间。</td>
-</tr>
-<tr>
-<td style="text-align: center;">half3 LinearToGammaSpace (half3 linRGB)</td>
-<td style="text-align: center;">用一个近似模拟的函数把颜色值近似地从线性空间变换到伽马颜色空间。</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>引用：<a href="https://blog.csdn.net/u012722551/article/details/103926660">UnityShader常用函数（UnityShader内置函数、CG和GLSL内置函数等）</a><br />
-unity官方文档：<a href="https://docs.unity.cn/cn/current/Manual/SL-UnityShaderVariables.html">内置着色器变量</a></p>
-</blockquote>
+<p>常见函数包括：</p>
+<ul>
+<li><code>UnityWorldToClipPos</code></li>
+<li><code>UnityViewToClipPos</code></li>
+<li><code>UnityObjectToViewPos</code></li>
+<li><code>UnityWorldToViewPos</code></li>
+<li><code>UnityObjectToWorldDir</code></li>
+<li><code>UnityWorldToObjectDir</code></li>
+<li><code>UnityObjectToWorldNormal</code></li>
+<li><code>UnityWorldSpaceLightDir</code></li>
+<li><code>UnityWorldSpaceViewDir</code></li>
+</ul>
+<h2 id="_3">迁移说明<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>原文内容非常长，且以函数表为主。当前已迁移核心索引结构，后续可继续完整搬运全部函数表格内容。</p>
 
 
 
@@ -1545,38 +8542,6 @@ unity官方文档：<a href="https://docs.unity.cn/cn/current/Manual/SL-UnitySha
 
 
 
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="最后更新">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="创建日期">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月20日 14:40:17 UTC">2026年3月20日 14:40:17</span>
-  </span>
-
-    
-    
-    
-  </aside>
 
 
 
@@ -1590,17 +8555,9 @@ unity官方文档：<a href="https://docs.unity.cn/cn/current/Manual/SL-UnitySha
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
-          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  回到页面顶部
-</button>
-        
       </main>
       
         <footer class="md-footer">
-  
-    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -1627,7 +8584,7 @@ unity官方文档：<a href="https://docs.unity.cn/cn/current/Manual/SL-UnitySha
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "search.highlight", "search.suggest", "content.code.copy", "content.action.edit"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
