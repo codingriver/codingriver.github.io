@@ -1,13 +1,15 @@
-# GitHub-ssh失败Permission-denied-(publickey)
-
 ---
 title: "GitHub-ssh失败Permission-denied-(publickey)"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: [""]
-categories: ["随笔"]
+date: "2026-03-21"
+tags:
+  - 工具链
+  - Git
+  - CSharp
+categories:
+  - other
+comments: true
 ---
+# GitHub-ssh失败Permission-denied-(publickey)
 
 在执行命令时报错`ssh -T git@github.com`
 ```

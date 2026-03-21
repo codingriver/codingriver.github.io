@@ -1,3 +1,16 @@
+---
+title: "Unity判断机型是否为iPhoneX等"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+  - CSharp
+  - iOS
+categories:
+  - u3d
+comments: true
+---
 # Unity判断机型是否为iPhoneX等
 
 ## 原生iOS常用的判断方法

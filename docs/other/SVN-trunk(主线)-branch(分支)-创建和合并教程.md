@@ -1,13 +1,15 @@
-# SVN-trunk(主线)-branch(分支)-创建和合并教程
-
 ---
 title: "SVN-trunk(主线)-branch(分支)-创建和合并教程"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["SVN"]
-categories: ["随笔"]
+date: "2026-03-21"
+tags:
+  - 工具链
+  - 网络
+  - CSharp
+categories:
+  - other
+comments: true
 ---
+# SVN-trunk(主线)-branch(分支)-创建和合并教程
 
 >文章：[SVN trunk(主线) branch(分支) tag(标记) 用法详解和详细操作步骤](http://blog.csdn.net/vbirdbest/article/details/51122637)
 

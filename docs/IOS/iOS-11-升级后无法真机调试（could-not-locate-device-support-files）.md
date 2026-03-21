@@ -1,3 +1,15 @@
+---
+title: "iOS-11-升级后无法真机调试（could-not-locate-device-support-files）"
+date: "2026-03-21"
+tags:
+  - iOS
+  - 网络
+  - CSharp
+  - 工具链
+categories:
+  - IOS
+comments: true
+---
 # iOS-11-升级后无法真机调试（could-not-locate-device-support-files）
 
 ![image.png](https://imgconvert.csdnimg.cn/aHR0cDovL3VwbG9hZC1pbWFnZXMuamlhbnNodS5pby91cGxvYWRfaW1hZ2VzLzEwOTU2NDMtYmI4ZGFlOWUzMjZkN2ZlMi5wbmc?x-oss-process=image/format,png)  

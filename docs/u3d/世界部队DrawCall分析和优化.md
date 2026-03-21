@@ -1,3 +1,15 @@
+---
+title: "世界部队DrawCall分析和优化"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 性能优化
+  - 图形学
+  - 项目记录
+categories:
+  - u3d
+comments: true
+---
 # 世界部队DrawCall分析和优化
 
 ## 世界部队普通攻击 DrawCall 分析

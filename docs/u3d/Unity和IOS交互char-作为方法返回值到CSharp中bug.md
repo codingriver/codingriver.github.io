@@ -1,13 +1,16 @@
+---
+title: "Unity和IOS交互char-作为方法返回值到CSharp中bug"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - CSharp
+  - iOS
+categories:
+  - u3d
+comments: true
+---
 # Unity和IOS交互char-作为方法返回值到CSharp中bug
-
----
-title: "Unity和IOS交互char-作为方法返回值到C#中bug"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity","IOS"]
-categories: ["Unity"]
----
 
 修复方法
 id不能直接返回，必须分配内存

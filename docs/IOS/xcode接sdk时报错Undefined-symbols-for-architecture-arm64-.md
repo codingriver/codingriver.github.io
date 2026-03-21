@@ -1,15 +1,19 @@
+---
+title: "xcode接sdk时报错Undefined-symbols-for-architecture-arm64-"
+date: "2026-03-21"
+tags:
+  - iOS
+  - UI
+  - 网络
+  - CSharp
+  - 工具链
+categories:
+  - IOS
+comments: true
+---
 # xcode接sdk时报错Undefined-symbols-for-architecture-arm64-
 
 ﻿
----
-title: "xcode接sdk时报错（环信SDK接入ios报错）"
-subtitle: "xcode接sdk时报错Undefined-symbols-for-architecture-arm64-或者Undefined symbols for architecture armv7"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["IOS","Xcode"]
-categories: ["IOS"]
----
 
 unity 导出xcode后接环信libHyphenateSDK时build报错Undefined symbols for architecture armv7:
 也有Undefined symbols for architecture arm64:

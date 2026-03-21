@@ -1,3 +1,12 @@
+---
+title: "C# 特性详解（Attribute）"
+date: "2026-03-21"
+tags:
+  - CSharp
+categories:
+  - csharp
+comments: true
+---
 # C# 特性详解（Attribute）
 
 > 今天整理关于特性的资料，之前都忘了，今天整理一下。

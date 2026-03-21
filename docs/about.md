@@ -1,3 +1,12 @@
+---
+title: "关于"
+date: "2026-03-21"
+tags:
+  - 笔记
+categories:
+  - 首页
+comments: false
+---
 # 关于
 
 这里将迁移原 Hugo 站点中的关于页内容。

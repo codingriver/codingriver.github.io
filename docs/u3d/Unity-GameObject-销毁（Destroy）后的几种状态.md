@@ -1,13 +1,16 @@
-# Unity-GameObject-销毁（Destroy）后的几种状态
-
 ---
 title: "Unity-GameObject-销毁（Destroy）后的几种状态"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+  - CSharp
+categories:
+  - u3d
+comments: true
 ---
+# Unity-GameObject-销毁（Destroy）后的几种状态
 
 >直接上测试结果，方便后面使用:
 >>#####GameObject被销毁时当前帧可以继续使用属性（gameObject,parent,transform等等）。

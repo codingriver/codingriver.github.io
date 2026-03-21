@@ -1,13 +1,15 @@
+---
+title: "中文和unicode互转"
+date: "2026-03-21"
+tags:
+  - CSharp
+  - UI
+  - 网络
+categories:
+  - csharp
+comments: true
+---
 # 中文和unicode互转
-
----
-title: "C# 中文和unicode互转"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unicode编码"]
-categories: ["计算机基础"]
----
 
 >引用：http://blog.csdn.net/u011511086/article/details/72865006
 

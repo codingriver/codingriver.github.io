@@ -1,13 +1,15 @@
-# UnityEditor-iOS-Xcode报错
-
 ---
 title: "UnityEditor-iOS-Xcode报错"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity","IOS","Xcode"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - iOS
+  - 工具链
+categories:
+  - u3d
+comments: true
 ---
+# UnityEditor-iOS-Xcode报错
 
 ```
 using UnityEditor.iOS.Xcode;

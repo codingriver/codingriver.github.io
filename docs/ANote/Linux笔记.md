@@ -1,3 +1,16 @@
+---
+title: "Linux笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 性能优化
+  - 网络
+  - 数据结构
+categories:
+  - ANote
+comments: true
+---
 # Linux笔记
 
 ### 常用命令

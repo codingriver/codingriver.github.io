@@ -1,3 +1,14 @@
+---
+title: "UGUI-Image图片置灰"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - Shader
+categories:
+  - u3d
+comments: true
+---
 # UGUI-Image图片置灰
 
 置灰的关键代码：

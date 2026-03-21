@@ -1,3 +1,16 @@
+---
+title: "xlua性能测试"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 性能优化
+  - UI
+  - Git
+  - 网络
+categories:
+  - u3d
+comments: true
+---
 # xlua性能测试
 
 > lua中`os.clock()`:  

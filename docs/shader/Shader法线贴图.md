@@ -1,3 +1,14 @@
+---
+title: "Shader法线贴图"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - Unity
+categories:
+  - shader
+comments: true
+---
 # Shader法线贴图
 
 > 法线贴图,在切线空间下计算（Cubemap环境映射不可以用，要用世界空间下计算）

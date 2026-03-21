@@ -1,3 +1,13 @@
+---
+title: "Shader"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+categories:
+  - shader
+comments: false
+---
 # Shader
 
 这是 Shader 分类栏目页。

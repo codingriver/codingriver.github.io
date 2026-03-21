@@ -1,3 +1,15 @@
+---
+title: "Shader法线纹理"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - 性能优化
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # Shader法线纹理
 
 > ###### 参考 《unity shader 入门精要》

@@ -1,14 +1,18 @@
+---
+title: "Xcode项目发布App-Store商品审核"
+date: "2026-03-21"
+tags:
+  - iOS
+  - 网络
+  - 工具链
+  - 项目记录
+categories:
+  - IOS
+comments: true
+---
 # Xcode项目发布App-Store商品审核
 
 ﻿
----
-title: "Xcode项目发布App-Store商品审核"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["IOS","Xcode"]
-categories: ["IOS"]
----
 
 >原文：[**Xcode项目发布App Store商品审核**](https://www.jianshu.com/p/9551fd719b82)
 

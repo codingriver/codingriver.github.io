@@ -1,3 +1,12 @@
+---
+title: "王国庆的博客"
+date: "2026-03-21"
+tags:
+  - 笔记
+categories:
+  - 首页
+comments: false
+---
 # 王国庆的博客
 
 当前仓库正在从 Hugo 迁移到 MkDocs。

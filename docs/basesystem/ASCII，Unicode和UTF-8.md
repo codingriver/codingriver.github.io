@@ -1,3 +1,12 @@
+---
+title: "ASCII，Unicode和UTF-8"
+date: "2026-03-21"
+tags:
+  - 系统基础
+categories:
+  - basesystem
+comments: true
+---
 # ASCII，Unicode和UTF-8
 
 {{< admonition info 编码历史与区别>}}

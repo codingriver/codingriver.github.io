@@ -1,3 +1,14 @@
+---
+title: "win7安装Vs2015失败的解决方案(安装vs多个版本的问题)"
+date: "2026-03-21"
+tags:
+  - 工具链
+  - 网络
+  - CSharp
+categories:
+  - other
+comments: true
+---
 # win7安装Vs2015失败的解决方案(安装vs多个版本的问题)
 
 一开始安装vs2017时失败了，然后安装vs2015和vs2013的时候各种错误，安装不上；

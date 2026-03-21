@@ -1,3 +1,14 @@
+---
+title: "Unity脚本执行顺序"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+categories:
+  - u3d
+comments: true
+---
 # Unity脚本执行顺序
 
 > 进阶测试参考[[unity脚本MonoBehaviour默认方法执行顺序测试](http://www.jianshu.com/p/574910aa3f52)

@@ -1,3 +1,16 @@
+---
+title: "ANote"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 性能优化
+  - UI
+  - 编辑器扩展
+categories:
+  - ANote
+comments: false
+---
 # ANote
 
 这是 ANote 分类栏目页。

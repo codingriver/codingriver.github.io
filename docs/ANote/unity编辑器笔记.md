@@ -1,3 +1,16 @@
+---
+title: "unity编辑器笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - UI
+  - 编辑器扩展
+  - Git
+categories:
+  - ANote
+comments: true
+---
 # unity编辑器笔记
 
 ## Problem

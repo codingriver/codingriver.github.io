@@ -1,3 +1,16 @@
+---
+title: "Unity渲染顺序"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+  - Shader
+  - 图形学
+categories:
+  - u3d
+comments: true
+---
 # Unity渲染顺序
 
 Unity中的渲染顺序有三层：

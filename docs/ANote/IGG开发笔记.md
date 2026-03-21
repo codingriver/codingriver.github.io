@@ -1,3 +1,16 @@
+---
+title: "IGG开发笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 性能优化
+  - 异步编程
+  - Git
+categories:
+  - ANote
+comments: true
+---
 # IGG开发笔记
 
 ## 待分析

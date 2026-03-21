@@ -1,3 +1,16 @@
+---
+title: "NAS笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - Git
+  - 网络
+  - 项目记录
+categories:
+  - ANote
+comments: true
+---
 # NAS笔记
 
 ## 照片备份方案

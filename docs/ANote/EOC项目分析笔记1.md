@@ -1,3 +1,16 @@
+---
+title: "EOC项目分析笔记1"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 性能优化
+  - UI
+  - CSharp
+categories:
+  - ANote
+comments: true
+---
 # EOC项目分析笔记1
 
 ## 项目优化列表

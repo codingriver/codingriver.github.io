@@ -1,3 +1,14 @@
+---
+title: "DirectX环境搭建"
+date: "2026-03-21"
+tags:
+  - 图形学
+  - 网络
+  - 项目记录
+categories:
+  - Graphics
+comments: true
+---
 # DirectX环境搭建
 
 >IDE支持 `DirectX11` 和 `DirectX12`

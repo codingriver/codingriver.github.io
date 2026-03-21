@@ -1,13 +1,16 @@
-# Unity-使用Android-Splash
-
 ---
 title: "Unity-使用Android-Splash"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Android","Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+  - Android
+categories:
+  - u3d
+comments: true
 ---
+# Unity-使用Android-Splash
 
 java代码
 ``` java

@@ -1,3 +1,12 @@
+---
+title: "basesystem"
+date: "2026-03-21"
+tags:
+  - 系统基础
+categories:
+  - basesystem
+comments: false
+---
 # basesystem
 
 这是 basesystem 分类栏目页。

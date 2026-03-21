@@ -1,3 +1,14 @@
+---
+title: "Shader法线贴图（世界空间）"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # Shader法线贴图（世界空间）
 
 >法线贴图，世界空间下计算

@@ -1,13 +1,13 @@
-# Unity截屏
-
 ---
 title: "Unity截屏"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+categories:
+  - u3d
+comments: true
 ---
+# Unity截屏
 
 ```
     IEnumerator CoroutineScreenShot(System.Action action)

@@ -1,3 +1,16 @@
+---
+title: "DrawCall优化实战"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 性能优化
+  - 网络
+  - 图形学
+  - 工具链
+categories:
+  - u3d
+comments: true
+---
 # DrawCall优化实战
 
 > 世界地图合批优化实战分享草稿。

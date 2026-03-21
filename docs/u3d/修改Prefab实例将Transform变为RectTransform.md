@@ -1,3 +1,16 @@
+---
+title: "修改Prefab实例将Transform变为RectTransform"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+  - 图形学
+  - CSharp
+categories:
+  - u3d
+comments: true
+---
 # 修改Prefab实例将Transform变为RectTransform
 
 > 引用：[Is there a way to destroy/replace a GameObject that is inside or part of a Prefab instance?](https://stackoverflow.com/questions/55525960/is-there-a-way-to-destroy-replace-a-gameobject-that-is-inside-or-part-of-a-prefa)

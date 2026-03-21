@@ -1,3 +1,14 @@
+---
+title: "c++_structunion数据对齐"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 网络
+  - 项目记录
+categories:
+  - u3d
+comments: true
+---
 # c++_structunion数据对齐
 
 > 数据对齐几年前看过，都忘了，看`深入理解计算机系统`又看到了，今天回顾下做下记录  

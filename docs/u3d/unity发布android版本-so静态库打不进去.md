@@ -1,13 +1,16 @@
-# unity发布android版本-so静态库打不进去
-
 ---
 title: "unity发布android版本-so静态库打不进去"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity","Android"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+  - Android
+categories:
+  - u3d
+comments: true
 ---
+# unity发布android版本-so静态库打不进去
 
 发布android包时 armeabi文件夹下的so静态库打包不进去（unity版本：unity5.6.0f3）
 

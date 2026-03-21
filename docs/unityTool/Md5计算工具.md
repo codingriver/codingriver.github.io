@@ -1,3 +1,14 @@
+---
+title: "Md5计算工具"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 工具链
+  - CSharp
+categories:
+  - unityTool
+comments: true
+---
 # Md5计算工具
 
 >用C#实现md5计算，获取十六进制md5

@@ -1,3 +1,14 @@
+---
+title: "unity脚本MonoBehaviour默认方法执行顺序测试"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 网络
+  - CSharp
+categories:
+  - u3d
+comments: true
+---
 # unity脚本MonoBehaviour默认方法执行顺序测试
 
 >基础的MonoBehaviour默认方法执行顺序参考上篇文章[Unity脚本执行顺序](https://www.jianshu.com/p/b69ef6ace840)

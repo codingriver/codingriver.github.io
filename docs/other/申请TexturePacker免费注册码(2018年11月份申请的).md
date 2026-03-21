@@ -1,3 +1,15 @@
+---
+title: "申请TexturePacker免费注册码(2018年11月份申请的)"
+date: "2026-03-21"
+tags:
+  - 工具链
+  - UI
+  - 网络
+  - CSharp
+categories:
+  - other
+comments: true
+---
 # 申请TexturePacker免费注册码(2018年11月份申请的)
 
 > 感谢TexturePacker团队回复我的邮件，已经顺利获取到免费注册码

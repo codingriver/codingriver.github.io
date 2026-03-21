@@ -1,3 +1,16 @@
+---
+title: "Shell笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 网络
+  - 工具链
+  - 项目记录
+categories:
+  - ANote
+comments: true
+---
 # Shell笔记
 
 ## 常用快捷键

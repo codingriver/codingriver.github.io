@@ -1,13 +1,15 @@
-# Unity粒子特效缩放
-
 ---
 title: "Unity粒子特效缩放"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - 编辑器扩展
+  - CSharp
+categories:
+  - u3d
+comments: true
 ---
+# Unity粒子特效缩放
 
 Editor下缩放脚本(非运行情况下)（Unity5.3.6）
 ```cs

@@ -1,13 +1,16 @@
-# unity-打包Android报错CommandInvokationFailure--Unable-to-convert-classes-i
-
 ---
 title: "unity-打包Android报错CommandInvokationFailure--Unable-to-convert-classes-i"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Android","Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - 编辑器扩展
+  - 网络
+  - Android
+categories:
+  - u3d
+comments: true
 ---
+# unity-打包Android报错CommandInvokationFailure--Unable-to-convert-classes-i
 
 >参考文章:<http://blog.csdn.net/qingyang8513/article/details/52544122>
 

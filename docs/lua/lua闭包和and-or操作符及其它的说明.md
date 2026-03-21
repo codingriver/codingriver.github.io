@@ -1,3 +1,16 @@
+---
+title: "lua闭包和and-or操作符及其它的说明"
+date: "2026-03-21"
+tags:
+  - Lua
+  - UI
+  - 网络
+  - CSharp
+  - iOS
+categories:
+  - lua
+comments: true
+---
 # lua闭包和and-or操作符及其它的说明
 
 >今天发现学过的知识不常用的都忘了差不多了，这里重新整理下，做下记录吧

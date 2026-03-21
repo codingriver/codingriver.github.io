@@ -1,3 +1,16 @@
+---
+title: "Shader学习-1.1基础概要"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - UI
+  - 网络
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # Shader学习-1.1基础概要
 
 ### Unity 渲染管线

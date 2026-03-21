@@ -1,3 +1,14 @@
+---
+title: "用astash 画UML类图"
+date: "2026-03-21"
+tags:
+  - 工具链
+  - 网络
+  - CSharp
+categories:
+  - other
+comments: true
+---
 # 用astash 画UML类图
 
 >轉載：

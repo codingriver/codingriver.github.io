@@ -1,3 +1,14 @@
+---
+title: "math"
+date: "2026-03-21"
+tags:
+  - 数学
+  - 图形学
+  - Shader
+categories:
+  - math
+comments: false
+---
 # math
 
 这是 math 分类栏目页。

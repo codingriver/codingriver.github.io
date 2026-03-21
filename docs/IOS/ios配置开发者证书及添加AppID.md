@@ -1,14 +1,17 @@
+---
+title: "ios配置开发者证书及添加AppID"
+date: "2026-03-21"
+tags:
+  - iOS
+  - 网络
+  - CSharp
+categories:
+  - IOS
+comments: true
+---
 # ios配置开发者证书及添加AppID
 
 ﻿
----
-title: "ios配置开发者证书及添加AppID"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["IOS"]
-categories: ["IOS"]
----
 
 >原文： [**ios配置开发者证书及添加AppID**](https://www.jianshu.com/p/ee83dc090b20)
 

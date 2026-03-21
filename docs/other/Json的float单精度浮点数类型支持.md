@@ -1,3 +1,14 @@
+---
+title: "Json的float单精度浮点数类型支持"
+date: "2026-03-21"
+tags:
+  - 工具链
+  - 网络
+  - CSharp
+categories:
+  - other
+comments: true
+---
 # Json的float单精度浮点数类型支持
 
 >今天遇到个问题Can't assign value '11.88' (type System.Double) to type System.Single

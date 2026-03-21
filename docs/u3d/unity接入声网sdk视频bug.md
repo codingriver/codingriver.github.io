@@ -1,13 +1,17 @@
-# unity接入声网sdk视频bug
-
 ---
 title: "unity接入声网sdk视频bug"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["SDK"]
-categories: ["other"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 图形学
+  - CSharp
+  - Android
+categories:
+  - u3d
+comments: true
 ---
+# unity接入声网sdk视频bug
 
 渲染更新每帧纹理后，unity不重新绘制，暂时用每帧移动物体来屏蔽
 

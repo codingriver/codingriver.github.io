@@ -1,3 +1,13 @@
+---
+title: "CSharp语言6-字符串插值"
+date: "2026-03-21"
+tags:
+  - CSharp
+  - 网络
+categories:
+  - csharp
+comments: true
+---
 # CSharp语言6-字符串插值
 
 string s = "hello";

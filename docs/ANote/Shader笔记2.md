@@ -1,3 +1,16 @@
+---
+title: "Shader笔记2"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 性能优化
+  - 网络
+  - Shader
+categories:
+  - ANote
+comments: true
+---
 # Shader笔记2
 
 ## 渲染相关问题（Problem）

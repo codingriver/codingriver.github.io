@@ -1,3 +1,14 @@
+---
+title: "DOTS笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 项目记录
+categories:
+  - ANote
+comments: true
+---
 # DOTS笔记
 
 ![](image/DOTS笔记/2023-08-11-18-20-47.png)

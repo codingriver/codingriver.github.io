@@ -1,3 +1,16 @@
+---
+title: "golang笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - UI
+  - 网络
+  - 工具链
+categories:
+  - ANote
+comments: true
+---
 # golang笔记
 
 ## 安装

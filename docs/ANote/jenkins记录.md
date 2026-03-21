@@ -1,3 +1,16 @@
+---
+title: "jenkins记录"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - Jenkins
+  - 工具链
+  - 项目记录
+categories:
+  - ANote
+comments: true
+---
 # jenkins记录
 
 mac 安装目录：`/usr/local/Cellar/jenkins-lts/2.235.5/bin`

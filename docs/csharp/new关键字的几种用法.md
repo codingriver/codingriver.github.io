@@ -1,3 +1,14 @@
+---
+title: "new关键字的几种用法"
+date: "2026-03-21"
+tags:
+  - CSharp
+  - 异步编程
+  - 网络
+categories:
+  - csharp
+comments: true
+---
 # new关键字的几种用法
 
 一共有三种用法：

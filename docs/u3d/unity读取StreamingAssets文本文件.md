@@ -1,13 +1,16 @@
-# unity读取StreamingAssets文本文件
-
 ---
 title: "unity读取StreamingAssets文本文件"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - 异步编程
+  - CSharp
+  - Android
+categories:
+  - u3d
+comments: true
 ---
+# unity读取StreamingAssets文本文件
 
 因为StreamingAssets目录对于Android来说是在apk里面的，所以File读取不到里面的内容信息，必须通过Android的api读取加载。
 C#代码

@@ -1,3 +1,14 @@
+---
+title: "Gamma和Linear及sRGB说明"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # Gamma和Linear及sRGB说明
 
 >**Gamma校正**: 

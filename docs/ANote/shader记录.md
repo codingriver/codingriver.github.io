@@ -1,3 +1,16 @@
+---
+title: "shader记录"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - Git
+  - 网络
+  - Shader
+categories:
+  - ANote
+comments: true
+---
 # shader记录
 
 [如何开始用 C++ 写一个光栅化渲染器？](https://www.zhihu.com/question/24786878/answer/1483055155)

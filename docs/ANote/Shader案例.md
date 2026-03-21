@@ -1,3 +1,16 @@
+---
+title: "Shader案例"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 编辑器扩展
+  - Shader
+  - 图形学
+categories:
+  - ANote
+comments: true
+---
 # Shader案例
 
 ### 角色展示

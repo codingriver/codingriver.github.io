@@ -1,3 +1,16 @@
+---
+title: "PBR笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - Git
+  - 网络
+  - Shader
+categories:
+  - ANote
+comments: true
+---
 # PBR笔记
 
 [^1]:![](image/PBR笔记/pbr.jpg)

@@ -1,13 +1,15 @@
-# Unity-日志文件的存放
-
 ---
 title: "Unity-日志文件的存放"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - 编辑器扩展
+  - 网络
+categories:
+  - u3d
+comments: true
 ---
+# Unity-日志文件的存放
 
 > 参考文章：<https://blog.csdn.net/cbbbc/article/details/49275867>
 

@@ -1,3 +1,14 @@
+---
+title: "CSharp中Struct内存大小"
+date: "2026-03-21"
+tags:
+  - CSharp
+  - 网络
+  - 项目记录
+categories:
+  - csharp
+comments: true
+---
 # CSharp中Struct内存大小
 
 > `sizeof` 只适用于值类型，并且需要在unsafe上下文环境中使用  

@@ -1,3 +1,16 @@
+---
+title: "MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 编辑器扩展
+  - UI
+  - Git
+  - 网络
+categories:
+  - unity编辑器
+comments: true
+---
 # MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder
 
 >MeshRenderer和SkinnedMeshRenderer在Inspector增加sortingLayerName和sortingOrder选项。  

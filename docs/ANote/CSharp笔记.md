@@ -1,3 +1,16 @@
+---
+title: "CSharp笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 性能优化
+  - 网络
+  - CSharp
+categories:
+  - ANote
+comments: true
+---
 # CSharp笔记
 
 >- [ ] 绍跳点搜索(JPS)算法

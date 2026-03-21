@@ -1,13 +1,17 @@
-# VS2013+LUA代码高亮配置教程
-
 ---
 title: "VS2013+LUA代码高亮配置教程"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["lua"]
-categories: ["other"]
+date: "2026-03-21"
+tags:
+  - 工具链
+  - 网络
+  - CSharp
+  - Lua
+  - 项目记录
+categories:
+  - other
+comments: true
 ---
+# VS2013+LUA代码高亮配置教程
 
 这里做个记录，没有测试
 > 引用文章： http://blog.csdn.net/loongsking/article/details/44316579

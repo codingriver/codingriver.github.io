@@ -1,3 +1,15 @@
+---
+title: "【Shader学习】前言"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - 网络
+  - 项目记录
+categories:
+  - shader
+comments: true
+---
 # 【Shader学习】前言
 
 ## 技术美术入门说明

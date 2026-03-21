@@ -1,3 +1,13 @@
+---
+title: "C# async与await的使用说明"
+date: "2026-03-21"
+tags:
+  - CSharp
+  - 异步编程
+categories:
+  - csharp
+comments: true
+---
 # C# async与await的使用说明
 
 > C# 异步编程提供了两个关键字，`async` 和 `await`，这里说明下怎么用。

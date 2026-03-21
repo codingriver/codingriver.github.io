@@ -1,3 +1,13 @@
+---
+title: "Enum_Int_String的互相转换"
+date: "2026-03-21"
+tags:
+  - CSharp
+  - 网络
+categories:
+  - csharp
+comments: true
+---
 # Enum_Int_String的互相转换
 
 C# Enum,Int,String的互相转换

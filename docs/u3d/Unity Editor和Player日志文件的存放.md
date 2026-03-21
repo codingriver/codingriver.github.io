@@ -1,3 +1,14 @@
+---
+title: "Unity Editor和Player日志文件的存放"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 编辑器扩展
+  - 网络
+categories:
+  - u3d
+comments: true
+---
 # Unity Editor和Player日志文件的存放
 
 ### Editor 编辑器日志

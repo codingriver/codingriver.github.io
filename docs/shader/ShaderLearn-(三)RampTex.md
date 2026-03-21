@@ -1,3 +1,15 @@
+---
+title: "ShaderLearn-(三)RampTex"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - 网络
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # ShaderLearn-(三)RampTex
 
 ## TampTex

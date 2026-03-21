@@ -1,3 +1,16 @@
+---
+title: "SRPBatcher和GPUInstance"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 性能优化
+  - UI
+  - 网络
+categories:
+  - ANote
+comments: true
+---
 # SRPBatcher和GPUInstance
 
 ## GPU Instancing（unity内置渲染管线）

@@ -1,3 +1,16 @@
+---
+title: "Unity-性能优化相关知识(转)"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 性能优化
+  - UI
+  - Shader
+  - 图形学
+categories:
+  - u3d
+comments: true
+---
 # Unity-性能优化相关知识(转)
 
 ## 一、综合优化

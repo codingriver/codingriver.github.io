@@ -1,13 +1,15 @@
-# MAC-创建-IPv6-WIFI热点，不用以太网接口
-
 ---
 title: "MAC-创建-IPv6-WIFI热点，不用以太网接口"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["IOS","Ipv6"]
-categories: ["随笔"]
+date: "2026-03-21"
+tags:
+  - 工具链
+  - 网络
+  - iOS
+categories:
+  - other
+comments: true
 ---
+# MAC-创建-IPv6-WIFI热点，不用以太网接口
 
 1.需要两个ios手机（一个测试机，一个提供网络热点的）
 2.需要mac一台，可以没有以太网，可以不联网

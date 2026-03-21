@@ -1,14 +1,16 @@
+---
+title: "Android-App内打开自带浏览器"
+date: "2026-03-21"
+tags:
+  - Android
+  - 网络
+categories:
+  - Android
+comments: true
+---
 # Android-App内打开自带浏览器
 
 ﻿
----
-title: "Android-App内打开自带浏览器"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Android","Unity"]
-categories: ["Unity"]
----
 
 ```
 import android.net.NetworkInfo;

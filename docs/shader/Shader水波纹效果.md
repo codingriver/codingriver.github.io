@@ -1,3 +1,14 @@
+---
+title: "Shader水波纹效果"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # Shader水波纹效果
 
 > ###### 使用噪声纹理模拟波纹

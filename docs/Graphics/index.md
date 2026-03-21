@@ -1,3 +1,12 @@
+---
+title: "Graphics"
+date: "2026-03-21"
+tags:
+  - 图形学
+categories:
+  - Graphics
+comments: false
+---
 # Graphics
 
 这是 Graphics 分类栏目页。

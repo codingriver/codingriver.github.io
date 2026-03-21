@@ -1,3 +1,14 @@
+---
+title: "Shader消融特效"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # Shader消融特效
 
 >角色死亡消融，尸体消融，地图烧毁特效

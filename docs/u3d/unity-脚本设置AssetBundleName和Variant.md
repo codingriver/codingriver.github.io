@@ -1,3 +1,15 @@
+---
+title: "unity-脚本设置AssetBundleName和Variant"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+  - CSharp
+categories:
+  - u3d
+comments: true
+---
 # unity-脚本设置AssetBundleName和Variant
 
 unity现在的版本所有资源可以手动配置AssetBundle 的Name和Variant，这里用脚本设置下

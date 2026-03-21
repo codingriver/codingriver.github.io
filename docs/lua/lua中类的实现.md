@@ -1,3 +1,15 @@
+---
+title: "lua中类的实现"
+date: "2026-03-21"
+tags:
+  - Lua
+  - 网络
+  - CSharp
+  - 项目记录
+categories:
+  - lua
+comments: true
+---
 # lua中类的实现
 
 > 这里说明下unity中一般用C# 加lua的方式来支持代码的热更新，而在lua中一般封装类来实现业务

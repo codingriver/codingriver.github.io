@@ -1,3 +1,16 @@
+---
+title: "IGG性能分析笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 性能优化
+  - UI
+  - Git
+categories:
+  - ANote
+comments: true
+---
 # IGG性能分析笔记
 
 > 世界地图优化前的数据  

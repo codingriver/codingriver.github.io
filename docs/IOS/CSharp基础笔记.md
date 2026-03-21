@@ -1,14 +1,18 @@
+---
+title: "CSharp基础笔记"
+date: "2026-03-21"
+tags:
+  - iOS
+  - 网络
+  - CSharp
+  - 项目记录
+categories:
+  - IOS
+comments: true
+---
 # CSharp基础笔记
 
 ﻿
----
-title: "C#基础笔记"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: [""]
-categories: [""]
----
 
 ###变量
 1.变量的声明和定义

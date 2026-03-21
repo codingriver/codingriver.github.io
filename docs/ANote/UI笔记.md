@@ -1,3 +1,16 @@
+---
+title: "UI笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 性能优化
+  - UI
+  - 图形学
+categories:
+  - ANote
+comments: true
+---
 # UI笔记
 
 ## Problem

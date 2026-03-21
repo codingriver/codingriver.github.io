@@ -1,13 +1,16 @@
-# unity-3DCamera根据宽度适配(3D相机适配)
-
 ---
 title: "unity-3DCamera根据宽度适配(3D相机适配)"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - CSharp
+  - Android
+  - 项目记录
+categories:
+  - u3d
+comments: true
 ---
+# unity-3DCamera根据宽度适配(3D相机适配)
 
 >unity的3D相机默认是根据高度适配的（保持3D相机的高度视野范围不变），这里调整成根据宽度适配（就是保持3D相机宽度的视野范围不变）。
 

@@ -1,13 +1,15 @@
-# unity-响应Android返回键
-
 ---
 title: "unity-响应Android返回键"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Android","Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - Android
+  - Lua
+categories:
+  - u3d
+comments: true
 ---
+# unity-响应Android返回键
 
 >  android 通过java层重载返回键事件onBackPressed有bug，有时候不响应！！！
 ```

@@ -1,3 +1,16 @@
+---
+title: "unity优化-相同模型的多个实例设置各自的颜色优化"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 性能优化
+  - 网络
+  - Shader
+  - CSharp
+categories:
+  - u3d
+comments: true
+---
 # unity优化-相同模型的多个实例设置各自的颜色优化
 
 > 转自：[MaterialPropertyBlock](https://blog.csdn.net/liweizhao/article/details/81937590)

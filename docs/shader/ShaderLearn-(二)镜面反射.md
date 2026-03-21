@@ -1,3 +1,14 @@
+---
+title: "ShaderLearn-(二)镜面反射"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # ShaderLearn-(二)镜面反射
 
 ### Phong高光反射

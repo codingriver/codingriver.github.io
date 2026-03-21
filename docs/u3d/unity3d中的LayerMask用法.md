@@ -1,3 +1,13 @@
+---
+title: "unity3d中的LayerMask用法"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 网络
+categories:
+  - u3d
+comments: true
+---
 # unity3d中的LayerMask用法
 
 >突然发现自己忘了，尴尬

@@ -1,3 +1,14 @@
+---
+title: "socket测试结果"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 网络
+categories:
+  - ANote
+comments: true
+---
 # socket测试结果
 
 socket测试结果(基于发送和接收缓冲区没有缓存的情况下测试，有缓存也一样)

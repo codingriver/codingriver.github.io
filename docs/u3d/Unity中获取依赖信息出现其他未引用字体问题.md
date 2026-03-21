@@ -1,13 +1,15 @@
-# Unity中获取依赖信息出现其他未引用字体问题
-
 ---
 title: "Unity中获取依赖信息出现其他未引用字体问题"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+categories:
+  - u3d
+comments: true
 ---
+# Unity中获取依赖信息出现其他未引用字体问题
 
 >参考文章: [Unity中字体名对依赖关系的影响](https://blog.uwa4d.com/archives/2249.html)
 

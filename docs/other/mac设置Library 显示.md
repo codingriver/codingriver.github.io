@@ -1,3 +1,13 @@
+---
+title: "mac设置Library 显示"
+date: "2026-03-21"
+tags:
+  - 工具链
+  - 网络
+categories:
+  - other
+comments: true
+---
 # mac设置Library 显示
 
 ### 在显示Finder中显示用户目录

@@ -1,3 +1,14 @@
+---
+title: "Shader光照模型-漫反射"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # Shader光照模型-漫反射
 
 > ###### 参考 《unity shader 入门精要》

@@ -1,3 +1,16 @@
+---
+title: "UnityProfiler使用Android真机连接测试"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 性能优化
+  - UI
+  - 网络
+  - Android
+categories:
+  - u3d
+comments: true
+---
 # UnityProfiler使用Android真机连接测试
 
 > 官方说明：https://docs.unity3d.com/2018.4/Documentation/Manual/profiler-profiling-applications.html

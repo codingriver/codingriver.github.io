@@ -1,3 +1,16 @@
+---
+title: "LinearEyeDepth推导"
+date: "2026-03-21"
+tags:
+  - 数学
+  - 图形学
+  - 网络
+  - Shader
+  - CSharp
+categories:
+  - math
+comments: true
+---
 # LinearEyeDepth推导
 
 >转自 冯乐乐 《unity shader 入门精要》 :<https://blog.csdn.net/linuxheik/article/details/79446780/>

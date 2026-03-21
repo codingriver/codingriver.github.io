@@ -1,3 +1,16 @@
+---
+title: "xLua-第三方扩展的添加和编译"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 网络
+  - Android
+  - iOS
+  - Lua
+categories:
+  - u3d
+comments: true
+---
 # xLua-第三方扩展的添加和编译
 
 unity 使用xLua插件，这两天增加lua-protobuf插件，所以需要重新编译XLua

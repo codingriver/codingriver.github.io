@@ -1,3 +1,14 @@
+---
+title: "linux gcc版本如何升级到gcc4.8.2"
+date: "2026-03-21"
+tags:
+  - 工具链
+  - 网络
+  - CSharp
+categories:
+  - other
+comments: true
+---
 # linux gcc版本如何升级到gcc4.8.2
 
 > [linux gcc版本如何升级到gcc4.8.2](https://blog.csdn.net/hutianyou123/article/details/78133309)

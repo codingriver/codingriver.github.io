@@ -1,3 +1,16 @@
+---
+title: "SerializedObject获取所有属性"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 编辑器扩展
+  - UI
+  - 网络
+  - CSharp
+categories:
+  - unity编辑器
+comments: true
+---
 # SerializedObject获取所有属性
 
 > unity editor当使用`SerializedObject.FindProperty("属性名")`获取`SerializedProperty`时，特别是获取私有变量时，我们不知道变量名字，基本靠公有变量转私有变量猜测变量名字来读取，这样可能有错误的情况，所以这里给出遍历打印所有属性的方法，用以排解这种问题！  

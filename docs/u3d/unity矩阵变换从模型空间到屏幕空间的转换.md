@@ -1,3 +1,16 @@
+---
+title: "unity矩阵变换从模型空间到屏幕空间的转换"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - Git
+  - 网络
+  - Shader
+categories:
+  - u3d
+comments: true
+---
 # unity矩阵变换从模型空间到屏幕空间的转换
 
 >这里参考 《unity shader 入门精要》冯乐乐的这本书

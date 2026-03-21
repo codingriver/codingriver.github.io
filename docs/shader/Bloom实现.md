@@ -1,3 +1,14 @@
+---
+title: "泛光（Bloom）实现"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # 泛光（Bloom）实现
 
 Bloom 实现分为 4 步：

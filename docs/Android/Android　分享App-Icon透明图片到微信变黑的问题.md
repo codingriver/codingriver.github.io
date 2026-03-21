@@ -1,14 +1,16 @@
+---
+title: "Android　分享App-Icon透明图片到微信变黑的问题"
+date: "2026-03-21"
+tags:
+  - Android
+  - 网络
+categories:
+  - Android
+comments: true
+---
 # Android　分享App-Icon透明图片到微信变黑的问题
 
 ﻿
----
-title: "Android　分享App-Icon透明图片到微信变黑的问题"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Android","Unity"]
-categories: ["Unity"]
----
 
 > 参考文章：https://www.cnblogs.com/jasonkent27/p/5113184.html
 

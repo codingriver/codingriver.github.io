@@ -1,3 +1,16 @@
+---
+title: "Unity-URP笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 性能优化
+  - 网络
+  - Shader
+categories:
+  - ANote
+comments: true
+---
 # Unity-URP笔记
 
 ## SRP/URP/HDRP之间的关系

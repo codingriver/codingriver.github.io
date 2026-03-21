@@ -1,3 +1,16 @@
+---
+title: "生成分布式唯一ID"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 工具链
+  - UI
+  - 网络
+  - CSharp
+categories:
+  - unityTool
+comments: true
+---
 # 生成分布式唯一ID
 
 > 这里是C#生成分布式唯一ID，不重复的id，不会产生碰撞

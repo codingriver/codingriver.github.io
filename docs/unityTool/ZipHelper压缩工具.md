@@ -1,3 +1,16 @@
+---
+title: "ZipHelper压缩工具"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 工具链
+  - Git
+  - 网络
+  - CSharp
+categories:
+  - unityTool
+comments: true
+---
 # ZipHelper压缩工具
 
 >用C#实现压缩和解压缩的方法，支持Zip压缩解压缩和Gzip压缩解压缩（后缀gz）  

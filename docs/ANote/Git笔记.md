@@ -1,3 +1,15 @@
+---
+title: "Git笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - 工具链
+  - Git
+categories:
+  - ANote
+comments: true
+---
 # Git笔记
 
 ## Git LFS的使用

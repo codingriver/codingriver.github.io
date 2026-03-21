@@ -1,3 +1,16 @@
+---
+title: "Unity-Texture2D的SetPiexl严重耗时的优化方案"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 性能优化
+  - 网络
+  - 图形学
+  - CSharp
+categories:
+  - u3d
+comments: true
+---
 # Unity-Texture2D的SetPiexl严重耗时的优化方案
 
 *Unity中使用Texture2D的SetPixel大量调用的时候耗时非常严重。*

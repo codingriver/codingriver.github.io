@@ -1,3 +1,16 @@
+---
+title: "EOC项目笔记"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - CSharp
+  - 工具链
+  - 项目记录
+categories:
+  - ANote
+comments: true
+---
 # EOC项目笔记
 
 - [ ] ScrollRect 工具封装

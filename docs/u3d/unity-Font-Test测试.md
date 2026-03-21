@@ -1,13 +1,16 @@
-# unity-Font-Test测试
-
 ---
 title: "unity-Font-Test测试"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 图形学
+  - CSharp
+categories:
+  - u3d
+comments: true
 ---
+# unity-Font-Test测试
 
 >#####font贴图纹理中，同一个字符的两个size会在纹理中绘制两份，在font纹理中使用的字符数量很少后，纹理大小会释放，最小的font纹理256*256
 

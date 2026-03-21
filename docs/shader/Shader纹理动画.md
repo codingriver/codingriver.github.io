@@ -1,3 +1,14 @@
+---
+title: "Shader纹理动画"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - CSharp
+categories:
+  - shader
+comments: true
+---
 # Shader纹理动画
 
 > ###### 参考 《unity shader 入门精要》

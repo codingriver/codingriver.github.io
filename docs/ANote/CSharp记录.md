@@ -1,3 +1,16 @@
+---
+title: "CSharp记录"
+date: "2026-03-21"
+tags:
+  - 随笔
+  - 笔记
+  - Git
+  - 网络
+  - CSharp
+categories:
+  - ANote
+comments: true
+---
 # CSharp记录
 
 垃圾回收的基本知识:  

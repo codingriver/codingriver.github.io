@@ -1,3 +1,14 @@
+---
+title: "闭包Closure"
+date: "2026-03-21"
+tags:
+  - CSharp
+  - 网络
+  - 项目记录
+categories:
+  - csharp
+comments: true
+---
 # 闭包Closure
 
 >考虑了下，还是记录下吧 ，要不然以后又忘了

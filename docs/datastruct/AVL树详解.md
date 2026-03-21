@@ -1,3 +1,15 @@
+---
+title: "AVL树详解"
+date: "2026-03-21"
+tags:
+  - 数据结构
+  - 算法
+  - 网络
+  - CSharp
+categories:
+  - datastruct
+comments: true
+---
 # AVL树详解
 
 >转自：[AVL树(一)之 图文解析 和 C语言的实现](https://www.cnblogs.com/skywang12345/p/3576969.html)（本文图片及文字描述部分转自该文）

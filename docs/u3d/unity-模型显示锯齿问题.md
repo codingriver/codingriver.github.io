@@ -1,13 +1,17 @@
-# unity-模型显示锯齿问题
-
 ---
 title: "unity-模型显示锯齿问题"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - 网络
+  - Android
+  - iOS
+  - 项目记录
+categories:
+  - u3d
+comments: true
 ---
+# unity-模型显示锯齿问题
 
 没有开抗锯齿的时候
 

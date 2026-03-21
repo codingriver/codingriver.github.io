@@ -1,13 +1,14 @@
-# Unity加载场景
-
 ---
 title: "Unity加载场景"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - 异步编程
+categories:
+  - u3d
+comments: true
 ---
+# Unity加载场景
 
 >加载场景需要引入UnityEngine.SceneManagement这个命名空间，使用类SceneManager.
 >这里说明下基本的代码加载机制，正常是要在场景加载完成后的Awake或者Start等方法去执行场景业务初始化。

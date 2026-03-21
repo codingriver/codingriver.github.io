@@ -1,14 +1,17 @@
+---
+title: "Xcode查看真机app沙盒内容，查看app缓存（Cache）文件"
+date: "2026-03-21"
+tags:
+  - iOS
+  - 网络
+  - 工具链
+categories:
+  - IOS
+comments: true
+---
 # Xcode查看真机app沙盒内容，查看app缓存（Cache）文件
 
 ﻿
----
-title: "Xcode查看真机app沙盒内容，查看app缓存（Cache）文件"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["IOS","Xcode"]
-categories: ["IOS"]
----
 
 1.连接你的设备，在Xcode下点击 Window —> Device（cmd + shift + 2） 弹出窗口，选择你的设备，找到你已安装的APP，选中你想要查看沙盒的APP。
 

@@ -1,14 +1,19 @@
+---
+title: "IOS中Xcode-framework无法识别headers目录问题，头文件读不出来"
+date: "2026-03-21"
+tags:
+  - iOS
+  - UI
+  - 网络
+  - CSharp
+  - 工具链
+categories:
+  - IOS
+comments: true
+---
 # IOS中Xcode-framework无法识别headers目录问题，头文件读不出来
 
 ﻿
----
-title: "IOS中Xcode-framework无法识别headers目录问题，头文件读不出来"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["IOS","Xcode"]
-categories: ["IOS"]
----
 
 > 引用文章: http://blog.csdn.net/hicui/article/details/51146969
 

@@ -1,3 +1,13 @@
+---
+title: "unity性能优化总结"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 性能优化
+categories:
+  - u3d
+comments: true
+---
 # unity性能优化总结
 
 - [ ]  接口interface 继承测试，使用struct或者class继承interface，struct是否会出现装箱问题

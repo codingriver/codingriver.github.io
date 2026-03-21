@@ -1,3 +1,14 @@
+---
+title: "使用TexturePacker命令行的一个坑"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 工具链
+categories:
+  - u3d
+comments: true
+---
 # 使用TexturePacker命令行的一个坑
 
 >使用命令行发现没办法处理九宫图呀还得在工程里面配置九宫图，太麻烦了，不知道怎么破这个问题

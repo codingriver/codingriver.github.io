@@ -1,3 +1,15 @@
+---
+title: "Sourcetree-Mac安装跳过注册登陆和选择服务器"
+date: "2026-03-21"
+tags:
+  - 工具链
+  - Git
+  - 网络
+  - CSharp
+categories:
+  - other
+comments: true
+---
 # Sourcetree-Mac安装跳过注册登陆和选择服务器
 
 1. 安装sourcetree

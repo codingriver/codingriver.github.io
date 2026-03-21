@@ -1,3 +1,16 @@
+---
+title: "unity编辑器-自定义Inspector面板"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 编辑器扩展
+  - UI
+  - Git
+  - 网络
+categories:
+  - unity编辑器
+comments: true
+---
 # unity编辑器-自定义Inspector面板
 
 {{< admonition info "介绍自定义Inspector面板" true >}}

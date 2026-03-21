@@ -1,3 +1,15 @@
+---
+title: "ProfilerHelper辅助工具"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 工具链
+  - 性能优化
+  - CSharp
+categories:
+  - unityTool
+comments: true
+---
 # ProfilerHelper辅助工具
 
 >Unity Profiler分析辅助类

@@ -1,13 +1,17 @@
-# Unity切入后台，切入前台，获取焦点，失去焦点等
-
 ---
 title: "Unity切入后台，切入前台，获取焦点，失去焦点等"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - CSharp
+  - Android
+  - iOS
+categories:
+  - u3d
+comments: true
 ---
+# Unity切入后台，切入前台，获取焦点，失去焦点等
 
 正常进:
 

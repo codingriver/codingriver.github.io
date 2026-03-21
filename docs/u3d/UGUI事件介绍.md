@@ -1,3 +1,15 @@
+---
+title: "UGUI事件介绍"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+  - CSharp
+categories:
+  - u3d
+comments: true
+---
 # UGUI事件介绍
 
 >官方说明：https://docs.unity3d.com/Manual/SupportedEvents.html

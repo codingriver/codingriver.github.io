@@ -1,3 +1,14 @@
+---
+title: "Sourcetree安装教程（windows）"
+date: "2026-03-21"
+tags:
+  - 工具链
+  - Git
+  - 网络
+categories:
+  - other
+comments: true
+---
 # Sourcetree安装教程（windows）
 
 >给美术同学和策划同学提供安装git管理软件教程

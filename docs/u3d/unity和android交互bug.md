@@ -1,13 +1,15 @@
-# unity和android交互bug
-
 ---
 title: "unity和android交互bug"
-date: 2019-12-01T21:57:40+08:00
-author: "codingriver"
-authorLink: "https://codingriver.github.io"
-tags: ["Unity","Android"]
-categories: ["Unity"]
+date: "2026-03-21"
+tags:
+  - Unity
+  - Android
+  - 项目记录
+categories:
+  - u3d
+comments: true
 ---
+# unity和android交互bug
 
 ``` java
     public String ApplinkUrl=null;

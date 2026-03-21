@@ -1,3 +1,16 @@
+---
+title: "Unity平台宏定义常用说明"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - CSharp
+  - Android
+  - iOS
+categories:
+  - u3d
+comments: true
+---
 # Unity平台宏定义常用说明
 
 ## 平台 #define 指令

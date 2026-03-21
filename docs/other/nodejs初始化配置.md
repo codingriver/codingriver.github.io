@@ -1,3 +1,16 @@
+---
+title: "Nodejs初始化配置"
+date: "2026-03-21"
+tags:
+  - 工具链
+  - UI
+  - 网络
+  - CSharp
+  - 项目记录
+categories:
+  - other
+comments: true
+---
 # Nodejs初始化配置
 
 > 转载：[windows安装npm教程](https://www.cnblogs.com/liluxiang/p/9592003.html)

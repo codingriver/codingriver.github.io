@@ -1,3 +1,16 @@
+---
+title: "UGUI-Text换行问题"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 编辑器扩展
+  - 网络
+  - CSharp
+categories:
+  - u3d
+comments: true
+---
 # UGUI-Text换行问题
 
 >UGUI关于富文本RichText参考 [UGUI使用富文本RichText](UGUI使用富文本RichText.md)

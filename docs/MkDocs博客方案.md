@@ -1,27 +1,19 @@
+---
+title: "MkDocs 博客方案"
+date: "2026-03-21"
+tags:
+  - 笔记
+  - UI
+  - Git
+  - 网络
+  - Shader
+categories:
+  - 首页
+comments: false
+---
 # MkDocs 博客方案
 
 本文档用于说明当前博客从 Hugo 迁移到 MkDocs 之后的标准使用方式，包括本地环境部署、日常写作、主题选择、GitHub Pages 部署、`gh-pages` 分支使用方式，以及搜索、评论、Git 更新时间等增强能力方案。
-
----
-
-## 1. 当前博客架构说明
-
-当前仓库采用如下结构：
-
-- `master` 分支：保存源码
-  - `docs/`：文章与图片资源
-  - `mkdocs.yml`：MkDocs 配置
-  - `.github/workflows/`：自动部署流程
-- `gh-pages` 分支：保存构建产物
-  - 只放静态站点文件，不放源码
-
-推荐原则：
-
-- 平时只在 `master` 分支维护内容
-- 不要把 `site/` 构建产物提交到 `master`
-- 使用 GitHub Actions 自动将构建结果发布到 `gh-pages`
-
----
 
 ## 2. 本地环境部署
 
@@ -86,52 +78,6 @@ mkdocs build
 site/
 ```
 
----
-
-## 3. 日常使用方式
-
-### 3.1 新建一篇普通文章
-
-例如在 `docs/u3d/` 下新增文章：
-
-```text
-docs/u3d/Unity新文章示例.md
-```
-
-正文格式示例：
-
-```markdown
-# Unity 新文章示例
-
-这里写正文。
-```
-
-如果文章里有图片，建议与文章放在同分类目录下的 `image/` 子目录中，例如：
-
-```text
-docs/u3d/image/Unity新文章示例/demo.png
-```
-
-文章内引用：
-
-```markdown
-![示意图](image/Unity新文章示例/demo.png)
-```
-
-### 3.2 如何创建一份随笔
-
-当前博客最适合把“随笔”放到 `ANote` 分类中。
-
-例如新建：
-
-```text
-docs/ANote/2026-03-21-我的随笔.md
-```
-
-推荐内容模板：
-
-```markdown
----
 title: 我的随笔
 date: 2026-03-21
 categories:

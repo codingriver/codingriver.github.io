@@ -1,3 +1,15 @@
+---
+title: "【Shader】常用函数（UnityShader内置函数、CG 和 GLSL 内置函数等）和内置变量"
+date: "2026-03-21"
+tags:
+  - Shader
+  - 图形学
+  - CSharp
+  - 数学
+categories:
+  - shader
+comments: true
+---
 # 【Shader】常用函数（UnityShader内置函数、CG 和 GLSL 内置函数等）和内置变量
 
 ## 一、CG 和 GLSL 常用函数

@@ -1,3 +1,15 @@
+---
+title: "Unity编辑器扩展菜单项"
+date: "2026-03-21"
+tags:
+  - Unity
+  - 编辑器扩展
+  - UI
+  - 网络
+categories:
+  - unity编辑器
+comments: true
+---
 # Unity编辑器扩展菜单项
 
 >今天用到了在Hierarchy中扩展右键的功能，这里整理下菜单扩展资料

@@ -1,3 +1,14 @@
+---
+title: "UGUI使用富文本RichText"
+date: "2026-03-21"
+tags:
+  - Unity
+  - UI
+  - 网络
+categories:
+  - u3d
+comments: true
+---
 # UGUI使用富文本RichText
 
 参考文章：
