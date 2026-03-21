@@ -4339,17 +4339,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#viewport-space" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        视口坐标 (Viewport Space)
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -8320,17 +8309,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#viewport-space" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        视口坐标 (Viewport Space)
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -8355,17 +8333,6 @@
 <h1 id="_1">屏幕空间变换<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p><img alt="" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视投影变换推导/20210424144836.png" />  </p>
 <h2 id="screen-space">屏幕坐标 (Screen Space)<a class="headerlink" href="#screen-space" title="Permanent link">&para;</a></h2>
-<hr />
-<blockquote>
-<p>通过投影变换后，坐标系变换到裁剪空间了，然后从裁剪空间变换到屏幕空间，这里分为两步完成：
-- 首先进行<strong>齐次除法</strong>（homegeneous division），也被称为<strong>透视除法</strong>（perspective division）,这一步很简单，就是用齐次坐标系的w分量去除以x,y,z分量，在OpenGL中这一步得到的坐标也叫<strong>归一化的设备坐标</strong>（Normalized Device Coordinates,NDC）。经过这一步，从齐次裁剪坐标空间转换到NDC中。
-- 然后将NDC转换到屏幕空间。</p>
-</blockquote>
-<p>在Unity中，屏幕空间左下角的像素坐标是(0,0),右上角的像素坐标是(pixelWidth,pixelHeight)。由于当前齐次坐标x和y都在[-1,1]范围内，因此映射过程就是一个缩放过程。</p>
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/屏幕空间变换/20210423202316.png" />  </p>
-<p>z分量被用于深度缓冲，一个传统方式是把clip<sub>z</sub>/clip<sub>w</sub>的值直接存进深度缓冲中，但不是必须的。</p>
-<h2 id="viewport-space">视口坐标 (Viewport Space)<a class="headerlink" href="#viewport-space" title="Permanent link">&para;</a></h2>
-<hr />
 <p>屏幕坐标系是左下角为原点，右上角为分辨率大小的坐标系，而视口坐标系是左下角为原点 (0,0),右上角是 (1,1)的坐标系。
 我们将齐次除法和视口坐标映射的过程使用下面公式来完成：</p>
 <p><img alt="" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/屏幕空间变换/20210423203331.png" />  </p>
@@ -8400,7 +8367,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月21日 15:44:43 CST">2026年3月21日 15:44:43</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月21日 20:05:32 CST">2026年3月21日 20:05:32</span>
   </span>
 
     

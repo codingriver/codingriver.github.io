@@ -8381,17 +8381,6 @@
 <p><img alt="20210422160200" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视校正差值/20210422160200.png" /></p>
 </blockquote>
 <h2 id="_2">推导<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<hr />
-<p>下图是clip裁剪锥体的xz平面，从图中可以看出，在投影平面的均匀插值(<em>一系列蓝色的标记</em>)，它们实际位置距离并不是均匀的，距离投影平面越远，实际位置距离越长，所以这是我们采用线性插值的话，可能最终的结果并不是我们所想要的。（坐标系为相机空间&lt;观察空间&gt;下，设O点是相机位置，-e所在的平面（水平线）为近裁剪面 ）</p>
-<p><img alt="" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视校正差值/20210422160247.png" />  </p>
-<p>那么如何得到均匀的顶点属性插值呢？稍等一下，我们先看看深度插值：</p>
-<p>点O是视点位置，从视点观察物体的投射线和投影平面相交的点即为物体在投影平面上的投射点，比如(x1,z1)在投影平面上的投射点为(p1,-e)，投射线的方程为ax+bz =c ， 其中c不能等于0，假设点(x,z)和O在投影平面的交点为(p,-e)(<strong>注意z坐标总是-e</strong>)，则有<br />
-<img alt="" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视校正差值/20210422160611.png" />  </p>
-<p>解出x，并把它带入到ax+bz=c中，得到<br />
-<img alt="" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视校正差值/20210422160803.png" /><br />
-转化为<br />
-<img alt="" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视校正差值/20210422160817.png" />  </p>
-<hr />
 <p>已知线段<x1,z1>-<x2,z2>的投影坐标线段为<p1,-e>-<p2,-e>，假定p3=(1-t)p1+tp2 (0&lt;=t&lt;=1)，则p3是点<p1,-e>和<p2,-e>在投影平面上的线性差值点的x分量，则有下面的推导公式：</p>
 <p><img alt="" src="https://cdn.jsdelivr.net/gh/codingriver/cdn/texs/透视校正差值/20210422160918.png" />  </p>
 <p>可见，z的倒数是线性插值，所以我们可以用顶点的z值来插值求得primitive内部fragment的属性值，比如颜色等等。</p>
@@ -8436,7 +8425,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月21日 15:44:43 CST">2026年3月21日 15:44:43</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="2026年3月21日 20:05:32 CST">2026年3月21日 20:05:32</span>
   </span>
 
     
