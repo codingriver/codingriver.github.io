@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 
+{#
+  自定义说明：
+  1. 本模板基于 Material for MkDocs 的 base.html 扩展。
+  2. 评论系统采用 Giscus，脚本注入在正文底部。
+  3. 默认所有页面开启评论；若某页 front matter 写 comments: false，则该页不显示评论。
+  4. 你需要手动替换两个关键参数：
+     - data-repo-id
+     - data-category-id
+  5. 这两个值都可以在 https://giscus.app/zh-CN 上自动生成。
+#}
+
 {% block extrahead %}
   {{ super() }}
 {% endblock %}
@@ -7,24 +18,40 @@
 {% block content %}
   {{ super() }}
 
+  {#
+    评论开关规则：
+    - 未写 comments 字段：默认显示评论
+    - comments: true：显示评论
+    - comments: false：不显示评论
+  #}
   {% if page and page.meta and page.meta.comments != false %}
-  <section class="giscus-comment">
-    <script
-      src="https://giscus.app/client.js"
-      data-repo="codingriver/codingriver.github.io"
-      data-repo-id="REPLACE_ME_REPO_ID"
-      data-category="General"
-      data-category-id="REPLACE_ME_CATEGORY_ID"
-      data-mapping="pathname"
-      data-strict="0"
-      data-reactions-enabled="1"
-      data-emit-metadata="0"
-      data-input-position="top"
-      data-theme="preferred_color_scheme"
-      data-lang="zh-CN"
-      crossorigin="anonymous"
-      async>
-    </script>
-  </section>
+    <section class="giscus-comment" aria-label="评论区">
+      {#
+        Giscus 参数说明：
+        - data-repo: GitHub 仓库，格式 owner/repo
+        - data-repo-id: 仓库的 Repository ID，需要去 giscus.app 获取
+        - data-category: Discussions 分类名称，必须与 GitHub 仓库中的分类一致
+        - data-category-id: Discussions 分类 ID，需要去 giscus.app 获取
+        - data-mapping: 页面与 discussion 的映射方式，当前使用 pathname，适合稳定链接博客
+        - data-theme: 评论区主题，preferred_color_scheme 会跟随系统/主题偏好
+        - data-lang: 评论区语言
+      #}
+      <script
+        src="https://giscus.app/client.js"
+        data-repo="codingriver/codingriver.github.io"
+        data-repo-id="REPLACE_ME_REPO_ID"
+        data-category="General"
+        data-category-id="REPLACE_ME_CATEGORY_ID"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </section>
   {% endif %}
 {% endblock %}
