@@ -8,11 +8,11 @@ categories:
   - math
 comments: false
 ---
-# math
+# 数学
 
-这是 math 分类栏目页。
+这里收录图形学相关的数学基础，包括向量、矩阵、投影、微积分和几何问题等内容。
 
-## 已迁移文章
+## 文章目录
 
 - [LinearEyeDepth推导](LinearEyeDepth推导.md)
 - [三角函数和差公式的推导](三角函数和差公式的推导.md)

@@ -9,15 +9,9 @@ comments: false
 ---
 # CSharp
 
-这是 CSharp 分类栏目页。
+这里收录 C# 语言基础、语法细节、运行机制、异步编程和工程实践相关内容。
 
-## 迁移说明
-
-- 本栏目承接原 Hugo 站点中 `content/posts/csharp/` 下的全部文章
-- 文章已整体迁移到当前目录
-- 图片统一放到 `image/文章名/` 目录中
-
-## 已迁移文章
+## 文章目录
 
 - [async与await的使用说明](async与await的使用说明.md)
 - [CSharp-Unicode编码和中文互转](CSharp-Unicode编码和中文互转.md)

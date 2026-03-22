@@ -1,5 +1,5 @@
 ---
-title: "basesystem"
+title: "系统基础"
 date: "2026-03-21"
 tags:
   - 系统基础
@@ -7,11 +7,11 @@ categories:
   - basesystem
 comments: false
 ---
-# basesystem
+# 系统基础
 
-这是 basesystem 分类栏目页。
+这里收录编码、位运算、进制转换、补码、大小端等计算机系统基础内容。
 
-## 已迁移文章
+## 文章目录
 
 - [ASCII，Unicode和UTF-8](ASCII，Unicode和UTF-8.md)
 - [URL编码与解码原理](URL编码与解码原理.md)

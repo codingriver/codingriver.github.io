@@ -1,5 +1,5 @@
 ---
-title: "datastruct"
+title: "数据结构"
 date: "2026-03-21"
 tags:
   - 数据结构
@@ -8,11 +8,11 @@ categories:
   - datastruct
 comments: false
 ---
-# datastruct
+# 数据结构
 
-这是 datastruct 分类栏目页。
+这里收录树结构、查找结构以及常见排序与算法基础相关内容。
 
-## 已迁移文章
+## 文章目录
 
 - [AVL树详解](AVL树详解.md)
 - [A星算法理解](A星算法理解.md)

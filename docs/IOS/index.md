@@ -1,5 +1,5 @@
 ---
-title: "IOS"
+title: "iOS"
 date: "2026-03-21"
 tags:
   - iOS
@@ -7,11 +7,11 @@ categories:
   - IOS
 comments: false
 ---
-# IOS
+# iOS
 
-这是 IOS 分类栏目页。
+这里收录 iOS 开发接入、Xcode 配置、真机调试、证书审核和原生交互相关内容。
 
-## 已迁移文章
+## 文章目录
 
 - [CSharp基础笔记](CSharp基础笔记.md)
 - [IOS中Xcode-framework无法识别headers目录问题，头文件读不出来](IOS中Xcode-framework无法识别headers目录问题，头文件读不出来.md)

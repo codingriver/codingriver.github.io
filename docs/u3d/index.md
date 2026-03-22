@@ -1,5 +1,5 @@
 ---
-title: "U3D"
+title: "Unity"
 date: "2026-03-21"
 tags:
   - Unity
@@ -7,17 +7,11 @@ categories:
   - u3d
 comments: false
 ---
-# U3D
+# Unity
 
-这是 U3D 分类栏目页。
+这里主要收录 Unity 客户端开发、UGUI、性能优化、渲染、平台适配和项目问题排查相关内容。
 
-## 迁移说明
-
-- 本栏目承接原 Hugo 站点中 `content/posts/u3d/` 下的全部文章
-- 文章已整体迁移到当前目录
-- 图片统一放到 `image/文章名/` 目录中
-
-## 已迁移文章
+## 文章目录
 
 - [CSharp命名规范手册](CSharp命名规范手册.md)
 - [DrawCall优化实战](DrawCall优化实战.md)

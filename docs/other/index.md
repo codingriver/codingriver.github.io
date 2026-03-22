@@ -9,15 +9,9 @@ comments: false
 ---
 # Other
 
-这是 Other 分类栏目页。
+这里收录工具链、环境配置、博客搭建、系统使用和各种通用开发问题相关内容。
 
-## 迁移说明
-
-- 本栏目承接原 Hugo 站点中 `content/posts/other/` 下的全部文章
-- 文章已整体迁移到当前目录
-- 放置杂项工具、环境配置、博客搭建、系统使用等内容
-
-## 已迁移文章
+## 文章目录
 
 - [3500个常用汉字(字体裁剪用)](<3500个常用汉字(字体裁剪用).md>)
 - [GitHub-ssh失败Permission-denied-(publickey)](<GitHub-ssh失败Permission-denied-(publickey).md>)

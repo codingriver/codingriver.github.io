@@ -10,15 +10,9 @@ comments: false
 ---
 # Shader
 
-这是 Shader 分类栏目页。
+这里主要收录 Shader 基础、光照模型、纹理、渲染效果和图形学实现相关内容。
 
-## 迁移说明
-
-- 本栏目承接原 Hugo 站点中 `content/posts/shader/` 下的全部文章
-- 文章已整体迁移到当前目录
-- 图片统一放到 `image/文章名/` 目录中
-
-## 已迁移文章
+## 文章目录
 
 - [Bloom实现](Bloom实现.md)
 - [Gamma和Linear及sRGB说明](Gamma和Linear及sRGB说明.md)

@@ -9,38 +9,7 @@ comments: false
 ---
 # 标签索引
 
-这里是当前博客的标签导航页。
-
-当前站点的标签体系采用两层策略：
-
-- 第一层：文章 front matter 中统一维护 `tags`
-- 第二层：在本页手工维护高价值标签入口，确保长期稳定、可控、可读
-
-## 使用约定
-
-推荐文章头部写法：
-
-```markdown
----
-title: 示例文章
-date: 2024-03-01
-tags:
-  - Unity
-  - Shader
-categories:
-  - u3d
-comments: true
----
-```
-
-## 当前标签支持情况
-
-- 已支持：文章中写 `tags`
-- 已支持：独立标签索引页
-- 已支持：按主题手工聚合高价值文章
-- 暂不支持：自动扫描全站并生成每个标签的归档页
-
----
+这里整理站内常用主题标签，方便按方向快速浏览文章。
 
 ## Unity
 
@@ -79,7 +48,7 @@ comments: true
 - [Android-App内打开自带浏览器](../Android/Android-App内打开自带浏览器.md)
 - [Android，iOS-通过浏览器打开app](../Android/Android，iOS-通过浏览器打开app.md)
 - [unity--android获取电量和wifi信号强度](../u3d/unity--android获取电量和wifi信号强度.md)
-- [unity响应Android返回键](../u3d/unity-响应Android返回键.md)
+- [unity-响应Android返回键](../u3d/unity-响应Android返回键.md)
 
 ## iOS
 
@@ -107,11 +76,3 @@ comments: true
 - [点乘和叉乘的计算和应用](../math/点乘和叉乘的计算和应用.md)
 - [透视投影变换推导](../math/透视投影变换推导.md)
 - [法线变换矩阵推导](../math/法线变换矩阵推导.md)
-
-## 后续可继续增强的方向
-
-后续如果你希望把标签系统继续增强，可以按下面顺序迭代：
-
-1. 继续给新增文章补齐 `tags`
-2. 定期人工更新本页高价值入口
-3. 如标签规模明显增大，再考虑引入自动标签归档方案
