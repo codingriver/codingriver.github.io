@@ -7,7 +7,6 @@ on:
     paths-ignore:
       - 'README.md'
       - 'docs/all-articles.md'
-      - 'mkdocs.yml'
   workflow_dispatch:
 
 permissions:
