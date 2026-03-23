@@ -2,30 +2,31 @@ name: Update README and All Articles
 
 on:
   push:
-    paths:
-      - 'docs/**/*.md'
-      - 'scripts/generate_readme.py'
-      - '.github/workflows/update-readme.yml'
+    branches:
+      - master
+    paths-ignore:
+      - 'README.md'
+      - 'docs/all-articles.md'
   workflow_dispatch:
 
 jobs:
   update-docs:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-      
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.9'
-      
+
       - name: Generate README and all-articles
-        run: python scripts/generate_readme.py
-      
+        run: python scripts/generate_readme.py --target both
+
       - name: Check if files changed
         id: check_changes
         run: |
@@ -34,7 +35,7 @@ jobs:
           else
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
-      
+
       - name: Commit and push if changed
         if: steps.check_changes.outputs.changed == 'true'
         run: |

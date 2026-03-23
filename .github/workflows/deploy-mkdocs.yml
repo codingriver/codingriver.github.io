@@ -6,6 +6,7 @@ on:
       - master
     paths-ignore:
       - 'README.md'
+      - 'docs/all-articles.md'
   workflow_dispatch:
 
 permissions:
@@ -37,6 +38,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin gitpython jieba
+
+      - name: Generate all-articles page for build
+        run: python scripts/generate_readme.py --target all-articles
 
       - name: Build site
         run: mkdocs build --strict

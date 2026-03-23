@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-自动生成 README.md 和 docs/all-articles.md
-扫描 docs/ 目录，按分类组织文章链接，包含创建日期
+自动生成 README.md 和/或 docs/all-articles.md
+
+用法：
+  python scripts/generate_readme.py                 # 同时生成两者
+  python scripts/generate_readme.py --target readme
+  python scripts/generate_readme.py --target all-articles
+  python scripts/generate_readme.py --target both
 """
 
+import argparse
 import os
 import re
 from pathlib import Path
@@ -163,7 +169,16 @@ def create_all_articles_page(content):
     return True
 
 
-if __name__ == '__main__':
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--target',
+        choices=['readme', 'all-articles', 'both'],
+        default='both',
+        help='选择要生成的目标文件',
+    )
+    args = parser.parse_args()
+
     print('scanning docs/...')
     articles = scan_docs()
 
@@ -173,20 +188,24 @@ if __name__ == '__main__':
         total = sum(len(items) for items in articles.values())
         print(f'found {total} articles in {len(articles)} categories')
 
-    print('generating README section...')
-    readme_section = generate_readme_section(articles)
+    if args.target in ('readme', 'both'):
+        print('generating README section...')
+        readme_section = generate_readme_section(articles)
+        print('updating README.md...')
+        if not update_readme(readme_section):
+            print('error: failed to update README.md')
+            raise SystemExit(1)
 
-    print('updating README.md...')
-    if not update_readme(readme_section):
-        print('error: failed to update README.md')
-        exit(1)
-
-    print('generating all-articles page...')
-    all_articles_content = generate_all_articles_page(articles)
-
-    print('writing docs/all-articles.md...')
-    if not create_all_articles_page(all_articles_content):
-        print('error: failed to write docs/all-articles.md')
-        exit(1)
+    if args.target in ('all-articles', 'both'):
+        print('generating all-articles page...')
+        all_articles_content = generate_all_articles_page(articles)
+        print('writing docs/all-articles.md...')
+        if not create_all_articles_page(all_articles_content):
+            print('error: failed to write docs/all-articles.md')
+            raise SystemExit(1)
 
     print('done')
+
+
+if __name__ == '__main__':
+    main()
