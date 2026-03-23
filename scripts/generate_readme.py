@@ -11,6 +11,7 @@ from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
 
+
 def get_article_info(filepath):
     """从 Markdown 文件提取 title 和 date"""
     title = None
@@ -36,9 +37,9 @@ def get_article_info(filepath):
 
     return title, date
 
+
 def scan_docs():
     """扫描 docs 目录，按分类组织文章"""
-    # 使用 resolve() 确保为绝对路径，避免 relative_to 在 CI 环境报错
     docs_dir = Path('docs').resolve()
     repo_root = docs_dir.parent
     articles = defaultdict(list)
@@ -73,11 +74,12 @@ def scan_docs():
             if md_file.name == 'index.md':
                 continue
             title, date = get_article_info(md_file)
-            # relative_to(repo_root) 确保两边都是绝对路径，CI 和本地均可正常工作
-            rel_path = str(md_file.relative_to(repo_root)).replace('\\', '/')
-            articles[category_name].append((title, date, rel_path))
+            readme_path = str(md_file.relative_to(repo_root)).replace('\\', '/')
+            docs_path = str(md_file.relative_to(docs_dir)).replace('\\', '/')
+            articles[category_name].append((title, date, readme_path, docs_path))
 
     return articles
+
 
 def generate_readme_section(articles):
     """生成 README 的文章索引部分（含日期，按日期倒序）"""
@@ -87,13 +89,14 @@ def generate_readme_section(articles):
         items = articles[category]
         lines.append('\n### ' + category + '\n')
         sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
-        for title, date, path in sorted_items:
-            lines.append('- **' + date + '** - [' + title + '](' + path + ')')
+        for title, date, readme_path, docs_path in sorted_items:
+            lines.append('- **' + date + '** - [' + title + '](' + readme_path + ')')
 
     lines.append('\n### 项目记录与随笔\n')
     lines.append('详见 [ANote 栏目](docs/ANote/index.md)\n')
 
     return '\n'.join(lines)
+
 
 def generate_all_articles_page(articles):
     """生成 docs/all-articles.md 页面（含日期，按日期倒序）"""
@@ -114,11 +117,12 @@ def generate_all_articles_page(articles):
         items = articles[category]
         lines.append('## ' + category + '\n')
         sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
-        for title, date, path in sorted_items:
-            lines.append('- **' + date + '** - [' + title + '](' + path + ')')
+        for title, date, readme_path, docs_path in sorted_items:
+            lines.append('- **' + date + '** - [' + title + '](' + docs_path + ')')
         lines.append('')
 
     return '\n'.join(lines)
+
 
 def update_readme(new_section):
     """更新 README.md，替换文章索引部分"""
@@ -138,7 +142,7 @@ def update_readme(new_section):
     end_idx = content.find(end_marker)
 
     if start_idx == -1 or end_idx == -1:
-        print("error: cannot find article index section in README.md")
+        print('error: cannot find article index section in README.md')
         return False
 
     new_content = content[:start_idx] + new_section + '\n\n' + content[end_idx:]
@@ -146,41 +150,43 @@ def update_readme(new_section):
     with open(readme_path, 'w', encoding='utf-8') as f:
         f.write(new_content)
 
-    print("README.md updated")
+    print('README.md updated')
     return True
+
 
 def create_all_articles_page(content):
     """创建或更新 docs/all-articles.md"""
     all_articles_path = Path('docs/all-articles.md')
     with open(all_articles_path, 'w', encoding='utf-8') as f:
         f.write(content)
-    print("docs/all-articles.md updated")
+    print('docs/all-articles.md updated')
     return True
 
+
 if __name__ == '__main__':
-    print("scanning docs/...")
+    print('scanning docs/...')
     articles = scan_docs()
 
     if not articles:
-        print("warning: no articles found")
+        print('warning: no articles found')
     else:
         total = sum(len(items) for items in articles.values())
-        print(f"found {total} articles in {len(articles)} categories")
+        print(f'found {total} articles in {len(articles)} categories')
 
-    print("generating README section...")
+    print('generating README section...')
     readme_section = generate_readme_section(articles)
 
-    print("updating README.md...")
+    print('updating README.md...')
     if not update_readme(readme_section):
-        print("error: failed to update README.md")
+        print('error: failed to update README.md')
         exit(1)
 
-    print("generating all-articles page...")
+    print('generating all-articles page...')
     all_articles_content = generate_all_articles_page(articles)
 
-    print("writing docs/all-articles.md...")
+    print('writing docs/all-articles.md...')
     if not create_all_articles_page(all_articles_content):
-        print("error: failed to write docs/all-articles.md")
+        print('error: failed to write docs/all-articles.md')
         exit(1)
 
-    print("done")
+    print('done')
