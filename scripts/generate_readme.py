@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-自动生成 README.md 和/或 docs/all-articles.md
+自动生成 README.md、docs/all-articles.md、mkdocs.yml nav
 
 用法：
-  python scripts/generate_readme.py                 # 同时生成两者
+  python scripts/generate_readme.py                    # 同时生成 readme + all-articles
   python scripts/generate_readme.py --target readme
   python scripts/generate_readme.py --target all-articles
-  python scripts/generate_readme.py --target both
+  python scripts/generate_readme.py --target mkdocs-nav
+  python scripts/generate_readme.py --target both      # readme + all-articles
+  python scripts/generate_readme.py --target all       # readme + all-articles + mkdocs-nav
 """
 
 import argparse
@@ -19,165 +21,197 @@ from datetime import datetime
 
 import yaml
 
+# ──────────────────────────────────────────────
+# 固定 nav 头部：这些入口不由脚本扫描生成，保持不变
+# ──────────────────────────────────────────────
+FIXED_NAV_HEADER = [
+    {'首页': 'index.md'},
+    {'关于': 'about.md'},
+    {'全部栏目': 'all-articles.md'},
+    {'MkDocs 博客方案': 'MkDocs博客方案.md'},
+    {'标签': 'tags/index.md'},
+]
+
+# 栏目目录名 -> 栏目显示名（决定 nav 中分组标题）
+CATEGORY_NAMES = {
+    'u3d': 'Unity 开发',
+    'shader': 'Shader 与图形学',
+    'csharp': 'C# 语言与工程',
+    'Android': 'Android 开发',
+    'IOS': 'iOS 开发',
+    'math': '数学与图形学基础',
+    'datastruct': '数据结构与算法',
+    'basesystem': '系统基础',
+    'unity编辑器': 'Unity 编辑器扩展',
+    'unityTool': 'Unity 工具',
+    'lua': 'Lua 语言',
+    'Graphics': '图形学',
+    'datastructbase': '数据结构基础',
+    'other': '工具与系统',
+    'ANote': '项目记录与随笔',
+}
+
+
+# ──────────────────────────────────────────────
+# front matter 解析
+# ──────────────────────────────────────────────
 
 def extract_front_matter(text):
-    """提取 front matter 文本，未包含分隔符 ---。无 front matter 返回 None。"""
     if not text.startswith('---'):
         return None
-
     lines = text.splitlines()
     if not lines or lines[0].strip() != '---':
         return None
-
     for idx in range(1, len(lines)):
         if lines[idx].strip() == '---':
             return '\n'.join(lines[1:idx])
-
     return ''
 
 
 def parse_front_matter(filepath, content):
-    """解析 front matter，成功返回 dict；失败抛异常。无 front matter 返回 None。"""
     front_matter = extract_front_matter(content)
     if front_matter is None:
         return None
-
     if front_matter == '':
         raise ValueError('front matter 已开始但没有结束分隔符 ---')
-
     try:
         data = yaml.safe_load(front_matter) if front_matter.strip() else {}
     except yaml.MarkedYAMLError as e:
         line = getattr(getattr(e, 'problem_mark', None), 'line', None)
         col = getattr(getattr(e, 'problem_mark', None), 'column', None)
-        line_info = ''
-        if line is not None and col is not None:
-            line_info = f' (line {line + 2}, col {col + 1})'
+        line_info = f' (line {line + 2}, col {col + 1})' if line is not None and col is not None else ''
         message = getattr(e, 'problem', None) or str(e)
         raise ValueError(f'front matter YAML 解析失败{line_info}: {message}') from e
-
     if data is not None and not isinstance(data, dict):
         raise ValueError('front matter 顶层必须是键值对象')
-
     return data or {}
 
 
+# ──────────────────────────────────────────────
+# 文章信息提取
+# ──────────────────────────────────────────────
+
 def get_article_info(filepath):
-    """从 Markdown 文件提取 title 和 date。
-
-    返回：
-      - 成功： (title, date)
-      - front matter 异常需跳过： None
-    """
-    title = None
-    date = None
-
+    """返回 (title, date) 或 None（需跳过）"""
     try:
         content = Path(filepath).read_text(encoding='utf-8')
     except Exception as e:
-        print(f"warning: cannot read {filepath}: {e}")
+        print(f'warning: cannot read {filepath}: {e}')
         return None
 
     try:
-        front_matter = parse_front_matter(filepath, content)
+        fm = parse_front_matter(filepath, content)
     except ValueError as e:
-        print(f"warning: skip {filepath}: {e}")
+        print(f'warning: skip {filepath}: {e}')
         return None
 
-    if front_matter is not None:
-        raw_title = front_matter.get('title')
-        raw_date = front_matter.get('date')
+    title = None
+    date = None
+
+    if fm is not None:
+        raw_title = fm.get('title')
+        raw_date = fm.get('date')
         if raw_title is not None:
             title = str(raw_title).strip()
         if raw_date is not None:
             date = str(raw_date).strip()
 
     if not title:
-        title_match = re.search(r'title:\s*["\']?([^"\'\n]+)["\']?', content)
-        if title_match:
-            title = title_match.group(1).strip()
-
+        m = re.search(r'title:\s*["\']?([^"\'\n]+)["\']?', content)
+        if m:
+            title = m.group(1).strip()
     if not date:
-        date_match = re.search(r'date:\s*["\']?([^"\'\n]+)["\']?', content)
-        if date_match:
-            date = date_match.group(1).strip()
-
+        m = re.search(r'date:\s*["\']?([^"\'\n]+)["\']?', content)
+        if m:
+            date = m.group(1).strip()
     if not title:
         title = Path(filepath).stem
     if not date:
-        timestamp = os.path.getmtime(filepath)
-        date = datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d')
+        date = datetime.fromtimestamp(os.path.getmtime(filepath)).strftime('%Y-%m-%d')
 
     return title, date
 
 
+# ──────────────────────────────────────────────
+# 扫描 docs/
+# ──────────────────────────────────────────────
+
 def scan_docs():
-    """扫描 docs 目录，按分类组织文章"""
+    """返回 (articles, skipped_files, dir_order)"""
     docs_dir = Path('docs').resolve()
     repo_root = docs_dir.parent
     articles = defaultdict(list)
     skipped_files = []
-
-    category_names = {
-        'u3d': 'Unity 开发',
-        'shader': 'Shader 与图形学',
-        'csharp': 'C# 语言与工程',
-        'Android': 'Android 开发',
-        'IOS': 'iOS 开发',
-        'math': '数学与图形学基础',
-        'datastruct': '数据结构与算法',
-        'basesystem': '系统基础',
-        'unity编辑器': 'Unity 编辑器扩展',
-        'unityTool': 'Unity 工具',
-        'lua': 'Lua 语言',
-        'Graphics': '图形学',
-        'datastructbase': '数据结构基础',
-        'other': '工具与系统',
-        'ANote': '项目记录与随笔',
-    }
+    dir_order = []   # 保留扫描到的目录名顺序
 
     if not docs_dir.exists():
-        print(f"error: {docs_dir} does not exist")
-        return articles, skipped_files
+        print(f'error: {docs_dir} does not exist')
+        return articles, skipped_files, dir_order
 
     for category_dir in sorted(docs_dir.iterdir()):
         if not category_dir.is_dir() or category_dir.name.startswith('.'):
             continue
-        category_name = category_names.get(category_dir.name, category_dir.name)
+        dir_name = category_dir.name
+        category_name = CATEGORY_NAMES.get(dir_name, dir_name)
+        has_article = False
         for md_file in sorted(category_dir.glob('*.md')):
             if md_file.name == 'index.md':
                 continue
-            article_info = get_article_info(md_file)
-            if article_info is None:
+            info = get_article_info(md_file)
+            if info is None:
                 skipped_files.append(str(md_file.relative_to(repo_root)).replace('\\', '/'))
                 continue
-            title, date = article_info
+            title, date = info
             readme_path = str(md_file.relative_to(repo_root)).replace('\\', '/')
             docs_path = str(md_file.relative_to(docs_dir)).replace('\\', '/')
-            articles[category_name].append((title, date, readme_path, docs_path))
+            articles[category_name].append((title, date, readme_path, docs_path, dir_name))
+            has_article = True
+        if has_article or (category_dir / 'index.md').exists():
+            dir_order.append(dir_name)
 
-    return articles, skipped_files
+    return articles, skipped_files, dir_order
 
+
+# ──────────────────────────────────────────────
+# README
+# ──────────────────────────────────────────────
 
 def generate_readme_section(articles):
-    """生成 README 的文章索引部分（含日期，按日期倒序）"""
     lines = ['## \U0001f4da 完整文章索引\n']
-
     for category in sorted(articles.keys()):
         items = articles[category]
         lines.append('\n### ' + category + '\n')
         sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
-        for title, date, readme_path, docs_path in sorted_items:
+        for title, date, readme_path, docs_path, dir_name in sorted_items:
             lines.append('- **' + date + '** - [' + title + '](' + readme_path + ')')
-
     lines.append('\n### 项目记录与随笔\n')
     lines.append('详见 [ANote 栏目](docs/ANote/index.md)\n')
-
     return '\n'.join(lines)
 
 
+def update_readme(new_section):
+    readme_path = Path('README.md')
+    if not readme_path.exists():
+        print(f'error: {readme_path} does not exist')
+        return False
+    content = readme_path.read_text(encoding='utf-8')
+    start_marker = '## \U0001f4da 完整文章索引'
+    end_marker = '## \U0001f3d7\ufe0f 仓库定位'
+    start_idx = content.find(start_marker)
+    end_idx = content.find(end_marker)
+    if start_idx == -1 or end_idx == -1:
+        print('error: cannot find article index section in README.md')
+        return False
+    readme_path.write_text(content[:start_idx] + new_section + '\n\n' + content[end_idx:], encoding='utf-8')
+    print('README.md updated')
+    return True
+
+
+# ──────────────────────────────────────────────
+# all-articles.md
+# ──────────────────────────────────────────────
+
 def generate_all_articles_page(articles):
-    """生成 docs/all-articles.md 页面（含日期，按日期倒序）"""
     lines = [
         '---',
         'title: "全部文章"',
@@ -190,69 +224,89 @@ def generate_all_articles_page(articles):
         '这里列出博客中的全部文章，按分类组织，包含创建日期。',
         '',
     ]
-
     for category in sorted(articles.keys()):
         items = articles[category]
         lines.append('## ' + category + '\n')
         sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
-        for title, date, readme_path, docs_path in sorted_items:
+        for title, date, readme_path, docs_path, dir_name in sorted_items:
             lines.append('- **' + date + '** - [' + title + '](' + docs_path + ')')
         lines.append('')
-
     return '\n'.join(lines)
 
 
-def update_readme(new_section):
-    """更新 README.md，替换文章索引部分"""
-    readme_path = Path('README.md')
-
-    if not readme_path.exists():
-        print(f"error: {readme_path} does not exist")
-        return False
-
-    with open(readme_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-
-    start_marker = '## \U0001f4da 完整文章索引'
-    end_marker = '## \U0001f3d7\ufe0f 仓库定位'
-
-    start_idx = content.find(start_marker)
-    end_idx = content.find(end_marker)
-
-    if start_idx == -1 or end_idx == -1:
-        print('error: cannot find article index section in README.md')
-        return False
-
-    new_content = content[:start_idx] + new_section + '\n\n' + content[end_idx:]
-
-    with open(readme_path, 'w', encoding='utf-8') as f:
-        f.write(new_content)
-
-    print('README.md updated')
-    return True
-
-
 def create_all_articles_page(content):
-    """创建或更新 docs/all-articles.md"""
-    all_articles_path = Path('docs/all-articles.md')
-    with open(all_articles_path, 'w', encoding='utf-8') as f:
-        f.write(content)
+    Path('docs/all-articles.md').write_text(content, encoding='utf-8')
     print('docs/all-articles.md updated')
     return True
 
+
+# ──────────────────────────────────────────────
+# mkdocs.yml nav
+# ──────────────────────────────────────────────
+
+def generate_mkdocs_nav(articles, dir_order):
+    """生成完整 nav 列表（Python 对象，供 yaml.dump 使用）"""
+    nav = list(FIXED_NAV_HEADER)
+
+    for dir_name in dir_order:
+        category_name = CATEGORY_NAMES.get(dir_name, dir_name)
+        items = articles.get(category_name, [])
+        # 栏目首页永远排第一
+        category_nav = [{'栏目首页': f'{dir_name}/index.md'}]
+        # 文章按文件名排序（和扫描一致），标题作为 nav key
+        for title, date, readme_path, docs_path, _ in items:
+            category_nav.append({title: docs_path})
+        nav.append({category_name: category_nav})
+
+    return nav
+
+
+def update_mkdocs_nav(nav):
+    """把 nav 写回 mkdocs.yml，保留 nav 以外的所有配置"""
+    mkdocs_path = Path('mkdocs.yml')
+    if not mkdocs_path.exists():
+        print('error: mkdocs.yml does not exist')
+        return False
+
+    # 用 yaml 解析全文，只替换 nav 字段，其余保持原样
+    content = mkdocs_path.read_text(encoding='utf-8')
+    try:
+        config = yaml.safe_load(content) or {}
+    except Exception as e:
+        print(f'error: cannot parse mkdocs.yml: {e}')
+        return False
+
+    config['nav'] = nav
+
+    # 用 yaml.dump 回写，保留中文、不转义 unicode
+    new_content = yaml.dump(
+        config,
+        allow_unicode=True,
+        default_flow_style=False,
+        sort_keys=False,
+        width=4096,
+    )
+    mkdocs_path.write_text(new_content, encoding='utf-8')
+    print('mkdocs.yml nav updated')
+    return True
+
+
+# ──────────────────────────────────────────────
+# main
+# ──────────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--target',
-        choices=['readme', 'all-articles', 'both'],
+        choices=['readme', 'all-articles', 'mkdocs-nav', 'both', 'all'],
         default='both',
-        help='选择要生成的目标文件',
+        help='选择要生成的目标（both=readme+all-articles，all=readme+all-articles+mkdocs-nav）',
     )
     args = parser.parse_args()
 
     print('scanning docs/...')
-    articles, skipped_files = scan_docs()
+    articles, skipped_files, dir_order = scan_docs()
 
     if not articles:
         print('warning: no articles found')
@@ -265,7 +319,11 @@ def main():
         for path in skipped_files:
             print(f'warning: skipped file: {path}')
 
-    if args.target in ('readme', 'both'):
+    do_readme = args.target in ('readme', 'both', 'all')
+    do_all_articles = args.target in ('all-articles', 'both', 'all')
+    do_nav = args.target in ('mkdocs-nav', 'all')
+
+    if do_readme:
         print('generating README section...')
         readme_section = generate_readme_section(articles)
         print('updating README.md...')
@@ -273,12 +331,20 @@ def main():
             print('error: failed to update README.md')
             raise SystemExit(1)
 
-    if args.target in ('all-articles', 'both'):
+    if do_all_articles:
         print('generating all-articles page...')
         all_articles_content = generate_all_articles_page(articles)
         print('writing docs/all-articles.md...')
         if not create_all_articles_page(all_articles_content):
             print('error: failed to write docs/all-articles.md')
+            raise SystemExit(1)
+
+    if do_nav:
+        print('generating mkdocs.yml nav...')
+        nav = generate_mkdocs_nav(articles, dir_order)
+        print('updating mkdocs.yml...')
+        if not update_mkdocs_nav(nav):
+            print('error: failed to update mkdocs.yml')
             raise SystemExit(1)
 
     print('done')

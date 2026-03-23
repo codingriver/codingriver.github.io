@@ -7,6 +7,7 @@ on:
     paths-ignore:
       - 'README.md'
       - 'docs/all-articles.md'
+      - 'mkdocs.yml'
   workflow_dispatch:
 
 permissions:
@@ -42,7 +43,7 @@ jobs:
       - name: Check markdown docs and fail with precise file/line info
         run: python scripts/check_docs.py --strict
 
-      - name: Generate all-articles page for build
+      - name: Generate all-articles and mkdocs nav for build
         run: python scripts/generate_readme.py --target all-articles
 
       - name: Build site

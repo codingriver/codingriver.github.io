@@ -7,13 +7,13 @@ theme:
   name: material
   language: zh
   features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.expand
-    - navigation.top
-    - search.suggest
-    - search.highlight
-    - content.code.copy
+  - navigation.tabs
+  - navigation.sections
+  - navigation.expand
+  - navigation.top
+  - search.suggest
+  - search.highlight
+  - content.code.copy
   custom_dir: overrides
 nav:
 - 首页: index.md
@@ -21,12 +21,12 @@ nav:
 - 全部栏目: all-articles.md
 - MkDocs 博客方案: MkDocs博客方案.md
 - 标签: tags/index.md
-- Android:
+- Android 开发:
   - 栏目首页: Android/index.md
   - Android-App内打开自带浏览器: Android/Android-App内打开自带浏览器.md
   - Android　分享App-Icon透明图片到微信变黑的问题: Android/Android　分享App-Icon透明图片到微信变黑的问题.md
   - Android，iOS-通过浏览器打开app: Android/Android，iOS-通过浏览器打开app.md
-- ANote:
+- 项目记录与随笔:
   - 栏目首页: ANote/index.md
   - 00-Test: ANote/00-Test.md
   - '2018-09-26': ANote/2018-09-26.md
@@ -59,7 +59,7 @@ nav:
   - Unity-URP笔记: ANote/Unity-URP笔记.md
   - unity编辑器笔记: ANote/unity编辑器笔记.md
   - Unity记录: ANote/Unity记录.md
-  - web开发笔记.md: ANote/web开发笔记.md.md
+  - web开发笔记: ANote/web开发笔记.md
   - 其他记录: ANote/其他记录.md
   - 包体大小优化笔记: ANote/包体大小优化笔记.md
   - 操作系统笔记: ANote/操作系统笔记.md
@@ -71,7 +71,7 @@ nav:
   - 记录: ANote/记录.md
   - 设计模式笔记: ANote/设计模式笔记.md
   - 问题: ANote/问题.md
-- basesystem:
+- 系统基础:
   - 栏目首页: basesystem/index.md
   - ASCII，Unicode和UTF-8: basesystem/ASCII，Unicode和UTF-8.md
   - URL编码与解码原理: basesystem/URL编码与解码原理.md
@@ -82,13 +82,13 @@ nav:
   - 原码、反码、补码和移码详解: basesystem/原码、反码、补码和移码详解.md
   - 多字节大小端说明: basesystem/多字节大小端说明.md
   - 深入理解计算机系统第二章部分练习题: basesystem/深入理解计算机系统第二章部分练习题.md
-- csharp:
+- C# 语言与工程:
   - 栏目首页: csharp/index.md
-  - async与await的使用说明: csharp/async与await的使用说明.md
-  - CSharp-Unicode编码和中文互转: csharp/CSharp-Unicode编码和中文互转.md
+  - C# async与await的使用说明: csharp/async与await的使用说明.md
+  - C#-Unicode编码和中文互转: csharp/CSharp-Unicode编码和中文互转.md
   - CSharp中Struct内存大小: csharp/CSharp中Struct内存大小.md
   - CSharp用Process类调用cmd执行及命令行首字母乱码问题: csharp/CSharp用Process类调用cmd执行及命令行首字母乱码问题.md
-  - CSharp的特性详解: csharp/CSharp的特性详解.md
+  - C# 特性详解（Attribute）: csharp/CSharp的特性详解.md
   - CSharp语言6-字符串插值: csharp/CSharp语言6-字符串插值.md
   - Enum_Int_String的互相转换: csharp/Enum_Int_String的互相转换.md
   - IL指令集: csharp/IL指令集.md
@@ -99,7 +99,7 @@ nav:
   - 字符串比较效率测试: csharp/字符串比较效率测试.md
   - 客户端开发CSharp命名规范手册: csharp/客户端开发CSharp命名规范手册.md
   - 闭包Closure: csharp/闭包Closure.md
-- datastruct:
+- 数据结构与算法:
   - 栏目首页: datastruct/index.md
   - AVL树详解: datastruct/AVL树详解.md
   - A星算法理解: datastruct/A星算法理解.md
@@ -107,13 +107,13 @@ nav:
   - 伸展树详解: datastruct/伸展树详解.md
   - 十大经典排序算法及比较与分析: datastruct/十大经典排序算法及比较与分析.md
   - 树和二叉树基本讲解: datastruct/树和二叉树基本讲解.md
-- datastructbase:
+- 数据结构基础:
   - 栏目首页: datastructbase/index.md
   - 浮点数的内存存储和运算: datastructbase/浮点数的内存存储和运算.md
-- Graphics:
+- 图形学:
   - 栏目首页: Graphics/index.md
   - DirectX环境搭建: Graphics/DirectX环境搭建.md
-- IOS:
+- iOS 开发:
   - 栏目首页: IOS/index.md
   - CSharp基础笔记: IOS/CSharp基础笔记.md
   - iOS-11-升级后无法真机调试（could-not-locate-device-support-files）: IOS/iOS-11-升级后无法真机调试（could-not-locate-device-support-files）.md
@@ -126,11 +126,11 @@ nav:
   - xcode接sdk时报错Undefined-symbols-for-architecture-arm64-: IOS/xcode接sdk时报错Undefined-symbols-for-architecture-arm64-.md
   - Xcode查看真机app沙盒内容，查看app缓存（Cache）文件: IOS/Xcode查看真机app沙盒内容，查看app缓存（Cache）文件.md
   - Xcode项目发布App-Store商品审核: IOS/Xcode项目发布App-Store商品审核.md
-- lua:
+- Lua 语言:
   - 栏目首页: lua/index.md
   - lua中类的实现: lua/lua中类的实现.md
   - lua闭包和and-or操作符及其它的说明: lua/lua闭包和and-or操作符及其它的说明.md
-- math:
+- 数学与图形学基础:
   - 栏目首页: math/index.md
   - LinearEyeDepth推导: math/LinearEyeDepth推导.md
   - 三角函数和差公式的推导: math/三角函数和差公式的推导.md
@@ -144,7 +144,7 @@ nav:
   - 透视投影变换推导: math/透视投影变换推导.md
   - 透视校正差值: math/透视校正差值.md
   - 齐次坐标的意义: math/齐次坐标的意义.md
-- other:
+- 工具与系统:
   - 栏目首页: other/index.md
   - 3500个常用汉字(字体裁剪用): other/3500个常用汉字(字体裁剪用).md
   - github+hexo建立个人博客2017: other/github+hexo建立个人博客2017.md
@@ -154,7 +154,7 @@ nav:
   - LuaForWindows-安装报错: other/LuaForWindows-安装报错.md
   - MAC-创建-IPv6-WIFI热点，不用以太网接口: other/MAC-创建-IPv6-WIFI热点，不用以太网接口.md
   - mac设置Library 显示: other/mac设置Library 显示.md
-  - nodejs初始化配置: other/nodejs初始化配置.md
+  - Nodejs初始化配置: other/nodejs初始化配置.md
   - Sourcetree-Mac安装跳过注册登陆和选择服务器: other/Sourcetree-Mac安装跳过注册登陆和选择服务器.md
   - Sourcetree基本使用教程: other/Sourcetree基本使用教程.md
   - Sourcetree安装教程（windows）: other/Sourcetree安装教程（windows）.md
@@ -173,9 +173,9 @@ nav:
   - 添加网络位置（共享目录）: other/添加网络位置（共享目录）.md
   - 用astash 画UML类图: other/用astash 画UML类图.md
   - 申请TexturePacker免费注册码(2018年11月份申请的): other/申请TexturePacker免费注册码(2018年11月份申请的).md
-- shader:
+- Shader 与图形学:
   - 栏目首页: shader/index.md
-  - Bloom实现: shader/Bloom实现.md
+  - 泛光（Bloom）实现: shader/Bloom实现.md
   - Gamma和Linear及sRGB说明: shader/Gamma和Linear及sRGB说明.md
   - ShaderLearn-(一)漫反射: shader/ShaderLearn-(一)漫反射.md
   - ShaderLearn-(三)RampTex: shader/ShaderLearn-(三)RampTex.md
@@ -183,18 +183,20 @@ nav:
   - Shader光照模型-漫反射: shader/Shader光照模型-漫反射.md
   - Shader光照模型-高光反射: shader/Shader光照模型-高光反射.md
   - Shader学习-1.1基础概要: shader/Shader学习-1.1基础概要.md
-  - Shader学习-前言: shader/Shader学习-前言.md
+  - 【Shader学习】前言: shader/Shader学习-前言.md
   - Shader水波纹效果: shader/Shader水波纹效果.md
   - Shader法线纹理: shader/Shader法线纹理.md
   - Shader法线贴图: shader/Shader法线贴图.md
   - Shader法线贴图（世界空间）: shader/Shader法线贴图（世界空间）.md
   - Shader消融特效: shader/Shader消融特效.md
   - Shader纹理动画: shader/Shader纹理动画.md
-  - UnityShader常用函数: shader/UnityShader常用函数.md
+  - 【Shader】常用函数（UnityShader内置函数、CG 和 GLSL 内置函数等）和内置变量: shader/UnityShader常用函数.md
   - 模糊实现: shader/模糊实现.md
   - 边缘光和流光特效: shader/边缘光和流光特效.md
   - 边缘光特效: shader/边缘光特效.md
-- u3d:
+- tags:
+  - 栏目首页: tags/index.md
+- Unity 开发:
   - 栏目首页: u3d/index.md
   - c++_structunion数据对齐: u3d/c++_structunion数据对齐.md
   - CSharp命名规范手册: u3d/CSharp命名规范手册.md
@@ -253,7 +255,7 @@ nav:
   - 使用TexturePacker命令行的一个坑: u3d/使用TexturePacker命令行的一个坑.md
   - 修改Prefab实例将Transform变为RectTransform: u3d/修改Prefab实例将Transform变为RectTransform.md
   - 苹果内购: u3d/苹果内购.md
-- unityTool:
+- Unity 工具:
   - 栏目首页: unityTool/index.md
   - ByteHelper字节数组辅助工具: unityTool/ByteHelper字节数组辅助工具.md
   - JsonHelper工具: unityTool/JsonHelper工具.md
@@ -265,7 +267,7 @@ nav:
   - ZipHelper压缩工具: unityTool/ZipHelper压缩工具.md
   - 生成分布式唯一ID: unityTool/生成分布式唯一ID.md
   - 遍历打印对象的所有变量和属性: unityTool/遍历打印对象的所有变量和属性.md
-- unity编辑器:
+- Unity 编辑器扩展:
   - 栏目首页: unity编辑器/index.md
   - MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder: unity编辑器/MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder.md
   - SerializedObject获取所有属性: unity编辑器/SerializedObject获取所有属性.md
@@ -279,7 +281,6 @@ plugins:
     timezone: Asia/Shanghai
     locale: zh
 - git-authors
-
 markdown_extensions:
 - admonition
 - tables

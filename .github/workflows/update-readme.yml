@@ -7,6 +7,7 @@ on:
     paths-ignore:
       - 'README.md'
       - 'docs/all-articles.md'
+      - 'mkdocs.yml'
   workflow_dispatch:
 
 jobs:
@@ -24,19 +25,19 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install doc check dependency
+      - name: Install dependencies
         run: pip install pyyaml
 
-      - name: Check markdown docs and print actionable errors
+      - name: Check markdown docs
         run: python scripts/check_docs.py || true
 
-      - name: Generate README and all-articles
-        run: python scripts/generate_readme.py --target both
+      - name: Generate README, all-articles and mkdocs nav
+        run: python scripts/generate_readme.py --target all
 
       - name: Check if files changed
         id: check_changes
         run: |
-          if git diff --quiet README.md docs/all-articles.md; then
+          if git diff --quiet README.md docs/all-articles.md mkdocs.yml; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -47,6 +48,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md docs/all-articles.md
-          git commit -m "docs: auto-update README and all-articles"
+          git add README.md docs/all-articles.md mkdocs.yml
+          git commit -m "docs: auto-update README, all-articles and mkdocs nav"
           git push
