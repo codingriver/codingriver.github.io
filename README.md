@@ -2,7 +2,7 @@
 
 这是个人技术博客的源码仓库，同时也可以作为博客的基础阅读版使用。
 
-- **高级版在线阅读**：`https://codingriver.github.io/`
+- **高级版在线阅读**：[https://codingriver.github.io/](https://codingriver.github.io/)
 - **基础版仓库入口**：当前仓库首页与 `docs/` 目录
 
 ---
