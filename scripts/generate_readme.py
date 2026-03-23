@@ -262,30 +262,38 @@ def generate_mkdocs_nav(articles, dir_order):
 
 
 def update_mkdocs_nav(nav):
-    """把 nav 写回 mkdocs.yml，保留 nav 以外的所有配置"""
+    """把 nav 写回 mkdocs.yml，保留 nav 以外的所有配置。
+
+    策略：用正则定位 nav: 块的起止位置做字符串替换，
+    避免 yaml.dump 破坏 !!python/name: 等自定义标签。
+    """
+    import re as _re
     mkdocs_path = Path('mkdocs.yml')
     if not mkdocs_path.exists():
         print('error: mkdocs.yml does not exist')
         return False
 
-    # 用 yaml 解析全文，只替换 nav 字段，其余保持原样
-    content = mkdocs_path.read_text(encoding='utf-8')
-    try:
-        config = yaml.safe_load(content) or {}
-    except Exception as e:
-        print(f'error: cannot parse mkdocs.yml: {e}')
-        return False
-
-    config['nav'] = nav
-
-    # 用 yaml.dump 回写，保留中文、不转义 unicode
-    new_content = yaml.dump(
-        config,
+    # 生成新的 nav YAML 片段
+    nav_yaml = yaml.dump(
+        {'nav': nav},
         allow_unicode=True,
         default_flow_style=False,
         sort_keys=False,
         width=4096,
     )
+
+    content = mkdocs_path.read_text(encoding='utf-8')
+
+    # 用正则找到 nav: 块：从 ^nav: 开始，到下一个顶层 key 或文件末尾
+    nav_pattern = _re.compile(
+        r'^nav:.*?(?=^[a-z_]|\Z)',
+        _re.MULTILINE | _re.DOTALL,
+    )
+    if nav_pattern.search(content):
+        new_content = nav_pattern.sub(nav_yaml, content, count=1)
+    else:
+        new_content = content.rstrip('\n') + '\n\n' + nav_yaml
+
     mkdocs_path.write_text(new_content, encoding='utf-8')
     print('mkdocs.yml nav updated')
     return True

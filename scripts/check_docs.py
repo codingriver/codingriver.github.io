@@ -125,10 +125,22 @@ def collect_nav_files(node: Any, result: set[str]) -> None:
         result.add(node)
 
 
+class _IgnoreUnknownTags(yaml.SafeLoader):
+    """SafeLoader 扩展：遇到 !!python/name: 等自定义标签时忽略而非报错。"""
+    pass
+
+
+def _ignore_tag_constructor(loader, tag_suffix, node):
+    return loader.construct_scalar(node)
+
+
+_IgnoreUnknownTags.add_multi_constructor('', _ignore_tag_constructor)
+
+
 def validate_mkdocs_nav(mkdocs_path: Path, docs_dir: Path) -> int:
     errors = 0
     try:
-        config = yaml.safe_load(mkdocs_path.read_text(encoding='utf-8')) or {}
+        config = yaml.load(mkdocs_path.read_text(encoding='utf-8'), Loader=_IgnoreUnknownTags) or {}
     except Exception as e:
         gha_error(str(mkdocs_path).replace('\\', '/'), f'mkdocs.yml 解析失败: {e}')
         return 1
