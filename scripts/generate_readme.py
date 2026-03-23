@@ -99,12 +99,12 @@ def generate_all_articles_page(articles):
     """生成 docs/all-articles.md 页面（含日期，按日期倒序）"""
     lines = [
         '---',
-        'title: "全部文档"',
+        'title: "全部文章"',
         'date: "2026-03-23"',
         'comments: false',
         '---',
         '',
-        '# 全部文档',
+        '# 全部文章',
         '',
         '这里列出博客中的全部文章，按分类组织，包含创建日期。',
         '',
