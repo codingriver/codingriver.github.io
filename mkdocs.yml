@@ -18,6 +18,7 @@ theme:
 nav:
 - 首页: index.md
 - 关于: about.md
+- 全部文档: all-articles.md
 - MkDocs 博客方案: MkDocs博客方案.md
 - 标签: tags/index.md
 - Android:

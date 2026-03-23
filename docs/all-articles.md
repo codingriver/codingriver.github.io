@@ -1,0 +1,215 @@
+---
+title: "全部文档"
+date: "2026-03-23"
+comments: false
+---
+
+# 全部文档
+
+这里列出博客中的全部文章，按分类组织。文章日期在推送后由 GitHub Actions 自动从 front matter 读取更新。
+
+## Android 开发
+
+- [Android-App内打开自带浏览器](Android/Android-App内打开自带浏览器.md)
+- [Android 分享App-Icon透明图片到微信变黑的问题](Android/Android　分享App-Icon透明图片到微信变黑的问题.md)
+- [Android，iOS-通过浏览器打开app](Android/Android，iOS-通过浏览器打开app.md)
+
+## C# 语言与工程
+
+- [async与await的使用说明](csharp/async与await的使用说明.md)
+- [CSharp-Unicode编码和中文互转](csharp/CSharp-Unicode编码和中文互转.md)
+- [CSharp中Struct内存大小](csharp/CSharp中Struct内存大小.md)
+- [CSharp用Process类调用cmd执行及命令行首字母乱码问题](csharp/CSharp用Process类调用cmd执行及命令行首字母乱码问题.md)
+- [CSharp的特性详解](csharp/CSharp的特性详解.md)
+- [CSharp语言6-字符串插值](csharp/CSharp语言6-字符串插值.md)
+- [Enum_Int_String的互相转换](csharp/Enum_Int_String的互相转换.md)
+- [IL指令集](csharp/IL指令集.md)
+- [new关键字的几种用法](csharp/new关键字的几种用法.md)
+- [SynchronizationContext线程上下文简单说明](csharp/SynchronizationContext线程上下文简单说明.md)
+- [中文和unicode互转](csharp/中文和unicode互转.md)
+- [俩问号和值类型加问号分别是什么意思](csharp/俩问号和值类型加问号分别是什么意思.md)
+- [字符串比较效率测试](csharp/字符串比较效率测试.md)
+- [客户端开发CSharp命名规范手册](csharp/客户端开发CSharp命名规范手册.md)
+- [闭包Closure](csharp/闭包Closure.md)
+
+## Lua 语言
+
+- [lua中类的实现](lua/lua中类的实现.md)
+- [lua闭包和and-or操作符及其它的说明](lua/lua闭包和and-or操作符及其它的说明.md)
+
+## Shader 与图形学
+
+- [Bloom实现](shader/Bloom实现.md)
+- [Gamma和Linear及sRGB说明](shader/Gamma和Linear及sRGB说明.md)
+- [ShaderLearn-(一)漫反射](shader/ShaderLearn-(一)漫反射.md)
+- [ShaderLearn-(二)镜面反射](shader/ShaderLearn-(二)镜面反射.md)
+- [ShaderLearn-(三)RampTex](shader/ShaderLearn-(三)RampTex.md)
+- [Shader光照模型-漫反射](shader/Shader光照模型-漫反射.md)
+- [Shader光照模型-高光反射](shader/Shader光照模型-高光反射.md)
+- [Shader学习-1.1基础概要](shader/Shader学习-1.1基础概要.md)
+- [Shader学习-前言](shader/Shader学习-前言.md)
+- [Shader水波纹效果](shader/Shader水波纹效果.md)
+- [Shader法线纹理](shader/Shader法线纹理.md)
+- [Shader法线贴图](shader/Shader法线贴图.md)
+- [Shader法线贴图（世界空间）](shader/Shader法线贴图（世界空间）.md)
+- [Shader消融特效](shader/Shader消融特效.md)
+- [Shader纹理动画](shader/Shader纹理动画.md)
+- [UnityShader常用函数](shader/UnityShader常用函数.md)
+- [模糊实现](shader/模糊实现.md)
+- [边缘光和流光特效](shader/边缘光和流光特效.md)
+- [边缘光特效](shader/边缘光特效.md)
+
+## Unity 工具
+
+- [ByteHelper字节数组辅助工具](unityTool/ByteHelper字节数组辅助工具.md)
+- [JsonHelper工具](unityTool/JsonHelper工具.md)
+- [Md5计算工具](unityTool/Md5计算工具.md)
+- [ProfilerHelper辅助工具](unityTool/ProfilerHelper辅助工具.md)
+- [StringHelper编码辅助工具](unityTool/StringHelper编码辅助工具.md)
+- [URLHelper-URL编码解码工具](unityTool/URLHelper-URL编码解码工具.md)
+- [Unity-Assert断言工具](unityTool/Unity-Assert断言工具.md)
+- [ZipHelper压缩工具](unityTool/ZipHelper压缩工具.md)
+- [生成分布式唯一ID](unityTool/生成分布式唯一ID.md)
+- [遍历打印对象的所有变量和属性](unityTool/遍历打印对象的所有变量和属性.md)
+
+## Unity 开发（上）
+
+- [UGUI-Image图片置灰](u3d/UGUI-Image图片置灰.md)
+- [UGUI-Text换行问题](u3d/UGUI-Text换行问题.md)
+- [UGUI中CustomFont（BMFont）字体使用与制作](u3d/UGUI中CustomFont（BMFont）字体使用与制作.md)
+- [UGUI事件介绍](u3d/UGUI事件介绍.md)
+- [UGUI事件系统](u3d/UGUI事件系统.md)
+- [UGUI使用富文本RichText](u3d/UGUI使用富文本RichText.md)
+- [UGUI优化-使用镜像图片](u3d/UGUI优化-使用镜像图片.md)
+- [UGUI运用美术字体](u3d/UGUI运用美术字体.md)
+- [DrawCall优化实战](u3d/DrawCall优化实战.md)
+- [RenderDoc-调试](u3d/RenderDoc-调试.md)
+- [Unity Editor和Player日志文件的存放](u3d/Unity%20Editor和Player日志文件的存放.md)
+- [Unity-GameObject-销毁（Destroy）后的几种状态](u3d/Unity-GameObject-销毁（Destroy）后的几种状态.md)
+- [Unity-Texture2D的SetPiexl严重耗时的优化方案](u3d/Unity-Texture2D的SetPiexl严重耗时的优化方案.md)
+- [Unity-使用Android-Splash](u3d/Unity-使用Android-Splash.md)
+- [Unity-性能优化相关知识(转)](u3d/Unity-性能优化相关知识(转).md)
+- [Unity-日志文件的存放](u3d/Unity-日志文件的存放.md)
+- [Unity中获取依赖信息出现其他未引用字体问题](u3d/Unity中获取依赖信息出现其他未引用字体问题.md)
+- [Unity切入后台，切入前台，获取焦点，失去焦点等](u3d/Unity切入后台，切入前台，获取焦点，失去焦点等.md)
+- [Unity判断机型是否为iPhoneX等](u3d/Unity判断机型是否为iPhoneX等.md)
+- [Unity加载场景](u3d/Unity加载场景.md)
+- [Unity平台宏定义常用说明](u3d/Unity平台宏定义常用说明.md)
+- [Unity截屏](u3d/Unity截屏.md)
+- [Unity渲染顺序](u3d/Unity渲染顺序.md)
+- [Unity粒子特效缩放](u3d/Unity粒子特效缩放.md)
+- [Unity脚本执行顺序](u3d/Unity脚本执行顺序.md)
+- [Unity和IOS交互char作为方法返回值到CSharp中bug](u3d/Unity和IOS交互char-作为方法返回值到CSharp中bug.md)
+- [UnityEditor-iOS-Xcode报错](u3d/UnityEditor-iOS-Xcode报错.md)
+- [UnityProfiler使用Android真机连接测试](u3d/UnityProfiler使用Android真机连接测试.md)
+- [c++_structunion数据对齐](u3d/c++_structunion数据对齐.md)
+- [unity--android获取电量和wifi信号强度](u3d/unity--android获取电量和wifi信号强度.md)
+- [unity-3DCamera根据宽度适配(3D相机适配)](u3d/unity-3DCamera根据宽度适配(3D相机适配).md)
+- [unity-Font-Test测试](u3d/unity-Font-Test测试.md)
+- [unity-ios审核ipv6](u3d/unity-ios审核ipv6.md)
+- [unity-响应Android返回键](u3d/unity-响应Android返回键.md)
+- [unity-打包Android报错CommandInvokationFailure](u3d/unity-打包Android报错CommandInvokationFailure--Unable-to-convert-classes-i.md)
+- [unity-脚本设置AssetBundleName和Variant](u3d/unity-脚本设置AssetBundleName和Variant.md)
+- [unity-模型显示锯齿问题](u3d/unity-模型显示锯齿问题.md)
+- [unity创建新脚本自动添加版权声明](u3d/unity创建新脚本自动添加版权声明，文件名，作者，创建时间等.md)
+- [unity发布android版本-so静态库打不进去](u3d/unity发布android版本-so静态库打不进去.md)
+- [unity优化-相同模型的多个实例设置各自的颜色优化](u3d/unity优化-相同模型的多个实例设置各自的颜色优化.md)
+- [unity和android交互bug](u3d/unity和android交互bug.md)
+- [unity性能优化总结](u3d/unity性能优化总结.md)
+- [unity接入声网sdk视频bug](u3d/unity接入声网sdk视频bug.md)
+- [unity矩阵变换从模型空间到屏幕空间的转换](u3d/unity矩阵变换从模型空间到屏幕空间的转换.md)
+- [unity禁止屏幕休眠](u3d/unity禁止屏幕休眠.md)
+- [unity脚本MonoBehaviour默认方法执行顺序测试](u3d/unity脚本MonoBehaviour默认方法执行顺序测试.md)
+- [unity设置屏幕分辨率](u3d/unity设置屏幕分辨率.md)
+- [unity读取StreamingAssets文本文件](u3d/unity读取StreamingAssets文本文件.md)
+- [untiy-ios透明ui的透明区域渲染错误](u3d/untiy-ios透明ui-的透明区域渲染错误.md)
+- [xLua-第三方扩展的添加和编译](u3d/xLua-第三方扩展的添加和编译.md)
+- [xlua性能测试](u3d/xlua性能测试.md)
+- [世界部队DrawCall分析和优化](u3d/世界部队DrawCall分析和优化.md)
+- [使用TexturePacker命令行的一个坑](u3d/使用TexturePacker命令行的一个坑.md)
+- [修改Prefab实例将Transform变为RectTransform](u3d/修改Prefab实例将Transform变为RectTransform.md)
+- [苹果内购](u3d/苹果内购.md)
+- [unity3d中的LayerMask用法](u3d/unity3d中的LayerMask用法.md)
+
+## Unity 编辑器扩展
+
+- [MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder](unity编辑器/MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder.md)
+- [SerializedObject获取所有属性](unity编辑器/SerializedObject获取所有属性.md)
+- [Unity编辑器扩展菜单项](unity编辑器/Unity编辑器扩展菜单项.md)
+- [unity编辑器-自定义Inspector面板](unity编辑器/unity编辑器-自定义Inspector面板.md)
+
+## 图形学
+
+- [DirectX环境搭建](Graphics/DirectX环境搭建.md)
+
+## 数学与图形学基础
+
+- [LinearEyeDepth推导](math/LinearEyeDepth推导.md)
+- [三角函数和差公式的推导](math/三角函数和差公式的推导.md)
+- [两个平面矩形相交（不旋转）](math/两个平面矩形相交（不旋转）.md)
+- [基本求导法则与导数公式](math/基本求导法则与导数公式.md)
+- [屏幕空间变换](math/屏幕空间变换.md)
+- [微分和积分数学公式大全](math/微分和积分数学公式大全.md)
+- [法线变换矩阵推导](math/法线变换矩阵推导.md)
+- [点乘和叉乘的计算和应用](math/点乘和叉乘的计算和应用.md)
+- [线性代数的本质](math/线性代数的本质.md)
+- [透视投影变换推导](math/透视投影变换推导.md)
+- [透视校正差值](math/透视校正差值.md)
+- [齐次坐标的意义](math/齐次坐标的意义.md)
+
+## 系统基础
+
+- [ASCII，Unicode和UTF-8](basesystem/ASCII，Unicode和UTF-8.md)
+- [URL编码与解码原理](basesystem/URL编码与解码原理.md)
+- [为什么用补码，为什么有符号单字节最小是-128](basesystem/为什么用补码，为什么有符号单字节最小是-128.md)
+- [位操作符介绍](basesystem/位操作符介绍.md)
+- [位运算实现加减乘除](basesystem/位运算实现加减乘除.md)
+- [十进制和二进制互相转换](basesystem/十进制和二进制互相转换.md)
+- [原码、反码、补码和移码详解](basesystem/原码、反码、补码和移码详解.md)
+- [多字节大小端说明](basesystem/多字节大小端说明.md)
+- [深入理解计算机系统第二章部分练习题](basesystem/深入理解计算机系统第二章部分练习题.md)
+
+## iOS 开发
+
+- [IOS中Xcode-framework无法识别headers目录问题](IOS/IOS中Xcode-framework无法识别headers目录问题，头文件读不出来.md)
+- [Xcode工程配置](IOS/Xcode工程配置.md)
+- [Xcode查看真机app沙盒内容](IOS/Xcode查看真机app沙盒内容，查看app缓存（Cache）文件.md)
+- [Xcode项目发布App-Store商品审核](IOS/Xcode项目发布App-Store商品审核.md)
+- [iOS-11-升级后无法真机调试](IOS/iOS-11-升级后无法真机调试（could-not-locate-device-support-files）.md)
+- [ios-object-c-UIImage图片缩放](IOS/ios-object-c-UIImage图片缩放.md)
+- [ios-object-c-获取App图标使用的图片名字AppIcon](IOS/ios-object-c-获取App图标使用的图片名字AppIcon.md)
+- [ios-配置ItunesConnect添加应用](IOS/ios-配置ItunesConnect添加应用.md)
+- [ios配置开发者证书及添加AppID](IOS/ios配置开发者证书及添加AppID.md)
+- [xcode接sdk时报错Undefined-symbols-for-architecture-arm64](IOS/xcode接sdk时报错Undefined-symbols-for-architecture-arm64-.md)
+
+## 工具与系统
+
+- [GitHub-ssh失败Permission-denied-(publickey)](other/GitHub-ssh失败Permission-denied-(publickey).md)
+- [Json的float单精度浮点数类型支持](other/Json的float单精度浮点数类型支持.md)
+- [LuaForWindows-安装报错](other/LuaForWindows-安装报错.md)
+- [MAC-创建-IPv6-WIFI热点，不用以太网接口](other/MAC-创建-IPv6-WIFI热点，不用以太网接口.md)
+- [Sourcetree-Mac安装跳过注册登陆和选择服务器](other/Sourcetree-Mac安装跳过注册登陆和选择服务器.md)
+- [Sourcetree基本使用教程](other/Sourcetree基本使用教程.md)
+- [Sourcetree安装教程（windows）](other/Sourcetree安装教程（windows）.md)
+- [SVN-trunk(主线)-branch(分支)-创建和合并教程](other/SVN-trunk(主线)-branch(分支)-创建和合并教程.md)
+- [SVN无法提交--a和--so文件](other/SVN无法提交--a和--so文件.md)
+- [VS2013+LUA代码高亮配置教程](other/VS2013+LUA代码高亮配置教程.md)
+- [VS2013创建新脚本自动添加版权声明](other/VS2013创建新脚本自动添加版权声明，文件名，作者，创建时间等.md)
+- [Windows创建点开头的文件或者点开头的文件夹](other/Windows创建点开头的文件或者点开头的文件夹.md)
+- [Xlua-线程问题](other/Xlua-线程问题.md)
+- [github+hexo建立个人博客2017](other/github+hexo建立个人博客2017.md)
+- [nodejs初始化配置](other/nodejs初始化配置.md)
+- [svn管理](other/svn管理.md)
+- [tar(child)-lbzip2-Cannotexec解决方法](other/tar(child)-lbzip2-Cannotexec解决方法.md)
+- [win10-iis-http建站](other/win10-iis-http建站.md)
+- [win7安装Vs2015失败的解决方案](other/win7安装Vs2015失败的解决方案(安装vs多个版本的问题).md)
+- [三次握手和四次挥手](other/三次握手和四次挥手.md)
+- [六种常用设计模式](other/六种常用设计模式.md)
+- [申请TexturePacker免费注册码](other/申请TexturePacker免费注册码(2018年11月份申请的).md)
+- [添加网络位置（共享目录）](other/添加网络位置（共享目录）.md)
+- [3500个常用汉字(字体裁剪用)](other/3500个常用汉字(字体裁剪用).md)
+
+## 项目记录与随笔
+
+详见 [ANote 栏目](ANote/index.md)
+

@@ -1,4 +1,4 @@
-name: Update README
+name: Update README and All Articles
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-readme:
+  update-docs:
     runs-on: ubuntu-latest
     
     steps:
@@ -23,13 +23,13 @@ jobs:
         with:
           python-version: '3.9'
       
-      - name: Generate README
+      - name: Generate README and all-articles
         run: python scripts/generate_readme.py
       
-      - name: Check if README changed
+      - name: Check if files changed
         id: check_changes
         run: |
-          if git diff --quiet README.md; then
+          if git diff --quiet README.md docs/all-articles.md; then
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -40,6 +40,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md
-          git commit -m "docs: auto-update README article links"
+          git add README.md docs/all-articles.md
+          git commit -m "docs: auto-update README and all-articles"
           git push
