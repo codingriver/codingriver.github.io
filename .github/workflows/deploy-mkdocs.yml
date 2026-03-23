@@ -37,7 +37,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin gitpython jieba pyyaml
+          pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin gitpython jieba pyyaml mkdocs-glightbox mkdocs-minify-plugin
 
       - name: Check markdown docs and fail with precise file/line info
         run: python scripts/check_docs.py --strict

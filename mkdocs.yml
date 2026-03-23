@@ -297,6 +297,9 @@ nav:
   - unity编辑器-自定义Inspector面板: unity编辑器/unity编辑器-自定义Inspector面板.md
 plugins:
   - search
+  - glightbox
+  - minify:
+      minify_html: true
   - git-revision-date-localized:
       enable_creation_date: true
       type: datetime
