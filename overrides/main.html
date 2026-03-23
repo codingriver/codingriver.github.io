@@ -9,10 +9,104 @@
      - data-repo-id
      - data-category-id
   5. 这两个值都可以在 https://giscus.app/zh-CN 上自动生成。
+  6. 代码块折叠：少于10行全部显示，10行及以上默认显示5行，底部有展开/收起按钮。
 #}
 
 {% block extrahead %}
   {{ super() }}
+  <style>
+    /* 代码块折叠样式 */
+    .code-collapsible-wrapper {
+      position: relative;
+      margin: 1em 0;
+    }
+
+    /* 折叠状态：限制高度，隐藏超出部分 */
+    .code-collapsible-wrapper.is-collapsed .highlight {
+      max-height: var(--code-collapsed-height);
+      overflow: hidden;
+    }
+
+    /* 展开状态：不限制高度 */
+    .code-collapsible-wrapper.is-expanded .highlight {
+      max-height: none;
+      overflow: visible;
+    }
+
+    /* 折叠时底部渐变遮罩 */
+    .code-collapsible-wrapper.is-collapsed::after {
+      content: "";
+      position: absolute;
+      bottom: 36px; /* 按钮高度上方 */
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--md-code-bg-color, #f5f5f5) 90%
+      );
+      pointer-events: none;
+      border-radius: 0;
+      z-index: 1;
+    }
+
+    /* 展开/收起按钮 */
+    .code-toggle-btn {
+      display: block;
+      width: 100%;
+      padding: 6px 0;
+      margin-top: 0;
+      background: var(--md-code-bg-color, #f5f5f5);
+      border: none;
+      border-top: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+      color: var(--md-primary-fg-color, #1976d2);
+      font-size: 0.78rem;
+      font-family: var(--md-text-font, sans-serif);
+      cursor: pointer;
+      text-align: center;
+      letter-spacing: 0.03em;
+      border-radius: 0 0 0.2rem 0.2rem;
+      transition: background 0.15s, color 0.15s;
+      position: relative;
+      z-index: 2;
+    }
+
+    .code-toggle-btn:hover {
+      background: var(--md-accent-fg-color--transparent, rgba(25, 118, 210, 0.08));
+      color: var(--md-accent-fg-color, #1565c0);
+    }
+
+    /* 按钮箭头图标 */
+    .code-toggle-btn::before {
+      content: "";
+      display: inline-block;
+      width: 0.5em;
+      height: 0.5em;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      margin-right: 6px;
+      vertical-align: middle;
+      margin-bottom: 2px;
+      transition: transform 0.2s;
+    }
+
+    .code-collapsible-wrapper.is-collapsed .code-toggle-btn::before {
+      transform: rotate(45deg); /* 向下箭头：展开 */
+    }
+
+    .code-collapsible-wrapper.is-expanded .code-toggle-btn::before {
+      transform: rotate(-135deg); /* 向上箭头：收起 */
+      margin-bottom: -2px;
+    }
+
+    /* 确保 wrapper 内的 highlight 紧贴按钮，无额外间距 */
+    .code-collapsible-wrapper .highlight {
+      margin-bottom: 0 !important;
+      border-radius: 0.2rem 0.2rem 0 0;
+      transition: max-height 0.25s ease;
+    }
+  </style>
 {% endblock %}
 
 {% block content %}
@@ -54,4 +148,89 @@
       </script>
     </section>
   {% endif %}
+
+  <script>
+    (function () {
+      // 每行代码的近似高度（px），根据 Material 主题行高估算
+      var LINE_HEIGHT = 22.4;
+      // 少于此行数：全部展示，不添加折叠
+      var SHOW_ALL_THRESHOLD = 10;
+      // 折叠时展示的行数
+      var COLLAPSED_LINES = 5;
+
+      function initCodeCollapse() {
+        // 选取页面中所有代码块的 highlight 容器
+        var highlights = document.querySelectorAll(".md-content .highlight");
+
+        highlights.forEach(function (hl) {
+          // 跳过已处理的
+          if (hl.parentElement && hl.parentElement.classList.contains("code-collapsible-wrapper")) {
+            return;
+          }
+
+          // 统计代码行数：优先用 <code> 内换行数，其次用高度估算
+          var codeEl = hl.querySelector("code");
+          var lineCount = 0;
+          if (codeEl) {
+            var text = codeEl.textContent || "";
+            // 去掉末尾空行后计算
+            var lines = text.replace(/\n$/, "").split("\n");
+            lineCount = lines.length;
+          } else {
+            lineCount = Math.round(hl.offsetHeight / LINE_HEIGHT);
+          }
+
+          // 少于阈值：不折叠
+          if (lineCount < SHOW_ALL_THRESHOLD) {
+            return;
+          }
+
+          // 计算折叠高度：5行 * 行高，加上 padding（约 1em = 16px，上下共 32px）
+          var collapsedHeight = Math.round(COLLAPSED_LINES * LINE_HEIGHT + 32);
+
+          // 创建 wrapper
+          var wrapper = document.createElement("div");
+          wrapper.className = "code-collapsible-wrapper is-collapsed";
+          wrapper.style.setProperty("--code-collapsed-height", collapsedHeight + "px");
+
+          // 将 highlight 移入 wrapper
+          hl.parentNode.insertBefore(wrapper, hl);
+          wrapper.appendChild(hl);
+
+          // 创建展开/收起按钮
+          var btn = document.createElement("button");
+          btn.className = "code-toggle-btn";
+          btn.textContent = "展开全部";
+          wrapper.appendChild(btn);
+
+          btn.addEventListener("click", function () {
+            if (wrapper.classList.contains("is-collapsed")) {
+              wrapper.classList.remove("is-collapsed");
+              wrapper.classList.add("is-expanded");
+              btn.textContent = "收起代码";
+            } else {
+              wrapper.classList.remove("is-expanded");
+              wrapper.classList.add("is-collapsed");
+              btn.textContent = "展开全部";
+              // 收起时滚动到代码块顶部（若代码块已滚出视口上方）
+              var rect = wrapper.getBoundingClientRect();
+              if (rect.top < 0) {
+                wrapper.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }
+          });
+        });
+      }
+
+      // DOM 加载完毕后执行
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initCodeCollapse);
+      } else {
+        initCodeCollapse();
+      }
+
+      // 兼容 MkDocs Material 的 SPA 导航（instant loading）
+      document.addEventListener("DOMContentSwitch", initCodeCollapse);
+    })();
+  </script>
 {% endblock %}
