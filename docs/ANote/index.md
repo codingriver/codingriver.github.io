@@ -45,7 +45,7 @@ comments: false
 - [shader记录](shader记录.md)
 - [socket测试结果](socket测试结果.md)
 - [unity编辑器笔记](unity编辑器笔记.md)
-- [web开发笔记.md](web开发笔记.md.md)
+- [web开发笔记.md](web开发笔记.md)
 - [其他记录](其他记录.md)
 - [包体大小优化笔记](包体大小优化笔记.md)
 - [操作系统笔记](操作系统笔记.md)

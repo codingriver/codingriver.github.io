@@ -260,7 +260,7 @@ comments: false
 - **2026-03-21** - [shader记录](ANote/shader记录.md)
 - **2026-03-21** - [socket测试结果](ANote/socket测试结果.md)
 - **2026-03-21** - [unity编辑器笔记](ANote/unity编辑器笔记.md)
-- **2026-03-21** - [web开发笔记](ANote/web开发笔记.md.md)
+- **2026-03-21** - [web开发笔记](ANote/web开发笔记.md)
 - **2026-03-21** - [其他记录](ANote/其他记录.md)
 - **2026-03-21** - [包体大小优化笔记](ANote/包体大小优化笔记.md)
 - **2026-03-21** - [操作系统笔记](ANote/操作系统笔记.md)

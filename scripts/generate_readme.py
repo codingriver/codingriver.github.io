@@ -17,23 +17,90 @@ from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
 
+import yaml
+
+
+def extract_front_matter(text):
+    """提取 front matter 文本，未包含分隔符 ---。无 front matter 返回 None。"""
+    if not text.startswith('---'):
+        return None
+
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != '---':
+        return None
+
+    for idx in range(1, len(lines)):
+        if lines[idx].strip() == '---':
+            return '\n'.join(lines[1:idx])
+
+    return ''
+
+
+def parse_front_matter(filepath, content):
+    """解析 front matter，成功返回 dict；失败抛异常。无 front matter 返回 None。"""
+    front_matter = extract_front_matter(content)
+    if front_matter is None:
+        return None
+
+    if front_matter == '':
+        raise ValueError('front matter 已开始但没有结束分隔符 ---')
+
+    try:
+        data = yaml.safe_load(front_matter) if front_matter.strip() else {}
+    except yaml.MarkedYAMLError as e:
+        line = getattr(getattr(e, 'problem_mark', None), 'line', None)
+        col = getattr(getattr(e, 'problem_mark', None), 'column', None)
+        line_info = ''
+        if line is not None and col is not None:
+            line_info = f' (line {line + 2}, col {col + 1})'
+        message = getattr(e, 'problem', None) or str(e)
+        raise ValueError(f'front matter YAML 解析失败{line_info}: {message}') from e
+
+    if data is not None and not isinstance(data, dict):
+        raise ValueError('front matter 顶层必须是键值对象')
+
+    return data or {}
+
 
 def get_article_info(filepath):
-    """从 Markdown 文件提取 title 和 date"""
+    """从 Markdown 文件提取 title 和 date。
+
+    返回：
+      - 成功： (title, date)
+      - front matter 异常需跳过： None
+    """
     title = None
     date = None
 
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
-            content = f.read()
-            title_match = re.search(r'title:\s*["\']?([^"\'\n]+)["\']?', content)
-            if title_match:
-                title = title_match.group(1).strip()
-            date_match = re.search(r'date:\s*["\']?([^"\'\n]+)["\']?', content)
-            if date_match:
-                date = date_match.group(1).strip()
+        content = Path(filepath).read_text(encoding='utf-8')
     except Exception as e:
         print(f"warning: cannot read {filepath}: {e}")
+        return None
+
+    try:
+        front_matter = parse_front_matter(filepath, content)
+    except ValueError as e:
+        print(f"warning: skip {filepath}: {e}")
+        return None
+
+    if front_matter is not None:
+        raw_title = front_matter.get('title')
+        raw_date = front_matter.get('date')
+        if raw_title is not None:
+            title = str(raw_title).strip()
+        if raw_date is not None:
+            date = str(raw_date).strip()
+
+    if not title:
+        title_match = re.search(r'title:\s*["\']?([^"\'\n]+)["\']?', content)
+        if title_match:
+            title = title_match.group(1).strip()
+
+    if not date:
+        date_match = re.search(r'date:\s*["\']?([^"\'\n]+)["\']?', content)
+        if date_match:
+            date = date_match.group(1).strip()
 
     if not title:
         title = Path(filepath).stem
@@ -49,6 +116,7 @@ def scan_docs():
     docs_dir = Path('docs').resolve()
     repo_root = docs_dir.parent
     articles = defaultdict(list)
+    skipped_files = []
 
     category_names = {
         'u3d': 'Unity 开发',
@@ -70,7 +138,7 @@ def scan_docs():
 
     if not docs_dir.exists():
         print(f"error: {docs_dir} does not exist")
-        return articles
+        return articles, skipped_files
 
     for category_dir in sorted(docs_dir.iterdir()):
         if not category_dir.is_dir() or category_dir.name.startswith('.'):
@@ -79,12 +147,16 @@ def scan_docs():
         for md_file in sorted(category_dir.glob('*.md')):
             if md_file.name == 'index.md':
                 continue
-            title, date = get_article_info(md_file)
+            article_info = get_article_info(md_file)
+            if article_info is None:
+                skipped_files.append(str(md_file.relative_to(repo_root)).replace('\\', '/'))
+                continue
+            title, date = article_info
             readme_path = str(md_file.relative_to(repo_root)).replace('\\', '/')
             docs_path = str(md_file.relative_to(docs_dir)).replace('\\', '/')
             articles[category_name].append((title, date, readme_path, docs_path))
 
-    return articles
+    return articles, skipped_files
 
 
 def generate_readme_section(articles):
@@ -180,13 +252,18 @@ def main():
     args = parser.parse_args()
 
     print('scanning docs/...')
-    articles = scan_docs()
+    articles, skipped_files = scan_docs()
 
     if not articles:
         print('warning: no articles found')
     else:
         total = sum(len(items) for items in articles.values())
         print(f'found {total} articles in {len(articles)} categories')
+
+    if skipped_files:
+        print(f'warning: skipped {len(skipped_files)} file(s) due to invalid front matter')
+        for path in skipped_files:
+            print(f'warning: skipped file: {path}')
 
     if args.target in ('readme', 'both'):
         print('generating README section...')

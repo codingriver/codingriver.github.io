@@ -24,6 +24,12 @@ jobs:
         with:
           python-version: '3.9'
 
+      - name: Install doc check dependency
+        run: pip install pyyaml
+
+      - name: Check markdown docs and print actionable errors
+        run: python scripts/check_docs.py || true
+
       - name: Generate README and all-articles
         run: python scripts/generate_readme.py --target both
 

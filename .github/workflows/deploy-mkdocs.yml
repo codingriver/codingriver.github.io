@@ -37,13 +37,16 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin gitpython jieba
+          pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin gitpython jieba pyyaml
+
+      - name: Check markdown docs and fail with precise file/line info
+        run: python scripts/check_docs.py --strict
 
       - name: Generate all-articles page for build
         run: python scripts/generate_readme.py --target all-articles
 
       - name: Build site
-        run: mkdocs build --strict
+        run: mkdocs build --strict --verbose
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
