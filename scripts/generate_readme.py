@@ -38,7 +38,9 @@ def get_article_info(filepath):
 
 def scan_docs():
     """扫描 docs 目录，按分类组织文章"""
-    docs_dir = Path('docs')
+    # 使用 resolve() 确保为绝对路径，避免 relative_to 在 CI 环境报错
+    docs_dir = Path('docs').resolve()
+    repo_root = docs_dir.parent
     articles = defaultdict(list)
 
     category_names = {
@@ -71,7 +73,8 @@ def scan_docs():
             if md_file.name == 'index.md':
                 continue
             title, date = get_article_info(md_file)
-            rel_path = str(md_file.relative_to(Path.cwd())).replace('\\', '/')
+            # relative_to(repo_root) 确保两边都是绝对路径，CI 和本地均可正常工作
+            rel_path = str(md_file.relative_to(repo_root)).replace('\\', '/')
             articles[category_name].append((title, date, rel_path))
 
     return articles
