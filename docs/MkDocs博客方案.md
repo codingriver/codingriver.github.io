@@ -13,7 +13,7 @@ comments: false
 ---
 # MkDocs 博客方案
 
-本文档用于说明当前博客从 Hugo 迁移到 MkDocs 之后的标准使用方式，包括本地环境部署、日常写作、主题选择、GitHub Pages 部署、`gh-pages` 分支使用方式，以及搜索、评论、Git 更新时间等增强能力方案。
+本文档用于说明当前博客（基于 MkDocs）的标准使用方式，包括本地环境部署、日常写作、主题选择、GitHub Pages 部署、`gh-pages` 分支使用方式，以及搜索、评论、Git 更新时间等增强能力方案。
 
 ## 2. 本地环境部署
 
@@ -111,7 +111,7 @@ status: published
 
 ### 3.3 如何添加分类
 
-MkDocs 没有 Hugo 那种内建 taxonomy 分类体系，当前项目推荐使用：
+MkDocs 没有内建 taxonomy 分类体系，当前项目推荐使用：
 
 ## 目录即分类
 

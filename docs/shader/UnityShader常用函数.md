@@ -114,6 +114,3 @@ struct v2f_img
 - `UnityWorldSpaceLightDir`
 - `UnityWorldSpaceViewDir`
 
-## 迁移说明
-
-原文内容非常长，且以函数表为主。当前已迁移核心索引结构，后续可继续完整搬运全部函数表格内容。

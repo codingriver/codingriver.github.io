@@ -75,11 +75,4 @@ comments: true
 - 不支持用 `MaterialPropertyBlock` 修改导致不兼容的属性
 - 适合 URP / HDRP / SRP 环境下的渲染批处理优化
 
-## 迁移说明
-
-原文为超长草稿，当前先迁移了主体结构与关键结论，后续可继续细化：
-
-- OpenGL 渲染状态说明
-- Draw Call CPU 开销详细分析
-- Static / Dynamic / Instancing 的适用边界
 - 遮挡剔除与视锥剔除的实践案例
