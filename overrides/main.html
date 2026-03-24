@@ -232,5 +232,29 @@
       // 兼容 MkDocs Material 的 SPA 导航（instant loading）
       document.addEventListener("DOMContentSwitch", initCodeCollapse);
     })();
+    // 自动对图片 src 中的中文字符进行 URL 编码，修复 GitHub Pages 中文路径问题
+    (function fixChineseImagePaths() {
+      function encodeChinesePaths() {
+        document.querySelectorAll('img').forEach(function(img) {
+          var src = img.getAttribute('src');
+          if (!src) return;
+          // 只处理含中文的路径
+          if (/[\u4e00-\u9fff\u3000-\u303f\uff00-\uffef]/.test(src)) {
+            var encoded = src.split('/').map(function(segment) {
+              return segment.split('.').map(function(part) {
+                return encodeURIComponent(part);
+              }).join('.');
+            }).join('/');
+            img.setAttribute('src', encoded);
+          }
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', encodeChinesePaths);
+      } else {
+        encodeChinesePaths();
+      }
+      document.addEventListener('DOMContentSwitch', encodeChinesePaths);
+    })();
   </script>
 {% endblock %}
