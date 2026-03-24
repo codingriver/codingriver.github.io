@@ -27,6 +27,9 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Configure git for unicode paths
+        run: git config core.quotepath false
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -47,6 +50,12 @@ jobs:
 
       - name: Build site
         run: mkdocs build --strict --verbose
+
+      - name: Verify images in site
+        run: |
+          echo "Checking Unity-URP images:"
+          ls site/ANote/image/ 2>/dev/null || echo "No ANote/image dir"
+          find site -name "eJD95mkRaKYfXCI.png" 2>/dev/null || echo "Target image not found in site"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
