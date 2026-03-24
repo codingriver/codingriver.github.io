@@ -51,42 +51,42 @@ comments: true
 > 优化前:   
 > *当前截图为win10 unity editor测试*  
 >*编号为1的测试数据，每帧解析30001协议50次的开销，测试数据为`Map_ObjectInfo.request`,数据包含有60个`MapObjectInfo`对象*   
-> ![](image/IGG开发笔记/2023-04-11-16-51-18.png)  
+> ![](image/IGG-Dev-Note/2023-04-11-16-51-18.png)  
 
 
 
 **协议开销分析**
 1. `SocketAsyncEventArgs mReceiveEventArgs` 异步socket 收到网络数据
 1. 网络数据 写入`mReceiveBuffer`中
-    > ![](image/IGG开发笔记/2023-04-23-15-44-13.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-15-44-13.png)
 1. 然后`Copy`到`mReadQueueBuffer`（网络数据拆包）进行传递
-    > ![](image/IGG开发笔记/2023-04-23-15-46-39.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-15-46-39.png)
 1. 然后使用`packetData`进行派发，`packetData`是新的buffer
-    > ![](image/IGG开发笔记/2023-04-23-16-15-48.png)  
-    > ![](image/IGG开发笔记/2023-04-23-15-52-57.png)  
+    > ![](image/IGG-Dev-Note/2023-04-23-16-15-48.png)  
+    > ![](image/IGG-Dev-Note/2023-04-23-15-52-57.png)  
     >
 1. 通过`Socket`异步回调线程将`packetData` 存储到`private LockFreeQueue<MemoryStream> mReceivePacketQueue`队列中，然后通过`unity`主线程进行派发,在主线程中进行`Decode`
-    > ![](image/IGG开发笔记/2023-04-23-16-18-00.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-16-18-00.png)
 1. `Decode`时，`MemoryStream.ToArray()`进行拷贝，生成新的buffer
-    >![](image/IGG开发笔记/2023-04-23-15-55-03.png)  
-    > ![](image/IGG开发笔记/2023-04-23-15-56-41.png)  
-    > ![](image/IGG开发笔记/2023-04-13-11-07-09.png)  
-    >![](image/IGG开发笔记/2023-04-13-11-11-06.png)  
-    >![](image/IGG开发笔记/2023-04-13-10-50-05.png)  
+    >![](image/IGG-Dev-Note/2023-04-23-15-55-03.png)  
+    > ![](image/IGG-Dev-Note/2023-04-23-15-56-41.png)  
+    > ![](image/IGG-Dev-Note/2023-04-13-11-07-09.png)  
+    >![](image/IGG-Dev-Note/2023-04-13-11-11-06.png)  
+    >![](image/IGG-Dev-Note/2023-04-13-10-50-05.png)  
 1. `Decode`首先进行解压缩，解压缩时先把原始buffer`Copy`到`newBuffer`，`newBuffer`是新的buffer
-    > ![](image/IGG开发笔记/2023-04-23-15-58-56.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-15-58-56.png)
 1. 然后进行解压缩`decomBuffer`，解压缩`decomBuffer`是新的buffer
-    > ![](image/IGG开发笔记/2023-04-23-16-00-10.png)
-    > ![](image/IGG开发笔记/2023-04-23-16-00-42.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-16-00-10.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-16-00-42.png)
 1. 解压后进行解密`outBuffer`，解密是新的buffer
-    > ![](image/IGG开发笔记/2023-04-23-16-03-28.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-16-03-28.png)
 1. 解密后进行解包`unpack_data`,解包是新的buffer
-    > ![](image/IGG开发笔记/2023-04-23-16-04-44.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-16-04-44.png)
 1. 解包后解析对象`Package`
 1. 解析对象后进行解析对象`GateMessage`,`GateMessage`对象有新的`byte[]`字段,该字段有新的buffer
     > 收到的每个协议先反序列化成`GateMessage`对象，该对象的字段`private List<MessageContent> _content;` 带有`private byte[] _networkMessage;`字段，这个字段是真实协议对象的原始数据，gc严重
-    > ![](image/IGG开发笔记/2023-04-23-16-05-56.png)
-    > ![](image/IGG开发笔记/2023-04-23-16-10-48.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-16-05-56.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-16-10-48.png)
 1. 将解析对象封装到`RpcInfo`对象中
 1. 使用`GateMessage`进行解包`unpack_data`,解包是新的buffer
 1. 开始解析具体业务对象,同时会封装到`RpcInfo`中
@@ -104,21 +104,21 @@ comments: true
 1. `RpcInfo`、`GateMessage.request`、`GateMessage.response`、`MessageContent`等等对象需要进缓存池,这些对象是为反序列化服务的
 1. 调用频繁的业务协议使用缓存池进行处理
     >`MessageContent`是工具生成的，为了防止冲突，改为`MessageContentEx`  
-    > ![](image/IGG开发笔记/2023-04-23-16-39-24.png)
+    > ![](image/IGG-Dev-Note/2023-04-23-16-39-24.png)
 
 
 >优化中期参照：  
 > *编号为1的测试数据，每帧解析30001协议50次的开销，测试数据为`Map_ObjectInfo.request`,数据包含有60个`MapObjectInfo`对象*   
-> ![](image/IGG开发笔记/2023-04-12-21-57-40.png)  
+> ![](image/IGG-Dev-Note/2023-04-12-21-57-40.png)  
 > *上面结果是将所有协议都做缓存，包括`MapObjectInfo`内部字段引用的协议*
-> ![](image/IGG开发笔记/2023-04-13-14-55-45.png)  
+> ![](image/IGG-Dev-Note/2023-04-13-14-55-45.png)  
 > *上面是将`MapObjectInfoEntity`的`Dictionary`使用`MapObjectInfo`，不创建新的,具体业务会有bug*
 > `et.heros = new System.Collections.Generic.Dictionary<System.Int64,SprotoType.BattleHeroInfo>();`
 >
 
 > 优化最终结果:
 >*编号为1的测试数据，每帧解析30001协议50次的开销，测试数据为`Map_ObjectInfo.request`,数据包含有60个`MapObjectInfo`对象*   
-> ![](image/IGG开发笔记/2023-04-23-15-37-32.png)   
+> ![](image/IGG-Dev-Note/2023-04-23-15-37-32.png)   
 > `MapObjectInfo`的内部字段引用的协议类型没有做缓存（多个协议会引用相同的协议，复杂度太高）;  
 > `MapObjectInfoEntity`的`Dictionary`还是创建新的，否则业务有bug;  
 > 
@@ -128,7 +128,7 @@ comments: true
 > 优化后 4.8MB
 
 
-> ![](image/IGG开发笔记/2023-04-23-17-23-13.png)   
+> ![](image/IGG-Dev-Note/2023-04-23-17-23-13.png)   
 >游戏中优化前后对比:  
 > 优化前每一次调用 `GC` 是 `255kb`
 > 优化后第一次调用 `GC` 是 `114.1kb`
@@ -144,4 +144,4 @@ comments: true
 
 > PoolMgr的缓存池测试
 >
->![](image/IGG开发笔记/2023-04-25-16-40-28.png)
+>![](image/IGG-Dev-Note/2023-04-25-16-40-28.png)

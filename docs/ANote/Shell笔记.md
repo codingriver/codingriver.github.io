@@ -608,18 +608,18 @@ adb install -r E:\Soft\debug.apk
 那么这个时候我们需要先关闭其他模拟器，只打开要链接的那个多开器，然后去cmd窗口输入
 
 `tasklist`
-![](image/Shell笔记/2024-04-11-17-57-05.png)
+![](image/Shell-Note/2024-04-11-17-57-05.png)
 
 找到对应的夜神pid,然后输入
 
 `netstat -ano | findstr 5508`
-![](image/Shell笔记/2024-04-11-17-56-54.png)
+![](image/Shell-Note/2024-04-11-17-56-54.png)
 找到端口为 62***的，然后去adb链接
-![](image/Shell笔记/2024-04-11-17-56-50.png)
+![](image/Shell-Note/2024-04-11-17-56-50.png)
 连接成功！
 可以使用以下命令，查看一下！
 
 ```
 adb devices
 ```
-![](image/Shell笔记/2024-04-11-17-56-44.png)
+![](image/Shell-Note/2024-04-11-17-56-44.png)

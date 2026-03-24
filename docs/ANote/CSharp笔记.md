@@ -24,9 +24,9 @@ comments: true
 ### vs中设置IL ( ildasm.exe )
 我这里的路径：
 `C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.8 Tools\x64\ildasm.exe`
-![](image/CSharp笔记/2022-04-12-14-05-49.png)
+![](image/CSharp-Note/2022-04-12-14-05-49.png)
 
-![](image/CSharp笔记/2022-04-12-14-06-17.png)
+![](image/CSharp-Note/2022-04-12-14-06-17.png)
 
 
 ### int强转 enum过程
@@ -228,16 +228,16 @@ A
 ## WinDbg安装
 ### 安装方式（建议使用该方法）1  
  使用windows store 搜索 WinDbg preview 然后下载
- ![](image/CSharp笔记/2022-06-30-18-02-50.png)
+ ![](image/CSharp-Note/2022-06-30-18-02-50.png)
 ### 安装方式2：
 下载windows SDK，并且勾选WinDbg；
 
 
 如果已经安装windows SDK 使用修复 ：
-![](image/CSharp笔记/2022-06-28-16-40-28.png)
-![](image/CSharp笔记/2022-06-30-18-01-02.png)
-![](image/CSharp笔记/2022-06-30-18-01-37.png)
-![](image/CSharp笔记/2022-06-30-18-02-10.png)
+![](image/CSharp-Note/2022-06-28-16-40-28.png)
+![](image/CSharp-Note/2022-06-30-18-01-02.png)
+![](image/CSharp-Note/2022-06-30-18-01-37.png)
+![](image/CSharp-Note/2022-06-30-18-02-10.png)
 
 
 ### 配置符号表环境变量
@@ -247,7 +247,7 @@ _NT_SYMBOL_PATH=C:\Symbols;srv*C:\Symbols*http://msdl.microsoft.com/download/sym
 
 _NT_ALT_SYMBOL_PATH=cache*C:\Symbols
 ```
-![](image/CSharp笔记/2022-06-30-18-09-05.png)
+![](image/CSharp-Note/2022-06-30-18-09-05.png)
 ###  WinDBG中加载SOS和CLR （安装sos工具）
 ```sh
 #step1
@@ -293,7 +293,7 @@ SOS install succeeded
 >　　运气好的话，使用命令.load C:\Windows\Microsoft.NET\Framework\v4.0.30319\SOS.dll可以加载成功。如果失败，特别是出现The call to LoadLibrary(C:\Windows\Microsoft.NET\Framework\v4.0.30319\sos.dll) failed, Win32 error 0n193这样的错误，请确认加载sos.dll的版本是否正确。
 
 >　　此外，加载不出错，并不见得可以直接使用。可以尝试命令`.loadby sos clr`。如果命令成功，那么测试环境好了。如果出现了“Unable to find module 'clr'”这样的错误。请键入g让调试程序运行一会儿，停下来的时候再尝试命令.loadby sos clr，这时一般都会成功。
-> ![](image/CSharp笔记/2022-06-30-17-57-07.png)
+> ![](image/CSharp-Note/2022-06-30-17-57-07.png)
 
 
 
@@ -339,7 +339,7 @@ procdump -ma mydotNetApp.exe d:\myapp.dmp
 
 **方式3**
 使用vs调试，断点后，点击 调试菜单-> 将转储另存为
-![](image/CSharp笔记/2022-06-30-21-04-42.png)
+![](image/CSharp-Note/2022-06-30-21-04-42.png)
 
 
 
@@ -355,7 +355,7 @@ C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\windbg.exe
 
  $(TargetDir)
 ```
-![](image/CSharp笔记/2022-06-30-21-13-09.png)
+![](image/CSharp-Note/2022-06-30-21-13-09.png)
 
 
 
@@ -400,7 +400,7 @@ windbg命令分标准命令、元命令和扩展命令。
 >[sos官网文档](https://docs.microsoft.com/en-us/dotnet/framework/tools/sos-dll-sos-debugging-extension)
 > [使用 Windows 调试器调试托管代码](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/debugging-managed-code)
 
->![](image/CSharp笔记/2022-07-04-21-50-43.png)
+>![](image/CSharp-Note/2022-07-04-21-50-43.png)
 
 ```sh
     sxe ld clr # 添加中断 （加载指定名称的dll时，调试器中断） 

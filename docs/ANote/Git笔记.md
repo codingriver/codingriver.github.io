@@ -332,7 +332,7 @@ fi
 
 > <https://blog.csdn.net/10km/article/details/100689481>
 ## git文件内容没变但status显示不同的解决方案
-![](image/Git笔记/2022-01-17-21-47-17.png)
+![](image/Git-Note/2022-01-17-21-47-17.png)
 
 这里提示的不同，是文件的权限改变了。
 

@@ -188,7 +188,7 @@ and the repository exists.
 就可以了
 > 这里可能是因为我修改密钥文件名字造成的，通配符匹配不到
 
-![](image/SSH笔记/2021-12-21-17-31-54.png)
+![](image/SSH-Note/2021-12-21-17-31-54.png)
 
 
 #### SSH用私钥登录远程服务器时提示私钥不安全
@@ -272,4 +272,4 @@ Could not open a connection to your authentication agent.
 
 如果你也在使用小乌龟客户端，你可能会遇到使用SSH协议的仓库不能成功push的问题，这时你需要确保tortoisegit设置的SSH客户端是Git提供的才对。
 
-![](image/SSH笔记/2024-03-12-20-52-37.png)
+![](image/SSH-Note/2024-03-12-20-52-37.png)

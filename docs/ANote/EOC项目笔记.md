@@ -113,23 +113,23 @@ comments: true
         }
 ```
 
-![](image/EOC项目笔记/2022-07-06-19-47-56.png)
+![](image/EOC-Project-Note/2022-07-06-19-47-56.png)
 
 
 # AssetBundle 包体大小
 > 当前冗余资源 111 ，总资源数 5430
-> ![](image/EOC项目笔记/2022-08-12-15-07-20.png)
+> ![](image/EOC-Project-Note/2022-08-12-15-07-20.png)
 ## Shader打包问题
 > shader的ab文件 `all_shader.ab` 大小 `1291kb`
 > `shader.ab` 大小 `302kb`
 > (shader.ab内容)
->![shader.ab](image/EOC项目笔记/2022-08-12-15-12-08.png)
+>![shader.ab](image/EOC-Project-Note/2022-08-12-15-12-08.png)
 
 
 #### 依赖信息异常
 (all_shader.ab内容) 应该是把所以shader打包进去，但是Container 异常
-![](image/EOC项目笔记/2022-08-12-15-16-32.png)
-![](image/EOC项目笔记/2022-08-12-15-16-50.png)
+![](image/EOC-Project-Note/2022-08-12-15-16-32.png)
+![](image/EOC-Project-Note/2022-08-12-15-16-50.png)
 
 **解决办法：**
 - 导入Unity内置Shader到项目中  
@@ -146,7 +146,7 @@ comments: true
 ## Material 打包问题
 
 `m_SavedProperties`的数据冗余，无用数据被打包进去
-![](image/EOC项目笔记/2022-08-12-19-05-48.png)
+![](image/EOC-Project-Note/2022-08-12-19-05-48.png)
 
 - 使用项目内工具 `Tools/清理材质中的废弃属性` 清理
 
@@ -172,7 +172,7 @@ comments: true
  >参考  <https://forum.unity.com/threads/unity-5-6-0b4-problem-with-asset-bundle-the-file-archive-cab-8bc5a956f7efa6356fcd1d00c8005f99.452006/>
 
 
-![](image/EOC项目笔记/2022-08-18-18-19-05.png)
+![](image/EOC-Project-Note/2022-08-18-18-19-05.png)
 
 4. 材质球`m_SavedProperties`中的无用属性（有可能引用纹理，但是已经删除了）
 > 上图中`RenderTexture #4`纹理，实际材质球中已经删除，但是还是会被引用
@@ -185,9 +185,9 @@ comments: true
 >物体缓存池 优先
 > gc检查
 > 特效
-![](image/EOC项目笔记/2022-08-26-16-19-52.png)
+![](image/EOC-Project-Note/2022-08-26-16-19-52.png)
 
-![](image/EOC项目笔记/2022-08-26-16-20-02.png)
+![](image/EOC-Project-Note/2022-08-26-16-20-02.png)
 
 - 部队头像update中刷新loadsprite和name (每帧调用)
     - update中的业务分解，像loadsprite和name等不需要每帧执行的按需处理
@@ -202,7 +202,7 @@ comments: true
 ```
 - List或者Dictionary Clear后重建， 调用频繁
 
-![](image/EOC项目笔记/2022-09-15-17-34-30.png)
+![](image/EOC-Project-Note/2022-09-15-17-34-30.png)
 
 
                     case RssType.HolyLand_PVP:

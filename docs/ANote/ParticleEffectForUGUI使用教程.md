@@ -25,11 +25,11 @@ comments: true
 
 将带`Particle System`组件的物体添加 `UIParticle` 组件,该组件会自动添加到子节点的所有带`Particle System`组件的物体上
 
-![](image/ParticleEffectForUGUI使用教程/2022-02-17-17-23-49.png)
+![](image/ParticleEffectForUGUI-Tutorial/2022-02-17-17-23-49.png)
 
 `Scale`:调整该`Particle System`的缩放,不影响子物体  
 `Animatable Properties`:如果使用Animation或者其他动画更新（Update）材质球上的属性，则勾选上对应的Shader属性即可  
-![](image/ParticleEffectForUGUI使用教程/2022-02-17-17-29-55.png)
+![](image/ParticleEffectForUGUI-Tutorial/2022-02-17-17-29-55.png)
 
 删除则需要每个物体去删除 `UIParticle` 组件  
 
