@@ -42,7 +42,7 @@ CATEGORY_NAMES = {
     'math': '数学与图形学基础',
     'datastruct': '数据结构与算法',
     'basesystem': '系统基础',
-    'unity编辑器': 'Unity 编辑器扩展',
+    'unity-editor': 'Unity 编辑器扩展',
     'unityTool': 'Unity 工具',
     'lua': 'Lua 语言',
     'Graphics': '图形学',
