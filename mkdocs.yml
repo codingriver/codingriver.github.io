@@ -296,12 +296,6 @@ nav:
   - ZipHelper压缩工具: unityTool/ZipHelper压缩工具.md
   - 生成分布式唯一ID: unityTool/生成分布式唯一ID.md
   - 遍历打印对象的所有变量和属性: unityTool/遍历打印对象的所有变量和属性.md
-- Unity 编辑器扩展:
-  - 栏目首页: unity-editor/index.md
-  - MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder: unity-editor/MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder.md
-  - SerializedObject获取所有属性: unity-editor/SerializedObject获取所有属性.md
-  - Unity编辑器扩展菜单项: unity-editor/Unity编辑器扩展菜单项.md
-  - unity-editor-自定义Inspector面板: unity-editor/unity编辑器-自定义Inspector面板.md
 plugins:
   - search
   - glightbox
