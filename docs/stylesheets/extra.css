@@ -1,3 +1,33 @@
 /* 自定义样式 */
 
 /* 可在此处添加全局样式覆盖 */
+
+/* 代码块行号显示 (pymdownx-inline 模式) */
+code .hll { display: block; }
+code [id^="__span"] {
+  display: inline;
+}
+
+/* 行号列 */
+.highlight [id^="__span"]::before {
+  counter-increment: linenums;
+  content: counter(linenums);
+  display: inline-block;
+  min-width: 2.5em;
+  padding-right: 0.8em;
+  margin-right: 0.5em;
+  text-align: right;
+  color: var(--md-default-fg-color--light);
+  border-right: 1px solid var(--md-default-fg-color--lighter);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.highlight pre {
+  counter-reset: linenums;
+}
+
+/* 行号高亮时的样式 */
+.highlight [id^="__span"]:target {
+  background-color: var(--md-code-hl-color);
+}
