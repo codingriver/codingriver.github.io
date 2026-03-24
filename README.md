@@ -136,10 +136,10 @@
 
 ### Unity 编辑器扩展
 
-- **2026-03-21** - [MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder](docs/unity编辑器/MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder.md)
-- **2026-03-21** - [SerializedObject获取所有属性](docs/unity编辑器/SerializedObject获取所有属性.md)
-- **2026-03-21** - [Unity编辑器扩展菜单项](docs/unity编辑器/Unity编辑器扩展菜单项.md)
-- **2026-03-21** - [unity编辑器-自定义Inspector面板](docs/unity编辑器/unity编辑器-自定义Inspector面板.md)
+- **2026-03-21** - [MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder](docs/unity-editor/MeshRenderer在Inspector设置SorttingLayerName和SorttingOrder.md)
+- **2026-03-21** - [SerializedObject获取所有属性](docs/unity-editor/SerializedObject获取所有属性.md)
+- **2026-03-21** - [Unity编辑器扩展菜单项](docs/unity-editor/Unity编辑器扩展菜单项.md)
+- **2026-03-21** - [unity编辑器-自定义Inspector面板](docs/unity-editor/unity编辑器-自定义Inspector面板.md)
 
 ### iOS 开发
 
