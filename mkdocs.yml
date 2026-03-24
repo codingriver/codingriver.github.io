@@ -307,6 +307,8 @@ plugins:
   - glightbox
   - minify:
       minify_html: true
+      htmlmin_opts:
+        remove_optional_attribute_quotes: false
   - git-revision-date-localized:
       enable_creation_date: true
       type: datetime
