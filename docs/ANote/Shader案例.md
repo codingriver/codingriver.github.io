@@ -569,7 +569,7 @@ Shader "Custom/Role_Hair"
 ### 玉龙
 
 
-![](../assets/shared/18c0a56c-CleanShot2022-03-17.gif)
+![](../assets/shared/18c0a56c-18c0a56c-CleanShot2022-03-17.gif)
 *漫反射，透射光（高光），环境光*
 
 透射光实现：根据光反方向（增加法线的扭曲，表示玉龙表面的粗糙情况影响光线的方向）和视线方向夹角来判定透射光的强度（假设从玉龙后面有个手电筒和人眼的夹角，越小表示人眼看到的光线越多，光越强），然后通过厚度图来模拟玉龙的通透性
@@ -799,7 +799,7 @@ Shader "CS03/Dragon"
 
 ### 钻石
 
-![](../assets/shared/18c0a56c-CleanShot2022-03-17.gif)
+![](../assets/shared/18c0a56c-18c0a56c-CleanShot2022-03-17.gif)
 
 *双Pass渲染，一个背面渲染（cubemap的反射和折射），一个前面渲染（折射和菲涅尔）*
 
