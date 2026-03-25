@@ -63,4 +63,5 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add docs
           git commit -m "docs: normalize image paths and update references [skip ci]"
+          git pull --rebase origin master
           git push origin master
