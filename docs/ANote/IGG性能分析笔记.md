@@ -14,10 +14,10 @@ comments: true
 # IGG性能分析笔记
 
 > 世界地图优化前的数据  
->![](image/IGG-Perf-Note/2023-03-11-18-13-36.png)   
+>![](image/IGG性能分析笔记/2023-03-11-18-13-36.png)   
 >
 > 优化后的数据：  
->![](image/IGG-Perf-Note/2023-03-30-11-35-31.png)
+>![](image/IGG性能分析笔记/2023-03-30-11-35-31.png)
 
 
 ## 动态批处理说明
@@ -29,8 +29,8 @@ comments: true
 
 
 
-![](image/IGG-Perf-Note/2023-03-16-15-10-53.png) 
-![](image/IGG-Perf-Note/2023-03-16-16-49-15.png)
+![](image/IGG性能分析笔记/2023-03-16-15-10-53.png) 
+![](image/IGG性能分析笔记/2023-03-16-16-49-15.png)
 
 *unity版本不同，动态合批限制也不同，需根据对应版本的官方文档去处理。*
 
@@ -47,11 +47,11 @@ comments: true
 
 常见合批失败原因：
 
-![](image/IGG-Perf-Note/2023-03-14-17-35-44.png)
+![](image/IGG性能分析笔记/2023-03-14-17-35-44.png)
 
 Unity中`Player Settings > Other Settings > Dynamic Batching` 
 
-![](image/IGG-Perf-Note/2023-03-14-17-25-39.png)
+![](image/IGG性能分析笔记/2023-03-14-17-25-39.png)
 
 **注意: `Sprite Renderer`和`Particle System` 默认启用`Dynamic Batching`，不会受到 `Player Setting`的动态合批开关的影响。**
 ## 地图GPU优化规划
@@ -116,18 +116,18 @@ BillText
 ## 怪物合批和部队合批
 
 地图 建筑单位可以合并图集处理
-![](image/IGG-Perf-Note/2023-03-09-21-49-16.png)
+![](image/IGG性能分析笔记/2023-03-09-21-49-16.png)
 
 
 分析场景 `map-analyse.unity `
 
 分析前的`drawcall`是 `478`
-![](image/IGG-Perf-Note/2023-03-04-16-40-44.png)
+![](image/IGG性能分析笔记/2023-03-04-16-40-44.png)
 
 
 
 只显示怪的数据`drawcall`是 `274`
-![](image/IGG-Perf-Note/2023-03-04-17-47-09.png)
+![](image/IGG性能分析笔记/2023-03-04-17-47-09.png)
 
 怪是3转3的图片，带阴影，有8个方向，每个动作都有8个方向，所有动作：攻击，待机，行走，跑步，攻击，休闲 
 
@@ -145,14 +145,14 @@ BillText
     
 4. 动态合并图集
 5. shader实现一个材质球代表一个怪物的展示(shader实现几*几的方格子，同时渲染多个图集的数据)
-    >![](image/IGG-Perf-Note/2023-03-09-18-27-55.png)
+    >![](image/IGG性能分析笔记/2023-03-09-18-27-55.png)
     >弊端：怪物和别的怪或者部队有交叉重叠时，不能交叉渲染，前后遮挡关系会有细节问题
 
 6. 怪物里面的每个士兵和英雄 根据图集设置固定的order，分离渲染顺序
     >会丢失阵型前后遮挡关系，也会丢失重叠怪的遮挡关系
     
     >测试调整后的怪，drawcall只有`7`
-    >![](image/IGG-Perf-Note/2023-03-09-18-34-12.png)
+    >![](image/IGG性能分析笔记/2023-03-09-18-34-12.png)
     
 7. 角色和角色阴影分离
     > 减小角色图集 ,阴影可以使用更低的分辨率，使角色图集能容纳更多角色的图
@@ -162,44 +162,44 @@ BillText
 8. 使用 [SortingGroup](https://docs.unity3d.com/cn/2021.2/Manual/class-SortingGroup.html) 进行分组 
     >Unity 按 Sorting Layer 和 Order in Layer 渲染器属性对同一排序组中的所有渲染器进行排序。在此排序过程中，Unity 不会考虑每个渲染器的 **Distance to Camera** 属性。实际上，Unity 会根据包含 Sorting Group 组件的根游戏对象的位置，为整个排序组（包括其所有子渲染器）设置 Distance to Camera 值。  
     >配置在怪物上，表现一般，大量重叠的对象上效果应该更好一些  
-    >![](image/IGG-Perf-Note/2023-03-09-20-09-29.png)
+    >![](image/IGG性能分析笔记/2023-03-09-20-09-29.png)
 
 #### 结论
 **使用第6条方案，每个士兵和英雄 根据图集设置固定的order，分离渲染顺序**
     
 >数据比对 测试场景 `mapbatches.unity`
 >优化前的怪和部队drawcall `426`  
->![](image/IGG-Perf-Note/2023-03-14-10-44-26.png) 
+>![](image/IGG性能分析笔记/2023-03-14-10-44-26.png) 
 >
 >优化后的怪和部队drawcall `36`  
->![](image/IGG-Perf-Note/2023-03-14-11-14-43.png)
+>![](image/IGG性能分析笔记/2023-03-14-11-14-43.png)
 
 
 
 ## 场景内lod高层静态特效及物体
-![](image/IGG-Perf-Note/2023-03-14-15-01-24.png)
+![](image/IGG性能分析笔记/2023-03-14-15-01-24.png)
 
-![](image/IGG-Perf-Note/2023-03-14-15-10-05.png)
+![](image/IGG性能分析笔记/2023-03-14-15-10-05.png)
 
 >优化后的数据 （lod 对象这里没有进行图集整合，需要时可以支持）
 >优化前drawcall是 54，优化后是17，效果非常可观，但需要注意动态合批的CPU及内存开销
->![](image/IGG-Perf-Note/2023-03-15-11-11-47.png)
+>![](image/IGG性能分析笔记/2023-03-15-11-11-47.png)
 
 ### 静态特效
 
-![](image/IGG-Perf-Note/2023-03-14-15-29-22.png)
+![](image/IGG性能分析笔记/2023-03-14-15-29-22.png)
 
 优化后特效后的结果: 
 
-![](image/IGG-Perf-Note/2023-03-14-17-45-46.png)
+![](image/IGG性能分析笔记/2023-03-14-17-45-46.png)
 
 **结论**
 1. 给特效物体不同的材质球指定不同的`sortingorder`
 >如果不同材质球的物体使用相同的`sortingorder`，unity内部
-![](image/IGG-Perf-Note/2023-03-14-17-16-34.png)
+![](image/IGG性能分析笔记/2023-03-14-17-16-34.png)
 
 ### 静态物体
-![](image/IGG-Perf-Note/2023-03-14-15-23-55.png)
+![](image/IGG性能分析笔记/2023-03-14-15-23-55.png)
 drawcall 序号1和3是相同图集相同材质球,序号2和4也是相同图集相同材质球，1,2,3,4使用的相同shader，且，1,2,3,4动态合批的物体互相没有遮挡，
 
 
@@ -222,34 +222,34 @@ drawcall 序号1和3是相同图集相同材质球,序号2和4也是相同图集
 
  **处理方案：** 将scale为0时的sprite位置设置到相机外的位置
 
-![](image/IGG-Perf-Note/2023-03-16-18-17-12.png) 
+![](image/IGG性能分析笔记/2023-03-16-18-17-12.png) 
 
 处理后的`drawcall`
 
-![](image/IGG-Perf-Note/2023-03-16-18-15-09.png)
+![](image/IGG性能分析笔记/2023-03-16-18-15-09.png)
 
 ## 静态特效
 >联盟标记，城堡护盾，冒烟特效，着火特效， 部队移动烟尘，lod高层圣地常驻特效，普攻子弹特效，
 
 1. 城堡护盾、冒烟，着火特效
 护盾特效（`effect_map_huzhao`）本身占用10个drawcall，有两个模型组成，每个模型5个材质球，且模型不能动态合批合批（因为不同材质球的渲染顺序相同）
-![](image/IGG-Perf-Note/2023-03-15-15-44-35.png)
-![](image/IGG-Perf-Note/2023-03-15-15-47-08.png)
+![](image/IGG性能分析笔记/2023-03-15-15-44-35.png)
+![](image/IGG性能分析笔记/2023-03-15-15-47-08.png)
 
 
-![](image/IGG-Perf-Note/2023-03-15-16-16-24.png)
+![](image/IGG性能分析笔记/2023-03-15-16-16-24.png)
 *7个护盾特效，占用60个drawcall，视野内随着护盾数量的增长，drawcall也急速增长*
 
 **结论**
 - 建议优化护盾特效，降低材质球数量
     > 这里半球护盾特效是有两个mesh组成（1/2的半球mesh）,这两个mesh是相同的，（思考下是否可以使用1/4的半球mesh？） 
     > `eff_banyuan_007_1`和`eff_banyuan_007_2` mesh是一样的，资源冗余问题
-    >![](image/IGG-Perf-Note/2023-03-15-16-36-34.png)
+    >![](image/IGG性能分析笔记/2023-03-15-16-36-34.png)
 - 将材质球的`RenderQueue`进行调整，不同的材质球使用不同的值，可以进行动态合批
     >测试后的drawcall `11` 
-    >![](image/IGG-Perf-Note/2023-03-15-16-26-21.png)
+    >![](image/IGG性能分析笔记/2023-03-15-16-26-21.png)
     >将 `Sorting Group`组件移除后drawcall 是`6` （`Sorting Group`这里打断动态合批了） 
-    >![](image/IGG-Perf-Note/2023-03-15-16-28-46.png)
+    >![](image/IGG性能分析笔记/2023-03-15-16-28-46.png)
 
 2. 普通子弹特效
 
@@ -263,8 +263,8 @@ drawcall 序号1和3是相同图集相同材质球,序号2和4也是相同图集
 
 **炮弹特效**
 
-![](image/IGG-Perf-Note/2023-03-16-14-31-11.png)
-![](image/IGG-Perf-Note/2023-03-16-14-31-38.png)
+![](image/IGG性能分析笔记/2023-03-16-14-31-11.png)
+![](image/IGG性能分析笔记/2023-03-16-14-31-38.png)
 `effect_map_tongyong_touzhiwu` 炮弹的顶点数量过多不能动态合批，
 **处理方案：**调整模型的顶点数，不高于300个顶点
 
@@ -275,35 +275,35 @@ drawcall 序号1和3是相同图集相同材质球,序号2和4也是相同图集
 
 1. `UI_Pop_TroopNameState` 部队名字及状态图标
 
-![](image/IGG-Perf-Note/2023-03-17-11-40-02.png)
+![](image/IGG性能分析笔记/2023-03-17-11-40-02.png)
 
 23支部队，只显示`UI_Pop_TroopNameState` 占用drawcall就达到46 
 `UI_Pop_TroopNameState`节点上添加有`Canvas`组件,所以打断合批了
 
-![](image/IGG-Perf-Note/2023-03-17-11-44-26.png)
+![](image/IGG性能分析笔记/2023-03-17-11-44-26.png)
 
 **处理方案：**
     - 将`Canvas`组件移除，给状态图标添加`SortingGroup`组件，将名字和图标层级分离，这样保证`Text`组件和`Image`组件分别独立合批，不会被打断
     - 图标显示分底图和图标，将底图和图标放到同一个图集中。 
 
 >优化后：
->![](image/IGG-Perf-Note/2023-03-30-11-52-47.png)
+>![](image/IGG性能分析笔记/2023-03-30-11-52-47.png)
 
 
 2. `UI_Pop_TroopSelectHUD` 部队选中后的信息显示
 
 5支部队，占用20个drawcall 
 `UI_Pop_TroopSelectHUD`节点上添加有`Canvas`组件,所以打断合批了
-![](image/IGG-Perf-Note/2023-03-17-15-32-01.png)
+![](image/IGG性能分析笔记/2023-03-17-15-32-01.png)
 
 
 
 >关于合批 UGUI的一个缺陷  
-> ![](image/IGG-Perf-Note/2023-03-20-15-11-26.png) 
+> ![](image/IGG性能分析笔记/2023-03-20-15-11-26.png) 
 > *头像框合批失败，所以是3个drawcall*  
-> ![](image/IGG-Perf-Note/2023-03-20-15-19-18.png) 
+> ![](image/IGG性能分析笔记/2023-03-20-15-19-18.png) 
 > *白色图片不能合批，一共占用3个drawcall*
->![](image/IGG-Perf-Note/2023-03-20-15-47-03.png) 
+>![](image/IGG性能分析笔记/2023-03-20-15-47-03.png) 
 >根据上图占用3个drawcall，推断出，Hierachy内的上下关系不能保证临近位置合批，受到前后遮挡关系影响。 
 >这里有个问题是 第1个drawcall先绘制的左侧的白图，根据Hierachy的顺序，应该先绘制蓝色图片才对?
 >UGUI是根据Depth进行相邻的Depth合批，不相邻的不能合批，这里可以调整节点关系
@@ -311,21 +311,21 @@ drawcall 序号1和3是相同图集相同材质球,序号2和4也是相同图集
 3. `UI_Pop_TroopFightInfoHUD` 战斗头像
 
 10支部队，占用50个drawcall，200支部队占用drawcall为1000  ,200支部队副将头像也显示 drawcall为 1400
-![](image/IGG-Perf-Note/2023-03-21-14-48-34.png)  
+![](image/IGG性能分析笔记/2023-03-21-14-48-34.png)  
 200支部队  
-![](image/IGG-Perf-Note/2023-03-22-17-32-27.png)  
+![](image/IGG性能分析笔记/2023-03-22-17-32-27.png)  
 问题：  
 - 每个头像上添加有Canvas组件  
 > 去除Canvas组件后 drawcall 是19,200支部队占用drawcall为375  
 - 每个头像上的指向线添加有Canvas组件  
 >这个Canvas组件是保证指向线的层级在头像后面，不能去除。  
 >这里去除Canvas后使用固定的材质球调整Render Queue来替代处理层级关系，替换材质球后drawcall为16，200支部队占用drawcall为412   
->![](image/IGG-Perf-Note/2023-03-22-14-55-37.png)  
+>![](image/IGG性能分析笔记/2023-03-22-14-55-37.png)  
 - 如果不显示指向线，且把Canvas组件去除，头像的drawcall为9，  200支部队占用drawcall为175   
->![](image/IGG-Perf-Note/2023-03-22-14-57-04.png)  
+>![](image/IGG性能分析笔记/2023-03-22-14-57-04.png)  
 - 指向线通过`MultiImage`组件合并成一个mesh进行处理   
 > 这时候指向线和头像同时显示的drawcall为10，  200支部队占用drawcall为176   
->![](image/IGG-Perf-Note/2023-03-22-16-38-03.png)
+>![](image/IGG性能分析笔记/2023-03-22-16-38-03.png)
 
 
 
@@ -345,18 +345,18 @@ drawcall 序号1和3是相同图集相同材质球,序号2和4也是相同图集
 - 图集调整，将英雄战斗头像这一个尺寸类型单独打包一个图集为`duilietouxiang`图集
     1. 将战斗头像框，血条，技能充能条放到该图集中
     1. 部队的状态图标，状态图标底图，别动队图标放到该图集中（战斗头像和行军列表使用相同的头像） 
-        >![](image/IGG-Perf-Note/2023-03-23-11-56-27.png)
+        >![](image/IGG性能分析笔记/2023-03-23-11-56-27.png)
     >英雄头像的图集放有多种尺寸类型的，这个图集不合理  
-    >![](image/IGG-Perf-Note/2023-03-23-11-45-40.png)  
+    >![](image/IGG性能分析笔记/2023-03-23-11-45-40.png)  
 
 
  优化前 200支部队，不显示指向线时 drawcall为1200  
  优化后 200支部队，不显示指向线时 drawcall为  21 (去掉canvs，所有头像相关图片调整到一个图集中)    
- ![](image/IGG-Perf-Note/2023-03-27-18-34-34.png)  
+ ![](image/IGG性能分析笔记/2023-03-27-18-34-34.png)  
 
 
 ## 内城优化
-![](image/IGG-Perf-Note/2023-03-30-20-52-10.png)
+![](image/IGG性能分析笔记/2023-03-30-20-52-10.png)
 *每个hud上添加有Canvas组件*  
 **移除后的效果：**
-![](image/IGG-Perf-Note/2023-03-30-20-52-36.png)
+![](image/IGG性能分析笔记/2023-03-30-20-52-36.png)

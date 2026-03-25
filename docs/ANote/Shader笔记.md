@@ -134,11 +134,11 @@ d. 调用Shader
 > 参考：[https://zhuanlan.zhihu.com/p/66558476](https://zhuanlan.zhihu.com/p/66558476)
 
   
-![](image/Shader-Note/gD4rOtGw7CJzkUe.png)  
+![](image/Shader笔记/gD4rOtGw7CJzkUe.png)  
   
-![](image/Shader-Note/CsUA4dOkTS6XHa3.png)  
+![](image/Shader笔记/CsUA4dOkTS6XHa3.png)  
   
-![](image/Shader-Note/EwVRcDFQgfeu9qL.png)  
+![](image/Shader笔记/EwVRcDFQgfeu9qL.png)  
 
 点线代表线性颜色/亮度值（译注：这表示的是理想状态，Gamma为1），实线代表监视器显示的颜色。
 
@@ -390,9 +390,9 @@ float4 _CubeMap_HDR;
 #### uv动画
 #### 顶点动画
     1. 顶点动画贴图（VAT）  （风力动画可以用这种）`比较细腻`(旗帜燃烧CS06)
->![](image/Shader-Note/2021-11-25-20-06-28.png)
->![](image/Shader-Note/2021-11-25-20-08-03.png)
->![](image/Shader-Note/2021-11-25-20-09-52.png)
+>![](image/Shader笔记/2021-11-25-20-06-28.png)
+>![](image/Shader笔记/2021-11-25-20-08-03.png)
+>![](image/Shader笔记/2021-11-25-20-09-52.png)
     2.
 #### 关键帧动画
 #### 骨骼动画
@@ -434,7 +434,7 @@ float4 _CubeMap_HDR;
 #### 模糊（Blur）
 > 参考：[高品质后处理：十种图像模糊算法的总结与实现](https://blog.csdn.net/poem_qianmo/article/details/105350519)
   
-![](image/Shader-Note/niCG5StoMDuUzlR.png)  
+![](image/Shader笔记/niCG5StoMDuUzlR.png)  
 ##### 方框模糊（Box Blur）
 
 ##### 高斯模糊（Gaussian Blur）

@@ -60,11 +60,11 @@ comments: true
 
 ### 部队（车）战斗状态
 
-![空屏对照](image/DrawCall分析及优化/1758696250368.png)
-![5只部队](image/DrawCall分析及优化/1758696326459.png)
-![4只部队时](image/DrawCall分析及优化/1758696351522.png)
-![3只部队时](image/DrawCall分析及优化/1758696369946.png)
-![3只部队时](image/DrawCall分析及优化/1758696403861.png)
+![空屏对照](image/世界部队DrawCall分析和优化/1758696250368.png)
+![5只部队](image/世界部队DrawCall分析和优化/1758696326459.png)
+![4只部队时](image/世界部队DrawCall分析和优化/1758696351522.png)
+![3只部队时](image/世界部队DrawCall分析和优化/1758696369946.png)
+![3只部队时](image/世界部队DrawCall分析和优化/1758696403861.png)
 
 > - 空屏对照组 19 dw
 > - 5 只部队时峰值是 44 dw

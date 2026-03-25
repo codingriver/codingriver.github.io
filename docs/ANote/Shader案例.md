@@ -15,12 +15,12 @@ comments: true
 
 ### 角色展示
 
-![](image/Shader-Cases/2021-12-21-20-18-01.png)
+![](image/Shader案例/2021-12-21-20-18-01.png)
 
 >需要的贴图：  
 >漫反射贴图；法线贴图；Metal，Roughness，SkinArea通道贴图CompMask（M,R,S）；次表面散射LUT查找图；IBL Specular CubeMap环境图；IBL Diffuse 球谐数据（提前读取IBL Diffuse CubeMap数据）;头发Aniso各向异性Noise贴图
 
-![](image/Shader-Cases/avatorshow.gif)  
+![](image/Shader案例/avatorshow.gif)  
 *漫反射，镜面反射，环境反射，环境高光*
 
 #### 身体部分 
@@ -569,7 +569,7 @@ Shader "Custom/Role_Hair"
 ### 玉龙
 
 
-![](image/Shader-Cases/CleanShot2022-03-17.gif)
+![](../assets/shared/18c0a56c-CleanShot2022-03-17.gif)
 *漫反射，透射光（高光），环境光*
 
 透射光实现：根据光反方向（增加法线的扭曲，表示玉龙表面的粗糙情况影响光线的方向）和视线方向夹角来判定透射光的强度（假设从玉龙后面有个手电筒和人眼的夹角，越小表示人眼看到的光线越多，光越强），然后通过厚度图来模拟玉龙的通透性
@@ -799,7 +799,7 @@ Shader "CS03/Dragon"
 
 ### 钻石
 
-![](image/Shader-Cases/CleanShot2022-03-17.gif)
+![](../assets/shared/18c0a56c-CleanShot2022-03-17.gif)
 
 *双Pass渲染，一个背面渲染（cubemap的反射和折射），一个前面渲染（折射和菲涅尔）*
 
