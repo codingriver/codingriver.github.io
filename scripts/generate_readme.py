@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-自动生成 README.md、docs/all-articles.md、mkdocs.yml nav
+自动生成 README.md、docs/all-articles.md、docs/all-categories.md、mkdocs.yml nav
 
 用法：
   python scripts/generate_readme.py                    # 同时生成 readme + all-articles
   python scripts/generate_readme.py --target readme
   python scripts/generate_readme.py --target all-articles
+  python scripts/generate_readme.py --target all-categories
   python scripts/generate_readme.py --target mkdocs-nav
   python scripts/generate_readme.py --target both      # readme + all-articles
-  python scripts/generate_readme.py --target all       # readme + all-articles + mkdocs-nav
+  python scripts/generate_readme.py --target all       # readme + all-articles + all-categories + mkdocs-nav
 """
 
 import argparse
@@ -28,6 +29,7 @@ FIXED_NAV_HEADER = [
     {'首页': 'index.md'},
     {'关于': 'about.md'},
     {'全部栏目': 'all-articles.md'},
+    {'全部分类': 'all-categories.md'},
     {'MkDocs 博客方案': 'MkDocs博客方案.md'},
     {'标签': 'tags/index.md'},
 ]
@@ -92,7 +94,7 @@ def parse_front_matter(filepath, content):
 # ──────────────────────────────────────────────
 
 def get_article_info(filepath):
-    """返回 (title, date) 或 None（需跳过）"""
+    """返回文章信息 dict 或 None（需跳过）"""
     try:
         content = Path(filepath).read_text(encoding='utf-8')
     except Exception as e:
@@ -107,14 +109,24 @@ def get_article_info(filepath):
 
     title = None
     date = None
+    categories = []
 
     if fm is not None:
         raw_title = fm.get('title')
         raw_date = fm.get('date')
+        raw_categories = fm.get('categories')
+
         if raw_title is not None:
             title = str(raw_title).strip()
         if raw_date is not None:
             date = str(raw_date).strip()
+
+        if isinstance(raw_categories, list):
+            categories = [str(x).strip() for x in raw_categories if str(x).strip()]
+        elif raw_categories is not None:
+            c = str(raw_categories).strip()
+            if c:
+                categories = [c]
 
     if not title:
         m = re.search(r'title:\s*["\']?([^"\'\n]+)["\']?', content)
@@ -129,7 +141,11 @@ def get_article_info(filepath):
     if not date:
         date = datetime.fromtimestamp(os.path.getmtime(filepath)).strftime('%Y-%m-%d')
 
-    return title, date
+    return {
+        'title': title,
+        'date': date,
+        'categories': categories,
+    }
 
 
 # ──────────────────────────────────────────────
@@ -137,16 +153,17 @@ def get_article_info(filepath):
 # ──────────────────────────────────────────────
 
 def scan_docs():
-    """返回 (articles, skipped_files, dir_order)"""
+    """返回 (articles, category_articles, skipped_files, dir_order)"""
     docs_dir = Path('docs').resolve()
     repo_root = docs_dir.parent
     articles = defaultdict(list)
+    category_articles = defaultdict(list)
     skipped_files = []
     dir_order = []   # 保留扫描到的目录名顺序
 
     if not docs_dir.exists():
         print(f'error: {docs_dir} does not exist')
-        return articles, skipped_files, dir_order
+        return articles, category_articles, skipped_files, dir_order
 
     for category_dir in sorted(docs_dir.iterdir()):
         if not category_dir.is_dir() or category_dir.name.startswith('.'):
@@ -161,15 +178,26 @@ def scan_docs():
             if info is None:
                 skipped_files.append(str(md_file.relative_to(repo_root)).replace('\\', '/'))
                 continue
-            title, date = info
+
+            title = info['title']
+            date = info['date']
+            fm_categories = info['categories']
+
             readme_path = str(md_file.relative_to(repo_root)).replace('\\', '/')
             docs_path = str(md_file.relative_to(docs_dir)).replace('\\', '/')
-            articles[category_name].append((title, date, readme_path, docs_path, dir_name))
+
+            entry = (title, date, readme_path, docs_path, dir_name)
+            articles[category_name].append(entry)
             has_article = True
+
+            article_categories = fm_categories if fm_categories else ['未分类']
+            for c in article_categories:
+                category_articles[c].append(entry)
+
         if has_article or (category_dir / 'index.md').exists():
             dir_order.append(dir_name)
 
-    return articles, skipped_files, dir_order
+    return articles, category_articles, skipped_files, dir_order
 
 
 # ──────────────────────────────────────────────
@@ -199,10 +227,16 @@ def update_readme(new_section):
     end_marker = '## \U0001f3d7\ufe0f 仓库定位'
     start_idx = content.find(start_marker)
     end_idx = content.find(end_marker)
-    if start_idx == -1 or end_idx == -1:
+    if start_idx == -1:
         print('error: cannot find article index section in README.md')
         return False
-    readme_path.write_text(content[:start_idx] + new_section + '\n\n' + content[end_idx:], encoding='utf-8')
+
+    if end_idx == -1 or end_idx < start_idx:
+        # 如果 README 里没有后续“仓库定位”分节，则替换到文件末尾
+        readme_path.write_text(content[:start_idx] + new_section + '\n', encoding='utf-8')
+    else:
+        readme_path.write_text(content[:start_idx] + new_section + '\n\n' + content[end_idx:], encoding='utf-8')
+
     print('README.md updated')
     return True
 
@@ -237,6 +271,37 @@ def generate_all_articles_page(articles):
 def create_all_articles_page(content):
     Path('docs/all-articles.md').write_text(content, encoding='utf-8')
     print('docs/all-articles.md updated')
+    return True
+
+
+def generate_all_categories_page(category_articles):
+    lines = [
+        '---',
+        'title: "全部分类"',
+        'date: "2026-03-25"',
+        'comments: false',
+        '---',
+        '',
+        '# 全部分类',
+        '',
+        '这里列出博客中的全部文章，按文章 front matter 中定义的 `categories` 分组。',
+        '',
+    ]
+
+    for category in sorted(category_articles.keys()):
+        items = category_articles[category]
+        sorted_items = sorted(items, key=lambda x: x[1], reverse=True)
+        lines.append(f'## {category}（{len(sorted_items)}）\n')
+        for title, date, readme_path, docs_path, dir_name in sorted_items:
+            lines.append('- **' + date + '** - [' + title + '](' + docs_path + ')')
+        lines.append('')
+
+    return '\n'.join(lines)
+
+
+def create_all_categories_page(content):
+    Path('docs/all-categories.md').write_text(content, encoding='utf-8')
+    print('docs/all-categories.md updated')
     return True
 
 
@@ -307,20 +372,20 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '--target',
-        choices=['readme', 'all-articles', 'mkdocs-nav', 'both', 'all'],
+        choices=['readme', 'all-articles', 'all-categories', 'mkdocs-nav', 'both', 'all'],
         default='both',
-        help='选择要生成的目标（both=readme+all-articles，all=readme+all-articles+mkdocs-nav）',
+        help='选择要生成的目标（both=readme+all-articles，all=readme+all-articles+all-categories+mkdocs-nav）',
     )
     args = parser.parse_args()
 
     print('scanning docs/...')
-    articles, skipped_files, dir_order = scan_docs()
+    articles, category_articles, skipped_files, dir_order = scan_docs()
 
     if not articles:
         print('warning: no articles found')
     else:
         total = sum(len(items) for items in articles.values())
-        print(f'found {total} articles in {len(articles)} categories')
+        print(f'found {total} articles in {len(articles)} directory categories and {len(category_articles)} front-matter categories')
 
     if skipped_files:
         print(f'warning: skipped {len(skipped_files)} file(s) due to invalid front matter')
@@ -329,6 +394,7 @@ def main():
 
     do_readme = args.target in ('readme', 'both', 'all')
     do_all_articles = args.target in ('all-articles', 'both', 'all')
+    do_all_categories = args.target in ('all-categories', 'all')
     do_nav = args.target in ('mkdocs-nav', 'all')
 
     if do_readme:
@@ -345,6 +411,14 @@ def main():
         print('writing docs/all-articles.md...')
         if not create_all_articles_page(all_articles_content):
             print('error: failed to write docs/all-articles.md')
+            raise SystemExit(1)
+
+    if do_all_categories:
+        print('generating all-categories page...')
+        all_categories_content = generate_all_categories_page(category_articles)
+        print('writing docs/all-categories.md...')
+        if not create_all_categories_page(all_categories_content):
+            print('error: failed to write docs/all-categories.md')
             raise SystemExit(1)
 
     if do_nav:
