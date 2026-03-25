@@ -1,6 +1,6 @@
 ---
 title: "Android　分享App-Icon透明图片到微信变黑的问题"
-date: "2026-03-21"
+date: "2020-12-13"
 tags:
   - Android
   - 网络

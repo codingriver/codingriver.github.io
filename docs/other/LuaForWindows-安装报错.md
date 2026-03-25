@@ -1,6 +1,6 @@
 ---
 title: "LuaForWindows-安装报错"
-date: "2026-03-21"
+date: "2020-12-13"
 tags:
   - 工具链
   - Lua

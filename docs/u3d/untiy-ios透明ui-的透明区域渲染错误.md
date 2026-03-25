@@ -1,6 +1,6 @@
 ---
 title: "untiy-ios透明ui-的透明区域渲染错误"
-date: "2026-03-21"
+date: "2020-12-13"
 tags:
   - Unity
   - UI

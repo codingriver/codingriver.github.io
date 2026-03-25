@@ -1,6 +1,6 @@
 ---
 title: "unity发布android版本-so静态库打不进去"
-date: "2026-03-21"
+date: "2020-12-13"
 tags:
   - Unity
   - UI

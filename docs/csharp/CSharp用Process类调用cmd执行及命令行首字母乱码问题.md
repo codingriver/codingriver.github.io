@@ -1,6 +1,6 @@
 ---
 title: "CSharp用Process类调用cmd执行及命令行首字母乱码问题"
-date: "2026-03-21"
+date: "2020-12-13"
 tags:
   - CSharp
   - 异步编程

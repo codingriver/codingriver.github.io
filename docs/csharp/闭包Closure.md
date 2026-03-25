@@ -1,6 +1,6 @@
 ---
 title: "闭包Closure"
-date: "2026-03-21"
+date: "2021-04-07"
 tags:
   - CSharp
   - 网络

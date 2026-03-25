@@ -1,6 +1,6 @@
 ---
 title: "泛光（Bloom）实现"
-date: "2026-03-21"
+date: "2022-03-06"
 tags:
   - Shader
   - 图形学

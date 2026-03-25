@@ -1,6 +1,6 @@
 ---
 title: "ShaderLearn-(三)RampTex"
-date: "2026-03-21"
+date: "2021-12-22"
 tags:
   - Shader
   - 图形学

@@ -1,6 +1,6 @@
 ---
 title: "Gamma和Linear及sRGB说明"
-date: "2026-03-21"
+date: "2024-03-01"
 tags:
   - Shader
   - 图形学

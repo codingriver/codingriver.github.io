@@ -1,6 +1,6 @@
 ---
 title: "【Shader】常用函数（UnityShader内置函数、CG 和 GLSL 内置函数等）和内置变量"
-date: "2026-03-21"
+date: "2021-08-15"
 tags:
   - Shader
   - 图形学

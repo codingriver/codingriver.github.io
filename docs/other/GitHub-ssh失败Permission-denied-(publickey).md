@@ -1,6 +1,6 @@
 ---
 title: "GitHub-ssh失败Permission-denied-(publickey)"
-date: "2026-03-21"
+date: "2020-12-13"
 tags:
   - 工具链
   - Git

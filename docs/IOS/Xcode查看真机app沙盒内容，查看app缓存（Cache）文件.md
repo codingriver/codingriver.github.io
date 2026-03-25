@@ -1,6 +1,6 @@
 ---
 title: "Xcode查看真机app沙盒内容，查看app缓存（Cache）文件"
-date: "2026-03-21"
+date: "2021-12-20"
 tags:
   - iOS
   - 网络

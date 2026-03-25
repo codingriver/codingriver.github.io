@@ -1,6 +1,6 @@
 ---
 title: "Shader法线贴图（世界空间）"
-date: "2026-03-21"
+date: "2020-12-13"
 tags:
   - Shader
   - 图形学

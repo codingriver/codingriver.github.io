@@ -1,6 +1,6 @@
 ---
 title: "UGUI使用富文本RichText"
-date: "2026-03-21"
+date: "2020-12-13"
 tags:
   - Unity
   - UI

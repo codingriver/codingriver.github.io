@@ -1,6 +1,6 @@
 ---
 title: "Shader光照模型-高光反射"
-date: "2026-03-21"
+date: "2021-12-22"
 tags:
   - Shader
   - 图形学

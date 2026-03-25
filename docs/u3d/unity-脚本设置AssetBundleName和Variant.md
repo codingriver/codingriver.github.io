@@ -1,6 +1,6 @@
 ---
 title: "unity-脚本设置AssetBundleName和Variant"
-date: "2026-03-21"
+date: "2021-04-07"
 tags:
   - Unity
   - UI
