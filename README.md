@@ -229,6 +229,7 @@
 
 ### 项目记录与随笔
 
+- **2026-03-25** - [[TEST] 图片路径测试文章](docs/ANote/_test_image_path.md)
 - **2026-03-21** - [web开发笔记](docs/ANote/web开发笔记.md)
 - **2025-12-23** - [日常笔记](docs/ANote/日常笔记.md)
 - **2025-02-06** - [SSH笔记](docs/ANote/SSH笔记.md)

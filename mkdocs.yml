@@ -72,6 +72,7 @@ nav:
   - UI笔记: ANote/UI笔记.md
   - Unity-URP笔记: ANote/Unity-URP笔记.md
   - Unity记录: ANote/Unity记录.md
+  - '[TEST] 图片路径测试文章': ANote/_test_image_path.md
   - caddy笔记: ANote/caddy笔记.md
   - cloudflare反向代理工具: ANote/cloudflare反向代理工具.md
   - golang笔记: ANote/golang笔记.md
