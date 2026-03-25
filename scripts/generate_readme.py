@@ -110,11 +110,13 @@ def get_article_info(filepath):
     title = None
     date = None
     categories = []
+    is_draft = False
 
     if fm is not None:
         raw_title = fm.get('title')
         raw_date = fm.get('date')
         raw_categories = fm.get('categories')
+        is_draft = fm.get('draft') is True
 
         if raw_title is not None:
             title = str(raw_title).strip()
@@ -145,6 +147,7 @@ def get_article_info(filepath):
         'title': title,
         'date': date,
         'categories': categories,
+        'is_draft': is_draft,
     }
 
 
@@ -153,17 +156,18 @@ def get_article_info(filepath):
 # ──────────────────────────────────────────────
 
 def scan_docs():
-    """返回 (articles, category_articles, skipped_files, dir_order)"""
+    """返回 (articles, category_articles, skipped_files, skipped_draft_files, dir_order)"""
     docs_dir = Path('docs').resolve()
     repo_root = docs_dir.parent
     articles = defaultdict(list)
     category_articles = defaultdict(list)
     skipped_files = []
+    skipped_draft_files = []
     dir_order = []   # 保留扫描到的目录名顺序
 
     if not docs_dir.exists():
         print(f'error: {docs_dir} does not exist')
-        return articles, category_articles, skipped_files, dir_order
+        return articles, category_articles, skipped_files, skipped_draft_files, dir_order
 
     for category_dir in sorted(docs_dir.iterdir()):
         if not category_dir.is_dir() or category_dir.name.startswith('.'):
@@ -177,6 +181,9 @@ def scan_docs():
             info = get_article_info(md_file)
             if info is None:
                 skipped_files.append(str(md_file.relative_to(repo_root)).replace('\\', '/'))
+                continue
+            if info['is_draft']:
+                skipped_draft_files.append(str(md_file.relative_to(repo_root)).replace('\\', '/'))
                 continue
 
             title = info['title']
@@ -197,7 +204,7 @@ def scan_docs():
         if has_article or (category_dir / 'index.md').exists():
             dir_order.append(dir_name)
 
-    return articles, category_articles, skipped_files, dir_order
+    return articles, category_articles, skipped_files, skipped_draft_files, dir_order
 
 
 # ──────────────────────────────────────────────
@@ -379,7 +386,7 @@ def main():
     args = parser.parse_args()
 
     print('scanning docs/...')
-    articles, category_articles, skipped_files, dir_order = scan_docs()
+    articles, category_articles, skipped_files, skipped_draft_files, dir_order = scan_docs()
 
     if not articles:
         print('warning: no articles found')
@@ -391,6 +398,11 @@ def main():
         print(f'warning: skipped {len(skipped_files)} file(s) due to invalid front matter')
         for path in skipped_files:
             print(f'warning: skipped file: {path}')
+
+    if skipped_draft_files:
+        print(f'info: skipped {len(skipped_draft_files)} draft file(s)')
+        for path in skipped_draft_files:
+            print(f'info: skipped draft file: {path}')
 
     do_readme = args.target in ('readme', 'both', 'all')
     do_all_articles = args.target in ('all-articles', 'both', 'all')

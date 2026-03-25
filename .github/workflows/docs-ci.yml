@@ -1,0 +1,50 @@
+name: Docs CI
+
+on:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Check markdown docs
+        run: python scripts/check_docs.py --strict --report-json artifacts/check-report.json --summary-md artifacts/check-summary.md
+
+      - name: Check image references
+        run: python scripts/normalize_images.py --check --report-json artifacts/image-check-report.json --summary-md artifacts/image-check-summary.md
+
+      - name: Append summaries
+        if: always()
+        run: |
+          if [ -f artifacts/check-summary.md ]; then
+            cat artifacts/check-summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [ -f artifacts/image-check-summary.md ]; then
+            printf '\n\n' >> "$GITHUB_STEP_SUMMARY"
+            cat artifacts/image-check-summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-ci-reports
+          path: artifacts/

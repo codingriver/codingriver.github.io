@@ -43,20 +43,24 @@ jobs:
         run: |
           pip install mkdocs-material mkdocs-git-revision-date-localized-plugin mkdocs-git-authors-plugin gitpython jieba pyyaml mkdocs-glightbox mkdocs-minify-plugin
 
-      - name: Check markdown docs and fail with precise file/line info
-        run: python scripts/check_docs.py --strict
-
       - name: Generate README, all-articles, all-categories and mkdocs nav for build
         run: python scripts/generate_readme.py --target all
+
+      - name: Check markdown docs and fail with precise file/line info
+        run: python scripts/check_docs.py --strict --report-json artifacts/check-report.json --summary-md artifacts/check-summary.md
+
+      - name: Prepare docs directory for MkDocs build
+        run: python scripts/prepare_mkdocs_docs.py --source docs --output build_docs --mkdocs mkdocs.yml
 
       - name: Build site
         run: mkdocs build --strict --verbose
 
-      - name: Verify images in site
+      - name: Append check summary
+        if: always()
         run: |
-          echo "Checking Unity-URP images:"
-          ls site/ANote/image/ 2>/dev/null || echo "No ANote/image dir"
-          find site -name "eJD95mkRaKYfXCI.png" 2>/dev/null || echo "Target image not found in site"
+          if [ -f artifacts/check-summary.md ]; then
+            cat artifacts/check-summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

@@ -13,27 +13,35 @@ on:
 
 jobs:
   update-docs:
+    if: github.actor != 'github-actions[bot]' || !contains(github.event.head_commit.message, '[skip ci]')
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: pip install pyyaml
 
       - name: Check markdown docs
-        run: python scripts/check_docs.py || true
+        run: python scripts/check_docs.py --report-json artifacts/check-report.json --summary-md artifacts/check-summary.md || true
 
       - name: Generate README, all-articles and mkdocs nav
         run: python scripts/generate_readme.py --target all
+
+      - name: Append check summary
+        if: always()
+        run: |
+          if [ -f artifacts/check-summary.md ]; then
+            cat artifacts/check-summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Check if files changed
         id: check_changes
@@ -50,5 +58,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md docs/all-articles.md docs/all-categories.md mkdocs.yml
-          git commit -m "docs: auto-update README, all-articles, all-categories and mkdocs nav"
+          git commit -m "docs: auto-update README, all-articles, all-categories and mkdocs nav [skip ci]"
           git push

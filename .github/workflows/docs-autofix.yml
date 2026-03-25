@@ -1,0 +1,66 @@
+name: Docs Auto Fix
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'docs/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  normalize-images:
+    if: github.actor != 'github-actions[bot]' || !contains(github.event.head_commit.message, '[skip ci]')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Normalize images
+        run: python scripts/normalize_images.py --fix --report-json artifacts/image-fix-report.json --summary-md artifacts/image-fix-summary.md
+
+      - name: Append summary
+        if: always()
+        run: |
+          if [ -f artifacts/image-fix-summary.md ]; then
+            cat artifacts/image-fix-summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-autofix-reports
+          path: artifacts/
+
+      - name: Check if docs changed
+        id: check_changes
+        run: |
+          if git diff --quiet -- docs; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check_changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs
+          git commit -m "docs: normalize image paths and update references [skip ci]"
+          git push
