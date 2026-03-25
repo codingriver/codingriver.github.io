@@ -46,8 +46,8 @@ jobs:
       - name: Check markdown docs and fail with precise file/line info
         run: python scripts/check_docs.py --strict
 
-      - name: Generate all-articles and mkdocs nav for build
-        run: python scripts/generate_readme.py --target all-articles
+      - name: Generate README, all-articles, all-categories and mkdocs nav for build
+        run: python scripts/generate_readme.py --target all
 
       - name: Build site
         run: mkdocs build --strict --verbose
